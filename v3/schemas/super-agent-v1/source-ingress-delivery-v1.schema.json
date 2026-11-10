@@ -1,0 +1,585 @@
+{
+  "$defs": {
+    "ActorRef": {
+      "additionalProperties": false,
+      "properties": {
+        "scope": {
+          "$ref": "#/$defs/SourceScope"
+        },
+        "id_type": {
+          "maxLength": 256,
+          "minLength": 1,
+          "title": "Id Type",
+          "type": "string"
+        },
+        "actor_id": {
+          "maxLength": 256,
+          "minLength": 1,
+          "title": "Actor Id",
+          "type": "string"
+        },
+        "actor_kind": {
+          "enum": [
+            "human",
+            "bot",
+            "service",
+            "unknown"
+          ],
+          "title": "Actor Kind",
+          "type": "string"
+        }
+      },
+      "required": [
+        "scope",
+        "id_type",
+        "actor_id",
+        "actor_kind"
+      ],
+      "title": "ActorRef",
+      "type": "object"
+    },
+    "CursorPosition": {
+      "additionalProperties": false,
+      "properties": {
+        "stream_id": {
+          "maxLength": 256,
+          "minLength": 1,
+          "title": "Stream Id",
+          "type": "string"
+        },
+        "epoch": {
+          "maxLength": 256,
+          "minLength": 1,
+          "title": "Epoch",
+          "type": "string"
+        },
+        "sequence": {
+          "maximum": 9223372036854775807,
+          "minimum": 1,
+          "title": "Sequence",
+          "type": "integer"
+        },
+        "value": {
+          "anyOf": [
+            {
+              "maxLength": 256,
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Value"
+        }
+      },
+      "required": [
+        "stream_id",
+        "epoch",
+        "sequence"
+      ],
+      "title": "CursorPosition",
+      "type": "object"
+    },
+    "EntityRevision": {
+      "additionalProperties": false,
+      "properties": {
+        "origin": {
+          "enum": [
+            "native",
+            "derived",
+            "legacy",
+            "unavailable"
+          ],
+          "title": "Origin",
+          "type": "string"
+        },
+        "value": {
+          "anyOf": [
+            {
+              "maxLength": 256,
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Value"
+        }
+      },
+      "required": [
+        "origin",
+        "value"
+      ],
+      "title": "EntityRevision",
+      "type": "object"
+    },
+    "ItemMetadata": {
+      "additionalProperties": false,
+      "properties": {
+        "event": {
+          "$ref": "#/$defs/SourceEvent"
+        },
+        "entity_namespace": {
+          "maxLength": 256,
+          "minLength": 1,
+          "title": "Entity Namespace",
+          "type": "string"
+        },
+        "operation": {
+          "enum": [
+            "create",
+            "edit",
+            "delete"
+          ],
+          "title": "Operation",
+          "type": "string"
+        },
+        "native_order": {
+          "anyOf": [
+            {
+              "maximum": 9223372036854775807,
+              "minimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Native Order"
+        },
+        "platform_moderation": {
+          "default": false,
+          "title": "Platform Moderation",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "event",
+        "entity_namespace",
+        "operation"
+      ],
+      "title": "ItemMetadata",
+      "type": "object"
+    },
+    "LegacyTriggerRef": {
+      "additionalProperties": false,
+      "description": "Original legacy identifiers; never interpreted as verified platform identity.",
+      "properties": {
+        "source": {
+          "enum": [
+            "github",
+            "cli",
+            "web"
+          ],
+          "title": "Source",
+          "type": "string"
+        },
+        "external_event_id": {
+          "maxLength": 200,
+          "minLength": 1,
+          "title": "External Event Id",
+          "type": "string"
+        },
+        "repository": {
+          "pattern": "^[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+$",
+          "title": "Repository",
+          "type": "string"
+        },
+        "issue_number": {
+          "exclusiveMinimum": 0,
+          "title": "Issue Number",
+          "type": "integer"
+        },
+        "actor": {
+          "pattern": "^[A-Za-z0-9_-]{1,100}$",
+          "title": "Actor",
+          "type": "string"
+        },
+        "execution_mode": {
+          "enum": [
+            "fixture",
+            "live"
+          ],
+          "title": "Execution Mode",
+          "type": "string"
+        }
+      },
+      "required": [
+        "source",
+        "external_event_id",
+        "repository",
+        "issue_number",
+        "actor",
+        "execution_mode"
+      ],
+      "title": "LegacyTriggerRef",
+      "type": "object"
+    },
+    "RepositoryHint": {
+      "additionalProperties": false,
+      "properties": {
+        "full_name": {
+          "pattern": "^[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+$",
+          "title": "Full Name",
+          "type": "string"
+        },
+        "resource_kind": {
+          "enum": [
+            "issue",
+            "pull_request",
+            "workflow",
+            "check",
+            "repository"
+          ],
+          "title": "Resource Kind",
+          "type": "string"
+        },
+        "number": {
+          "anyOf": [
+            {
+              "exclusiveMinimum": 0,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Number"
+        },
+        "head_sha": {
+          "anyOf": [
+            {
+              "pattern": "^[a-fA-F0-9]{40}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Head Sha"
+        }
+      },
+      "required": [
+        "full_name",
+        "resource_kind"
+      ],
+      "title": "RepositoryHint",
+      "type": "object"
+    },
+    "SourceEvent": {
+      "additionalProperties": false,
+      "properties": {
+        "schema_version": {
+          "const": "source-event-v1",
+          "default": "source-event-v1",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "scope": {
+          "$ref": "#/$defs/SourceScope"
+        },
+        "project_id": {
+          "maxLength": 100,
+          "minLength": 1,
+          "title": "Project Id",
+          "type": "string"
+        },
+        "source_revision": {
+          "exclusiveMinimum": 0,
+          "title": "Source Revision",
+          "type": "integer"
+        },
+        "delivery_id": {
+          "maxLength": 256,
+          "minLength": 1,
+          "title": "Delivery Id",
+          "type": "string"
+        },
+        "remote_event_id": {
+          "maxLength": 256,
+          "minLength": 1,
+          "title": "Remote Event Id",
+          "type": "string"
+        },
+        "entity_id": {
+          "maxLength": 256,
+          "minLength": 1,
+          "title": "Entity Id",
+          "type": "string"
+        },
+        "entity_revision": {
+          "$ref": "#/$defs/EntityRevision"
+        },
+        "event_kind": {
+          "pattern": "^[a-z][a-z0-9_.-]{0,99}$",
+          "title": "Event Kind",
+          "type": "string"
+        },
+        "source_thread": {
+          "$ref": "#/$defs/SourceThreadRef"
+        },
+        "reply_to_entity_id": {
+          "anyOf": [
+            {
+              "maxLength": 256,
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Reply To Entity Id"
+        },
+        "sender": {
+          "$ref": "#/$defs/ActorRef"
+        },
+        "addressed": {
+          "enum": [
+            "mention",
+            "direct",
+            "subscription",
+            "ambient",
+            "unknown"
+          ],
+          "title": "Addressed",
+          "type": "string"
+        },
+        "occurred_at": {
+          "format": "date-time",
+          "title": "Occurred At",
+          "type": "string"
+        },
+        "received_at": {
+          "format": "date-time",
+          "title": "Received At",
+          "type": "string"
+        },
+        "repository_hint": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/RepositoryHint"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "body_ref": {
+          "anyOf": [
+            {
+              "pattern": "^[a-f0-9]{64}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Body Ref"
+        },
+        "verification_ref": {
+          "maxLength": 256,
+          "minLength": 1,
+          "title": "Verification Ref",
+          "type": "string"
+        },
+        "historical_backfill": {
+          "default": false,
+          "title": "Historical Backfill",
+          "type": "boolean"
+        },
+        "provenance": {
+          "enum": [
+            "verified_source",
+            "legacy_trigger"
+          ],
+          "title": "Provenance",
+          "type": "string"
+        },
+        "legacy_context": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/LegacyTriggerRef"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        }
+      },
+      "required": [
+        "scope",
+        "project_id",
+        "source_revision",
+        "delivery_id",
+        "remote_event_id",
+        "entity_id",
+        "entity_revision",
+        "event_kind",
+        "source_thread",
+        "sender",
+        "addressed",
+        "occurred_at",
+        "received_at",
+        "verification_ref",
+        "provenance"
+      ],
+      "title": "SourceEvent",
+      "type": "object"
+    },
+    "SourceScope": {
+      "additionalProperties": false,
+      "properties": {
+        "source_kind": {
+          "pattern": "^[a-z][a-z0-9_]{0,31}$",
+          "title": "Source Kind",
+          "type": "string"
+        },
+        "source_instance_id": {
+          "format": "uuid",
+          "title": "Source Instance Id",
+          "type": "string"
+        },
+        "tenant_id": {
+          "maxLength": 256,
+          "minLength": 1,
+          "title": "Tenant Id",
+          "type": "string"
+        },
+        "installation_id": {
+          "maxLength": 256,
+          "minLength": 1,
+          "title": "Installation Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "source_kind",
+        "source_instance_id",
+        "tenant_id",
+        "installation_id"
+      ],
+      "title": "SourceScope",
+      "type": "object"
+    },
+    "SourceThreadRef": {
+      "additionalProperties": false,
+      "properties": {
+        "scope": {
+          "$ref": "#/$defs/SourceScope"
+        },
+        "conversation_id": {
+          "maxLength": 256,
+          "minLength": 1,
+          "title": "Conversation Id",
+          "type": "string"
+        },
+        "native_thread_id": {
+          "anyOf": [
+            {
+              "maxLength": 256,
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Native Thread Id"
+        }
+      },
+      "required": [
+        "scope",
+        "conversation_id"
+      ],
+      "title": "SourceThreadRef",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": "source-ingress-v1",
+      "default": "source-ingress-v1",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "source_instance_id": {
+      "format": "uuid",
+      "title": "Source Instance Id",
+      "type": "string"
+    },
+    "source_revision": {
+      "exclusiveMinimum": 0,
+      "title": "Source Revision",
+      "type": "integer"
+    },
+    "delivery_id": {
+      "maxLength": 256,
+      "minLength": 1,
+      "title": "Delivery Id",
+      "type": "string"
+    },
+    "payload_sha256": {
+      "pattern": "^[a-f0-9]{64}$",
+      "title": "Payload Sha256",
+      "type": "string"
+    },
+    "verified_at": {
+      "format": "date-time",
+      "title": "Verified At",
+      "type": "string"
+    },
+    "verification_method": {
+      "enum": [
+        "platform_signature",
+        "installation_proof"
+      ],
+      "title": "Verification Method",
+      "type": "string"
+    },
+    "items": {
+      "items": {
+        "$ref": "#/$defs/ItemMetadata"
+      },
+      "maxItems": 100,
+      "minItems": 1,
+      "title": "Items",
+      "type": "array"
+    },
+    "cursor": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/CursorPosition"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    }
+  },
+  "required": [
+    "source_instance_id",
+    "source_revision",
+    "delivery_id",
+    "payload_sha256",
+    "verified_at",
+    "verification_method",
+    "items"
+  ],
+  "title": "DeliveryMetadata",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

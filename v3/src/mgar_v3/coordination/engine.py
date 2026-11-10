@@ -32,6 +32,7 @@ from mgar_v3.recovery.store import Recovery
 from mgar_v3.repair.store import Repairs
 from mgar_v3.routing.store import Routing
 from mgar_v3.settings import Settings
+from mgar_v3.sources.ingress import SourceIngress
 from mgar_v3.super_agent.policy import SourcePolicies
 
 TModel = TypeVar("TModel", bound=Model)
@@ -73,6 +74,7 @@ class Engine:
         self.benchmarks = Benchmarks(self)
         self.commerce = Commerce(self)
         self.source_policies = SourcePolicies(self)
+        self.source_ingress = SourceIngress(self)
 
     def close(self) -> None:
         with self._mutex:
@@ -126,6 +128,7 @@ class Engine:
         payload = event.model_dump(mode="json")
         payload_hash = digest(payload)
         with self.transaction() as conn:
+            self.source_ingress.check_legacy_owner(conn, event)
             existing = conn.execute(
                 "SELECT * FROM app.trigger_events WHERE source=%s AND external_event_id=%s",
                 (event.source, event.external_event_id),

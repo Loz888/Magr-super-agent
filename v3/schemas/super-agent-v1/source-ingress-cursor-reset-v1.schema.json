@@ -1,0 +1,31 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "expected_revision": {
+      "maximum": 9223372036854775807,
+      "minimum": 0,
+      "title": "Expected Revision",
+      "type": "integer"
+    },
+    "epoch": {
+      "maxLength": 256,
+      "minLength": 1,
+      "title": "Epoch",
+      "type": "string"
+    },
+    "review_ref": {
+      "maxLength": 256,
+      "minLength": 1,
+      "title": "Review Ref",
+      "type": "string"
+    }
+  },
+  "required": [
+    "expected_revision",
+    "epoch",
+    "review_ref"
+  ],
+  "title": "CursorReset",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

@@ -1,0 +1,106 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "owner": {
+      "default": "disabled",
+      "enum": [
+        "disabled",
+        "gateway",
+        "legacy"
+      ],
+      "title": "Owner",
+      "type": "string"
+    },
+    "policy_id": {
+      "anyOf": [
+        {
+          "format": "uuid",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Policy Id"
+    },
+    "policy_revision": {
+      "anyOf": [
+        {
+          "exclusiveMinimum": 0,
+          "type": "integer"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Policy Revision"
+    },
+    "legacy_repository": {
+      "anyOf": [
+        {
+          "pattern": "^[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+$",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Legacy Repository"
+    },
+    "max_pending": {
+      "default": 256,
+      "maximum": 10000,
+      "minimum": 1,
+      "title": "Max Pending",
+      "type": "integer"
+    },
+    "max_receipts": {
+      "default": 10000,
+      "maximum": 100000,
+      "minimum": 1,
+      "title": "Max Receipts",
+      "type": "integer"
+    },
+    "max_body_bytes": {
+      "default": 65536,
+      "maximum": 65536,
+      "minimum": 1,
+      "title": "Max Body Bytes",
+      "type": "integer"
+    },
+    "max_retained_bytes": {
+      "default": 4194304,
+      "maximum": 67108864,
+      "minimum": 1024,
+      "title": "Max Retained Bytes",
+      "type": "integer"
+    },
+    "live_age_seconds": {
+      "default": 300,
+      "maximum": 86400,
+      "minimum": 1,
+      "title": "Live Age Seconds",
+      "type": "integer"
+    },
+    "metadata_ttl_seconds": {
+      "default": 2592000,
+      "maximum": 2592000,
+      "minimum": 60,
+      "title": "Metadata Ttl Seconds",
+      "type": "integer"
+    },
+    "buffer_ttl_seconds": {
+      "default": 30,
+      "maximum": 300,
+      "minimum": 1,
+      "title": "Buffer Ttl Seconds",
+      "type": "integer"
+    }
+  },
+  "title": "IngressSettings",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

@@ -1,0 +1,87 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "receipt_id": {
+      "anyOf": [
+        {
+          "format": "uuid",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "title": "Receipt Id"
+    },
+    "source_instance_id": {
+      "format": "uuid",
+      "title": "Source Instance Id",
+      "type": "string"
+    },
+    "delivery_key": {
+      "pattern": "^[a-f0-9]{64}$",
+      "title": "Delivery Key",
+      "type": "string"
+    },
+    "disposition": {
+      "enum": [
+        "accepted",
+        "duplicate",
+        "rejected",
+        "conflict",
+        "legacy_owned",
+        "backpressure"
+      ],
+      "title": "Disposition",
+      "type": "string"
+    },
+    "input_ids": {
+      "default": [],
+      "items": {
+        "format": "uuid",
+        "type": "string"
+      },
+      "title": "Input Ids",
+      "type": "array"
+    },
+    "denied_count": {
+      "default": 0,
+      "maximum": 9223372036854775807,
+      "minimum": 0,
+      "title": "Denied Count",
+      "type": "integer"
+    },
+    "reason_code": {
+      "title": "Reason Code",
+      "type": "string"
+    },
+    "committed": {
+      "title": "Committed",
+      "type": "boolean"
+    },
+    "original_trigger_id": {
+      "anyOf": [
+        {
+          "format": "uuid",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Original Trigger Id"
+    }
+  },
+  "required": [
+    "receipt_id",
+    "source_instance_id",
+    "delivery_key",
+    "disposition",
+    "reason_code",
+    "committed"
+  ],
+  "title": "IngressReceipt",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

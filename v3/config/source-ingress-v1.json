@@ -1,0 +1,109 @@
+{
+  "contract_version": "source-ingress-v1",
+  "status": "FROZEN",
+  "business_authority": "original Engine, held advisory lock, original PostgreSQL connection",
+  "ack_boundary": "outer transaction durable commit, IDLE before callback; early SDK ACK mode refused",
+  "input": "one canonical existing source_inbox plus version fact; no fake Issue, Task, Run or model",
+  "keys": [
+    "platform/SourceInstance/tenant/installation/delivery",
+    "scope/event type/remote event",
+    "scope/entity namespace/entity/revision"
+  ],
+  "body": "Receive/current identity and role before persistence; authenticated ID-bound encryption; TTL and irreversible tombstones",
+  "replay": "bounded, current Receive rechecked, context_only; no duplicate input or consumed reset",
+  "ownership": "explicit generation CAS and optional GitHub repository cutover; one business ingress owner",
+  "management_api": "/api/v3/source-ingress/",
+  "production_verifiers": [],
+  "default_listener": false,
+  "default_cipher": null,
+  "model_calls": 0,
+  "external_business_writes": 0,
+  "real_platform_sdk": "NOT_RUN; controlled signed transport/SDK boundary only",
+  "migration": "0033_source_ingress.sql",
+  "coordination_commits": [
+    "a04dbdeb48669add157cc3d88021ea6563b0f160",
+    "bd508300cf99e276b243a2d9c3d5ebc171ca4c08"
+  ],
+  "artifacts": [
+    {
+      "path": "schemas/super-agent-v1/source-ingress-configure-v1.schema.json",
+      "sha256": "f3248c0e0181c5420a65335c8a3ecd2d56d90b8c8b07aef50b7cfb06e66c2294"
+    },
+    {
+      "path": "schemas/super-agent-v1/source-ingress-cursor-reset-v1.schema.json",
+      "sha256": "a36001fd296763a3b0d24ef72abc5ebb696fca7e6989dd0ca8be3b3825b3771e"
+    },
+    {
+      "path": "schemas/super-agent-v1/source-ingress-delivery-v1.schema.json",
+      "sha256": "cd1982f8efef57713db029ab706c393b9c16c8bbb7594c3ad964cdf96c6e19e2"
+    },
+    {
+      "path": "schemas/super-agent-v1/source-ingress-gap-v1.schema.json",
+      "sha256": "8a07ee150036560e10244081ec74360ac186f84a8535924272d24040030ba80e"
+    },
+    {
+      "path": "schemas/super-agent-v1/source-ingress-history-v1.schema.json",
+      "sha256": "9444b9a8e27d5304c2aa530db5dc9f9f1deb925f15fd4e9c83f3ebc6b39fb31e"
+    },
+    {
+      "path": "schemas/super-agent-v1/source-ingress-receipt-v1.schema.json",
+      "sha256": "58d143bbde24cf0dbc21401dab556ef33b1f26e7631ead05eea1f2de7a5541da"
+    },
+    {
+      "path": "schemas/super-agent-v1/source-ingress-replay-v1.schema.json",
+      "sha256": "318c5b63140bd7ec684e30a79a730b6bcbfc10852570c5794c7a15aa1da4da22"
+    },
+    {
+      "path": "schemas/super-agent-v1/source-ingress-settings-v1.schema.json",
+      "sha256": "979cf65eef5c8c35ff0bb2d757da03d0ef22a63ed252163de3d6eef5bbdbabd5"
+    },
+    {
+      "path": "migrations/0033_source_ingress.sql",
+      "sha256": "3857e7dee48ccec855c2e4d7e207d7e50f084b6d12344c9df9c02181dc29c484"
+    },
+    {
+      "path": "src/mgar_v3/sources/ingress.py",
+      "sha256": "442de47b679d0e28530bd5f3933a01ea04893d8fbe8bb8abd6731128e54e7aea"
+    },
+    {
+      "path": "src/mgar_v3/sources/ingress_api.py",
+      "sha256": "b23e4a9860b9cf6b5c6d1354bf589dbd10121872a7698991c672291281cc9d0b"
+    },
+    {
+      "path": "src/mgar_v3/sources/ingress_cli.py",
+      "sha256": "9f3d02d4831b995a457d31e1724d0e0c0f9597397736609da49db9d468c0fe59"
+    },
+    {
+      "path": "src/mgar_v3/sources/ingress_crypto.py",
+      "sha256": "d98921dd9a6b3f459afa9428637067768b7816647f3b87ff956cc04d795b488a"
+    },
+    {
+      "path": "src/mgar_v3/sources/ingress_cursor.py",
+      "sha256": "95dc9cf00c86b81354255a1a4251ce490ab452900f1ccf6d48c6db63fb49ec6a"
+    },
+    {
+      "path": "src/mgar_v3/sources/ingress_domain.py",
+      "sha256": "90fb07d76e479600503ad666c19e67ca5e8a2e3ce0f6a4a2c30d64b545e6ca45"
+    },
+    {
+      "path": "src/mgar_v3/sources/gateway.py",
+      "sha256": "d7c51ca95d300bdeba9674125c41218c2b22d093cae2fa7038b7b7508f9cba8a"
+    },
+    {
+      "path": "tests/sa04_support.py",
+      "sha256": "b637806f6b5d63114ad5296255de21df61333eb9587e4bfcfbbf17a3e7403063"
+    },
+    {
+      "path": "tests/test_super_agent_sa04.py",
+      "sha256": "97f15a64d34b5e1836a064afc51184b5c44e1269f3b18c833835742f1f395e8c"
+    },
+    {
+      "path": "tests/test_super_agent_sa04_faults.py",
+      "sha256": "dbb1f3df2e8124606ba40f8d64eaa2154827a80144a0c3cf2052e01f2b738b11"
+    },
+    {
+      "path": "tests/fixtures/sa04_crash_worker.py",
+      "sha256": "a78094933afba332a2531bfc240a58b8062505830581b5cd96b786171162c25d"
+    }
+  ]
+}

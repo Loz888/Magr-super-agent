@@ -1179,5 +1179,31 @@
       "harness": "no changes or active imports"
     },
     "timeout_seconds": 1200
+  },
+  "SAV1-04": {
+    "tests": [
+      "tests/test_super_agent_sa04.py",
+      "tests/test_super_agent_sa04_faults.py",
+      "tests/test_super_agent_sa03.py",
+      "tests/test_super_agent_sa02.py",
+      "tests/test_super_agent_sa01.py",
+      "tests/test_coordination.py",
+      "tests/test_api.py",
+      "tests/test_environment.py",
+      "tests/test_web_access.py",
+      "tests/test_duplex.py",
+      "tests/test_r4_experts.py",
+      "tests/test_effects.py",
+      "tests/test_models.py",
+      "tests/test_r6_policies.py",
+      "tests/test_r5_recovery.py"
+    ],
+    "components": {
+      "postgres": "real disposable PostgreSQL; concurrent duplicate, migration 32-to-33, physical isolated pause and SIGKILL",
+      "source": "controlled signed transport; no real platform SDK or listener",
+      "model": "NOT_RUN; zero paid calls",
+      "harness": "no active changes/imports"
+    },
+    "timeout_seconds": 1800
   }
 }

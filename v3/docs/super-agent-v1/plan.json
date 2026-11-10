@@ -101,7 +101,7 @@
       "id": "SAV1-04",
       "short_id": "SA04",
       "title": "持久入站、幂等、编辑与缺口",
-      "status": "PLANNED",
+      "status": "IN_PROGRESS",
       "priority": "P0",
       "phase": "S1",
       "depends_on": [

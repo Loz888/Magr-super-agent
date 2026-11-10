@@ -1,0 +1,86 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "stream_id": {
+      "maxLength": 256,
+      "minLength": 1,
+      "title": "Stream Id",
+      "type": "string"
+    },
+    "epoch": {
+      "maxLength": 256,
+      "minLength": 1,
+      "title": "Epoch",
+      "type": "string"
+    },
+    "reason": {
+      "enum": [
+        "disconnect",
+        "permission",
+        "no_replay",
+        "sdk_early_ack",
+        "cursor_jump",
+        "cursor_reset",
+        "buffer_expired",
+        "capacity"
+      ],
+      "title": "Reason",
+      "type": "string"
+    },
+    "started_at": {
+      "format": "date-time",
+      "title": "Started At",
+      "type": "string"
+    },
+    "ended_at": {
+      "anyOf": [
+        {
+          "format": "date-time",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Ended At"
+    },
+    "sequence_start": {
+      "anyOf": [
+        {
+          "maximum": 9223372036854775807,
+          "minimum": 0,
+          "type": "integer"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Sequence Start"
+    },
+    "sequence_end": {
+      "anyOf": [
+        {
+          "maximum": 9223372036854775807,
+          "minimum": 0,
+          "type": "integer"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Sequence End"
+    }
+  },
+  "required": [
+    "stream_id",
+    "epoch",
+    "reason",
+    "started_at"
+  ],
+  "title": "GapDeclaration",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}
