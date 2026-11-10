@@ -1,6 +1,16 @@
 # H01 对接评审反馈
 
-状态：待 Harness 所有者确认。基于 H01 活动交接稿的只读评审，尚未导入未提交代码。
+状态：**四项反馈已解决并独立复验，H01 v1.1 已接收（仅基线/契约范围）**。
+原评审基于 `e1b3214`，以下四项发现与两项 FAIL 保留；原始反馈版本见本仓库
+`2ae91ed`。修正交付固定为 `38a65ba8889267aee4f1f3f29799d6c79ff2d49b`，
+集成 merge `782f35cd0544840e5ac8d65a8d13f38ea7d4f973`。
+
+本副本同一原始权限探针两项 PASS（handler 均 0 次且 denied），H01 注册 18 项、
+真实 PG 数据库回归 5 项及全库静态检查通过。证据见
+`evidence/super-agent-v1/SAV1-00/20261110T135100Z-h01-correction-review/` 与
+`evidence/super-agent-v1/integration/HV4-H01/20261110T135105Z/`。
+SAV1-00 已通过其 120 项注册验收，整卡交付见 `accept/SAV1-00/accept.json`。
+后续真实自动修复、来源、模型、通知、发布及长期运行门仍分别等待对应卡。
 
 ## 1. 事件游标与步骤字段应映射到真实 schema
 

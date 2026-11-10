@@ -1,0 +1,169 @@
+{
+  "card": "SAV1-00",
+  "status": "DONE",
+  "accepted_at": "2026-11-10T13:55:14.503865+00:00",
+  "scope": "Planning-card freeze, eight reuse call-chain audits, state/permission ADR, requirements and evaluation protocol; no new runtime release.",
+  "source_commit": "6aeb1b0e167a19b5f8e12416a146c558dcd73018",
+  "source_sha256": "54538e9fc5e5aaa9cb5d62f3e5002d244b711e0a1c30b42161b53e90095adc66",
+  "finished_source_sha256": "54538e9fc5e5aaa9cb5d62f3e5002d244b711e0a1c30b42161b53e90095adc66",
+  "gates": {
+    "engineering_gate": "PASS",
+    "policy_security_gate": "NOT_RUN",
+    "live_source_channel_gate": "NOT_RUN",
+    "live_coding_gate": "NOT_RUN",
+    "live_publication_gate": "NOT_RUN",
+    "continuous_operation_gate": "NOT_RUN"
+  },
+  "gate_scope": "Engineering PASS applies only to this planning card and its real reuse regressions. New Source/policy/security and system runtime gates are not established.",
+  "registered_verification": "evidence/SAV1-00/20261110T135206Z-8e60657f/result.json",
+  "commands": [
+    {
+      "argv": [
+        "/home/imini/magr-super-agent/v3/.venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "tests/test_coordination.py",
+        "tests/test_api.py",
+        "tests/test_routing.py",
+        "tests/test_duplex.py",
+        "tests/test_effects.py",
+        "tests/test_r6_policies.py",
+        "tests/test_r6_watchdog.py",
+        "tests/test_harness_v4_h01.py",
+        "tests/test_harness_v4_baseline.py",
+        "--junitxml=/home/imini/magr-super-agent/v3/evidence/SAV1-00/20261110T135206Z-8e60657f/junit.xml"
+      ],
+      "exit_code": 0,
+      "counts": {
+        "tests": 120,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "log": "evidence/SAV1-00/20261110T135206Z-8e60657f/command.log",
+      "junit": "evidence/SAV1-00/20261110T135206Z-8e60657f/junit.xml"
+    }
+  ],
+  "harness_dependencies": {
+    "HV4-H00": {
+      "owner_commit": "de4775e22e96718e880fde287b2e0928db2945e3",
+      "local_merge": "1a65b8312c81137e1a45a85b4287e1310de21206",
+      "status": "ACCEPTED_BASELINE_SCOPE"
+    },
+    "HV4-H01": {
+      "receiver_status": "ACCEPTED_CONTRACT_SCOPE_ONLY",
+      "owner_commit": "38a65ba8889267aee4f1f3f29799d6c79ff2d49b",
+      "contract_version": "harness-contract-v1.1",
+      "local_registered_verification": "evidence/HV4-H01/20261110T135110Z-3d42e8d8/result.json",
+      "independent_permission_probes": "evidence/super-agent-v1/SAV1-00/20261110T135100Z-h01-correction-review/result.json",
+      "static_checks": "evidence/super-agent-v1/integration/HV4-H01/20261110T135105Z/static-summary.json",
+      "superseded_implementation": "e1b3214af8ae62f76e99e322204f05e055133490",
+      "historical_permission_probe_status": "FAIL_RETAINED"
+    }
+  },
+  "must_pass": [
+    {
+      "requirement": "Every reuse item has current code and test evidence",
+      "result": "PASS",
+      "evidence": "sa00/reuse-audit.json; eight claims and registered real regressions"
+    },
+    {
+      "requirement": "Harness prerequisites are fixed, reviewed and rerun; unavailable capabilities not advertised",
+      "result": "PASS",
+      "evidence": "sa00/baseline.json and sa00/state-ownership.json; H01 v1.1 independent probes and local verification"
+    },
+    {
+      "requirement": "Single-chat/repository scope, roles, events, data egress and pilot boundaries frozen",
+      "result": "PASS",
+      "evidence": "sa00/scope.json; actual live bindings remain NOT_CONFIGURED"
+    },
+    {
+      "requirement": "Formal versioned extension of old R3/read-only proactivity and notification authority",
+      "result": "PASS",
+      "evidence": "adr/SAV1-00-authority-sources-policy.md"
+    },
+    {
+      "requirement": "Routing labels, metrics, denominators, budgets and failure reporting frozen",
+      "result": "PASS",
+      "evidence": "sa00/evaluation-protocol.json; no claimed dataset or live score"
+    },
+    {
+      "requirement": "Requirements, ownership and external DAG mapped",
+      "result": "PASS",
+      "evidence": "sa00/requirements-map.json covers E01–E22; SA00 depends only on H00/H01"
+    },
+    {
+      "requirement": "Historical FAIL/NOT_RUN preserved",
+      "result": "PASS",
+      "evidence": "sa00/baseline.json historical acceptance SHA-256 unchanged; old H01 probe failure preserved"
+    }
+  ],
+  "artifacts": [
+    {
+      "path": "docs/super-agent-v1/sa00/README.md",
+      "sha256": "479d4e699a131743eb56f27d1f77c17ab314fed6f21d6acbcb786a9551a9ac9c"
+    },
+    {
+      "path": "docs/super-agent-v1/sa00/baseline.json",
+      "sha256": "542c4817c502bef17b68fed0b9437c7d73fe426f13475bcad931535278666ace"
+    },
+    {
+      "path": "docs/super-agent-v1/sa00/scope.json",
+      "sha256": "6c1922de342dfbd34db9897f2e87cf01c78153c9028cb9c67aec56249c67395c"
+    },
+    {
+      "path": "docs/super-agent-v1/sa00/reuse-audit.json",
+      "sha256": "cf6f9d98ed4ac1019eaa32c0b6f1f87dcc37820c82a588cdfa24b085afd14806"
+    },
+    {
+      "path": "docs/super-agent-v1/sa00/state-ownership.json",
+      "sha256": "ec7ac7228ac6ea2b2f96d524282700315f85e97f569a6b2055bbc83badea6e23"
+    },
+    {
+      "path": "docs/super-agent-v1/sa00/requirements-map.json",
+      "sha256": "c7a9007943a5f8e5159a22943896b3940b6cfdd6d4e577a8547b8336ffe4d340"
+    },
+    {
+      "path": "docs/super-agent-v1/sa00/evaluation-protocol.json",
+      "sha256": "9ee5504f67bdc7c3dc2ee789063bb873d5f41399b597da5bbc4250f625996431"
+    },
+    {
+      "path": "docs/super-agent-v1/adr/SAV1-00-authority-sources-policy.md",
+      "sha256": "26163b3ea73bfbb60ddf7323d80814a00c68a446cbf3aa9a0ce0288d8c267565"
+    }
+  ],
+  "data_and_policy_versions": {
+    "scope": "sav1-scope-v1",
+    "protocol": "sav1-evaluation-v1",
+    "source_contract": "SA01_NOT_IMPLEMENTED",
+    "policy_runtime": "SA03_NOT_IMPLEMENTED",
+    "harness_contract": "harness-contract-v1.1",
+    "dataset": "NOT_CREATED_NOT_SCORED",
+    "live_resources": "NOT_CONFIGURED"
+  },
+  "new_paid_calls": 0,
+  "new_remote_writes": 0,
+  "unknown_financial_reservations": "No new calls or reservations in this work; historical receipts preserved, not reset.",
+  "known_failures": [
+    {
+      "candidate": "H01 e1b3214",
+      "status": "FAIL_RETAINED",
+      "evidence": "evidence/super-agent-v1/SAV1-00/20261110T131512Z-h01-review/result.json",
+      "correction": "evidence/super-agent-v1/SAV1-00/20261110T135100Z-h01-correction-review/result.json"
+    },
+    {
+      "candidate": "Owner H01 first correction core regression",
+      "status": "FAIL_RETAINED",
+      "description": "succeeded/stop_reason two-transaction race; fixed in named owner commit with deterministic PG regression; original log retained by Harness."
+    }
+  ],
+  "limitations": [
+    "No live GitHub App/Feishu installation or source listener",
+    "No semantic routing dataset/score or real autonomous coding",
+    "No notification/publication or 72h/team-pilot execution",
+    "Actual model data egress, payment, channel notification and publication require separate trusted activation records"
+  ],
+  "next_card": "SAV1-01",
+  "next_card_rule": "Read the whole corresponding TASKS.md/card and all referenced requirements/acceptance/ADRs again; record fingerprints before implementation. Codex owns coordinated migration 0030; do not edit Harness active tree."
+}

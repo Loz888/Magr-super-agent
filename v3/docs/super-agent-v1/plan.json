@@ -20,7 +20,7 @@
       "id": "SAV1-00",
       "short_id": "SA00",
       "title": "冻结范围、复用审计与架构 ADR",
-      "status": "IN_PROGRESS",
+      "status": "DONE",
       "priority": "P0",
       "phase": "S0",
       "depends_on": [],
@@ -34,7 +34,8 @@
       },
       "optional": false,
       "card": "TASKS.md#sa00",
-      "verification_target_on_implementation": "SAV1-00"
+      "verification_target_on_implementation": "SAV1-00",
+      "acceptance": "accept/SAV1-00/accept.json"
     },
     {
       "id": "SAV1-01",

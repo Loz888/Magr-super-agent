@@ -1,3 +1,5 @@
+> 历史准备稿：当前 SAV1-00 已完成；正式冻结包见 `sa00/README.md`，验收见 `accept/SAV1-00/accept.json`。下文保留冻结前状态和过程记录。
+
 # SA00 前置审计稿
 
 状态：**DRAFT / 未冻结 / 未验收**。本稿是 Super-Agent 轨道准备工作；H01 尚未交付，

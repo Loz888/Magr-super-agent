@@ -1,7 +1,7 @@
 {
   "card": "SAV1-00",
   "status": "FROZEN_FOR_IMPLEMENTATION",
-  "accepted": false,
+  "accepted": true,
   "scope": "Frozen audit references; registered whole-card regression must still pass before card acceptance.",
   "claims": [
     {
@@ -18,7 +18,7 @@
         "end_line": 31,
         "sha256": "a2584e05bf2b2b31e29785ee607dab8f738e664fd07a6abe0c96a47ad07df5fc"
       },
-      "evidence_status": "FROZEN_SOURCE_AND_REGISTERED_REAL_REGRESSION_ENTRY",
+      "evidence_status": "REAL_REGISTERED_REGRESSION_PASS",
       "test": "tests/test_coordination.py",
       "test_symbol": "test_schema_rejects_unknown_fields_and_boolean_issue_number",
       "test_reference": {
@@ -43,7 +43,7 @@
         "end_line": 285,
         "sha256": "2a81d187c908174221429f89dcc4df32e48efd75f612d8db188b8a49f6f557e3"
       },
-      "evidence_status": "FROZEN_SOURCE_AND_REGISTERED_REAL_REGRESSION_ENTRY",
+      "evidence_status": "REAL_REGISTERED_REGRESSION_PASS",
       "test": "tests/test_coordination.py",
       "test_symbol": "test_second_engine_is_rejected_and_lock_releases_on_close",
       "test_reference": {
@@ -68,7 +68,7 @@
         "end_line": 1221,
         "sha256": "5a89d474b8f997893e3f82f5a08620a94f91da69dbb8c44962169a73c3360f2b"
       },
-      "evidence_status": "FROZEN_SOURCE_AND_REGISTERED_REAL_REGRESSION_ENTRY",
+      "evidence_status": "REAL_REGISTERED_REGRESSION_PASS",
       "test": "tests/test_api.py",
       "test_symbol": "test_signed_github_webhook_and_deduplication",
       "test_reference": {
@@ -102,7 +102,7 @@
         "end_line": 360,
         "sha256": "c0d76e753416057241294fd06db045424eb956203007dbb7d599ca46718a80e4"
       },
-      "evidence_status": "FROZEN_SOURCE_AND_REGISTERED_REAL_REGRESSION_ENTRY"
+      "evidence_status": "REAL_REGISTERED_REGRESSION_PASS"
     },
     {
       "id": "SA00-A05",
@@ -127,7 +127,7 @@
         "end_line": 265,
         "sha256": "8047656fbd0db2b1ff3499786b407980691b1ae5c0878e1347c0e8c474d2d2f4"
       },
-      "evidence_status": "FROZEN_SOURCE_AND_REGISTERED_REAL_REGRESSION_ENTRY"
+      "evidence_status": "REAL_REGISTERED_REGRESSION_PASS"
     },
     {
       "id": "SA00-A06",
@@ -143,7 +143,7 @@
         "end_line": 305,
         "sha256": "db592d161188f2565481b0e6d43686c41b0dd06e4e4dcca05de7e22c88030185"
       },
-      "evidence_status": "FROZEN_SOURCE_AND_REGISTERED_REAL_REGRESSION_ENTRY",
+      "evidence_status": "REAL_REGISTERED_REGRESSION_PASS",
       "test": "tests/test_r6_policies.py",
       "test_symbol": "test_observe_is_quiet_and_auto_is_explicit_bounded_and_readonly",
       "test_reference": {
@@ -177,7 +177,7 @@
         "end_line": 73,
         "sha256": "6baf170923463b515662cfdc0c88642a75b2068571eb790bfdf33a0cff231a2f"
       },
-      "evidence_status": "FROZEN_SOURCE_AND_REGISTERED_REAL_REGRESSION_ENTRY"
+      "evidence_status": "REAL_REGISTERED_REGRESSION_PASS"
     },
     {
       "id": "SA00-A08",
@@ -202,7 +202,7 @@
         "end_line": 82,
         "sha256": "5022bb536e45219bcbd2f73789a534d49b5e1a332d14c3d2a80e479c27f14165"
       },
-      "evidence_status": "FROZEN_SOURCE_AND_REGISTERED_REAL_REGRESSION_ENTRY"
+      "evidence_status": "REAL_REGISTERED_REGRESSION_PASS"
     }
   ],
   "runtime_changes": false,
@@ -219,5 +219,7 @@
     "source_sha256": "4ab62c199283853badc5aa0292c677e9d8760ac92c99ab3a151f08a00d017aa4"
   },
   "prepared_at": "2026-11-10T13:33:43.589435+00:00",
-  "frozen_at": "2026-11-10T13:52:01.601623+00:00"
+  "frozen_at": "2026-11-10T13:52:01.601623+00:00",
+  "registered_verification": "evidence/SAV1-00/20261110T135206Z-8e60657f/result.json",
+  "source_sha256": "54538e9fc5e5aaa9cb5d62f3e5002d244b711e0a1c30b42161b53e90095adc66"
 }
