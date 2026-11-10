@@ -1,0 +1,191 @@
+{
+  "card": "SAV1-02",
+  "status": "DONE",
+  "accepted_at_utc": "2026-11-10T15:44:03.036386+00:00",
+  "source_commit": "3bcfb0234789e000ed26597bc8a6af378675791d",
+  "source_sha256": "0be627fdeaf1e731d4d9f023bcbeceb72279a9a173b1a37415bc475373c9beb5",
+  "finished_source_sha256": "0be627fdeaf1e731d4d9f023bcbeceb72279a9a173b1a37415bc475373c9beb5",
+  "scope": "Trusted server-side identity verifier boundary, owner-reviewed principal mapping, independent conversation roles and exact Ticket control, current revocation/revision checks, minimal audit and cookie/CSRF management API. No real platform activation.",
+  "gates": {
+    "engineering_gate": "PASS",
+    "policy_security_gate": "NOT_RUN",
+    "live_source_channel_gate": "NOT_RUN",
+    "live_coding_gate": "NOT_RUN",
+    "live_publication_gate": "NOT_RUN",
+    "continuous_operation_gate": "NOT_RUN"
+  },
+  "card_identity_security_checks": "PASS; scoped forged-sender/signature, same-name, case/Unicode, tenant/install, bot-kind, quoting/borrowed proof, context-only, revoked/expired/stale permissions and console session race negatives. Full SA21 policy/security gate not claimed.",
+  "dependencies": {
+    "SAV1-01": "DONE; independent 79-test acceptance verified before implementation",
+    "sa01_independent_result": "evidence/SAV1-01/20261110T144240Z-2edb792a/result.json",
+    "H02": "not a dependency; no Harness implementation or acceptance imported"
+  },
+  "preimplementation_read": "evidence/super-agent-v1/SAV1-02/20261110T150143Z-start/taskbook-read.json",
+  "continuation_read": "evidence/super-agent-v1/SAV1-02/continuation-read.json",
+  "shared_scope": {
+    "commit": "0ca76063ab91177cd7255c475435d3d6b00c726c",
+    "confirmed_at_utc": "2026-11-10T14:50:28Z",
+    "source_sha256": "cc7dd595c48ce9ac8c372ea5204589d79054e0eb4e01869668e4abb1b7817ad9",
+    "excerpt": "harness-confirmation.md",
+    "scope": [
+      "Codex owns migration 0031",
+      "Codex owns new source-identities routes and minimal api.py wiring",
+      "No Engine/model/budget/Harness edits or imports"
+    ]
+  },
+  "registered_verification": "evidence/SAV1-02/20261110T154000Z-d6fa7dce/result.json",
+  "counts": {
+    "tests": 132,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "identity_cases": 52,
+  "commands": [
+    {
+      "argv": [
+        "/home/imini/magr-super-agent/v3/.venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "tests/test_super_agent_sa02.py",
+        "tests/test_super_agent_sa01.py",
+        "tests/test_web_access.py",
+        "tests/test_api.py",
+        "tests/test_environment.py",
+        "tests/test_coordination.py",
+        "--junitxml=/home/imini/magr-super-agent/v3/evidence/SAV1-02/20261110T154000Z-d6fa7dce/junit.xml"
+      ],
+      "exit_code": 0,
+      "log": "evidence/SAV1-02/20261110T154000Z-d6fa7dce/command.log",
+      "junit": "evidence/SAV1-02/20261110T154000Z-d6fa7dce/junit.xml"
+    },
+    {
+      "argv": [
+        "make",
+        "lint"
+      ],
+      "exit_code": 0,
+      "evidence": "evidence/super-agent-v1/SAV1-02/20261110T153923Z-static/commands.json"
+    },
+    {
+      "argv": [
+        "make",
+        "typecheck"
+      ],
+      "exit_code": 0,
+      "source_files": 204,
+      "evidence": "evidence/super-agent-v1/SAV1-02/20261110T153923Z-static/commands.json"
+    },
+    {
+      "argv": [
+        "make",
+        "migrate"
+      ],
+      "exit_code": 0,
+      "evidence": "evidence/super-agent-v1/SAV1-02/20261110T154353Z-migration/commands.json",
+      "inspection": "evidence/super-agent-v1/SAV1-02/local-migration-check.json"
+    }
+  ],
+  "must_pass_cases": [
+    "test_forged_sender_and_cross_scope_signatures_cannot_establish_identity",
+    "test_case_whitespace_unicode_and_same_names_never_auto_bind",
+    "test_context_provider_cannot_control_revoke_expand_or_approve",
+    "test_console_owner_mapping_does_not_make_im_text_a_console_session",
+    "test_bots_cannot_impersonate_humans_or_receive_privileged_roles",
+    "test_bot_role_invariant_is_enforced_in_database_and_each_authorization",
+    "test_task_control_is_explicit_and_quotes_or_borrowed_receipt_ids_do_not_count",
+    "test_revocation_and_role_changes_fence_old_credentials_immediately",
+    "test_revocation_linearizes_with_protected_engine_transaction",
+    "test_authorization_and_mutation_rollback_together",
+    "test_session_revoked_between_http_dependency_and_mutation_cannot_change_roles",
+    "test_30_to_31_upgrade_preserves_source_contract_and_old_business_rows"
+  ],
+  "compatibility_audit": "evidence/super-agent-v1/SAV1-02/compatibility-audit.json",
+  "artifacts": [
+    {
+      "path": "config/source-identity-v1.json",
+      "sha256": "1e2adf660b230d6b5961244d6d8cc549ffd3be1d28406710fd797a276d463b73"
+    },
+    {
+      "path": "migrations/0031_source_identities.sql",
+      "sha256": "7e9ba092ed46d3cf52a645e19ae0757b98996090e759192871ef2f06e1224f56"
+    },
+    {
+      "path": "docs/super-agent-v1/SA02_IDENTITIES.md",
+      "sha256": "714034a3bd2cd92b5b93348fd587396b6ac9db858a40a3c49b5b0321dfaca7d5"
+    },
+    {
+      "path": "docs/super-agent-v1/adr/SAV1-02-identity-authority.md",
+      "sha256": "ac6c4c656e83144e5e338a3c5fc0deb1115cc72b8e3f7071ae3506e693e6fc2a"
+    },
+    {
+      "path": "schemas/super-agent-v1/source-identity-bind-v1.schema.json",
+      "sha256": "c6ff88631e340f8e58884e9fc4e260cef4d2942ffd7b15eec94c5330a27fffb5"
+    },
+    {
+      "path": "schemas/super-agent-v1/source-identity-role-change-v1.schema.json",
+      "sha256": "e2e2774d556e25af9dfceeb49458354cf773bfe2cef6a6155515957a9b803592"
+    },
+    {
+      "path": "schemas/super-agent-v1/source-identity-subject-v1.schema.json",
+      "sha256": "dac005c9b2562aa8787236c28c895dcfb306962fd2bf7c10a4321a2cccee9e8c"
+    }
+  ],
+  "versions": {
+    "identity": "source-identity-v1",
+    "source": "source-contract-v1",
+    "migration": "0031_source_identities.sql",
+    "schema": "JSON Schema 2020-12",
+    "signature_tests": "controlled-hmac-v1 over synthetic envelopes, not live platform evidence"
+  },
+  "new_paid_calls": 0,
+  "external_writes": 0,
+  "unknown_new_reservations": 0,
+  "earlier_targeted_runs": [
+    {
+      "counts": {
+        "tests": 45,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "evidence": "evidence/super-agent-v1/SAV1-02/20261110T152039Z-targeted/commands.json"
+    },
+    {
+      "counts": {
+        "tests": 48,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "evidence": "evidence/super-agent-v1/SAV1-02/20261110T152502Z-targeted/commands.json"
+    }
+  ],
+  "earlier_checks_overlap_registered_run": true,
+  "prior_failed_attempts": [
+    {
+      "status": "FAIL_RETAINED",
+      "scope": "SQL literal line formatting lint",
+      "evidence": "evidence/super-agent-v1/SAV1-02/20261110T151931Z-static/commands.json",
+      "correction": "Split SQL literals without changing SQL content; full static checks passed on frozen source."
+    },
+    {
+      "status": "FAIL_RETAINED",
+      "scope": "SQL literal line formatting lint",
+      "evidence": "evidence/super-agent-v1/SAV1-02/20261110T153217Z-static/commands.json",
+      "correction": "Split SQL literals without changing SQL content; full static checks passed on frozen source."
+    }
+  ],
+  "limitations": [
+    "Production verifier map is empty; real GitHub/Feishu adapters and platform identity remain SA05/SA06 NOT_RUN",
+    "No SA03 Receive/Admission/Execution/Notification rules or SA04 durable ingress/ACK/replay protocol; source role alone is not an execution grant",
+    "Identity-to-principal mapping cannot be silently reassigned in this version; revoke incorrect binding and use a later reviewed migration process",
+    "Authorization context must contain the protected Engine/SQL mutation; cached result is not a reusable capability and no external call belongs inside it",
+    "Caller outer transaction rollback also rolls back nested denial audit; no independent audit writer, no identity audit promise for HTTP pre-auth/schema rejections",
+    "No production listener/model/Worker/send/publication; no SA19 management UI or complete SA21 data retention/restore lifecycle delivered"
+  ],
+  "next_card": "SAV1-03",
+  "next_card_status": "PLANNED",
+  "next_card_rule": "Await independent review; fully re-read current taskbook/card/references/acceptance/ADRs and coordinate next migration and overlapping API/Engine/budget ownership before implementation. 0032 is not reserved."
+}

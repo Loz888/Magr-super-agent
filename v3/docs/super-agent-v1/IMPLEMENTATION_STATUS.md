@@ -1,3 +1,7 @@
+# SAV1-02 当前交付
+
+SAV1-02 DONE（本卡工程验收），source-identity-v1 已固定；实施提交 3bcfb0234789e000ed26597bc8a6af378675791d。注册检查 132 项通过，其中 SA02 身份用例 52 项；lint/mypy 204 files 通过。见 SA02_IDENTITIES.md 和 accept/SAV1-02/accept.json。真实平台、模型、外发/发布和长期运行仍 NOT_RUN。SAV1-03 PLANNED，待独立复验后按完整阅读与共享所有权协议启动。
+
 # SAV1-01 当前交付
 
 SAV1-01 DONE，source-contract-v1 已冻结。注册验收 79 项、定向 51 项通过（有重叠），全库 lint/typecheck 通过；实施提交 8dc641bbdf1fe7d0f057e11ec66e951f2874f2f8。0030 已在独立副本应用。说明见 SA01_CONTRACTS.md，正式摘要见 accept/SAV1-01/accept.json。下一卡 SAV1-02 PLANNED，实施前须完整重读任务书；真实平台、策略和自主执行仍按各卡验收。

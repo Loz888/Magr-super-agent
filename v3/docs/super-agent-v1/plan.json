@@ -61,7 +61,7 @@
       "id": "SAV1-02",
       "short_id": "SA02",
       "title": "平台身份绑定与控制角色",
-      "status": "IN_PROGRESS",
+      "status": "DONE",
       "priority": "P0",
       "phase": "S1",
       "depends_on": [
@@ -74,7 +74,8 @@
       },
       "optional": false,
       "card": "TASKS.md#sa02",
-      "verification_target_on_implementation": "SAV1-02"
+      "verification_target_on_implementation": "SAV1-02",
+      "acceptance": "accept/SAV1-02/accept.json"
     },
     {
       "id": "SAV1-03",
