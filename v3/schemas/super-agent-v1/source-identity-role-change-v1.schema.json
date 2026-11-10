@@ -1,0 +1,39 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "expected_revision": {
+      "exclusiveMinimum": 0,
+      "title": "Expected Revision",
+      "type": "integer"
+    },
+    "roles": {
+      "items": {
+        "enum": [
+          "context_provider",
+          "requester",
+          "task_controller",
+          "project_administrator"
+        ],
+        "type": "string"
+      },
+      "maxItems": 4,
+      "minItems": 1,
+      "title": "Roles",
+      "type": "array"
+    },
+    "review_ref": {
+      "maxLength": 256,
+      "minLength": 1,
+      "title": "Review Ref",
+      "type": "string"
+    }
+  },
+  "required": [
+    "expected_revision",
+    "roles",
+    "review_ref"
+  ],
+  "title": "RoleChange",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

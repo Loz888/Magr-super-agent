@@ -1,0 +1,63 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "evidence_id": {
+      "format": "uuid",
+      "title": "Evidence Id",
+      "type": "string"
+    },
+    "expected_identity_revision": {
+      "exclusiveMinimum": 0,
+      "title": "Expected Identity Revision",
+      "type": "integer"
+    },
+    "roles": {
+      "items": {
+        "enum": [
+          "context_provider",
+          "requester",
+          "task_controller",
+          "project_administrator"
+        ],
+        "type": "string"
+      },
+      "maxItems": 4,
+      "minItems": 1,
+      "title": "Roles",
+      "type": "array"
+    },
+    "principal_id": {
+      "anyOf": [
+        {
+          "format": "uuid",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Principal Id"
+    },
+    "console_owner": {
+      "default": false,
+      "title": "Console Owner",
+      "type": "boolean"
+    },
+    "review_ref": {
+      "maxLength": 256,
+      "minLength": 1,
+      "title": "Review Ref",
+      "type": "string"
+    }
+  },
+  "required": [
+    "evidence_id",
+    "expected_identity_revision",
+    "roles",
+    "review_ref"
+  ],
+  "title": "BindIdentity",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

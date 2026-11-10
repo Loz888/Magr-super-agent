@@ -1,0 +1,161 @@
+{
+  "$defs": {
+    "ActorRef": {
+      "additionalProperties": false,
+      "properties": {
+        "scope": {
+          "$ref": "#/$defs/SourceScope"
+        },
+        "id_type": {
+          "maxLength": 256,
+          "minLength": 1,
+          "title": "Id Type",
+          "type": "string"
+        },
+        "actor_id": {
+          "maxLength": 256,
+          "minLength": 1,
+          "title": "Actor Id",
+          "type": "string"
+        },
+        "actor_kind": {
+          "enum": [
+            "human",
+            "bot",
+            "service",
+            "unknown"
+          ],
+          "title": "Actor Kind",
+          "type": "string"
+        }
+      },
+      "required": [
+        "scope",
+        "id_type",
+        "actor_id",
+        "actor_kind"
+      ],
+      "title": "ActorRef",
+      "type": "object"
+    },
+    "SourceScope": {
+      "additionalProperties": false,
+      "properties": {
+        "source_kind": {
+          "pattern": "^[a-z][a-z0-9_]{0,31}$",
+          "title": "Source Kind",
+          "type": "string"
+        },
+        "source_instance_id": {
+          "format": "uuid",
+          "title": "Source Instance Id",
+          "type": "string"
+        },
+        "tenant_id": {
+          "maxLength": 256,
+          "minLength": 1,
+          "title": "Tenant Id",
+          "type": "string"
+        },
+        "installation_id": {
+          "maxLength": 256,
+          "minLength": 1,
+          "title": "Installation Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "source_kind",
+        "source_instance_id",
+        "tenant_id",
+        "installation_id"
+      ],
+      "title": "SourceScope",
+      "type": "object"
+    },
+    "SourceThreadRef": {
+      "additionalProperties": false,
+      "properties": {
+        "scope": {
+          "$ref": "#/$defs/SourceScope"
+        },
+        "conversation_id": {
+          "maxLength": 256,
+          "minLength": 1,
+          "title": "Conversation Id",
+          "type": "string"
+        },
+        "native_thread_id": {
+          "anyOf": [
+            {
+              "maxLength": 256,
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Native Thread Id"
+        }
+      },
+      "required": [
+        "scope",
+        "conversation_id"
+      ],
+      "title": "SourceThreadRef",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "description": "Only the registered server verifier can supply this assertion to authenticate.\n\nIt must extract the actual author from a verified platform envelope, never a\nquoted request, display name, user-controlled body, or model inference.",
+  "properties": {
+    "actor": {
+      "$ref": "#/$defs/ActorRef"
+    },
+    "source_thread": {
+      "$ref": "#/$defs/SourceThreadRef"
+    },
+    "remote_event_id": {
+      "maxLength": 256,
+      "minLength": 1,
+      "title": "Remote Event Id",
+      "type": "string"
+    },
+    "payload_sha256": {
+      "pattern": "^[a-f0-9]{64}$",
+      "title": "Payload Sha256",
+      "type": "string"
+    },
+    "occurred_at": {
+      "format": "date-time",
+      "title": "Occurred At",
+      "type": "string"
+    },
+    "verification_method": {
+      "enum": [
+        "platform_signature",
+        "installation_proof"
+      ],
+      "title": "Verification Method",
+      "type": "string"
+    },
+    "historical_backfill": {
+      "default": false,
+      "title": "Historical Backfill",
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "actor",
+    "source_thread",
+    "remote_event_id",
+    "payload_sha256",
+    "occurred_at",
+    "verification_method"
+  ],
+  "title": "VerifiedSubject",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

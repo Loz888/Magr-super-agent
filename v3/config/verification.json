@@ -1129,5 +1129,29 @@
       "live_publication": "NOT_RUN"
     },
     "timeout_seconds": 600
+  },
+  "SAV1-02": {
+    "tests": [
+      "tests/test_super_agent_sa02.py",
+      "tests/test_super_agent_sa01.py",
+      "tests/test_web_access.py",
+      "tests/test_api.py",
+      "tests/test_environment.py",
+      "tests/test_coordination.py"
+    ],
+    "components": {
+      "postgres": "real disposable PostgreSQL; 30-to-31 upgrade, same Engine connection, rollback and concurrency",
+      "identity": "trusted server verifier only, scoped raw IDs and internal bearer hashes; no plaintext/model/display-name authority",
+      "roles": "independent conversation roles, exact Ticket controller membership, current revision/expiry/revocation checks",
+      "admin_api": "current console cookie+Origin+CSRF and in-transaction session recheck; no source proof issuance endpoint",
+      "platform": "controlled real HMAC over synthetic envelopes; no live GitHub/Feishu SDK connection",
+      "model": "not_used",
+      "paid_calls": "0",
+      "external_writes": "0",
+      "live_source_channel": "NOT_RUN",
+      "live_coding": "NOT_RUN",
+      "live_publication": "NOT_RUN"
+    },
+    "timeout_seconds": 900
   }
 }

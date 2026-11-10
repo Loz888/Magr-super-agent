@@ -61,7 +61,7 @@
       "id": "SAV1-02",
       "short_id": "SA02",
       "title": "平台身份绑定与控制角色",
-      "status": "PLANNED",
+      "status": "IN_PROGRESS",
       "priority": "P0",
       "phase": "S1",
       "depends_on": [
