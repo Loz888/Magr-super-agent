@@ -1,3 +1,7 @@
+# SAV1-04 当前交付
+
+SAV1-04 DONE（本卡工程，等待独立复验）。实施 ad4aae84bdc61750626eeaefc17eabf9d28c4a65；注册 374 PASS，其中 SA04 70，0 failure/error/skip；lint/typecheck 215 files PASS。见 SA04_INGRESS.md 和 accept/SAV1-04/accept.json。真实平台/SDK、模型、完整安全/编码/发布/长期门 NOT_RUN。无付费或外发，停在 SA04，不自动启动 SA05，0034 未预占。
+
 # SAV1-03 当前交付
 
 SAV1-03 DONE（本卡工程验收，等待独立复验），source-policy-v1 已固定。实施提交 9f64dc9000879ae84a71640a6d96bdb4668b332e；注册 304 项 PASS，其中本卡 88 项，0 failure/error/skip；全库 lint/mypy 208 files 通过。见 SA03_POLICIES.md 与 accept/SAV1-03/accept.json。真实平台/编码/发布及完整安全/长期门仍 NOT_RUN，无付费或外发；停止在 SA03，不自动进入 SA04，0033 未预占。

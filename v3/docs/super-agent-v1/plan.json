@@ -101,7 +101,7 @@
       "id": "SAV1-04",
       "short_id": "SA04",
       "title": "持久入站、幂等、编辑与缺口",
-      "status": "IN_PROGRESS",
+      "status": "DONE",
       "priority": "P0",
       "phase": "S1",
       "depends_on": [
@@ -115,7 +115,8 @@
       },
       "optional": false,
       "card": "TASKS.md#sa04",
-      "verification_target_on_implementation": "SAV1-04"
+      "verification_target_on_implementation": "SAV1-04",
+      "acceptance": "accept/SAV1-04/accept.json"
     },
     {
       "id": "SAV1-05",

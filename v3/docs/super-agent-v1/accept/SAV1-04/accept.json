@@ -1,0 +1,426 @@
+{
+  "card": "SAV1-04",
+  "status": "DONE",
+  "accepted_at_utc": "2026-11-10T18:26:39.102528+00:00",
+  "source_commit": "ad4aae84bdc61750626eeaefc17eabf9d28c4a65",
+  "source_sha256": "e809eea055eb42424aab309bef2d000cb7f4f05e41e68e7421ee1aec458cc99c",
+  "finished_source_sha256": "e809eea055eb42424aab309bef2d000cb7f4f05e41e68e7421ee1aec458cc99c",
+  "scope": "Durable source Gateway/Engine receipt, composite dedupe/conflicts, canonical existing inbox, edits/deletes/ordering, current Receive, encrypted retention/retry-only spool, bounded history/replay/cursors/gaps and exclusive legacy cutover. No task/model/outbound activation.",
+  "gates": {
+    "engineering_gate": "PASS",
+    "policy_security_gate": "NOT_RUN",
+    "live_source_channel_gate": "NOT_RUN",
+    "live_coding_gate": "NOT_RUN",
+    "live_publication_gate": "NOT_RUN",
+    "continuous_operation_gate": "NOT_RUN"
+  },
+  "card_security_matrix": "PASS within SA04 signed controlled transport/current identity/Receive/retention/ownership/role/cookie/CSRF/rollback/private-file tests; not complete SA21 system security",
+  "model_experiment": "NOT_RUN",
+  "dependencies": {
+    "SAV1-01": "DONE; acceptance artifacts hashes checked",
+    "SAV1-03": "DONE independently accepted",
+    "independent_result": "evidence/SAV1-03/20261110T171119Z-49ab6f4c/result.json",
+    "independent_result_sha256": "12b1edc209a880696a6dc8aba1c990b54090d5216061c1f018b4085ccba3fe12",
+    "counts": {
+      "tests": 304,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "source_sha256": "bdd46499b40c3acaa0827c356393583e39ad2f527bb82cf2c0a074d4cce7ca40",
+    "H03": "not a dependency; no Harness integration or capability acceptance implied"
+  },
+  "reading": {
+    "initial": "evidence/super-agent-v1/SAV1-04/20261110T173608Z-start/taskbook-read.json",
+    "continuations": [
+      "evidence/super-agent-v1/SAV1-04/20261110T173608Z-start/continuation-read-20261110T175846Z.json"
+    ],
+    "read_at_utc": "2026-11-10T17:36:08.502233+00:00",
+    "files": [
+      {
+        "path": "AGENTS.md",
+        "sha256": "3c4ba83fa186825886518fccf9e9620b1d6669e589e2a6fe152b3144fb439543"
+      },
+      {
+        "path": "v3/AGENTS.md",
+        "sha256": "f0d77defada751cb4cfeeb2db1727741876ac9f648d1f4b184f5ee8460c45d1e"
+      },
+      {
+        "path": "v31-upgrade/TASK_QUEUE.md",
+        "sha256": "a469d6d2d5ba81efc92917e6801f2e12af9ad4051e440ee4ca453c8e74af1dc7"
+      },
+      {
+        "path": "v3/docs/adr/0001-v31-boundaries.md",
+        "sha256": "ca0d326e5f9ab745223171b7edb10302e791dafa09b42f7c7c7de6dc2a59397f"
+      },
+      {
+        "path": "v3/docs/adr/0002-r2-mailbox.md",
+        "sha256": "955f44b6b114e8f7b323469c74225684965cdae9dcfeb38ea881889f5c254c5b"
+      },
+      {
+        "path": "v3/docs/adr/0003-r3-router.md",
+        "sha256": "fc8df29b8c39d7d41c1bea9353fbcdd952b9980e4e202f7da1ae37de969e029f"
+      },
+      {
+        "path": "v3/docs/adr/0012-r6-monitoring-proactivity-evaluation.md",
+        "sha256": "37b0a19e9975575bbd2bb5a808b3948ffc19cb4f034f131fd56d0eaf79d49cca"
+      },
+      {
+        "path": "v3/docs/super-agent-v1/TASKS.md",
+        "sha256": "6cb11f604c6ed34478918ed2fd721b213dd47f1637bca481857cdd24db408df6"
+      },
+      {
+        "path": "v3/docs/super-agent-v1/ARCHITECTURE.md",
+        "sha256": "049e82df679dc02bbefd032b95b702569c40ee046d244f7033e0f8f653d84ac3"
+      },
+      {
+        "path": "v3/docs/super-agent-v1/ACCEPTANCE.md",
+        "sha256": "fad435f294fed6b859fd0bb7a42086311268e6792f55b5a971b6b4de9a766b79"
+      },
+      {
+        "path": "v3/docs/super-agent-v1/adr/SAV1-00-authority-sources-policy.md",
+        "sha256": "26163b3ea73bfbb60ddf7323d80814a00c68a446cbf3aa9a0ce0288d8c267565"
+      },
+      {
+        "path": "v3/docs/super-agent-v1/adr/SAV1-02-identity-authority.md",
+        "sha256": "ac6c4c656e83144e5e338a3c5fc0deb1115cc72b8e3f7071ae3506e693e6fc2a"
+      },
+      {
+        "path": "v3/docs/super-agent-v1/adr/SAV1-03-layered-policy-revocation.md",
+        "sha256": "f4ed0c9304aad14d2755e848302bc6ecb3a61e02a52fa3fd8e16b1a080483527"
+      },
+      {
+        "path": "v3/docs/super-agent-v1/SA01_CONTRACTS.md",
+        "sha256": "0a6832be36e10865decbecb4808bc157a63b0c39af641502af0c47d10cf420db"
+      },
+      {
+        "path": "v3/docs/super-agent-v1/SA02_IDENTITIES.md",
+        "sha256": "714034a3bd2cd92b5b93348fd587396b6ac9db858a40a3c49b5b0321dfaca7d5"
+      },
+      {
+        "path": "v3/docs/super-agent-v1/SA03_POLICIES.md",
+        "sha256": "55b2c97bfeeaa0828bf2aeb9f8a32871ccb8301b0f572ebc66e33617fb61c602"
+      },
+      {
+        "path": "v3/docs/super-agent-v1/sa00/scope.json",
+        "sha256": "6c1922de342dfbd34db9897f2e87cf01c78153c9028cb9c67aec56249c67395c"
+      }
+    ]
+  },
+  "shared_scope": {
+    "status": "ACTUALLY_CONFIRMED",
+    "commit": "a04dbdeb48669add157cc3d88021ea6563b0f160",
+    "confirmed_at_utc": "2026-11-10T17:27:00Z",
+    "handoff_sha256": "eac642e084e9cfee07aa3dbf7b74a8bf0d20ac8fa6c642ffbb73be61c3c8af5d",
+    "scope": [
+      "Codex migration 0033",
+      "Codex sources Gateway/Ingress, encryption/bounded replay-only buffer and schema",
+      "Codex source-ingress API and minimal registration",
+      "Engine.__init__ minimal composition on same PG connection",
+      "Nonbreaking new subject/Receive helper if needed; no ToolAuthority/Harness/model/budget changes"
+    ]
+  },
+  "legacy_ingest_guard_confirmation": {
+    "status": "ACTUALLY_CONFIRMED",
+    "commit": "bd508300cf99e276b243a2d9c3d5ebc171ca4c08",
+    "confirmed_at_utc": "2026-11-10T17:36:00Z",
+    "checked_at_utc": "2026-11-10T17:42:18.281871+00:00",
+    "scope": "one read-only check_legacy_owner guard at Engine.ingest transaction beginning; all old business/model/budget/Harness code unchanged"
+  },
+  "registered_verification": "evidence/SAV1-04/20261110T181604Z-62d17c77/result.json",
+  "counts": {
+    "tests": 374,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "sa04_cases": 70,
+  "required_cases": [
+    "test_commit_before_ack_and_one_canonical_inbox_without_fake_issue",
+    "test_concurrent_deliveries_commit_one_input_and_one_receipt",
+    "test_delivery_event_and_version_are_distinct_dedupe_layers",
+    "test_changed_delivery_event_version_or_native_slot_is_explicit_conflict",
+    "test_edit_reordering_delete_and_late_create_cannot_revive",
+    "test_unordered_edit_is_ambiguous_and_does_not_guess_latest",
+    "test_outside_receive_body_never_persists_or_reaches_model_recall_log",
+    "test_current_revocation_purges_ciphertext_and_replay_never_restores_it",
+    "test_cursor_jump_uses_contiguous_watermark_and_only_actual_receipts_close_gap",
+    "test_history_rechecks_scope_before_network_and_remains_context_only",
+    "test_missing_history_records_gap_without_fabricating_recovery",
+    "test_owner_cas_and_legacy_cutover_prevent_both_business_writers",
+    "test_buffer_is_encrypted_private_bounded_and_only_replayed_into_engine",
+    "test_buffer_replay_rechecks_authority_and_discards_stale_body",
+    "test_private_buffer_cannot_escape_or_accept_corrupt_records",
+    "test_metadata_retention_clears_source_inbox_and_original_delivery_id",
+    "test_real_sigkill_commit_boundaries_recover_exactly_once",
+    "test_real_isolated_postgresql_pause_never_acks_until_durable_commit",
+    "test_real_backend_disconnect_buffers_only_preapproved_content_and_no_ack",
+    "test_controlled_sdk_ack_boundaries_are_reproducible_and_unsafe_mode_refused",
+    "test_real_32_to_33_upgrade_preserves_legacy_rows_and_all_checksums"
+  ],
+  "commands": [
+    {
+      "argv": [
+        "/home/imini/magr-super-agent/v3/.venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "tests/test_super_agent_sa04.py",
+        "tests/test_super_agent_sa04_faults.py",
+        "tests/test_super_agent_sa03.py",
+        "tests/test_super_agent_sa02.py",
+        "tests/test_super_agent_sa01.py",
+        "tests/test_coordination.py",
+        "tests/test_api.py",
+        "tests/test_environment.py",
+        "tests/test_web_access.py",
+        "tests/test_duplex.py",
+        "tests/test_r4_experts.py",
+        "tests/test_effects.py",
+        "tests/test_models.py",
+        "tests/test_r6_policies.py",
+        "tests/test_r5_recovery.py",
+        "--junitxml=/home/imini/magr-super-agent/v3/evidence/SAV1-04/20261110T181604Z-62d17c77/junit.xml"
+      ],
+      "exit_code": 0,
+      "log": "evidence/SAV1-04/20261110T181604Z-62d17c77/command.log",
+      "junit": "evidence/SAV1-04/20261110T181604Z-62d17c77/junit.xml"
+    },
+    {
+      "argv": [
+        "make",
+        "lint"
+      ],
+      "exit_code": 0,
+      "evidence": "evidence/super-agent-v1/SAV1-04/20261110T181529Z-static/commands.json"
+    },
+    {
+      "argv": [
+        "make",
+        "typecheck"
+      ],
+      "exit_code": 0,
+      "source_files": 215,
+      "evidence": "evidence/super-agent-v1/SAV1-04/20261110T181529Z-static/commands.json"
+    },
+    {
+      "argv": [
+        "make",
+        "migrate"
+      ],
+      "exit_code": 0,
+      "evidence": "evidence/super-agent-v1/SAV1-04/20261110T182637Z-migration/commands.json",
+      "inspection": "evidence/super-agent-v1/SAV1-04/local-migration-check.json"
+    }
+  ],
+  "versions": {
+    "ingress": "source-ingress-v1",
+    "source": "source-contract-v1",
+    "identity": "source-identity-v1",
+    "policy": "source-policy-v1",
+    "migration": "0033_source_ingress.sql",
+    "schema": "2020-12",
+    "fault_pg_image": "pgvector/pgvector:0.8.1-pg16-bookworm@sha256:33198da2828a14c30348d2ccb4750833d5ed9a44c88d840a0e523d7417120337"
+  },
+  "artifacts": [
+    {
+      "path": "config/source-ingress-v1.json",
+      "sha256": "4d6c143cd5ff6c52a145428936ab01ffe56d3347dd84eec85b138d24fc2e1b82"
+    },
+    {
+      "path": "docs/super-agent-v1/SA04_INGRESS.md",
+      "sha256": "ecdfcbd6022861d7a52b6f12a778ada53835b3ab6ad108cdfc9a2b7d78e9bed7"
+    },
+    {
+      "path": "docs/super-agent-v1/adr/SAV1-04-durable-source-ingress.md",
+      "sha256": "52d37a30d99c0fcc622590f4385908e04d01133874636d87203918f03fe0d545"
+    },
+    {
+      "path": "schemas/super-agent-v1/source-ingress-configure-v1.schema.json",
+      "sha256": "f3248c0e0181c5420a65335c8a3ecd2d56d90b8c8b07aef50b7cfb06e66c2294"
+    },
+    {
+      "path": "schemas/super-agent-v1/source-ingress-cursor-reset-v1.schema.json",
+      "sha256": "a36001fd296763a3b0d24ef72abc5ebb696fca7e6989dd0ca8be3b3825b3771e"
+    },
+    {
+      "path": "schemas/super-agent-v1/source-ingress-delivery-v1.schema.json",
+      "sha256": "cd1982f8efef57713db029ab706c393b9c16c8bbb7594c3ad964cdf96c6e19e2"
+    },
+    {
+      "path": "schemas/super-agent-v1/source-ingress-gap-v1.schema.json",
+      "sha256": "8a07ee150036560e10244081ec74360ac186f84a8535924272d24040030ba80e"
+    },
+    {
+      "path": "schemas/super-agent-v1/source-ingress-history-v1.schema.json",
+      "sha256": "9444b9a8e27d5304c2aa530db5dc9f9f1deb925f15fd4e9c83f3ebc6b39fb31e"
+    },
+    {
+      "path": "schemas/super-agent-v1/source-ingress-receipt-v1.schema.json",
+      "sha256": "58d143bbde24cf0dbc21401dab556ef33b1f26e7631ead05eea1f2de7a5541da"
+    },
+    {
+      "path": "schemas/super-agent-v1/source-ingress-replay-v1.schema.json",
+      "sha256": "318c5b63140bd7ec684e30a79a730b6bcbfc10852570c5794c7a15aa1da4da22"
+    },
+    {
+      "path": "schemas/super-agent-v1/source-ingress-settings-v1.schema.json",
+      "sha256": "979cf65eef5c8c35ff0bb2d757da03d0ef22a63ed252163de3d6eef5bbdbabd5"
+    },
+    {
+      "path": "migrations/0033_source_ingress.sql",
+      "sha256": "3857e7dee48ccec855c2e4d7e207d7e50f084b6d12344c9df9c02181dc29c484"
+    },
+    {
+      "path": "src/mgar_v3/sources/ingress.py",
+      "sha256": "442de47b679d0e28530bd5f3933a01ea04893d8fbe8bb8abd6731128e54e7aea"
+    },
+    {
+      "path": "src/mgar_v3/sources/ingress_api.py",
+      "sha256": "b23e4a9860b9cf6b5c6d1354bf589dbd10121872a7698991c672291281cc9d0b"
+    },
+    {
+      "path": "src/mgar_v3/sources/ingress_cli.py",
+      "sha256": "9f3d02d4831b995a457d31e1724d0e0c0f9597397736609da49db9d468c0fe59"
+    },
+    {
+      "path": "src/mgar_v3/sources/ingress_crypto.py",
+      "sha256": "d98921dd9a6b3f459afa9428637067768b7816647f3b87ff956cc04d795b488a"
+    },
+    {
+      "path": "src/mgar_v3/sources/ingress_cursor.py",
+      "sha256": "95dc9cf00c86b81354255a1a4251ce490ab452900f1ccf6d48c6db63fb49ec6a"
+    },
+    {
+      "path": "src/mgar_v3/sources/ingress_domain.py",
+      "sha256": "90fb07d76e479600503ad666c19e67ca5e8a2e3ce0f6a4a2c30d64b545e6ca45"
+    },
+    {
+      "path": "src/mgar_v3/sources/gateway.py",
+      "sha256": "d7c51ca95d300bdeba9674125c41218c2b22d093cae2fa7038b7b7508f9cba8a"
+    },
+    {
+      "path": "tests/sa04_support.py",
+      "sha256": "b637806f6b5d63114ad5296255de21df61333eb9587e4bfcfbbf17a3e7403063"
+    },
+    {
+      "path": "tests/test_super_agent_sa04.py",
+      "sha256": "97f15a64d34b5e1836a064afc51184b5c44e1269f3b18c833835742f1f395e8c"
+    },
+    {
+      "path": "tests/test_super_agent_sa04_faults.py",
+      "sha256": "dbb1f3df2e8124606ba40f8d64eaa2154827a80144a0c3cf2052e01f2b738b11"
+    },
+    {
+      "path": "tests/fixtures/sa04_crash_worker.py",
+      "sha256": "a78094933afba332a2531bfc240a58b8062505830581b5cd96b786171162c25d"
+    }
+  ],
+  "compatibility_audit": "evidence/super-agent-v1/SAV1-04/compatibility-audit.json",
+  "prior_failed_attempts": [
+    {
+      "status": "FAIL_RETAINED",
+      "evidence": "evidence/super-agent-v1/SAV1-04/20261110T180631Z-targeted/commands.json",
+      "checks": [
+        {
+          "name": "policy-tests",
+          "argv": [
+            "/home/imini/magr-super-agent/v3/.venv/bin/python",
+            "-m",
+            "pytest",
+            "-q",
+            "--tb=short",
+            "tests/test_super_agent_sa04.py",
+            "tests/test_super_agent_sa04_faults.py",
+            "--junitxml=/home/imini/magr-super-agent/v3/evidence/super-agent-v1/SAV1-04/20261110T180631Z-targeted/junit.xml"
+          ],
+          "exit_code": 1,
+          "log": "evidence/super-agent-v1/SAV1-04/20261110T180631Z-targeted/policy-tests.log",
+          "counts": {
+            "tests": 58,
+            "failures": 2,
+            "errors": 0,
+            "skipped": 0
+          }
+        }
+      ]
+    },
+    {
+      "status": "FAIL_RETAINED",
+      "evidence": "evidence/super-agent-v1/SAV1-04/20261110T180854Z-targeted/commands.json",
+      "checks": [
+        {
+          "name": "policy-tests",
+          "argv": [
+            "/home/imini/magr-super-agent/v3/.venv/bin/python",
+            "-m",
+            "pytest",
+            "-q",
+            "--tb=short",
+            "tests/test_super_agent_sa04.py",
+            "tests/test_super_agent_sa04_faults.py",
+            "--junitxml=/home/imini/magr-super-agent/v3/evidence/super-agent-v1/SAV1-04/20261110T180854Z-targeted/junit.xml"
+          ],
+          "exit_code": 1,
+          "log": "evidence/super-agent-v1/SAV1-04/20261110T180854Z-targeted/policy-tests.log",
+          "counts": {
+            "tests": 58,
+            "failures": 1,
+            "errors": 0,
+            "skipped": 0
+          }
+        }
+      ]
+    },
+    {
+      "status": "FAIL_RETAINED",
+      "evidence": "evidence/super-agent-v1/SAV1-04/20261110T181153Z-targeted/commands.json",
+      "checks": [
+        {
+          "name": "policy-tests",
+          "argv": [
+            "/home/imini/magr-super-agent/v3/.venv/bin/python",
+            "-m",
+            "pytest",
+            "-q",
+            "--tb=short",
+            "tests/test_super_agent_sa04.py",
+            "tests/test_super_agent_sa04_faults.py",
+            "--junitxml=/home/imini/magr-super-agent/v3/evidence/super-agent-v1/SAV1-04/20261110T181153Z-targeted/junit.xml"
+          ],
+          "exit_code": 1,
+          "log": "evidence/super-agent-v1/SAV1-04/20261110T181153Z-targeted/policy-tests.log",
+          "counts": {
+            "tests": 68,
+            "failures": 1,
+            "errors": 0,
+            "skipped": 0
+          }
+        }
+      ]
+    },
+    {
+      "status": "FAIL_RETAINED",
+      "evidence": "evidence/super-agent-v1/SAV1-03/20261110T180117Z-static/commands.json",
+      "reason": "SA04 initial static attempt was written under SA03 by a runner label error; historical SA03 results unchanged"
+    }
+  ],
+  "prior_registered_attempts": [],
+  "new_real_paid_calls": 0,
+  "new_real_external_writes": 0,
+  "new_real_unknown_reservations": 0,
+  "limitations": [
+    "No production verifier, content key, ingress owner, transport buffer or listener configured; all new tables empty in own persistent PG",
+    "Controlled HMAC/SDK boundary is engineering only; actual GitHub/Feishu SDK ACK/replay/reconnect/permissions remain SA05/06 NOT_RUN",
+    "Durable canonical input is existing source_inbox + source_ingress_inputs; no fake Issue/Thread/Ticket/Run. Router/worker/Recall/notification integration remains later cards",
+    "Unknown native version order is ambiguous and unreadable; gaps without actual coverage remain visible; no unlimited/no-loss platform guarantee",
+    "Spool requires fresh Engine Receive retention preauthorization, finite TTL and current permission on replay; database down before preauthorization means no body buffered and no ACK",
+    "Retention is explicit maintenance, no periodic daemon started; complete Memory/CAS/Recall/export/notification/backup/tombstone restore lifecycle and key recovery remain SA20/21 acceptance",
+    "Minimal hashes/tombstones/audit persist under bounded metadata capacity; exhaustion fails closed pending operator review, never evicts dedupe facts to permit repeated work",
+    "Operator replay revalidates context only; does not reset consumption or claim the future Router has consumed inputs",
+    "Physical faults used own disposable database/process/container, not production PG or Harness; no physical host-storage power-loss or long-run recovery claim"
+  ],
+  "next_card": "SAV1-05",
+  "next_card_status": "PLANNED",
+  "handoff_rule": "Stop at SA04 pending independent acceptance; no SA05 or next migration reserved"
+}
