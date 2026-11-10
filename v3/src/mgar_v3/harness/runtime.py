@@ -34,6 +34,7 @@ from mgar_v3.harness.contracts import (
     TaskBinding,
     ToolContext,
     ToolRegistry,
+    ToolSpec,
     VerificationReceipt,
     VerificationRequest,
     Verifier,
@@ -52,6 +53,25 @@ def _tool_list(value: Any) -> list[str] | None:
     if not isinstance(value, list) or not all(isinstance(item, str) for item in value):
         return None
     return value
+
+
+def _path_arguments(arguments: dict[str, Any]) -> list[str] | None:
+    paths: list[str] = []
+    direct = arguments.get("path")
+    if isinstance(direct, str):
+        paths.append(direct)
+    edits = arguments.get("edits")
+    if edits is not None:
+        if not isinstance(edits, list):
+            return None
+        for item in edits:
+            if not isinstance(item, dict):
+                return None
+            path = item.get("path")
+            if not isinstance(path, str):
+                return None
+            paths.append(path)
+    return paths or None
 
 
 class HarnessRuntime:
@@ -101,6 +121,7 @@ class HarnessRuntime:
         model_calls = 0
         tool_calls = 0
         revision = 0
+        declared = self._declared_tools()
         self._emit(task, "run_started", revision, {"task_kind": task.task_kind})
         last_verification: VerificationReceipt | None = None
         unresolved: list[str] = []
@@ -121,7 +142,7 @@ class HarnessRuntime:
                 operation_id=operation_id,
                 task=task,
                 messages=tuple(history),
-                tools=tuple(self.tools.specs()),
+                tools=tuple(declared.values()),
                 model_id=self.model_id,
                 price_version=self.price_version,
                 max_output_tokens=self.max_output_tokens,
@@ -165,6 +186,7 @@ class HarnessRuntime:
                     step,
                     history,
                     receipts,
+                    declared,
                 )
                 tool_calls += executed
                 if denied is not None:
@@ -232,13 +254,14 @@ class HarnessRuntime:
         step: int,
         history: list[ModelMessage],
         receipts: list[ExecutionReceipt],
+        declared: dict[str, ToolSpec],
     ) -> tuple[HarnessResult | None, int]:
         executed = 0
         for index, call in enumerate(response.tool_calls):
             if token.cancelled:
                 return self._finish(task, "cancelled", "Cancelled before the tool call"), executed
             operation_id = f"{task.task_id}:tool:{step + 1}:{index + 1}"
-            denied = self._precheck(call, task, grant)
+            denied = self._precheck(call, task, grant, declared)
             if denied is not None:
                 return denied, executed
             reservation = self.budgets.reserve(
@@ -314,43 +337,69 @@ class HarnessRuntime:
             return
         receipts.append(receipt)
 
+    def _declared_tools(self) -> dict[str, ToolSpec]:
+        declared: dict[str, ToolSpec] = {}
+        for spec in self.tools.specs():
+            if spec.name in declared:
+                raise DomainError(
+                    "HARNESS_TOOL_DUPLICATE", "Tool registry declared a duplicate name", 409
+                )
+            declared[spec.name] = spec
+        return declared
+
     def _precheck(
-        self, call: HarnessToolCall, task: TaskBinding, grant: CapabilityGrant
+        self,
+        call: HarnessToolCall,
+        task: TaskBinding,
+        grant: CapabilityGrant,
+        declared: dict[str, ToolSpec],
     ) -> HarnessResult | None:
-        if call.name in {"read_file", "list_dir"}:
-            path = call.arguments.get("path", ".")
-            if not isinstance(path, str) or not grant.can_read(path):
-                return self._denied(task, call)
+        spec = declared.get(call.name)
+        if spec is None:
+            return self._denied(
+                task,
+                call,
+                "tool is not declared by the registry",
+                "HARNESS_TOOL_UNDECLARED",
+            )
+        if spec.capability == "read":
+            paths = _path_arguments(call.arguments)
+            if paths is None or any(not grant.can_read(path) for path in paths):
+                return self._denied(
+                    task, call, "read path is outside the grant", "HARNESS_READ_DENIED"
+                )
             return None
-        if call.name == "apply_edits":
-            raw = call.arguments.get("edits")
-            if not isinstance(raw, list) or not raw:
-                return self._denied(task, call)
-            for item in raw:
-                if not isinstance(item, dict):
-                    return self._denied(task, call)
-                path = item.get("path")
-                if not isinstance(path, str) or not grant.can_write(path):
-                    return self._denied(task, call)
+        if spec.capability == "write":
+            paths = _path_arguments(call.arguments)
+            if paths is None or any(not grant.can_write(path) for path in paths):
+                return self._denied(
+                    task, call, "write path is outside the grant", "HARNESS_WRITE_DENIED"
+                )
             return None
-        if call.name == "run_tests":
-            argv = _tool_list(call.arguments.get("argv"))
-            if argv is None or not grant.can_execute(argv):
-                return self._denied(task, call)
-            return None
+        argv = _tool_list(call.arguments.get("argv"))
+        if argv is None or not grant.can_execute(argv):
+            return self._denied(
+                task, call, "command is outside the grant", "HARNESS_COMMAND_DENIED"
+            )
         return None
 
-    def _denied(self, task: TaskBinding, call: HarnessToolCall) -> HarnessResult:
+    def _denied(
+        self,
+        task: TaskBinding,
+        call: HarnessToolCall,
+        reason: str,
+        code: str,
+    ) -> HarnessResult:
         self._emit(
             task,
             "tool_denied",
             1,
-            {"call_id": call.call_id, "name": call.name, "node": "runtime"},
+            {"call_id": call.call_id, "name": call.name, "node": "runtime", "code": code},
         )
-        return self._finish(task, "denied", f"Tool {call.name} is outside the grant")
+        return self._finish(task, "denied", f"Tool {call.name} denied: {reason}")
 
     def _authorize(self, task: TaskBinding, grant: CapabilityGrant) -> None:
-        if grant.actor.lower() != task.actor.lower():
+        if grant.actor != task.actor:
             raise DomainError("HARNESS_ACTOR_MISMATCH", "Grant actor does not match task", 403)
         if grant.repository.lower() != task.repository.lower():
             raise DomainError(

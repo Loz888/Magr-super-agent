@@ -1,10 +1,11 @@
 # MAGR Harness 升级任务书与规划
 
-状态：**HV4-H00 与 HV4-H01 已完成（DONE，2026-11-10）；H02–H18 仍为 PLANNED**。审计日期：
+状态：**HV4-H00 已完成（DONE）；HV4-H01 修复已交付、等待 Super-Agent 复验接收；
+H02–H18 仍为 PLANNED**（2026-11-10）。审计日期：
 2026-11-10。应用基线：`1d07285aa27ece9bae4ccbedc3a77ce2fbcbaf3a`。
 冻结基线、任务集与评分协议见 [基线回归日志](BASELINE_REGRESSION.md)、
 [能力审计](CAPABILITY_AUDIT.md)、[任务类型契约](TASK_TYPES.md) 与
-[评分协议 v1](SCORING_PROTOCOL.md)。H01 接口见 [Harness 契约 v1](HARNESS_CONTRACTS.md)、
+[评分协议 v1](SCORING_PROTOCOL.md)。H01 接口见 [Harness 契约 v1.1](HARNESS_CONTRACTS.md)、
 [选型 ADR](adr/HV4-H01-deepseek-harness.md) 与 [Super-Agent 交接](SUPER_AGENT_HANDOFF.md)。
 
 本规划的目标是让用户选定项目、描述目标后，Agent 能在同一会话内调查、修改文件、

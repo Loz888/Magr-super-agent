@@ -20,6 +20,7 @@ from mgar_v3.harness import (
     HarnessRuntime,
     HarnessToolCall,
     HarnessToolRegistry,
+    HarnessToolResult,
     InMemoryBudgetLedger,
     InMemoryEventSink,
     LocalExecutionBroker,
@@ -30,6 +31,7 @@ from mgar_v3.harness import (
     ModelUsage,
     SimpleContextManager,
     TaskBinding,
+    ToolSpec,
     UnknownModelOutcome,
     VerificationRequirement,
     canonical_hash,
@@ -44,13 +46,13 @@ INITIAL = "def add(a, b):\n    return a - b\n"
 FIXED = "def add(a, b):\n    return a + b\n"
 
 
-def _task(*, requirement: str = "unit", min_tests: int = 1) -> TaskBinding:
+def _task(*, requirement: str = "unit", min_tests: int = 1, actor: str = "owner") -> TaskBinding:
     return TaskBinding(
         task_id="task-1",
         thread_id=uuid4(),
         run_id=uuid4(),
         execution_epoch=1,
-        actor="owner",
+        actor=actor,
         repository="example/project",
         base_commit="a" * 40,
         workspace_id="ws-1",
@@ -330,6 +332,121 @@ def test_tool_permission_is_checked_before_any_mutation(tmp_path: Path) -> None:
     kinds = _event_kinds(list(events.events(task.run_id)))
     assert "tool_denied" in kinds
     assert "tool_started" not in kinds
+
+
+class _CounterRegistry:
+    def __init__(self, *, declared: bool) -> None:
+        self.declared = declared
+        self.calls = 0
+
+    def specs(self) -> tuple[ToolSpec, ...]:
+        if not self.declared:
+            return ()
+        return (
+            ToolSpec(
+                name="custom_write",
+                description="Controlled no-I/O write handler",
+                capability="write",
+            ),
+        )
+
+    def invoke(self, call: Any, context: Any, cancellation: Any) -> HarnessToolResult:
+        self.calls += 1
+        return HarnessToolResult(call_id=call.call_id, status="ok", content="counter-only")
+
+
+class _CustomWriteModel:
+    def complete(self, request: ModelRequest, cancellation: CancellationToken) -> ModelResponse:
+        return ModelResponse(
+            tool_calls=(
+                HarnessToolCall(
+                    call_id="custom-call",
+                    name="custom_write",
+                    arguments={"path": "protected.txt"},
+                ),
+            ),
+            finish_reason="tool_calls",
+            usage=ModelUsage(cost_micros=1),
+        )
+
+
+def _custom_runtime(
+    tmp_path: Path, registry: _CounterRegistry
+) -> tuple[HarnessRuntime, InMemoryEventSink]:
+    workspace = LocalWorkspace(tmp_path / "workspace", workspace_id="ws-1")
+    events = InMemoryEventSink()
+    runtime = HarnessRuntime(
+        model=_CustomWriteModel(),
+        tools=registry,
+        workspace=workspace,
+        broker=LocalExecutionBroker(workspace),
+        context=SimpleContextManager(),
+        verifier=LocalVerifier(),
+        events=events,
+        budgets=InMemoryBudgetLedger(BudgetLimits(max_model_calls=4, max_tool_calls=8)),
+        reservation_micros=1,
+        max_steps=1,
+    )
+    return runtime, events
+
+
+def test_undeclared_tool_is_denied_before_the_handler(tmp_path: Path) -> None:
+    registry = _CounterRegistry(declared=False)
+    runtime, _ = _custom_runtime(tmp_path, registry)
+    result = runtime.run(_task(), _grant())
+    assert result.status == "denied"
+    assert registry.calls == 0
+
+
+def test_declared_write_tool_is_denied_under_a_read_only_grant(tmp_path: Path) -> None:
+    registry = _CounterRegistry(declared=True)
+    runtime, _ = _custom_runtime(tmp_path, registry)
+    result = runtime.run(_task(), _grant(write_paths=()))
+    assert result.status == "denied"
+    assert registry.calls == 0
+
+
+def test_declared_write_tool_is_dispatched_only_with_a_matching_grant(tmp_path: Path) -> None:
+    registry = _CounterRegistry(declared=True)
+    runtime, _ = _custom_runtime(tmp_path, registry)
+    result = runtime.run(_task(), _grant(write_paths=("protected.txt",)))
+    assert result.status == "incomplete"
+    assert registry.calls == 1
+
+
+def test_actor_is_a_case_sensitive_internal_principal(tmp_path: Path) -> None:
+    _project(tmp_path / "workspace")
+    task = _task(actor="Owner-01")
+    assert task.actor == "Owner-01"
+    runtime, _, _, _ = _runtime(tmp_path, ScriptedModel([_stop_step()]))
+    with pytest.raises(DomainError) as mismatch:
+        runtime.run(task, _grant(actor="owner-01"))
+    assert mismatch.value.code == "HARNESS_ACTOR_MISMATCH"
+    result = runtime.run(task, _grant(actor="Owner-01"))
+    assert result.status == "incomplete"
+
+
+def test_event_envelope_maps_to_the_real_run_events_schema() -> None:
+    migration = (ROOT / "migrations/0001_coordination.sql").read_text(encoding="utf-8")
+    assert "event_id bigserial PRIMARY KEY" in migration
+    assert "safe_payload jsonb NOT NULL" in migration
+    event = EventEnvelope(
+        run_id=uuid4(),
+        operation_id="op-1",
+        execution_epoch=2,
+        revision=3,
+        cursor=17,
+        kind="tool_started",
+        payload={"name": "read_file"},
+    )
+    safe = event.to_run_event_safe_payload()
+    assert safe["schema"] == "harness-event-v1"
+    assert safe["envelope_id"] == str(event.envelope_id)
+    assert safe["operation_id"] == "op-1"
+    assert safe["execution_epoch"] == 2
+    assert safe["revision"] == 3
+    assert "event_id" not in safe
+    assert event.cursor == 17
 
 
 def test_cancellation_propagates_before_the_tool_runs(tmp_path: Path) -> None:

@@ -3,7 +3,7 @@
 - 状态：**Accepted**
 - 日期：2026-11-10
 - 决策卡：`HV4-H01`
-- 契约版本：`harness-contract-v1`
+- 契约版本：`harness-contract-v1.1`
 - 关联：`docs/harness-v4/HARNESS_CONTRACTS.md`、`experiments/harness-v4/harness-contract-v1.json`
 
 ## 1. 背景

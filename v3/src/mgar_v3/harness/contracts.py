@@ -17,7 +17,7 @@ from pydantic import Field, field_validator
 
 from mgar_v3.domain import DomainError, Model, digest
 
-CONTRACT_VERSION = "harness-contract-v1"
+CONTRACT_VERSION = "harness-contract-v1.1"
 TASK_KINDS = ("inspect", "bugfix", "feature", "refactor", "run_app")
 
 TaskKind = Literal["inspect", "bugfix", "feature", "refactor", "run_app"]
@@ -32,7 +32,7 @@ FinishReason = Literal["stop", "tool_calls", "length", "cancelled", "error"]
 STATE_OWNERSHIP: dict[str, str] = {
     "session": "app.threads",
     "turn": "app.runs",
-    "step": "run_events.operation_id (harness envelope)",
+    "step": "app.run_events.safe_payload.operation_id",
     "execution_epoch": "app.runs.execution_epoch",
     "budget_reservation": "Engine model/tool ledger",
     "budget_settlement": "Engine model/tool ledger",
@@ -40,7 +40,7 @@ STATE_OWNERSHIP: dict[str, str] = {
     "approval": "existing approval record",
     "task_status": "Engine task transaction",
     "final_completion": "Engine transaction plus verifier receipt",
-    "event_cursor": "app.run_events.seq",
+    "event_cursor": "app.run_events.event_id",
     "workspace_version": "WorkspaceSnapshot.tree_hash",
     "review_bundle": "existing Review Bundle service",
 }
@@ -110,6 +110,14 @@ class VerificationRequirement(Model):
 
 
 class TaskBinding(Model):
+    """Bind one harness task to an existing Engine run.
+
+    ``actor`` is a trusted internal Engine principal produced by the SA02
+    identity mapping.  It is case-sensitive and is never derived from message
+    text, model output, or a raw platform opaque ID; the raw SourceActorRef is
+    stored separately by the owning identity service.
+    """
+
     task_id: str = Field(min_length=1, max_length=100)
     thread_id: UUID
     run_id: UUID
@@ -123,9 +131,9 @@ class TaskBinding(Model):
     task_kind: TaskKind = "bugfix"
     requirements: tuple[VerificationRequirement, ...] = Field(min_length=1, max_length=32)
 
-    @field_validator("actor", "repository")
+    @field_validator("repository")
     @classmethod
-    def normalize_identity(cls, value: str) -> str:
+    def normalize_repository(cls, value: str) -> str:
         return value.lower()
 
 
@@ -338,7 +346,14 @@ class EventDraft(Model):
 
 
 class EventEnvelope(Model):
-    event_id: UUID = Field(default_factory=uuid4)
+    """A versioned harness event projected onto ``app.run_events``.
+
+    ``cursor`` is the persisted ``event_id bigserial`` value.  ``envelope_id``
+    and ``operation_id`` are not table columns; they live inside the versioned
+    ``safe_payload`` JSON object built by :meth:`to_run_event_safe_payload`.
+    """
+
+    envelope_id: UUID = Field(default_factory=uuid4)
     run_id: UUID
     operation_id: str
     execution_epoch: int
@@ -347,6 +362,17 @@ class EventEnvelope(Model):
     kind: str
     payload: dict[str, Any]
     occurred_at: datetime = Field(default_factory=lambda: datetime.now(UTC))
+
+    def to_run_event_safe_payload(self) -> dict[str, Any]:
+        """Return the exact object stored in ``app.run_events.safe_payload``."""
+        return {
+            "schema": "harness-event-v1",
+            "envelope_id": str(self.envelope_id),
+            "operation_id": self.operation_id,
+            "execution_epoch": self.execution_epoch,
+            "revision": self.revision,
+            "payload": self.payload,
+        }
 
 
 class HarnessResult(Model):
