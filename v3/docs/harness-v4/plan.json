@@ -2,7 +2,7 @@
   "plan_version": "1",
   "status": "PLANNED",
   "application_baseline": "1d07285aa27ece9bae4ccbedc3a77ce2fbcbaf3a",
-  "scope": "HV4-H00 is implemented and frozen; H01-H18 remain design-only and unregistered.",
+  "scope": "HV4-H00 and HV4-H01 are implemented and frozen; H02-H18 remain design-only and unregistered.",
   "tasks": [
     {
       "id": "HV4-H00",
@@ -22,7 +22,7 @@
     {
       "id": "HV4-H01",
       "title": "Harness 契约与 DeepSeek Harness 复用验证",
-      "status": "PLANNED",
+      "status": "DONE",
       "priority": "P0",
       "milestone": "M0",
       "depends_on": [

@@ -1063,5 +1063,25 @@
       "tests/test_harness_v4_h00.py"
     ],
     "timeout_seconds": 300
+  },
+  "HV4-H01": {
+    "components": {
+      "contracts": "harness_contract_v1_frozen_model_tool_workspace_broker_context_verifier_event_budget",
+      "runtime": "reference_read_edit_test_loop_with_replaceable_model_and_executor_adapters",
+      "permissions": "runtime_precheck_and_workspace_broker_boundary_checks",
+      "budget": "reservation_before_model_and_tool_calls_unknown_keeps_reservation",
+      "legacy": "read_only_analysis_adapter_and_repair_agent_delegating_adapter",
+      "deepseek_harness": "NOT_RUN_NO_NODE_RUNTIME_source_only_assessment",
+      "model": "not_used",
+      "github": "not_used",
+      "postgres": "not_used",
+      "redis": "not_used",
+      "docker": "not_used",
+      "live": "NOT_RUN_no_paid_calls_or_external_writes"
+    },
+    "tests": [
+      "tests/test_harness_v4_h01.py"
+    ],
+    "timeout_seconds": 300
   }
 }
