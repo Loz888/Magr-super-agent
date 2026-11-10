@@ -4,7 +4,7 @@
   "status": "PASS",
   "commit": "ede3bc67c9b4473b91ab4f8ea73a64a59789e655",
   "result_commit": "ede3bc67c9b4473b91ab4f8ea73a64a59789e655",
-  "commit_note": "三次本地提交：ede3bc6 包含基线冻结、24 任务目录、任务类型/评分协议、能力审计、静态清理与核心回归日志；a3fa79e 提交本 accept.json 与文件权限修正；9239355 修正 accept.json 自身权限。均未推送。",
+  "commit_note": "本地提交序列：ede3bc6 实现基线冻结、任务目录、协议、能力审计与静态清理；a3fa79e 提交 accept.json 与文件权限修正；9239355 修正 accept.json 自身权限；d3eb668 补充 make verify 证据。后续仅可能有记录性补充提交。均未推送。",
   "parent_commit": "973994c0e6c087c2968b3d91a3a6b9220e2c0892",
   "base_commit": "973994c0e6c087c2968b3d91a3a6b9220e2c0892",
   "application_baseline": "1d07285aa27ece9bae4ccbedc3a77ce2fbcbaf3a",
