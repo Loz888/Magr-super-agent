@@ -1,6 +1,7 @@
 # Harness V4 逐项任务书
 
-HV4-H00 已实施并验收为 **DONE**（2026-11-10）；H01–H18 仍为 **PLANNED**。
+HV4-H00 已实施并验收为 **DONE**；HV4-H01 修复已交付、等待 Super-Agent 复验接收；
+H02–H18 仍为 **PLANNED**（2026-11-10）。
 H00 等简称对应完整 ID `HV4-H00`；编号本身不表示已经实施。
 本规划不修改 V3.5 历史卡的 DONE/FAIL/NOT_RUN，也不把历史实验许可转用于新实验。
 估时为熟悉现有代码的一名工程师的人日，含卡内测试，不含外部权限等待与跨卡余量。
@@ -65,7 +66,7 @@ H12 的评测用例从 H00 起设计，每张实现卡同步补充测试；H12 �
 
 <a id="hv4-h01"></a>
 
-## HV4-H01：Harness 契约与 DeepSeek Harness 复用验证
+## HV4-H01：Harness 契约与 DeepSeek Harness 复用验证（修复已交付，待 SA 复验）
 
 - **输入**：H00 的状态所有权和任务契约；本规划固定的官方 DeepSeek Harness 版本。
 - **工作**：定义 ModelAdapter、ToolRegistry、WorkspaceProvider、ExecutionBroker、
@@ -80,6 +81,19 @@ H12 的评测用例从 H00 起设计，每张实现卡同步补充测试；H12 �
   选择 Python 路线，不阻塞后续卡。
 - **产物**：正式选型 ADR、版本化接口、状态映射、受控接线样例及失败分支记录。
 - **主要位置**：建议新建 `src/mgar_v3/harness/` 作为接口与组合层，复用现有服务实现。
+- **落地结果**：已冻结 `harness-contract-v1.1`：TaskBinding、CapabilityGrant、
+  ModelAdapter、ToolRegistry、WorkspaceProvider、ExecutionBroker、ContextManager、
+  Verifier、EventSink、BudgetLedger；参考回路用受控模型适配器完成“读 → 改 →
+  真实 Python 测试”，模型/执行器均可替换。v1 独立评审发现未声明工具与只读
+  write 工具会进入 handler；v1.1 改为 fail-closed：未声明名称直接拒绝，已声明
+  工具按 capability 校验路径/argv。事件映射已对齐 `run_events.event_id` 与
+  `safe_payload`；actor 为大小写敏感的受信内部 principal。补充定位并修复了
+  `finish_success` 的两事务窗口：run 终态与 `stop_reason/report_hash` 现在同一
+  Engine 事务提交，并有确定性 DB 回归。旧 `e1b3214` 探针 FAIL、核心回归旧失败与
+  DSH `NOT_RUN_NO_NODE_RUNTIME` 均原样保留，H01 等待 Super-Agent 复验接收。
+  证据：`docs/harness-v4/adr/HV4-H01-deepseek-harness.md`、
+  `docs/harness-v4/HARNESS_CONTRACTS.md`、`experiments/harness-v4/harness-contract-v1.json`、
+  `docs/harness-v4/accept/HV4-H01/`。
 
 <a id="hv4-h02"></a>
 

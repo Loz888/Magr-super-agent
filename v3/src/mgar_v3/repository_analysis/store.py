@@ -1000,18 +1000,16 @@ class RepositoryAnalysisStore:
             checks=verification.checks,
             reasons=verification.failures,
         )
-        self.engine.commit_report(run_id, epoch, report, verdict)
-        spec = self.spec(run_id)
-        with self.engine.transaction() as conn:
-            conn.execute(
-                "UPDATE app.repo_analysis_runs SET stop_reason=%s,report_hash=%s WHERE run_id=%s",
-                (
-                    "complete" if verification.passed else "EVIDENCE_REJECTED",
-                    spec.report_hash,
-                    run_id,
-                ),
-            )
-        return spec.report_hash
+        self.engine.commit_report(
+            run_id,
+            epoch,
+            report,
+            verdict,
+            repo_analysis_stop_reason=(
+                "complete" if verification.passed else "EVIDENCE_REJECTED"
+            ),
+        )
+        return self.spec(run_id).report_hash
 
     def finish_partial(
         self,

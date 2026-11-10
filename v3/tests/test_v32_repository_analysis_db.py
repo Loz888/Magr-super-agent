@@ -8,9 +8,12 @@ network-free unit suite so engineering and live evidence stay distinguishable.
 from __future__ import annotations
 
 import os
+from threading import Event, Thread
 from uuid import uuid4
 
+import psycopg
 import pytest
+from psycopg.rows import dict_row
 
 pytestmark = pytest.mark.skipif(
     not os.environ.get("MGAR_V3_DATABASE_URL"),
@@ -50,6 +53,66 @@ def test_fixture_run_persists_evidence_claims_and_report(engine, settings):
     assert f"github://octo/example@{spec.commit}/src/main.py" in report
     assert "L1-L3" in report
     assert "机械" in report
+
+
+def test_finish_success_commits_stop_reason_with_run_status(engine, settings):
+    """The run terminal state and repo stop_reason must share one commit."""
+
+    from mgar_v3.repository_analysis.report import ReportVerification
+    from mgar_v3.repository_analysis.service import RepositoryAnalysisService
+    from mgar_v3.repository_analysis.store import RepositoryAnalysisStore
+
+    service = RepositoryAnalysisService(engine, settings)
+    spec = service.create(_input("atomic completion", "req-atomic"))
+    store = RepositoryAnalysisStore(engine)
+    run = store.begin_run(spec.run_id)
+    epoch = int(run["execution_epoch"])
+    entered = Event()
+    release = Event()
+    original = store.spec
+
+    def blocking_spec(run_id):
+        entered.set()
+        assert release.wait(10), "test did not release the post-commit reader"
+        return original(run_id)
+
+    store.spec = blocking_spec  # type: ignore[method-assign]
+    outcome: dict[str, object] = {}
+
+    def worker() -> None:
+        try:
+            outcome["hash"] = store.finish_success(
+                spec.run_id,
+                epoch,
+                b"# atomic report\n",
+                ReportVerification(passed=True, checks=["controlled"]),
+            )
+        except BaseException as exc:  # noqa: BLE001 - surfaced by the assertion below
+            outcome["error"] = exc
+
+    thread = Thread(target=worker)
+    thread.start()
+    try:
+        assert entered.wait(10), "finish_success did not reach the post-commit read"
+        with psycopg.connect(
+            settings.database_url.get_secret_value(),
+            autocommit=True,
+            row_factory=dict_row,
+        ) as conn:
+            row = conn.execute(
+                "SELECT r.status,s.stop_reason,s.report_hash FROM app.runs r "
+                "JOIN app.repo_analysis_runs s USING(run_id) WHERE r.run_id=%s",
+                (spec.run_id,),
+            ).fetchone()
+        assert row is not None
+        assert row["status"] == "succeeded"
+        assert row["stop_reason"] == "complete"
+        assert row["report_hash"]
+    finally:
+        release.set()
+        thread.join(10)
+    assert not thread.is_alive()
+    assert "error" not in outcome
 
 
 def test_idempotent_create_and_thread_follow_up_reuses_evidence(engine, settings):

@@ -786,6 +786,7 @@ class Engine:
         reply_kind: str = "result",
         in_reply_to_event_id: UUID | None = None,
         stored_report_hash: str | None = None,
+        repo_analysis_stop_reason: str | None = None,
     ) -> UUID | None:
         if stored_report_hash is None:
             content_hash = self.artifacts.put(report)
@@ -801,6 +802,7 @@ class Engine:
             content_hash,
             reply_kind=reply_kind,
             in_reply_to_event_id=in_reply_to_event_id,
+            repo_analysis_stop_reason=repo_analysis_stop_reason,
         )
 
     def commit_prepared_report(
@@ -813,6 +815,7 @@ class Engine:
         *,
         reply_kind: str = "result",
         in_reply_to_event_id: UUID | None = None,
+        repo_analysis_stop_reason: str | None = None,
     ) -> UUID | None:
         # Internal SQL-only commit; trusted callers prepare CAS before their transaction.
         with self.transaction() as conn:
@@ -842,6 +845,12 @@ class Engine:
                 "VALUES (%s,%s,%s,%s,%s) ON CONFLICT(run_id,report_hash) DO NOTHING",
                 (uuid4(), run_id, content_hash, verdict.passed, Jsonb(verdict.model_dump())),
             )
+            if repo_analysis_stop_reason is not None:
+                conn.execute(
+                    "UPDATE app.repo_analysis_runs SET stop_reason=%s,report_hash=%s "
+                    "WHERE run_id=%s",
+                    (repo_analysis_stop_reason, content_hash, run_id),
+                )
             if not verdict.passed:
                 conn.execute(
                     "UPDATE app.runs SET status='failed',reason_code='EVIDENCE_REJECTED',"
