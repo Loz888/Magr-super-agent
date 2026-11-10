@@ -1,0 +1,224 @@
+{
+  "schema": "sav1-requirements-map-v1",
+  "status": "FROZEN_FOR_IMPLEMENTATION",
+  "source": "ACCEPTANCE.md E01..E22 and TASKS.md",
+  "scenarios": [
+    {
+      "id": "E01",
+      "implementation_cards": [
+        "SAV1-01",
+        "SAV1-02",
+        "SAV1-03",
+        "SAV1-09"
+      ],
+      "runtime_status": "PLANNED_NOT_TESTED"
+    },
+    {
+      "id": "E02",
+      "implementation_cards": [
+        "SAV1-03",
+        "SAV1-08",
+        "SAV1-16"
+      ],
+      "runtime_status": "PLANNED_NOT_TESTED"
+    },
+    {
+      "id": "E03",
+      "implementation_cards": [
+        "SAV1-03",
+        "SAV1-04",
+        "SAV1-08"
+      ],
+      "runtime_status": "PLANNED_NOT_TESTED"
+    },
+    {
+      "id": "E04",
+      "implementation_cards": [
+        "SAV1-10",
+        "SAV1-11"
+      ],
+      "runtime_status": "PLANNED_NOT_TESTED"
+    },
+    {
+      "id": "E05",
+      "implementation_cards": [
+        "SAV1-01",
+        "SAV1-10"
+      ],
+      "runtime_status": "PLANNED_NOT_TESTED"
+    },
+    {
+      "id": "E06",
+      "implementation_cards": [
+        "SAV1-05",
+        "SAV1-10",
+        "SAV1-18"
+      ],
+      "runtime_status": "PLANNED_NOT_TESTED"
+    },
+    {
+      "id": "E07",
+      "implementation_cards": [
+        "SAV1-15"
+      ],
+      "runtime_status": "PLANNED_NOT_TESTED"
+    },
+    {
+      "id": "E08",
+      "implementation_cards": [
+        "SAV1-13",
+        "SAV1-22"
+      ],
+      "runtime_status": "PLANNED_NOT_TESTED"
+    },
+    {
+      "id": "E09",
+      "implementation_cards": [
+        "SAV1-02",
+        "SAV1-14"
+      ],
+      "runtime_status": "PLANNED_NOT_TESTED"
+    },
+    {
+      "id": "E10",
+      "implementation_cards": [
+        "SAV1-07",
+        "SAV1-12"
+      ],
+      "runtime_status": "PLANNED_NOT_TESTED"
+    },
+    {
+      "id": "E11",
+      "implementation_cards": [
+        "SAV1-04"
+      ],
+      "runtime_status": "PLANNED_NOT_TESTED"
+    },
+    {
+      "id": "E12",
+      "implementation_cards": [
+        "SAV1-04",
+        "SAV1-05",
+        "SAV1-06",
+        "SAV1-20"
+      ],
+      "runtime_status": "PLANNED_NOT_TESTED"
+    },
+    {
+      "id": "E13",
+      "implementation_cards": [
+        "SAV1-17"
+      ],
+      "runtime_status": "PLANNED_NOT_TESTED"
+    },
+    {
+      "id": "E14",
+      "implementation_cards": [
+        "SAV1-17"
+      ],
+      "runtime_status": "PLANNED_NOT_TESTED"
+    },
+    {
+      "id": "E15",
+      "implementation_cards": [
+        "SAV1-08",
+        "SAV1-16",
+        "SAV1-17"
+      ],
+      "runtime_status": "PLANNED_NOT_TESTED"
+    },
+    {
+      "id": "E16",
+      "implementation_cards": [
+        "SAV1-02",
+        "SAV1-03",
+        "SAV1-11",
+        "SAV1-14",
+        "SAV1-21"
+      ],
+      "runtime_status": "PLANNED_NOT_TESTED"
+    },
+    {
+      "id": "E17",
+      "implementation_cards": [
+        "SAV1-01",
+        "SAV1-02",
+        "SAV1-10"
+      ],
+      "runtime_status": "PLANNED_NOT_TESTED"
+    },
+    {
+      "id": "E18",
+      "implementation_cards": [
+        "SAV1-07"
+      ],
+      "runtime_status": "PLANNED_NOT_TESTED"
+    },
+    {
+      "id": "E19",
+      "implementation_cards": [
+        "SAV1-20"
+      ],
+      "runtime_status": "PLANNED_NOT_TESTED"
+    },
+    {
+      "id": "E20",
+      "implementation_cards": [
+        "SAV1-12",
+        "SAV1-14",
+        "SAV1-20",
+        "SAV1-21"
+      ],
+      "runtime_status": "PLANNED_NOT_TESTED"
+    },
+    {
+      "id": "E21",
+      "implementation_cards": [
+        "SAV1-03",
+        "SAV1-15",
+        "SAV1-17",
+        "SAV1-21"
+      ],
+      "runtime_status": "PLANNED_NOT_TESTED"
+    },
+    {
+      "id": "E22",
+      "implementation_cards": [
+        "SAV1-18"
+      ],
+      "runtime_status": "PLANNED_NOT_TESTED"
+    }
+  ],
+  "harness_dependency_edges": {
+    "SAV1-00": [
+      "HV4-H00",
+      "HV4-H01"
+    ],
+    "SAV1-09": [
+      "HV4-H02"
+    ],
+    "SAV1-12": [
+      "HV4-H03",
+      "HV4-H04"
+    ],
+    "SAV1-13": [
+      "HV4-H11",
+      "HV4-H12"
+    ],
+    "SAV1-14": [
+      "HV4-H09"
+    ],
+    "SAV1-15": [
+      "HV4-H10"
+    ],
+    "SAV1-18": [
+      "HV4-H08"
+    ],
+    "SAV1-24": [
+      "HV4-H15",
+      "HV4-H16"
+    ]
+  },
+  "all_new_runtime_scenarios": "NOT_RUN; old reuse probes do not establish these scenarios",
+  "frozen_at": "2026-11-10T13:52:01.601623+00:00"
+}

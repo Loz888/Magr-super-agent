@@ -1,0 +1,46 @@
+{
+  "schema": "sav1-state-ownership-v1",
+  "status": "FROZEN_FOR_IMPLEMENTATION",
+  "facts": {
+    "Thread_Ticket_Mandate_Run_Subscription_Action_Approval_Usage": "Engine / same held PG connection",
+    "long_term_business_state": "PostgreSQL",
+    "run_graph_checkpoints": "LangGraph / Run-local graph only",
+    "content_addressed_evidence": "CAS; business references and ACL remain Engine-owned",
+    "wakeups_cache_and_short_rate_limits": "Redis; reconstructable",
+    "source_transport_receipts_and_positions": "Source adapter submits facts; Engine persists receipt/cursor",
+    "router_decisions": "Model proposes; Engine validates scope/revision/epoch/policy/budget",
+    "worker_execution": "Harness provider executes; Engine owns business outcome and accounting",
+    "notification_and_publication": "authorized Action/Outbox, Dispatcher receipts, read-only reconciliation"
+  },
+  "new_business_writer": false,
+  "cross_track_contracts": [
+    "actor_and_mandate",
+    "workspace_and_tree",
+    "input_revision_and_epoch",
+    "budget_reservation_and_usage",
+    "job_cancel_and_recovery",
+    "verification_receipt_and_review_bundle"
+  ],
+  "event_projection": {
+    "durable_cursor": "app.run_events.event_id (bigserial)",
+    "run_owner": "app.runs",
+    "step_operation_id": "versioned safe_payload field; no existing operation_id column",
+    "envelope_uuid": "versioned safe_payload field; not the bigint cursor",
+    "persistence_adapter": "Harness H09; H01 memory sink does not establish durable projection"
+  },
+  "identity_projection": {
+    "source_actor": "case-sensitive opaque ID + source kind + tenant + installation + ID type",
+    "harness_actor": "trusted internal Engine principal, mapped by SA02; never raw platform body/display name",
+    "legacy_actor": "old ASCII-normalized principal retained unchanged"
+  },
+  "migration_ownership": {
+    "status": "ACKNOWLEDGED_IN_H01_HANDOFF",
+    "sources_migration": "0030 owned by Codex; not yet created",
+    "harness_shared_migration": "coordinate before using a number",
+    "handoff_commit": "38a65ba8889267aee4f1f3f29799d6c79ff2d49b",
+    "adr_namespace": "docs/super-agent-v1/adr/SAV1-00-authority-sources-policy.md",
+    "shared_module_rule": "coordinate before overlapping Engine/API/schema/budget edits"
+  },
+  "frozen_at": "2026-11-10T13:52:01.601623+00:00",
+  "harness_contract_version": "harness-contract-v1.1"
+}

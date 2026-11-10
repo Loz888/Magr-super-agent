@@ -1,0 +1,126 @@
+{
+  "schema": "sav1-baseline-v1",
+  "status": "FROZEN_FOR_IMPLEMENTATION",
+  "application_baseline": "1d07285aa27ece9bae4ccbedc3a77ce2fbcbaf3a",
+  "planning_snapshot": "f5ad0cd022af016b416e4c0ff0f89a53ddbd788b",
+  "local_h00_checkpoint": "04e948f",
+  "h00_owner_commit": "de4775e22e96718e880fde287b2e0928db2945e3",
+  "h00_merge_commit": "1a65b8312c81137e1a45a85b4287e1310de21206",
+  "candidate_parent_commit": "1a65b8312c81137e1a45a85b4287e1310de21206",
+  "h01": {
+    "receiver_status": "ACCEPTED_CONTRACT_SCOPE_ONLY",
+    "owner_commit": "38a65ba8889267aee4f1f3f29799d6c79ff2d49b",
+    "contract_version": "harness-contract-v1.1",
+    "local_registered_verification": "evidence/HV4-H01/20261110T135110Z-3d42e8d8/result.json",
+    "independent_permission_probes": "evidence/super-agent-v1/SAV1-00/20261110T135100Z-h01-correction-review/result.json",
+    "static_checks": "evidence/super-agent-v1/integration/HV4-H01/20261110T135105Z/static-summary.json",
+    "superseded_implementation": "e1b3214af8ae62f76e99e322204f05e055133490",
+    "historical_permission_probe_status": "FAIL_RETAINED"
+  },
+  "historical_acceptance": [
+    {
+      "card": "V35-E01",
+      "path": "docs/v35/accept/V35-E01/accept.json",
+      "sha256": "b5d708a807236c12a29e4f933949bd2a8e99904be5599439c4e9e349c95d4f91",
+      "reported_gates": {
+        "status": "PASS",
+        "engineering_gate": "PASS",
+        "live_model_gate": "NOT_RUN",
+        "live_github_write_gate": "NOT_RUN",
+        "live_agent_gate": "NOT_RUN",
+        "security_gate": "PASS",
+        "live_gate_note": "本卡没有付费模型调用、真实 GitHub 写入或外网依赖。fixture 使用 ScriptedProvider 驱动真实 AuthorizedRepairOrchestrator、SnapshotRepairRuntime、R03 Docker 沙箱与 R02 PatchWorktree，只证明执行链、评分与恢复行为；不代表真实模型 Agent 能力。强制验收协议第 1、2、6 项中的真实模型部分未执行，因此 live_model_gate 与 live_agent_gate 均为 NOT_RUN，engineering_gate=PASS 不蕴含任何 live 门 PASS。"
+      },
+      "rerun_here": false
+    },
+    {
+      "card": "V35-E02",
+      "path": "docs/v35/accept/V35-E02/accept.json",
+      "sha256": "9b9105399feb33fbbfbd7604a05aed7cb5cf704862f79545f50d94aee2d61bd7",
+      "reported_gates": {
+        "status": "PASS",
+        "engineering_gate": "PASS",
+        "live_model_gate": "FAIL",
+        "live_github_write_gate": "NOT_RUN",
+        "live_agent_gate": "FAIL",
+        "security_gate": "PASS",
+        "live_gate_note": "真实付费调用已按用户授权执行：四臂各 3 次尝试，共 12 次调用、637310 micros。四臂全部 PATCH_TRUNCATED，原因是模型输出上限小于完整文件体积；这是真实能力失败，不升级为 PASS，也不用 fixture 结果替代。失败后没有盲目重试未计费结果：传输失败/缺 usage 一律 USAGE_UNKNOWN 并停止重发；密钥从未写入日志或报告。"
+      },
+      "rerun_here": false
+    },
+    {
+      "card": "V35-E03",
+      "path": "docs/v35/accept/V35-E03/accept.json",
+      "sha256": "fa93588ed9122238a473601063336c57d9066b1e7a36373c2a048c79df1b8075",
+      "reported_gates": {
+        "status": "PASS",
+        "engineering_gate": "PASS",
+        "live_model_gate": "NOT_RUN",
+        "live_github_write_gate": "NOT_RUN",
+        "live_agent_gate": "NOT_RUN",
+        "security_gate": "PASS",
+        "live_gate_note": "本卡没有付费模型调用、真实 GitHub 写入或外网依赖。真实 Docker、PostgreSQL 与 Redis 参与了执行；模型 429/500/截断/连接中断与 GitHub Token 过期、仓库归档、Rate Limit 在真实代码路径的传输边界注入，仅证明 fail-closed 与不重放，不代表真实模型 Agent 能力或真实 GitHub 写入已完成。因此 live_model_gate、live_github_write_gate 与 live_agent_gate 均为 NOT_RUN。"
+      },
+      "rerun_here": false
+    },
+    {
+      "card": "V35-D01",
+      "path": "docs/v35/accept/V35-D01/accept.json",
+      "sha256": "3c3369e4eb38bf4a373c4ba7f73ea9c3ac6944f1714a78680827bb26f09d4792",
+      "reported_gates": {
+        "status": "PASS",
+        "engineering_gate": "PASS",
+        "live_model_gate": "FAIL",
+        "live_github_write_gate": "NOT_RUN",
+        "live_agent_gate": "FAIL",
+        "security_gate": "PASS",
+        "live_gate_note": "本卡自身没有付费模型调用与真实 GitHub 写入，聚合口径继承既有真实执行结果：E02 的 live 四臂全部 PATCH_TRUNCATED，所以 live_model_gate 与 live_agent_gate 为 FAIL；E01/E03 的 live 门为 NOT_RUN；真实 GitHub 写入从未执行，live_github_write_gate 为 NOT_RUN。工程/安全门 PASS 不代表真实 Agent 能力通过。",
+        "aggregate": {
+          "v35_e01": {
+            "engineering_gate": "PASS",
+            "live_model_gate": "NOT_RUN",
+            "live_github_write_gate": "NOT_RUN",
+            "live_agent_gate": "NOT_RUN",
+            "security_gate": "PASS"
+          },
+          "v35_e02": {
+            "engineering_gate": "PASS",
+            "live_model_gate": "FAIL",
+            "live_github_write_gate": "NOT_RUN",
+            "live_agent_gate": "FAIL",
+            "security_gate": "PASS"
+          },
+          "v35_e03": {
+            "engineering_gate": "PASS",
+            "live_model_gate": "NOT_RUN",
+            "live_github_write_gate": "NOT_RUN",
+            "live_agent_gate": "NOT_RUN",
+            "security_gate": "PASS"
+          },
+          "v35_d01": {
+            "engineering_gate": "PASS",
+            "live_model_gate": "FAIL",
+            "live_github_write_gate": "NOT_RUN",
+            "live_agent_gate": "FAIL",
+            "security_gate": "PASS"
+          }
+        }
+      },
+      "rerun_here": false
+    }
+  ],
+  "isolated_environment": {
+    "compose_project": "magr-super-agent",
+    "postgres_loopback_port": 55435,
+    "redis_loopback_port": 56381,
+    "python": "3.12.16",
+    "lock": "uv.lock",
+    "paid_models": false,
+    "external_writes": false,
+    "source_listeners": false
+  },
+  "scope_of_existing_passes": "old bounded capabilities and local H00 only; not Source, autonomous coding or live Super-Agent",
+  "frozen_at": "2026-11-10T13:52:01.601623+00:00",
+  "freeze_parent_commit": "782f35cd0544840e5ac8d65a8d13f38ea7d4f973",
+  "legacy_terminal_race": "Owner correction included in reviewed commit; original failed core attempt preserved in Harness acceptance."
+}
