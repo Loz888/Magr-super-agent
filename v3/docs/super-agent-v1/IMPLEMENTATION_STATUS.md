@@ -1,3 +1,7 @@
+# SAV1-01 当前交付
+
+SAV1-01 DONE，source-contract-v1 已冻结。注册验收 79 项、定向 51 项通过（有重叠），全库 lint/typecheck 通过；实施提交 8dc641bbdf1fe7d0f057e11ec66e951f2874f2f8。0030 已在独立副本应用。说明见 SA01_CONTRACTS.md，正式摘要见 accept/SAV1-01/accept.json。下一卡 SAV1-02 PLANNED，实施前须完整重读任务书；真实平台、策略和自主执行仍按各卡验收。
+
 # 当前实施状态
 
 SAV1-00 DONE：范围、正式 ADR、状态权威、复用审计和试验协议已冻结，注册回归 120 项通过（无失败/错误/跳过）。H00 与修正后的 H01 固定提交已集成并独立复验。正式交付见 `sa00/README.md`；旧准备稿保留为历史，不作为当前状态。

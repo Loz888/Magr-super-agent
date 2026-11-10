@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-10T14:31:20.503892+00:00",
+  "updated_at": "2026-11-10T14:36:15.218310+00:00",
   "user_instruction": "Codex owns Super-Agent; local Trae owns Harness; coordination is authorized.",
   "owners": {
     "super_agent": {
@@ -14,8 +14,8 @@
     }
   },
   "active_super_agent_card": "SAV1-01",
-  "card_status": "IN_PROGRESS",
-  "work_state": "IMPLEMENTED_PENDING_REGISTERED_VERIFICATION",
+  "card_status": "DONE",
+  "work_state": "SAV1_01_ACCEPTED_NEXT_SAV1_02",
   "harness_observation": {
     "head": "de4775e22e96718e880fde287b2e0928db2945e3",
     "h00_owner_reported_status": "PASS",
@@ -95,7 +95,7 @@
   "migration_coordination": "ACKNOWLEDGED: Codex owns Sources 0030; shared changes coordinated before implementation.",
   "sa00_frozen": "docs/super-agent-v1/sa00/",
   "sa00_acceptance": "docs/super-agent-v1/accept/SAV1-00/accept.json",
-  "next_super_agent_card": "SAV1-01",
+  "next_super_agent_card": "SAV1-02",
   "sa01_read_evidence": "evidence/super-agent-v1/SAV1-01/20261110T140711Z-start/taskbook-read.json",
   "sa01_write_scope": [
     "new sources package",
@@ -106,5 +106,15 @@
   "shared_code_note": "No edits to Engine/API/model/budget modules for SA01; SourceRegistry uses the existing Engine transaction connection.",
   "sa01_contract": "source-contract-v1",
   "sa01_contract_doc": "docs/super-agent-v1/SA01_CONTRACTS.md",
-  "sa01_shared_tooling": "verify.py now fingerprints fixtures/super-agent-v1 and schemas/super-agent-v1; existing registry definitions preserved except new SAV1-01 entry."
+  "sa01_shared_tooling": "verify.py now fingerprints fixtures/super-agent-v1 and schemas/super-agent-v1; existing registry definitions preserved except new SAV1-01 entry.",
+  "sa01_acceptance": "docs/super-agent-v1/accept/SAV1-01/accept.json",
+  "sa01_implementation_commit": "8dc641bbdf1fe7d0f057e11ec66e951f2874f2f8",
+  "sa01_registered_verification": "evidence/SAV1-01/20261110T143150Z-d96545cd/result.json",
+  "sa01_counts": {
+    "tests": 79,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "sa01_harness_sync": "Concrete implementation and acceptance ready; pending delivery/acknowledgment of this card handoff."
 }
