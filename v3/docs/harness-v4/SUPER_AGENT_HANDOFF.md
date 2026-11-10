@@ -33,7 +33,7 @@
 
 | 交付项 | 状态 | 路径 |
 | --- | --- | --- |
-| 固定修复提交 | `FIX_COMMIT_PENDING`（本地 `main`，未推送） | 见 `accept/HV4-H01/accept.json` |
+| 固定修复提交 | `418d0c248df5764de7028470311c8e8479851b1f`（本地 `main`，未推送） | 见 `accept/HV4-H01/accept.json` |
 | 旧提交 | `e1b3214`：独立探针 2 项 FAIL，**已被取代，不撤回历史记录** | 外部 `result.json` |
 | 选型 ADR | DONE | `docs/harness-v4/adr/HV4-H01-deepseek-harness.md` |
 | 版本化接口 | **`harness-contract-v1.1`**，FROZEN | `src/mgar_v3/harness/contracts.py` |

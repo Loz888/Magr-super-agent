@@ -1,35 +1,47 @@
 {
   "card": "HV4-H01",
-  "title": "Harness 契约与 DeepSeek Harness 复用验证",
+  "title": "Harness 契约与 DeepSeek Harness 复用验证（评审修复）",
   "status": "PASS",
-  "commit": "e1b3214af8ae62f76e99e322204f05e055133490",
-  "result_commit": "e1b3214af8ae62f76e99e322204f05e055133490",
-  "commit_note": "实现提交 e1b3214 包含契约、参考回路、旧服务适配、ADR、契约文档、Super-Agent 交接、测试与 verification 注册；b38f3aa 提交本 accept.json 与交接中的稳定 commit；后续仅修正记录性字段。均未推送。",
-  "parent_commit": "de4775e22e96718e880fde287b2e0928db2945e3",
+  "review_status": "PENDING_SUPER_AGENT_REVERIFY",
+  "commit": "418d0c248df5764de7028470311c8e8479851b1f",
+  "result_commit": "418d0c248df5764de7028470311c8e8479851b1f",
+  "commit_note": "418d0c2 修复评审四项与 finish_success 原子性竞态；第二次本地提交仅更新本 accept.json 与交接中的固定 commit。旧 e1b3214 的探针 FAIL 与核心回归旧失败保留，不覆盖为 PASS。均未推送。",
+  "parent_commit": "eb1fe4ec9191135b5fdaf10ac63ec51cdac4b3a0",
   "base_commit": "973994c0e6c087c2968b3d91a3a6b9220e2c0892",
-  "accepted_at": "2026-11-10T13:10:20Z",
-  "contract_version": "harness-contract-v1",
+  "accepted_at": "2026-11-10T13:49:28Z",
+  "contract_version": "harness-contract-v1.1",
+  "supersedes": {
+    "commit": "e1b3214af8ae62f76e99e322204f05e055133490",
+    "status": "FAIL",
+    "reason": "Independent no-I/O probe found declared custom_write under a read-only grant and undeclared custom_write both reached the handler; event mapping and actor semantics also needed correction.",
+    "probe_result": "/home/imini/magr-super-agent/v3/evidence/super-agent-v1/SAV1-00/20261110T131512Z-h01-review/result.json"
+  },
+  "review_feedback": {
+    "path": "/home/imini/magr-super-agent/v3/docs/super-agent-v1/H01_REVIEW_FEEDBACK.md",
+    "sha256": "b01443e546625b86faf8448ad66ac26c6b6a46daaf702f65eb8dbd233c1b2740",
+    "response": "docs/harness-v4/SUPER_AGENT_HANDOFF.md §3"
+  },
   "environment": {
     "os": "Windows 11 host + WSL2 Ubuntu-24.04",
     "worktree": "/home/imini/magr-harness/v3",
     "python": "3.12.16 (uv --frozen; /tmp/magar-harness-venv)",
     "uv": "0.13.7",
-    "postgres": "real in core regression (mgar-v3-postgres-1); H01 contract tests do not use DB",
-    "redis": "not_used",
-    "docker": "not_used by H01 tests; H00 core regression re-ran with R03/R5 sandbox images",
+    "postgres": "real (mgar-v3-postgres-1) for core regression and atomicity test",
+    "redis": "real in core regression (doctor passed in H00)",
+    "docker": "real R03/R5 sandbox images in core regression",
     "model": "controlled test adapter only; no paid provider call",
     "github": "not_used",
     "network": "not_used for paid model, GitHub writes or package installation"
   },
-  "worktree_at_acceptance": "实现已提交到本地 main e1b3214；accept.json 待第二次本地提交；evidence/ 为 gitignore 的本机证据。",
+  "worktree_at_acceptance": "修复已提交到本地 main 418d0c2；accept.json 待第二次本地提交；evidence/ 为 gitignore 的本机证据。",
   "commands": [
     {
       "name": "ruff-full",
       "argv": ["uv", "run", "--frozen", "ruff", "check", "src", "tests", "scripts"],
       "exit_code": 0,
       "result": "All checks passed",
-      "purpose": "全库 lint，包含新增 harness 包与 H01 测试",
-      "log": "evidence/harness-v4/HV4-H01/h01-final/ruff.txt",
+      "purpose": "全库 lint，包含 fail-closed 修复与原子性回归",
+      "log": "evidence/harness-v4/HV4-H01/h01-review-fix/ruff.txt",
       "status": "PASS"
     },
     {
@@ -37,55 +49,86 @@
       "argv": ["uv", "run", "--frozen", "mypy"],
       "exit_code": 0,
       "result": "Success: no issues found in 196 source files",
-      "purpose": "全库类型检查，包含新增 harness 包",
-      "log": "evidence/harness-v4/HV4-H01/h01-final/mypy.txt",
+      "purpose": "全库类型检查",
+      "log": "evidence/harness-v4/HV4-H01/h01-review-fix/mypy.txt",
       "status": "PASS"
     },
     {
       "name": "h01-contract-tests",
       "argv": ["uv", "run", "--frozen", "pytest", "-q", "tests/test_harness_v4_h01.py"],
       "exit_code": 0,
-      "duration_seconds": 0.39,
-      "counts": {"tests": 13, "failures": 0, "errors": 0, "skipped": 0},
-      "purpose": "契约清单、状态映射、读改测回路、预算、权限、取消、未知结果、旧适配器边界",
-      "log": "evidence/harness-v4/HV4-H01/h01-final/h01-pytest.log",
-      "junit": "evidence/harness-v4/HV4-H01/h01-final/h01-junit.xml",
+      "duration_seconds": 0.29,
+      "counts": {"tests": 18, "failures": 0, "errors": 0, "skipped": 0},
+      "purpose": "契约、参考回路、预算、取消、旧适配器、未声明工具与只读 write 负向回归、事件 schema、actor 大小写",
+      "log": "evidence/harness-v4/HV4-H01/h01-review-fix/h01-pytest.log",
+      "junit": "evidence/harness-v4/HV4-H01/h01-review-fix/h01-junit.xml",
+      "status": "PASS"
+    },
+    {
+      "name": "external-probe-rerun",
+      "argv": ["PYTHONPATH=src", "/tmp/magar-harness-venv/bin/python", "probe.py"],
+      "exit_code": 0,
+      "result": [
+        {
+          "case": "declared_write_tool_with_readonly_grant",
+          "handler_invocations": 0,
+          "runtime_status": "denied",
+          "conformance": "PASS"
+        },
+        {
+          "case": "undeclared_tool",
+          "handler_invocations": 0,
+          "runtime_status": "denied",
+          "conformance": "PASS"
+        }
+      ],
+      "purpose": "复跑 Super-Agent 提供的独立无 I/O 探针",
+      "log": "evidence/harness-v4/HV4-H01/h01-review-fix/external-probe-rerun.json",
       "status": "PASS"
     },
     {
       "name": "h00-regression",
       "argv": ["uv", "run", "--frozen", "pytest", "-q", "tests/test_harness_v4_h00.py"],
       "exit_code": 0,
-      "duration_seconds": 0.04,
+      "duration_seconds": 0.02,
       "counts": {"tests": 10, "failures": 0, "errors": 0, "skipped": 0},
-      "purpose": "确认 H01 未破坏 H00 冻结目录与协议",
-      "log": "evidence/harness-v4/HV4-H01/h01-final/h00-pytest.log",
-      "junit": "evidence/harness-v4/HV4-H01/h01-final/h00-junit.xml",
+      "purpose": "确认 H01 修复未破坏 H00 冻结目录与协议",
+      "log": "evidence/harness-v4/HV4-H01/h01-review-fix/h00-pytest.log",
+      "junit": "evidence/harness-v4/HV4-H01/h01-review-fix/h00-junit.xml",
+      "status": "PASS"
+    },
+    {
+      "name": "atomicity-regression",
+      "argv": ["uv", "run", "--frozen", "pytest", "-q", "tests/test_v32_repository_analysis_db.py::test_finish_success_commits_stop_reason_with_run_status"],
+      "exit_code": 0,
+      "duration_seconds": 3.0,
+      "counts": {"tests": 1, "failures": 0, "errors": 0, "skipped": 0},
+      "purpose": "在 finish_success 提交后、spec 读取前阻塞，独立连接断言 run 终态与 stop_reason/report_hash 同事务可见",
+      "log": "本机终端输出（已纳入 core 回归）",
       "status": "PASS"
     },
     {
       "name": "core-regression",
-      "argv": ["uv", "run", "--frozen", "pytest", "-q", "<20 core files>", "--junitxml=evidence/harness-v4/HV4-H01/h01-final/core-junit.xml"],
+      "argv": ["uv", "run", "--frozen", "pytest", "-q", "<20 core files>", "--junitxml=evidence/harness-v4/HV4-H01/h01-review-fix/core-junit.xml"],
       "exit_code": 0,
-      "duration_seconds": 275.33,
-      "counts": {"tests": 225, "passed": 225, "failures": 0, "errors": 0, "skipped": 0},
-      "purpose": "H00 核心回归集在 H01 后重跑；真实 PostgreSQL、真实 R03/R5 沙箱",
-      "log": "evidence/harness-v4/HV4-H01/h01-final/core-pytest.log",
-      "junit": "evidence/harness-v4/HV4-H01/h01-final/core-junit.xml",
+      "duration_seconds": 264.01,
+      "counts": {"tests": 226, "passed": 226, "failures": 0, "errors": 0, "skipped": 0},
+      "purpose": "H00 核心回归集加确定性 DB 原子性用例；真实 PostgreSQL 与 R03/R5 沙箱",
+      "log": "evidence/harness-v4/HV4-H01/h01-review-fix/core-pytest.log",
+      "junit": "evidence/harness-v4/HV4-H01/h01-review-fix/core-junit.xml",
       "status": "PASS"
     },
     {
       "name": "engineering-verify",
       "argv": ["make", "verify", "TASK=HV4-H01"],
       "exit_code": 0,
-      "duration_seconds": 0.9,
-      "counts": {"tests": 13, "failures": 0, "errors": 0, "skipped": 0},
-      "git_commit": "e1b3214af8ae62f76e99e322204f05e055133490",
-      "source_sha256": "b68f652928750e84f93c909de9097d1b5f7c933059062b83d276010f6728351a",
-      "finished_source_sha256": "b68f652928750e84f93c909de9097d1b5f7c933059062b83d276010f6728351a",
-      "attempt": "evidence/HV4-H01/20261110T130959Z-cd096e1d/",
+      "counts": {"tests": 18, "failures": 0, "errors": 0, "skipped": 0},
+      "git_commit": "418d0c248df5764de7028470311c8e8479851b1f",
+      "source_sha256": "4d09f1e0d53d13499e6ea9b659ff392c3b890ecab71808ade39216d183b822b5",
+      "finished_source_sha256": "4d09f1e0d53d13499e6ea9b659ff392c3b890ecab71808ade39216d183b822b5",
+      "attempt": "evidence/HV4-H01/20261110T134912Z-75233e48/",
       "purpose": "config/verification.json 的 HV4-H01 条目真实执行",
-      "log": "evidence/HV4-H01/20261110T130959Z-cd096e1d/command.log",
+      "log": "evidence/HV4-H01/20261110T134912Z-75233e48/command.log",
       "status": "PASS"
     }
   ],
@@ -94,7 +137,7 @@
   "live_model_gate": "NOT_RUN",
   "live_agent_gate": "NOT_RUN",
   "live_publication_gate": "NOT_RUN",
-  "live_gate_note": "H01 只使用受控测试适配器与本地子进程，没有调用付费模型、真实 Agent 评测、GitHub 写入或外网发布。security_gate=PASS 仅覆盖 H01 负向契约：路径穿越/symlink、权限预检、预算预占、未知结果不重试、取消传播；不证明 H04 的容器隔离或 H11 的崩溃恢复。",
+  "live_gate_note": "H01 只使用受控测试适配器与本地子进程，没有调用付费模型、真实 Agent 评测、GitHub 写入或外网发布。security_gate=PASS 覆盖 fail-closed 工具声明、路径/argv 权限、预算预占、未知结果不重试、取消传播与 finish_success 原子性；不证明 H04 的容器隔离或 H11 的完整崩溃恢复。",
   "historical_gates": {
     "e01_live_model_gate": "NOT_RUN",
     "e02_live_model_gate": "FAIL",
@@ -107,76 +150,89 @@
   },
   "must_pass": [
     {
-      "item": "定义 ModelAdapter、ToolRegistry、WorkspaceProvider、ExecutionBroker、ContextManager、Verifier、EventSink 的最小接口",
+      "item": "未声明工具在 handler 之前默认拒绝",
       "result": "PASS",
-      "evidence": "src/mgar_v3/harness/contracts.py 与 experiments/harness-v4/harness-contract-v1.json（status=FROZEN）；另含 TaskBinding、CapabilityGrant、BudgetLedger。tests/test_harness_v4_h01.py::test_contract_manifest_is_frozen_and_matches_code 校验清单与代码一致。"
+      "evidence": "runtime 在 Run 开始时快照 ToolRegistry.specs()；_precheck 对未声明名称返回 HARNESS_TOOL_UNDECLARED。test_undeclared_tool_is_denied_before_the_handler 断言 handler 0 次、status=denied；外部 probe 复跑同样为 0 次。"
     },
     {
-      "item": "会话/轮次/步骤映射到 Thread/Run/epoch/事件，Task/Finding/Approval 保持原权威",
+      "item": "只读 grant 下声明的 write 工具不能进入 handler",
       "result": "PASS",
-      "evidence": "HARNESS_CONTRACTS.md §2 与 STATE_OWNERSHIP：session→app.threads、turn→app.runs、step→run_events.operation_id、execution_epoch→app.runs.execution_epoch；HARNESS_DOES_NOT_OWN 明确 task status/finding/approval/publication/final completion。test_state_ownership_is_explicit_and_engine_owned 校验。"
+      "evidence": "test_declared_write_tool_is_denied_under_a_read_only_grant 使用 custom_write + write_paths=()，断言 handler 0 次、status=denied；test_declared_write_tool_is_dispatched_only_with_a_matching_grant 证明有授权时 handler 1 次。"
     },
     {
-      "item": "同一小任务经公共接口完成读→改→测试，模型和执行器均可替换为测试适配器",
+      "item": "事件游标与步骤字段映射到真实 run_events schema",
       "result": "PASS",
-      "evidence": "test_reference_loop_reads_edits_and_runs_real_tests 使用 ScriptedModel、真实 LocalWorkspace 与真实 python -m unittest，完成 read_file→apply_edits→run_tests→stop，Verifier 返回 verified；test_executor_is_replaceable_without_changing_the_runtime 用 FakeBroker 替换执行器仍得到 verified。"
+      "evidence": "EventEnvelope.cursor 映射 event_id bigserial；envelope_id/operation_id/execution_epoch/revision/payload 进入 safe_payload schema harness-event-v1。test_event_envelope_maps_to_the_real_run_events_schema 直接读 0001_coordination.sql 并校验。"
     },
     {
-      "item": "任何适配器不能绕过权限/预算入口",
+      "item": "actor 是受信、大小写敏感的内部 principal",
       "result": "PASS",
-      "evidence": "runtime 在调用工具前做 CapabilityGrant 预检；Workspace/ToolRegistry 在边界复核；test_tool_permission_is_checked_before_any_mutation 断言无写授权时文件不变、tool_calls=0、无 tool_started；BudgetLedger 在每次模型/工具调用前 reserve。"
+      "evidence": "TaskBinding/CapabilityGrant 不再 lower actor；_authorize 精确比较。test_actor_is_a_case_sensitive_internal_principal 断言 Owner-01 与 owner-01 不匹配，且原文保留。"
     },
     {
-      "item": "模型调用先预算预占；未知结果保留预占且不盲重试",
+      "item": "finish_success 的 run 终态与 stop_reason/report_hash 原子提交",
       "result": "PASS",
-      "evidence": "test_model_budget_is_reserved_before_the_call 观察到模型调用时 ledger 已有 1 次预占；test_unknown_model_outcome_keeps_reservation_and_never_retries 断言 status=unknown、模型仅调用 1 次、预占 100 micros 保留。"
+      "evidence": "Engine.commit_report/commit_prepared_report 在同一个事务内更新 app.repo_analysis_runs；Store.finish_success 删除第二个更新事务。test_finish_success_commits_stop_reason_with_run_status 在提交后阻塞 spec，独立连接断言 succeeded 时 stop_reason=complete 且 report_hash 已存在。"
     },
     {
-      "item": "取消能传递",
+      "item": "SA00 只依赖 H00/H01，真实自动修复另有前置",
       "result": "PASS",
-      "evidence": "CancellationToken 传入 ModelAdapter/ExecutionBroker；test_cancellation_propagates_before_the_tool_runs 在模型步骤取消后不执行工具、文件不变、tool_calls=0。"
+      "evidence": "SUPER_AGENT_HANDOFF.md §6 修正：SA00 仅依赖 H00/H01；真实自动修复等待 H11/H12 及所需工作区/Broker/编码能力验收，不作为 SA00 的 DAG。"
     },
     {
-      "item": "为旧只读分析与修复器提供薄适配层",
+      "item": "同一小任务经公共接口完成读→改→测试，模型与执行器可替换",
       "result": "PASS",
-      "evidence": "src/mgar_v3/harness/legacy.py 的 LegacyAnalysisAdapter（只读、无 apply/execute/approve）与 LegacyRepairAdapter（委托 RepairAgent.run）；test_legacy_repair_adapter_delegates_without_new_authority 和 test_legacy_analysis_adapter_is_read_only 校验。"
+      "evidence": "test_reference_loop_reads_edits_and_runs_real_tests 使用真实本地文件与 python -m unittest；test_executor_is_replaceable_without_changing_the_runtime 用 FakeBroker 替换执行器仍 verified。"
     },
     {
-      "item": "DSH 复用验证与选型记录；不满足时选择 Python 路线且不阻塞",
+      "item": "预算预占先于模型调用，未知结果不盲重试",
       "result": "PASS",
-      "evidence": "ADR 记录 DSH 架构/工具管线只读核验、Node 运行时缺失、预算/状态投影/凭据/恢复未验证，结论路线 A；探针 NOT_RUN_NO_NODE_RUNTIME；H02–H18 不依赖 DSH。"
+      "evidence": "test_model_budget_is_reserved_before_the_call；test_unknown_model_outcome_keeps_reservation_and_never_retries 断言 unknown、仅 1 次调用、预占保留。"
     },
     {
-      "item": "版本化接口、状态映射、受控接线样例与失败分支记录",
+      "item": "取消传播与旧只读/修复适配器",
       "result": "PASS",
-      "evidence": "harness-contract-v1.json、HARNESS_CONTRACTS.md、runtime.py、tests/test_harness_v4_h01.py；ADR §3.2 与 accept 的 live_gate_note 记录失败分支。"
+      "evidence": "test_cancellation_propagates_before_the_tool_runs；LegacyAnalysisAdapter 只读、LegacyRepairAdapter 委托 RepairAgent.run，均有边界测试。"
     },
     {
-      "item": "Super-Agent 协作交接",
+      "item": "DSH 复用验证与选型记录",
       "result": "PASS",
-      "evidence": "docs/harness-v4/SUPER_AGENT_HANDOFF.md 记录阅读确认与指纹、稳定 commit、接口路径/版本、冻结/建议状态、Mandate→Task/Run 映射、能力边界、集成复验要求。"
+      "evidence": "ADR 记录 DSH 架构/工具管线只读核验、本机无 Node 运行时、预算/状态投影/凭据/恢复未验证，路线 A；DSH 探针 NOT_RUN_NO_NODE_RUNTIME。"
+    },
+    {
+      "item": "Super-Agent 逐项回应与固定修复 commit",
+      "result": "PASS",
+      "evidence": "SUPER_AGENT_HANDOFF.md §3 逐项回应四项反馈与补充竞态；固定提交 418d0c2；本文件 review_status=PENDING_SUPER_AGENT_REVERIFY。"
     }
   ],
   "deviations": [
     {
+      "issue": "v1 e1b3214 的独立探针失败",
+      "handling": "保留外部 result.json 与 h01-review-fix-attempt1 证据；v1.1 修复后复跑两个 case 均 handler 0 次、denied。未删除或改写旧 FAIL。"
+    },
+    {
+      "issue": "核心回归曾出现 test_agent_page upgraded 失败",
+      "handling": "定位为 finish_success 两事务窗口；以 Engine 单事务更新修复，并用确定性 DB 回归覆盖。旧失败日志保留；修复后核心 226 passed。"
+    },
+    {
       "issue": "DSH 受控接线未执行",
-      "handling": "本机无 node/pnpm，无法启动 DSH；按任务书允许的失败分支选择 Python 路线，记录 NOT_RUN_NO_NODE_RUNTIME，不宣称 DSH PASS/FAIL。"
+      "handling": "本机无 node/pnpm，按任务书失败分支选择 Python 路线，记录 NOT_RUN_NO_NODE_RUNTIME。"
     },
     {
-      "issue": "H01 参考回路使用本地文件与本地一次性子进程，不是 H04 容器 Broker",
-      "handling": "H01 验收只要求通过公共接口完成读改测且适配器可替换；隔离、网络、凭据与资源限额由 H04/H06 实现并验收。accept 的 security_gate 明确不覆盖容器隔离。"
+      "issue": "H01 参考回路不是 H04 容器 Broker",
+      "handling": "隔离、网络、凭据与资源限额由 H04/H06 实现；accept 的 security_gate 不覆盖容器隔离。"
     },
     {
-      "issue": "EventSink 为内存参考实现，未写入 Engine run_events",
-      "handling": "H01 只冻结事件信封与游标语义；持久事件、SSE 投影与恢复由 H09 实现。状态所有权仍归 Engine。"
+      "issue": "EventSink 为内存参考实现，未写 Engine run_events",
+      "handling": "H01 冻结映射与 safe_payload 结构；持久适配与历史回放由 H09 前向迁移交付。"
     },
     {
-      "issue": "未执行真实模型/Agent/发布",
-      "handling": "live_model_gate、live_agent_gate、live_publication_gate 均为 NOT_RUN；真实评测在 H12，发布保持独立审批。"
+      "issue": "未修改迁移编号",
+      "handling": "本卡无新增迁移。Sources 迁移由 Codex 负责 0030；Harness 未来共享迁移先与 Codex 对齐编号。"
     },
     {
-      "issue": "命令 Job 的 run/poll/cancel、持久 inbox、fencing 未提供",
-      "handling": "在契约清单中列为 advisory，分别由 H06、H09、H11 实现；H01 只有一次性 execute，Super-Agent 不得据此开放真实自动修复。"
+      "issue": "真实模型/Agent/发布未执行",
+      "handling": "三项 live 门均为 NOT_RUN；真实评测在 H12，发布保持独立审批。"
     }
   ],
   "artifacts": {
@@ -184,19 +240,24 @@
     "runtime": "src/mgar_v3/harness/runtime.py",
     "adapters": "src/mgar_v3/harness/adapters.py",
     "legacy": "src/mgar_v3/harness/legacy.py",
+    "engine": "src/mgar_v3/coordination/engine.py",
+    "repository_store": "src/mgar_v3/repository_analysis/store.py",
     "tests": "tests/test_harness_v4_h01.py",
+    "atomicity_test": "tests/test_v32_repository_analysis_db.py",
     "contract_manifest": "experiments/harness-v4/harness-contract-v1.json",
     "contract_doc": "docs/harness-v4/HARNESS_CONTRACTS.md",
     "adr": "docs/harness-v4/adr/HV4-H01-deepseek-harness.md",
     "handoff": "docs/harness-v4/SUPER_AGENT_HANDOFF.md",
     "verification": "config/verification.json",
-    "verify_attempt": "evidence/HV4-H01/20261110T130959Z-cd096e1d/",
-    "evidence": "evidence/harness-v4/HV4-H01/"
+    "verify_attempt": "evidence/HV4-H01/20261110T134912Z-75233e48/",
+    "evidence": "evidence/harness-v4/HV4-H01/",
+    "old_failure_evidence": "evidence/harness-v4/HV4-H01/h01-review-fix-attempt1/"
   },
   "next_card": "HV4-H02",
   "next_card_prerequisites": [
+    "Super-Agent 复验并接收 H01 后再启动 H02",
     "H02 开始前重新完整读取 TASKS.md、ROADMAP.md、ACCEPTANCE.md、plan.json、sources.json",
-    "复用 harness-contract-v1，不在 H02 改名或破坏冻结接口；需要变更时升版本并通知 Super-Agent",
+    "复用 harness-contract-v1.1，不恢复未声明工具默认放行或 lower 化 actor",
     "H02 的 DeepSeek 默认适配器必须遵守先预算预占、后模型调用；缺 usage/结果未知不得自动重试或切换供应商",
     "H02 仍不得把 live_model_gate/live_agent_gate/live_publication_gate 从 NOT_RUN 改为 PASS，除非有真实调用与独立证据",
     "DSH 保持 NOT_ADOPTED_H01；重新评估需固定版本并单独记录受控接线"
