@@ -9,9 +9,10 @@ from __future__ import annotations
 
 import hashlib
 import json
+from collections.abc import Mapping
 from dataclasses import dataclass, fields
 from pathlib import Path
-from typing import Any, Mapping
+from typing import Any
 from uuid import uuid4
 
 SCHEMA = "mgar-quality-eval-record-v1"
@@ -189,7 +190,11 @@ def _is_number(value: Any) -> bool:
 
 
 def _is_hash(value: Any) -> bool:
-    return isinstance(value, str) and len(value) == 64 and all(c in "0123456789abcdef" for c in value)
+    return (
+        isinstance(value, str)
+        and len(value) == 64
+        and all(character in "0123456789abcdef" for character in value)
+    )
 
 
 def record_key(mapping: Mapping[str, Any]) -> tuple[str, str, str, int]:

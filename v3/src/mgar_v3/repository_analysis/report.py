@@ -12,7 +12,6 @@ from mgar_v3.repository_analysis.domain import (
     AnalysisSpec,
     PartialReport,
     RepoAnalysisReport,
-    SourceClaim,
     ToolObservation,
     locate_quote,
 )
@@ -112,12 +111,13 @@ def verify_report(
 
 def _claim_markdown(binding: ClaimBinding, repository: str, commit: str) -> str:
     path = _path_from_uri(binding.source_uri).split("?", 1)[0]
-    link = f"https://github.com/{repository}/blob/{commit}/{path}#L{binding.start_line}-L{binding.end_line}"
+    location = f"L{binding.start_line}-L{binding.end_line}"
+    link = f"https://github.com/{repository}/blob/{commit}/{path}#{location}"
     quote = binding.quote if len(binding.quote) <= 800 else binding.quote[:800] + " …"
     quoted = "\n".join("    " + line for line in quote.rstrip("\n").splitlines())
     return (
         f"- **{binding.statement}**\n"
-        f"  - 源码位置：`{binding.source_uri}` · [L{binding.start_line}-L{binding.end_line}]({link})\n"
+        f"  - 源码位置：`{binding.source_uri}` · [{location}]({link})\n"
         f"  - 证据 ID：`{binding.evidence_id}`\n"
         f"  - 原文：\n\n    ```text\n{quoted}\n    ```\n"
     )
@@ -180,7 +180,9 @@ def render_report(
     return "\n".join(lines).encode("utf-8")
 
 
-def insufficient_report(reason: str, structure: str, uncertainties: list[str]) -> RepoAnalysisReport:
+def insufficient_report(
+    reason: str, structure: str, uncertainties: list[str]
+) -> RepoAnalysisReport:
     return RepoAnalysisReport(
         conclusion=reason,
         structure=structure,

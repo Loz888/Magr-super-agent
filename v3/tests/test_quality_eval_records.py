@@ -35,7 +35,7 @@ def base_mapping(**overrides):
 
 
 def test_canonical_digest_matches_domain_serialization():
-    expected = hashlib.sha256('{"a":1,"b":2}'.encode()).hexdigest()
+    expected = hashlib.sha256(b'{"a":1,"b":2}').hexdigest()
     assert record.canonical_digest({"b": 2, "a": 1}) == expected
     assert record.canonical_json({"b": 2, "a": 1}) == '{"a":1,"b":2}'
 
@@ -109,7 +109,10 @@ def test_unknown_fields_and_missing_fields_are_rejected():
 
 
 def test_hash_and_enum_formats_are_enforced():
-    assert any("dataset_hash" in item for item in record.validate_mapping(base_mapping(dataset_hash="xyz")))
+    assert any(
+        "dataset_hash" in item
+        for item in record.validate_mapping(base_mapping(dataset_hash="xyz"))
+    )
     assert record.validate_mapping(base_mapping(dataset_hash=HASH_A.upper())) != []
     assert any("mode" in item for item in record.validate_mapping(base_mapping(mode="live")))
     assert any(

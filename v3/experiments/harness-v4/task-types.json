@@ -1,0 +1,145 @@
+{
+  "common_receipts": [
+    "task/run/workspace identifiers and baseline commit",
+    "capability permit and model configuration digest",
+    "pre/post tree hash, real diff and changed-file list",
+    "commands with cwd, exit codes, test counts and log hashes",
+    "budget reservation and settlement (unknown usage is not zero)",
+    "unmet acceptance items and failed attempts"
+  ],
+  "frozen_by": "HV4-H00",
+  "schema": "mgar-hv4-task-types-v1",
+  "status": "FROZEN",
+  "types": {
+    "bugfix": {
+      "default_resources": {
+        "deadline_seconds": 1800,
+        "max_context_tokens": 200000,
+        "max_cost_micros": 6000000,
+        "max_model_calls": 20,
+        "max_repair_rounds": 8,
+        "max_tool_calls": 120
+      },
+      "forbidden": [
+        "deleting or weakening tests",
+        "editing judge files",
+        "claiming success from exit 0 alone"
+      ],
+      "goal": "reproduce a defect, repair it, and keep the project regression suite green",
+      "required_receipts": [
+        "baseline failure receipt",
+        "hidden check receipt",
+        "regression receipt",
+        "post tree hash"
+      ],
+      "success": [
+        "a pre-recorded baseline failure reproduces the reported defect",
+        "the hidden behavior check passes on the final tree",
+        "the public regression suite has no new failures",
+        "the final tree produces a real diff from the pinned baseline"
+      ]
+    },
+    "feature": {
+      "default_resources": {
+        "deadline_seconds": 2400,
+        "max_context_tokens": 200000,
+        "max_cost_micros": 8000000,
+        "max_model_calls": 24,
+        "max_repair_rounds": 10,
+        "max_tool_calls": 160
+      },
+      "forbidden": [
+        "stubbing the required behavior",
+        "test-only changes without implementation"
+      ],
+      "goal": "add the requested behavior without regressing existing behavior",
+      "required_receipts": [
+        "new-behavior receipt",
+        "regression receipt",
+        "diff"
+      ],
+      "success": [
+        "new behavior is verified by an independent check",
+        "the original regression suite has no new failures",
+        "no existing requirement or test is weakened to make the new behavior pass"
+      ]
+    },
+    "inspect": {
+      "default_resources": {
+        "deadline_seconds": 600,
+        "max_context_tokens": 60000,
+        "max_cost_micros": 500000,
+        "max_model_calls": 6,
+        "max_repair_rounds": 1,
+        "max_tool_calls": 40
+      },
+      "forbidden": [
+        "file writes",
+        "command execution with side effects",
+        "arbitrary network"
+      ],
+      "goal": "answer a repository question without changing the tree",
+      "required_receipts": [
+        "evidence quotes",
+        "read-only capability receipt"
+      ],
+      "success": [
+        "claims carry evidence_id and a verbatim quote that resolves in the tree",
+        "no file, command or process writes outside the read scope"
+      ]
+    },
+    "refactor": {
+      "default_resources": {
+        "deadline_seconds": 1800,
+        "max_context_tokens": 200000,
+        "max_cost_micros": 6000000,
+        "max_model_calls": 20,
+        "max_repair_rounds": 8,
+        "max_tool_calls": 120
+      },
+      "forbidden": [
+        "behavior changes hidden as refactoring",
+        "removing covered code paths"
+      ],
+      "goal": "change internal structure while public behavior remains equivalent",
+      "required_receipts": [
+        "baseline corpus",
+        "final corpus",
+        "equivalence comparison",
+        "diff"
+      ],
+      "success": [
+        "the frozen behavior corpus matches the baseline output",
+        "public signatures and exported symbols are unchanged unless explicitly allowed",
+        "the regression suite has no new failures"
+      ]
+    },
+    "run_app": {
+      "default_resources": {
+        "deadline_seconds": 2400,
+        "max_context_tokens": 200000,
+        "max_cost_micros": 8000000,
+        "max_model_calls": 24,
+        "max_repair_rounds": 10,
+        "max_tool_calls": 160
+      },
+      "forbidden": [
+        "declaring readiness without a probe",
+        "leaving background children",
+        "using host credentials"
+      ],
+      "goal": "prepare, start and stop a project process with a verifiable readiness signal",
+      "required_receipts": [
+        "prepare receipt",
+        "process id and port",
+        "readiness probe output",
+        "cleanup receipt"
+      ],
+      "success": [
+        "the process starts in the isolated environment and passes the readiness probe",
+        "the process/port is observable and tied to the task",
+        "shutdown or expiry releases the port and leaves no orphan process"
+      ]
+    }
+  }
+}
