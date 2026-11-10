@@ -1,6 +1,6 @@
 {
-  "schema": "sav1-evaluation-proposal-v1",
-  "status": "DRAFT_NOT_FROZEN_NOT_EXECUTED",
+  "schema": "sav1-evaluation-v1",
+  "status": "CANDIDATE_PENDING_H01_ACCEPTANCE",
   "routing": {
     "development_events": 100,
     "independent_holdout_events": 100,
@@ -36,12 +36,25 @@
     "create_precision_denominator": "all candidates predicted to create a new task",
     "actionable_recall_denominator": "all independently labelled actionable signals",
     "uncertain_attribution": "report separately; never random-attach as success",
-    "operator_review": "required_before_freeze"
+    "operator_review": "required_before_freeze",
+    "case_manifest": "SA08/SA09: hash complete cases, labels, split groups, policy and prompt/model revision before scoring; operator review before dataset freeze",
+    "disagreement": "retain original labels and adjudication; unresolved cases excluded from decidable attribution only, counted and reported separately",
+    "zero_predicted_create": "precision undefined, not PASS; report 0 numerator/0 denominator and recall"
   },
   "live_positive_tasks": {
     "total": 10,
     "minimum_completed": 8,
-    "negative_permission_refusals_count_as_positive_success": false
+    "negative_permission_refusals_count_as_positive_success": false,
+    "failure_denominator": "all 10 pre-registered positives, including infrastructure failure, cancellation, truncation and unknown; no best-of retry selection",
+    "required_coverage": [
+      "Feishu-to-real-edit-test-original-topic-receipt",
+      "GitHub-PR-CI-same-task-correct-SHA",
+      "first-model-plan-fails-then-repairs-within-shared-budget",
+      "client-close-continuation-and-real-process-recovery-revocation",
+      "new-feature-multifile",
+      "status-query",
+      "review-delivery"
+    ]
   },
   "continuous_operation": {
     "controlled_hours": 72,
@@ -71,5 +84,62 @@
     "real_vs_controlled_platforms",
     "source_tree_and_grader_hashes",
     "small_sample_denominators_and_uncertainty"
-  ]
+  ],
+  "slo": {
+    "healthy_ingress_commit_p95_seconds": 2,
+    "valid_subscription_internal_delivery_p95_seconds": 2,
+    "idle_slot_ready_to_claim_p95_seconds": 30,
+    "sample_minimum_for_p95": 20,
+    "small_samples": "median and maximum",
+    "separate_latency": [
+      "platform",
+      "model_first_token",
+      "dependencies",
+      "capacity_queue"
+    ]
+  },
+  "budget_protocol": {
+    "timezone": "Asia/Shanghai",
+    "currency": "USD_micros",
+    "initial_project_daily_cap": 0,
+    "initial_router_daily_cap": 0,
+    "initial_notification_quota": 0,
+    "max_active_workers_when_all_gates_allow": 2,
+    "shared_activities": [
+      "router",
+      "worker",
+      "verification",
+      "recall",
+      "subtasks"
+    ],
+    "new_run_or_midnight_refunds_unknown": false,
+    "price_revision_required": true,
+    "no_event_means_no_periodic_llm_calls": true,
+    "live_budget_requires_separate_signed_manifest": true
+  },
+  "evidence_manifest": [
+    "source_commit",
+    "source_sha256",
+    "scope_revision",
+    "policy_revision",
+    "dataset_sha256",
+    "grader_sha256",
+    "prompt_and_model_version",
+    "case_and_attempt_ids",
+    "commands_exit_codes_junit",
+    "all_six_gates",
+    "cost_usage_unknown",
+    "external_receipts",
+    "raw_evidence_paths",
+    "known_failures_and_NOT_RUN"
+  ],
+  "current_execution": {
+    "engineering_gate": "NOT_RUN",
+    "policy_security_gate": "NOT_RUN",
+    "live_source_channel_gate": "NOT_RUN",
+    "live_coding_gate": "NOT_RUN",
+    "live_publication_gate": "NOT_RUN",
+    "continuous_operation_gate": "NOT_RUN"
+  },
+  "current_execution_note": "This protocol is not an installation approval or achieved runtime result; card-level reuse checks are reported separately."
 }

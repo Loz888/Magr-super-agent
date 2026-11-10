@@ -1,6 +1,6 @@
 {
-  "schema": "sav1-scope-proposal-v1",
-  "status": "DRAFT_PENDING_H01",
+  "schema": "sav1-scope-v1",
+  "status": "CANDIDATE_PENDING_H01_ACCEPTANCE",
   "organizations": 1,
   "console_administrators": 1,
   "projects": 1,
@@ -40,5 +40,71 @@
     "automatic_merge",
     "production_deployment",
     "unbounded_multi_tenant_hosting"
-  ]
+  ],
+  "engineering_project": {
+    "repository": "Loz888/MAGR-v3",
+    "application_baseline": "1d07285aa27ece9bae4ccbedc3a77ce2fbcbaf3a",
+    "worktree": "/home/imini/magr-super-agent"
+  },
+  "live_resource_binding": {
+    "status": "NOT_CONFIGURED",
+    "required_before_live": [
+      "project_id",
+      "github_installation_id",
+      "repository_immutable_id",
+      "repository_visibility",
+      "feishu_tenant_id",
+      "feishu_bot_id",
+      "authorized_chat_id",
+      "trusted_actor_bindings",
+      "policy_revision",
+      "expiry",
+      "model_data_egress_categories",
+      "model_provider_and_price_revision",
+      "paid_budget_authorization",
+      "notification_destinations_and_content"
+    ],
+    "missing_or_mismatched_binding": "disabled; no source listener, model request, worker or outbound action",
+    "reference_repository_is_not_live_installation_authorization": true
+  },
+  "event_families": {
+    "github": [
+      "issue",
+      "issue_comment",
+      "pull_request",
+      "pull_request_review",
+      "pull_request_review_comment",
+      "workflow_run",
+      "check_run",
+      "check_suite"
+    ],
+    "feishu": [
+      "im.message.receive_v1",
+      "message_revision_or_deletion_only_if_verified_platform_capability"
+    ],
+    "timer": "only signed, versioned rules accepted in SA16; disabled initially",
+    "historical_backfill": "context_only by default; never bulk-create historical repair tasks"
+  },
+  "data_policy": {
+    "initial_model_egress": [],
+    "initial_notification_disclosure": [],
+    "unaccepted_body": "no model/Recall/normal logs/long-term retention; minimal metadata audit only",
+    "authorized_body_default_ttl_days": 7,
+    "minimal_metadata_default_ttl_days": 30,
+    "encrypted_backup_max_ttl_days": 30,
+    "financial_audit": "minimal non-body receipts; retained under installation policy, independent from message TTL",
+    "deletion_scope": [
+      "source_body",
+      "attachments",
+      "model_input_audit",
+      "memory",
+      "CAS_references_or_keys",
+      "Recall_cache",
+      "exports",
+      "pending_outbox",
+      "restore_tombstones"
+    ],
+    "restore_rule": "apply deletion/revocation ledger before serving restored content or dispatching"
+  },
+  "scope_change": "new reviewed revision; never expand through source text, model output or memory"
 }

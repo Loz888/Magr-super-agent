@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-10T13:00:10.609307+00:00",
+  "updated_at": "2026-11-10T13:33:43.589435+00:00",
   "user_instruction": "Codex owns Super-Agent; local Trae owns Harness; coordination is authorized.",
   "owners": {
     "super_agent": {
@@ -14,21 +14,29 @@
     }
   },
   "active_super_agent_card": "SAV1-00",
-  "card_status": "PLANNED",
-  "work_state": "DEPENDENCY_PREPARATION",
+  "card_status": "IN_PROGRESS",
+  "work_state": "H01_CORRECTION_REVIEW_AND_SA00_CANDIDATE",
   "harness_observation": {
     "head": "de4775e22e96718e880fde287b2e0928db2945e3",
     "h00_owner_reported_status": "PASS",
     "h00_engineering_gate": "PASS",
-    "h01_status": "IN_PROGRESS_OBSERVED_UI_AND_NEW_HARNESS_FILES",
+    "h01_status": "OWNER_PASS_RECEIVER_FAIL_PERMISSION_CONTRACT",
     "accept_path": "/home/imini/magr-harness/v3/docs/harness-v4/accept/HV4-H00/accept.json",
     "accept_sha256": "f5297243dc7909cec9710caadcd7d99a39c812db76ca7e10577891f9e22110d9",
-    "integrated_into_super_agent": false
+    "integrated_into_super_agent": true,
+    "h00_local_merge_commit": "1a65b8312c81137e1a45a85b4287e1310de21206",
+    "h00_local_registered_verification": {
+      "status": "PASS",
+      "tests": 10,
+      "source_sha256": "0a94ac8ebf37508f2ee88d4dcc9f207b67ce4973457a7bffdccc434ebeb7d959",
+      "evidence": "evidence/HV4-H00/20261110T130313Z-91a27d95/result.json",
+      "scope": "H00 registry/catalog verification plus full lint/typecheck; not a repeat of owner core-225 suite"
+    }
   },
   "communication": {
     "channel": "TRAE CN current Harness conversation",
-    "delivery_status": "DELIVERED_AND_PROCESSING",
-    "observation": "Trae UI displayed the sent request and began reading files/planning."
+    "delivery_status": "FOUR_FINDINGS_SENT_IN_EXISTING_TRAE_CHAT",
+    "observation": "Visible prompt entered and send button clicked; awaiting owner acknowledgment/handoff update. CLI exit 0 did not establish delivery."
   },
   "external_dependencies": {
     "SAV1-00": [
@@ -71,5 +79,14 @@
     "docs/super-agent-v1/sa00-draft/evaluation-protocol.json",
     "docs/super-agent-v1/sa00-draft/scope.json",
     "docs/super-agent-v1/sa00-draft/state-ownership.json"
-  ]
+  ],
+  "h01_review": {
+    "status": "FOUR_FINDINGS_SENT_PENDING_CORRECTION",
+    "path": "/home/imini/magr-super-agent/v3/docs/super-agent-v1/H01_REVIEW_FEEDBACK.md",
+    "reviewed_commit": "e1b3214af8ae62f76e99e322204f05e055133490",
+    "permission_probes": "2 FAIL, controlled no-I/O handler entered",
+    "evidence": "evidence/super-agent-v1/SAV1-00/20261110T131512Z-h01-review/result.json"
+  },
+  "sa00_candidate": "docs/super-agent-v1/sa00-draft/",
+  "migration_coordination": "Proposed Sources 0030 and namespaced ADR to Trae; acknowledgment required before migration creation."
 }

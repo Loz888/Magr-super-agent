@@ -1,6 +1,6 @@
 {
-  "schema": "sav1-state-ownership-proposal-v1",
-  "status": "DRAFT_PENDING_H01",
+  "schema": "sav1-state-ownership-v1",
+  "status": "CANDIDATE_PENDING_H01_ACCEPTANCE",
   "facts": {
     "Thread_Ticket_Mandate_Run_Subscription_Action_Approval_Usage": "Engine / same held PG connection",
     "long_term_business_state": "PostgreSQL",
@@ -20,5 +20,22 @@
     "budget_reservation_and_usage",
     "job_cancel_and_recovery",
     "verification_receipt_and_review_bundle"
-  ]
+  ],
+  "event_projection": {
+    "durable_cursor": "app.run_events.event_id (bigserial)",
+    "run_owner": "app.runs",
+    "step_operation_id": "versioned safe_payload field; no existing operation_id column",
+    "envelope_uuid": "versioned safe_payload field; not the bigint cursor",
+    "persistence_adapter": "Harness H09; H01 memory sink does not establish durable projection"
+  },
+  "identity_projection": {
+    "source_actor": "case-sensitive opaque ID + source kind + tenant + installation + ID type",
+    "harness_actor": "trusted internal Engine principal, mapped by SA02; never raw platform body/display name",
+    "legacy_actor": "old ASCII-normalized principal retained unchanged"
+  },
+  "migration_ownership": {
+    "proposal": "SA01 0030; await Harness acknowledgment before creation",
+    "adr_namespace": "docs/super-agent-v1/adr/SAV1-00-authority-sources-policy.md",
+    "shared_module_rule": "coordinate before overlapping Engine/API/schema/budget edits"
+  }
 }

@@ -1,0 +1,22 @@
+{
+  "tests": [
+    "tests/test_coordination.py",
+    "tests/test_api.py",
+    "tests/test_routing.py",
+    "tests/test_duplex.py",
+    "tests/test_effects.py",
+    "tests/test_r6_policies.py",
+    "tests/test_r6_watchdog.py",
+    "tests/test_harness_v4_h01.py"
+  ],
+  "components": {
+    "postgres": "real isolated Super-Agent database; same Engine authority",
+    "audit": "eight code symbols and existing regression entries, current hashes",
+    "harness": "fixed H00/H01 commits reviewed and locally rerun; two independent authorization probes required",
+    "new_runtime": "not implemented by this planning card",
+    "model": "controlled only; no paid calls",
+    "platform": "controlled only; no live source listeners or writes",
+    "historical": "FAIL/NOT_RUN preserved; six live/system gates remain separate"
+  },
+  "timeout_seconds": 600
+}

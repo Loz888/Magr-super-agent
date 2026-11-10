@@ -1,10 +1,10 @@
 {
   "plan_version": "1",
-  "status": "PLANNED",
+  "status": "IN_PROGRESS",
   "repository_baseline": "973994c0e6c087c2968b3d91a3a6b9220e2c0892",
   "application_baseline": "1d07285aa27ece9bae4ccbedc3a77ce2fbcbaf3a",
   "external_plan": "../harness-v4/plan.json",
-  "scope": "Design only. No source installations, subscriptions, messages, paid calls, deployments or functional implementation authorized by this manifest.",
+  "scope": "Implementation is authorized by user in this isolated Super-Agent checkout. This manifest grants no live source, model payment, notification or publication authority.",
   "initial_scope": {
     "organizations": 1,
     "console_administrators": 1,
@@ -20,7 +20,7 @@
       "id": "SAV1-00",
       "short_id": "SA00",
       "title": "冻结范围、复用审计与架构 ADR",
-      "status": "PLANNED",
+      "status": "IN_PROGRESS",
       "priority": "P0",
       "phase": "S0",
       "depends_on": [],
