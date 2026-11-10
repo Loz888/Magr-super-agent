@@ -1,0 +1,744 @@
+{
+  "$defs": {
+    "ActorRef": {
+      "additionalProperties": false,
+      "properties": {
+        "scope": {
+          "$ref": "#/$defs/SourceScope"
+        },
+        "id_type": {
+          "maxLength": 256,
+          "minLength": 1,
+          "title": "Id Type",
+          "type": "string"
+        },
+        "actor_id": {
+          "maxLength": 256,
+          "minLength": 1,
+          "title": "Actor Id",
+          "type": "string"
+        },
+        "actor_kind": {
+          "enum": [
+            "human",
+            "bot",
+            "service",
+            "unknown"
+          ],
+          "title": "Actor Kind",
+          "type": "string"
+        }
+      },
+      "required": [
+        "scope",
+        "id_type",
+        "actor_id",
+        "actor_kind"
+      ],
+      "title": "ActorRef",
+      "type": "object"
+    },
+    "AdmissionPolicy": {
+      "additionalProperties": false,
+      "properties": {
+        "enabled": {
+          "default": false,
+          "title": "Enabled",
+          "type": "boolean"
+        },
+        "request_kinds": {
+          "default": [],
+          "items": {
+            "enum": [
+              "explicit_request",
+              "team_rule",
+              "follow_up"
+            ],
+            "type": "string"
+          },
+          "maxItems": 3,
+          "title": "Request Kinds",
+          "type": "array"
+        },
+        "rule_ref": {
+          "anyOf": [
+            {
+              "maxLength": 256,
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Rule Ref"
+        },
+        "rule_sha256": {
+          "anyOf": [
+            {
+              "pattern": "^[a-f0-9]{64}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Rule Sha256"
+        }
+      },
+      "title": "AdmissionPolicy",
+      "type": "object"
+    },
+    "BudgetBoundary": {
+      "additionalProperties": false,
+      "properties": {
+        "total_limit_micros": {
+          "default": 0,
+          "minimum": 0,
+          "title": "Total Limit Micros",
+          "type": "integer"
+        },
+        "router_limit_micros": {
+          "default": 0,
+          "minimum": 0,
+          "title": "Router Limit Micros",
+          "type": "integer"
+        },
+        "accounting_ref": {
+          "anyOf": [
+            {
+              "maxLength": 256,
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Accounting Ref"
+        },
+        "timezone": {
+          "default": "Asia/Shanghai",
+          "title": "Timezone",
+          "type": "string"
+        }
+      },
+      "title": "BudgetBoundary",
+      "type": "object"
+    },
+    "ExecutionGrant": {
+      "additionalProperties": false,
+      "properties": {
+        "enabled": {
+          "default": false,
+          "title": "Enabled",
+          "type": "boolean"
+        },
+        "repositories": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/RepositoryBoundary"
+          },
+          "maxItems": 10,
+          "title": "Repositories",
+          "type": "array"
+        },
+        "capabilities": {
+          "default": [],
+          "items": {
+            "enum": [
+              "read_repository",
+              "read_knowledge",
+              "search_knowledge",
+              "recall_memory",
+              "describe_tables",
+              "query_readonly",
+              "edit_files",
+              "run_tests",
+              "network_access",
+              "model_call"
+            ],
+            "type": "string"
+          },
+          "maxItems": 10,
+          "title": "Capabilities",
+          "type": "array"
+        },
+        "network_hosts": {
+          "default": [],
+          "items": {
+            "pattern": "^[a-z0-9][a-z0-9.-]{0,252}$",
+            "type": "string"
+          },
+          "maxItems": 30,
+          "title": "Network Hosts",
+          "type": "array"
+        }
+      },
+      "title": "ExecutionGrant",
+      "type": "object"
+    },
+    "NotificationDestination": {
+      "additionalProperties": false,
+      "properties": {
+        "thread": {
+          "$ref": "#/$defs/SourceThreadRef"
+        },
+        "target": {
+          "maxLength": 256,
+          "minLength": 1,
+          "title": "Target",
+          "type": "string"
+        },
+        "visibility": {
+          "enum": [
+            "public",
+            "private"
+          ],
+          "title": "Visibility",
+          "type": "string"
+        }
+      },
+      "required": [
+        "thread",
+        "target",
+        "visibility"
+      ],
+      "title": "NotificationDestination",
+      "type": "object"
+    },
+    "NotificationGrant": {
+      "additionalProperties": false,
+      "properties": {
+        "enabled": {
+          "default": false,
+          "title": "Enabled",
+          "type": "boolean"
+        },
+        "destinations": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/NotificationDestination"
+          },
+          "maxItems": 20,
+          "title": "Destinations",
+          "type": "array"
+        },
+        "content_classes": {
+          "default": [],
+          "items": {
+            "enum": [
+              "verified_result",
+              "necessary_question",
+              "review_available",
+              "critical_fault"
+            ],
+            "type": "string"
+          },
+          "maxItems": 4,
+          "title": "Content Classes",
+          "type": "array"
+        },
+        "data_classes": {
+          "default": [],
+          "items": {
+            "enum": [
+              "public_summary",
+              "private_summary",
+              "private_log"
+            ],
+            "type": "string"
+          },
+          "maxItems": 3,
+          "title": "Data Classes",
+          "type": "array"
+        },
+        "max_bytes": {
+          "default": 0,
+          "maximum": 65536,
+          "minimum": 0,
+          "title": "Max Bytes",
+          "type": "integer"
+        },
+        "max_per_hour": {
+          "default": 0,
+          "maximum": 100,
+          "minimum": 0,
+          "title": "Max Per Hour",
+          "type": "integer"
+        },
+        "quiet_hours": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/QuietHours"
+          },
+          "maxItems": 10,
+          "title": "Quiet Hours",
+          "type": "array"
+        }
+      },
+      "title": "NotificationGrant",
+      "type": "object"
+    },
+    "PolicyDefinition": {
+      "additionalProperties": false,
+      "properties": {
+        "schema_version": {
+          "const": "source-policy-v1",
+          "default": "source-policy-v1",
+          "title": "Schema Version",
+          "type": "string"
+        },
+        "mode": {
+          "default": "shadow",
+          "enum": [
+            "disabled",
+            "shadow",
+            "auto_investigate",
+            "auto_repair"
+          ],
+          "title": "Mode",
+          "type": "string"
+        },
+        "selector": {
+          "$ref": "#/$defs/SourceSelector"
+        },
+        "valid_from": {
+          "format": "date-time",
+          "title": "Valid From",
+          "type": "string"
+        },
+        "valid_until": {
+          "format": "date-time",
+          "title": "Valid Until",
+          "type": "string"
+        },
+        "receive": {
+          "$ref": "#/$defs/ReceivePolicy"
+        },
+        "admission": {
+          "$ref": "#/$defs/AdmissionPolicy"
+        },
+        "execution": {
+          "$ref": "#/$defs/ExecutionGrant"
+        },
+        "notification": {
+          "$ref": "#/$defs/NotificationGrant"
+        },
+        "budget": {
+          "$ref": "#/$defs/BudgetBoundary"
+        }
+      },
+      "required": [
+        "selector",
+        "valid_from",
+        "valid_until",
+        "receive",
+        "admission",
+        "execution",
+        "notification",
+        "budget"
+      ],
+      "title": "PolicyDefinition",
+      "type": "object"
+    },
+    "PolicyFacts": {
+      "additionalProperties": false,
+      "description": "Server-derived candidate metadata. Console preview input is never an execution grant.",
+      "properties": {
+        "event_kind": {
+          "maxLength": 256,
+          "minLength": 1,
+          "title": "Event Kind",
+          "type": "string"
+        },
+        "request_kind": {
+          "default": "explicit_request",
+          "enum": [
+            "explicit_request",
+            "team_rule",
+            "follow_up"
+          ],
+          "title": "Request Kind",
+          "type": "string"
+        },
+        "historical": {
+          "default": false,
+          "title": "Historical",
+          "type": "boolean"
+        },
+        "repository": {
+          "anyOf": [
+            {
+              "maxLength": 200,
+              "pattern": "^[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Repository"
+        },
+        "base_sha": {
+          "anyOf": [
+            {
+              "pattern": "^[a-f0-9]{40}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Base Sha"
+        },
+        "path": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Path"
+        },
+        "capability": {
+          "anyOf": [
+            {
+              "enum": [
+                "read_repository",
+                "read_knowledge",
+                "search_knowledge",
+                "recall_memory",
+                "describe_tables",
+                "query_readonly",
+                "edit_files",
+                "run_tests",
+                "network_access",
+                "model_call"
+              ],
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Capability"
+        },
+        "network_host": {
+          "anyOf": [
+            {
+              "pattern": "^[a-z0-9][a-z0-9.-]{0,252}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Network Host"
+        },
+        "ticket_id": {
+          "anyOf": [
+            {
+              "format": "uuid",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Ticket Id"
+        }
+      },
+      "required": [
+        "event_kind"
+      ],
+      "title": "PolicyFacts",
+      "type": "object"
+    },
+    "QuietHours": {
+      "additionalProperties": false,
+      "properties": {
+        "timezone": {
+          "title": "Timezone",
+          "type": "string"
+        },
+        "start": {
+          "pattern": "^(?:[01][0-9]|2[0-3]):[0-5][0-9]$",
+          "title": "Start",
+          "type": "string"
+        },
+        "end": {
+          "pattern": "^(?:[01][0-9]|2[0-3]):[0-5][0-9]$",
+          "title": "End",
+          "type": "string"
+        },
+        "weekdays": {
+          "default": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "items": {
+            "maximum": 6,
+            "minimum": 0,
+            "type": "integer"
+          },
+          "maxItems": 7,
+          "minItems": 1,
+          "title": "Weekdays",
+          "type": "array"
+        }
+      },
+      "required": [
+        "timezone",
+        "start",
+        "end"
+      ],
+      "title": "QuietHours",
+      "type": "object"
+    },
+    "ReceivePolicy": {
+      "additionalProperties": false,
+      "properties": {
+        "enabled": {
+          "default": false,
+          "title": "Enabled",
+          "type": "boolean"
+        },
+        "retain_body": {
+          "default": false,
+          "title": "Retain Body",
+          "type": "boolean"
+        },
+        "model_input": {
+          "default": false,
+          "title": "Model Input",
+          "type": "boolean"
+        },
+        "body_ttl_seconds": {
+          "default": 0,
+          "maximum": 604800,
+          "minimum": 0,
+          "title": "Body Ttl Seconds",
+          "type": "integer"
+        },
+        "allow_history_context": {
+          "default": false,
+          "title": "Allow History Context",
+          "type": "boolean"
+        }
+      },
+      "title": "ReceivePolicy",
+      "type": "object"
+    },
+    "RepositoryBoundary": {
+      "additionalProperties": false,
+      "properties": {
+        "repository": {
+          "pattern": "^[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+$",
+          "title": "Repository",
+          "type": "string"
+        },
+        "base_sha": {
+          "pattern": "^[a-f0-9]{40}$",
+          "title": "Base Sha",
+          "type": "string"
+        },
+        "paths": {
+          "items": {
+            "type": "string"
+          },
+          "maxItems": 100,
+          "minItems": 1,
+          "title": "Paths",
+          "type": "array"
+        }
+      },
+      "required": [
+        "repository",
+        "base_sha",
+        "paths"
+      ],
+      "title": "RepositoryBoundary",
+      "type": "object"
+    },
+    "SourceScope": {
+      "additionalProperties": false,
+      "properties": {
+        "source_kind": {
+          "pattern": "^[a-z][a-z0-9_]{0,31}$",
+          "title": "Source Kind",
+          "type": "string"
+        },
+        "source_instance_id": {
+          "format": "uuid",
+          "title": "Source Instance Id",
+          "type": "string"
+        },
+        "tenant_id": {
+          "maxLength": 256,
+          "minLength": 1,
+          "title": "Tenant Id",
+          "type": "string"
+        },
+        "installation_id": {
+          "maxLength": 256,
+          "minLength": 1,
+          "title": "Installation Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "source_kind",
+        "source_instance_id",
+        "tenant_id",
+        "installation_id"
+      ],
+      "title": "SourceScope",
+      "type": "object"
+    },
+    "SourceSelector": {
+      "additionalProperties": false,
+      "properties": {
+        "scope": {
+          "$ref": "#/$defs/SourceScope"
+        },
+        "source_revision": {
+          "exclusiveMinimum": 0,
+          "title": "Source Revision",
+          "type": "integer"
+        },
+        "conversations": {
+          "items": {
+            "maxLength": 256,
+            "minLength": 1,
+            "type": "string"
+          },
+          "maxItems": 100,
+          "minItems": 1,
+          "title": "Conversations",
+          "type": "array"
+        },
+        "actors": {
+          "items": {
+            "$ref": "#/$defs/ActorRef"
+          },
+          "maxItems": 100,
+          "minItems": 1,
+          "title": "Actors",
+          "type": "array"
+        },
+        "native_threads": {
+          "default": [],
+          "items": {
+            "maxLength": 256,
+            "minLength": 1,
+            "type": "string"
+          },
+          "maxItems": 100,
+          "title": "Native Threads",
+          "type": "array"
+        },
+        "event_kinds": {
+          "items": {
+            "maxLength": 256,
+            "minLength": 1,
+            "type": "string"
+          },
+          "maxItems": 100,
+          "minItems": 1,
+          "title": "Event Kinds",
+          "type": "array"
+        }
+      },
+      "required": [
+        "scope",
+        "source_revision",
+        "conversations",
+        "actors",
+        "event_kinds"
+      ],
+      "title": "SourceSelector",
+      "type": "object"
+    },
+    "SourceThreadRef": {
+      "additionalProperties": false,
+      "properties": {
+        "scope": {
+          "$ref": "#/$defs/SourceScope"
+        },
+        "conversation_id": {
+          "maxLength": 256,
+          "minLength": 1,
+          "title": "Conversation Id",
+          "type": "string"
+        },
+        "native_thread_id": {
+          "anyOf": [
+            {
+              "maxLength": 256,
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Native Thread Id"
+        }
+      },
+      "required": [
+        "scope",
+        "conversation_id"
+      ],
+      "title": "SourceThreadRef",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "expected_revision": {
+      "minimum": 0,
+      "title": "Expected Revision",
+      "type": "integer"
+    },
+    "definition": {
+      "$ref": "#/$defs/PolicyDefinition"
+    },
+    "actor": {
+      "$ref": "#/$defs/ActorRef"
+    },
+    "source_thread": {
+      "$ref": "#/$defs/SourceThreadRef"
+    },
+    "facts": {
+      "$ref": "#/$defs/PolicyFacts"
+    }
+  },
+  "required": [
+    "expected_revision",
+    "definition",
+    "actor",
+    "source_thread",
+    "facts"
+  ],
+  "title": "PolicyPreview",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

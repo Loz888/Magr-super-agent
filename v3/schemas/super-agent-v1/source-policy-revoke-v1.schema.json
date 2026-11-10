@@ -1,0 +1,23 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "expected_revision": {
+      "exclusiveMinimum": 0,
+      "title": "Expected Revision",
+      "type": "integer"
+    },
+    "review_ref": {
+      "maxLength": 256,
+      "minLength": 1,
+      "title": "Review Ref",
+      "type": "string"
+    }
+  },
+  "required": [
+    "expected_revision",
+    "review_ref"
+  ],
+  "title": "PolicyRevoke",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

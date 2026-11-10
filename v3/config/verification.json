@@ -1153,5 +1153,31 @@
       "live_publication": "NOT_RUN"
     },
     "timeout_seconds": 900
+  },
+  "SAV1-03": {
+    "tests": [
+      "tests/test_super_agent_sa03.py",
+      "tests/test_super_agent_sa02.py",
+      "tests/test_super_agent_sa01.py",
+      "tests/test_coordination.py",
+      "tests/test_api.py",
+      "tests/test_environment.py",
+      "tests/test_web_access.py",
+      "tests/test_duplex.py",
+      "tests/test_r4_experts.py",
+      "tests/test_effects.py",
+      "tests/test_models.py",
+      "tests/test_r6_policies.py",
+      "tests/test_r5_recovery.py"
+    ],
+    "components": {
+      "postgres": "real disposable PostgreSQL; policy CAS, immutable signatures, current-role fencing, 31-to-32 upgrade and same-connection rollback",
+      "policy": "four independent layers; disabled/shadow/auto_investigate/auto_repair; scoped repository/path/capability and exact notification boundary",
+      "revocation": "pending tools/heartbeat leases/Action invalidated; in-flight results/unknown/usage preserved",
+      "model": "NOT_RUN; no paid or semantic experiments",
+      "platform": "controlled synthetic signed envelopes only; live NOT_RUN",
+      "harness": "no changes or active imports"
+    },
+    "timeout_seconds": 1200
   }
 }

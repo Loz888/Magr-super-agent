@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-10T15:44:03.036386+00:00",
+  "updated_at": "2026-11-10T16:30:24.700804+00:00",
   "user_instruction": "Codex owns Super-Agent; local Trae owns Harness; coordination is authorized.",
   "owners": {
     "super_agent": {
@@ -13,9 +13,9 @@
       "cards": "HV4-H00..HV4-H18"
     }
   },
-  "active_super_agent_card": "SAV1-02",
-  "card_status": "DONE",
-  "work_state": "SAV1_02_ACCEPTED_PENDING_INDEPENDENT_REVIEW",
+  "active_super_agent_card": "SAV1-03",
+  "card_status": "IN_PROGRESS",
+  "work_state": "IMPLEMENTED_PENDING_REGISTERED_VERIFICATION",
   "harness_observation": {
     "head": "de4775e22e96718e880fde287b2e0928db2945e3",
     "h00_owner_reported_status": "PASS",
@@ -146,5 +146,22 @@
     "skipped": 0
   },
   "sa02_acceptance": "docs/super-agent-v1/accept/SAV1-02/accept.json",
-  "sa02_harness_handoff": "Fixed handoff document prepared; completion message not yet sent or acknowledged."
+  "sa02_harness_handoff": "ACTUALLY_ACKNOWLEDGED in owner fixed commit 4ad86c1c6ee94ac6c11e402a831a9a0a0c8d066d §15",
+  "sa03_read_evidence": "evidence/super-agent-v1/SAV1-03/20261110T160145Z-start/taskbook-read.json",
+  "sa03_shared_scope": {
+    "status": "ACTUALLY_CONFIRMED",
+    "commit": "4ad86c1c6ee94ac6c11e402a831a9a0a0c8d066d",
+    "migration": "0032",
+    "api": "/api/v3/source-policies/",
+    "engine": "source-policy associated operations only",
+    "model_budget_harness": "unchanged"
+  },
+  "sa03_contract": "source-policy-v1",
+  "sa03_contract_doc": "docs/super-agent-v1/SA03_POLICIES.md",
+  "sa03_tool_entry_confirmation": {
+    "status": "ACTUALLY_CONFIRMED",
+    "commit": "f61a23373a0b16f154f11f97b23f9dd4d1670be2",
+    "checked_at_utc": "2026-11-10T16:11:17.782789+00:00",
+    "scope": "agents/tools.py ToolAuthority._grant pre-charge current source policy check only; no legacy/model/financial algorithm changes"
+  }
 }

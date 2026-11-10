@@ -32,6 +32,7 @@ from mgar_v3.recovery.store import Recovery
 from mgar_v3.repair.store import Repairs
 from mgar_v3.routing.store import Routing
 from mgar_v3.settings import Settings
+from mgar_v3.super_agent.policy import SourcePolicies
 
 TModel = TypeVar("TModel", bound=Model)
 Row = dict[str, Any]
@@ -71,6 +72,7 @@ class Engine:
         self.proactivity = Proactivity(self)
         self.benchmarks = Benchmarks(self)
         self.commerce = Commerce(self)
+        self.source_policies = SourcePolicies(self)
 
     def close(self) -> None:
         with self._mutex:
@@ -101,6 +103,8 @@ class Engine:
             raise DomainError("PROJECT_DENIED", "Run is outside the configured project", 403)
         if epoch is not None and (row["execution_epoch"] != epoch or row["status"] in TERMINAL):
             raise DomainError("FENCED", "Execution is no longer authorized")
+        if epoch is not None:
+            self.source_policies.check_run(conn, row)
         return row
 
     def ingest(self, event: TriggerInput, permit: LivePermit | None = None) -> EventReceipt:
@@ -425,6 +429,7 @@ class Engine:
     def begin_run(self, run_id: UUID) -> Row:
         with self.transaction() as conn:
             row = self._run(conn, run_id)
+            self.source_policies.check_run(conn, row)
             if row["status"] != "queued":
                 raise DomainError("RUN_NOT_QUEUED", "Run cannot start in its current state")
             if (
@@ -646,6 +651,7 @@ class Engine:
             if job is None:
                 raise DomainError("NOT_FOUND", "Read job was not found", 404)
             run = self._run(conn, job["run_id"], epoch)
+            self.source_policies.check_run(conn, run, capability="read_repository")
             if run["status"] != "running" or job["status"] != "queued":
                 raise DomainError("FENCED", "Read job is not available for this execution")
             claimed = conn.execute(
@@ -669,6 +675,11 @@ class Engine:
             ).fetchone()
             if job is None or job["status"] != "running" or job["lease_token"] != lease:
                 raise DomainError("FENCED", "Read result lease is no longer current")
+            late_result = self.source_policies.finish_inflight_read(
+                conn, job, content_hash, len(content), uri, version
+            )
+            if late_result is not None:
+                return late_result
             run = self._run(conn, job["run_id"], job["execution_epoch"])
             if run["status"] != "running":
                 raise DomainError("FENCED", "Read result no longer owns a running execution")
@@ -1053,6 +1064,7 @@ class Engine:
         return action, run
 
     def _validate_action(self, conn: Connection, action: Row, run: Row) -> None:
+        self.source_policies.check_action(conn, action, run)
         readonly = conn.execute(
             "SELECT scope FROM app.mandates WHERE mandate_id=%s", (run["mandate_id"],)
         ).fetchone()
@@ -1263,6 +1275,8 @@ class Engine:
                 (run["run_id"],),
             )
             return
+        if self.source_policies.retain_inflight_outcome(conn, run, status):
+            return
         if run["graph_version"] == "system-reply-v1" and run["status"] not in TERMINAL:
             if run["thread_revision"] > run["input_revision"]:
                 conn.execute(
@@ -1379,8 +1393,7 @@ class Engine:
         status = "outcome_unknown" if unknown else "failed" if failed else "succeeded"
         with self.transaction() as conn:
             row = conn.execute(
-                "SELECT * FROM app.workbench_publications "
-                "WHERE publication_id=%s FOR UPDATE",
+                "SELECT * FROM app.workbench_publications WHERE publication_id=%s FOR UPDATE",
                 (publication_id,),
             ).fetchone()
             if row is None:
@@ -1413,8 +1426,7 @@ class Engine:
             return False
         with self.transaction() as conn:
             row = conn.execute(
-                "SELECT * FROM app.workbench_publications "
-                "WHERE publication_id=%s FOR UPDATE",
+                "SELECT * FROM app.workbench_publications WHERE publication_id=%s FOR UPDATE",
                 (publication_id,),
             ).fetchone()
             if row is None:
@@ -1525,6 +1537,7 @@ class Engine:
     def resume(self, run_id: UUID) -> UUID:
         with self.transaction() as conn:
             run = self._run(conn, run_id)
+            self.source_policies.check_run(conn, run, resume=True)
             if run["status"] != "paused" or run["ticket_status"] != "open":
                 raise DomainError("NOT_RESUMABLE", "Run is not safely resumable")
             if run["graph_version"] in DUPLEX_VERSIONS:

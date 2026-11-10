@@ -181,6 +181,7 @@ class ToolAuthority:
                 raise DomainError(
                     "TOOL_GRANT_EXPIRED", "Tool capability expired or execution stopped", 403
                 )
+            self.engine.source_policies.check_run(conn, run, capability=tool)
             self.engine.knowledge.actor(grant["actor"])
             if tool not in TOOLS.get(grant["role"], set()) or (
                 expected_role is not None and expected_role != grant["role"]
