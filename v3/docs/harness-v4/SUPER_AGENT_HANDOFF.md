@@ -26,7 +26,7 @@
 
 | 交付项 | 状态 | 路径 |
 | --- | --- | --- |
-| 稳定提交 | 见 `docs/harness-v4/accept/HV4-H01/accept.json` 的 `commit` / `result_commit` | 本地 `main`，未推送 |
+| 稳定提交 | `e1b3214af8ae62f76e99e322204f05e055133490`（本地 `main`，未推送） | 实现、契约、ADR、交接与测试 |
 | 选型 ADR | DONE | `docs/harness-v4/adr/HV4-H01-deepseek-harness.md` |
 | 版本化接口 | DONE，`harness-contract-v1`，FROZEN | `src/mgar_v3/harness/contracts.py` |
 | 机器可读接口清单 | DONE | `experiments/harness-v4/harness-contract-v1.json` |
