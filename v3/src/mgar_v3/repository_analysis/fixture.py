@@ -180,13 +180,13 @@ class FixtureAnalysisTools:
             )
         if call.tool in {"read_issue", "read_pull_request"}:
             title = f"Fixture {call.tool} #{call.number}"
-            body = f"# {title}\n\nOffline fixture text.\n".encode()
+            payload_bytes = f"# {title}\n\nOffline fixture text.\n".encode()
             return ToolOutcome(
                 tool=call.tool,
-                text=body.decode(),
+                text=payload_bytes.decode(),
                 reference=f"github://{self.repository}/{call.number}",
-                content=body,
-                source_version=hashlib.sha256(body).hexdigest(),
+                content=payload_bytes,
+                source_version=hashlib.sha256(payload_bytes).hexdigest(),
                 evidence_kind="issue" if call.tool == "read_issue" else "pull_request",
             )
         raise _fixture_error("MCP_TOOL_DENIED", "Tool is outside the fixture allowlist", 403)

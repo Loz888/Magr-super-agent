@@ -39,7 +39,7 @@ from mgar_v3.repository_analysis.report import (
 )
 from mgar_v3.repository_analysis.tools import TOOL_NAMES, ToolOutcome
 
-TOOL_ADAPTER: TypeAdapter[Any] = TypeAdapter(cast(Any, ToolCall))
+TOOL_ADAPTER: TypeAdapter[Any] = TypeAdapter(cast(type[Any], ToolCall))
 MAX_OBSERVATION_CHARS = 6000
 MAX_PRIOR_REPORT_CHARS = 8000
 PARTIAL_CODES = {

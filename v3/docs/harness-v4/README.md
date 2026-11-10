@@ -1,7 +1,10 @@
 # MAGR Harness 升级任务书与规划
 
-状态：**PLANNED，仅设计，未开始功能实施**。审计日期：2026-11-10。应用基线：
-`1d07285aa27ece9bae4ccbedc3a77ce2fbcbaf3a`。
+状态：**HV4-H00 已完成（DONE，2026-11-10）；H01–H18 仍为 PLANNED**。审计日期：
+2026-11-10。应用基线：`1d07285aa27ece9bae4ccbedc3a77ce2fbcbaf3a`。
+冻结基线、任务集与评分协议见 [基线回归日志](BASELINE_REGRESSION.md)、
+[能力审计](CAPABILITY_AUDIT.md)、[任务类型契约](TASK_TYPES.md) 与
+[评分协议 v1](SCORING_PROTOCOL.md)。
 
 本规划的目标是让用户选定项目、描述目标后，Agent 能在同一会话内调查、修改文件、
 运行验证、根据失败继续修复，最终交付可检查的变更。第一版面向单机管理员，沿用
@@ -13,10 +16,6 @@
 - [验收与评测方案](ACCEPTANCE.md)
 - [机器可读任务队列（全部 PLANNED）](plan.json)
 - [资料版本与来源](sources.json)
-
-在本计划基础上，[Super-Agent V1 任务书](../super-agent-v1/README.md)增加常驻来源、
-团队策略、Router–Worker、订阅/Recall、静默反馈和上线验收。两份计划通过明确依赖
-连接，复用 Harness 实现；本页 19 张卡的状态和估算不因新规划而视为已经完成。
 
 ## Harness 在本项目中的含义
 

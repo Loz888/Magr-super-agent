@@ -1,0 +1,208 @@
+{
+  "card": "HV4-H00",
+  "title": "冻结基线、任务类型与验收协议",
+  "status": "PASS",
+  "commit": "ede3bc67c9b4473b91ab4f8ea73a64a59789e655",
+  "result_commit": "ede3bc67c9b4473b91ab4f8ea73a64a59789e655",
+  "commit_note": "本地提交序列：ede3bc6 实现基线冻结、任务目录、协议、能力审计与静态清理；a3fa79e 提交 accept.json 与文件权限修正；9239355 修正 accept.json 自身权限；d3eb668 补充 make verify 证据。后续仅可能有记录性补充提交。均未推送。",
+  "parent_commit": "973994c0e6c087c2968b3d91a3a6b9220e2c0892",
+  "base_commit": "973994c0e6c087c2968b3d91a3a6b9220e2c0892",
+  "application_baseline": "1d07285aa27ece9bae4ccbedc3a77ce2fbcbaf3a",
+  "accepted_at": "2026-11-10T12:42:24Z",
+  "environment": {
+    "os": "Windows 11 host + WSL2 Ubuntu-24.04",
+    "worktree": "/home/imini/magr-harness/v3",
+    "python": "3.12.16 (uv --frozen; /tmp/magar-harness-venv)",
+    "uv": "0.13.7",
+    "postgres": "real (mgar-v3-postgres-1, pgvector/pgvector:0.8.1-pg16-bookworm, healthy; DB tests use real DSN from v3/.env)",
+    "redis": "real (mgar-v3-redis-1, redis:7.4.7-bookworm, healthy)",
+    "docker": "real R03 sha256:efad10932c12f9d6f2408fe960e9a292c4bdbac0f8365387838acbe4f0fdd2b6; R5 sha256:daa7afaec0e3e97db1bfcf522d63ca08f75e28289232b263f1c5802d94eb7b9c",
+    "sandbox_locks": "v3/.local/r03/sandbox-lock.json sha256 2b6ffb5cead4d18e1219816c4d829c7f2cdf3dc5165cf1683fb4c25f360f3e86; v3/.local/r5/sandbox-lock.json sha256 6465789b3feb2352f396d488001d5d67148935bfeb144ab0c67c6b45bfb07255",
+    "model": "not_used",
+    "network": "not_used for paid model calls, GitHub writes or package installation",
+    "github": "not_used"
+  },
+  "worktree_at_acceptance": "H00 产物已提交到本地 main（ede3bc6）；evidence/ 与 .local/ 为 gitignore 的本机产物，不在版本控制内；accept.json 待第二次本地提交。",
+  "commands": [
+    {
+      "name": "sandbox-build-r03",
+      "argv": ["make", "sandbox-build"],
+      "exit_code": 0,
+      "result": {"image": "mgar-v3-sandbox-r03:local", "image_id": "sha256:efad10932c12f9d6f2408fe960e9a292c4bdbac0f8365387838acbe4f0fdd2b6"},
+      "purpose": "新工作区重建 R03 沙箱镜像与 lock；首次核心回归失败的根因",
+      "log": "本机终端输出（lock 文件已生成）",
+      "status": "PASS"
+    },
+    {
+      "name": "sandbox-build-r5",
+      "argv": ["make", "sandbox-build-r5"],
+      "exit_code": 0,
+      "result": {"image": "mgar-v3-sandbox:local", "image_id": "sha256:daa7afaec0e3e97db1bfcf522d63ca08f75e28289232b263f1c5802d94eb7b9c"},
+      "purpose": "补齐 V3.4 R5 沙箱 lock，sigkill 恢复测试依赖该镜像",
+      "log": "本机终端输出（lock 文件已生成）",
+      "status": "PASS"
+    },
+    {
+      "name": "ruff-full",
+      "argv": ["uv", "run", "--frozen", "ruff", "check", "src", "tests", "scripts"],
+      "exit_code": 0,
+      "result": "All checks passed",
+      "purpose": "全库 lint 从 23 项清理到 0",
+      "log": "evidence/harness-v4/HV4-H00/h00-20261110T124500Z/ruff.txt",
+      "status": "PASS"
+    },
+    {
+      "name": "mypy-full",
+      "argv": ["uv", "run", "--frozen", "mypy"],
+      "exit_code": 0,
+      "result": "Success: no issues found in 191 source files",
+      "purpose": "全库类型检查从 16 项清理到 0",
+      "log": "evidence/harness-v4/HV4-H00/h00-20261110T124500Z/mypy.txt",
+      "status": "PASS"
+    },
+    {
+      "name": "core-regression",
+      "argv": ["uv", "run", "--frozen", "pytest", "-q", "<20 core files>", "--junitxml=evidence/harness-v4/HV4-H00/core-regression/junit.xml"],
+      "exit_code": 0,
+      "duration_seconds": 265.692,
+      "counts": {"tests": 225, "passed": 225, "failures": 0, "errors": 0, "skipped": 0},
+      "purpose": "H00 冻结核心回归集；导出真实 PostgreSQL DSN，数据库集成测试实际执行",
+      "log": "evidence/harness-v4/HV4-H00/core-regression/pytest.log",
+      "junit": "evidence/harness-v4/HV4-H00/core-regression/junit.xml",
+      "status": "PASS"
+    },
+    {
+      "name": "hv4-h00-tests",
+      "argv": ["uv", "run", "--frozen", "pytest", "-q", "tests/test_harness_v4_h00.py"],
+      "exit_code": 0,
+      "duration_seconds": 0.03,
+      "counts": {"tests": 10, "passed": 10, "failures": 0, "errors": 0, "skipped": 0},
+      "purpose": "机器可读目录、组成、判定器哈希、资源上限、任务类型契约、评分阈值、能力审计与回归日志校验",
+      "log": "evidence/harness-v4/HV4-H00/h00-20261110T124500Z/pytest.log",
+      "junit": "evidence/harness-v4/HV4-H00/h00-20261110T124500Z/junit.xml",
+      "status": "PASS"
+    },
+    {
+      "name": "engineering-verify",
+      "argv": ["make", "verify", "TASK=HV4-H00"],
+      "exit_code": 0,
+      "duration_seconds": 0.986,
+      "counts": {"tests": 10, "failures": 0, "errors": 0, "skipped": 0},
+      "git_commit": "9239355faf7ae23d1bc2357486539ae39c8e177a",
+      "source_sha256": "d40a8c721184603cd740c0d72ec36e18dbbe16faebb12e776e79f9a0af1ab8b1",
+      "finished_source_sha256": "d40a8c721184603cd740c0d72ec36e18dbbe16faebb12e776e79f9a0af1ab8b1",
+      "attempt": "evidence/HV4-H00/20261110T124323Z-8f9da9e4/",
+      "purpose": "config/verification.json 的 HV4-H00 条目真实执行；记录 verify 时的 HEAD 与源码指纹",
+      "log": "evidence/HV4-H00/20261110T124323Z-8f9da9e4/command.log",
+      "status": "PASS"
+    }
+  ],
+  "engineering_gate": "PASS",
+  "security_gate": "PASS",
+  "live_model_gate": "NOT_RUN",
+  "live_agent_gate": "NOT_RUN",
+  "live_publication_gate": "NOT_RUN",
+  "live_gate_note": "H00 只冻结基线、任务目录与协议，不执行付费模型调用、真实 Agent 评测、GitHub 写入或外网发布，因此三项 live 门均为 NOT_RUN。engineering_gate=PASS 仅覆盖 H00 声明的静态检查、20 文件核心回归与目录/协议机器校验，不蕴含任何 live 能力已验收。security_gate=PASS 仅表示核心集中的安全/恢复用例通过，不新增真实发布保证。",
+  "historical_gates": {
+    "e01_live_model_gate": "NOT_RUN",
+    "e02_live_model_gate": "FAIL",
+    "e02_live_agent_gate": "FAIL",
+    "e03_live_model_gate": "NOT_RUN",
+    "live_publication_gate": "NOT_RUN",
+    "v35_d01_engineering_gate": "PASS",
+    "v35_d01_security_gate": "PASS",
+    "note": "历史记录原样保留；H00 未重跑 live 调用，未把旧 FAIL 改写为 PASS。"
+  },
+  "must_pass": [
+    {
+      "item": "冻结基线：仓库 HEAD、应用基线、六个来源文档指纹、环境与锁文件",
+      "result": "PASS",
+      "evidence": "experiments/harness-v4/baseline.json 的 repository（HEAD 973994c、应用基线 1d07285）、sources_fingerprint（6 个文档 sha256）、environment（Python/uv/uv.lock/PG/Redis/R03/R5）。README.md 与 TASKS.md 记录 H00 状态。"
+    },
+    {
+      "item": "能力清单按首页已接入/已有组件/未接线/未实测四类审计",
+      "result": "PASS",
+      "evidence": "docs/harness-v4/CAPABILITY_AUDIT.md 包含四类状态口径与逐项能力表；tests/test_harness_v4_h00.py::test_capability_audit_uses_the_four_required_categories 断言四类表头存在。"
+    },
+    {
+      "item": "清理全库 lint 与类型问题到 0",
+      "result": "PASS",
+      "evidence": "初始 ruff 23 / mypy 16 的原始输出保留在 evidence/harness-v4/HV4-H00/h00-20261110T120708Z/；修复后 ruff 与 mypy 均 exit 0，最终证据在 h00-20261110T124500Z/。"
+    },
+    {
+      "item": "定义 inspect / bugfix / feature / refactor / run_app 的成功含义",
+      "result": "PASS",
+      "evidence": "docs/harness-v4/TASK_TYPES.md 与 experiments/harness-v4/task-types.json（status=FROZEN）定义五类目标、成功、禁止项、必需回执与默认资源；test_task_type_contract_covers_every_type 校验覆盖全部类型。"
+    },
+    {
+      "item": "冻结 12 dev + 12 holdout 任务、资源上限与判定器哈希",
+      "result": "PASS",
+      "evidence": "experiments/harness-v4/tasks/dev.jsonl 与 holdout.jsonl 各 12 行，6 个真实项目、Python/JavaScript/TypeScript/Go 覆盖，每个 split 组成 bugfix 4 / feature 3 / refactor 2 / run_app 2 / large_multi 1；resources 不超过 scoring-v1.json 的 ceilings；每个任务 judge_sha256 与 canonical judge 一致，24 个哈希唯一。"
+    },
+    {
+      "item": "每任务包含 repository、commit、目标、环境摘要与判定器哈希",
+      "result": "PASS",
+      "evidence": "harness_v4.validate_task() 校验必填键、40 位 commit、goal、environment、acceptance、judge、resources，并要求 judge_sha256 与重算一致；validate_catalog() 在测试中通过。"
+    },
+    {
+      "item": "区分测试缺失与任务失败，保留历史 live 失败",
+      "result": "PASS",
+      "evidence": "ACCEPTANCE.md、SCORING_PROTOCOL.md 与 scoring-v1.json 定义 NOT_APPLICABLE / INFRA_ERROR / TASK_FAIL 的独立状态与分母；baseline.historical_gates 保留 E02 live FAIL、E03/E01/publication NOT_RUN，V35-D01 工程/安全 PASS。"
+    },
+    {
+      "item": "核心回归可重现且全绿",
+      "result": "PASS",
+      "evidence": "20 文件核心集最终 225 passed / 0 failed / 0 errors / 0 skipped，junit 与日志在 evidence/harness-v4/HV4-H00/core-regression/；此前因缺少沙箱 lock 的两次失败尝试日志原样保留在 core-regression-attempt1/，未删除或改写。"
+    },
+    {
+      "item": "全量测试与 live 门的真实状态未被夸大",
+      "result": "PASS",
+      "evidence": "baseline.regression.full_suite=NOT_COMPLETED（922 收集后超过 10 分钟无进展被停止）；live_model_gate、live_agent_gate、live_publication_gate 均为 NOT_RUN；accept 明确 engineering_gate=PASS 不蕴含 live 能力。"
+    }
+  ],
+  "deviations": [
+    {
+      "issue": "全量 922 测试未完成",
+      "handling": "全量 pytest 在超过 10 分钟无进展后被停止（pytest 等待、PostgreSQL 空闲、无沙箱容器活动），按 NOT_COMPLETED 记录，不折算为通过；H00 以 20 文件核心回归集作为可复现工程证据。"
+    },
+    {
+      "issue": "新工作区首次核心回归出现 23 failed / 2 errors",
+      "handling": "根因是 .local/r03/sandbox-lock.json 缺失；执行 make sandbox-build 后降为 1 failed；再执行 make sandbox-build-r5 后全绿。两次失败日志与 junit 原样保留在 evidence/harness-v4/HV4-H00/core-regression-attempt1/，baseline.regression.core_attempts 记录计数与不计数原因。"
+    },
+    {
+      "issue": "H00 未运行任何 live 评测",
+      "handling": "live_model_gate、live_agent_gate、live_publication_gate 标记 NOT_RUN；未用 fixture 或本地确定性提供方冒充真实模型/Agent 结果。"
+    },
+    {
+      "issue": "H00 的任务目录使用真实开源项目 commit，但未在 H00 内执行任务",
+      "handling": "H00 只冻结任务、判定器与协议；任务执行与评分属于 H01-H18。dev/holdout 的 judge 仅记录目标与隐藏验证绑定，不产生任何通过结论。"
+    },
+    {
+      "issue": "实现提交中部分 Markdown/Python 文件权限为 100755",
+      "handling": "在第二次本地提交中统一改为 100644，不改变文件内容。"
+    }
+  ],
+  "artifacts": {
+    "baseline": "experiments/harness-v4/baseline.json",
+    "task_types": "experiments/harness-v4/task-types.json",
+    "scoring": "experiments/harness-v4/scoring-v1.json",
+    "dev_tasks": "experiments/harness-v4/tasks/dev.jsonl",
+    "holdout_tasks": "experiments/harness-v4/tasks/holdout.jsonl",
+    "harness_module": "src/mgar_v3/quality_eval/harness_v4.py",
+    "tests": "tests/test_harness_v4_h00.py",
+    "capability_audit": "docs/harness-v4/CAPABILITY_AUDIT.md",
+    "task_types_doc": "docs/harness-v4/TASK_TYPES.md",
+    "scoring_doc": "docs/harness-v4/SCORING_PROTOCOL.md",
+    "regression_log": "docs/harness-v4/BASELINE_REGRESSION.md",
+    "verification": "config/verification.json",
+    "verify_attempt": "evidence/HV4-H00/20261110T124323Z-8f9da9e4/",
+    "evidence": "evidence/harness-v4/HV4-H00/"
+  },
+  "next_card": "HV4-H01",
+  "next_card_prerequisites": [
+    "H01 开始前重新读取 TASKS.md、ROADMAP.md、ACCEPTANCE.md、plan.json、sources.json",
+    "复用 H00 冻结的 baseline.json 与 24 任务目录，不得在 H01 修改 dev/holdout 任务或判定器哈希",
+    "H01 仍不得把 live_model_gate / live_agent_gate / live_publication_gate 从 NOT_RUN 改为 PASS，除非有真实调用与独立证据",
+    "全量 922 测试的 NOT_COMPLETED 状态需在 H01 继续如实保留；若重跑必须单独记录命令、超时与结果"
+  ]
+}

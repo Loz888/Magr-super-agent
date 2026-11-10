@@ -111,13 +111,13 @@ def verify_report(
 
 def _claim_markdown(binding: ClaimBinding, repository: str, commit: str) -> str:
     path = _path_from_uri(binding.source_uri).split("?", 1)[0]
-    link = f"https://github.com/{repository}/blob/{commit}/{path}#L{binding.start_line}-L{binding.end_line}"
+    location = f"L{binding.start_line}-L{binding.end_line}"
+    link = f"https://github.com/{repository}/blob/{commit}/{path}#{location}"
     quote = binding.quote if len(binding.quote) <= 800 else binding.quote[:800] + " …"
     quoted = "\n".join("    " + line for line in quote.rstrip("\n").splitlines())
     return (
         f"- **{binding.statement}**\n"
-        f"  - 源码位置：`{binding.source_uri}` · "
-        f"[L{binding.start_line}-L{binding.end_line}]({link})\n"
+        f"  - 源码位置：`{binding.source_uri}` · [{location}]({link})\n"
         f"  - 证据 ID：`{binding.evidence_id}`\n"
         f"  - 原文：\n\n    ```text\n{quoted}\n    ```\n"
     )
@@ -172,7 +172,8 @@ def render_report(
             "",
             "---",
             "",
-            "> 机械核验只验证源码引用存在、逐字匹配并定位行号；不证明业务语义或架构推断本身正确。",
+            "> 机械核验只验证源码引用存在、逐字匹配并定位行号；"
+            "不证明业务语义或架构推断本身正确。",
             "",
         ]
     )
@@ -253,7 +254,8 @@ def partial_from_evidence(
     return PartialReport(
         reason_code=reason_code,
         conclusion=(
-            f"任务未完成：{detail}。以下仅列出本轮已经实际读取并落库的源码证据，不构成完整结论。"
+            f"任务未完成：{detail}。以下仅列出本轮已经实际读取并落库的源码证据，"
+            "不构成完整结论。"
         ),
         structure="尚未完成跨文件的总体结构判断。",
         evidence=known[:10],

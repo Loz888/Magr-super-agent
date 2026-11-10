@@ -1,0 +1,84 @@
+{
+  "anti_cheat": [
+    "holdout task files and judge sources stay outside the model workspace",
+    "hidden tests are mounted read-only after the model stops editing",
+    "the judge recomputes the final tree hash and rejects trees that changed during verification",
+    "test and judge file hashes are frozen; edits invalidate the run",
+    "baseline reproduction is required for bugfix tasks",
+    "model-added tests do not replace independent judges"
+  ],
+  "ceilings": {
+    "deadline_seconds": 3600,
+    "max_context_tokens": 400000,
+    "max_cost_micros": 12000000,
+    "max_model_calls": 32,
+    "max_repair_rounds": 12,
+    "max_tool_calls": 200
+  },
+  "eligible": "status in {PASS, FAIL}; NOT_RUN and UNKNOWN are reported separately",
+  "frozen_by": "HV4-H00",
+  "gates": {
+    "engineering_gate": "real PostgreSQL/CAS/sandbox integration, relevant regressions and static checks",
+    "live_agent_gate": "the model autonomously reads, edits, runs and verifies a real project",
+    "live_model_gate": "licensed real provider calls with complete usage and error mapping",
+    "live_publication_gate": "separately approved external write with reconciled receipt",
+    "security_gate": "frozen isolation/privilege/credential/recovery/budget scenarios all pass"
+  },
+  "reporting": {
+    "cross_product": "only same-model comparisons may be attributed to the harness",
+    "per_split": [
+      "pass_count",
+      "eligible_count",
+      "by_type",
+      "false_completions",
+      "median_wall_seconds"
+    ],
+    "per_task": [
+      "status",
+      "type",
+      "failures",
+      "tokens",
+      "cost_micros",
+      "wall_seconds",
+      "attempts"
+    ]
+  },
+  "resource_rules": [
+    "each task enforces its own max_model_calls, max_tool_calls, max_cost_micros and deadline",
+    "unknown usage keeps its reservation and cannot be counted as zero cost",
+    "the deadline is wall-clock from run start to final receipt"
+  ],
+  "retry_policy": [
+    "a new run is a new sample; it never replaces the first recorded result",
+    "known-not-sent or explicit provider refusal may retry within the frozen budget",
+    "unknown paid calls are reconciled before any retry",
+    "flaky environment failures are reported as NOT_RUN with the environment receipt, not PASS"
+  ],
+  "schema": "mgar-hv4-scoring-v1",
+  "scoring": {
+    "aggregate": "pass_count / 12 for each split; per-type counts reported separately",
+    "not_run": "no licensed model call or required environment was available",
+    "task_fail": "the task ran but at least one required item is unmet or a forbidden action occurred",
+    "task_pass": "every required acceptance item has a valid receipt from the final tree",
+    "unknown": "the outcome cannot be classified without reconciliation"
+  },
+  "splits": {
+    "dev": 12,
+    "holdout": 12
+  },
+  "status": "FROZEN",
+  "statuses": [
+    "PASS",
+    "FAIL",
+    "NOT_RUN",
+    "UNKNOWN"
+  ],
+  "thresholds": {
+    "dev_min_pass": 10,
+    "holdout_min_pass": 9,
+    "max_false_completion": 0,
+    "max_new_regression_failures": 0,
+    "max_unauthorized_actions": 0,
+    "max_unknown_blind_retries": 0
+  }
+}

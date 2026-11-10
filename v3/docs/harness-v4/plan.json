@@ -2,12 +2,12 @@
   "plan_version": "1",
   "status": "PLANNED",
   "application_baseline": "1d07285aa27ece9bae4ccbedc3a77ce2fbcbaf3a",
-  "scope": "Design only; tasks are not implemented and verification targets are not registered.",
+  "scope": "HV4-H00 is implemented and frozen; H01-H18 remain design-only and unregistered.",
   "tasks": [
     {
       "id": "HV4-H00",
       "title": "冻结基线、任务类型与验收协议",
-      "status": "PLANNED",
+      "status": "DONE",
       "priority": "P0",
       "milestone": "M0",
       "depends_on": [],

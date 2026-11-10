@@ -43,8 +43,9 @@ def mcnemar_exact_two_sided(only_a: int, only_b: int) -> float:
     discordant = only_a + only_b
     if not discordant:
         return 1.0
-    tail = sum(comb(discordant, k) for k in range(min(only_a, only_b) + 1))
-    return min(1.0, float(2 * tail / 2**discordant))
+    tail: int = sum(comb(discordant, k) for k in range(min(only_a, only_b) + 1))
+    probability: float = 2 * tail / 2**discordant
+    return float(min(1.0, probability))
 
 
 def percentile(values: Sequence[float], q: float) -> float | None:
@@ -202,7 +203,9 @@ def summarize(
     ):
         values = {str(record[field]) for record in records}
         if len(values) != 1:
-            raise validate.ValidationError([f"records disagree on {label}: {sorted(values)}"])
+            raise validate.ValidationError(
+                [f"records disagree on {label}: {sorted(values)}"]
+            )
 
     arms = sorted({str(record["arm"]) for record in records})
     payload: dict[str, Any] = {

@@ -1043,5 +1043,25 @@
       "tests/test_v32_repository_analysis.py"
     ],
     "timeout_seconds": 180
+  },
+  "HV4-H00": {
+    "components": {
+      "baseline": "origin_main_973994c_with_application_baseline_1d07285_frozen",
+      "static_checks": "full_repo_ruff_23_to_0_and_mypy_16_to_0_with_original_logs",
+      "regression": "20_file_core_suite_real_postgres_redis_and_r03_sandbox_full_922_run_recorded_not_completed",
+      "task_catalog": "12_dev_12_holdout_six_real_projects_python_javascript_typescript_go",
+      "judge": "canonical_judge_sha256_per_task_v35_hidden_file_hashes_bound_holdout_isolated",
+      "contracts": "task_types_and_scoring_v1_frozen_before_any_hv4_result",
+      "model": "not_used",
+      "github": "not_used",
+      "postgres": "real_migrate_doctor_and_core_regression",
+      "redis": "real_doctor_and_core_regression",
+      "docker": "real_r03_sandbox_in_core_regression",
+      "live": "NOT_RUN_no_paid_calls_or_external_writes"
+    },
+    "tests": [
+      "tests/test_harness_v4_h00.py"
+    ],
+    "timeout_seconds": 300
   }
 }

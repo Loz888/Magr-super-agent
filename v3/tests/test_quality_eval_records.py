@@ -59,7 +59,9 @@ def test_fail_record_requires_failure_kind():
     problems = record.validate_mapping(base_mapping(status="FAIL", failure_kind=None))
     assert any("FAIL records require failure_kind" in item for item in problems)
     assert record.validate_mapping(base_mapping(status="FAIL", failure_kind="business")) == []
-    assert record.validate_mapping(base_mapping(status="FAIL", failure_kind="infrastructure")) == []
+    assert (
+        record.validate_mapping(base_mapping(status="FAIL", failure_kind="infrastructure")) == []
+    )
     assert (
         record.validate_mapping(base_mapping(status="FAIL", failure_kind="validation_rejected"))
         == []
@@ -74,13 +76,8 @@ def test_unknown_requires_unknown_failure_kind():
 
 def test_not_run_requires_reason_and_no_failure_kind():
     problems = record.validate_mapping(
-        base_mapping(
-            status="NOT_RUN",
-            failure_kind=None,
-            not_run_reason=None,
-            model_calls=0,
-            usage_source="not_applicable",
-        )
+        base_mapping(status="NOT_RUN", failure_kind=None, not_run_reason=None, model_calls=0,
+                     usage_source="not_applicable")
     )
     assert any("NOT_RUN records require not_run_reason" in item for item in problems)
     assert (
@@ -113,7 +110,8 @@ def test_unknown_fields_and_missing_fields_are_rejected():
 
 def test_hash_and_enum_formats_are_enforced():
     assert any(
-        "dataset_hash" in item for item in record.validate_mapping(base_mapping(dataset_hash="xyz"))
+        "dataset_hash" in item
+        for item in record.validate_mapping(base_mapping(dataset_hash="xyz"))
     )
     assert record.validate_mapping(base_mapping(dataset_hash=HASH_A.upper())) != []
     assert any("mode" in item for item in record.validate_mapping(base_mapping(mode="live")))

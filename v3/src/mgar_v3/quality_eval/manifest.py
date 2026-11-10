@@ -7,7 +7,7 @@ import sys
 from collections.abc import Iterable, Mapping, Sequence
 from datetime import UTC, datetime
 from pathlib import Path
-from typing import Any, cast
+from typing import Any
 
 from mgar_v3.quality_eval.record import canonical_digest, sha256_file
 
@@ -193,7 +193,7 @@ def verify_manifest(
 
 
 def manifest_sha256(manifest: Mapping[str, Any]) -> str:
-    return cast(str, manifest["manifest_sha256"])
+    return str(manifest["manifest_sha256"])
 
 
 def unique_arms(records: Iterable[Mapping[str, Any]]) -> list[str]:

@@ -1,0 +1,201 @@
+{
+  "card": "HV4-H00",
+  "environment": {
+    "lockfile_sha256": "a05975009974e79bec1513434bc7ca7feca80eaccf3a2e09f57af52800f174d9",
+    "platform": "Linux WSL2",
+    "postgres": "mgar-v3-postgres-1 pgvector/pgvector:0.8.1-pg16-bookworm (healthy)",
+    "python": "3.12.16",
+    "redis": "mgar-v3-redis-1 redis:7.4.7-bookworm (healthy)",
+    "sandbox_note": "H00 rebuilt both sandboxes so the locks bind the local Docker images; the first core attempt failed because .local/r03/sandbox-lock.json and .local/r5/sandbox-lock.json were absent in the new worktree",
+    "sandbox_r03": {
+      "image": "mgar-v3-sandbox-r03:local",
+      "image_id": "sha256:efad10932c12f9d6f2408fe960e9a292c4bdbac0f8365387838acbe4f0fdd2b6",
+      "path": ".local/r03/sandbox-lock.json",
+      "sha256": "2b6ffb5cead4d18e1219816c4d829c7f2cdf3dc5165cf1683fb4c25f360f3e86"
+    },
+    "sandbox_r5": {
+      "image_id": "sha256:daa7afaec0e3e97db1bfcf522d63ca08f75e28289232b263f1c5802d94eb7b9c",
+      "path": ".local/r5/sandbox-lock.json",
+      "sha256": "6465789b3feb2352f396d488001d5d67148935bfeb144ab0c67c6b45bfb07255"
+    },
+    "uv": "0.13.7",
+    "venv": "/tmp/magar-harness-venv"
+  },
+  "evidence_paths": [
+    "evidence/harness-v4/HV4-H00/",
+    "docs/harness-v4/CAPABILITY_AUDIT.md",
+    "docs/harness-v4/TASK_TYPES.md",
+    "docs/harness-v4/SCORING_PROTOCOL.md",
+    "docs/harness-v4/BASELINE_REGRESSION.md"
+  ],
+  "frozen_at": "2026-11-10T12:40:01Z",
+  "historical_gates": {
+    "e01_live_model_gate": "NOT_RUN",
+    "e02_live_agent_gate": "FAIL",
+    "e02_live_model_gate": "FAIL",
+    "e03_live_model_gate": "NOT_RUN",
+    "live_publication_gate": "NOT_RUN",
+    "note": "historic records are preserved verbatim; H00 did not re-run live calls or external writes",
+    "v35_d01_engineering_gate": "PASS",
+    "v35_d01_security_gate": "PASS"
+  },
+  "regression": {
+    "core_attempts": [
+      {
+        "attempt": 0,
+        "cause": "new worktree had no .local/r03/sandbox-lock.json; tests require make sandbox-build before exercising the sandbox",
+        "counted": false,
+        "log": "evidence/harness-v4/HV4-H00/core-regression-attempt1/pytest-attempt0.log",
+        "result": "23 failed, 196 passed, 4 skipped, 2 errors in 170.12s"
+      },
+      {
+        "attempt": 1,
+        "cause": "R5 sandbox lock (.local/r5/sandbox-lock.json) still absent; sigkill recovery test needs the V3.4 sandbox",
+        "counted": false,
+        "junit": "evidence/harness-v4/HV4-H00/core-regression-attempt1/junit.xml",
+        "log": "evidence/harness-v4/HV4-H00/core-regression-attempt1/pytest.log",
+        "result": "1 failed, 220 passed, 4 skipped in 238.95s"
+      },
+      {
+        "attempt": 2,
+        "cause": "after make sandbox-build and make sandbox-build-r5; DSN exported",
+        "counted": true,
+        "junit": "evidence/harness-v4/HV4-H00/core-regression/junit.xml",
+        "log": "evidence/harness-v4/HV4-H00/core-regression/pytest.log",
+        "result": "225 passed, 0 failed, 0 errors, 0 skipped in 265.692s"
+      }
+    ],
+    "core_suite": {
+      "command": "uv run --frozen pytest -q <20 core files> --junitxml=evidence/harness-v4/HV4-H00/core-regression/junit.xml",
+      "database": "MGAR_V3_DATABASE_URL from v3/.env (real PostgreSQL)",
+      "errors": 0,
+      "failures": 0,
+      "files": [
+        "tests/test_coordination.py",
+        "tests/test_coordination_candidates.py",
+        "tests/test_effects.py",
+        "tests/test_recovery.py",
+        "tests/test_v32_repository_analysis.py",
+        "tests/test_v32_repository_analysis_db.py",
+        "tests/test_v34_repair_agent.py",
+        "tests/test_v34_patch_workspace.py",
+        "tests/test_v34_sandbox_executor.py",
+        "tests/test_v34_security_recovery.py",
+        "tests/test_v35_d01.py",
+        "tests/test_v35_e03.py",
+        "tests/test_agent_page.py",
+        "tests/test_analysis_streaming.py",
+        "tests/test_api.py",
+        "tests/test_web_access.py",
+        "tests/test_quality_eval_records.py",
+        "tests/test_quality_eval_stats.py",
+        "tests/test_quality_eval_validation.py",
+        "tests/test_verification.py"
+      ],
+      "junit": "evidence/harness-v4/HV4-H00/core-regression/junit.xml",
+      "log": "evidence/harness-v4/HV4-H00/core-regression/pytest.log",
+      "passed": 225,
+      "skipped": 0,
+      "tests": 225,
+      "time_seconds": 265.692
+    },
+    "full_suite": {
+      "collected": 922,
+      "evidence": [
+        "docs/harness-v4/BASELINE_REGRESSION.md"
+      ],
+      "observed": "the full run made no progress for more than ten minutes with one sleeping pytest process, an idle PostgreSQL session and no sandbox containers; it was stopped and is not counted as a pass",
+      "status": "NOT_COMPLETED"
+    },
+    "targeted_precheck": {
+      "files": [
+        "tests/test_v32_repository_analysis.py",
+        "tests/test_quality_eval_records.py",
+        "tests/test_quality_eval_stats.py",
+        "tests/test_quality_eval_validation.py",
+        "tests/test_agent_page.py"
+      ],
+      "passed": 57,
+      "tests": 57
+    }
+  },
+  "repository": {
+    "application_baseline": "1d07285aa27ece9bae4ccbedc3a77ce2fbcbaf3a",
+    "branch": "main",
+    "head": "973994c0e6c087c2968b3d91a3a6b9220e2c0892",
+    "head_subject": "docs(harness): add source-based gap assessment and phased upgrade taskbook",
+    "url": "https://github.com/Loz888/MAGR-v3.git"
+  },
+  "schema": "mgar-hv4-baseline-v1",
+  "sources_fingerprint": {
+    "docs/harness-v4/ACCEPTANCE.md": "e1035c8825171ac1ac36c628ed5da7e12620eb761a152e28061d4aeaadb5d28a",
+    "docs/harness-v4/README.md": "66bd9ad9b7e2a758f92d938256ad5dd59cdeaaf001ea87a67ca52b4b92ff7761",
+    "docs/harness-v4/ROADMAP.md": "d6696778d6983fe70ade6f2109f58748903b281b40d70f940ef349e9fff69f3a",
+    "docs/harness-v4/TASKS.md": "335c7ff215db54c567e1b2eef2f395db850868fb4013897fa859f3c3d8d41c2a",
+    "docs/harness-v4/plan.json": "58ac3aed5661e8f6efa187b16a62c889e0ffe12c03765ff956dda90d04695653",
+    "docs/harness-v4/sources.json": "2fc881ba53204f8b7c93943d2f06068472d4b9a3d5f1fcb9f80d20f0dbcb34b6"
+  },
+  "static_checks": {
+    "commands": [
+      "uv run --frozen ruff check src tests scripts",
+      "uv run --frozen mypy"
+    ],
+    "evidence": [
+      "evidence/harness-v4/HV4-H00/h00-20261110T120708Z/ruff.json",
+      "evidence/harness-v4/HV4-H00/h00-20261110T120708Z/mypy.txt",
+      "evidence/harness-v4/HV4-H00/h00-20261110T121023Z/ruff.json",
+      "evidence/harness-v4/HV4-H00/h00-20261110T121023Z/mypy.txt"
+    ],
+    "initial_by_file": {
+      "scripts/quality_eval_import_v6_rehearsal.py": 1,
+      "src/mgar_v3/quality_eval/manifest.py": 1,
+      "src/mgar_v3/quality_eval/record.py": 2,
+      "src/mgar_v3/quality_eval/stats.py": 1,
+      "src/mgar_v3/quality_eval/validate.py": 1,
+      "src/mgar_v3/repository_analysis/agent.py": 1,
+      "src/mgar_v3/repository_analysis/fixture.py": 2,
+      "src/mgar_v3/repository_analysis/report.py": 3,
+      "src/mgar_v3/repository_analysis/service.py": 2,
+      "src/mgar_v3/repository_analysis/tools.py": 6,
+      "tests/test_quality_eval_records.py": 2,
+      "tests/test_v32_repository_analysis.py": 6
+    },
+    "mypy_final": 0,
+    "mypy_initial": 16,
+    "note": "initial_by_file counts are lint errors only; mypy totals are recorded separately",
+    "ruff_final": 0,
+    "ruff_initial": 23
+  },
+  "status": "FROZEN",
+  "task_catalog": {
+    "files": {
+      "experiments/harness-v4/scoring-v1.json": "6bdf1229c78f0ed73c8d4775d43e1deb4e65c12d371573c2ff652bc99dc19f81",
+      "experiments/harness-v4/task-types.json": "66cc1e59bf74922b0b6e80379f14434d54cb67550311525972b19b96348f3d1a",
+      "experiments/harness-v4/tasks/dev.jsonl": "43c47739bbc2ca9370619067f359545c8d0e9652e0011187dca327283e3cad30",
+      "experiments/harness-v4/tasks/holdout.jsonl": "c8b98abb3d528a1c5e87390105fc75bc84eedb4bbfcfa8469ff33399d946745b"
+    },
+    "holdout_isolated": true,
+    "judge_hashes_unique": 24,
+    "languages": [
+      "go",
+      "javascript",
+      "python",
+      "typescript"
+    ],
+    "per_split": {
+      "dev": 12,
+      "holdout": 12
+    },
+    "repositories": [
+      "expressjs/express",
+      "golang/example",
+      "pallets/click",
+      "psf/requests",
+      "sindresorhus/got",
+      "spf13/pflag"
+    ],
+    "schema": "mgar-hv4-task-v1",
+    "tasks": 24
+  },
+  "worktree": "/home/imini/magr-harness"
+}

@@ -127,8 +127,8 @@ def check_manifest_consistency(
         return problems
 
     dataset = manifest["dataset"]
-    raw_labels = manifest.get("arms")
-    labels = raw_labels if isinstance(raw_labels, list) else []
+    arms = manifest.get("arms")
+    labels: list[Any] = arms if isinstance(arms, list) else []
 
     if str(manifest.get("experiment_id")) != (single_value(records, "experiment_id") or ""):
         problems.append("record experiment_id does not match manifest")
