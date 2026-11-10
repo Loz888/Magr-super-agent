@@ -11,3 +11,5 @@ SA01 DONE。实施提交 `8dc641bbdf1fe7d0f057e11ec66e951f2874f2f8`，接口 `so
 真实独立 PG 的 29→30 升级、旧行/迁移 checksum 保持、同连接/事务回滚、身份冲突、metadata 无正文、关联 FK 和旧入口均有测试。`make verify TASK=SAV1-01` 79 项 PASS，0 失败/错误/跳过，前后源码 SHA 一致：`5f3c9f216739cee829ebe25fe62be63455917875e70586fecbdb555c8e86738e`。全库 lint/mypy PASS（201 files），定向 51 PASS 与整卡有重叠，不能相加。源码证据见 `evidence/SAV1-01/20261110T143150Z-d96545cd/result.json`。
 
 SA02 角色绑定、SA03 四层策略、SA04 完整 ingress ACK/恢复及 SA05/06 真实适配器均未由此卡提供；所有 live 门保持 NOT_RUN。当前只是来源/控制平面增量，不开放真实自动修复。请继续 Harness 自己的任务书；若需共享迁移或改动 Sources/Engine/API/预算先协调，不改对方活动工作树。后续迁移编号需重新对齐。
+
+通信记录（2026-11-10T14:39:26.519283+00:00）：已在 Trae 当前 Harness 对话排队，实际 UI 显示“等待发送”；其 H02 修复命令仍在继续。本交接非紧急，因此未点“直接发送”、未停止当前任务。未将排队误记为已送达；收到与否以后续 Trae 确认为准。

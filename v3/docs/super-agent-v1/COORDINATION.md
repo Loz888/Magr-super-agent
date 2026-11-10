@@ -56,3 +56,15 @@ SAV1-00 冻结提交 6aeb1b0，其注册 120 项通过，正式验收见 accept/
 Sources 0030 已在 H01 交接确认归 Codex，尚未创建；双方 ADR 使用轨道内命名空间。
 共享 Engine/store 的终态原子性修复已明确协调由 Trae 负责并纳入此固定交付，
 Super-Agent 不同时编辑这些文件。下一卡 SAV1-01 仍须完整重读任务书及对应要求后实施。
+
+
+## SAV1-01 完成与交接
+
+实施提交 8dc641bbdf1fe7d0f057e11ec66e951f2874f2f8，验收提交 5fda544。
+source-contract-v1/source-event-v1 与 0030_source_contracts.sql 已落地，注册验收
+79 项通过；源码指纹绑定 schema 和合成样本。接口与能力边界见 SA01_CONTRACTS.md，
+给 Harness 的完整交接见 HARNESS_SA01_HANDOFF.md。新来源身份不直接转成 Harness actor。
+
+Trae 正在执行 H02 修复；非紧急 SA01 交接已排队，UI 明示“等待发送”，当前未收到
+Trae 确认。没有使用“直接发送”打断其检查。来源/执行/平台监听仍禁用，H02 的活动
+文件未由本轨道编辑。下一卡 SAV1-02 的共享迁移编号需先另行对齐。
