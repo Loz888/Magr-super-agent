@@ -76,3 +76,8 @@ Trae 实际固定确认：`4ad86c1c6ee94ac6c11e402a831a9a0a0c8d066d` §15（0032
 在独立副本根执行 `make migrate`、`make lint`、`make typecheck`、`make verify TASK=SAV1-03`。注册目标包括本卡模式/作用域/版本/撤权矩阵、真实 31→32 升级/旧行/checksum/事务回滚，以及 SA01/02、旧 Engine/API/账户/mailbox/工具/外发/模型账本/只读策略和恢复回归。失败尝试保留在 evidence/super-agent-v1/SAV1-03；JSON schema 与 manifest 纳入源码指纹。
 
 本卡没有真实安装、生产 verifier、平台订阅/监听、模型调用、Worker、通知发送或发布。SA04 持久入站、SA07 总预算、SA13 真实桥、SA17 Delivery、SA19 管理页面、SA20 常驻清扫与 SA21 全安全生命周期仍按各卡交付。工程矩阵 PASS 不替代完整 policy_security/live/长期门。完成后等待独立复验，不自动进入 SA04。
+
+
+## 本副本沙箱依赖与保留失败
+
+首次完整注册回归 304 项中，300 项通过，4 项旧 R5 崩溃恢复因本副本没有 .local/r5/sandbox-lock.json 而报 SANDBOX_NOT_PREPARED；原 FAIL 和 JUnit 原样保留。使用既有 `make -C v3 sandbox-build-r5 UV=/home/imini/.local/bin/uv` 离线构建本副本锁与镜像（TMPDIR 在本副本 .local/tmp，FROM scratch、network=none），未修改冻结源码或删减用例。随后以相同提交和源码指纹重新执行完整注册验收，结果见正式摘要。复现这些旧恢复检查前须准备该 R5 沙箱；默认 sandbox-build-r03 不能代替 R5 锁。

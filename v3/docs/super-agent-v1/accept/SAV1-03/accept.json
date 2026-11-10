@@ -1,0 +1,343 @@
+{
+  "card": "SAV1-03",
+  "status": "DONE",
+  "accepted_at_utc": "2026-11-10T16:48:11.533245+00:00",
+  "source_commit": "9f64dc9000879ae84a71640a6d96bdb4668b332e",
+  "source_sha256": "bdd46499b40c3acaa0827c356393583e39ad2f527bb82cf2c0a074d4cce7ca40",
+  "finished_source_sha256": "bdd46499b40c3acaa0827c356393583e39ad2f527bb82cf2c0a074d4cce7ca40",
+  "scope": "Four-layer independent source policy definitions/validation, four modes, owner signatures/CAS/history/revocation, read-only impact preview and same-Engine fencing for existing fixture investigation Run/tool/worker lease/Action; retain in-flight receipts and original financial settlement.",
+  "gates": {
+    "engineering_gate": "PASS",
+    "policy_security_gate": "NOT_RUN",
+    "live_source_channel_gate": "NOT_RUN",
+    "live_coding_gate": "NOT_RUN",
+    "live_publication_gate": "NOT_RUN",
+    "continuous_operation_gate": "NOT_RUN"
+  },
+  "card_policy_security_matrix": "PASS within deterministic source-policy/identity/role/scope/mode/version/expiry/notification/rollback/fencing tests; not the complete SA21 data/budget/platform/process security gate.",
+  "dependencies": {
+    "SAV1-02": "DONE independently accepted at bdb4e640faf44fe2eb698cab27630c1b164574d7",
+    "independent_result": "evidence/SAV1-02/20261110T155049Z-e47e70db/result.json",
+    "independent_counts": {
+      "tests": 132,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "harness": "no additional prerequisite imported; H03/H04 status is not changed by this acceptance"
+  },
+  "reading": {
+    "evidence": "evidence/super-agent-v1/SAV1-03/20261110T160145Z-start/taskbook-read.json",
+    "read_at_utc": "2026-11-10T16:01:45.153792+00:00",
+    "files": [
+      {
+        "path": "AGENTS.md",
+        "sha256": "3c4ba83fa186825886518fccf9e9620b1d6669e589e2a6fe152b3144fb439543"
+      },
+      {
+        "path": "v3/AGENTS.md",
+        "sha256": "f0d77defada751cb4cfeeb2db1727741876ac9f648d1f4b184f5ee8460c45d1e"
+      },
+      {
+        "path": "v31-upgrade/TASK_QUEUE.md",
+        "sha256": "a469d6d2d5ba81efc92917e6801f2e12af9ad4051e440ee4ca453c8e74af1dc7"
+      },
+      {
+        "path": "v3/docs/adr/0001-v31-boundaries.md",
+        "sha256": "ca0d326e5f9ab745223171b7edb10302e791dafa09b42f7c7c7de6dc2a59397f"
+      },
+      {
+        "path": "v3/docs/adr/0003-r3-router.md",
+        "sha256": "fc8df29b8c39d7d41c1bea9353fbcdd952b9980e4e202f7da1ae37de969e029f"
+      },
+      {
+        "path": "v3/docs/adr/0007-r5-repair-boundaries.md",
+        "sha256": "337a530d4bc6da3cffa417e6446452a356f33cb50a6864c0d25d29bfef12c089"
+      },
+      {
+        "path": "v3/docs/adr/0012-r6-monitoring-proactivity-evaluation.md",
+        "sha256": "37b0a19e9975575bbd2bb5a808b3948ffc19cb4f034f131fd56d0eaf79d49cca"
+      },
+      {
+        "path": "v3/docs/super-agent-v1/README.md",
+        "sha256": "053425dfc680bc94cf867665bf03097568af3c1702bc1c85f2b15848984971ec"
+      },
+      {
+        "path": "v3/docs/super-agent-v1/TASKS.md",
+        "sha256": "fbbba26ad50bc5920ae201edbec3faca0874730a0aec921c8b8c8397043fc582"
+      },
+      {
+        "path": "v3/docs/super-agent-v1/ARCHITECTURE.md",
+        "sha256": "049e82df679dc02bbefd032b95b702569c40ee046d244f7033e0f8f653d84ac3"
+      },
+      {
+        "path": "v3/docs/super-agent-v1/ACCEPTANCE.md",
+        "sha256": "fad435f294fed6b859fd0bb7a42086311268e6792f55b5a971b6b4de9a766b79"
+      },
+      {
+        "path": "v3/docs/super-agent-v1/adr/SAV1-00-authority-sources-policy.md",
+        "sha256": "26163b3ea73bfbb60ddf7323d80814a00c68a446cbf3aa9a0ce0288d8c267565"
+      },
+      {
+        "path": "v3/docs/super-agent-v1/adr/SAV1-02-identity-authority.md",
+        "sha256": "ac6c4c656e83144e5e338a3c5fc0deb1115cc72b8e3f7071ae3506e693e6fc2a"
+      },
+      {
+        "path": "v3/docs/super-agent-v1/SA02_IDENTITIES.md",
+        "sha256": "714034a3bd2cd92b5b93348fd587396b6ac9db858a40a3c49b5b0321dfaca7d5"
+      },
+      {
+        "path": "v3/docs/super-agent-v1/sa00/scope.json",
+        "sha256": "6c1922de342dfbd34db9897f2e87cf01c78153c9028cb9c67aec56249c67395c"
+      }
+    ]
+  },
+  "shared_scope": {
+    "status": "ACTUALLY_CONFIRMED",
+    "commit": "4ad86c1c6ee94ac6c11e402a831a9a0a0c8d066d",
+    "confirmed_at_utc": "2026-11-10T15:57:00Z",
+    "handoff_sha256": "52757f46536ec828f315e3978952442ec3d0d13ba79231e98051dbc798737096",
+    "excerpt": "harness-confirmation.md",
+    "scope": [
+      "Codex migration 0032",
+      "Codex source-policies API and minimal api.py wiring",
+      "Codex current-version checks and revocation fencing ONLY for source-policy-associated Run/tools/lease/Action",
+      "No Harness files, model-call changes or financial algorithm changes; unchanged legacy paths"
+    ]
+  },
+  "tool_entry_confirmation": {
+    "status": "ACTUALLY_CONFIRMED",
+    "commit": "f61a23373a0b16f154f11f97b23f9dd4d1670be2",
+    "checked_at_utc": "2026-11-10T16:11:17.782789+00:00",
+    "scope": "agents/tools.py ToolAuthority._grant pre-charge current source policy check only; no legacy/model/financial algorithm changes"
+  },
+  "registered_verification": "evidence/SAV1-03/20261110T164017Z-e07013dc/result.json",
+  "counts": {
+    "tests": 304,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "policy_cases": 88,
+  "commands": [
+    {
+      "argv": [
+        "/home/imini/magr-super-agent/v3/.venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "tests/test_super_agent_sa03.py",
+        "tests/test_super_agent_sa02.py",
+        "tests/test_super_agent_sa01.py",
+        "tests/test_coordination.py",
+        "tests/test_api.py",
+        "tests/test_environment.py",
+        "tests/test_web_access.py",
+        "tests/test_duplex.py",
+        "tests/test_r4_experts.py",
+        "tests/test_effects.py",
+        "tests/test_models.py",
+        "tests/test_r6_policies.py",
+        "tests/test_r5_recovery.py",
+        "--junitxml=/home/imini/magr-super-agent/v3/evidence/SAV1-03/20261110T164017Z-e07013dc/junit.xml"
+      ],
+      "exit_code": 0,
+      "log": "evidence/SAV1-03/20261110T164017Z-e07013dc/command.log",
+      "junit": "evidence/SAV1-03/20261110T164017Z-e07013dc/junit.xml"
+    },
+    {
+      "argv": [
+        "make",
+        "lint"
+      ],
+      "exit_code": 0,
+      "evidence": "evidence/super-agent-v1/SAV1-03/20261110T163029Z-static/commands.json"
+    },
+    {
+      "argv": [
+        "make",
+        "typecheck"
+      ],
+      "exit_code": 0,
+      "source_files": 208,
+      "evidence": "evidence/super-agent-v1/SAV1-03/20261110T163029Z-static/commands.json"
+    },
+    {
+      "argv": [
+        "make",
+        "migrate"
+      ],
+      "exit_code": 0,
+      "evidence": "evidence/super-agent-v1/SAV1-03/20261110T164801Z-migration/commands.json",
+      "inspection": "evidence/super-agent-v1/SAV1-03/local-migration-check.json"
+    }
+  ],
+  "must_pass_cases": [
+    "test_four_modes_keep_receive_admission_execution_and_notification_independent",
+    "test_receive_never_implies_work_reply_or_content_disclosure",
+    "test_same_text_different_verified_recipient_or_installation_is_not_authority",
+    "test_context_provider_cannot_turn_a_quote_into_an_explicit_request",
+    "test_team_rule_is_owner_signed_and_bounded_not_inferred_from_message",
+    "test_followup_requires_exact_current_ticket_controller_not_a_quoted_id",
+    "test_execution_boundary_rechecks_repository_base_path_and_capability",
+    "test_signed_version_and_owner_are_immutable_and_preview_has_no_side_effects",
+    "test_policy_save_cas_has_one_winner_and_revocation_is_sticky",
+    "test_save_and_revoke_rollback_with_same_engine_transaction",
+    "test_policy_update_preview_counts_pending_and_invalidates_old_tools_and_worker_lease",
+    "test_identity_role_revocation_also_fences_associated_policy_run_immediately",
+    "test_inflight_tool_result_is_retained_after_revocation_without_mailbox_or_revival",
+    "test_tool_capability_policy_denial_happens_before_existing_tool_budget_charge",
+    "test_pending_notification_needs_independent_exact_grant_and_old_action_approval",
+    "test_public_destination_cannot_receive_private_content_even_if_owner_listed_that_class",
+    "test_quiet_hours_are_rechecked_after_authorization_before_dispatch",
+    "test_delayed_ready_notifications_still_share_the_current_dispatch_window",
+    "test_inflight_effect_unknown_and_reconciliation_preserve_truth_without_resuming_revoked_run",
+    "test_revocation_never_refunds_unknown_usage_or_blocks_real_late_settlement",
+    "test_database_binding_chain_cannot_cross_project_or_rebind_existing_run",
+    "test_forward_upgrade_31_to_32_preserves_old_source_business_and_financial_rows"
+  ],
+  "compatibility_audit": "evidence/super-agent-v1/SAV1-03/compatibility-audit.json",
+  "versions": {
+    "policy": "source-policy-v1",
+    "identity": "source-identity-v1",
+    "source": "source-contract-v1",
+    "migration": "0032_source_policies.sql",
+    "json_schema": "2020-12",
+    "platform_signatures": "controlled synthetic HMAC; no live platform"
+  },
+  "artifacts": [
+    {
+      "path": "config/source-policy-v1.json",
+      "sha256": "8f870fb989fb96c3b591067279e3f8281cc42d49166d7410c6b7f43e36415c96"
+    },
+    {
+      "path": "migrations/0032_source_policies.sql",
+      "sha256": "a88e31cd786b74fabcec197108be113b186dda51b56529e10e035043b6eb2f30"
+    },
+    {
+      "path": "docs/super-agent-v1/SA03_POLICIES.md",
+      "sha256": "55b2c97bfeeaa0828bf2aeb9f8a32871ccb8301b0f572ebc66e33617fb61c602"
+    },
+    {
+      "path": "docs/super-agent-v1/adr/SAV1-03-layered-policy-revocation.md",
+      "sha256": "f4ed0c9304aad14d2755e848302bc6ecb3a61e02a52fa3fd8e16b1a080483527"
+    },
+    {
+      "path": "schemas/super-agent-v1/source-policy-definition-v1.schema.json",
+      "sha256": "ded9b74379997e6e64c7f0ded5e9f149b0ea257b051486cb49a6fb79b549a965"
+    },
+    {
+      "path": "schemas/super-agent-v1/source-policy-preview-v1.schema.json",
+      "sha256": "78562dcfa0ce84ca994b84637108a6e1c3a03b66c35fc0f9ace591eb59ff599c"
+    },
+    {
+      "path": "schemas/super-agent-v1/source-policy-revoke-v1.schema.json",
+      "sha256": "ec1c7832c93660f4d00dae144800d69a2421af7bd9af774d2bc3a16a6cad9dc6"
+    },
+    {
+      "path": "schemas/super-agent-v1/source-policy-save-v1.schema.json",
+      "sha256": "b1406a3c8789e94ae13ea78d1e0c0b1c1d6a8e1aed4ebb430c7b5581c91cb3ec"
+    }
+  ],
+  "earlier_targeted": {
+    "evidence": "evidence/super-agent-v1/SAV1-03/20261110T162022Z-targeted/commands.json",
+    "counts": {
+      "tests": 82,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "overlaps_registered": true
+  },
+  "prior_failed_attempts": [
+    {
+      "status": "FAIL_RETAINED",
+      "evidence": "evidence/super-agent-v1/SAV1-03/20261110T161856Z-static/commands.json",
+      "checks": [
+        {
+          "name": "lint",
+          "exit_code": 2
+        },
+        {
+          "name": "typecheck",
+          "exit_code": 2
+        }
+      ]
+    },
+    {
+      "status": "FAIL_RETAINED",
+      "evidence": "evidence/super-agent-v1/SAV1-03/20261110T162001Z-static/commands.json",
+      "checks": [
+        {
+          "name": "lint",
+          "exit_code": 2
+        },
+        {
+          "name": "typecheck",
+          "exit_code": 0
+        }
+      ]
+    },
+    {
+      "status": "FAIL_RETAINED",
+      "evidence": "evidence/super-agent-v1/SAV1-03/20261110T163108Z-registered/commands.json",
+      "checks": [
+        {
+          "name": "registered",
+          "exit_code": 2
+        }
+      ]
+    }
+  ],
+  "prior_registered_attempts": [
+    {
+      "status": "FAIL",
+      "counts": {
+        "tests": 304,
+        "failures": 4,
+        "errors": 0,
+        "skipped": 0
+      },
+      "source_commit": "9f64dc9000879ae84a71640a6d96bdb4668b332e",
+      "source_sha256": "bdd46499b40c3acaa0827c356393583e39ad2f527bb82cf2c0a074d4cce7ca40",
+      "evidence": "evidence/SAV1-03/20261110T163108Z-c23b2be7/result.json",
+      "reason": "Four unchanged legacy R5 recovery tests lacked this copy local R5 sandbox lock (SANDBOX_NOT_PREPARED); resolved by existing offline sandbox-build-r5 without source changes."
+    }
+  ],
+  "sandbox_preparation": {
+    "argv": [
+      "make",
+      "-C",
+      "v3",
+      "sandbox-build-r5",
+      "UV=/home/imini/.local/bin/uv"
+    ],
+    "exit_code": 0,
+    "evidence": "evidence/super-agent-v1/SAV1-03/20261110T163855Z-sandbox-build/commands.json",
+    "local_lock_sha256": "6465789b3feb2352f396d488001d5d67148935bfeb144ab0c67c6b45bfb07255",
+    "receipt": {
+      "schema": "r5-sandbox-lock-v1",
+      "image_id": "sha256:daa7afaec0e3e97db1bfcf522d63ca08f75e28289232b263f1c5802d94eb7b9c",
+      "go_version": "go version go1.27.1 linux/amd64",
+      "build_source_sha256": "46ea2b87489ad65fc2a90f291ad96ed27bb9ee30dde47c64e7a4ea4c670e1b3d",
+      "astcheck_sha256": "9eb1b4b9c5b124c1db2bcc5ca931450cb30d15ba4f8373f002519512cebd2f16"
+    },
+    "source_changes": "none; same implementation commit/fingerprint as preserved first registered FAIL"
+  },
+  "new_real_paid_calls": 0,
+  "new_real_external_writes": 0,
+  "new_real_unknown_reservations": 0,
+  "limitations": [
+    "Production policy tables remain empty; no verifier/listener/Worker/model/send/publication activated",
+    "Runtime bridge only restricts existing queued fixture investigations; real source task creation, verified code snapshots and worker bridge remain SA04/SA13",
+    "Budget boundary is a signed plan, not payment or shared accounting; model_call explicitly denied until SA07; no financial algorithm changed",
+    "Exact body/hash and declared data classes do not establish semantic content safety; real disclosure/Channel/Delivery/dedupe/retention/restore remain later cards",
+    "Claim is the existing dispatch boundary; already claimed work is in-flight, not forcibly undone; real OS cancellation/fencing remains Harness and SA12-14 acceptance",
+    "Effective time is checked at every operation; persisted expiry sweep is explicit local maintenance, not an enabled periodic SA20 service",
+    "Read-only preview grants nothing; caller facts must come from trusted verified gateway metadata, never model/text/HTTP assertion",
+    "Caller outer transaction rollback also rolls back nested denial audit; no second audit writer and no promise to store pre-auth HTTP/schema rejections"
+  ],
+  "next_card": "SAV1-04",
+  "next_card_status": "PLANNED",
+  "handoff_rule": "Stop after SA03 delivery and wait for independent acceptance; next shared migration 0033 is not reserved. No automatic next card."
+}
