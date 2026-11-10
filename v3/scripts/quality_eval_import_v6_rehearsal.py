@@ -97,7 +97,10 @@ def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--root", type=Path, default=Path(__file__).resolve().parents[1])
     parser.add_argument(
-        "--out", type=Path, default=None, help="default: experiments/quality-upgrade/qev-02-rehearsal"
+        "--out",
+        type=Path,
+        default=None,
+        help="default: experiments/quality-upgrade/qev-02-rehearsal",
     )
     args = parser.parse_args(argv)
 

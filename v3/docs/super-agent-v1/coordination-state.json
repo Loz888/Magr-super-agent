@@ -1,0 +1,75 @@
+{
+  "updated_at": "2026-11-10T13:00:10.609307+00:00",
+  "user_instruction": "Codex owns Super-Agent; local Trae owns Harness; coordination is authorized.",
+  "owners": {
+    "super_agent": {
+      "owner": "Codex",
+      "checkout": "/home/imini/magr-super-agent",
+      "cards": "SAV1-00..SAV1-24"
+    },
+    "harness": {
+      "owner": "Trae",
+      "checkout": "/home/imini/magr-harness",
+      "cards": "HV4-H00..HV4-H18"
+    }
+  },
+  "active_super_agent_card": "SAV1-00",
+  "card_status": "PLANNED",
+  "work_state": "DEPENDENCY_PREPARATION",
+  "harness_observation": {
+    "head": "de4775e22e96718e880fde287b2e0928db2945e3",
+    "h00_owner_reported_status": "PASS",
+    "h00_engineering_gate": "PASS",
+    "h01_status": "IN_PROGRESS_OBSERVED_UI_AND_NEW_HARNESS_FILES",
+    "accept_path": "/home/imini/magr-harness/v3/docs/harness-v4/accept/HV4-H00/accept.json",
+    "accept_sha256": "f5297243dc7909cec9710caadcd7d99a39c812db76ca7e10577891f9e22110d9",
+    "integrated_into_super_agent": false
+  },
+  "communication": {
+    "channel": "TRAE CN current Harness conversation",
+    "delivery_status": "DELIVERED_AND_PROCESSING",
+    "observation": "Trae UI displayed the sent request and began reading files/planning."
+  },
+  "external_dependencies": {
+    "SAV1-00": [
+      "HV4-H00",
+      "HV4-H01"
+    ],
+    "SAV1-09": [
+      "HV4-H02"
+    ],
+    "SAV1-12": [
+      "HV4-H03",
+      "HV4-H04"
+    ],
+    "SAV1-13": [
+      "HV4-H11",
+      "HV4-H12"
+    ],
+    "SAV1-14": [
+      "HV4-H09"
+    ],
+    "SAV1-15": [
+      "HV4-H10"
+    ],
+    "SAV1-18": [
+      "HV4-H08"
+    ],
+    "SAV1-24": [
+      "HV4-H15",
+      "HV4-H16"
+    ]
+  },
+  "preparation_evidence": "evidence/super-agent-v1/SAV1-00/20261110T125621Z-preparation",
+  "reuse_probes": {
+    "status": "PASS",
+    "tests": 5,
+    "evidence": "evidence/super-agent-v1/SAV1-00/20261110T125736Z-reuse-probes/result.json"
+  },
+  "draft_artifacts": [
+    "docs/super-agent-v1/sa00-draft/ADR_PROPOSAL.md",
+    "docs/super-agent-v1/sa00-draft/evaluation-protocol.json",
+    "docs/super-agent-v1/sa00-draft/scope.json",
+    "docs/super-agent-v1/sa00-draft/state-ownership.json"
+  ]
+}

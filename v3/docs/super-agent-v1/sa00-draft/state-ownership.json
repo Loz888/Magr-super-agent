@@ -1,0 +1,24 @@
+{
+  "schema": "sav1-state-ownership-proposal-v1",
+  "status": "DRAFT_PENDING_H01",
+  "facts": {
+    "Thread_Ticket_Mandate_Run_Subscription_Action_Approval_Usage": "Engine / same held PG connection",
+    "long_term_business_state": "PostgreSQL",
+    "run_graph_checkpoints": "LangGraph / Run-local graph only",
+    "content_addressed_evidence": "CAS; business references and ACL remain Engine-owned",
+    "wakeups_cache_and_short_rate_limits": "Redis; reconstructable",
+    "source_transport_receipts_and_positions": "Source adapter submits facts; Engine persists receipt/cursor",
+    "router_decisions": "Model proposes; Engine validates scope/revision/epoch/policy/budget",
+    "worker_execution": "Harness provider executes; Engine owns business outcome and accounting",
+    "notification_and_publication": "authorized Action/Outbox, Dispatcher receipts, read-only reconciliation"
+  },
+  "new_business_writer": false,
+  "cross_track_contracts": [
+    "actor_and_mandate",
+    "workspace_and_tree",
+    "input_revision_and_epoch",
+    "budget_reservation_and_usage",
+    "job_cancel_and_recovery",
+    "verification_receipt_and_review_bundle"
+  ]
+}

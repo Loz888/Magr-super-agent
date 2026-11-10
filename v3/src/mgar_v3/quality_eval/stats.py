@@ -13,9 +13,10 @@ Definitions used consistently here:
 from __future__ import annotations
 
 from collections import Counter
+from collections.abc import Iterable, Mapping, Sequence
 from math import ceil, comb, floor, sqrt
 from random import Random
-from typing import Any, Iterable, Mapping, Sequence
+from typing import Any
 
 from mgar_v3.quality_eval import validate
 from mgar_v3.quality_eval.record import CACHE_STATES, canonical_digest
@@ -43,7 +44,7 @@ def mcnemar_exact_two_sided(only_a: int, only_b: int) -> float:
     if not discordant:
         return 1.0
     tail = sum(comb(discordant, k) for k in range(min(only_a, only_b) + 1))
-    return min(1.0, 2 * tail / 2**discordant)
+    return min(1.0, float(2 * tail / 2**discordant))
 
 
 def percentile(values: Sequence[float], q: float) -> float | None:
@@ -201,9 +202,7 @@ def summarize(
     ):
         values = {str(record[field]) for record in records}
         if len(values) != 1:
-            raise validate.ValidationError(
-                [f"records disagree on {label}: {sorted(values)}"]
-            )
+            raise validate.ValidationError([f"records disagree on {label}: {sorted(values)}"])
 
     arms = sorted({str(record["arm"]) for record in records})
     payload: dict[str, Any] = {
@@ -250,7 +249,7 @@ def compare(
     )
 
     eligible: list[tuple[Mapping[str, Any], Mapping[str, Any]]] = []
-    exclusions = Counter()
+    exclusions: Counter[str] = Counter()
     for case_id, repeat in pair_keys:
         left = index[baseline, case_id, repeat]
         right = index[candidate, case_id, repeat]

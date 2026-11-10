@@ -10,7 +10,7 @@ from __future__ import annotations
 
 import hashlib
 import json
-from typing import Any
+from typing import Any, cast
 from uuid import UUID
 
 from mgar_v3.domain import DomainError
@@ -180,13 +180,13 @@ class FixtureAnalysisTools:
             )
         if call.tool in {"read_issue", "read_pull_request"}:
             title = f"Fixture {call.tool} #{call.number}"
-            content = f"# {title}\n\nOffline fixture text.\n".encode()
+            body = f"# {title}\n\nOffline fixture text.\n".encode()
             return ToolOutcome(
                 tool=call.tool,
-                text=content.decode(),
+                text=body.decode(),
                 reference=f"github://{self.repository}/{call.number}",
-                content=content,
-                source_version=hashlib.sha256(content).hexdigest(),
+                content=body,
+                source_version=hashlib.sha256(body).hexdigest(),
                 evidence_kind="issue" if call.tool == "read_issue" else "pull_request",
             )
         raise _fixture_error("MCP_TOOL_DENIED", "Tool is outside the fixture allowlist", 403)
@@ -215,7 +215,7 @@ class FixtureAnalysisModel:
     ) -> AgentDecision | AcceptanceDecision:
         existing = ledger.repository_model_result(run_id, epoch, step_key, profile_hash, schema)
         if existing is not None:
-            return existing
+            return cast(AgentDecision | AcceptanceDecision, existing)
         deadline_check()
         decision = (
             AcceptanceDecision(accepted=True, summary="Fixture acceptance contract verified.")

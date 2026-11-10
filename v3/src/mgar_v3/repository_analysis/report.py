@@ -12,7 +12,6 @@ from mgar_v3.repository_analysis.domain import (
     AnalysisSpec,
     PartialReport,
     RepoAnalysisReport,
-    SourceClaim,
     ToolObservation,
     locate_quote,
 )
@@ -117,7 +116,8 @@ def _claim_markdown(binding: ClaimBinding, repository: str, commit: str) -> str:
     quoted = "\n".join("    " + line for line in quote.rstrip("\n").splitlines())
     return (
         f"- **{binding.statement}**\n"
-        f"  - 源码位置：`{binding.source_uri}` · [L{binding.start_line}-L{binding.end_line}]({link})\n"
+        f"  - 源码位置：`{binding.source_uri}` · "
+        f"[L{binding.start_line}-L{binding.end_line}]({link})\n"
         f"  - 证据 ID：`{binding.evidence_id}`\n"
         f"  - 原文：\n\n    ```text\n{quoted}\n    ```\n"
     )
@@ -172,15 +172,16 @@ def render_report(
             "",
             "---",
             "",
-            "> 机械核验只验证源码引用存在、逐字匹配并定位行号；"
-            "不证明业务语义或架构推断本身正确。",
+            "> 机械核验只验证源码引用存在、逐字匹配并定位行号；不证明业务语义或架构推断本身正确。",
             "",
         ]
     )
     return "\n".join(lines).encode("utf-8")
 
 
-def insufficient_report(reason: str, structure: str, uncertainties: list[str]) -> RepoAnalysisReport:
+def insufficient_report(
+    reason: str, structure: str, uncertainties: list[str]
+) -> RepoAnalysisReport:
     return RepoAnalysisReport(
         conclusion=reason,
         structure=structure,
@@ -252,8 +253,7 @@ def partial_from_evidence(
     return PartialReport(
         reason_code=reason_code,
         conclusion=(
-            f"任务未完成：{detail}。以下仅列出本轮已经实际读取并落库的源码证据，"
-            "不构成完整结论。"
+            f"任务未完成：{detail}。以下仅列出本轮已经实际读取并落库的源码证据，不构成完整结论。"
         ),
         structure="尚未完成跨文件的总体结构判断。",
         evidence=known[:10],

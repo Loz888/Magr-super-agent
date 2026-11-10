@@ -10,6 +10,7 @@ from dataclasses import dataclass
 from typing import Any
 
 from mgar_v3.domain import DomainError
+from mgar_v3.mcp.client import ReadOnlyGitHubMCP
 from mgar_v3.mcp.factory import github_client
 from mgar_v3.repository_analysis.domain import (
     ReadFileCall,
@@ -82,12 +83,10 @@ class RepositoryAnalysisTools:
         self.commit = commit
         self.max_bytes = max_bytes
 
-    def _client(self):
+    def _client(self) -> ReadOnlyGitHubMCP:
         return github_client(self.settings, self.repository, tool_group="analysis")
 
-    async def _call(
-        self, name: str, arguments: dict[str, Any]
-    ) -> tuple[list[str], Any, list[Any]]:
+    async def _call(self, name: str, arguments: dict[str, Any]) -> tuple[list[str], Any, list[Any]]:
         if name not in _ALLOWED:
             raise DomainError("MCP_TOOL_DENIED", "Tool is outside the read-only allowlist", 403)
         client = self._client()
@@ -107,9 +106,7 @@ class RepositoryAnalysisTools:
             else:
                 code, status = _error_code(texts, "MCP_TOOL_FAILED")
             detail = " ".join(texts)[:200]
-            raise DomainError(
-                code, "Read-only GitHub tool rejected the request: " + detail, status
-            )
+            raise DomainError(code, "Read-only GitHub tool rejected the request: " + detail, status)
         if sum(len(text.encode()) for text in texts) > self.max_bytes:
             raise DomainError("MCP_RESULT_TOO_LARGE", "Tool response exceeds its byte budget", 413)
         resources = [block.resource for block in result.content if block.type == "resource"]
@@ -133,7 +130,11 @@ class RepositoryAnalysisTools:
         if branch:
             matches = await self._branches(branch)
             if matches:
-                sha = matches[0].get("commit", {}).get("sha") if isinstance(matches[0], dict) else None
+                sha = (
+                    matches[0].get("commit", {}).get("sha")
+                    if isinstance(matches[0], dict)
+                    else None
+                )
                 if isinstance(sha, str) and re.fullmatch(r"[a-f0-9]{40}", sha):
                     return sha
             try:
@@ -181,13 +182,18 @@ class RepositoryAnalysisTools:
             "list_branches", {"owner": owner, "repo": repository, "page": 1}
         )
         payload = self._payload(texts, structured)
-        items = payload if isinstance(payload, list) else (
-            payload.get("items") if isinstance(payload, dict) else []
+        items = (
+            payload
+            if isinstance(payload, list)
+            else (payload.get("items") if isinstance(payload, dict) else [])
         )
+        if not isinstance(items, list):
+            raise DomainError("MCP_RESPONSE_UNSUPPORTED", "Branch response is unsupported", 502)
         return [
             item
             for item in items
-            if isinstance(item, dict) and str(item.get("name")) == branch
+            if isinstance(item, dict)
+            and str(item.get("name")) == branch
             and isinstance(item.get("commit"), dict)
         ]
 
@@ -303,9 +309,7 @@ class RepositoryAnalysisTools:
                     raise ValueError("Ambiguous embedded source")
                 source = resources[0]
                 uri = str(source.uri)
-                match = re.match(
-                    r"^repo://([^/]+/[^/]+)/sha/([a-f0-9]{40})/contents/(.+)$", uri
-                )
+                match = re.match(r"^repo://([^/]+/[^/]+)/sha/([a-f0-9]{40})/contents/(.+)$", uri)
                 if match is None:
                     raise ValueError("Embedded resource URI is unsupported")
                 if (
@@ -384,7 +388,9 @@ class RepositoryAnalysisTools:
         payload = self._payload(texts, structured) or {}
         raw_items = payload.get("items") if isinstance(payload, dict) else None
         if not isinstance(raw_items, list):
-            raise DomainError("MCP_RESPONSE_UNSUPPORTED", "Code search response is unsupported", 502)
+            raise DomainError(
+                "MCP_RESPONSE_UNSUPPORTED", "Code search response is unsupported", 502
+            )
         items = []
         for item in raw_items:
             if not isinstance(item, dict):
@@ -475,7 +481,9 @@ class RepositoryAnalysisTools:
         )
         payload = self._payload(texts, structured)
         if not isinstance(payload, dict):
-            raise DomainError("MCP_RESPONSE_UNSUPPORTED", "Pull request response is unsupported", 502)
+            raise DomainError(
+                "MCP_RESPONSE_UNSUPPORTED", "Pull request response is unsupported", 502
+            )
         title = payload.get("title")
         body = payload.get("body")
         if not isinstance(title, str):
@@ -509,10 +517,22 @@ TOOL_NAMES = (
     "read_pull_request",
 )
 
-TOOL_CATALOG = """Available read-only tools (no other tool or repository is reachable):
-- read_file {"tool":"read_file","path":"repo/relative/path","start_line":120,"end_line":200} — exact file bytes at the fixed commit. start_line/end_line are optional 1-based inclusive line numbers; use them to page through long files because observations are truncated.
-- list_directory {"tool":"list_directory","path":"optional/repo/relative/dir"} — directory entries.
-- search_code {"tool":"search_code","query":"symbol or phrase","limit":20} — code search inside the fixed repository. Snippets are pointers, not evidence.
-- repository_metadata {"tool":"repository_metadata"} — public repository metadata and fixed commit.
-- read_issue {"tool":"read_issue","number":1} — issue title/body from the fixed repository.
-- read_pull_request {"tool":"read_pull_request","number":1} — pull request title/body from the fixed repository."""
+TOOL_CATALOG = (
+    "Available read-only tools (no other tool or repository is reachable):\n"
+    "- read_file "
+    '{"tool":"read_file","path":"repo/relative/path","start_line":120,"end_line":20'
+    "0} — exact file bytes at the fixed commit. start_line/end_line are optional "
+    "1-based inclusive line numbers; use them to page through long files because "
+    "observations are truncated.\n"
+    "- list_directory "
+    '{"tool":"list_directory","path":"optional/repo/relative/dir"} — directory '
+    "entries.\n"
+    '- search_code {"tool":"search_code","query":"symbol or phrase","limit":20} — '
+    "code search inside the fixed repository. Snippets are pointers, not evidence.\n"
+    '- repository_metadata {"tool":"repository_metadata"} — public repository '
+    "metadata and fixed commit.\n"
+    '- read_issue {"tool":"read_issue","number":1} — issue title/body from the '
+    "fixed repository.\n"
+    '- read_pull_request {"tool":"read_pull_request","number":1} — pull request '
+    "title/body from the fixed repository."
+)

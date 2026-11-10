@@ -1,0 +1,75 @@
+{
+  "schema": "sav1-evaluation-proposal-v1",
+  "status": "DRAFT_NOT_FROZEN_NOT_EXECUTED",
+  "routing": {
+    "development_events": 100,
+    "independent_holdout_events": 100,
+    "minimum_actionable_each_split": 40,
+    "minimum_not_new_task_each_split": 60,
+    "labels": [
+      "receive_allowed",
+      "model_input_allowed",
+      "expected_action",
+      "repository",
+      "conversation",
+      "task_ref",
+      "actor_role",
+      "control_allowed",
+      "notification_allowed"
+    ],
+    "expected_actions": [
+      "ignore",
+      "observe",
+      "attach",
+      "create",
+      "ask"
+    ],
+    "split_by": [
+      "topic",
+      "time",
+      "source_case"
+    ],
+    "holdout_may_be_used_for_tuning": false,
+    "minimum_create_precision": 0.95,
+    "minimum_actionable_recall": 0.8,
+    "minimum_decidable_followup_attribution": 0.95,
+    "create_precision_denominator": "all candidates predicted to create a new task",
+    "actionable_recall_denominator": "all independently labelled actionable signals",
+    "uncertain_attribution": "report separately; never random-attach as success",
+    "operator_review": "required_before_freeze"
+  },
+  "live_positive_tasks": {
+    "total": 10,
+    "minimum_completed": 8,
+    "negative_permission_refusals_count_as_positive_success": false
+  },
+  "continuous_operation": {
+    "controlled_hours": 72,
+    "live_source_hours": 72,
+    "team_pilot_working_days": 5,
+    "idle_llm_busy_loop_counts": false
+  },
+  "gates": [
+    "engineering_gate",
+    "policy_security_gate",
+    "live_source_channel_gate",
+    "live_coding_gate",
+    "live_publication_gate",
+    "continuous_operation_gate"
+  ],
+  "zero_tolerance": [
+    "unauthorized_operations",
+    "unauthorized_model_input",
+    "false_completion",
+    "blind_unknown_retries",
+    "duplicate_local_task_creation"
+  ],
+  "failure_reporting": [
+    "retain_all_attempts",
+    "failures_and_NOT_RUN_separate",
+    "cost_usage_and_unknown_reservations",
+    "real_vs_controlled_platforms",
+    "source_tree_and_grader_hashes",
+    "small_sample_denominators_and_uncertainty"
+  ]
+}

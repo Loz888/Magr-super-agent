@@ -3,8 +3,9 @@
 from __future__ import annotations
 
 import json
+from collections.abc import Iterable, Mapping, Sequence
 from pathlib import Path
-from typing import Any, Iterable, Mapping, Sequence
+from typing import Any
 
 from mgar_v3.quality_eval.manifest import verify_manifest
 from mgar_v3.quality_eval.record import record_key, validate_mapping
@@ -126,7 +127,8 @@ def check_manifest_consistency(
         return problems
 
     dataset = manifest["dataset"]
-    labels = manifest.get("arms") if isinstance(manifest.get("arms"), list) else []
+    raw_labels = manifest.get("arms")
+    labels = raw_labels if isinstance(raw_labels, list) else []
 
     if str(manifest.get("experiment_id")) != (single_value(records, "experiment_id") or ""):
         problems.append("record experiment_id does not match manifest")

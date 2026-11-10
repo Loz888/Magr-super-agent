@@ -8,12 +8,13 @@ never widen them.
 
 from __future__ import annotations
 
+import builtins
 import hashlib
 import json
 from dataclasses import dataclass
 from datetime import UTC, datetime
 from pathlib import Path
-from typing import Any
+from typing import Any, cast
 from uuid import UUID
 
 from mgar_v3.coordination.engine import Engine
@@ -445,14 +446,14 @@ class RepositoryAnalysisService:
             raise DomainError("NOT_FOUND", "Evidence was not found", 404)
         return dict(row)
 
-    def event_log(self, run_id: UUID) -> list[dict[str, Any]]:
+    def event_log(self, run_id: UUID) -> builtins.list[dict[str, Any]]:
         return [
             {"event_id": row["event_id"], "kind": row["kind"], "payload": row["safe_payload"]}
             for row in self.engine.events(run_id)
         ]
 
     def summary(self, spec: AnalysisSpec) -> dict[str, Any]:
-        return json.loads(spec.model_dump_json())
+        return cast(dict[str, Any], json.loads(spec.model_dump_json()))
 
 
 __all__ = [

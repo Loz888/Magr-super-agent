@@ -1,0 +1,185 @@
+{
+  "card": "SAV1-00",
+  "status": "DRAFT",
+  "accepted": false,
+  "scope": "Preparation and entrypoint audit only; awaiting reviewed Harness H01 contract.",
+  "claims": [
+    {
+      "id": "SA00-A01",
+      "component": "Legacy trigger and identity",
+      "source": "src/mgar_v3/domain.py",
+      "symbol": "TriggerInput",
+      "finding": "github/cli/web only; repository and positive issue_number required; repository/actor lowercased.",
+      "required_change": "SA01/SA02 introduce versioned SourceEvent/ActorRef and trusted tenant/install identity; do not repurpose opaque Feishu IDs.",
+      "source_reference": {
+        "path": "src/mgar_v3/domain.py",
+        "symbol": "TriggerInput",
+        "line": 18,
+        "end_line": 31,
+        "sha256": "a2584e05bf2b2b31e29785ee607dab8f738e664fd07a6abe0c96a47ad07df5fc"
+      },
+      "evidence_status": "SOURCE_AND_TEST_LOCATION_REVIEWED_NO_NEW_RUNTIME_GATE"
+    },
+    {
+      "id": "SA00-A02",
+      "component": "Business writer and ingestion",
+      "source": "src/mgar_v3/coordination/engine.py",
+      "symbol": "ingest",
+      "finding": "Engine owns one advisory-locked PG connection; ingress is configured-project/repository/actor scoped; Thread key is repository#issue:n; source+external_event_id dedupe checks payload conflicts.",
+      "required_change": "SA01/SA04 extend source keys, persistent ingress receipt, revisions/gap; keep the same Engine transaction authority.",
+      "source_reference": {
+        "path": "src/mgar_v3/coordination/engine.py",
+        "symbol": "ingest",
+        "line": 106,
+        "end_line": 285,
+        "sha256": "49c9686c661211a6485842fbdef8e60d42ee127a2e1554b07360511625d75c31"
+      },
+      "evidence_status": "SOURCE_AND_TEST_LOCATION_REVIEWED_NO_NEW_RUNTIME_GATE"
+    },
+    {
+      "id": "SA00-A03",
+      "component": "Webhook source coverage",
+      "source": "src/mgar_v3/api.py",
+      "symbol": "webhook",
+      "finding": "HMAC-SHA256 verification and delivery ID required; workflow failures have a limited path; PR comments are explicitly ignored; no-PR workflow uses old issue-number fallback.",
+      "required_change": "SA05 needs installation-scoped Issue/PR/CI/head-SHA links and separate source intake without fabricated Issue identifiers.",
+      "source_reference": {
+        "path": "src/mgar_v3/api.py",
+        "symbol": "webhook",
+        "line": 1159,
+        "end_line": 1221,
+        "sha256": "5a89d474b8f997893e3f82f5a08620a94f91da69dbb8c44962169a73c3360f2b"
+      },
+      "evidence_status": "SOURCE_AND_TEST_LOCATION_REVIEWED_NO_NEW_RUNTIME_GATE"
+    },
+    {
+      "id": "SA00-A04",
+      "component": "Router proposal contract",
+      "source": "src/mgar_v3/routing/domain.py",
+      "symbol": "RouterDecision",
+      "finding": "Bounded proposals carry expected Thread revision, policy version, snapshot hash, expiry and optional epoch; old action set omits handback/unsubscribe.",
+      "test": "tests/test_routing.py",
+      "test_symbol": "test_unknown_or_investigator_router_actions_fail_schema",
+      "required_change": "SA09/SA11 require a formal versioned ADR extension of old R3 rules; do not delete deny branches as an implementation shortcut.",
+      "source_reference": {
+        "path": "src/mgar_v3/routing/domain.py",
+        "symbol": "RouterDecision",
+        "line": 34,
+        "end_line": 42,
+        "sha256": "4c894e18cb761c6806c3a7699f370f12cd49200199e50c201d3bc8fa489b1bec"
+      },
+      "test_reference": {
+        "path": "tests/test_routing.py",
+        "symbol": "test_unknown_or_investigator_router_actions_fail_schema",
+        "line": 355,
+        "end_line": 360,
+        "sha256": "c0d76e753416057241294fd06db045424eb956203007dbb7d599ca46718a80e4"
+      },
+      "evidence_status": "SOURCE_AND_TEST_LOCATION_REVIEWED_NO_NEW_RUNTIME_GATE"
+    },
+    {
+      "id": "SA00-A05",
+      "component": "Mailbox and subscription reuse",
+      "source": "src/mgar_v3/coordination/engine.py",
+      "symbol": "ingest",
+      "finding": "Primary delivery and separate observer deliveries exist; mailbox events/queued jobs share a bounded count/byte budget and transactional rollback.",
+      "test": "tests/test_duplex.py",
+      "test_symbol": "test_mailbox_byte_backpressure_rolls_back_and_expiry_keeps_input",
+      "required_change": "SA11/SA14 add TTL/cursor/control-role and safe-point input semantics without treating context as authority.",
+      "source_reference": {
+        "path": "src/mgar_v3/coordination/engine.py",
+        "symbol": "ingest",
+        "line": 106,
+        "end_line": 285,
+        "sha256": "49c9686c661211a6485842fbdef8e60d42ee127a2e1554b07360511625d75c31"
+      },
+      "test_reference": {
+        "path": "tests/test_duplex.py",
+        "symbol": "test_mailbox_byte_backpressure_rolls_back_and_expiry_keeps_input",
+        "line": 246,
+        "end_line": 265,
+        "sha256": "8047656fbd0db2b1ff3499786b407980691b1ae5c0878e1347c0e8c474d2d2f4"
+      },
+      "evidence_status": "SOURCE_AND_TEST_LOCATION_REVIEWED_NO_NEW_RUNTIME_GATE"
+    },
+    {
+      "id": "SA00-A06",
+      "component": "Legacy proactivity",
+      "source": "src/mgar_v3/proactivity/store.py",
+      "symbol": "_start",
+      "finding": "Old policies start separate read-only speculative runs and mark actions empty; this does not provide general coding or a four-layer grant model.",
+      "required_change": "SA03/SA07/SA16 implement separate receive/admission/execution/notification rules and shared project budget; Harness real-coding gates remain required.",
+      "source_reference": {
+        "path": "src/mgar_v3/proactivity/store.py",
+        "symbol": "_start",
+        "line": 236,
+        "end_line": 305,
+        "sha256": "db592d161188f2565481b0e6d43686c41b0dd06e4e4dcca05de7e22c88030185"
+      },
+      "evidence_status": "SOURCE_AND_TEST_LOCATION_REVIEWED_NO_NEW_RUNTIME_GATE"
+    },
+    {
+      "id": "SA00-A07",
+      "component": "External effects and reconciliation",
+      "source": "src/mgar_v3/effects/dispatcher.py",
+      "symbol": "Dispatcher",
+      "finding": "Engine claims leased effects; timeout/transport ambiguity becomes unknown; reconciliation reads remotely outside the business transaction.",
+      "test": "tests/test_effects.py",
+      "test_symbol": "test_timeout_after_remote_accept_never_reposts_and_reconciles",
+      "required_change": "SA17 reuses this boundary for channels and notification grants; no unconditional platform exactly-once or blind retry.",
+      "source_reference": {
+        "path": "src/mgar_v3/effects/dispatcher.py",
+        "symbol": "Dispatcher",
+        "line": 22,
+        "end_line": 65,
+        "sha256": "85c973bde90a02a0e5db9d23c1e95cb33f460ae56d18ef09db4dc9aee01feed8"
+      },
+      "test_reference": {
+        "path": "tests/test_effects.py",
+        "symbol": "test_timeout_after_remote_accept_never_reposts_and_reconciles",
+        "line": 58,
+        "end_line": 73,
+        "sha256": "6baf170923463b515662cfdc0c88642a75b2068571eb790bfdf33a0cff231a2f"
+      },
+      "evidence_status": "SOURCE_AND_TEST_LOCATION_REVIEWED_NO_NEW_RUNTIME_GATE"
+    },
+    {
+      "id": "SA00-A08",
+      "component": "Watchdog",
+      "source": "src/mgar_v3/recovery/watchdog.py",
+      "symbol": "poll",
+      "finding": "Limited loopback HTTP observer submits recovery requests; ambiguous submission is explicit and it does not import Engine or model clients.",
+      "test": "tests/test_r6_watchdog.py",
+      "test_symbol": "test_concurrent_observations_dedupe_without_progress_or_business_side_effects",
+      "required_change": "SA20 expands source gap/lease/job metrics while preserving low authority and unknown-outcome protection.",
+      "source_reference": {
+        "path": "src/mgar_v3/recovery/watchdog.py",
+        "symbol": "poll",
+        "line": 43,
+        "end_line": 72,
+        "sha256": "dfb653a28eab77cba6880a36e5c6f6f3f2bc5994c0b21d4161d9f56d10d6bc47"
+      },
+      "test_reference": {
+        "path": "tests/test_r6_watchdog.py",
+        "symbol": "test_concurrent_observations_dedupe_without_progress_or_business_side_effects",
+        "line": 67,
+        "end_line": 82,
+        "sha256": "5022bb536e45219bcbd2f73789a534d49b5e1a332d14c3d2a80e479c27f14165"
+      },
+      "evidence_status": "SOURCE_AND_TEST_LOCATION_REVIEWED_NO_NEW_RUNTIME_GATE"
+    }
+  ],
+  "runtime_changes": false,
+  "live_gates": "NOT_RUN",
+  "reuse_probes": {
+    "status": "PASS",
+    "counts": {
+      "tests": 5,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "evidence": "evidence/super-agent-v1/SAV1-00/20261110T125736Z-reuse-probes/result.json",
+    "source_sha256": "4ab62c199283853badc5aa0292c677e9d8760ac92c99ab3a151f08a00d017aa4"
+  }
+}

@@ -1,0 +1,43 @@
+# Super-Agent / Harness 协作约定
+
+依据：用户于 2026-11-10 指定 Codex 负责 Super-Agent，本地 Trae 负责 Harness，
+并允许按需调用 Trae 协作。
+
+## 所有权
+
+| 工作 | 负责人 | 工作目录 |
+| --- | --- | --- |
+| SAV1-00–SAV1-24：来源、身份、策略、Router、订阅、调度、Recall、通知与运维 | Codex | `/home/imini/magr-super-agent` |
+| HV4-H00–HV4-H18：模型/工具/工作区/Broker/Verifier、编码循环、上下文与恢复 | Trae | `/home/imini/magr-harness` |
+
+双方在每卡实施前完整阅读对应任务书与验收文件，并保存阅读时间与文件指纹。
+源码与业务事实继续由原 Engine/PostgreSQL 协议约束；分工不会新增业务写者。
+
+## 当前交接
+
+Trae 仓库已提交 H00，并声明其工程/安全门通过；真实模型、Agent 和发布门未运行。
+本副本已只读定位 H00 accept.json，尚未导入或复验该提交。H01 仍是 SA00 的未完成前置。
+本副本分工前的局部 H00 静态清理保留，不再独立推进 Harness 整卡。
+
+## 向 Harness 请求的 H01 交付
+
+1. 已提交的稳定 commit、选型 ADR、接口 schema/版本、状态所有权映射和验收证据路径。
+2. ModelAdapter、ToolRegistry、WorkspaceProvider、ExecutionBroker、ContextManager、
+   Verifier、EventSink 的正式契约；哪些是冻结接口、哪些仍为建议需分别说明。
+3. Source/策略生成的 Mandate 如何映射为 Task/Run，包含 actor/scope、repository/base SHA、
+   workspace、input revision、execution epoch、预算预占/结算和 unknown 结果语义。
+4. 持久 inbox/安全点、命令 Job 的启动/查询/取消、恢复与旧 Worker fencing 的能力边界。
+5. Diff/tree、验证回执及 Review Bundle 的版本绑定；受控实现与真实能力门分别记录。
+
+这些是 Super-Agent 的依赖需求，不预先指定或实现另一套 Harness。H01 未完成时只做
+SA00 审计与需求准备，不宣称依赖满足或开放真实自动修复。
+
+## 变更与集成
+
+- 不直接修改另一方的活动工作树。交付用具体 commit、差异和证据，避免复制未提交文件。
+- 共享 Engine/API/预算/领域对象变更先明确唯一实现负责人；迁移编号按集成时最新编号协调。
+- 接口改变需说明版本、受影响 SA/HV4 卡、兼容方法及必要回归；不悄悄改变完成/授权语义。
+- 在本副本审查与解决冲突，使用自己的数据库/Redis/临时目录执行验证后记录集成结果。
+- 对话用于确认任务、接口和阻塞；稳定约定写回仓库。消息送达、对方确认、代码完成和
+  本地集成复验是不同状态，分别记录。
+- 外部写、付费模型、机器人接入与真实渠道实验仍按原任务书的具体授权及验收处理。

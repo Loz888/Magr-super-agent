@@ -1,0 +1,68 @@
+{
+  "source_checkout": "/home/imini/MAGR-v3",
+  "application_baseline": "1d07285aa27ece9bae4ccbedc3a77ce2fbcbaf3a",
+  "planning_commit": "f5ad0cd022af016b416e4c0ff0f89a53ddbd788b",
+  "branch": "super-agent-v1",
+  "independent_git_objects": true,
+  "source_was_clean": true,
+  "planning_files": [
+    {
+      "path": "v3/docs/harness-v4/ACCEPTANCE.md",
+      "sha256": "e1035c8825171ac1ac36c628ed5da7e12620eb761a152e28061d4aeaadb5d28a"
+    },
+    {
+      "path": "v3/docs/harness-v4/README.md",
+      "sha256": "9c15f331b6ba78cfdea0a529d239377fd64af869d170032c76e863fc52d33ea6"
+    },
+    {
+      "path": "v3/docs/harness-v4/ROADMAP.md",
+      "sha256": "d6696778d6983fe70ade6f2109f58748903b281b40d70f940ef349e9fff69f3a"
+    },
+    {
+      "path": "v3/docs/harness-v4/TASKS.md",
+      "sha256": "78f28b2fc372832a8a475307a38a592c4aad700c6c9cf73478c08abe848520a5"
+    },
+    {
+      "path": "v3/docs/harness-v4/plan.json",
+      "sha256": "ea748167c738fff1299f6c8ee19812d0d0409b4b81a940b20d35c2fe4b49a9fe"
+    },
+    {
+      "path": "v3/docs/harness-v4/sources.json",
+      "sha256": "2fc881ba53204f8b7c93943d2f06068472d4b9a3d5f1fcb9f80d20f0dbcb34b6"
+    },
+    {
+      "path": "v3/docs/super-agent-v1/ACCEPTANCE.md",
+      "sha256": "fad435f294fed6b859fd0bb7a42086311268e6792f55b5a971b6b4de9a766b79"
+    },
+    {
+      "path": "v3/docs/super-agent-v1/ARCHITECTURE.md",
+      "sha256": "049e82df679dc02bbefd032b95b702569c40ee046d244f7033e0f8f653d84ac3"
+    },
+    {
+      "path": "v3/docs/super-agent-v1/OPERATIONS.md",
+      "sha256": "31e246e37005508f39cc4b33403310165464aa25bbe06f44f3da34d6879a7e12"
+    },
+    {
+      "path": "v3/docs/super-agent-v1/README.md",
+      "sha256": "053425dfc680bc94cf867665bf03097568af3c1702bc1c85f2b15848984971ec"
+    },
+    {
+      "path": "v3/docs/super-agent-v1/ROADMAP.md",
+      "sha256": "27a9a5941cb8c9fb34ba40396a610d6f14c5b2ff4593693829d7280940a1f6f1"
+    },
+    {
+      "path": "v3/docs/super-agent-v1/TASKS.md",
+      "sha256": "3f94f3006fa2c8d4a43619b349bd2bcd05858b534b10b23cf0d0435c664ab919"
+    },
+    {
+      "path": "v3/docs/super-agent-v1/plan.json",
+      "sha256": "b9ca1d4e07c86cca79bf37ef961d2d5bada574413f8413b2e916b7fa58e28b4c"
+    },
+    {
+      "path": "v3/docs/super-agent-v1/sources.json",
+      "sha256": "bc7bab6b8285d07dbfa2e6dac820120ea9cd318659df7fef6d17d4e0516b69cc"
+    }
+  ],
+  "initial_card": "HV4-H00",
+  "source_runtime_state_copied": false
+}

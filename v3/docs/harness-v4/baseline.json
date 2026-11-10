@@ -1,0 +1,55 @@
+{
+  "card": "HV4-H00",
+  "status": "IN_PROGRESS",
+  "updated_at": "2026-11-10T12:40:12.230776+00:00",
+  "application_baseline": "1d07285aa27ece9bae4ccbedc3a77ce2fbcbaf3a",
+  "source_sha256": "4ab62c199283853badc5aa0292c677e9d8760ac92c99ab3a151f08a00d017aa4",
+  "scope": "Independent WSL copy, isolated dependencies, initial static cleanup and core regressions",
+  "static_checks": {
+    "lint_before": 23,
+    "typecheck_before": 16,
+    "lint_after": 0,
+    "typecheck_after": 0,
+    "typechecked_source_files": 190
+  },
+  "regressions": {
+    "AGENT-UI": {
+      "tests": 61,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "V35-R05": {
+      "tests": 27,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "targeted": {
+      "tests": 29,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  },
+  "regression_evidence": {
+    "AGENT-UI": "evidence/AGENT-UI/20261110T123640Z-37a9117e",
+    "V35-R05": "evidence/V35-R05/20261110T123736Z-644aa85d",
+    "targeted": "evidence/harness-v4/HV4-H00/20261110T123711Z-targeted"
+  },
+  "engineering_gate": "NOT_RUN",
+  "security_gate": "NOT_RUN",
+  "live_model_gate": "NOT_RUN",
+  "live_agent_gate": "NOT_RUN",
+  "live_publication_gate": "NOT_RUN",
+  "gate_note": "Individual checks passed; the entire H00 card has not been accepted.",
+  "remaining": [
+    "Complete capability audit and task type contract",
+    "Freeze 12 development and 12 independent holdout tasks across >=4 projects",
+    "Freeze resource limits and independent grader hashes",
+    "Register and execute a real HV4-H00 verification target, then accept the whole card"
+  ],
+  "original_checkout_clean": true,
+  "new_paid_model_calls": 0,
+  "external_publications": 0
+}

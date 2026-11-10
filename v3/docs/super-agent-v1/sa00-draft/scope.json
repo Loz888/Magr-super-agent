@@ -1,0 +1,44 @@
+{
+  "schema": "sav1-scope-proposal-v1",
+  "status": "DRAFT_PENDING_H01",
+  "organizations": 1,
+  "console_administrators": 1,
+  "projects": 1,
+  "github": {
+    "installations": 1,
+    "repositories": 1,
+    "installation_id": null,
+    "repository_id": null,
+    "actual_permissions": "NOT_CONFIGURED"
+  },
+  "feishu": {
+    "bots": 1,
+    "authorized_chats": 1,
+    "tenant_id": null,
+    "chat_id": null,
+    "initial_receive_mode": "mentions_and_subscribed_followups",
+    "actual_permissions": "NOT_CONFIGURED"
+  },
+  "roles": [
+    "context_provider",
+    "requester",
+    "task_controller",
+    "project_administrator"
+  ],
+  "initial_mode": "shadow",
+  "initial_max_workers": 2,
+  "initial_outbound_enabled": false,
+  "initial_paid_models_enabled": false,
+  "initial_router_budget_micros": 0,
+  "initial_project_daily_budget_micros": 0,
+  "budget_timezone": "Asia/Shanghai",
+  "worker_support": "Only the language/environment/recovery scope accepted by Harness H11/H12",
+  "private_repository_status": "REQUIRES_SEPARATE_READ_MODEL_EGRESS_AND_RESULT_VISIBILITY_ACCEPTANCE",
+  "publication": "exact_authenticated_review_bundle_only",
+  "unconfigured_installation_behaviour": "no_listening_no_platform_download_no_outbound",
+  "not_in_first_release": [
+    "automatic_merge",
+    "production_deployment",
+    "unbounded_multi_tenant_hosting"
+  ]
+}
