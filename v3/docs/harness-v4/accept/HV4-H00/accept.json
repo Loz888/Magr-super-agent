@@ -4,7 +4,7 @@
   "status": "PASS",
   "commit": "ede3bc67c9b4473b91ab4f8ea73a64a59789e655",
   "result_commit": "ede3bc67c9b4473b91ab4f8ea73a64a59789e655",
-  "commit_note": "两次本地提交：第一次包含基线冻结、24 任务目录、任务类型/评分协议、能力审计、静态清理与核心回归日志；第二次仅提交本 accept.json 与文件权限修正。均未推送。",
+  "commit_note": "三次本地提交：ede3bc6 包含基线冻结、24 任务目录、任务类型/评分协议、能力审计、静态清理与核心回归日志；a3fa79e 提交本 accept.json 与文件权限修正；9239355 修正 accept.json 自身权限。均未推送。",
   "parent_commit": "973994c0e6c087c2968b3d91a3a6b9220e2c0892",
   "base_commit": "973994c0e6c087c2968b3d91a3a6b9220e2c0892",
   "application_baseline": "1d07285aa27ece9bae4ccbedc3a77ce2fbcbaf3a",
@@ -80,6 +80,20 @@
       "purpose": "机器可读目录、组成、判定器哈希、资源上限、任务类型契约、评分阈值、能力审计与回归日志校验",
       "log": "evidence/harness-v4/HV4-H00/h00-20261110T124500Z/pytest.log",
       "junit": "evidence/harness-v4/HV4-H00/h00-20261110T124500Z/junit.xml",
+      "status": "PASS"
+    },
+    {
+      "name": "engineering-verify",
+      "argv": ["make", "verify", "TASK=HV4-H00"],
+      "exit_code": 0,
+      "duration_seconds": 0.986,
+      "counts": {"tests": 10, "failures": 0, "errors": 0, "skipped": 0},
+      "git_commit": "9239355faf7ae23d1bc2357486539ae39c8e177a",
+      "source_sha256": "d40a8c721184603cd740c0d72ec36e18dbbe16faebb12e776e79f9a0af1ab8b1",
+      "finished_source_sha256": "d40a8c721184603cd740c0d72ec36e18dbbe16faebb12e776e79f9a0af1ab8b1",
+      "attempt": "evidence/HV4-H00/20261110T124323Z-8f9da9e4/",
+      "purpose": "config/verification.json 的 HV4-H00 条目真实执行；记录 verify 时的 HEAD 与源码指纹",
+      "log": "evidence/HV4-H00/20261110T124323Z-8f9da9e4/command.log",
       "status": "PASS"
     }
   ],
@@ -181,6 +195,7 @@
     "scoring_doc": "docs/harness-v4/SCORING_PROTOCOL.md",
     "regression_log": "docs/harness-v4/BASELINE_REGRESSION.md",
     "verification": "config/verification.json",
+    "verify_attempt": "evidence/HV4-H00/20261110T124323Z-8f9da9e4/",
     "evidence": "evidence/harness-v4/HV4-H00/"
   },
   "next_card": "HV4-H01",
