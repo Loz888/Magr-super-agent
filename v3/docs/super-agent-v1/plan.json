@@ -41,7 +41,7 @@
       "id": "SAV1-01",
       "short_id": "SA01",
       "title": "Source/事件/身份与领域契约",
-      "status": "PLANNED",
+      "status": "IN_PROGRESS",
       "priority": "P0",
       "phase": "S1",
       "depends_on": [

@@ -24,6 +24,8 @@ def source_fingerprint(root: Path) -> str:
         "scripts",
         "tests",
         "fixtures/commerce",
+        "fixtures/super-agent-v1",
+        "schemas/super-agent-v1",
         "web",
         "eval/final-v1",
         "eval/final-v3",

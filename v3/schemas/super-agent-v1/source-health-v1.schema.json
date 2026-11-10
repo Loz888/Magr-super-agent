@@ -1,0 +1,141 @@
+{
+  "$defs": {
+    "SourceGap": {
+      "additionalProperties": false,
+      "properties": {
+        "started_at": {
+          "format": "date-time",
+          "title": "Started At",
+          "type": "string"
+        },
+        "ended_at": {
+          "anyOf": [
+            {
+              "format": "date-time",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Ended At"
+        },
+        "reason": {
+          "enum": [
+            "disconnect",
+            "permission",
+            "unreplayable",
+            "unknown"
+          ],
+          "title": "Reason",
+          "type": "string"
+        }
+      },
+      "required": [
+        "started_at",
+        "reason"
+      ],
+      "title": "SourceGap",
+      "type": "object"
+    },
+    "SourceScope": {
+      "additionalProperties": false,
+      "properties": {
+        "source_kind": {
+          "pattern": "^[a-z][a-z0-9_]{0,31}$",
+          "title": "Source Kind",
+          "type": "string"
+        },
+        "source_instance_id": {
+          "format": "uuid",
+          "title": "Source Instance Id",
+          "type": "string"
+        },
+        "tenant_id": {
+          "maxLength": 256,
+          "minLength": 1,
+          "title": "Tenant Id",
+          "type": "string"
+        },
+        "installation_id": {
+          "maxLength": 256,
+          "minLength": 1,
+          "title": "Installation Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "source_kind",
+        "source_instance_id",
+        "tenant_id",
+        "installation_id"
+      ],
+      "title": "SourceScope",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "scope": {
+      "$ref": "#/$defs/SourceScope"
+    },
+    "observed_at": {
+      "format": "date-time",
+      "title": "Observed At",
+      "type": "string"
+    },
+    "connection": {
+      "enum": [
+        "unknown",
+        "disabled",
+        "online",
+        "offline",
+        "degraded"
+      ],
+      "title": "Connection",
+      "type": "string"
+    },
+    "permissions": {
+      "enum": [
+        "unknown",
+        "granted",
+        "insufficient",
+        "revoked"
+      ],
+      "title": "Permissions",
+      "type": "string"
+    },
+    "last_event_at": {
+      "anyOf": [
+        {
+          "format": "date-time",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Last Event At"
+    },
+    "gaps": {
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/SourceGap"
+      },
+      "maxItems": 100,
+      "title": "Gaps",
+      "type": "array"
+    }
+  },
+  "required": [
+    "scope",
+    "observed_at",
+    "connection",
+    "permissions"
+  ],
+  "title": "SourceHealth",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

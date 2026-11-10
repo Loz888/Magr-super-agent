@@ -1106,5 +1106,28 @@
       "historical": "FAIL/NOT_RUN preserved; six live/system gates remain separate"
     },
     "timeout_seconds": 600
+  },
+  "SAV1-01": {
+    "tests": [
+      "tests/test_super_agent_sa01.py",
+      "tests/test_coordination.py",
+      "tests/test_api.py",
+      "tests/test_environment.py",
+      "tests/test_verification.py"
+    ],
+    "components": {
+      "postgres": "real disposable databases, 29-to-30 forward upgrade and unchanged old records",
+      "contracts": "installation-scoped case-sensitive identity, event/entity/delivery versions, missing-topic and late-event cases",
+      "registry": "same held Engine connection; immutable source versions; metadata-only unassociated inbox",
+      "compatibility": "opt-in exact legacy wrapper; original TriggerInput/API/Engine behavior unchanged",
+      "security": "structural scope, FK chains, no content retention in metadata, fail-closed capability availability",
+      "source_adapter": "controlled verification/normalization ports only; no SDK/platform connection",
+      "model": "not_used",
+      "external_writes": "not_used",
+      "live_source_channel": "NOT_RUN",
+      "live_coding": "NOT_RUN",
+      "live_publication": "NOT_RUN"
+    },
+    "timeout_seconds": 600
   }
 }

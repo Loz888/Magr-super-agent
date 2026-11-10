@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-10T13:55:14.503865+00:00",
+  "updated_at": "2026-11-10T14:31:20.503892+00:00",
   "user_instruction": "Codex owns Super-Agent; local Trae owns Harness; coordination is authorized.",
   "owners": {
     "super_agent": {
@@ -13,9 +13,9 @@
       "cards": "HV4-H00..HV4-H18"
     }
   },
-  "active_super_agent_card": "SAV1-00",
-  "card_status": "DONE",
-  "work_state": "SAV1_00_ACCEPTED_NEXT_SAV1_01",
+  "active_super_agent_card": "SAV1-01",
+  "card_status": "IN_PROGRESS",
+  "work_state": "IMPLEMENTED_PENDING_REGISTERED_VERIFICATION",
   "harness_observation": {
     "head": "de4775e22e96718e880fde287b2e0928db2945e3",
     "h00_owner_reported_status": "PASS",
@@ -95,5 +95,16 @@
   "migration_coordination": "ACKNOWLEDGED: Codex owns Sources 0030; shared changes coordinated before implementation.",
   "sa00_frozen": "docs/super-agent-v1/sa00/",
   "sa00_acceptance": "docs/super-agent-v1/accept/SAV1-00/accept.json",
-  "next_super_agent_card": "SAV1-01"
+  "next_super_agent_card": "SAV1-01",
+  "sa01_read_evidence": "evidence/super-agent-v1/SAV1-01/20261110T140711Z-start/taskbook-read.json",
+  "sa01_write_scope": [
+    "new sources package",
+    "0030 source metadata/version/link schema",
+    "SA01 regression and samples",
+    "existing stale migration assertions in test_environment.py"
+  ],
+  "shared_code_note": "No edits to Engine/API/model/budget modules for SA01; SourceRegistry uses the existing Engine transaction connection.",
+  "sa01_contract": "source-contract-v1",
+  "sa01_contract_doc": "docs/super-agent-v1/SA01_CONTRACTS.md",
+  "sa01_shared_tooling": "verify.py now fingerprints fixtures/super-agent-v1 and schemas/super-agent-v1; existing registry definitions preserved except new SAV1-01 entry."
 }

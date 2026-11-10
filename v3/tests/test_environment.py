@@ -1,3 +1,4 @@
+import hashlib
 import importlib
 from importlib.metadata import version
 from shutil import copyfile
@@ -24,7 +25,14 @@ def test_real_postgres_vector_and_idempotent_migrations(database):
     assert migrate(database) == []
     with psycopg.connect(database) as conn:
         assert conn.execute("SELECT '[1,2,3]'::vector <-> '[1,2,3]'::vector").fetchone() == (0.0,)
-        assert conn.execute("SELECT count(*) FROM app.schema_migrations").fetchone() == (19,)
+        recorded = conn.execute(
+            "SELECT name,sha256 FROM app.schema_migrations ORDER BY name"
+        ).fetchall()
+        expected = [
+            (path.name, hashlib.sha256(path.read_bytes()).hexdigest())
+            for path in sorted((ROOT / "migrations").glob("*.sql"))
+        ]
+        assert recorded == expected
 
 
 def test_real_redis_ping_and_reconstructable_cache():
@@ -57,21 +65,7 @@ def test_call_limit_migration_preserves_existing_one_call_budgets(tmp_path):
                 ("a" * 64,),
             )
         assert migrate(dsn) == [
-            "0005_profile_call_limits.sql",
-            "0006_r2_mailbox.sql",
-            "0007_r3_router.sql",
-            "0008_r4_knowledge.sql",
-            "0009_r4_trials.sql",
-            "0010_r5_repairs.sql",
-            "0011_r5_live.sql",
-            "0012_review_renewals.sql",
-            "0013_recovery_requests.sql",
-            "0014_runtime_monitoring.sql",
-            "0015_proactive_readonly.sql",
-            "0016_final_benchmark.sql",
-            "0017_isolated_benchmark_budgets.sql",
-            "0018_commerce_results.sql",
-            "0019_commerce_review_checks.sql",
+            path.name for path in sorted((ROOT / "migrations").glob("*.sql"))[4:]
         ]
         assert migrate(dsn) == []
         with psycopg.connect(dsn, autocommit=True) as conn:

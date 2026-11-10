@@ -1,0 +1,340 @@
+{
+  "sample_kind": "SYNTHETIC_CONTRACT_ONLY_NOT_PLATFORM_EVIDENCE",
+  "contract_version": "source-contract-v1",
+  "events": [
+    {
+      "schema_version": "source-event-v1",
+      "scope": {
+        "source_kind": "feishu",
+        "source_instance_id": "00000000-0000-0000-0000-000000000001",
+        "tenant_id": "Tenant-A",
+        "installation_id": "Install-feishu"
+      },
+      "project_id": "orders-demo",
+      "source_revision": 1,
+      "delivery_id": "delivery-1",
+      "remote_event_id": "event-1",
+      "entity_id": "message-1",
+      "entity_revision": {
+        "origin": "native",
+        "value": "Version-A"
+      },
+      "event_kind": "message.created",
+      "source_thread": {
+        "scope": {
+          "source_kind": "feishu",
+          "source_instance_id": "00000000-0000-0000-0000-000000000001",
+          "tenant_id": "Tenant-A",
+          "installation_id": "Install-feishu"
+        },
+        "conversation_id": "Chat-A",
+        "native_thread_id": null
+      },
+      "reply_to_entity_id": null,
+      "sender": {
+        "scope": {
+          "source_kind": "feishu",
+          "source_instance_id": "00000000-0000-0000-0000-000000000001",
+          "tenant_id": "Tenant-A",
+          "installation_id": "Install-feishu"
+        },
+        "id_type": "open_id",
+        "actor_id": "AbC",
+        "actor_kind": "human"
+      },
+      "addressed": "mention",
+      "occurred_at": "2026-11-10T10:00:00Z",
+      "received_at": "2026-11-10T10:00:00Z",
+      "repository_hint": null,
+      "body_ref": "1d833e43989e7ce2effdaeeda0e4720f358e54c57467a95cbe212c54b375332a",
+      "verification_ref": "synthetic-server-receipt",
+      "historical_backfill": false,
+      "provenance": "verified_source",
+      "legacy_context": null
+    },
+    {
+      "schema_version": "source-event-v1",
+      "scope": {
+        "source_kind": "github",
+        "source_instance_id": "00000000-0000-0000-0000-000000000002",
+        "tenant_id": "Tenant-A",
+        "installation_id": "Install-github"
+      },
+      "project_id": "orders-demo",
+      "source_revision": 1,
+      "delivery_id": "delivery-1",
+      "remote_event_id": "event-1",
+      "entity_id": "message-1",
+      "entity_revision": {
+        "origin": "native",
+        "value": "Version-A"
+      },
+      "event_kind": "issue.created",
+      "source_thread": {
+        "scope": {
+          "source_kind": "github",
+          "source_instance_id": "00000000-0000-0000-0000-000000000002",
+          "tenant_id": "Tenant-A",
+          "installation_id": "Install-github"
+        },
+        "conversation_id": "repo:example/repo",
+        "native_thread_id": "issue:7"
+      },
+      "reply_to_entity_id": null,
+      "sender": {
+        "scope": {
+          "source_kind": "github",
+          "source_instance_id": "00000000-0000-0000-0000-000000000002",
+          "tenant_id": "Tenant-A",
+          "installation_id": "Install-github"
+        },
+        "id_type": "user_id",
+        "actor_id": "123",
+        "actor_kind": "human"
+      },
+      "addressed": "mention",
+      "occurred_at": "2026-11-10T10:00:00Z",
+      "received_at": "2026-11-10T10:00:00Z",
+      "repository_hint": null,
+      "body_ref": "1d833e43989e7ce2effdaeeda0e4720f358e54c57467a95cbe212c54b375332a",
+      "verification_ref": "synthetic-server-receipt",
+      "historical_backfill": false,
+      "provenance": "verified_source",
+      "legacy_context": null
+    },
+    {
+      "schema_version": "source-event-v1",
+      "scope": {
+        "source_kind": "cli",
+        "source_instance_id": "62a8f6ea-f418-5bca-b449-23d6f2d07e8a",
+        "tenant_id": "legacy-project:75623173bc648a14d9bb282188a299b9ba8005264999677636e4f4ee9583411b",
+        "installation_id": "legacy-trigger-input-v1"
+      },
+      "project_id": "orders-demo",
+      "source_revision": 1,
+      "delivery_id": "legacy-event:31beccceb8afebeee48d24977612b5c4c5cffeb07df1affd0634046377d61dc0",
+      "remote_event_id": "legacy-event:31beccceb8afebeee48d24977612b5c4c5cffeb07df1affd0634046377d61dc0",
+      "entity_id": "legacy-issue:ec0ee6e46c6a275c48614f55ba2c6959c3192b73fffa862f9896d01097c3aa67",
+      "entity_revision": {
+        "origin": "legacy",
+        "value": "v1"
+      },
+      "event_kind": "legacy.trigger",
+      "source_thread": {
+        "scope": {
+          "source_kind": "cli",
+          "source_instance_id": "62a8f6ea-f418-5bca-b449-23d6f2d07e8a",
+          "tenant_id": "legacy-project:75623173bc648a14d9bb282188a299b9ba8005264999677636e4f4ee9583411b",
+          "installation_id": "legacy-trigger-input-v1"
+        },
+        "conversation_id": "legacy-issue:ec0ee6e46c6a275c48614f55ba2c6959c3192b73fffa862f9896d01097c3aa67",
+        "native_thread_id": "legacy-issue:ec0ee6e46c6a275c48614f55ba2c6959c3192b73fffa862f9896d01097c3aa67"
+      },
+      "reply_to_entity_id": null,
+      "sender": {
+        "scope": {
+          "source_kind": "cli",
+          "source_instance_id": "62a8f6ea-f418-5bca-b449-23d6f2d07e8a",
+          "tenant_id": "legacy-project:75623173bc648a14d9bb282188a299b9ba8005264999677636e4f4ee9583411b",
+          "installation_id": "legacy-trigger-input-v1"
+        },
+        "id_type": "legacy_engine_principal",
+        "actor_id": "owner",
+        "actor_kind": "human"
+      },
+      "addressed": "unknown",
+      "occurred_at": "2026-11-10T10:00:00Z",
+      "received_at": "2026-11-10T10:00:00Z",
+      "repository_hint": {
+        "full_name": "example/repo",
+        "resource_kind": "issue",
+        "number": 7,
+        "head_sha": null
+      },
+      "body_ref": "d84b0c1aad1c74ed2cecba86bef19b0e2fedfedc68ee1791b91c4c4264033ef7",
+      "verification_ref": "legacy-trigger-input-v1",
+      "historical_backfill": false,
+      "provenance": "legacy_trigger",
+      "legacy_context": {
+        "source": "cli",
+        "external_event_id": "synthetic-legacy-1",
+        "repository": "example/repo",
+        "issue_number": 7,
+        "actor": "owner",
+        "execution_mode": "fixture"
+      }
+    },
+    {
+      "schema_version": "source-event-v1",
+      "scope": {
+        "source_kind": "web",
+        "source_instance_id": "2f54aa82-a9b0-557f-aa52-7fafc977154c",
+        "tenant_id": "legacy-project:75623173bc648a14d9bb282188a299b9ba8005264999677636e4f4ee9583411b",
+        "installation_id": "legacy-trigger-input-v1"
+      },
+      "project_id": "orders-demo",
+      "source_revision": 1,
+      "delivery_id": "legacy-event:31beccceb8afebeee48d24977612b5c4c5cffeb07df1affd0634046377d61dc0",
+      "remote_event_id": "legacy-event:31beccceb8afebeee48d24977612b5c4c5cffeb07df1affd0634046377d61dc0",
+      "entity_id": "legacy-issue:ec0ee6e46c6a275c48614f55ba2c6959c3192b73fffa862f9896d01097c3aa67",
+      "entity_revision": {
+        "origin": "legacy",
+        "value": "v1"
+      },
+      "event_kind": "legacy.trigger",
+      "source_thread": {
+        "scope": {
+          "source_kind": "web",
+          "source_instance_id": "2f54aa82-a9b0-557f-aa52-7fafc977154c",
+          "tenant_id": "legacy-project:75623173bc648a14d9bb282188a299b9ba8005264999677636e4f4ee9583411b",
+          "installation_id": "legacy-trigger-input-v1"
+        },
+        "conversation_id": "legacy-issue:ec0ee6e46c6a275c48614f55ba2c6959c3192b73fffa862f9896d01097c3aa67",
+        "native_thread_id": "legacy-issue:ec0ee6e46c6a275c48614f55ba2c6959c3192b73fffa862f9896d01097c3aa67"
+      },
+      "reply_to_entity_id": null,
+      "sender": {
+        "scope": {
+          "source_kind": "web",
+          "source_instance_id": "2f54aa82-a9b0-557f-aa52-7fafc977154c",
+          "tenant_id": "legacy-project:75623173bc648a14d9bb282188a299b9ba8005264999677636e4f4ee9583411b",
+          "installation_id": "legacy-trigger-input-v1"
+        },
+        "id_type": "legacy_engine_principal",
+        "actor_id": "owner",
+        "actor_kind": "human"
+      },
+      "addressed": "unknown",
+      "occurred_at": "2026-11-10T10:00:00Z",
+      "received_at": "2026-11-10T10:00:00Z",
+      "repository_hint": {
+        "full_name": "example/repo",
+        "resource_kind": "issue",
+        "number": 7,
+        "head_sha": null
+      },
+      "body_ref": "d84b0c1aad1c74ed2cecba86bef19b0e2fedfedc68ee1791b91c4c4264033ef7",
+      "verification_ref": "legacy-trigger-input-v1",
+      "historical_backfill": false,
+      "provenance": "legacy_trigger",
+      "legacy_context": {
+        "source": "web",
+        "external_event_id": "synthetic-legacy-1",
+        "repository": "example/repo",
+        "issue_number": 7,
+        "actor": "owner",
+        "execution_mode": "fixture"
+      }
+    }
+  ],
+  "source_instances": [
+    {
+      "scope": {
+        "source_kind": "feishu",
+        "source_instance_id": "00000000-0000-0000-0000-000000000001",
+        "tenant_id": "Tenant-A",
+        "installation_id": "Install-feishu"
+      },
+      "project_id": "orders-demo",
+      "revision": 1,
+      "display_name": "合成来源",
+      "adapter_version": "synthetic-contract-v1",
+      "capabilities": {
+        "history_read": "unsupported",
+        "incremental_cursor": "unknown",
+        "reconnect_replay": "unknown",
+        "edit_events": "unknown",
+        "delete_events": "unknown",
+        "native_entity_revision": "unknown"
+      },
+      "channel_capabilities": {
+        "send": "unknown",
+        "idempotent_send": "unknown",
+        "query_delivery": "unsupported",
+        "delete_message": "unknown"
+      },
+      "credential_ref": null
+    },
+    {
+      "scope": {
+        "source_kind": "github",
+        "source_instance_id": "00000000-0000-0000-0000-000000000002",
+        "tenant_id": "Tenant-A",
+        "installation_id": "Install-github"
+      },
+      "project_id": "orders-demo",
+      "revision": 1,
+      "display_name": "合成来源",
+      "adapter_version": "synthetic-contract-v1",
+      "capabilities": {
+        "history_read": "unknown",
+        "incremental_cursor": "unknown",
+        "reconnect_replay": "unknown",
+        "edit_events": "unknown",
+        "delete_events": "unknown",
+        "native_entity_revision": "unknown"
+      },
+      "channel_capabilities": {
+        "send": "unknown",
+        "idempotent_send": "unknown",
+        "query_delivery": "unknown",
+        "delete_message": "unknown"
+      },
+      "credential_ref": null
+    },
+    {
+      "scope": {
+        "source_kind": "cli",
+        "source_instance_id": "62a8f6ea-f418-5bca-b449-23d6f2d07e8a",
+        "tenant_id": "legacy-project:75623173bc648a14d9bb282188a299b9ba8005264999677636e4f4ee9583411b",
+        "installation_id": "legacy-trigger-input-v1"
+      },
+      "project_id": "orders-demo",
+      "revision": 1,
+      "display_name": "合成来源",
+      "adapter_version": "synthetic-contract-v1",
+      "capabilities": {
+        "history_read": "unknown",
+        "incremental_cursor": "unknown",
+        "reconnect_replay": "unknown",
+        "edit_events": "unknown",
+        "delete_events": "unknown",
+        "native_entity_revision": "unknown"
+      },
+      "channel_capabilities": {
+        "send": "unknown",
+        "idempotent_send": "unknown",
+        "query_delivery": "unknown",
+        "delete_message": "unknown"
+      },
+      "credential_ref": null
+    },
+    {
+      "scope": {
+        "source_kind": "web",
+        "source_instance_id": "2f54aa82-a9b0-557f-aa52-7fafc977154c",
+        "tenant_id": "legacy-project:75623173bc648a14d9bb282188a299b9ba8005264999677636e4f4ee9583411b",
+        "installation_id": "legacy-trigger-input-v1"
+      },
+      "project_id": "orders-demo",
+      "revision": 1,
+      "display_name": "合成来源",
+      "adapter_version": "synthetic-contract-v1",
+      "capabilities": {
+        "history_read": "unknown",
+        "incremental_cursor": "unknown",
+        "reconnect_replay": "unknown",
+        "edit_events": "unknown",
+        "delete_events": "unknown",
+        "native_entity_revision": "unknown"
+      },
+      "channel_capabilities": {
+        "send": "unknown",
+        "idempotent_send": "unknown",
+        "query_delivery": "unknown",
+        "delete_message": "unknown"
+      },
+      "credential_ref": null
+    }
+  ]
+}

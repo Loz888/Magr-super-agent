@@ -1,0 +1,216 @@
+{
+  "$defs": {
+    "ChannelCapabilities": {
+      "additionalProperties": false,
+      "properties": {
+        "send": {
+          "enum": [
+            "supported",
+            "unsupported",
+            "unknown"
+          ],
+          "title": "Send",
+          "type": "string"
+        },
+        "idempotent_send": {
+          "enum": [
+            "supported",
+            "unsupported",
+            "unknown"
+          ],
+          "title": "Idempotent Send",
+          "type": "string"
+        },
+        "query_delivery": {
+          "enum": [
+            "supported",
+            "unsupported",
+            "unknown"
+          ],
+          "title": "Query Delivery",
+          "type": "string"
+        },
+        "delete_message": {
+          "enum": [
+            "supported",
+            "unsupported",
+            "unknown"
+          ],
+          "title": "Delete Message",
+          "type": "string"
+        }
+      },
+      "required": [
+        "send",
+        "idempotent_send",
+        "query_delivery",
+        "delete_message"
+      ],
+      "title": "ChannelCapabilities",
+      "type": "object"
+    },
+    "SourceCapabilities": {
+      "additionalProperties": false,
+      "properties": {
+        "history_read": {
+          "enum": [
+            "supported",
+            "unsupported",
+            "unknown"
+          ],
+          "title": "History Read",
+          "type": "string"
+        },
+        "incremental_cursor": {
+          "enum": [
+            "supported",
+            "unsupported",
+            "unknown"
+          ],
+          "title": "Incremental Cursor",
+          "type": "string"
+        },
+        "reconnect_replay": {
+          "enum": [
+            "supported",
+            "unsupported",
+            "unknown"
+          ],
+          "title": "Reconnect Replay",
+          "type": "string"
+        },
+        "edit_events": {
+          "enum": [
+            "supported",
+            "unsupported",
+            "unknown"
+          ],
+          "title": "Edit Events",
+          "type": "string"
+        },
+        "delete_events": {
+          "enum": [
+            "supported",
+            "unsupported",
+            "unknown"
+          ],
+          "title": "Delete Events",
+          "type": "string"
+        },
+        "native_entity_revision": {
+          "enum": [
+            "supported",
+            "unsupported",
+            "unknown"
+          ],
+          "title": "Native Entity Revision",
+          "type": "string"
+        }
+      },
+      "required": [
+        "history_read",
+        "incremental_cursor",
+        "reconnect_replay",
+        "edit_events",
+        "delete_events",
+        "native_entity_revision"
+      ],
+      "title": "SourceCapabilities",
+      "type": "object"
+    },
+    "SourceScope": {
+      "additionalProperties": false,
+      "properties": {
+        "source_kind": {
+          "pattern": "^[a-z][a-z0-9_]{0,31}$",
+          "title": "Source Kind",
+          "type": "string"
+        },
+        "source_instance_id": {
+          "format": "uuid",
+          "title": "Source Instance Id",
+          "type": "string"
+        },
+        "tenant_id": {
+          "maxLength": 256,
+          "minLength": 1,
+          "title": "Tenant Id",
+          "type": "string"
+        },
+        "installation_id": {
+          "maxLength": 256,
+          "minLength": 1,
+          "title": "Installation Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "source_kind",
+        "source_instance_id",
+        "tenant_id",
+        "installation_id"
+      ],
+      "title": "SourceScope",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "scope": {
+      "$ref": "#/$defs/SourceScope"
+    },
+    "project_id": {
+      "maxLength": 100,
+      "minLength": 1,
+      "title": "Project Id",
+      "type": "string"
+    },
+    "revision": {
+      "default": 1,
+      "exclusiveMinimum": 0,
+      "title": "Revision",
+      "type": "integer"
+    },
+    "display_name": {
+      "default": "",
+      "maxLength": 200,
+      "title": "Display Name",
+      "type": "string"
+    },
+    "adapter_version": {
+      "maxLength": 100,
+      "minLength": 1,
+      "title": "Adapter Version",
+      "type": "string"
+    },
+    "capabilities": {
+      "$ref": "#/$defs/SourceCapabilities"
+    },
+    "channel_capabilities": {
+      "$ref": "#/$defs/ChannelCapabilities"
+    },
+    "credential_ref": {
+      "anyOf": [
+        {
+          "pattern": "^vault://[A-Za-z0-9_./-]{1,200}$",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Credential Ref"
+    }
+  },
+  "required": [
+    "scope",
+    "project_id",
+    "adapter_version",
+    "capabilities",
+    "channel_capabilities"
+  ],
+  "title": "SourceInstance",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}

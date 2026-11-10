@@ -1,0 +1,201 @@
+{
+  "$defs": {
+    "EntityRevision": {
+      "additionalProperties": false,
+      "properties": {
+        "origin": {
+          "enum": [
+            "native",
+            "derived",
+            "legacy",
+            "unavailable"
+          ],
+          "title": "Origin",
+          "type": "string"
+        },
+        "value": {
+          "anyOf": [
+            {
+              "maxLength": 256,
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "title": "Value"
+        }
+      },
+      "required": [
+        "origin",
+        "value"
+      ],
+      "title": "EntityRevision",
+      "type": "object"
+    },
+    "SourceScope": {
+      "additionalProperties": false,
+      "properties": {
+        "source_kind": {
+          "pattern": "^[a-z][a-z0-9_]{0,31}$",
+          "title": "Source Kind",
+          "type": "string"
+        },
+        "source_instance_id": {
+          "format": "uuid",
+          "title": "Source Instance Id",
+          "type": "string"
+        },
+        "tenant_id": {
+          "maxLength": 256,
+          "minLength": 1,
+          "title": "Tenant Id",
+          "type": "string"
+        },
+        "installation_id": {
+          "maxLength": 256,
+          "minLength": 1,
+          "title": "Installation Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "source_kind",
+        "source_instance_id",
+        "tenant_id",
+        "installation_id"
+      ],
+      "title": "SourceScope",
+      "type": "object"
+    },
+    "SourceThreadRef": {
+      "additionalProperties": false,
+      "properties": {
+        "scope": {
+          "$ref": "#/$defs/SourceScope"
+        },
+        "conversation_id": {
+          "maxLength": 256,
+          "minLength": 1,
+          "title": "Conversation Id",
+          "type": "string"
+        },
+        "native_thread_id": {
+          "anyOf": [
+            {
+              "maxLength": 256,
+              "minLength": 1,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Native Thread Id"
+        }
+      },
+      "required": [
+        "scope",
+        "conversation_id"
+      ],
+      "title": "SourceThreadRef",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "description": "Unassociated inbox facts only. No body, artifact reference, actor or grant is retained.\n\nStaging these facts is not a durable platform ACK, a complete ingress receipt,\nor an admission decision. SA04 will add its authorized body/receipt protocol.",
+  "properties": {
+    "schema_version": {
+      "const": "source-metadata-v1",
+      "default": "source-metadata-v1",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "scope": {
+      "$ref": "#/$defs/SourceScope"
+    },
+    "project_id": {
+      "maxLength": 100,
+      "minLength": 1,
+      "title": "Project Id",
+      "type": "string"
+    },
+    "source_revision": {
+      "exclusiveMinimum": 0,
+      "title": "Source Revision",
+      "type": "integer"
+    },
+    "delivery_id": {
+      "maxLength": 256,
+      "minLength": 1,
+      "title": "Delivery Id",
+      "type": "string"
+    },
+    "remote_event_id": {
+      "maxLength": 256,
+      "minLength": 1,
+      "title": "Remote Event Id",
+      "type": "string"
+    },
+    "entity_id": {
+      "maxLength": 256,
+      "minLength": 1,
+      "title": "Entity Id",
+      "type": "string"
+    },
+    "entity_revision": {
+      "$ref": "#/$defs/EntityRevision"
+    },
+    "event_kind": {
+      "pattern": "^[a-z][a-z0-9_.-]{0,99}$",
+      "title": "Event Kind",
+      "type": "string"
+    },
+    "source_thread": {
+      "$ref": "#/$defs/SourceThreadRef"
+    },
+    "occurred_at": {
+      "format": "date-time",
+      "title": "Occurred At",
+      "type": "string"
+    },
+    "received_at": {
+      "format": "date-time",
+      "title": "Received At",
+      "type": "string"
+    },
+    "provenance": {
+      "enum": [
+        "verified_source",
+        "legacy_trigger"
+      ],
+      "title": "Provenance",
+      "type": "string"
+    },
+    "event_fingerprint": {
+      "pattern": "^[a-f0-9]{64}$",
+      "title": "Event Fingerprint",
+      "type": "string"
+    }
+  },
+  "required": [
+    "scope",
+    "project_id",
+    "source_revision",
+    "delivery_id",
+    "remote_event_id",
+    "entity_id",
+    "entity_revision",
+    "event_kind",
+    "source_thread",
+    "occurred_at",
+    "received_at",
+    "provenance",
+    "event_fingerprint"
+  ],
+  "title": "SourceMetadata",
+  "type": "object",
+  "$schema": "https://json-schema.org/draft/2020-12/schema"
+}
