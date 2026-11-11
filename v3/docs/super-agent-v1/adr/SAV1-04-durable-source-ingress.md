@@ -12,3 +12,5 @@ Receive 外正文不持久化。许可正文采用 scope-aware 读取、独立�
 
 
 2026-11-11 独立复验修正：接收/留存决定不能抹去已可信观测的新编辑水位。复用既有单调 native_order 和 sticky ambiguous 保存无正文事实，head 仍只引用 canonical input；等水位而无 canonical 证明也不复活。新版本隐私失效前先做等价事件/版本去重，避免无序同版本重投删除自身正文。无 schema/迁移/Engine/API/财务或 Harness 变更；原 FAIL 与评分器保留，修复后重新注册验收并等待独立复验。
+
+拒收的带版本 create/历史快照也遵守同一观测水位与无序歧义规则；不能依赖 operation 名称忽略已知新版本。新增回归覆盖该形式及晚到 create 不得清除较新 canonical 正文。中间候选 3eca833 的 390 项 PASS 和快照邻接 1 FAIL 均保留，最终结果另行验证。

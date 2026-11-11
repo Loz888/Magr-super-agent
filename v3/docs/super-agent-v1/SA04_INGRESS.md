@@ -72,3 +72,5 @@ SA01/SA03 依赖及 SA02 契约完整阅读记录、UTC/SHA、独立结果和已
 新编辑/删除失效之前，先使用已经通过冲突检查的事件/版本索引识别 canonical 等价投递。等价无序编辑换 delivery/remote event 或并发重投仅复用输入，不删除当前正文；真正不同的无序版本继续按歧义处理。原生排序、删除 tombstone、当前身份/Receive、保留期限与不可复活约束不放宽。
 
 本轮仅修复私有 SourceIngress 逻辑与正式回归；Engine、API、DTO/schema、迁移 0001–0033、ToolAuthority、预算和 Harness 均不变，不申请或占用新迁移。H04 另有只读材料核对，记录在 docs/material-reviews/，不属于本卡工程门，不授予 H04/H05 放行。
+
+拒收的带版本 create/历史快照也遵守同一观测水位与无序歧义规则；不能依赖 operation 名称忽略已知新版本。新增回归覆盖该形式及晚到 create 不得清除较新 canonical 正文。中间候选 3eca833 的 390 项 PASS 和快照邻接 1 FAIL 均保留，最终结果另行验证。

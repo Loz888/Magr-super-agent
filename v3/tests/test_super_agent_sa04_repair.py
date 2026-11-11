@@ -115,8 +115,9 @@ def set_roles(env, binding, roles):
 
 @pytest.mark.parametrize("had_original", [False, True])
 @pytest.mark.parametrize("ordered", [False, True])
+@pytest.mark.parametrize("operation", ["create", "edit"])
 def test_denied_observation_is_monotonic_without_retaining_body(
-    engine, had_original, ordered, caplog
+    engine, had_original, ordered, operation, caplog
 ):
     from uuid import uuid4
 
@@ -130,7 +131,7 @@ def test_denied_observation_is_monotonic_without_retaining_body(
             env,
             delivery="denied-3",
             version=3,
-            operation="edit",
+            operation=operation,
             order=3 if ordered else None,
             body=secret,
         )
@@ -294,3 +295,30 @@ def test_denied_watermark_observation_and_receipt_rollback_together(engine):
     env.gateway.receive(incoming)
     assert rows(env, "entities")[0]["native_order"] == 3
     assert len(rows(env, "deliveries")) == 2 and not rows(env, "bodies")
+
+
+def test_late_create_snapshot_keeps_newer_canonical_body(engine):
+    env = setup(engine)
+    env.gateway.receive(envelope(env))
+    current = env.gateway.receive(
+        envelope(
+            env,
+            delivery="current-3",
+            version=3,
+            operation="edit",
+            body="newer canonical",
+        )
+    )
+    late = env.gateway.receive(
+        envelope(
+            env,
+            delivery="late-create-2",
+            version=2,
+            operation="create",
+            body="old snapshot",
+        )
+    )
+    with pytest.raises(DomainError):
+        engine.source_ingress.body(env.cookie, late.input_ids[0])
+    assert engine.source_ingress.body(env.cookie, current.input_ids[0]) == b"newer canonical"
+    assert rows(env, "entities")[0]["native_order"] == 3

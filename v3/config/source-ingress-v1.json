@@ -63,7 +63,7 @@
     },
     {
       "path": "src/mgar_v3/sources/ingress.py",
-      "sha256": "9e0b489f18b0cf0c9cf1324bdda4133bae73f7a58b851b0787673b5735ee12bd"
+      "sha256": "ad94a6d068998dfc165545936a932d1a8c870a17fce450da85c656649071bb38"
     },
     {
       "path": "src/mgar_v3/sources/ingress_api.py",
@@ -107,7 +107,7 @@
     },
     {
       "path": "tests/test_super_agent_sa04_repair.py",
-      "sha256": "4d93e3020f823d5fb0a50409bbd786ceae77a8a410879bb2627c5ae0962e73ef"
+      "sha256": "ce86e209b9390f1c780253c2627637a9056259da5c9d311902ea7444f67361c2"
     }
   ],
   "repair": {
@@ -118,6 +118,7 @@
     "baseline_commit": "2247db3fbc7727238ba5f037b02701d2722747f9",
     "no_schema_migration_engine_api_changes": true,
     "independent_scorer": "unchanged; exact test-function ASTs registered",
-    "unsequenced_denial": "sticky ambiguity, no automatic restoration"
+    "unsequenced_denial": "sticky ambiguity, no automatic restoration",
+    "denied_snapshot_neighbor": "Versioned create/history snapshots also retain observed native watermarks or ambiguity; intermediate 3eca833 390 PASS plus neighbor 1 FAIL preserved"
   }
 }

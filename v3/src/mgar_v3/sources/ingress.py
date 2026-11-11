@@ -501,10 +501,10 @@ class SourceIngress:
         denied: bool = False,
         allow_new: bool = False,
     ) -> None:
-        """Observe genuine mutations without retaining denied content or reviving a version."""
-        if item.operation not in {"delete", "edit"}:
+        """Observe genuine versions without retaining denied content or reviving a version."""
+        if item.operation not in {"create", "delete", "edit"}:
             return
-        # _item_conflict has already proved equality. A transport alias is not a new edit.
+        # _item_conflict has already proved equality. A transport alias is not a new version.
         known = conn.execute(
             "SELECT 1 FROM app.source_ingress_aliases WHERE event_key=%s UNION ALL "
             "SELECT 1 FROM app.source_ingress_inputs WHERE version_key=%s LIMIT 1",
@@ -518,7 +518,7 @@ class SourceIngress:
             (item.entity_key, self.project),
         ).fetchone()
         if entity is None:
-            # Only after a bounded durable receipt is allocated may a denied first edit
+            # Only after a bounded durable receipt is allocated may a denied first version
             # create this minimal hash/watermark fact. No inbox, payload, body hash or input.
             if denied and allow_new:
                 conn.execute(
@@ -531,7 +531,7 @@ class SourceIngress:
                         self.project,
                         item.event.sender.key,
                         item.native_order,
-                        item.operation == "edit" and item.native_order is None,
+                        item.operation != "delete" and item.native_order is None,
                         item.operation == "delete",
                     ),
                 )
@@ -539,7 +539,7 @@ class SourceIngress:
         if entity["author_key"] != item.event.sender.key and not item.platform_moderation:
             return
         if (
-            item.operation == "edit"
+            item.operation != "delete"
             and item.native_order is not None
             and entity["native_order"] is not None
             and item.native_order <= entity["native_order"]
