@@ -1185,6 +1185,7 @@
       "tests/test_super_agent_sa04.py",
       "tests/test_super_agent_sa04_faults.py",
       "tests/test_super_agent_sa04_repair.py",
+      "tests/test_super_agent_sa04_order_transition.py",
       "tests/test_super_agent_sa03.py",
       "tests/test_super_agent_sa02.py",
       "tests/test_super_agent_sa01.py",

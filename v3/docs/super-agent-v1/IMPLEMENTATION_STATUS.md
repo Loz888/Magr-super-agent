@@ -1,3 +1,7 @@
+# SAV1-04 排序转换修复验证中
+
+新独立差分修复前 1 PASS/1 FAIL 已原样保留；统一接收/拒收排序分类后 25 项新回归、旧修复与原独立 28 项、lint/typecheck 215 files 通过。完整注册尚待执行，SA04 保持 IN_PROGRESS，不进入 SA05。本轮仅 Super-Agent，不跟进 H 系列。
+
 # SAV1-04 修复工程通过，等待独立复验
 
 原独立复验 P1/P2 已修复；原评分器原样复跑 5 PASS，完整注册 395 PASS（SA04 91），lint/typecheck 215 files PASS。修复提交 84ca5c3c688b825dc32763a834cc7cc973b0cb69。SA04 保持 IN_PROGRESS，不进入 SA05。H04 仅材料核对，安全门未放行；详见 SA04_REPAIR_20261111.md 和单独 docs/material-reviews/H04-20261111-materials.md。

@@ -493,6 +493,26 @@ class SourceIngress:
                 orders[slot] = item.version_key
         return None
 
+    @staticmethod
+    def _order_ambiguous(entity: Row, item: ItemMetadata) -> bool:
+        """A numeric watermark cannot order an earlier unsequenced version."""
+        history = (
+            entity["head_input_id"] is not None
+            or entity["native_order"] is not None
+            or entity["unordered_history"]
+        )
+        return bool(
+            entity["ambiguous"]
+            or (
+                history
+                and (
+                    item.native_order is None
+                    or entity["native_order"] is None
+                    or entity["unordered_history"]
+                )
+            )
+        )
+
     def _privacy_delete(
         self,
         conn: Connection,
@@ -513,8 +533,10 @@ class SourceIngress:
         if known is not None:
             return
         entity = conn.execute(
-            "SELECT * FROM app.source_ingress_entities WHERE entity_key=%s AND project_id=%s "
-            "FOR UPDATE",
+            "SELECT e.*,EXISTS(SELECT 1 FROM app.source_ingress_inputs i "
+            "WHERE i.entity_key=e.entity_key AND i.native_order IS NULL) AS unordered_history "
+            "FROM app.source_ingress_entities e WHERE e.entity_key=%s AND e.project_id=%s "
+            "FOR UPDATE OF e",
             (item.entity_key, self.project),
         ).fetchone()
         if entity is None:
@@ -537,6 +559,14 @@ class SourceIngress:
                 )
             return
         if entity["author_key"] != item.event.sender.key and not item.platform_moderation:
+            return
+        if item.operation != "delete" and self._order_ambiguous(entity, item):
+            self._expire_entity(conn, item.entity_key, "INGRESS_UNORDERED_VERSION")
+            conn.execute(
+                "UPDATE app.source_ingress_entities SET ambiguous=true,"
+                "native_order=greatest(native_order,%s),updated_at=now() WHERE entity_key=%s",
+                (item.native_order if denied else None, item.entity_key),
+            )
             return
         if (
             item.operation != "delete"
@@ -609,7 +639,9 @@ class SourceIngress:
             return UUID(str(prior["input_id"]))
         event, now = item.event, self.now(conn)
         entity = conn.execute(
-            "SELECT * FROM app.source_ingress_entities WHERE entity_key=%s FOR UPDATE",
+            "SELECT e.*,EXISTS(SELECT 1 FROM app.source_ingress_inputs i "
+            "WHERE i.entity_key=e.entity_key AND i.native_order IS NULL) AS unordered_history "
+            "FROM app.source_ingress_entities e WHERE e.entity_key=%s FOR UPDATE OF e",
             (item.entity_key,),
         ).fetchone()
         if entity is None:
@@ -628,6 +660,7 @@ class SourceIngress:
                 "native_order": None,
                 "deleted": False,
                 "ambiguous": False,
+                "unordered_history": False,
             }
         if (
             entity.get("author_key", event.sender.key) != event.sender.key
@@ -640,6 +673,13 @@ class SourceIngress:
         if item.operation == "delete" or entity["deleted"]:
             unavailable, reason, context_only = True, "INGRESS_ENTITY_DELETED", True
             self._expire_entity(conn, item.entity_key, reason)
+        elif self._order_ambiguous(entity, item):
+            unavailable, reason, context_only = True, "INGRESS_UNORDERED_VERSION", True
+            self._expire_entity(conn, item.entity_key, reason)
+            conn.execute(
+                "UPDATE app.source_ingress_entities SET ambiguous=true WHERE entity_key=%s",
+                (item.entity_key,),
+            )
         elif (
             item.native_order is not None
             and entity["native_order"] is not None
@@ -648,16 +688,6 @@ class SourceIngress:
             # Known canonical versions returned above. Equality here has no canonical
             # proof (e.g. previously denied version), so it cannot become current either.
             unavailable, reason, context_only = True, "INGRESS_OLDER_VERSION", True
-        elif entity["ambiguous"] or (
-            (item.native_order is None or entity["native_order"] is None)
-            and (entity["head_input_id"] is not None or entity["native_order"] is not None)
-        ):
-            unavailable, reason, context_only = True, "INGRESS_UNORDERED_VERSION", True
-            self._expire_entity(conn, item.entity_key, reason)
-            conn.execute(
-                "UPDATE app.source_ingress_entities SET ambiguous=true WHERE entity_key=%s",
-                (item.entity_key,),
-            )
         elif entity["head_input_id"] is not None:
             self._expire_entity(conn, item.entity_key, "INGRESS_ENTITY_EDITED")
         copied = event.model_copy(

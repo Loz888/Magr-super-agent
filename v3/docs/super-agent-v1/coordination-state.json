@@ -15,7 +15,7 @@
   },
   "active_super_agent_card": "SAV1-04",
   "card_status": "IN_PROGRESS",
-  "work_state": "SAV1_04_REPAIRED_PENDING_INDEPENDENT_REVIEW",
+  "work_state": "SAV1_04_ORDER_TRANSITION_REPAIR_VERIFICATION",
   "harness_observation": {
     "head": "de4775e22e96718e880fde287b2e0928db2945e3",
     "h00_owner_reported_status": "PASS",
@@ -208,7 +208,8 @@
     "skipped": 0
   },
   "sa04_completion_handoff": "Repair handoff document prepared only; no new completion message delivered or peer confirmation claimed",
-  "sa04_independent_review": "NOT_ACCEPTED_AFTER_REPAIR; waiting for independent reviewer",
+  "sa04_independent_review": "REJECTED_ORDER_TRANSITION; user delivered feedback; no SA05",
   "sa04_repair_commit": "84ca5c3c688b825dc32763a834cc7cc973b0cb69",
-  "sa04_repair_verification": "evidence/SAV1-04/20261111T004543Z-909ef8c5/result.json"
+  "sa04_repair_verification": "evidence/SAV1-04/20261111T004543Z-909ef8c5/result.json",
+  "sa04_order_reading": "evidence/super-agent-v1/SAV1-04/20261111T012548Z-order-start/taskbook-read.json"
 }
