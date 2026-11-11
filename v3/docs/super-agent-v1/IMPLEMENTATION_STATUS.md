@@ -1,3 +1,7 @@
+# SAV1-04 排序转换修复工程通过，等待独立核验
+
+源码 b15937d6dd1ecacdf720199fcd14534c05ffd986；420 注册 PASS（SA04 116、排序新增 25），原独立探针 7 PASS，lint/typecheck 215 files PASS。SA04 保持 IN_PROGRESS，不进入 SA05。本轮只处理 Super-Agent。见 SA04_ORDER_TRANSITION_20261111.md 与 accept/SAV1-04/order-transition-20261111.json。
+
 # SAV1-04 排序转换修复验证中
 
 新独立差分修复前 1 PASS/1 FAIL 已原样保留；统一接收/拒收排序分类后 25 项新回归、旧修复与原独立 28 项、lint/typecheck 215 files 通过。完整注册尚待执行，SA04 保持 IN_PROGRESS，不进入 SA05。本轮仅 Super-Agent，不跟进 H 系列。
