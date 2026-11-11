@@ -23,3 +23,7 @@ GitHub App 的共享 Webhook secret 经原 HMAC-SHA256/constant-time 分支验�
 2026-11-11 独立复验修正 SA05-I01/I02：已验证资源变更与新正文接收分离。规范化超限编辑/删除/当前历史只提交无正文观测；配置超限在原事务拒收正文并提交失效/最小回执，不能用 size exception 回滚删除。全信封256KiB上界和验签/安装/仓库边界保持。
 
 GitHub sender 是当前操作者，resource.author_id 是资源原作者；首次 moderator edit 不产生永久作者锁定。受信 GitHub 资源变更证明覆盖后续原作者及当前历史，通用 author guard 不放宽，正文不提供 moderation。不同操作者同文同时间构成不同观测，等价重投仍 canonical；无序差异保持歧义。没有共享 DTO/schema、迁移、Engine/API/预算/ToolAuthority 或 Harness 变化；新版本候选和原 FAIL 分别记录，等待独立复验。
+
+2026-11-11 历史独立复验修正 SA05-RR01/RR02：当前快照的资源事实与作者新正文留存分离。未选作者仍提交无正文观测，使旧内容失效；row.user 只表示内容作者，不伪造最后编辑者或编辑事件。历史保持 authored snapshot/create/context_only，由原 Engine 最小拒收/歧义路径处理，不签发新身份。
+
+资源证明在已验签 Webhook 与已鉴权安装 API 上一致，包括同一个 created；通用 fingerprint 中的 moderation/内容/actor/scope/operation 均不删除。等价观察双向收敛 canonical，不提升历史权限；真正权限或内容冲突继续拒绝。History actor 上界同样检查当前 App 配置，逐调用重新鉴权。无共享 DTO/schema、迁移、Engine/API、财务或 Harness 变化；原独立FAIL及工程通过分别留存，本卡仍待独立复验。

@@ -75,3 +75,15 @@ SourceEvent.sender 始终为已验证事件操作者，Receive/身份/角色依�
 不同受信操作者在相同平台时间戳修改相同文字，也产生不同观测版本，避免被误判 canonical actor 冲突而跳过隐私失效。同一操作者的等价版本换 delivery 仍复用 canonical；真正不同且无原生顺序的版本继续 sticky ambiguous，不按到达时间恢复可读性。
 
 仅修私有 Sources 实现；无新迁移、共享 Engine/API/schema/预算或 Harness 变化。原独立探针及失败证据原样保留，正式注册 tests/test_super_agent_sa05_repair.py。修复工程通过仍须再次独立验收，不自动进入 SA06。
+
+## 当前历史与 canonical 修复 SA05-RR01/RR02（2026-11-11）
+
+历史接口返回的当前评论不能因作者未选入而整行跳过。经过当前安装/仓库/会话授权和有界 API 读取的资源快照继续形成可信观测；未选作者（含自身或其他机器人）省略 body/body_ref，只由原 Engine 提交最小拒收回执及失效/歧义事实，不新增该作者身份 evidence、正文或执行权。未知作者类型拒绝，不将其当人类。
+
+历史 row.user 是资源内容作者，不是最后编辑者证明。历史保持 operation=create、historical_backfill=true、installation_proof，表示“当前 authored snapshot”；不伪造评论编辑事件，不声称原作者执行了维护者的编辑。最小失效使用受信平台当前资源证明，仍由唯一 Engine 的作者/moderation、当前 Receive 和版本规则裁决。
+
+已验证 Webhook 资源与当前安装 API 资源使用一致的 platform_moderation 资源证明，包括等价 created。它不是 Receive、控制角色或执行授权。通用 ItemMetadata.fingerprint 不变，仍包含该 flag 及真实内容、actor、scope、operation 等；不删除授权事实来消除冲突。相同事实的实时创建/历史快照在任意顺序只保留一个 canonical input；history-first 后的 live 重投不将 context_only 自动提升，live-first 也不被历史重投删除正文。
+
+History 的当前策略 actor 上界也须落在 App sender/context-bot 配置内；逐次 mint/GET 前后仍重查当前授权。没有历史 Receive 许可时不能触发远端读取；有历史读取许可不代表每一行可保留。原作者未选入时，最小快照观测不保留新正文，不补发身份。
+
+本轮无 DTO/schema、迁移、共享 Engine/API、预算/ToolAuthority 或 Harness 变化。发布前规范化纠正改变部分旧合成实时 create 的 proof 指纹；既有 sealed 回执不回写、不自动升级，旧规范化矛盾保持明确拒绝。本持久副本无真实来源配置或旧真实回执。真实 GitHub 平台及其他非工程门保持 NOT_RUN，候选停在SA05等待独立复验。

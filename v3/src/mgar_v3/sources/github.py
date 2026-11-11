@@ -426,13 +426,12 @@ class GitHubAdapter:
                 entity_namespace="github:" + str(resource.repository.repository_id),
                 operation=operation,
                 native_order=None,
-                # GitHub attests the resource mutation, including mutations by its
-                # original author after a moderator-first observation. sender remains
-                # the real operator for Receive/roles; resource.author_id is a separate
-                # platform fact and never supplies that operator's authorization.
-                platform_moderation=bool(
-                    resource.author_id and (operation in {"edit", "delete"} or historical)
-                ),
+                # Both authenticated webhook resources and installation snapshots
+                # attest current resource facts. Use the same proof for equivalent
+                # creates; changing this flag must still conflict in generic ingress.
+                # sender is the real webhook operator or the snapshot's content author,
+                # never an assertion that the original author performed a later edit.
+                platform_moderation=resource.author_id is not None,
             ), body
         except (ValueError, KeyError, TypeError, AttributeError, RecursionError):
             raise DomainError(

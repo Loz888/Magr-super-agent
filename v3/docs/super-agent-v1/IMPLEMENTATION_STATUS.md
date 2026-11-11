@@ -1,3 +1,9 @@
+# SAV1-05 历史补拉独立失败修复中
+
+0548a0f/cc1756b 的543项及原10项虽通过，独立新增3项历史边界全部FAIL；本轮原样复现3 FAIL，正式23项修复前15 FAIL/8 PASS均保留。原验收字节级存档 accept/SAV1-05/history/0548a0f-accept.json。下方工程PASS均为历史快照，不能覆盖该独立结论。
+
+RR01/RR02仅修改私有GitHub adapter/read broker：未选作者当前快照提交无正文观测，不伪造编辑者；等价实时/历史资源的证明统一，通用指纹与权限冲突检查不放宽。新增23项和当前独立3项重跑通过，lint/typecheck 222 files通过；完整固定提交验收尚待执行。无Engine/API/schema/迁移/预算/ToolAuthority/Harness改动，无真实API/模型/外发。SA05 IN_PROGRESS，SA06 PLANNED。
+
 # SAV1-05 独立复验修复工程通过，等待再次独立核验
 
 固定修复 cc1756bfc333ba9204761a6dde6875f0124bcd0b，源码 14bcac359c25ff1469aac9ee3d39ae51adfb5eb651b24be8602435c51a5ada71；完整注册543 PASS（原SA05 79 + 修复44 + 既有420），0 failure/error/skip；原独立10项原样重跑PASS，lint/typecheck 222 files PASS。完整注册结果 evidence/SAV1-05/20261111T043250Z-2a80700f/result.json 由原评分器真实生成，前后指纹一致。详见 SA05_REPAIR_20261111.md 及 accept/SAV1-05/repair-20261111.json。

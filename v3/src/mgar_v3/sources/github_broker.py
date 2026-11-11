@@ -68,7 +68,7 @@ class GitHubReadBroker:
         )
         if not settings.enabled or row["revision"] != self.revision:
             raise DomainError("GITHUB_CONFIG_FENCED", "GitHub settings changed", 403)
-        if operation == "webhook":
+        if operation in {"webhook", "history"}:
             from mgar_v3.super_agent.policy_domain import PolicyDefinition
 
             with self.sources.engine.transaction() as conn:
@@ -520,14 +520,14 @@ class GitHubHistory:
         deliveries = []
         for row in rows:
             try:
-                sender = row["user"]
-                _id(sender["id"])
-                actor_type = sender["type"]
-                if not (
-                    (actor_type == "User" and sender["id"] in settings.sender_ids)
-                    or (actor_type == "Bot" and sender["id"] in settings.context_bot_ids)
-                ):
-                    continue  # No body persistence for unselected or own bots.
+                author = row["user"]  # API proves authorship, not who last edited.
+                author_id = _id(author["id"])
+                actor_type = author["type"]
+                if actor_type not in {"User", "Bot"}:
+                    raise ValueError("Unknown resource author type")
+                selected = (actor_type == "User" and author_id in settings.sender_ids) or (
+                    actor_type == "Bot" and author_id in settings.context_bot_ids
+                )
                 if "issue_comment" not in settings.events:
                     raise DomainError(
                         "GITHUB_EVENT_DISABLED", "Comment history is not selected", 403
@@ -535,13 +535,22 @@ class GitHubHistory:
                 issue: dict[str, Any] = {"number": number}
                 if parts[0] == "pr":
                     issue["pull_request"] = {}
-                raw = {"action": "created", "comment": row, "issue": issue, "sender": sender}
+                raw = {"action": "created", "comment": row, "issue": issue, "sender": author}
                 identifier = "history:" + digest(
                     [row["id"], row.get("updated_at"), row.get("body")]
                 )
                 item, body = adapter._normalize(
                     instance, raw, "issue_comment", identifier, historical=True
                 )
+                if not selected:
+                    # Keep only the trusted snapshot/version observation. The actual
+                    # author remains outside Receive; no invented editor, role, body
+                    # retention or identity evidence. Engine records minimal denial
+                    # and invalidates stale retained content in its original transaction.
+                    item = item.model_copy(
+                        update={"event": item.event.model_copy(update={"body_ref": None})}
+                    )
+                    body = None
                 deliveries.append(
                     VerifiedDelivery(
                         DeliveryMetadata(

@@ -56,7 +56,7 @@
     },
     {
       "path": "src/mgar_v3/sources/github.py",
-      "sha256": "62274e8f58832add7f5d19abb82c1fb8f803cc4c8ad02d4dc27223c7e6fe0f9b"
+      "sha256": "3be75c5dc0a7091c8450e6a34c8d49802f052a7855ef8771fd11a14139827f26"
     },
     {
       "path": "src/mgar_v3/sources/ingress.py",
@@ -65,6 +65,14 @@
     {
       "path": "tests/test_super_agent_sa05_repair.py",
       "sha256": "2e5dd42ac39bc34899b9e0144034950def6621038fd1a188bf0cfc369062c79d"
+    },
+    {
+      "path": "src/mgar_v3/sources/github_broker.py",
+      "sha256": "5c203ee62545fa42365a3d07586aaec83922c9831a968f55345c07a97595c817"
+    },
+    {
+      "path": "tests/test_super_agent_sa05_history_repair.py",
+      "sha256": "dd5340f17b995104a3961f461d68174d3333e7a7ca8c1e5c79d863a63562cec3"
     }
   ],
   "SA05_repair": {
@@ -77,5 +85,16 @@
     "author": "source sender controls Receive; trusted resource mutation proof also covers original-author changes after moderator-first observation",
     "version": "authenticated operator distinguishes same-text/same-timestamp mutation observations",
     "no_shared_schema_engine_api_migration_budget_changes": true
+  },
+  "SA05_history_repair": {
+    "baseline": "0548a0f34de8e80b6d0a26002f3540d2a27cb12d",
+    "findings": [
+      "SA05-RR01 unselected-author current history invalidation",
+      "SA05-RR02 equivalent live/history proof mismatch"
+    ],
+    "observation": "Current authored snapshot, not a fabricated editor event; unselected author body/body_ref omitted, exact derived observed version retained",
+    "proof": "Authenticated GitHub resource proof normalized identically for live and history; generic ItemMetadata.fingerprint still includes moderation, body, actor, scope and operation",
+    "receive": "App actor ceiling applies to history; original Engine rechecks current Receive per item; no identity evidence is synthesized",
+    "shared_engine_api_schema_migration_budget_harness_changes": false
   }
 }

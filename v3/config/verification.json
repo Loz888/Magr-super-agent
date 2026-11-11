@@ -1212,6 +1212,7 @@
     "tests": [
       "tests/test_super_agent_sa05.py",
       "tests/test_super_agent_sa05_repair.py",
+      "tests/test_super_agent_sa05_history_repair.py",
       "tests/test_super_agent_sa04.py",
       "tests/test_super_agent_sa04_faults.py",
       "tests/test_super_agent_sa04_repair.py",
@@ -1241,7 +1242,8 @@
       "live_source_channel": "NOT_RUN",
       "live_coding": "NOT_RUN",
       "live_publication": "NOT_RUN",
-      "repair": "Original independent assertions unchanged; oversized edits/deletes, real resource author/operator, current Receive, history, no spool, rollback and equal version redelivery"
+      "repair": "Original independent assertions unchanged; oversized edits/deletes, real resource author/operator, current Receive, history, no spool, rollback and equal version redelivery",
+      "history_repair": "Unselected authors submit bodyless trusted observations; equal live/history converge without changing strict authority fingerprints; current history scope ceiling"
     },
     "timeout_seconds": 2100
   }
