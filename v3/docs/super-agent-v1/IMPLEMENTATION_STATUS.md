@@ -1,3 +1,9 @@
+# SAV1-05 工程通过，等待独立验收
+
+固定源码 fce886a8af571b86b7d0502b58874ee3c2ceeba4；完整注册499 PASS（SA05 79 + 既有420），0 failure/error/skip；make lint、make typecheck（222 files）PASS。已应用本副本0034，原0001–0033和Engine/ToolAuthority/财务代码未改；旧Webhook业务分支AST未变，补充同一Engine锁内的owner裁决与旧workflow claim防重。详见SA05_GITHUB.md及accept/SAV1-05/accept.json。
+
+保留初轮gap用例列名失败、静态失败、两项灰度切换失败及两次主动中断的完整注册记录；当前通过结果不覆盖这些原始记录。受控GitHub/HMAC/RS256/HTTP与真实隔离PG只构成工程证据，真实平台/API、模型、完整系统安全/编码/发布/长期门仍NOT_RUN；本轮新增付费/外部业务写为0。SA05保持IN_PROGRESS，停在本卡等独立复验，SA06未启动。下方旧条目均为历史快照。
+
 # SAV1-05 已实施，完整注册验收中
 
 用户已确认 SA04 独立复验通过，现进入 SA05；下面旧的“尚未进入 SA05”均为历史快照。SA05 新增77项真实PG/受控GitHub检查通过，lint/typecheck 222 files通过；完整注册验收尚待固定源码后执行，不提前记整卡PASS。本副本已应用0034；真实平台/API、模型、外发/发布、完整系统安全与长期门NOT_RUN。完成工程后停在SA05等待独立验收，不进入SA06。
