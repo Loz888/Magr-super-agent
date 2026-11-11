@@ -1,0 +1,782 @@
+{
+  "task": "SAV1-06",
+  "status": "CONTENT_HEALTH_REPAIR_CANDIDATE_NOT_INDEPENDENTLY_PASSED",
+  "independent_review": "NOT_PASSED; await user-relayed new independent review",
+  "source_commit": "a3e8788bf51d1fd68ed92ebf123d7cf9bed800c8",
+  "implementation_commit": "119d3d4abc8a46adc886023dd943366f2d77f0b3",
+  "source_sha256": "9426df584b070715feef7542202dbebc23155056a0c13eb9b601c076337292a2",
+  "baseline_commit": "123b7433a1aa4739f6611530a3536df49c98eb6d",
+  "baseline_source_sha256": "4738e6421c3e4648e269e3720aec18c42cb5ad93528501eba5bf00f07a91a863",
+  "scope": "仅私有FeishuHistory健康诊断集合、既有正式格式回归和本卡交付哈希清单；无新迁移/共享Engine/API/schema/预算或Harness修改。",
+  "root_cause": "合法外层历史响应内的body.content畸形JSON/重复键经normalize_raw转换为FEISHU_INVALID_EVENT；fetch的固定健康诊断集合漏掉该码。原拒绝、gap和零业务输入有效，但没有新health或遗留online。",
+  "fix": "fetch将FEISHU_INVALID_EVENT交给原broker._health/observe_health；通用严格解析、原拒绝码、gap、分页/来源权限不改。复用既有同配置/模式新鲜负向诊断保护，保留insufficient/revoked、准确reason和原observed_at，不续TTL。",
+  "new_regressions": {
+    "count": 12,
+    "normal_health": "畸形JSON/重复键×无health/已有真实socket在线观察×text/post，共8项；同页先合法行再坏行，拒绝后零input/body/inbox，固定no_replay gap、1POST1GET、无重试/正文日志。",
+    "newer_permission": "2种坏content×insufficient/revoked，共4项；在GET后实际normalize入口先真实fence再解析，DB/Runtime保留权限/原因/原时间；仍写最小格式错误审计并标记preserved_permission_diagnosis。",
+    "before_fix": "12FAIL/exit1；原始日志及JUnit保留，不改断言求通过。",
+    "after_fix_targeted": "63PASS/exit0，包含原三份修复回归；该专项不与全量相加。"
+  },
+  "registered": {
+    "task": "SAV1-06",
+    "status": "PASS",
+    "engineering_gate": "PASS",
+    "live_gate": "NOT_RUN",
+    "reason": null,
+    "argv": [
+      "/home/imini/magr-super-agent/v3/.venv/bin/python",
+      "-m",
+      "pytest",
+      "-q",
+      "tests/test_super_agent_sa06.py",
+      "tests/test_super_agent_sa06_sdk.py",
+      "tests/test_super_agent_sa06_broker.py",
+      "tests/test_super_agent_sa06_migration.py",
+      "tests/test_super_agent_sa06_privacy.py",
+      "tests/test_super_agent_sa06_contract.py",
+      "tests/test_super_agent_sa06_health.py",
+      "tests/test_super_agent_sa06_repair_topics.py",
+      "tests/test_super_agent_sa06_repair_health.py",
+      "tests/test_super_agent_sa06_repair_formats.py",
+      "tests/test_super_agent_sa05.py",
+      "tests/test_super_agent_sa05_repair.py",
+      "tests/test_super_agent_sa05_history_repair.py",
+      "tests/test_super_agent_sa04.py",
+      "tests/test_super_agent_sa04_faults.py",
+      "tests/test_super_agent_sa04_repair.py",
+      "tests/test_super_agent_sa04_order_transition.py",
+      "tests/test_super_agent_sa03.py",
+      "tests/test_super_agent_sa02.py",
+      "tests/test_super_agent_sa01.py",
+      "tests/test_coordination.py",
+      "tests/test_api.py",
+      "tests/test_environment.py",
+      "tests/test_web_access.py",
+      "tests/test_duplex.py",
+      "tests/test_r4_experts.py",
+      "tests/test_effects.py",
+      "tests/test_models.py",
+      "tests/test_r6_policies.py",
+      "tests/test_r5_recovery.py",
+      "--junitxml=/home/imini/magr-super-agent/v3/evidence/SAV1-06/20261111T121259Z-37e23f1f/junit.xml"
+    ],
+    "cwd": "/home/imini/magr-super-agent/v3",
+    "started_at": "2026-11-11T12:12:59.699316+00:00",
+    "finished_at": "2026-11-11T12:34:25.945462+00:00",
+    "duration_seconds": 1286.217,
+    "command_exit_code": 0,
+    "exit_code": 0,
+    "counts": {
+      "tests": 807,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "components": {
+      "postgres": "real disposable PostgreSQL; 34-to-35/checksums/old rows/DDL rollback; same held Engine connection",
+      "sdk": "official lark-oapi 1.7.5 native dispatcher/protobuf/ACK with controlled socket; no live platform",
+      "history": "bounded MockTransport fixed official REST endpoints; per-IO current authority; context-only snapshots; unsupported types bodyless facts",
+      "identity": "raw installation/tenant/OpenID; configured chat/sender/structured mention/topic; nonhuman and context-only roles cannot become requests",
+      "privacy": "denied body never retained; trusted known-resource mutation invalidates old body in original transaction, conflict before deletion",
+      "legacy": "entire SA05 registry retained; old GitHub webhook body unchanged; 0001-0034 unchanged",
+      "model": "NOT_RUN; zero paid calls",
+      "harness": "no active files/imports or H card execution",
+      "live_source_channel": "NOT_RUN",
+      "live_coding": "NOT_RUN",
+      "live_publication": "NOT_RUN",
+      "continuous_operation": "NOT_RUN",
+      "health": "Current-config/current-mode/fresh negative facts survive fencing; stale/future/old granted never becomes current authority",
+      "independent_repair": "Native thread proof before mint; exact remote container; HMAC scope-bound cursors; chat exhaustion incomplete; disconnect preserves fresh diagnosis without TTL renewal; fixed bounded decode errors/health/gaps",
+      "original_probes": "Unmodified; unproven-topic probe may raise safe pre-network DomainError; report exact exit, never rewrite probe"
+    },
+    "git_commit": "a3e8788bf51d1fd68ed92ebf123d7cf9bed800c8",
+    "source_sha256": "9426df584b070715feef7542202dbebc23155056a0c13eb9b601c076337292a2",
+    "finished_source_sha256": "9426df584b070715feef7542202dbebc23155056a0c13eb9b601c076337292a2",
+    "log_path": "evidence/SAV1-06/20261111T121259Z-37e23f1f/command.log",
+    "attempt_path": "evidence/SAV1-06/20261111T121259Z-37e23f1f"
+  },
+  "per_module_counts": {
+    "tests.test_super_agent_sa06": 58,
+    "tests.test_super_agent_sa06_sdk": 23,
+    "tests.test_super_agent_sa06_broker": 63,
+    "tests.test_super_agent_sa06_migration": 2,
+    "tests.test_super_agent_sa06_privacy": 11,
+    "tests.test_super_agent_sa06_contract": 6,
+    "tests.test_super_agent_sa06_health": 15,
+    "tests.test_super_agent_sa06_repair_topics": 12,
+    "tests.test_super_agent_sa06_repair_health": 7,
+    "tests.test_super_agent_sa06_repair_formats": 44,
+    "tests.test_super_agent_sa05": 79,
+    "tests.test_super_agent_sa05_repair": 44,
+    "tests.test_super_agent_sa05_history_repair": 23,
+    "tests.test_super_agent_sa04": 62,
+    "tests.test_super_agent_sa04_faults": 8,
+    "tests.test_super_agent_sa04_repair": 21,
+    "tests.test_super_agent_sa04_order_transition": 25,
+    "tests.test_super_agent_sa03": 88,
+    "tests.test_super_agent_sa02": 52,
+    "tests.test_super_agent_sa01": 47,
+    "tests.test_coordination": 16,
+    "tests.test_api": 5,
+    "tests.test_environment": 4,
+    "tests.test_web_access": 8,
+    "tests.test_duplex": 20,
+    "tests.test_r4_experts": 14,
+    "tests.test_effects": 10,
+    "tests.test_models": 31,
+    "tests.test_r6_policies": 5,
+    "tests.test_r5_recovery": 4
+  },
+  "sa06_total": 241,
+  "existing_non_sa06": 566,
+  "static": [
+    {
+      "stage": "static",
+      "started_utc": "2026-11-11T12:02:08.846063+00:00",
+      "head": "123b7433a1aa4739f6611530a3536df49c98eb6d",
+      "source_before": "f9573b5d544aa4d4d9e08a34790ae2d56391740f0beed3466be23945976684e2",
+      "pg_before": null,
+      "commands": [
+        {
+          "name": "lint",
+          "argv": [
+            "make",
+            "lint"
+          ],
+          "cwd": "/home/imini/magr-super-agent",
+          "started_utc": "2026-11-11T12:02:08.875980+00:00",
+          "finished_utc": "2026-11-11T12:02:08.990863+00:00",
+          "exit_code": 0,
+          "log": "evidence/super-agent-v1/SAV1-06/20261111T115939Z-content-health-repair-4c0a6253/20261111T120208Z-static-aecf7c1a/lint.log"
+        },
+        {
+          "name": "typecheck",
+          "argv": [
+            "make",
+            "typecheck"
+          ],
+          "cwd": "/home/imini/magr-super-agent",
+          "started_utc": "2026-11-11T12:02:08.990951+00:00",
+          "finished_utc": "2026-11-11T12:02:10.660158+00:00",
+          "exit_code": 0,
+          "log": "evidence/super-agent-v1/SAV1-06/20261111T115939Z-content-health-repair-4c0a6253/20261111T120208Z-static-aecf7c1a/typecheck.log"
+        }
+      ],
+      "finished_utc": "2026-11-11T12:02:10.660240+00:00",
+      "source_after": "f9573b5d544aa4d4d9e08a34790ae2d56391740f0beed3466be23945976684e2",
+      "pg_after": null,
+      "status": "PASS",
+      "original_feedback_unchanged": true
+    },
+    {
+      "stage": "static",
+      "started_utc": "2026-11-11T12:12:30.048626+00:00",
+      "head": "119d3d4abc8a46adc886023dd943366f2d77f0b3",
+      "source_before": "9426df584b070715feef7542202dbebc23155056a0c13eb9b601c076337292a2",
+      "pg_before": null,
+      "commands": [
+        {
+          "name": "lint",
+          "argv": [
+            "make",
+            "lint"
+          ],
+          "cwd": "/home/imini/magr-super-agent",
+          "started_utc": "2026-11-11T12:12:30.082495+00:00",
+          "finished_utc": "2026-11-11T12:12:30.147361+00:00",
+          "exit_code": 0,
+          "log": "evidence/super-agent-v1/SAV1-06/20261111T115939Z-content-health-repair-4c0a6253/20261111T121230Z-static-179617a3/lint.log"
+        },
+        {
+          "name": "typecheck",
+          "argv": [
+            "make",
+            "typecheck"
+          ],
+          "cwd": "/home/imini/magr-super-agent",
+          "started_utc": "2026-11-11T12:12:30.147445+00:00",
+          "finished_utc": "2026-11-11T12:12:30.512875+00:00",
+          "exit_code": 0,
+          "log": "evidence/super-agent-v1/SAV1-06/20261111T115939Z-content-health-repair-4c0a6253/20261111T121230Z-static-179617a3/typecheck.log"
+        }
+      ],
+      "finished_utc": "2026-11-11T12:12:30.512960+00:00",
+      "source_after": "9426df584b070715feef7542202dbebc23155056a0c13eb9b601c076337292a2",
+      "pg_after": null,
+      "status": "PASS",
+      "original_feedback_unchanged": true
+    }
+  ],
+  "typechecked_files": 231,
+  "attempts": [
+    {
+      "stage": "baseline",
+      "started_utc": "2026-11-11T12:01:05.780602+00:00",
+      "head": "123b7433a1aa4739f6611530a3536df49c98eb6d",
+      "source_before": "e565f5f51c4aa723eb7acdc4b1ab40da58e4799616c634df1b27ac245981219d",
+      "status": "NOT_RUN",
+      "reason": "local_pg_unavailable",
+      "exception": "OperationalError"
+    },
+    {
+      "stage": "baseline",
+      "started_utc": "2026-11-11T12:01:19.665810+00:00",
+      "head": "123b7433a1aa4739f6611530a3536df49c98eb6d",
+      "source_before": "e565f5f51c4aa723eb7acdc4b1ab40da58e4799616c634df1b27ac245981219d",
+      "pg_before": {
+        "databases": [],
+        "sessions": []
+      },
+      "commands": [
+        {
+          "name": "pytest",
+          "argv": [
+            "/home/imini/magr-super-agent/v3/.venv/bin/python",
+            "-m",
+            "pytest",
+            "-q",
+            "--tb=short",
+            "tests/test_super_agent_sa06_repair_formats.py",
+            "-k",
+            "history_content",
+            "--junitxml=/home/imini/magr-super-agent/v3/evidence/super-agent-v1/SAV1-06/20261111T115939Z-content-health-repair-4c0a6253/20261111T120119Z-baseline-060d73c3/junit.xml"
+          ],
+          "cwd": "/home/imini/magr-super-agent/v3",
+          "started_utc": "2026-11-11T12:01:19.702714+00:00",
+          "finished_utc": "2026-11-11T12:01:50.354473+00:00",
+          "exit_code": 1,
+          "log": "evidence/super-agent-v1/SAV1-06/20261111T115939Z-content-health-repair-4c0a6253/20261111T120119Z-baseline-060d73c3/pytest.log"
+        }
+      ],
+      "finished_utc": "2026-11-11T12:01:50.367094+00:00",
+      "source_after": "e565f5f51c4aa723eb7acdc4b1ab40da58e4799616c634df1b27ac245981219d",
+      "pg_after": {
+        "databases": [],
+        "sessions": []
+      },
+      "status": "FAIL_PRESERVED",
+      "new_remaining_databases": [],
+      "new_remaining_sessions": [],
+      "counts": {
+        "tests": 12,
+        "failures": 12,
+        "errors": 0,
+        "skipped": 0
+      },
+      "original_feedback_unchanged": true
+    },
+    {
+      "stage": "static",
+      "started_utc": "2026-11-11T12:02:08.846063+00:00",
+      "head": "123b7433a1aa4739f6611530a3536df49c98eb6d",
+      "source_before": "f9573b5d544aa4d4d9e08a34790ae2d56391740f0beed3466be23945976684e2",
+      "pg_before": null,
+      "commands": [
+        {
+          "name": "lint",
+          "argv": [
+            "make",
+            "lint"
+          ],
+          "cwd": "/home/imini/magr-super-agent",
+          "started_utc": "2026-11-11T12:02:08.875980+00:00",
+          "finished_utc": "2026-11-11T12:02:08.990863+00:00",
+          "exit_code": 0,
+          "log": "evidence/super-agent-v1/SAV1-06/20261111T115939Z-content-health-repair-4c0a6253/20261111T120208Z-static-aecf7c1a/lint.log"
+        },
+        {
+          "name": "typecheck",
+          "argv": [
+            "make",
+            "typecheck"
+          ],
+          "cwd": "/home/imini/magr-super-agent",
+          "started_utc": "2026-11-11T12:02:08.990951+00:00",
+          "finished_utc": "2026-11-11T12:02:10.660158+00:00",
+          "exit_code": 0,
+          "log": "evidence/super-agent-v1/SAV1-06/20261111T115939Z-content-health-repair-4c0a6253/20261111T120208Z-static-aecf7c1a/typecheck.log"
+        }
+      ],
+      "finished_utc": "2026-11-11T12:02:10.660240+00:00",
+      "source_after": "f9573b5d544aa4d4d9e08a34790ae2d56391740f0beed3466be23945976684e2",
+      "pg_after": null,
+      "status": "PASS",
+      "original_feedback_unchanged": true
+    },
+    {
+      "stage": "targeted",
+      "started_utc": "2026-11-11T12:02:19.512424+00:00",
+      "head": "123b7433a1aa4739f6611530a3536df49c98eb6d",
+      "source_before": "f9573b5d544aa4d4d9e08a34790ae2d56391740f0beed3466be23945976684e2",
+      "pg_before": {
+        "databases": [],
+        "sessions": []
+      },
+      "commands": [
+        {
+          "name": "pytest",
+          "argv": [
+            "/home/imini/magr-super-agent/v3/.venv/bin/python",
+            "-m",
+            "pytest",
+            "-q",
+            "--tb=short",
+            "tests/test_super_agent_sa06_repair_formats.py",
+            "tests/test_super_agent_sa06_repair_health.py",
+            "tests/test_super_agent_sa06_repair_topics.py",
+            "--junitxml=/home/imini/magr-super-agent/v3/evidence/super-agent-v1/SAV1-06/20261111T115939Z-content-health-repair-4c0a6253/20261111T120219Z-targeted-c68c22aa/junit.xml"
+          ],
+          "cwd": "/home/imini/magr-super-agent/v3",
+          "started_utc": "2026-11-11T12:02:19.557445+00:00",
+          "finished_utc": "2026-11-11T12:04:03.372515+00:00",
+          "exit_code": 0,
+          "log": "evidence/super-agent-v1/SAV1-06/20261111T115939Z-content-health-repair-4c0a6253/20261111T120219Z-targeted-c68c22aa/pytest.log"
+        }
+      ],
+      "finished_utc": "2026-11-11T12:04:03.382670+00:00",
+      "source_after": "f9573b5d544aa4d4d9e08a34790ae2d56391740f0beed3466be23945976684e2",
+      "pg_after": {
+        "databases": [],
+        "sessions": []
+      },
+      "status": "PASS",
+      "new_remaining_databases": [],
+      "new_remaining_sessions": [],
+      "counts": {
+        "tests": 63,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "original_feedback_unchanged": true
+    },
+    {
+      "stage": "registered",
+      "started_utc": "2026-11-11T12:04:24.504489+00:00",
+      "head": "123b7433a1aa4739f6611530a3536df49c98eb6d",
+      "source_before": "f9573b5d544aa4d4d9e08a34790ae2d56391740f0beed3466be23945976684e2",
+      "pg_before": {
+        "databases": [],
+        "sessions": []
+      },
+      "commands": [
+        {
+          "name": "registered",
+          "argv": [
+            "make",
+            "verify",
+            "TASK=SAV1-06"
+          ],
+          "cwd": "/home/imini/magr-super-agent",
+          "started_utc": "2026-11-11T12:04:24.555467+00:00",
+          "finished_utc": "2026-11-11T12:05:37.080504+00:00",
+          "exit_code": 2,
+          "log": "evidence/super-agent-v1/SAV1-06/20261111T115939Z-content-health-repair-4c0a6253/20261111T120424Z-registered-c95104d5/registered.log"
+        }
+      ],
+      "finished_utc": "2026-11-11T12:05:37.092212+00:00",
+      "source_after": "f9573b5d544aa4d4d9e08a34790ae2d56391740f0beed3466be23945976684e2",
+      "pg_after": {
+        "databases": [],
+        "sessions": []
+      },
+      "status": "FAIL_PRESERVED",
+      "new_remaining_databases": [],
+      "new_remaining_sessions": [],
+      "registered_result_path": "evidence/SAV1-06/20261111T120424Z-fd3c48b1/result.json",
+      "registered_result": {
+        "task": "SAV1-06",
+        "status": "FAIL",
+        "engineering_gate": "FAIL",
+        "live_gate": "NOT_RUN",
+        "reason": "test_failure",
+        "argv": [
+          "/home/imini/magr-super-agent/v3/.venv/bin/python",
+          "-m",
+          "pytest",
+          "-q",
+          "tests/test_super_agent_sa06.py",
+          "tests/test_super_agent_sa06_sdk.py",
+          "tests/test_super_agent_sa06_broker.py",
+          "tests/test_super_agent_sa06_migration.py",
+          "tests/test_super_agent_sa06_privacy.py",
+          "tests/test_super_agent_sa06_contract.py",
+          "tests/test_super_agent_sa06_health.py",
+          "tests/test_super_agent_sa06_repair_topics.py",
+          "tests/test_super_agent_sa06_repair_health.py",
+          "tests/test_super_agent_sa06_repair_formats.py",
+          "tests/test_super_agent_sa05.py",
+          "tests/test_super_agent_sa05_repair.py",
+          "tests/test_super_agent_sa05_history_repair.py",
+          "tests/test_super_agent_sa04.py",
+          "tests/test_super_agent_sa04_faults.py",
+          "tests/test_super_agent_sa04_repair.py",
+          "tests/test_super_agent_sa04_order_transition.py",
+          "tests/test_super_agent_sa03.py",
+          "tests/test_super_agent_sa02.py",
+          "tests/test_super_agent_sa01.py",
+          "tests/test_coordination.py",
+          "tests/test_api.py",
+          "tests/test_environment.py",
+          "tests/test_web_access.py",
+          "tests/test_duplex.py",
+          "tests/test_r4_experts.py",
+          "tests/test_effects.py",
+          "tests/test_models.py",
+          "tests/test_r6_policies.py",
+          "tests/test_r5_recovery.py",
+          "--junitxml=/home/imini/magr-super-agent/v3/evidence/SAV1-06/20261111T120424Z-fd3c48b1/junit.xml"
+        ],
+        "cwd": "/home/imini/magr-super-agent/v3",
+        "started_at": "2026-11-11T12:04:24.602358+00:00",
+        "finished_at": "2026-11-11T12:05:37.030427+00:00",
+        "duration_seconds": 72.399,
+        "command_exit_code": 1,
+        "exit_code": 1,
+        "counts": {
+          "tests": 45,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        "components": {
+          "postgres": "real disposable PostgreSQL; 34-to-35/checksums/old rows/DDL rollback; same held Engine connection",
+          "sdk": "official lark-oapi 1.7.5 native dispatcher/protobuf/ACK with controlled socket; no live platform",
+          "history": "bounded MockTransport fixed official REST endpoints; per-IO current authority; context-only snapshots; unsupported types bodyless facts",
+          "identity": "raw installation/tenant/OpenID; configured chat/sender/structured mention/topic; nonhuman and context-only roles cannot become requests",
+          "privacy": "denied body never retained; trusted known-resource mutation invalidates old body in original transaction, conflict before deletion",
+          "legacy": "entire SA05 registry retained; old GitHub webhook body unchanged; 0001-0034 unchanged",
+          "model": "NOT_RUN; zero paid calls",
+          "harness": "no active files/imports or H card execution",
+          "live_source_channel": "NOT_RUN",
+          "live_coding": "NOT_RUN",
+          "live_publication": "NOT_RUN",
+          "continuous_operation": "NOT_RUN",
+          "health": "Current-config/current-mode/fresh negative facts survive fencing; stale/future/old granted never becomes current authority",
+          "independent_repair": "Native thread proof before mint; exact remote container; HMAC scope-bound cursors; chat exhaustion incomplete; disconnect preserves fresh diagnosis without TTL renewal; fixed bounded decode errors/health/gaps",
+          "original_probes": "Unmodified; unproven-topic probe may raise safe pre-network DomainError; report exact exit, never rewrite probe"
+        },
+        "git_commit": "123b7433a1aa4739f6611530a3536df49c98eb6d",
+        "source_sha256": "f9573b5d544aa4d4d9e08a34790ae2d56391740f0beed3466be23945976684e2",
+        "finished_source_sha256": "f9573b5d544aa4d4d9e08a34790ae2d56391740f0beed3466be23945976684e2",
+        "log_path": "evidence/SAV1-06/20261111T120424Z-fd3c48b1/command.log",
+        "attempt_path": "evidence/SAV1-06/20261111T120424Z-fd3c48b1"
+      },
+      "original_feedback_unchanged": true
+    },
+    {
+      "stage": "registered",
+      "started_utc": "2026-11-11T12:06:02.609042+00:00",
+      "head": "119d3d4abc8a46adc886023dd943366f2d77f0b3",
+      "source_before": "f9573b5d544aa4d4d9e08a34790ae2d56391740f0beed3466be23945976684e2",
+      "pg_before": {
+        "databases": [],
+        "sessions": []
+      },
+      "commands": [
+        {
+          "name": "registered",
+          "argv": [
+            "make",
+            "verify",
+            "TASK=SAV1-06"
+          ],
+          "cwd": "/home/imini/magr-super-agent",
+          "started_utc": "2026-11-11T12:06:02.655249+00:00",
+          "finished_utc": "2026-11-11T12:11:57.693395+00:00",
+          "exit_code": 2,
+          "log": "evidence/super-agent-v1/SAV1-06/20261111T115939Z-content-health-repair-4c0a6253/20261111T120602Z-registered-6b3daf7a/registered.log"
+        }
+      ],
+      "finished_utc": "2026-11-11T12:11:57.706145+00:00",
+      "source_after": "f9573b5d544aa4d4d9e08a34790ae2d56391740f0beed3466be23945976684e2",
+      "pg_after": {
+        "databases": [],
+        "sessions": []
+      },
+      "status": "FAIL_PRESERVED",
+      "new_remaining_databases": [],
+      "new_remaining_sessions": [],
+      "registered_result_path": "evidence/SAV1-06/20261111T120602Z-4e15f228/result.json",
+      "registered_result": {
+        "task": "SAV1-06",
+        "status": "FAIL",
+        "engineering_gate": "FAIL",
+        "live_gate": "NOT_RUN",
+        "reason": "test_failure",
+        "argv": [
+          "/home/imini/magr-super-agent/v3/.venv/bin/python",
+          "-m",
+          "pytest",
+          "-q",
+          "tests/test_super_agent_sa06.py",
+          "tests/test_super_agent_sa06_sdk.py",
+          "tests/test_super_agent_sa06_broker.py",
+          "tests/test_super_agent_sa06_migration.py",
+          "tests/test_super_agent_sa06_privacy.py",
+          "tests/test_super_agent_sa06_contract.py",
+          "tests/test_super_agent_sa06_health.py",
+          "tests/test_super_agent_sa06_repair_topics.py",
+          "tests/test_super_agent_sa06_repair_health.py",
+          "tests/test_super_agent_sa06_repair_formats.py",
+          "tests/test_super_agent_sa05.py",
+          "tests/test_super_agent_sa05_repair.py",
+          "tests/test_super_agent_sa05_history_repair.py",
+          "tests/test_super_agent_sa04.py",
+          "tests/test_super_agent_sa04_faults.py",
+          "tests/test_super_agent_sa04_repair.py",
+          "tests/test_super_agent_sa04_order_transition.py",
+          "tests/test_super_agent_sa03.py",
+          "tests/test_super_agent_sa02.py",
+          "tests/test_super_agent_sa01.py",
+          "tests/test_coordination.py",
+          "tests/test_api.py",
+          "tests/test_environment.py",
+          "tests/test_web_access.py",
+          "tests/test_duplex.py",
+          "tests/test_r4_experts.py",
+          "tests/test_effects.py",
+          "tests/test_models.py",
+          "tests/test_r6_policies.py",
+          "tests/test_r5_recovery.py",
+          "--junitxml=/home/imini/magr-super-agent/v3/evidence/SAV1-06/20261111T120602Z-4e15f228/junit.xml"
+        ],
+        "cwd": "/home/imini/magr-super-agent/v3",
+        "started_at": "2026-11-11T12:06:02.704212+00:00",
+        "finished_at": "2026-11-11T12:11:57.647814+00:00",
+        "duration_seconds": 354.914,
+        "command_exit_code": 1,
+        "exit_code": 1,
+        "counts": {
+          "tests": 229,
+          "failures": 1,
+          "errors": 0,
+          "skipped": 0
+        },
+        "components": {
+          "postgres": "real disposable PostgreSQL; 34-to-35/checksums/old rows/DDL rollback; same held Engine connection",
+          "sdk": "official lark-oapi 1.7.5 native dispatcher/protobuf/ACK with controlled socket; no live platform",
+          "history": "bounded MockTransport fixed official REST endpoints; per-IO current authority; context-only snapshots; unsupported types bodyless facts",
+          "identity": "raw installation/tenant/OpenID; configured chat/sender/structured mention/topic; nonhuman and context-only roles cannot become requests",
+          "privacy": "denied body never retained; trusted known-resource mutation invalidates old body in original transaction, conflict before deletion",
+          "legacy": "entire SA05 registry retained; old GitHub webhook body unchanged; 0001-0034 unchanged",
+          "model": "NOT_RUN; zero paid calls",
+          "harness": "no active files/imports or H card execution",
+          "live_source_channel": "NOT_RUN",
+          "live_coding": "NOT_RUN",
+          "live_publication": "NOT_RUN",
+          "continuous_operation": "NOT_RUN",
+          "health": "Current-config/current-mode/fresh negative facts survive fencing; stale/future/old granted never becomes current authority",
+          "independent_repair": "Native thread proof before mint; exact remote container; HMAC scope-bound cursors; chat exhaustion incomplete; disconnect preserves fresh diagnosis without TTL renewal; fixed bounded decode errors/health/gaps",
+          "original_probes": "Unmodified; unproven-topic probe may raise safe pre-network DomainError; report exact exit, never rewrite probe"
+        },
+        "git_commit": "119d3d4abc8a46adc886023dd943366f2d77f0b3",
+        "source_sha256": "f9573b5d544aa4d4d9e08a34790ae2d56391740f0beed3466be23945976684e2",
+        "finished_source_sha256": "f9573b5d544aa4d4d9e08a34790ae2d56391740f0beed3466be23945976684e2",
+        "log_path": "evidence/SAV1-06/20261111T120602Z-4e15f228/command.log",
+        "attempt_path": "evidence/SAV1-06/20261111T120602Z-4e15f228"
+      },
+      "original_feedback_unchanged": true
+    },
+    {
+      "stage": "static",
+      "started_utc": "2026-11-11T12:12:30.048626+00:00",
+      "head": "119d3d4abc8a46adc886023dd943366f2d77f0b3",
+      "source_before": "9426df584b070715feef7542202dbebc23155056a0c13eb9b601c076337292a2",
+      "pg_before": null,
+      "commands": [
+        {
+          "name": "lint",
+          "argv": [
+            "make",
+            "lint"
+          ],
+          "cwd": "/home/imini/magr-super-agent",
+          "started_utc": "2026-11-11T12:12:30.082495+00:00",
+          "finished_utc": "2026-11-11T12:12:30.147361+00:00",
+          "exit_code": 0,
+          "log": "evidence/super-agent-v1/SAV1-06/20261111T115939Z-content-health-repair-4c0a6253/20261111T121230Z-static-179617a3/lint.log"
+        },
+        {
+          "name": "typecheck",
+          "argv": [
+            "make",
+            "typecheck"
+          ],
+          "cwd": "/home/imini/magr-super-agent",
+          "started_utc": "2026-11-11T12:12:30.147445+00:00",
+          "finished_utc": "2026-11-11T12:12:30.512875+00:00",
+          "exit_code": 0,
+          "log": "evidence/super-agent-v1/SAV1-06/20261111T115939Z-content-health-repair-4c0a6253/20261111T121230Z-static-179617a3/typecheck.log"
+        }
+      ],
+      "finished_utc": "2026-11-11T12:12:30.512960+00:00",
+      "source_after": "9426df584b070715feef7542202dbebc23155056a0c13eb9b601c076337292a2",
+      "pg_after": null,
+      "status": "PASS",
+      "original_feedback_unchanged": true
+    },
+    {
+      "stage": "registered",
+      "started_utc": "2026-11-11T12:12:59.605877+00:00",
+      "head": "a3e8788bf51d1fd68ed92ebf123d7cf9bed800c8",
+      "source_before": "9426df584b070715feef7542202dbebc23155056a0c13eb9b601c076337292a2",
+      "pg_before": {
+        "databases": [],
+        "sessions": []
+      },
+      "commands": [
+        {
+          "name": "registered",
+          "argv": [
+            "make",
+            "verify",
+            "TASK=SAV1-06"
+          ],
+          "cwd": "/home/imini/magr-super-agent",
+          "started_utc": "2026-11-11T12:12:59.651640+00:00",
+          "finished_utc": "2026-11-11T12:34:26.007514+00:00",
+          "exit_code": 0,
+          "log": "evidence/super-agent-v1/SAV1-06/20261111T115939Z-content-health-repair-4c0a6253/20261111T121259Z-registered-acf0fa42/registered.log"
+        }
+      ],
+      "finished_utc": "2026-11-11T12:34:26.020267+00:00",
+      "source_after": "9426df584b070715feef7542202dbebc23155056a0c13eb9b601c076337292a2",
+      "pg_after": {
+        "databases": [],
+        "sessions": []
+      },
+      "status": "PASS",
+      "new_remaining_databases": [],
+      "new_remaining_sessions": [],
+      "registered_result_path": "evidence/SAV1-06/20261111T121259Z-37e23f1f/result.json",
+      "registered_result": {
+        "task": "SAV1-06",
+        "status": "PASS",
+        "engineering_gate": "PASS",
+        "live_gate": "NOT_RUN",
+        "reason": null,
+        "argv": [
+          "/home/imini/magr-super-agent/v3/.venv/bin/python",
+          "-m",
+          "pytest",
+          "-q",
+          "tests/test_super_agent_sa06.py",
+          "tests/test_super_agent_sa06_sdk.py",
+          "tests/test_super_agent_sa06_broker.py",
+          "tests/test_super_agent_sa06_migration.py",
+          "tests/test_super_agent_sa06_privacy.py",
+          "tests/test_super_agent_sa06_contract.py",
+          "tests/test_super_agent_sa06_health.py",
+          "tests/test_super_agent_sa06_repair_topics.py",
+          "tests/test_super_agent_sa06_repair_health.py",
+          "tests/test_super_agent_sa06_repair_formats.py",
+          "tests/test_super_agent_sa05.py",
+          "tests/test_super_agent_sa05_repair.py",
+          "tests/test_super_agent_sa05_history_repair.py",
+          "tests/test_super_agent_sa04.py",
+          "tests/test_super_agent_sa04_faults.py",
+          "tests/test_super_agent_sa04_repair.py",
+          "tests/test_super_agent_sa04_order_transition.py",
+          "tests/test_super_agent_sa03.py",
+          "tests/test_super_agent_sa02.py",
+          "tests/test_super_agent_sa01.py",
+          "tests/test_coordination.py",
+          "tests/test_api.py",
+          "tests/test_environment.py",
+          "tests/test_web_access.py",
+          "tests/test_duplex.py",
+          "tests/test_r4_experts.py",
+          "tests/test_effects.py",
+          "tests/test_models.py",
+          "tests/test_r6_policies.py",
+          "tests/test_r5_recovery.py",
+          "--junitxml=/home/imini/magr-super-agent/v3/evidence/SAV1-06/20261111T121259Z-37e23f1f/junit.xml"
+        ],
+        "cwd": "/home/imini/magr-super-agent/v3",
+        "started_at": "2026-11-11T12:12:59.699316+00:00",
+        "finished_at": "2026-11-11T12:34:25.945462+00:00",
+        "duration_seconds": 1286.217,
+        "command_exit_code": 0,
+        "exit_code": 0,
+        "counts": {
+          "tests": 807,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        "components": {
+          "postgres": "real disposable PostgreSQL; 34-to-35/checksums/old rows/DDL rollback; same held Engine connection",
+          "sdk": "official lark-oapi 1.7.5 native dispatcher/protobuf/ACK with controlled socket; no live platform",
+          "history": "bounded MockTransport fixed official REST endpoints; per-IO current authority; context-only snapshots; unsupported types bodyless facts",
+          "identity": "raw installation/tenant/OpenID; configured chat/sender/structured mention/topic; nonhuman and context-only roles cannot become requests",
+          "privacy": "denied body never retained; trusted known-resource mutation invalidates old body in original transaction, conflict before deletion",
+          "legacy": "entire SA05 registry retained; old GitHub webhook body unchanged; 0001-0034 unchanged",
+          "model": "NOT_RUN; zero paid calls",
+          "harness": "no active files/imports or H card execution",
+          "live_source_channel": "NOT_RUN",
+          "live_coding": "NOT_RUN",
+          "live_publication": "NOT_RUN",
+          "continuous_operation": "NOT_RUN",
+          "health": "Current-config/current-mode/fresh negative facts survive fencing; stale/future/old granted never becomes current authority",
+          "independent_repair": "Native thread proof before mint; exact remote container; HMAC scope-bound cursors; chat exhaustion incomplete; disconnect preserves fresh diagnosis without TTL renewal; fixed bounded decode errors/health/gaps",
+          "original_probes": "Unmodified; unproven-topic probe may raise safe pre-network DomainError; report exact exit, never rewrite probe"
+        },
+        "git_commit": "a3e8788bf51d1fd68ed92ebf123d7cf9bed800c8",
+        "source_sha256": "9426df584b070715feef7542202dbebc23155056a0c13eb9b601c076337292a2",
+        "finished_source_sha256": "9426df584b070715feef7542202dbebc23155056a0c13eb9b601c076337292a2",
+        "log_path": "evidence/SAV1-06/20261111T121259Z-37e23f1f/command.log",
+        "attempt_path": "evidence/SAV1-06/20261111T121259Z-37e23f1f"
+      },
+      "original_feedback_unchanged": true
+    }
+  ],
+  "failure_history": {
+    "sandbox_baseline": "NOT_RUN/exit2: sandbox cannot reach own PG; approved host run used same PG, never SQLite.",
+    "new_regression_before_fix": "12FAIL; evidence 120119Z-baseline-060d73c3.",
+    "initial_uncommitted_full": "主动中断，45项无断言失败但完整运行FAIL/exit1（make exit2）；git身份提交失败后启动次序纠正，未计为全量。",
+    "first_fixed_candidate": "119d3d4漏更新实际交付哈希；原完整性测试1FAIL，229项后主动中断、余项NOT_RUN，FAIL/exit1（make exit2）。只更新清单中实际变化的2个SHA，未改原契约测试/评分器/阈值。",
+    "prior_independent": "旧744项10TMPDIR失败、原4FAIL/格式5PASS4FAIL、修复前后原话题FAIL及本次所有失败保留；不拼分轮成绩。"
+  },
+  "original_probes": {
+    "this_candidate": "NOT_RUN; original bytes preserved, no new claim all probes green",
+    "prior_source": "d8004baadbf8e0afff1fc9e2dbbcd82ee2cf93ba",
+    "prior_original_probe": "3PASS/1FAIL/exit1; topic-only-remote-scope pre-network unproven-thread refusal",
+    "prior_original_formats": "9PASS/0FAIL/exit0",
+    "limits": "新健康修复不等于话题探针契约已独立认可；等待独立复验。"
+  },
+  "evidence_root": "evidence/super-agent-v1/SAV1-06/20261111T115939Z-content-health-repair-4c0a6253",
+  "evidence": {
+    "reading": "reading-and-baseline-hashes.json",
+    "preflight": "preflight.json",
+    "freeze": "source-freeze-manifest.json",
+    "protected_scope": "scope-integrity.json",
+    "delivery_manifest": "config/source-feishu-v1.json",
+    "delivery_hashes": 33,
+    "manifest_failure": "manifest-failure.json",
+    "workflow_events": "workflow-events.json",
+    "runner": "v3/.local/sa06-content-health/run.py",
+    "pg_cleanup": "registered attempt commands.json contains before/after inventory; no new residual databases/sessions; original fixture owns cleanup"
+  },
+  "gates": {
+    "engineering_gate": "FAIL",
+    "local_registered_gate": "PASS",
+    "policy_security_gate": "NOT_RUN",
+    "live_source_channel_gate": "NOT_RUN",
+    "live_coding_gate": "NOT_RUN",
+    "live_publication_gate": "NOT_RUN",
+    "continuous_operation_gate": "NOT_RUN"
+  },
+  "gate_explanation": "本地807项完整注册通过不替代外部独立放行；SA06仍IN_PROGRESS/NOT_PASSED，SA07未启动。",
+  "costs": {
+    "new_real_platform_calls": 0,
+    "new_paid_calls": 0,
+    "new_external_business_writes": 0
+  },
+  "later_paid_authorization": "用户追加：后面确有真实付费调用需求时可调用。本轮不需要且未调用，原预算/范围门不扩张；真实平台/外发/发布未获启用。",
+  "user_changes": "先前未跟踪的cli-takeover-20261111.json原样保留，不混入修复提交。",
+  "harness": "未访问活动树/导入/编辑/推进H卡；0036未预占。",
+  "delivery": "local only; no push/deploy/messages sent",
+  "stop": "Wait for independent SA06 review; do not enter SA07",
+  "recorded_at_utc": "2026-11-11T12:34:48.935459+00:00"
+}
