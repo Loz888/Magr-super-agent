@@ -63,7 +63,7 @@
     },
     {
       "path": "src/mgar_v3/sources/ingress.py",
-      "sha256": "d5fd8246afe8c442866633fa00c73b7305d8563acbeda5f1fb48baef8ffe00d6"
+      "sha256": "a5bb827227c65e44d0e51b34ac5253566b337b7076bfe2879e0fe07549e57c19"
     },
     {
       "path": "src/mgar_v3/sources/ingress_api.py",
@@ -124,7 +124,8 @@
     "independent_scorer": "unchanged; exact test-function ASTs registered",
     "unsequenced_denial": "sticky ambiguity, no automatic restoration",
     "denied_snapshot_neighbor": "Versioned create/history snapshots also retain observed native watermarks or ambiguity; intermediate 3eca833 390 PASS plus neighbor 1 FAIL preserved",
-    "order_transition": "Shared immutable unordered-history classification independent of Receive outcome; same-version canonical dedupe first"
+    "order_transition": "Shared immutable unordered-history classification independent of Receive outcome; same-version canonical dedupe first",
+    "SA05_content_bound": "Configured oversized content denies body/input admission; trusted invalidation and minimal rejected receipt commit together; no rejected plaintext spool"
   },
   "forward_compatibility_SAV1_05": "32-to-current test expects all appended migration names including 0034; old row and complete checksum assertions unchanged"
 }

@@ -323,27 +323,37 @@ class GitHubAdapter:
                 sort_keys=True,
                 separators=(",", ":"),
             ).encode()
-            if len(encoded_body) > 65536:
-                raise DomainError(
-                    "INGRESS_BODY_BOUND", "GitHub normalized content exceeds 64 KiB", 413
-                )
             operation = (
                 "delete"
                 if action == "deleted"
                 else ("edit" if action in {"edited", "dismissed", "synchronize"} else "create")
             )
+            oversized = len(encoded_body) > 65536
+            if oversized and operation == "create" and not historical:
+                raise DomainError(
+                    "INGRESS_BODY_BOUND", "GitHub normalized content exceeds 64 KiB", 413
+                )
+            # A verified mutation/history observation must reach the sole Engine even
+            # when its new content cannot be retained. Keep the exact derived version
+            # hash below, omit plaintext/body_ref, and preserve SA04 ambiguity/tombstones.
+            # This is metadata-only receipt, never truncation or permission to read it.
             # updated_at is not a native monotonic revision: two edits may share one timestamp.
             # Include the authenticated content/state hash; genuinely different unknown-order
             # versions stay ambiguous in SA04 instead of using arrival time.
-            version = digest(
-                [
-                    resource.model_dump(mode="json"),
-                    operation,
-                    hashlib.sha256(encoded_body).hexdigest(),
-                    obj.get("updated_at"),
-                    obj.get("state"),
-                ]
-            )
+            sender = raw["sender"]
+            version_facts: list[object] = [
+                resource.model_dump(mode="json"),
+                operation,
+                hashlib.sha256(encoded_body).hexdigest(),
+                obj.get("updated_at"),
+                obj.get("state"),
+            ]
+            if operation in {"edit", "delete"}:
+                # Distinct authenticated operators can edit identical text in the same
+                # platform timestamp tick. They are distinct observations, not an alias
+                # whose actor mismatch would block privacy invalidation as a conflict.
+                version_facts.append(["operator", _id(sender["id"]), sender["type"]])
+            version = digest(version_facts)
             occurred = next(
                 (
                     obj[k]
@@ -359,8 +369,7 @@ class GitHubAdapter:
                 None,
             )
             at = utc(occurred)
-            body: bytes | None = None if operation == "delete" else encoded_body
-            sender = raw["sender"]
+            body: bytes | None = None if operation == "delete" or oversized else encoded_body
             actor = ActorRef(
                 scope=instance.scope,
                 id_type="github_id",
@@ -417,10 +426,12 @@ class GitHubAdapter:
                 entity_namespace="github:" + str(resource.repository.repository_id),
                 operation=operation,
                 native_order=None,
+                # GitHub attests the resource mutation, including mutations by its
+                # original author after a moderator-first observation. sender remains
+                # the real operator for Receive/roles; resource.author_id is a separate
+                # platform fact and never supplies that operator's authorization.
                 platform_moderation=bool(
-                    resource.author_id
-                    and resource.author_id != _id(sender["id"])
-                    and operation in {"edit", "delete"}
+                    resource.author_id and (operation in {"edit", "delete"} or historical)
                 ),
             ), body
         except (ValueError, KeyError, TypeError, AttributeError, RecursionError):

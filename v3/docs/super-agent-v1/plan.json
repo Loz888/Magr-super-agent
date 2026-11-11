@@ -137,7 +137,8 @@
       "optional": false,
       "card": "TASKS.md#sa05",
       "verification_target_on_implementation": "SAV1-05",
-      "acceptance": "accept/SAV1-05/accept.json"
+      "acceptance": "accept/SAV1-05/accept.json",
+      "independent_review": "4ecac50 independent FAIL (6/10 edge cases); repair in progress, full registered fixed candidate and independent re-review pending"
     },
     {
       "id": "SAV1-06",

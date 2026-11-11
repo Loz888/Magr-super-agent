@@ -19,3 +19,7 @@ GitHub App 的共享 Webhook secret 经原 HMAC-SHA256/constant-time 分支验�
 接收上界与隐私删除分离：受信、已选资源上的编辑/删除不能因 editor 没有 Receive 角色而保留旧正文。未选 editor 只经 SA04 最小事实/失效路径；Runtime 校验策略 actor 不得超过 App 白名单。令牌签发与数据 GET 是两个外部边界，后者重新检查当前快照/历史许可。
 
 灰度切换补充：旧CI主动入口的原始 delivery 保存在 proactive_event_claims，原 Trigger 外部ID为 speculation:<uuid>，不能仅靠普通 Trigger 去重。新 Runtime 查询同项目/仓库/原始delivery的原claim，已由旧CI建工时明确拒绝再次建立 Source input。API owner预检和所有旧分支在原 Engine mutex 内线性化；不持有跨外部调用SQL事务。两项真实PG回归（既有claim回切、受控并发切换）修复前2 FAIL已保留。
+
+2026-11-11 独立复验修正 SA05-I01/I02：已验证资源变更与新正文接收分离。规范化超限编辑/删除/当前历史只提交无正文观测；配置超限在原事务拒收正文并提交失效/最小回执，不能用 size exception 回滚删除。全信封256KiB上界和验签/安装/仓库边界保持。
+
+GitHub sender 是当前操作者，resource.author_id 是资源原作者；首次 moderator edit 不产生永久作者锁定。受信 GitHub 资源变更证明覆盖后续原作者及当前历史，通用 author guard 不放宽，正文不提供 moderation。不同操作者同文同时间构成不同观测，等价重投仍 canonical；无序差异保持歧义。没有共享 DTO/schema、迁移、Engine/API/预算/ToolAuthority 或 Harness 变化；新版本候选和原 FAIL 分别记录，等待独立复验。

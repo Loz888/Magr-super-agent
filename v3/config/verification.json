@@ -1211,6 +1211,7 @@
   "SAV1-05": {
     "tests": [
       "tests/test_super_agent_sa05.py",
+      "tests/test_super_agent_sa05_repair.py",
       "tests/test_super_agent_sa04.py",
       "tests/test_super_agent_sa04_faults.py",
       "tests/test_super_agent_sa04_repair.py",
@@ -1239,7 +1240,8 @@
       "harness": "no active files or changes imported; only fixed ownership confirmation read",
       "live_source_channel": "NOT_RUN",
       "live_coding": "NOT_RUN",
-      "live_publication": "NOT_RUN"
+      "live_publication": "NOT_RUN",
+      "repair": "Original independent assertions unchanged; oversized edits/deletes, real resource author/operator, current Receive, history, no spool, rollback and equal version redelivery"
     },
     "timeout_seconds": 2100
   }

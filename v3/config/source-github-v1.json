@@ -53,6 +53,29 @@
     {
       "path": "migrations/0034_github_app.sql",
       "sha256": "327ab8d0892410527892bd588e504f548e8898630b8207a388b36bc357b21c96"
+    },
+    {
+      "path": "src/mgar_v3/sources/github.py",
+      "sha256": "62274e8f58832add7f5d19abb82c1fb8f803cc4c8ad02d4dc27223c7e6fe0f9b"
+    },
+    {
+      "path": "src/mgar_v3/sources/ingress.py",
+      "sha256": "a5bb827227c65e44d0e51b34ac5253566b337b7076bfe2879e0fe07549e57c19"
+    },
+    {
+      "path": "tests/test_super_agent_sa05_repair.py",
+      "sha256": "2e5dd42ac39bc34899b9e0144034950def6621038fd1a188bf0cfc369062c79d"
     }
-  ]
+  ],
+  "SA05_repair": {
+    "baseline": "4ecac50cf6f984746f9efc25ed5d4f7995cb2665",
+    "findings": [
+      "SA05-I01 oversized verified mutation",
+      "SA05-I02 resource author versus event operator"
+    ],
+    "oversized_mutation": "metadata-only within original envelope bound; omit body/body_ref, retain derived observed version; never truncate",
+    "author": "source sender controls Receive; trusted resource mutation proof also covers original-author changes after moderator-first observation",
+    "version": "authenticated operator distinguishes same-text/same-timestamp mutation observations",
+    "no_shared_schema_engine_api_migration_budget_changes": true
+  }
 }

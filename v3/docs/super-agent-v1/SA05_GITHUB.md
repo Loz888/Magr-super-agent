@@ -63,3 +63,15 @@ Contents API 会跟随某些仓库内符号链接，因此快照不使用 Conten
 工程回归使用 git hash-object 独立核算对象字节，受控 blob 返回 API 风格多行 base64；不以 Contents 返回 type=file 推断路径不是符号链接。
 
 灰度切换补充：旧CI主动入口的原始 delivery 保存在 proactive_event_claims，原 Trigger 外部ID为 speculation:<uuid>，不能仅靠普通 Trigger 去重。新 Runtime 查询同项目/仓库/原始delivery的原claim，已由旧CI建工时明确拒绝再次建立 Source input。API owner预检和所有旧分支在原 Engine mutex 内线性化；不持有跨外部调用SQL事务。两项真实PG回归（既有claim回切、受控并发切换）修复前2 FAIL已保留。
+
+## 独立复验修复 SA05-I01/I02（2026-11-11）
+
+已验签且安装/仓库匹配的编辑、删除及当前历史快照，即使新正文超过规范化64KiB上限，也必须向唯一 Engine 交付不含正文的观测事实。保留精确 derived version，省略 body/body_ref；不截断、不加密缓存大正文、不把新正文交给模型/Recall。新建大正文仍拒绝；整体回调超过256KiB、假签名、错误安装/仓库仍在可信观测前拒绝，不能据此失效原实体。这些硬界外无法确认的事件不声称已观察或已补齐，实际平台 gap 仍须按可靠性边界处理。
+
+更小的 SourceIngress 配置正文上限在原 Engine 事务中转为正文拒收：先保存可信失效/最小水位，再与 rejected receipt 原子提交；不因后置 size exception 回滚旧正文清理。此类正文不能取得 BufferPermit。故障回滚仍同时恢复旧正文和撤销新回执，不额外写数据库。
+
+SourceEvent.sender 始终为已验证事件操作者，Receive/身份/角色依其判断；GitHubResource.author_id 是另一个平台资源事实。GitHub 验证器对编辑/删除和受信当前历史快照提供资源变更证明，无论操作者是否等于原作者；不把首次观察操作者永久当成资源所有者。通用 SourceIngress author guard 保持不变，正文中的 author_id/platform_moderation 不授予权限。未获 Receive 的作者变更仅失效旧内容，不保留新正文或新增其身份 evidence。
+
+不同受信操作者在相同平台时间戳修改相同文字，也产生不同观测版本，避免被误判 canonical actor 冲突而跳过隐私失效。同一操作者的等价版本换 delivery 仍复用 canonical；真正不同且无原生顺序的版本继续 sticky ambiguous，不按到达时间恢复可读性。
+
+仅修私有 Sources 实现；无新迁移、共享 Engine/API/schema/预算或 Harness 变化。原独立探针及失败证据原样保留，正式注册 tests/test_super_agent_sa05_repair.py。修复工程通过仍须再次独立验收，不自动进入 SA06。

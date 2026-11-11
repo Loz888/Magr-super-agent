@@ -1,3 +1,9 @@
+# SAV1-05 独立复验失败修复中
+
+独立 HEAD 4ecac50 的新增10项探针为4 PASS/6 FAIL；原499项 JUnit 虽全绿，外层汇总器因 Hangup 无 result.json，不补造结果。原交付摘要另存 accept/SAV1-05/history/4ecac50-accept.json；下方旧“工程通过”均为历史快照。
+
+两类缺陷已修复：受信编辑/删除的大正文不阻断旧内容失效；GitHub 当前操作者与资源原作者分开，moderator-first 后原作者变更继续执行可信失效。新增44项正式真实PG回归、原独立10项原样重跑及 lint/typecheck 222 files 已通过；完整固定提交注册验收尚待执行。SA05 保持 IN_PROGRESS，SA06 PLANNED。无 Engine/API/schema/迁移/预算/ToolAuthority/Harness 变更；真实平台/模型/外发/发布/完整安全与长期门 NOT_RUN。
+
 # SAV1-05 工程通过，等待独立验收
 
 固定源码 fce886a8af571b86b7d0502b58874ee3c2ceeba4；完整注册499 PASS（SA05 79 + 既有420），0 failure/error/skip；make lint、make typecheck（222 files）PASS。已应用本副本0034，原0001–0033和Engine/ToolAuthority/财务代码未改；旧Webhook业务分支AST未变，补充同一Engine锁内的owner裁决与旧workflow claim防重。详见SA05_GITHUB.md及accept/SAV1-05/accept.json。

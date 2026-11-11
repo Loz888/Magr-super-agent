@@ -395,6 +395,10 @@ class SourceIngress:
             row, settings = self._control(conn, instance.scope.source_instance_id)
             if row["generation"] != generation or settings.owner != "gateway":
                 return None
+            if any(
+                body is not None and len(body) > settings.max_body_bytes for body in delivery.bodies
+            ):
+                return None  # Rejected content must not enter even the encrypted spool.
             revisions, deadline = (
                 [],
                 self.now(conn) + timedelta(seconds=settings.buffer_ttl_seconds),
@@ -888,9 +892,12 @@ class SourceIngress:
             if cursor_prior is not None and cursor_prior["payload_sha256"] != meta.payload_sha256:
                 conflict = conflict or "INGRESS_CURSOR_CONFLICT"
         grants = [
-            self._receive(conn, settings, instance, item, historical=historical)
-            for item in meta.items
+            (None, "INGRESS_BODY_BOUND")
+            if body is not None and len(body) > settings.max_body_bytes
+            else self._receive(conn, settings, instance, item, historical=historical)
+            for item, body in zip(meta.items, delivery.bodies, strict=True)
         ]
+        body_rejected = any(reason == "INGRESS_BODY_BOUND" for _, reason in grants)
         if conflict is None:
             for item, (grant, _) in zip(meta.items, grants, strict=True):
                 self._privacy_delete(conn, item, denied=grant is None)
@@ -902,12 +909,6 @@ class SourceIngress:
                 disposition="backpressure",
                 reason_code="INGRESS_RECEIPT_CAPACITY",
                 committed=False,
-            )
-        if any(
-            body is not None and len(body) > settings.max_body_bytes for body in delivery.bodies
-        ):
-            raise DomainError(
-                "INGRESS_BODY_BOUND", "Source body exceeds configured byte limit", 413
             )
         if permit is not None:
             revisions = tuple(
@@ -1025,6 +1026,8 @@ class SourceIngress:
             if original is not None
             else "INGRESS_COMMITTED"
             if ids
+            else "INGRESS_BODY_BOUND"
+            if body_rejected
             else "INGRESS_RECEIVE_DENIED"
         )
         conn.execute(

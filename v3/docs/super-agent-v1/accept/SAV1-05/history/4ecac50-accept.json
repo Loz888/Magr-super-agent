@@ -1,0 +1,345 @@
+{
+  "card": "SAV1-05",
+  "status": "ENGINEERING_PASS_PENDING_INDEPENDENT_REVIEW",
+  "recorded_at_utc": "2026-11-11T03:15:17.565019+00:00",
+  "source_commit": "fce886a8af571b86b7d0502b58874ee3c2ceeba4",
+  "source_sha256": "b8fd3ce1c9eef804b05e0741293c9743e0ff6db68baaf74f8b2e1227262dbce5",
+  "finished_source_sha256": "b8fd3ce1c9eef804b05e0741293c9743e0ff6db68baaf74f8b2e1227262dbce5",
+  "baseline_commit": "ec92d145f2ad6188fca7e11a7fa913dc9d9257af",
+  "implementation_commits": [
+    "b4415ab5c66e021a8b6c89fd85aea56024939c8c",
+    "f1e5089c05d1383a996c43092bb17773fab84ce6",
+    "fce886a8af571b86b7d0502b58874ee3c2ceeba4"
+  ],
+  "scope": [
+    "GitHub App installation settings/CAS and actual immutable IDs",
+    "eight event families; PR/head/fork/CI run-attempt relations and signed sender ceiling",
+    "single Engine durable ingress, original Issue compatibility and atomic legacy CI claim fencing",
+    "short-lived repository/read-only credential broker; explicit snapshot grant with current authority",
+    "fixed commit/tree-mode/blob proof; deny links/submodules/truncation; bounded current comment history",
+    "cookie/Origin/CSRF management, explicit non-default activation and controlled health"
+  ],
+  "reading": "evidence/super-agent-v1/SAV1-05/20261111T022923Z-start/taskbook-read.json",
+  "ownership": {
+    "commit": "79798690c93497d1740d54cc91fc2f755f55f250",
+    "section": 24,
+    "status": "ACTUALLY_CONFIRMED",
+    "migration": "0034"
+  },
+  "dependency": {
+    "SA04": "User confirmed independent PASS; recorded separately in prior acceptance"
+  },
+  "registered_verification": "evidence/SAV1-05/20261111T030109Z-878aca55/result.json",
+  "counts": {
+    "tests": 499,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "sa05_cases": 79,
+  "prior_cases": 420,
+  "static_evidence": "evidence/super-agent-v1/SAV1-05/20261111T030053Z-static/commands.json",
+  "static": [
+    {
+      "name": "lint",
+      "argv": [
+        "make",
+        "lint"
+      ],
+      "exit_code": 0,
+      "log": "evidence/super-agent-v1/SAV1-05/20261111T030053Z-static/lint.log"
+    },
+    {
+      "name": "typecheck",
+      "argv": [
+        "make",
+        "typecheck"
+      ],
+      "exit_code": 0,
+      "log": "evidence/super-agent-v1/SAV1-05/20261111T030053Z-static/typecheck.log"
+    }
+  ],
+  "typechecked_source_files": 222,
+  "gates": {
+    "engineering_gate": "PASS",
+    "policy_security_gate": "NOT_RUN",
+    "live_source_channel_gate": "NOT_RUN",
+    "live_coding_gate": "NOT_RUN",
+    "live_publication_gate": "NOT_RUN",
+    "continuous_operation_gate": "NOT_RUN"
+  },
+  "card_policy_negative_matrix": "PASS; does not imply full system security gate",
+  "frozen_contract": "config/source-github-v1.json",
+  "compatibility": "evidence/super-agent-v1/SAV1-05/20261111T022923Z-start/compatibility.json",
+  "unchanged_old_test_files": 104,
+  "old_grader": "scripts/verify.py byte-identical",
+  "old_test_change": "SA04 forward upgrade expected list includes newly appended 0034; all old-row/checksum/fault assertions retained",
+  "persistent_state": "evidence/super-agent-v1/SAV1-05/20261111T022923Z-start/persistent-pg-final.json",
+  "retained_failures": [
+    {
+      "path": "evidence/super-agent-v1/SAV1-05/20261111T024400Z-targeted/commands.json",
+      "status": "FAIL_OR_INTERRUPTION_RETAINED",
+      "commands": [
+        {
+          "name": "pytest",
+          "argv": [
+            "/home/imini/magr-super-agent/v3/.venv/bin/python",
+            "-m",
+            "pytest",
+            "-q",
+            "--tb=short",
+            "tests/test_super_agent_sa05.py",
+            "--junitxml=/home/imini/magr-super-agent/v3/evidence/super-agent-v1/SAV1-05/20261111T024400Z-targeted/junit.xml"
+          ],
+          "exit_code": 1,
+          "log": "evidence/super-agent-v1/SAV1-05/20261111T024400Z-targeted/pytest.log",
+          "counts": {
+            "tests": 67,
+            "failures": 1,
+            "errors": 0,
+            "skipped": 0
+          }
+        }
+      ]
+    },
+    {
+      "path": "evidence/super-agent-v1/SAV1-05/20261111T024652Z-static/commands.json",
+      "status": "FAIL_OR_INTERRUPTION_RETAINED",
+      "commands": [
+        {
+          "name": "lint",
+          "argv": [
+            "make",
+            "lint"
+          ],
+          "exit_code": 2,
+          "log": "evidence/super-agent-v1/SAV1-05/20261111T024652Z-static/lint.log"
+        },
+        {
+          "name": "typecheck",
+          "argv": [
+            "make",
+            "typecheck"
+          ],
+          "exit_code": 0,
+          "log": "evidence/super-agent-v1/SAV1-05/20261111T024652Z-static/typecheck.log"
+        }
+      ]
+    },
+    {
+      "path": "evidence/super-agent-v1/SAV1-05/20261111T025405Z-registered/commands.json",
+      "status": "FAIL_OR_INTERRUPTION_RETAINED",
+      "commands": [
+        {
+          "name": "registered",
+          "argv": [
+            "make",
+            "verify",
+            "TASK=SAV1-05"
+          ],
+          "exit_code": 2,
+          "log": "evidence/super-agent-v1/SAV1-05/20261111T025405Z-registered/registered.log"
+        }
+      ]
+    },
+    {
+      "path": "evidence/super-agent-v1/SAV1-05/20261111T025814Z-cutover/commands.json",
+      "status": "FAIL_OR_INTERRUPTION_RETAINED",
+      "commands": [
+        {
+          "name": "pytest",
+          "argv": [
+            "/home/imini/magr-super-agent/v3/.venv/bin/python",
+            "-m",
+            "pytest",
+            "-q",
+            "--tb=short",
+            "-k",
+            "old_workflow_claim or workflow_owner_switch",
+            "tests/test_super_agent_sa05.py",
+            "--junitxml=/home/imini/magr-super-agent/v3/evidence/super-agent-v1/SAV1-05/20261111T025814Z-cutover/junit.xml"
+          ],
+          "exit_code": 1,
+          "log": "evidence/super-agent-v1/SAV1-05/20261111T025814Z-cutover/pytest.log",
+          "counts": {
+            "tests": 2,
+            "failures": 2,
+            "errors": 0,
+            "skipped": 0
+          }
+        }
+      ]
+    },
+    {
+      "path": "evidence/super-agent-v1/SAV1-05/20261111T025947Z-static/commands.json",
+      "status": "FAIL_OR_INTERRUPTION_RETAINED",
+      "commands": [
+        {
+          "name": "lint",
+          "argv": [
+            "make",
+            "lint"
+          ],
+          "exit_code": 2,
+          "log": "evidence/super-agent-v1/SAV1-05/20261111T025947Z-static/lint.log"
+        },
+        {
+          "name": "typecheck",
+          "argv": [
+            "make",
+            "typecheck"
+          ],
+          "exit_code": 0,
+          "log": "evidence/super-agent-v1/SAV1-05/20261111T025947Z-static/typecheck.log"
+        }
+      ]
+    },
+    {
+      "path": "evidence/super-agent-v1/SAV1-05/20261111T025957Z-registered/commands.json",
+      "status": "FAIL_OR_INTERRUPTION_RETAINED",
+      "commands": [
+        {
+          "name": "registered",
+          "argv": [
+            "make",
+            "verify",
+            "TASK=SAV1-05"
+          ],
+          "exit_code": 2,
+          "log": "evidence/super-agent-v1/SAV1-05/20261111T025957Z-registered/registered.log"
+        }
+      ]
+    },
+    {
+      "path": "evidence/super-agent-v1/SAV1-05/20261111T025719Z-self-review-interruption/reason.json",
+      "record": {
+        "status": "INTERRUPTED_FOR_CORRECTION",
+        "target_pid": 1252349,
+        "action": "SIGINT only this uniquely matched disposable pytest process; graceful fixture cleanup",
+        "reason": "Self-review found legacy workflow claim and atomic owner cutover gap; preserve partial result, fix and rerun full registered target",
+        "executed": true
+      }
+    },
+    {
+      "path": "evidence/super-agent-v1/SAV1-05/20261111T030028Z-format-freeze-interruption/reason.json",
+      "record": {
+        "status": "INTERRUPTED_BEFORE_FINAL_FORMAT_FREEZE",
+        "cause": "Added owner-mutex indentation exposed three line-width lint errors; verification was started before this lint result was inspected",
+        "action": "SIGINT this unique disposable pytest process, retain partial run, fix format and require green static checks before restart",
+        "executed": true,
+        "pid": 1266538
+      }
+    }
+  ],
+  "real_platform_api": "NOT_RUN",
+  "real_model": "NOT_RUN",
+  "new_paid_calls": 0,
+  "new_external_business_writes": 0,
+  "h_series": "No tests, changes or active imports; fixed ownership handoff read only",
+  "next_card": "SA06 NOT_STARTED; wait for independent acceptance",
+  "limits": [
+    "Synthetic recordings/MockTransport do not prove real GitHub installation scopes/SDK/reliability",
+    "No native monotonic edit order; conservative SA04 ambiguity may make genuinely newer edits unreadable",
+    "History supports bounded current issue/PR comments, not complete edit/delete or CI delivery replay",
+    "No default runtime, live activation, listener, Worker, token cache/issuance API, model/notification/publication",
+    "Private snapshots are trusted Broker bytes only; Worker/model egress and full data lifecycle await later gates",
+    "Snapshot bound:100 paths,16 depth,128 tree objects,2MiB response and explicit grant byte limit",
+    "Old CI claim redelivery across cutover returns explicit 409 for operator reconciliation; never creates a new Source input or guessed Issue",
+    "0035 is NOT_RESERVED; any next shared migration/API overlap needs a new actual ownership confirmation",
+    "No new completion message delivered to Trae; handoff document prepared only"
+  ],
+  "artifacts": [
+    {
+      "path": "config/source-github-v1.json",
+      "sha256": "cfac3aa54466e1d9e64c5ebbd7be984ee445bb5bbfa3a1cd5f134e2ec18383b6"
+    },
+    {
+      "path": "config/verification.json",
+      "sha256": "9decbfced6c0fb760c886d6fe14ea0e3c1c28443b7764f78771518bafd6d0526"
+    },
+    {
+      "path": "migrations/0034_github_app.sql",
+      "sha256": "327ab8d0892410527892bd588e504f548e8898630b8207a388b36bc357b21c96"
+    },
+    {
+      "path": "src/mgar_v3/api.py",
+      "sha256": "4d84f79bb8e2b0b0eaf8d00ab374e96ce68e6c828e73443e4167b1f88718758f"
+    },
+    {
+      "path": "tests/sa05_support.py",
+      "sha256": "c477a6cc232b47e3e2c8d154e53e896fb74eab8a30b114e83c4cce7718c0f6c1"
+    },
+    {
+      "path": "tests/test_super_agent_sa05.py",
+      "sha256": "392a4ddd73eaac6184fd11f82fb00f9eeacc692c492bc4897c1d74c80726399b"
+    },
+    {
+      "path": "docs/super-agent-v1/SA05_GITHUB.md",
+      "sha256": "f1d370c83a4690710d7737f08719424517666d7302bffcd5dc3651c3204db34c"
+    },
+    {
+      "path": "docs/super-agent-v1/adr/SAV1-05-github-app-read-broker.md",
+      "sha256": "1ca65c49d419d0be8aeb8e813703a87b948f170e4c95b43d6750729ea568c10e"
+    },
+    {
+      "path": "docs/super-agent-v1/HARNESS_SA05_HANDOFF.md",
+      "sha256": "fd8664e237317cf40f90cb967b3dcf99692693ba7907237400af7e511b8cbbdf"
+    },
+    {
+      "path": "src/mgar_v3/sources/github.py",
+      "sha256": "20c63cde11d8431a08aa0e0b457837a2218b6ba75077c416960ed28361c52148"
+    },
+    {
+      "path": "src/mgar_v3/sources/github_api.py",
+      "sha256": "2ac53e29ed16bb929417606f623c14a60b3857c135aa992798d77c501f8bd839"
+    },
+    {
+      "path": "src/mgar_v3/sources/github_auth.py",
+      "sha256": "178e8ec59bf3fa77765b555408c3d6dc680bc2e7a1d38c059b7112db952366a0"
+    },
+    {
+      "path": "src/mgar_v3/sources/github_broker.py",
+      "sha256": "e24fe71d5a903d4e9e8214308983d83ef1ebbc657257a9c9f1e486f220c39acd"
+    },
+    {
+      "path": "src/mgar_v3/sources/github_domain.py",
+      "sha256": "d4b8f86ccc69fc8c726863849542df95a34afb363cdeac30856380e24a464a55"
+    },
+    {
+      "path": "src/mgar_v3/sources/github_runtime.py",
+      "sha256": "3acd83070a54c62fcd57d3bddcb8c0ade8ae6fc4b72d4b2dff9400aca8f4c7df"
+    },
+    {
+      "path": "src/mgar_v3/sources/github_store.py",
+      "sha256": "a795cb92d59e9e4b1fa288d4ba5afa9d3faed22039967456d484be38aecc1b7a"
+    },
+    {
+      "path": "schemas/super-agent-v1/github-configure-v1.schema.json",
+      "sha256": "5147ead14884091c6d1d44543c85b6f5b0834816c39a269938cd720a22810fb2"
+    },
+    {
+      "path": "schemas/super-agent-v1/github-resource-v1.schema.json",
+      "sha256": "fdeb9ee404fb7295ac18a1078638b0d064f34165ef2e2c98506c0312968263fa"
+    },
+    {
+      "path": "schemas/super-agent-v1/github-revoke-v1.schema.json",
+      "sha256": "c2a8a906242cc1bb85439d98260673917bc41e036d4671b777a64cb14e221380"
+    },
+    {
+      "path": "schemas/super-agent-v1/github-settings-v1.schema.json",
+      "sha256": "657fb5a03a14ea1b30616be0084a5739d448815938a6f29086ac87d8094b42e2"
+    },
+    {
+      "path": "schemas/super-agent-v1/github-snapshot-grant-v1.schema.json",
+      "sha256": "549f6caca23848559492100edced6a48d037d94fd86fb0fa1a38864cc4ec5a59"
+    },
+    {
+      "path": "schemas/super-agent-v1/github-snapshot-save-v1.schema.json",
+      "sha256": "12d3a0a78dfaf461c71ed2a7d765bb9fbd6b434a50636a7d8a30d87b3ef5274d"
+    },
+    {
+      "path": "fixtures/super-agent-v1/github-v1/recordings.json",
+      "sha256": "bcda71f5124ce149f197e6f5ca27496c17776e146ba73a1204e094e239cc9b73"
+    }
+  ]
+}
