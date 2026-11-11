@@ -354,6 +354,8 @@ class FeishuHistory:
             return self._fetch(instance, request)
         except DomainError as error:
             if error.code in {
+                # The outer response may be valid while a row's content JSON is not.
+                "FEISHU_INVALID_EVENT",
                 "FEISHU_HISTORY_BOUND",
                 "FEISHU_HISTORY_INVALID",
                 "FEISHU_HISTORY_CURSOR",
