@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from datetime import UTC, datetime
+from datetime import UTC, datetime, timedelta
 from typing import TYPE_CHECKING, Any
 from uuid import UUID, uuid4
 
@@ -290,6 +290,28 @@ class FeishuSources:
         gap_start: datetime | None = None,
     ) -> None:
         with self.engine.transaction() as conn:
+            config = conn.execute(
+                "SELECT revision FROM app.feishu_source_settings WHERE source_instance_id=%s "
+                "AND project_id=%s",
+                (source_id, self.engine.settings.project_id),
+            ).fetchone()
+            if config is None or config["revision"] != revision:
+                return
+            old = conn.execute(
+                "SELECT * FROM app.feishu_source_health WHERE source_instance_id=%s FOR UPDATE",
+                (source_id,),
+            ).fetchone()
+            at = datetime.now(UTC)
+            preserve = bool(
+                old
+                and old["config_revision"] == revision
+                and old["mode"] == mode
+                and old["permissions"] in {"insufficient", "revoked"}
+                and timedelta(seconds=-30) <= at - old["observed_at"] < timedelta(minutes=5)
+                and permissions not in {"insufficient", "revoked"}
+            )
+            diagnostic_permission = old["permissions"] if preserve and old else permissions
+            diagnostic_code = old["reason_code"] if preserve and old else code
             conn.execute(
                 "INSERT INTO app.feishu_source_health(source_instance_id,config_revision,"
                 "connection,permissions,mode,reason_code,last_event_at,gap_started_at) "
@@ -297,9 +319,20 @@ class FeishuSources:
                 "ON CONFLICT(source_instance_id) DO UPDATE SET "
                 "config_revision=excluded.config_revision,connection=excluded.connection,"
                 "permissions=excluded.permissions,mode=excluded.mode,reason_code=excluded.reason_code,"
-                "observed_at=now(),last_event_at=coalesce(excluded.last_event_at,"
+                "observed_at=CASE WHEN %s THEN app.feishu_source_health.observed_at "
+                "ELSE clock_timestamp() END,last_event_at=coalesce(excluded.last_event_at,"
                 "app.feishu_source_health.last_event_at),gap_started_at=excluded.gap_started_at",
-                (source_id, revision, connection, permissions, mode, code, last_event, gap_start),
+                (
+                    source_id,
+                    revision,
+                    connection,
+                    diagnostic_permission,
+                    mode,
+                    diagnostic_code,
+                    last_event,
+                    gap_start,
+                    preserve,
+                ),
             )
             self._audit(
                 conn,
@@ -309,6 +342,9 @@ class FeishuSources:
                 connection=connection,
                 permissions=permissions,
                 mode=mode,
+                config_revision=revision,
+                connection_observed_at=at.isoformat(),
+                preserved_permission_diagnosis=preserve,
             )
 
     def fence(self, source_id: UUID, revision: int, mode: str, code: str, permission: str) -> None:

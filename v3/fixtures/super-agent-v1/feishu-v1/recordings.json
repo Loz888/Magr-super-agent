@@ -73,8 +73,9 @@
             "message_type": "text",
             "content": "{\"text\": \"synthetic message @_user_1\"}",
             "mentions": [],
-            "root_id": "synthetic-topic",
-            "parent_id": "synthetic-parent"
+            "root_id": "synthetic-root",
+            "parent_id": "synthetic-parent",
+            "thread_id": "synthetic-topic"
           }
         }
       }

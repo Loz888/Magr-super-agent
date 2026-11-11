@@ -451,7 +451,7 @@ def test_bad_mint_response_is_not_released_or_retried(engine, field, value):
     env.response = lambda req: httpx.Response(200, json=body)
     with pytest.raises(DomainError) as error:
         history(env)
-    assert error.value.code == "FEISHU_TOKEN_INVALID"
+    assert error.value.code == "FEISHU_RESPONSE_INVALID"
     assert [req.method for req in env.calls] == ["POST"]
     assert counts(env)["source_ingress_inputs"] == 0
     with engine.transaction() as conn:
@@ -459,7 +459,7 @@ def test_bad_mint_response_is_not_released_or_retried(engine, field, value):
             conn.execute("SELECT permissions FROM app.feishu_source_health").fetchone()[
                 "permissions"
             ]
-            == "revoked"
+            == "unknown"
         )
 
 
@@ -504,6 +504,10 @@ def test_oversized_history_change_invalidates_old_body_without_retaining_new(eng
 
 def test_topic_escape_does_not_commit_or_retain_another_thread(engine):
     env = setup(engine, history=True)
+    proof_raw = payload(event_id="verified-topic", message_id="proof-message")
+    proof_raw["event"]["message"]["thread_id"] = "Om_Expected"
+    proof = env.runtime.receive(signed(env, proof_raw))
+    assert proof.committed and len(proof.input_ids) == 1
     row = api_row(payload())
     row["thread_id"] = "Om_Another-Thread"
     serve(env, [row])
@@ -511,7 +515,8 @@ def test_topic_escape_does_not_commit_or_retain_another_thread(engine):
     with pytest.raises(DomainError) as error:
         history(env, HistoryRequest(source_thread=thread, limit=10))
     assert error.value.code == "FEISHU_HISTORY_SCOPE"
-    assert counts(env)["source_ingress_inputs"] == 0
+    assert counts(env)["source_ingress_inputs"] == 1  # Only the trusted proof message.
+    assert env.calls[-1].url.params["container_id_type"] == "thread"
 
 
 @pytest.mark.parametrize("message_type", ["image", "file"])
@@ -605,7 +610,12 @@ def test_page_ceiling_cannot_claim_complete_when_platform_has_more(engine):
     env = setup(engine, history=True)
     serve(env, [], has_more=True, page_token="next-platform-token")
     with pytest.raises(DomainError) as error:
-        history(env, request_for(env, cursor="100:bGFzdA"))
+        history(
+            env,
+            request_for(
+                env, cursor=FeishuHistory(env.broker)._encode_cursor(100, "last", request_for(env))
+            ),
+        )
     assert error.value.code == "FEISHU_HISTORY_BOUND"
     assert counts(env)["source_ingress_gaps"] >= 1
     assert env.calls[-1].url.params["page_token"] == "last"

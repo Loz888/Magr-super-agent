@@ -3,6 +3,9 @@
 from __future__ import annotations
 
 import base64
+import hashlib
+import hmac
+import secrets
 from collections.abc import Callable
 from datetime import UTC, datetime, timedelta
 from typing import TYPE_CHECKING, Any, NoReturn
@@ -13,8 +16,10 @@ from psycopg.pq import TransactionStatus
 
 from mgar_v3.domain import DomainError, digest
 from mgar_v3.sources.domain import ActorRef, SourceInstance
-from mgar_v3.sources.feishu import FeishuAdapter, milliseconds, opaque, parsed
+from mgar_v3.sources.feishu import FeishuAdapter, milliseconds, opaque
 from mgar_v3.sources.feishu_domain import HISTORY_SCOPE, RECALL, RECEIVE, FeishuSettings
+from mgar_v3.sources.feishu_response import decode_response
+from mgar_v3.sources.feishu_topics import require_native_topic
 from mgar_v3.sources.ingress_domain import (
     DeliveryMetadata,
     GapDeclaration,
@@ -50,6 +55,7 @@ class FeishuReadBroker:
                 "Controlled activation requires MockTransport; real network is disabled"
             )
         self._transport = transport
+        self._cursor_key = secrets.token_bytes(32)
         self._blocked_until: datetime | None = None
 
     def current(self, operation: str) -> FeishuSettings:
@@ -128,7 +134,7 @@ class FeishuReadBroker:
                                 "FEISHU_RESPONSE_BOUND", "Feishu response exceeds 2 MiB", 413
                             )
                         chunks.append(chunk)
-            value = parsed(b"".join(chunks))
+            value = decode_response(b"".join(chunks))
             if not isinstance(value, dict) or type(value.get("code")) is not int:
                 raise DomainError("FEISHU_RESPONSE_INVALID", "Malformed Feishu response", 503)
             code = value["code"]
@@ -154,6 +160,10 @@ class FeishuReadBroker:
                 self._health("FEISHU_REMOTE_UNAVAILABLE")
                 raise DomainError("FEISHU_REMOTE_UNAVAILABLE", "Contradictory Feishu response", 503)
             return value
+        except DomainError as error:
+            if error.code in {"FEISHU_RESPONSE_BOUND", "FEISHU_RESPONSE_INVALID"}:
+                self._health(error.code)
+            raise error from None
         except (httpx.HTTPError, OSError):
             self._health("FEISHU_REQUEST_UNKNOWN")
             raise DomainError(
@@ -182,7 +192,8 @@ class FeishuReadBroker:
             or type(expiry) is not int
             or not 5 < expiry <= 7200
         ):
-            self._denied("FEISHU_TOKEN_INVALID", "revoked")
+            self._health("FEISHU_RESPONSE_INVALID")
+            raise DomainError("FEISHU_RESPONSE_INVALID", "Malformed token response; no retry", 503)
         return token
 
     def _read(self, operation: str, path: str, authority: Callable[[], object]) -> dict[str, Any]:
@@ -204,9 +215,13 @@ class FeishuReadBroker:
         bot = data.get("bot") if isinstance(data, dict) else None
         if bot is None and isinstance(data, dict):
             bot = data
+        if not isinstance(bot, dict) or not all(
+            isinstance(bot.get(k), str) and bot[k] for k in ("open_id", "app_id")
+        ):
+            self._health("FEISHU_RESPONSE_INVALID")
+            raise DomainError("FEISHU_RESPONSE_INVALID", "Malformed bot response; no retry", 503)
         if (
-            not isinstance(bot, dict)
-            or bot.get("open_id") != settings.bot_open_id
+            bot.get("open_id") != settings.bot_open_id
             or bot.get("app_id") != settings.app_id
             or bot.get("tenant_key", settings.tenant_key) != settings.tenant_key
         ):
@@ -276,6 +291,7 @@ class FeishuHistory:
                 raise DomainError(
                     "FEISHU_HISTORY_RECEIVE_DENIED", "History scope/Receive changed", 403
                 )
+            require_native_topic(self.broker.runtime, instance, request, conn)
             for actor in selector.actors:
                 identity = conn.execute(
                     "SELECT actor_ref FROM app.source_identities WHERE identity_key=%s "
@@ -291,12 +307,27 @@ class FeishuHistory:
                     return
             raise DomainError("FEISHU_HISTORY_RECEIVE_DENIED", "No current context identity", 403)
 
-    @staticmethod
-    def _cursor(value: str | None) -> tuple[int, str | None]:
+    def _cursor_tag(self, page: int, token: str, request: HistoryRequest) -> str:
+        value = digest(
+            [
+                self.broker.revision,
+                request.source_thread.model_dump(mode="json"),
+                page,
+                token,
+            ]
+        )
+        mac = hmac.new(self.broker._cursor_key, value.encode(), hashlib.sha256).digest()[:16]
+        return base64.urlsafe_b64encode(mac).decode().rstrip("=")
+
+    def _encode_cursor(self, page: int, token: str, request: HistoryRequest) -> str:
+        encoded = base64.urlsafe_b64encode(token.encode()).decode().rstrip("=")
+        return f"{page}:{encoded}:{self._cursor_tag(page, token, request)}"
+
+    def _cursor(self, value: str | None, request: HistoryRequest) -> tuple[int, str | None]:
         if value is None:
             return 1, None
         try:
-            page, encoded = value.split(":", 1)
+            page, encoded, tag = value.split(":")
             token = base64.urlsafe_b64decode(encoded + "=" * (-len(encoded) % 4)).decode("ascii")
             if (
                 not page.isascii()
@@ -305,12 +336,13 @@ class FeishuHistory:
                 or not 1 <= len(token) <= 160
                 or any(ord(c) < 33 or ord(c) > 126 for c in token)
                 or base64.urlsafe_b64encode(token.encode()).decode().rstrip("=") != encoded
+                or not hmac.compare_digest(tag, self._cursor_tag(int(page), token, request))
             ):
                 raise ValueError
             return int(page), token
-        except (ValueError, UnicodeError):
+        except (ValueError, UnicodeError, TypeError):
             raise DomainError(
-                "FEISHU_HISTORY_CURSOR", "Invalid bounded history cursor", 422
+                "FEISHU_HISTORY_CURSOR", "Invalid or cross-scope history cursor", 422
             ) from None
 
     def fetch(self, instance: SourceInstance, request: HistoryRequest) -> HistoryPage:
@@ -321,6 +353,14 @@ class FeishuHistory:
         try:
             return self._fetch(instance, request)
         except DomainError as error:
+            if error.code in {
+                "FEISHU_HISTORY_BOUND",
+                "FEISHU_HISTORY_INVALID",
+                "FEISHU_HISTORY_CURSOR",
+                "FEISHU_HISTORY_SCOPE",
+                "FEISHU_HISTORY_THREAD_UNPROVEN",
+            }:
+                self.broker._health(error.code)
             reason = (
                 "permission"
                 if error.code
@@ -350,10 +390,11 @@ class FeishuHistory:
         self._authorized(instance, request)
         if request.limit > 50:
             raise DomainError("FEISHU_HISTORY_BOUND", "At most 50 messages per page", 413)
-        page, token = self._cursor(request.cursor)
+        page, token = self._cursor(request.cursor, request)
         query: dict[str, str | int] = {
-            "container_id_type": "chat",
-            "container_id": request.source_thread.conversation_id,
+            "container_id_type": "thread" if request.source_thread.native_thread_id else "chat",
+            "container_id": request.source_thread.native_thread_id
+            or request.source_thread.conversation_id,
             "page_size": request.limit,
         }
         if token is not None:
@@ -389,13 +430,11 @@ class FeishuHistory:
                 raise DomainError("FEISHU_HISTORY_CURSOR", "Unusable/repeated platform cursor", 409)
             if page >= MAX_PAGES:
                 raise DomainError("FEISHU_HISTORY_BOUND", "History limit reached; gap remains", 413)
-            next_cursor = (
-                str(page + 1)
-                + ":"
-                + base64.urlsafe_b64encode(next_token.encode()).decode().rstrip("=")
-            )
+            next_cursor = self._encode_cursor(page + 1, next_token, request)
         self._authorized(instance, request)
-        return HistoryPage(tuple(deliveries), next_cursor, complete=not has_more)
+        # Chat listing omits native-thread replies; exhaustion is not full chat coverage.
+        complete = not has_more and request.source_thread.native_thread_id is not None
+        return HistoryPage(tuple(deliveries), next_cursor, complete=complete)
 
     def _row(
         self, adapter: FeishuAdapter, instance: SourceInstance, request: HistoryRequest, row: Any
@@ -429,6 +468,7 @@ class FeishuHistory:
                         "chat_id": row["chat_id"],
                         "message_id": message_id,
                         "recall_time": updated,
+                        "thread_id": row.get("thread_id"),
                     },
                 }
             else:

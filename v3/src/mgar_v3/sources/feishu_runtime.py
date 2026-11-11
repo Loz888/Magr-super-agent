@@ -20,6 +20,7 @@ from mgar_v3.sources.feishu_domain import (
     FeishuTransportReceipt,
 )
 from mgar_v3.sources.feishu_store import FeishuSources
+from mgar_v3.sources.feishu_topics import record_verified_topic
 from mgar_v3.sources.gateway import SourceGateway
 from mgar_v3.sources.identity import SourceIdentities
 from mgar_v3.sources.ingress_domain import GapDeclaration, IngressReceipt
@@ -123,7 +124,9 @@ class FeishuRuntime:
                 ack_mode="after_handler",
                 checkpoint=self.checkpoint,
             )
-            return gateway.receive(envelope)
+            result = gateway.receive(envelope)
+            record_verified_topic(self, adapter, instance, envelope, transport, result)
+            return result
 
     def webhook(self, envelope: TransportEnvelope) -> dict[str, Any]:
         # No socket-proof header is ever consumed by this public transport.
@@ -242,7 +245,9 @@ class FeishuRuntime:
                     and (current or row["permissions"] in {"insufficient", "revoked"})
                 ):
                     return {
-                        "connection": row["connection"] if current else "degraded",
+                        "connection": row["connection"]
+                        if current or row["connection"] in {"offline", "degraded", "disabled"}
+                        else "degraded",
                         "permissions": row["permissions"],
                         "observed_at": row["observed_at"],
                         "mode": row["mode"],

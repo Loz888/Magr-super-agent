@@ -1256,6 +1256,9 @@
       "tests/test_super_agent_sa06_privacy.py",
       "tests/test_super_agent_sa06_contract.py",
       "tests/test_super_agent_sa06_health.py",
+      "tests/test_super_agent_sa06_repair_topics.py",
+      "tests/test_super_agent_sa06_repair_health.py",
+      "tests/test_super_agent_sa06_repair_formats.py",
       "tests/test_super_agent_sa05.py",
       "tests/test_super_agent_sa05_repair.py",
       "tests/test_super_agent_sa05_history_repair.py",
@@ -1290,7 +1293,9 @@
       "live_coding": "NOT_RUN",
       "live_publication": "NOT_RUN",
       "continuous_operation": "NOT_RUN",
-      "health": "Current-config/current-mode/fresh negative facts survive fencing; stale/future/old granted never becomes current authority"
+      "health": "Current-config/current-mode/fresh negative facts survive fencing; stale/future/old granted never becomes current authority",
+      "independent_repair": "Native thread proof before mint; exact remote container; HMAC scope-bound cursors; chat exhaustion incomplete; disconnect preserves fresh diagnosis without TTL renewal; fixed bounded decode errors/health/gaps",
+      "original_probes": "Unmodified; unproven-topic probe may raise safe pre-network DomainError; report exact exit, never rewrite probe"
     },
     "timeout_seconds": 2700
   }

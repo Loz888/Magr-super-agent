@@ -265,7 +265,11 @@ class FeishuAdapter:
                 actor = ActorRef(
                     scope=instance.scope, id_type="app_id", actor_id=s.app_id, actor_kind="service"
                 )
-                thread = SourceThreadRef(scope=instance.scope, conversation_id=chat)
+                thread = SourceThreadRef(
+                    scope=instance.scope,
+                    conversation_id=chat,
+                    native_thread_id=opaque(event["thread_id"]) if event.get("thread_id") else None,
+                )
                 occurred = milliseconds(event["recall_time"])
                 operation, body, version, addressed, parent = (
                     "delete",
@@ -294,12 +298,13 @@ class FeishuAdapter:
                     actor_id=actor_id,
                     actor_kind="human" if sender_type == "user" else "bot",
                 )
-                topic = message.get("thread_id") or message.get("root_id") or None
+                topic = message.get("thread_id") or None
                 topic = opaque(topic) if topic else None
                 thread = SourceThreadRef(
                     scope=instance.scope, conversation_id=chat, native_thread_id=topic
                 )
-                parent = opaque(message["parent_id"]) if message.get("parent_id") else None
+                parent = message.get("parent_id") or message.get("root_id") or None
+                parent = opaque(parent) if parent else None
                 mentions = message.get("mentions") or []
                 if not isinstance(mentions, list) or len(mentions) > 100:
                     raise ValueError("Mentions bound")

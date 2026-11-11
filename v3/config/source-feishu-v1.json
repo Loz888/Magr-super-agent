@@ -22,7 +22,7 @@
   "artifacts": [
     {
       "path": "src/mgar_v3/sources/feishu.py",
-      "sha256": "7c2c01b61a8f11f5b1fcf1f9e5adbc2c99caeb1b0083fd9827bfae265b3cdd37"
+      "sha256": "eb80f010bd2dd075369251955d4d4ae61b838a5e8d4527a6ff3cb1b13c0ff055"
     },
     {
       "path": "src/mgar_v3/sources/feishu_api.py",
@@ -30,15 +30,19 @@
     },
     {
       "path": "src/mgar_v3/sources/feishu_broker.py",
-      "sha256": "fbd0014f4031516757e95a2fd05f7ae03592b63923b6f6c9c99aff8a8ad9967b"
+      "sha256": "e4a904df43cc3f95973a2ab43566d83c6e7722fb938c721e6e095186a1937085"
     },
     {
       "path": "src/mgar_v3/sources/feishu_domain.py",
       "sha256": "66cba300b4e2a95b7ba15f4baa72878aa3757c1e856e9ef6370cd66ddde089da"
     },
     {
+      "path": "src/mgar_v3/sources/feishu_response.py",
+      "sha256": "5a80ec0b3eb652f0a9422c6be775a0d3e5d78960825589945784de38dcb7bf69"
+    },
+    {
       "path": "src/mgar_v3/sources/feishu_runtime.py",
-      "sha256": "c6d512902f4b5348710ee67bf069ae4b7df92b5f279fe8f030cf4c21a8c4c612"
+      "sha256": "e1033fac729f7f8a8fa77bcc144eb1b8eeaa05d39c0e04d48881de6ca95e0482"
     },
     {
       "path": "src/mgar_v3/sources/feishu_sdk.py",
@@ -46,7 +50,11 @@
     },
     {
       "path": "src/mgar_v3/sources/feishu_store.py",
-      "sha256": "fa3295182e304eaf36137361e01e76560000b02113cfafc1ed8be48d46bce8ae"
+      "sha256": "de34edb29c9afea7eeb79b94ec38e1c72e544a14c3498cc007171e1210205338"
+    },
+    {
+      "path": "src/mgar_v3/sources/feishu_topics.py",
+      "sha256": "4d99b1c30d76a266a81f35953a42fa473e8625e1fda2ae67f329cdb30d2731a3"
     },
     {
       "path": "src/mgar_v3/sources/ingress.py",
@@ -74,7 +82,7 @@
     },
     {
       "path": "fixtures/super-agent-v1/feishu-v1/recordings.json",
-      "sha256": "d44ed1aad2efaa0a1e2a4e7f75b61ba57677d473f86bb71dc5c1965d95fe7c80"
+      "sha256": "d287f41d53f2eb6b1e974e5e93c40ee6ffaad73a66cc3f3ecb05f5f381e2d3d2"
     },
     {
       "path": "tests/test_super_agent_sa06.py",
@@ -82,7 +90,7 @@
     },
     {
       "path": "tests/test_super_agent_sa06_broker.py",
-      "sha256": "6669ec74535ea9798f06afae49dd1a3f0b6aa133ac44c8b1150a7b39e2b34cec"
+      "sha256": "3539a63b005fba01f5b5b7754011e37dbbadb847f30753f12163e470d7a419a2"
     },
     {
       "path": "tests/test_super_agent_sa06_contract.py",
@@ -99,6 +107,18 @@
     {
       "path": "tests/test_super_agent_sa06_privacy.py",
       "sha256": "c7eeba5c59666117861097755447f9dc99e028bda447421cbb69f03260eb27f4"
+    },
+    {
+      "path": "tests/test_super_agent_sa06_repair_formats.py",
+      "sha256": "168d8e874834de46836e8fbbc0fb4c9068c5931580a09070fb2bc76059b8ec98"
+    },
+    {
+      "path": "tests/test_super_agent_sa06_repair_health.py",
+      "sha256": "1f9ff64868bbe2f6da5b561e7b642e8c29e1b46b6500b942b2d80f35d3014c2f"
+    },
+    {
+      "path": "tests/test_super_agent_sa06_repair_topics.py",
+      "sha256": "0ed643430925b9d86764ee5d51cf748d141ef6f1d5a16d3d9126b684cb51d7a7"
     },
     {
       "path": "tests/test_super_agent_sa06_sdk.py",
@@ -122,7 +142,7 @@
     },
     {
       "path": "config/verification.json",
-      "sha256": "39a8859ff351bd57105c4c5f68c782871a5607ed9266df97a4beeddbec4e07af"
+      "sha256": "87ca931dd97ab986f50355f30e05b65582b7844c1df7fe4c55380788459cbca4"
     },
     {
       "path": "config/source-ingress-v1.json",
