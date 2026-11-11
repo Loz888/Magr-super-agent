@@ -1175,7 +1175,9 @@ def create_app(
             if route is not None:
                 source_id, generation, owner = route
                 if owner == "disabled":
-                    raise DomainError("INGRESS_DISABLED", "GitHub source is explicitly disabled", 409)
+                    raise DomainError(
+                        "INGRESS_DISABLED", "GitHub source is explicitly disabled", 409
+                    )
                 if github_runtime is None or github_runtime.source_id != source_id:
                     raise DomainError(
                         "GITHUB_RUNTIME_NOT_CONFIGURED",
@@ -1187,7 +1189,9 @@ def create_app(
                         "GITHUB_ENGINE_MISMATCH", "Runtime must use the unique Engine", 503
                     )
                 return jsonable_encoder(
-                    github_runtime.receive(TransportEnvelope(dict(request.headers), raw), generation)
+                    github_runtime.receive(
+                        TransportEnvelope(dict(request.headers), raw), generation
+                    )
                 )
             secret = configuration.github_webhook_secret.get_secret_value()
             verify_github_signature(
@@ -1203,7 +1207,8 @@ def create_app(
                 if (
                     request.headers.get("X-GitHub-Event") == "workflow_run"
                     and payload.get("action") == "completed"
-                    and payload.get("workflow_run", {}).get("conclusion") in {"failure", "timed_out"}
+                    and payload.get("workflow_run", {}).get("conclusion")
+                    in {"failure", "timed_out"}
                 ):
                     from mgar_v3.proactivity.domain import ProactiveEvent
 
