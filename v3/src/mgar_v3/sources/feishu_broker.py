@@ -15,7 +15,7 @@ import httpx
 from psycopg.pq import TransactionStatus
 
 from mgar_v3.domain import DomainError, digest
-from mgar_v3.sources.domain import ActorRef, SourceInstance
+from mgar_v3.sources.domain import ActorRef, EntityRevision, SourceInstance
 from mgar_v3.sources.feishu import FeishuAdapter, milliseconds, opaque
 from mgar_v3.sources.feishu_domain import HISTORY_SCOPE, RECALL, RECEIVE, FeishuSettings
 from mgar_v3.sources.feishu_response import decode_response
@@ -417,8 +417,31 @@ class FeishuHistory:
         settings = self.broker.current("history")
         adapter = FeishuAdapter(settings, self.broker.runtime.secrets)
         deliveries = []
+        invalidations = []
+        invalid_error: DomainError | None = None
         for row in data["items"]:
-            deliveries.append(self._row(adapter, instance, request, row))
+            try:
+                deliveries.append(self._row(adapter, instance, request, row))
+            except DomainError as error:
+                if error.code != "FEISHU_INVALID_EVENT":
+                    raise
+                try:
+                    self._authorized(instance, request)
+                except DomainError:
+                    # Preserve the parse refusal if a newer revocation fenced this read.
+                    raise error from None
+                # Revalidate all metadata without interpreting the rejected content. No
+                # observation is committed until every row passes the requested scope.
+                invalidations.append(
+                    self._row(adapter, instance, request, row, observation_only=True)
+                )
+                invalid_error = invalid_error or error
+        if invalid_error is not None:
+            # A bad continuation token must not leave a known changed body readable.
+            # Commit only existing-resource invalidations, then retain the original
+            # rejection/health/gap; no page, cursor or new business input is released.
+            self._invalidate_known(instance, request, deliveries + invalidations)
+            raise invalid_error
         has_more, next_token = data["has_more"], data.get("page_token")
         next_cursor = None
         if has_more:
@@ -438,8 +461,36 @@ class FeishuHistory:
         complete = not has_more and request.source_thread.native_thread_id is not None
         return HistoryPage(tuple(deliveries), next_cursor, complete=complete)
 
+    def _invalidate_known(
+        self,
+        instance: SourceInstance,
+        request: HistoryRequest,
+        deliveries: list[VerifiedDelivery],
+    ) -> None:
+        ingress = self.broker.sources.engine.source_ingress
+        with ingress.root_transaction() as conn:
+            try:
+                self._authorized(instance, request)
+            except DomainError:
+                # Never reuse authority after fencing or another authorization change.
+                return
+            for delivery in deliveries:
+                ingress.validate(instance, delivery)
+            items = tuple(item for delivery in deliveries for item in delivery.metadata.items)
+            conflict = ingress._item_conflict(conn, items)
+            if conflict:
+                raise DomainError(conflict, "History observations conflict with known facts", 409)
+            for item in items:
+                ingress._privacy_delete(conn, item, denied=True, allow_new=False)
+
     def _row(
-        self, adapter: FeishuAdapter, instance: SourceInstance, request: HistoryRequest, row: Any
+        self,
+        adapter: FeishuAdapter,
+        instance: SourceInstance,
+        request: HistoryRequest,
+        row: Any,
+        *,
+        observation_only: bool = False,
     ) -> VerifiedDelivery:
         try:
             if (
@@ -531,9 +582,39 @@ class FeishuHistory:
                 }
             identifier = "history:" + digest(raw)
             item, body = adapter.normalize_raw(
-                instance, raw, identifier, "installation_proof", historical=True
+                instance,
+                raw,
+                identifier,
+                "installation_proof",
+                historical=True,
+                observation_only=observation_only,
             )
-            if row.get("deleted") is not True and row.get("msg_type") not in {"text", "post"}:
+            if observation_only:
+                # A legitimate JSON object may equal the hash placeholder used by the
+                # adapter. Keep rejected-content observations in a distinct revision
+                # domain so that such an old body cannot masquerade as unchanged.
+                item = item.model_copy(
+                    update={
+                        "event": item.event.model_copy(
+                            update={
+                                "entity_revision": EntityRevision(
+                                    origin="derived",
+                                    value=digest(
+                                        [
+                                            "feishu-invalid-content-v1",
+                                            item.event.entity_revision.value,
+                                        ]
+                                    ),
+                                )
+                            }
+                        )
+                    }
+                )
+            if (
+                not observation_only
+                and row.get("deleted") is not True
+                and row.get("msg_type") not in {"text", "post"}
+            ):
                 # The trusted resource version still invalidates stale content. No unsupported
                 # body is retained or replayed as if its semantics were understood.
                 self.broker.sources.engine.source_ingress.gap(

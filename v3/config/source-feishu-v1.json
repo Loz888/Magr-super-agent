@@ -30,7 +30,7 @@
     },
     {
       "path": "src/mgar_v3/sources/feishu_broker.py",
-      "sha256": "0b8c3afe7a49197e40bbde0a33c8ef8475b617ebcbf7c80858cb4a6a31777c0c"
+      "sha256": "24ed3bde6262339ec5f541960f7fb5ab070fbc1218d5888d0391453cd3fed3b8"
     },
     {
       "path": "src/mgar_v3/sources/feishu_domain.py",
@@ -110,7 +110,7 @@
     },
     {
       "path": "tests/test_super_agent_sa06_repair_formats.py",
-      "sha256": "64fad3611042593e205f7e4f90fcf0740c816ab20edeb6589a4339352f5e8bb6"
+      "sha256": "fbc7267bf6d0845006518000012ad50f72e23adf82ed1bbd08e105a62af7747c"
     },
     {
       "path": "tests/test_super_agent_sa06_repair_health.py",

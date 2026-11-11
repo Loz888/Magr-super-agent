@@ -1,12 +1,16 @@
 """Hostile bounded platform formats never escape fixed diagnostics or release data."""
 
+import json
+
 import httpx
 import pytest
-from sa06_support import payload, setup
+from sa06_support import CHAT_ID, payload, setup, signed
 from test_super_agent_sa06_broker import api_row, history, serve
 
-from mgar_v3.domain import DomainError
+from mgar_v3.domain import DomainError, digest
+from mgar_v3.sources.domain import SourceThreadRef
 from mgar_v3.sources.feishu import FeishuAdapter
+from mgar_v3.sources.ingress_domain import HistoryRequest
 
 FORMATS = [
     b"PRIVATE_REMOTE_SECRET-not-json",
@@ -209,3 +213,256 @@ def test_history_content_health_preserves_newer_permission_diagnosis(
         ).fetchone()
     assert diagnostic is not None
     assert diagnostic["details"]["preserved_permission_diagnosis"] is True
+
+
+I04_SECRET = "PRIVATE_I04_REPLACEMENT"
+I04_INVALID_CONTENT = [
+    pytest.param(I04_SECRET + "-not-json", id="malformed"),
+    pytest.param('{"text":"' + I04_SECRET + '","text":"duplicate"}', id="duplicate"),
+]
+
+
+def i04_business_counts(env):
+    with env.engine.transaction() as conn:
+        return {
+            table: conn.execute("SELECT count(*) AS n FROM app." + table).fetchone()["n"]
+            for table in (
+                "source_ingress_inputs",
+                "source_inbox",
+                "source_ingress_deliveries",
+                "source_identities",
+                "source_identity_evidence",
+                "source_ingress_entities",
+            )
+        }
+
+
+def i04_prior(env, name, *, message_type="text", content=None, topic=None):
+    raw = payload(message_id=name, body="previous authorized " + name)
+    raw["event"]["message"]["message_type"] = message_type
+    if content is not None:
+        raw["event"]["message"]["content"] = content
+    if topic is not None:
+        raw["event"]["message"]["thread_id"] = topic
+    receipt = env.runtime.receive(signed(env, raw))
+    assert receipt.committed and receipt.input_ids
+    input_id = receipt.input_ids[0]
+    body = env.engine.source_ingress.body(env.cookie, input_id)
+    assert body
+    return raw, input_id, body
+
+
+def i04_changed(raw, content, *, advance=True):
+    row = api_row(raw)
+    row["body"] = {"content": content}
+    if advance:
+        row["update_time"] = str(int(row["create_time"]) + 1000)
+    return row
+
+
+def i04_rejected(env, caplog, *, request=None, codes=("FEISHU_INVALID_EVENT",)):
+    before_calls = len(env.calls)
+    with pytest.raises(DomainError) as error:
+        history(env, request)
+    assert error.value.code in codes
+    assert I04_SECRET not in str(error.value) + caplog.text
+    assert [call.method for call in env.calls[before_calls:]] == ["POST", "GET"]
+    with env.engine.transaction() as conn:
+        gaps = conn.execute("SELECT declaration FROM app.source_ingress_gaps").fetchall()
+        health = conn.execute("SELECT * FROM app.feishu_source_health").fetchone()
+    assert any(gap["declaration"]["reason"] == "no_replay" for gap in gaps)
+    assert health["reason_code"] == error.value.code
+    assert health["connection"] == "degraded" and health["permissions"] == "unknown"
+    projected = env.runtime.status()
+    assert projected["reason_code"] == error.value.code
+    assert projected["permissions"] == "unknown"
+    assert env.runtime.current("history")  # Bad content never manufactures revocation.
+
+
+def i04_unreadable(env, input_id):
+    with pytest.raises(DomainError):
+        env.engine.source_ingress.body(env.cookie, input_id)
+    with env.engine.transaction() as conn:
+        assert conn.execute(
+            "SELECT count(*) AS n FROM app.source_ingress_bodies WHERE input_id=%s",
+            (input_id,),
+        ).fetchone()["n"] == 0
+
+
+@pytest.mark.parametrize("content", I04_INVALID_CONTENT)
+@pytest.mark.parametrize("message_type", ["text", "post"])
+@pytest.mark.parametrize("advance", [False, True], ids=["same-time", "changed-time"])
+def test_known_changed_invalid_snapshot(engine, content, message_type, advance, caplog):
+    env = setup(engine, history=True)
+    raw, input_id, _ = i04_prior(env, "known-invalid", message_type=message_type)
+    before = i04_business_counts(env)
+    serve(env, [i04_changed(raw, content, advance=advance)])
+    i04_rejected(env, caplog)
+    assert i04_business_counts(env) == before
+    i04_unreadable(env, input_id)
+
+
+def test_valid_changed_snapshot_control(engine):
+    env = setup(engine, history=True)
+    raw, input_id, _ = i04_prior(env, "valid-change-control")
+    serve(env, [i04_changed(raw, json.dumps({"text": "new authorized content"}))])
+    page = history(env)
+    assert len(page.deliveries) == 1
+    assert page.deliveries[0].metadata.items[0].event.historical_backfill
+    assert [call.method for call in env.calls] == ["POST", "GET"]
+    i04_unreadable(env, input_id)
+
+
+def test_invalid_snapshot_domain_separated_from_valid_hash_object(engine, caplog):
+    env = setup(engine, history=True)
+    content = I04_SECRET + "-not-json"
+    raw, input_id, _ = i04_prior(
+        env,
+        "hash-domain-control",
+        content=json.dumps({"unsupported_content_sha256": digest(content)}),
+    )
+    before = i04_business_counts(env)
+    serve(env, [i04_changed(raw, content, advance=False)])
+    i04_rejected(env, caplog)
+    assert i04_business_counts(env) == before
+    i04_unreadable(env, input_id)
+
+
+@pytest.mark.parametrize("bad_first", [False, True])
+@pytest.mark.parametrize("other_state", ["unchanged", "changed", "deleted"])
+def test_invalid_snapshot_mixed_known_resource_changes(engine, bad_first, other_state, caplog):
+    env = setup(engine, history=True)
+    raw, input_id, _ = i04_prior(env, "bad-known-in-mixed-page")
+    other, other_id, other_body = i04_prior(env, "other-known-in-mixed-page")
+    bad = i04_changed(raw, I04_SECRET + "-not-json")
+    other_row = api_row(other)
+    if other_state == "changed":
+        other_row = i04_changed(other, json.dumps({"text": "changed normal resource"}))
+    elif other_state == "deleted":
+        other_row.update(deleted=True, update_time=str(int(other_row["create_time"]) + 1000))
+    before = i04_business_counts(env)
+    serve(env, [bad, other_row] if bad_first else [other_row, bad])
+    i04_rejected(env, caplog)
+    assert i04_business_counts(env) == before
+    i04_unreadable(env, input_id)
+    if other_state == "unchanged":
+        assert env.engine.source_ingress.body(env.cookie, other_id) == other_body
+    else:
+        i04_unreadable(env, other_id)
+
+
+@pytest.mark.parametrize("bad_first", [False, True])
+@pytest.mark.parametrize("scope_error", ["chat", "thread", "tenant", "sender"])
+def test_invalid_snapshot_page_scope_failure_keeps_prior_body(
+    engine, bad_first, scope_error, caplog
+):
+    env = setup(engine, history=True)
+    topic = "I04-Allowed-Native-Thread"
+    raw, input_id, old_body = i04_prior(env, "scope-protected-known", topic=topic)
+    bad = i04_changed(raw, I04_SECRET + "-not-json")
+    outside = api_row(payload(message_id="outside-provenance"))
+    outside["thread_id"] = topic
+    if scope_error == "chat":
+        outside["chat_id"] = "Other-Chat"
+    elif scope_error == "thread":
+        outside["thread_id"] = "Other-Native-Thread"
+    elif scope_error == "tenant":
+        outside["sender"]["tenant_key"] = "Other-Tenant"
+    else:
+        outside["sender"]["sender_type"] = "unsupported-sender-kind"
+    request = HistoryRequest(
+        source_thread=SourceThreadRef(
+            scope=env.instance.scope, conversation_id=CHAT_ID, native_thread_id=topic
+        ),
+        limit=10,
+    )
+    before = i04_business_counts(env)
+    serve(env, [bad, outside] if bad_first else [outside, bad])
+    i04_rejected(
+        env,
+        caplog,
+        request=request,
+        codes=("FEISHU_INVALID_EVENT", "FEISHU_HISTORY_INVALID", "FEISHU_HISTORY_SCOPE"),
+    )
+    assert i04_business_counts(env) == before
+    assert env.engine.source_ingress.body(env.cookie, input_id) == old_body
+
+
+@pytest.mark.parametrize("page_token", [None, "X" * 161], ids=["missing", "oversized"])
+def test_invalid_snapshot_unusable_next_token_still_invalidates(engine, page_token, caplog):
+    env = setup(engine, history=True)
+    raw, input_id, _ = i04_prior(env, "known-before-bad-page-token")
+    before = i04_business_counts(env)
+    serve(env, [i04_changed(raw, I04_SECRET + "-not-json")], has_more=True, page_token=page_token)
+    i04_rejected(env, caplog)  # No page/cursor is released; the resource change is still real.
+    assert i04_business_counts(env) == before
+    i04_unreadable(env, input_id)
+
+
+@pytest.mark.parametrize("content", I04_INVALID_CONTENT)
+def test_unknown_invalid_snapshot_has_no_new_entity(engine, content, caplog):
+    env = setup(engine, history=True)
+    before = i04_business_counts(env)
+    assert before["source_ingress_entities"] == 0
+    serve(env, [i04_changed(payload(message_id="unseen-invalid-resource"), content)])
+    i04_rejected(env, caplog)
+    assert i04_business_counts(env) == before
+    with engine.transaction() as conn:
+        remaining = conn.execute("SELECT count(*) AS n FROM app.source_ingress_bodies").fetchone()
+        assert remaining["n"] == 0
+
+
+def test_invalid_snapshot_replay_never_revives_prior_body(engine, caplog):
+    env = setup(engine, history=True)
+    raw, input_id, _ = i04_prior(env, "known-before-invalid-replay")
+    before = i04_business_counts(env)
+    serve(env, [i04_changed(raw, I04_SECRET + "-not-json")])
+    for _ in range(2):
+        i04_rejected(env, caplog)
+        i04_unreadable(env, input_id)
+        assert i04_business_counts(env) == before
+    duplicate = env.runtime.receive(signed(env, raw))
+    assert duplicate.committed and duplicate.input_ids == (input_id,)
+    i04_unreadable(env, input_id)
+    assert i04_business_counts(env) == before
+    assert [call.method for call in env.calls] == ["POST", "GET", "POST", "GET"]
+
+
+def test_invalid_snapshot_invalidation_transaction_rolls_back(engine, caplog, monkeypatch):
+    env = setup(engine, history=True)
+    raw, input_id, old_body = i04_prior(env, "bad-in-rollback-page")
+    other, other_id, other_body = i04_prior(env, "normal-change-in-rollback-page")
+    before = i04_business_counts(env)
+    serve(
+        env,
+        [
+            i04_changed(raw, I04_SECRET + "-not-json"),
+            i04_changed(other, json.dumps({"text": "new normal body before rollback"})),
+        ],
+    )
+    original = engine.source_ingress._privacy_delete
+    attempted = []
+
+    def fail_after_actual_invalidation(conn, item, *args, **kwargs):
+        original(conn, item, *args, **kwargs)
+        attempted.append(item.entity_key)
+        assert conn.execute(
+            "SELECT count(*) AS n FROM app.source_ingress_bodies b "
+            "JOIN app.source_ingress_inputs i USING(input_id) WHERE i.entity_key=%s",
+            (item.entity_key,),
+        ).fetchone()["n"] == 0
+        raise DomainError(
+            "FEISHU_HISTORY_INVALID", "Controlled rollback after SQL invalidation", 409,
+        )
+
+    with monkeypatch.context() as patch:
+        patch.setattr(engine.source_ingress, "_privacy_delete", fail_after_actual_invalidation)
+        i04_rejected(env, caplog, codes=("FEISHU_HISTORY_INVALID",))
+    assert len(attempted) == 1
+    assert i04_business_counts(env) == before
+    assert engine.source_ingress.body(env.cookie, input_id) == old_body
+    assert engine.source_ingress.body(env.cookie, other_id) == other_body
+    i04_rejected(env, caplog)
+    assert i04_business_counts(env) == before
+    i04_unreadable(env, input_id)
+    i04_unreadable(env, other_id)
