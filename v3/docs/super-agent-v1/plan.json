@@ -160,7 +160,17 @@
       "card": "TASKS.md#sa06",
       "verification_target_on_implementation": "SAV1-06",
       "acceptance": "accept/SAV1-06/accept.json",
-      "independent_review": "Local engineering authorized only; fixed candidate will await independent review, SA07 remains PLANNED"
+      "independent_review": "PENDING; wait for independent acceptance, do not advance SA07",
+      "engineering_gate": "PASS",
+      "source_commit": "15591aea214e7a83f3bf5ad112bda85b4294664e",
+      "source_sha256": "2f47b76904cff3fb2e1c062258364e1a495a310150e4a759d42bfc16772ee100",
+      "registered_verification": "evidence/SAV1-06/20261111T082512Z-f4a54cb3/result.json",
+      "registered_counts": {
+        "tests": 744,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      }
     },
     {
       "id": "SAV1-07",

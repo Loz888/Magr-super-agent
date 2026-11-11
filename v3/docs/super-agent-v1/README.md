@@ -1,6 +1,6 @@
 # MAGR Super-Agent 落地任务书
 
-状态：**SAV1-00–05 已独立工程放行；SA06 本地工程候选验收中；SA07–24 PLANNED**。更新：2026-11-11。
+状态：**SAV1-00–05 已独立工程放行；SA06 本地工程通过、等待独立复验；SA07–24 PLANNED**。更新：2026-11-11。
 当前本地交付见 [实施状态](IMPLEMENTATION_STATUS.md)、[SA06 飞书适配](SA06_FEISHU.md) 与 [任务清单](plan.json)。
 仓库基线：`973994c0e6c087c2968b3d91a3a6b9220e2c0892`；该提交新增 Harness 规划，
 应用功能基线仍为 `1d07285aa27ece9bae4ccbedc3a77ce2fbcbaf3a`。
@@ -17,6 +17,7 @@
 - [常驻部署、日常使用、故障和运维](OPERATIONS.md)
 - [工程、真实渠道、编码能力与长期运行验收](ACCEPTANCE.md)
 - [机器可读任务与需求映射](plan.json)
+- [SA06 固定工程候选、完整证据与限制](SA06_ACCEPTANCE_20261111.md)
 - [官方资料版本、审计依据与输入摘要](sources.json)
 
 ## 1. 要交付的产品
@@ -127,4 +128,4 @@ Harness 接口冻结后并行开发；自动修改代码必须等待 Harness 的
 
 首批任务是 **HV4-H00/H01 + SA00–SA04**：冻结状态/权限映射、Source 与身份契约、
 策略、持久入站；之后接入 GitHub/飞书并在 Shadow 中校准。完整批次、依赖和估时见
-[路线](ROADMAP.md)。SA00–05 已独立工程放行；SA06 固定本地候选等待完整注册结果及独立复验，后续卡仍 PLANNED。真实渠道、编码、发布和长期运行门仍 NOT_RUN。
+[路线](ROADMAP.md)。SA00–05 已独立工程放行；SA06 本地工程通过、固定候选等待独立复验，后续卡仍 PLANNED。真实渠道、编码、发布和长期运行门仍 NOT_RUN。

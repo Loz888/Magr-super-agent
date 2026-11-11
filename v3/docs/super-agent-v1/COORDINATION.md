@@ -103,3 +103,13 @@ SHA原样；所有业务事实仍走同一Engine持锁PG连接。0035已在本�
 本轮无Harness活动树改动/导入或H卡推进。完成交接尚未再次发送/收到对方确认；文件
 准备不代表送达。0036未预占。SA06完成后等待独立复验，不自行启动SA07；真实渠道、
 模型、编码、外发/发布和长期门保持NOT_RUN。
+
+## SA06 健康跟进与最终本地工程结果
+
+初候选852a96d的729PASS保留；之后健康独立1FAIL/正式3FAIL阻止交付，仅Runtime.status
+修复新鲜、当前配置/模式负面事实投影，不复用旧granted/online。原断言16PASS后固定
+15591aea214e7a83f3bf5ad112bda85b4294664e，完整注册744PASS，lint/typecheck229filesPASS，
+前后源码指纹2f47b76904cff3fb2e1c062258364e1a495a310150e4a759d42bfc16772ee100一致，28项hash匹配。
+详见SA06_ACCEPTANCE_20261111.md、HARNESS_SA06_HANDOFF.md和accept/SAV1-06/accept.json。
+交接仅本地准备，未声称新的消息送达/对方接收。停在SA06等独立复验，不进入SA07；
+0036仍未预占；真实来源/模型/外发/发布/完整系统安全/长期门NOT_RUN。

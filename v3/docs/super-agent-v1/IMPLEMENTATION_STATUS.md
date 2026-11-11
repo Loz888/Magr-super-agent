@@ -1,3 +1,13 @@
+# SA06 本地工程通过，等待独立复验
+
+源码15591aea214e7a83f3bf5ad112bda85b4294664e，指纹2f47b76904cff3fb2e1c062258364e1a495a310150e4a759d42bfc16772ee100；完整注册744PASS（新增178+既有566），
+0 failure/error/skip，lint/typecheck229filesPASS，28项产物hash匹配。0035已在本副本PG安装，
+35份校验和一致。详见SA06_ACCEPTANCE_20261111.md与accept/SAV1-06/accept.json。
+
+初候选729PASS后新增健康独立1FAIL/正式3FAIL及此前失败全部保留；修复后原断言16PASS，
+再固定并完整注册。本轮真实API/模型/外发0；完整系统安全/真实渠道/编码/发布/长期门
+NOT_RUN。SA06仍IN_PROGRESS待独立复验，SA07保持PLANNED，不自行越卡。以下为历史快照。
+
 # SA06 健康投影修复专项通过，重新固定完整验收
 
 初候选852a96d的729PASS、后续独立1FAIL和正式3FAIL均保留。仅Feishu Runtime修复当前配置/模式/新鲜负面诊断，旧granted/online不继承；15正式+原独立1原样重跑16PASS，lint/typecheck229filesPASS。已注册744项完整目标，固定新候选后重跑；此刻不提前给最终工程或独立PASS。SA06仍IN_PROGRESS，SA07未启动。以下为历史快照。

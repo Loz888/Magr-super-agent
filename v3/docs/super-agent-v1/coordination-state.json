@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-11T08:25:08.629181+00:00",
+  "updated_at": "2026-11-11T08:49:03.616565+00:00",
   "user_instruction": "Codex owns Super-Agent; local Trae owns Harness; coordination is authorized.",
   "owners": {
     "super_agent": {
@@ -15,7 +15,7 @@
   },
   "active_super_agent_card": "SAV1-06",
   "card_status": "IN_PROGRESS",
-  "work_state": "SA06_HEALTH_REPAIR_16_PASS_FIXED_CANDIDATE_FULL_RECHECK",
+  "work_state": "SA06_ENGINEERING_PASS_PENDING_INDEPENDENT_REVIEW",
   "harness_observation": {
     "head": "de4775e22e96718e880fde287b2e0928db2945e3",
     "h00_owner_reported_status": "PASS",
@@ -265,9 +265,18 @@
     "queued_message_was_confirmation": false,
     "completion_handoff": "Prepared locally only; no new completion message delivered or peer receipt claimed"
   },
-  "sa06_source_commit": "852a96d543a68b14fa2da86234d4be44921a783f",
-  "sa06_source_sha256": "41ccc299b1e9d93119c13901c3cb9a734a69ceb9e0d9c6fa0936f9b77a67f331",
+  "sa06_source_commit": "15591aea214e7a83f3bf5ad112bda85b4294664e",
+  "sa06_source_sha256": "2f47b76904cff3fb2e1c062258364e1a495a310150e4a759d42bfc16772ee100",
   "sa06_live_gates": "NOT_RUN",
   "sa06_initial_registered": "evidence/SAV1-06/20261111T075645Z-dcd722bd/result.json;729PASS;source852a96d unchanged",
-  "sa06_health_followup": "Initial independent1FAIL and formal3FAIL retained; source projection repair+original assertions16PASS; full744 pending"
+  "sa06_health_followup": "Independent1FAIL and formal3FAIL retained; repaired original16PASS; new fixed full registered PASS, see acceptance",
+  "sa06_verification": "evidence/SAV1-06/20261111T082512Z-f4a54cb3/result.json",
+  "sa06_counts": {
+    "tests": 744,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "sa06_acceptance": "docs/super-agent-v1/accept/SAV1-06/accept.json",
+  "sa06_completion_handoff": "HARNESS_SA06_HANDOFF.md prepared locally only; no new completion message sent/delivered/acknowledged"
 }

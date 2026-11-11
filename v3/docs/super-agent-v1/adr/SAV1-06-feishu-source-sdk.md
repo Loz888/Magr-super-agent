@@ -1,6 +1,6 @@
 # ADR SAV1-06：飞书机器人身份、SDK 持久 ACK 与保守历史
 
-状态：IMPLEMENTING，feishu-bot-v1；继承 SAV1-00/02/03/04/05。只授予本地受控工程，
+状态：ENGINEERING_IMPLEMENTED_PENDING_INDEPENDENT_REVIEW，feishu-bot-v1；继承 SAV1-00/02/03/04/05。只授予本地受控工程，
 本 ADR 不配置凭据、不启动真实来源、模型或外发；SA07 仍 PLANNED。
 
 官方 lark-oapi==1.7.5 的原生 Frame、dispatcher 和响应序列化用于长连接。受信回调
