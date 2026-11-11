@@ -123,3 +123,11 @@ Harness活动树操作。旧独立744/10TMPDIR失败、4FAIL及格式5PASS4FAIL�
 3PASS/1FAIL/exit1（无可信native proof在mint前安全拒绝，原探针未捕获）。不猜造证明
 或修改探针强求绿，本卡仍NOT_PASSED，等待新独立验收，不进入SA07。未向Trae发送
 新的完成消息或声称送达；0036仍未预占，真实平台/付费/外发/发布/长期门NOT_RUN。
+
+## SA06 独立关闭与 SA07 协调启动
+
+用户已接受dfab5c3的SA06-I04定向独立2PASS，并允许推进SA07；SA06工程关闭记录见accept/SAV1-06/i04-independent-closure-20261111.json。历史FAIL和原用户文件不改。
+
+SA07需要项目/组织共享预算、配额与原Engine预占/结算接线。已向当前Harness CLI维护任务发出新接口范围确认请求，原Trae UI恢复未重试；发送回执不是对方实际确认。拟议0036_super_agent_budgets.sql、app.sa_budget_*、/api/v3/project-budgets、新super_agent/budget*及Engine/Router预算最小接线均待固定提交确认；0036仍未预占。本树先准备契约与验收矩阵，不修改对方活动树或推进H卡。
+
+SA07后续实际确认：Harness固定cb422c5e050eb48ad2cb0eae901453c052b5f018第30节已核对原文及SHA，0036及上述范围现归Codex，并包括RepositoryAnalysisStore.reserve_repository_call最小同事务hook。本卡不导入/编辑Harness；其0037及PersistentBudgetLedger集成留待后续固定契约复验，不继承H12付费授权。原发送/待确认段落保留为历史状态。凭据见本卡起始evidence的ownership-confirmation.json。

@@ -1,14 +1,22 @@
 {
   "task": "SAV1-06",
-  "status": "I04_REPAIR_CANDIDATE_NOT_INDEPENDENTLY_PASSED",
+  "status": "DONE",
   "source_commit": "dfab5c3f449653bd4126309018559ea10d9bd78a",
   "source_sha256": "b26d96a76edfa81c3f7ea1df720e304c77a8429838ae8397c5e79ca300cb063d",
-  "engineering_gate": "FAIL",
+  "engineering_gate": "PASS",
   "local_registered_gate": "PASS",
-  "independent_review": "NOT_PASSED",
+  "independent_review": "PASS_USER_ACCEPTED_TARGETED_CLOSURE",
+  "acceptance_scope": "Local engineering card release following user-accepted independent closure of the last blocker SA06-I04",
+  "independent_report": "evidence/super-agent-v1/SAV1-06/20261111T140844Z-independent-i04-only/review-result.json",
+  "independent_recheck_counts": {
+    "tests": 2,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "closure_report": "docs/super-agent-v1/accept/SAV1-06/i04-independent-closure-20261111.json",
   "repair_report": "docs/super-agent-v1/accept/SAV1-06/i04-repair-20261111.json",
-  "prior_repair_report": "docs/super-agent-v1/accept/SAV1-06/content-health-repair-20261111.json",
-  "prior_acceptance_archive": "docs/super-agent-v1/accept/SAV1-06/history/a3e8788-before-i04-20261111.json",
+  "prior_acceptance_archive": "docs/super-agent-v1/accept/SAV1-06/history/dfab5c3-before-independent-i04-closure-20261111.json",
   "registered_counts": {
     "tests": 837,
     "failures": 0,
@@ -16,7 +24,7 @@
     "skipped": 0
   },
   "registered_result": "evidence/SAV1-06/20261111T134040Z-e7364b40/result.json",
-  "SA07": "PLANNED_NOT_STARTED",
   "live_gates": "NOT_RUN",
-  "recorded_at_utc": "2026-11-11T14:02:58.335736+00:00"
+  "next_card": "SAV1-07",
+  "recorded_at_utc": "2026-11-11T14:16:18.194557+00:00"
 }
