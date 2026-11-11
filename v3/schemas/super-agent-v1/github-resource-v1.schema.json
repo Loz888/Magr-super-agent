@@ -1,0 +1,212 @@
+{
+  "$defs": {
+    "GitHubRepository": {
+      "additionalProperties": false,
+      "properties": {
+        "repository_id": {
+          "exclusiveMinimum": 0,
+          "maximum": 9223372036854775807,
+          "title": "Repository Id",
+          "type": "integer"
+        },
+        "full_name": {
+          "pattern": "^[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+$",
+          "title": "Full Name",
+          "type": "string"
+        },
+        "private": {
+          "title": "Private",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "repository_id",
+        "full_name",
+        "private"
+      ],
+      "title": "GitHubRepository",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "repository": {
+      "$ref": "#/$defs/GitHubRepository"
+    },
+    "kind": {
+      "enum": [
+        "issues",
+        "issue_comment",
+        "pull_request",
+        "pull_request_review",
+        "pull_request_review_comment",
+        "workflow_run",
+        "check_run",
+        "check_suite"
+      ],
+      "title": "Kind",
+      "type": "string"
+    },
+    "action": {
+      "pattern": "^[a-z_]{1,60}$",
+      "title": "Action",
+      "type": "string"
+    },
+    "number": {
+      "anyOf": [
+        {
+          "exclusiveMinimum": 0,
+          "maximum": 9223372036854775807,
+          "type": "integer"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Number"
+    },
+    "pull_requests": {
+      "default": [],
+      "items": {
+        "exclusiveMinimum": 0,
+        "maximum": 9223372036854775807,
+        "type": "integer"
+      },
+      "maxItems": 100,
+      "title": "Pull Requests",
+      "type": "array"
+    },
+    "head_sha": {
+      "anyOf": [
+        {
+          "pattern": "^[a-f0-9]{40}$",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Head Sha"
+    },
+    "base_sha": {
+      "anyOf": [
+        {
+          "pattern": "^[a-f0-9]{40}$",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Base Sha"
+    },
+    "head_repository_id": {
+      "anyOf": [
+        {
+          "exclusiveMinimum": 0,
+          "maximum": 9223372036854775807,
+          "type": "integer"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Head Repository Id"
+    },
+    "run_id": {
+      "anyOf": [
+        {
+          "exclusiveMinimum": 0,
+          "maximum": 9223372036854775807,
+          "type": "integer"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Run Id"
+    },
+    "run_attempt": {
+      "anyOf": [
+        {
+          "exclusiveMinimum": 0,
+          "maximum": 9223372036854775807,
+          "type": "integer"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Run Attempt"
+    },
+    "check_run_id": {
+      "anyOf": [
+        {
+          "exclusiveMinimum": 0,
+          "maximum": 9223372036854775807,
+          "type": "integer"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Check Run Id"
+    },
+    "check_suite_id": {
+      "anyOf": [
+        {
+          "exclusiveMinimum": 0,
+          "maximum": 9223372036854775807,
+          "type": "integer"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Check Suite Id"
+    },
+    "producer_app_id": {
+      "anyOf": [
+        {
+          "exclusiveMinimum": 0,
+          "maximum": 9223372036854775807,
+          "type": "integer"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Producer App Id"
+    },
+    "author_id": {
+      "anyOf": [
+        {
+          "exclusiveMinimum": 0,
+          "maximum": 9223372036854775807,
+          "type": "integer"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Author Id"
+    }
+  },
+  "required": [
+    "repository",
+    "kind",
+    "action"
+  ],
+  "title": "GitHubResource",
+  "type": "object"
+}

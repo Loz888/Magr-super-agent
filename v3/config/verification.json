@@ -1207,5 +1207,40 @@
       "harness": "no active changes/imports"
     },
     "timeout_seconds": 1800
+  },
+  "SAV1-05": {
+    "tests": [
+      "tests/test_super_agent_sa05.py",
+      "tests/test_super_agent_sa04.py",
+      "tests/test_super_agent_sa04_faults.py",
+      "tests/test_super_agent_sa04_repair.py",
+      "tests/test_super_agent_sa04_order_transition.py",
+      "tests/test_super_agent_sa03.py",
+      "tests/test_super_agent_sa02.py",
+      "tests/test_super_agent_sa01.py",
+      "tests/test_coordination.py",
+      "tests/test_api.py",
+      "tests/test_environment.py",
+      "tests/test_web_access.py",
+      "tests/test_duplex.py",
+      "tests/test_r4_experts.py",
+      "tests/test_effects.py",
+      "tests/test_models.py",
+      "tests/test_r6_policies.py",
+      "tests/test_r5_recovery.py"
+    ],
+    "components": {
+      "postgres": "real disposable PG; 33-to-34 upgrade/checksums/legacy retention, settings CAS/rollback, simultaneous CI input dedupe and current revocation",
+      "github": "real HMAC/RS256 on explicitly synthetic recordings; fixed REST contract via MockTransport; no real GitHub or listener",
+      "credentials": "one repository/read permissions/short expiry, no token API/cache/worker disclosure; per-claim authorization before/after mint and data read",
+      "privacy": "Receive body TTL/crypto/current scope inherited SA04, signed outside-Receive mutation invalidation and no new denied content",
+      "legacy": "original Issue Webhook and pre-workflow single owner split; original registered recovery/fault regressions retained",
+      "model": "NOT_RUN; zero paid calls",
+      "harness": "no active files or changes imported; only fixed ownership confirmation read",
+      "live_source_channel": "NOT_RUN",
+      "live_coding": "NOT_RUN",
+      "live_publication": "NOT_RUN"
+    },
+    "timeout_seconds": 2100
   }
 }

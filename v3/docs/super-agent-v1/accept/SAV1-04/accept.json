@@ -1,6 +1,6 @@
 {
   "card": "SAV1-04",
-  "status": "PENDING_INDEPENDENT_REVIEW",
+  "status": "ACCEPTED_ENGINEERING_DEPENDENCY",
   "accepted_at_utc": null,
   "source_commit": "b15937d6dd1ecacdf720199fcd14534c05ffd986",
   "source_sha256": "bc75f5cec156b069acb9c9434b2d11d589ebb9970501b5c556b2e036ff628d9c",
@@ -570,5 +570,13 @@
   "order_transition": {
     "record": "docs/super-agent-v1/accept/SAV1-04/order-transition-20261111.json",
     "sha256": "e4e4b33f1349716c04b1b97c7594156d98a1f976f931557ed9834479cf956285"
+  },
+  "independent_review": {
+    "status": "USER_CONFIRMED_INDEPENDENT_PASS",
+    "basis": "User explicitly: SA04 已通过独立复验，请按任务书启动 SA05，完成后等待独立验收。",
+    "recorded_at_utc": "2026-11-11T02:53:36.617426+00:00",
+    "new_independent_run_by_this_agent": false,
+    "delivery_commit": "ec92d145f2ad6188fca7e11a7fa913dc9d9257af",
+    "prior_acceptance": "history/ec92d14-before-user-approval.json"
   }
 }

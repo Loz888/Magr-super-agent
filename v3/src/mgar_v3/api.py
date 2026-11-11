@@ -1,5 +1,4 @@
 import asyncio
-import hashlib
 import hmac
 import json
 import logging
@@ -45,8 +44,13 @@ from mgar_v3.routing.live import load_router_permit
 from mgar_v3.routing.model import DeepSeekRouter
 from mgar_v3.routing.worker import FixtureRouter, RouterProvider, RouterWorker
 from mgar_v3.settings import ROOT, Settings
+from mgar_v3.sources.github_api import register as register_github_sources
+from mgar_v3.sources.github_auth import verify_signature as verify_github_signature
+from mgar_v3.sources.github_runtime import GitHubRuntime
+from mgar_v3.sources.github_store import GitHubSources
 from mgar_v3.sources.identity_api import register as register_source_identities
 from mgar_v3.sources.ingress_api import register as register_source_ingress
+from mgar_v3.sources.ports import TransportEnvelope
 from mgar_v3.super_agent.policy_api import register as register_source_policies
 from mgar_v3.web_access import (
     SESSION_COOKIE,
@@ -103,6 +107,7 @@ def create_app(
     run_background: bool = True,
     transport: Transport | None = None,
     draft_transport: Transport | None = None,
+    github_runtime: GitHubRuntime | None = None,
 ) -> FastAPI:
     configuration = settings or Settings()
     provided = engine
@@ -1160,17 +1165,30 @@ def create_app(
 
     @app.post("/api/v3/webhooks/github", status_code=202)
     async def webhook(request: Request, service: Annotated[Engine, Depends(authority)]) -> Any:
-        secret = configuration.github_webhook_secret.get_secret_value()
-        if not secret:
-            raise DomainError(
-                "WEBHOOK_NOT_CONFIGURED", "Webhook verification is not configured", 503
-            )
         raw = await request.body()
-        expected = "sha256=" + hmac.new(secret.encode(), raw, hashlib.sha256).hexdigest()
-        if not hmac.compare_digest(
-            expected.encode(), request.headers.get("X-Hub-Signature-256", "").encode()
-        ):
-            raise DomainError("SIGNATURE_INVALID", "Webhook signature is invalid", 401)
+        delivery_header = request.headers.get("X-GitHub-Delivery", "")
+        route = GitHubSources(service).legacy_route(raw, delivery_header)
+        if route is not None:
+            source_id, generation, owner = route
+            if owner == "disabled":
+                raise DomainError("INGRESS_DISABLED", "GitHub source is explicitly disabled", 409)
+            if github_runtime is None or github_runtime.source_id != source_id:
+                raise DomainError(
+                    "GITHUB_RUNTIME_NOT_CONFIGURED",
+                    "Gateway owns this repository but its runtime is disabled",
+                    503,
+                )
+            if github_runtime.broker.sources.engine is not service:
+                raise DomainError(
+                    "GITHUB_ENGINE_MISMATCH", "Runtime must use the unique Engine", 503
+                )
+            return jsonable_encoder(
+                github_runtime.receive(TransportEnvelope(dict(request.headers), raw), generation)
+            )
+        secret = configuration.github_webhook_secret.get_secret_value()
+        verify_github_signature(
+            secret.encode(), raw, request.headers.get("X-Hub-Signature-256", "")
+        )
         delivery = request.headers.get("X-GitHub-Delivery")
         if not delivery:
             raise DomainError(
@@ -1239,6 +1257,7 @@ def create_app(
             status_code=503,
         )
 
+    register_github_sources(app, authority, browser_user, github_runtime)
     register_source_identities(app, authority, browser_user)
     register_source_ingress(app, authority, browser_user)
     register_source_policies(app, authority, browser_user)

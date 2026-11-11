@@ -311,7 +311,7 @@ def test_real_32_to_33_upgrade_preserves_legacy_rows_and_all_checksums(database,
             )
         )
         old.close()
-        assert migrate(dsn) == ["0033_source_ingress.sql"] and migrate(dsn) == []
+        assert migrate(dsn) == [p.name for p in paths if p.name >= "0033"] and migrate(dsn) == []
         with psycopg.connect(dsn) as conn:
             assert conn.execute(
                 "SELECT count(*) FROM app.trigger_events WHERE event_id=%s", (receipt.event_id,)

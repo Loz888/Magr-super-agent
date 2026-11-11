@@ -1,3 +1,7 @@
+# SAV1-05 已实施，完整注册验收中
+
+用户已确认 SA04 独立复验通过，现进入 SA05；下面旧的“尚未进入 SA05”均为历史快照。SA05 新增77项真实PG/受控GitHub检查通过，lint/typecheck 222 files通过；完整注册验收尚待固定源码后执行，不提前记整卡PASS。本副本已应用0034；真实平台/API、模型、外发/发布、完整系统安全与长期门NOT_RUN。完成工程后停在SA05等待独立验收，不进入SA06。
+
 # SAV1-04 排序转换修复工程通过，等待独立核验
 
 源码 b15937d6dd1ecacdf720199fcd14534c05ffd986；420 注册 PASS（SA04 116、排序新增 25），原独立探针 7 PASS，lint/typecheck 215 files PASS。SA04 保持 IN_PROGRESS，不进入 SA05。本轮只处理 Super-Agent。见 SA04_ORDER_TRANSITION_20261111.md 与 accept/SAV1-04/order-transition-20261111.json。

@@ -1,0 +1,83 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "repository_id": {
+      "exclusiveMinimum": 0,
+      "maximum": 9223372036854775807,
+      "title": "Repository Id",
+      "type": "integer"
+    },
+    "head_sha": {
+      "pattern": "^[a-f0-9]{40}$",
+      "title": "Head Sha",
+      "type": "string"
+    },
+    "paths": {
+      "items": {
+        "type": "string"
+      },
+      "maxItems": 100,
+      "minItems": 1,
+      "title": "Paths",
+      "type": "array"
+    },
+    "max_bytes": {
+      "maximum": 1048576,
+      "minimum": 1,
+      "title": "Max Bytes",
+      "type": "integer"
+    },
+    "expires_at": {
+      "format": "date-time",
+      "title": "Expires At",
+      "type": "string"
+    },
+    "policy_id": {
+      "format": "uuid",
+      "title": "Policy Id",
+      "type": "string"
+    },
+    "policy_revision": {
+      "exclusiveMinimum": 0,
+      "title": "Policy Revision",
+      "type": "integer"
+    },
+    "identity_id": {
+      "format": "uuid",
+      "title": "Identity Id",
+      "type": "string"
+    },
+    "identity_revision": {
+      "exclusiveMinimum": 0,
+      "title": "Identity Revision",
+      "type": "integer"
+    },
+    "pull_request": {
+      "anyOf": [
+        {
+          "exclusiveMinimum": 0,
+          "maximum": 9223372036854775807,
+          "type": "integer"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Pull Request"
+    }
+  },
+  "required": [
+    "repository_id",
+    "head_sha",
+    "paths",
+    "max_bytes",
+    "expires_at",
+    "policy_id",
+    "policy_revision",
+    "identity_id",
+    "identity_revision"
+  ],
+  "title": "SnapshotGrant",
+  "type": "object"
+}

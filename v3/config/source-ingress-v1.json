@@ -99,7 +99,7 @@
     },
     {
       "path": "tests/test_super_agent_sa04_faults.py",
-      "sha256": "dbb1f3df2e8124606ba40f8d64eaa2154827a80144a0c3cf2052e01f2b738b11"
+      "sha256": "ccf52fcb4e76d814ccb806c44159da3b1e4b06ac518d0d73d5eeb02d60f169e1"
     },
     {
       "path": "tests/fixtures/sa04_crash_worker.py",
@@ -125,5 +125,6 @@
     "unsequenced_denial": "sticky ambiguity, no automatic restoration",
     "denied_snapshot_neighbor": "Versioned create/history snapshots also retain observed native watermarks or ambiguity; intermediate 3eca833 390 PASS plus neighbor 1 FAIL preserved",
     "order_transition": "Shared immutable unordered-history classification independent of Receive outcome; same-version canonical dedupe first"
-  }
+  },
+  "forward_compatibility_SAV1_05": "32-to-current test expects all appended migration names including 0034; old row and complete checksum assertions unchanged"
 }

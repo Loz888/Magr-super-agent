@@ -1,0 +1,459 @@
+{
+  "mode": "SYNTHETIC_CONTROLLED_NOT_PLATFORM_CAPTURE",
+  "recorded_at_utc": "2026-11-11T02:50:54.824741+00:00",
+  "deliveries": [
+    {
+      "family": "issues",
+      "headers": {
+        "X-Hub-Signature-256": "sha256=ffaf72c64b1ae495dbba441de647fabde0571c7591b47aa5d21097a76ccf85a2",
+        "X-GitHub-Delivery": "synthetic-issues",
+        "X-GitHub-Event": "issues"
+      },
+      "payload": {
+        "installation": {
+          "id": 200
+        },
+        "repository": {
+          "id": 900,
+          "full_name": "example/mgar-test",
+          "private": true,
+          "owner": {
+            "id": 100
+          }
+        },
+        "sender": {
+          "id": 42,
+          "login": "MiXeD-Login",
+          "type": "User"
+        },
+        "action": "opened",
+        "issue": {
+          "id": 700,
+          "number": 7,
+          "title": "synthetic issue",
+          "body": "synthetic body",
+          "updated_at": "2026-11-11T02:50:54.824576+00:00",
+          "user": {
+            "id": 42,
+            "login": "MiXeD-Login",
+            "type": "User"
+          }
+        }
+      },
+      "payload_sha256": "d72aa271d45ed51fda7c6ef6de2f965c82f72edda638ae3433119aca0c577648",
+      "expectation": "signed scope only; independent policy/roles/Receive still required"
+    },
+    {
+      "family": "issue_comment",
+      "headers": {
+        "X-Hub-Signature-256": "sha256=cb97077df1fdd147ddab69aa47001c0debe749906ad91fd9ad07971ea6fa38d9",
+        "X-GitHub-Delivery": "synthetic-issue_comment",
+        "X-GitHub-Event": "issue_comment"
+      },
+      "payload": {
+        "installation": {
+          "id": 200
+        },
+        "repository": {
+          "id": 900,
+          "full_name": "example/mgar-test",
+          "private": true,
+          "owner": {
+            "id": 100
+          }
+        },
+        "sender": {
+          "id": 42,
+          "login": "MiXeD-Login",
+          "type": "User"
+        },
+        "action": "created",
+        "issue": {
+          "id": 700,
+          "number": 7
+        },
+        "comment": {
+          "id": 800,
+          "body": "synthetic content /mgar investigate",
+          "user": {
+            "id": 42,
+            "login": "MiXeD-Login",
+            "type": "User"
+          },
+          "created_at": "2026-11-11T02:50:54.824652+00:00",
+          "updated_at": "2026-11-11T02:50:54.824652+00:00"
+        }
+      },
+      "payload_sha256": "d005d52162285fd75b587395001f2f978694feae7b2bdb879060fa867f738500",
+      "expectation": "signed scope only; independent policy/roles/Receive still required"
+    },
+    {
+      "family": "pull_request",
+      "headers": {
+        "X-Hub-Signature-256": "sha256=92f8704200156b96ca275a60c579643e7943d57296aac9d75c6004016416a70d",
+        "X-GitHub-Delivery": "synthetic-pull_request",
+        "X-GitHub-Event": "pull_request"
+      },
+      "payload": {
+        "installation": {
+          "id": 200
+        },
+        "repository": {
+          "id": 900,
+          "full_name": "example/mgar-test",
+          "private": true,
+          "owner": {
+            "id": 100
+          }
+        },
+        "sender": {
+          "id": 42,
+          "login": "MiXeD-Login",
+          "type": "User"
+        },
+        "action": "opened",
+        "pull_request": {
+          "id": 300,
+          "number": 7,
+          "title": "synthetic PR",
+          "body": "synthetic PR body",
+          "updated_at": "2026-11-11T02:50:54.824670+00:00",
+          "user": {
+            "id": 42,
+            "login": "MiXeD-Login",
+            "type": "User"
+          },
+          "head": {
+            "sha": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "repo": {
+              "id": 900,
+              "full_name": "example/mgar-test",
+              "private": true,
+              "owner": {
+                "id": 100
+              }
+            }
+          },
+          "base": {
+            "sha": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "repo": {
+              "id": 900,
+              "full_name": "example/mgar-test",
+              "private": true,
+              "owner": {
+                "id": 100
+              }
+            }
+          }
+        }
+      },
+      "payload_sha256": "7f3ba27c4404fec14db8f601bb7ca4ac36ec84c6f6dc57b56bacdb4df90bbd9b",
+      "expectation": "signed scope only; independent policy/roles/Receive still required"
+    },
+    {
+      "family": "pull_request_review",
+      "headers": {
+        "X-Hub-Signature-256": "sha256=199d12b5c1e8a6a89a0e8af78115ba57b35bb232226ceb5733fbca88571d9ffb",
+        "X-GitHub-Delivery": "synthetic-pull_request_review",
+        "X-GitHub-Event": "pull_request_review"
+      },
+      "payload": {
+        "installation": {
+          "id": 200
+        },
+        "repository": {
+          "id": 900,
+          "full_name": "example/mgar-test",
+          "private": true,
+          "owner": {
+            "id": 100
+          }
+        },
+        "sender": {
+          "id": 42,
+          "login": "MiXeD-Login",
+          "type": "User"
+        },
+        "action": "submitted",
+        "pull_request": {
+          "id": 300,
+          "number": 7,
+          "title": "synthetic PR",
+          "body": "synthetic PR body",
+          "updated_at": "2026-11-11T02:50:54.824684+00:00",
+          "user": {
+            "id": 42,
+            "login": "MiXeD-Login",
+            "type": "User"
+          },
+          "head": {
+            "sha": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "repo": {
+              "id": 900,
+              "full_name": "example/mgar-test",
+              "private": true,
+              "owner": {
+                "id": 100
+              }
+            }
+          },
+          "base": {
+            "sha": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "repo": {
+              "id": 900,
+              "full_name": "example/mgar-test",
+              "private": true,
+              "owner": {
+                "id": 100
+              }
+            }
+          }
+        },
+        "review": {
+          "id": 600,
+          "body": "synthetic content /mgar investigate",
+          "user": {
+            "id": 42,
+            "login": "MiXeD-Login",
+            "type": "User"
+          },
+          "created_at": "2026-11-11T02:50:54.824684+00:00",
+          "updated_at": "2026-11-11T02:50:54.824684+00:00",
+          "submitted_at": "2026-11-11T02:50:54.824684+00:00"
+        }
+      },
+      "payload_sha256": "e7983912fd462ffb6c9b42c7469ac56fe7b40db18500fdfdd28a0707c9c22916",
+      "expectation": "signed scope only; independent policy/roles/Receive still required"
+    },
+    {
+      "family": "pull_request_review_comment",
+      "headers": {
+        "X-Hub-Signature-256": "sha256=5c5f7160cd73d8693de9a4f35f6345c7f86830f1d09a735bc78eb71b1291d9d7",
+        "X-GitHub-Delivery": "synthetic-pull_request_review_comment",
+        "X-GitHub-Event": "pull_request_review_comment"
+      },
+      "payload": {
+        "installation": {
+          "id": 200
+        },
+        "repository": {
+          "id": 900,
+          "full_name": "example/mgar-test",
+          "private": true,
+          "owner": {
+            "id": 100
+          }
+        },
+        "sender": {
+          "id": 42,
+          "login": "MiXeD-Login",
+          "type": "User"
+        },
+        "action": "created",
+        "pull_request": {
+          "id": 300,
+          "number": 7,
+          "title": "synthetic PR",
+          "body": "synthetic PR body",
+          "updated_at": "2026-11-11T02:50:54.824697+00:00",
+          "user": {
+            "id": 42,
+            "login": "MiXeD-Login",
+            "type": "User"
+          },
+          "head": {
+            "sha": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+            "repo": {
+              "id": 900,
+              "full_name": "example/mgar-test",
+              "private": true,
+              "owner": {
+                "id": 100
+              }
+            }
+          },
+          "base": {
+            "sha": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "repo": {
+              "id": 900,
+              "full_name": "example/mgar-test",
+              "private": true,
+              "owner": {
+                "id": 100
+              }
+            }
+          }
+        },
+        "comment": {
+          "id": 800,
+          "body": "synthetic content /mgar investigate",
+          "user": {
+            "id": 42,
+            "login": "MiXeD-Login",
+            "type": "User"
+          },
+          "created_at": "2026-11-11T02:50:54.824697+00:00",
+          "updated_at": "2026-11-11T02:50:54.824697+00:00"
+        }
+      },
+      "payload_sha256": "f0c194af3cae08ad42a3b76f78cfc04b1872499873256b1e84df97168ead1bf1",
+      "expectation": "signed scope only; independent policy/roles/Receive still required"
+    },
+    {
+      "family": "workflow_run",
+      "headers": {
+        "X-Hub-Signature-256": "sha256=d6d6b26444d8b1bf2fa5f85c98456a0ef7f58ac516ab2b9916e03c6965cf9b4d",
+        "X-GitHub-Delivery": "synthetic-workflow_run",
+        "X-GitHub-Event": "workflow_run"
+      },
+      "payload": {
+        "installation": {
+          "id": 200
+        },
+        "repository": {
+          "id": 900,
+          "full_name": "example/mgar-test",
+          "private": true,
+          "owner": {
+            "id": 100
+          }
+        },
+        "sender": {
+          "id": 42,
+          "login": "MiXeD-Login",
+          "type": "User"
+        },
+        "action": "completed",
+        "workflow_run": {
+          "id": 500,
+          "head_sha": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "status": "completed",
+          "conclusion": "failure",
+          "name": "synthetic CI",
+          "created_at": "2026-11-11T02:50:54.824709+00:00",
+          "updated_at": "2026-11-11T02:50:54.824709+00:00",
+          "pull_requests": [
+            {
+              "number": 7
+            }
+          ],
+          "app": {
+            "id": 333
+          },
+          "run_attempt": 2,
+          "head_repository": {
+            "id": 900,
+            "full_name": "example/mgar-test",
+            "private": true,
+            "owner": {
+              "id": 100
+            }
+          }
+        }
+      },
+      "payload_sha256": "3f7218bceee1d3d38f86bf0c6ed42008ddb985b49272698fc7ca3ef1fc5876bb",
+      "expectation": "signed scope only; independent policy/roles/Receive still required"
+    },
+    {
+      "family": "check_run",
+      "headers": {
+        "X-Hub-Signature-256": "sha256=71686592da4551e473870a113f38ac456550d8c16bdfe5f833ba0536504ad912",
+        "X-GitHub-Delivery": "synthetic-check_run",
+        "X-GitHub-Event": "check_run"
+      },
+      "payload": {
+        "installation": {
+          "id": 200
+        },
+        "repository": {
+          "id": 900,
+          "full_name": "example/mgar-test",
+          "private": true,
+          "owner": {
+            "id": 100
+          }
+        },
+        "sender": {
+          "id": 42,
+          "login": "MiXeD-Login",
+          "type": "User"
+        },
+        "action": "completed",
+        "check_run": {
+          "id": 500,
+          "head_sha": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "status": "completed",
+          "conclusion": "failure",
+          "name": "synthetic CI",
+          "created_at": "2026-11-11T02:50:54.824720+00:00",
+          "updated_at": "2026-11-11T02:50:54.824720+00:00",
+          "pull_requests": [
+            {
+              "number": 7
+            }
+          ],
+          "app": {
+            "id": 333
+          },
+          "check_suite": {
+            "id": 501
+          }
+        }
+      },
+      "payload_sha256": "0e1e3fb466149ad2a68b24343942f83d4532f9e642c48ec0e9da24c5f41644d8",
+      "expectation": "signed scope only; independent policy/roles/Receive still required"
+    },
+    {
+      "family": "check_suite",
+      "headers": {
+        "X-Hub-Signature-256": "sha256=73f791b6709424c245c930ba0e6783c39010acd049f71a0bdb2d7dc37098884d",
+        "X-GitHub-Delivery": "synthetic-check_suite",
+        "X-GitHub-Event": "check_suite"
+      },
+      "payload": {
+        "installation": {
+          "id": 200
+        },
+        "repository": {
+          "id": 900,
+          "full_name": "example/mgar-test",
+          "private": true,
+          "owner": {
+            "id": 100
+          }
+        },
+        "sender": {
+          "id": 42,
+          "login": "MiXeD-Login",
+          "type": "User"
+        },
+        "action": "completed",
+        "check_suite": {
+          "id": 500,
+          "head_sha": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+          "status": "completed",
+          "conclusion": "failure",
+          "name": "synthetic CI",
+          "created_at": "2026-11-11T02:50:54.824729+00:00",
+          "updated_at": "2026-11-11T02:50:54.824729+00:00",
+          "pull_requests": [
+            {
+              "number": 7
+            }
+          ],
+          "app": {
+            "id": 333
+          }
+        }
+      },
+      "payload_sha256": "b1f1b2e3e5f7bf5a23b0fc77c4e467845af33d25514f310dfd72d8c8d57881bf",
+      "expectation": "signed scope only; independent policy/roles/Receive still required"
+    }
+  ],
+  "limits": [
+    "No live GitHub account, token or private user data",
+    "No native monotonic edit ordering",
+    "CI preserves immutable SHA and run attempt; no synthetic Issue",
+    "History is bounded comment snapshot, not delivery replay"
+  ]
+}

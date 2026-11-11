@@ -82,3 +82,7 @@ SA01 交接已由 Trae 固定提交 6109ce5 §12 确认；上文等待发送为�
 SA02 已由 Trae 在固定 4ad86c1 §15 实际收讫；上文 SA02 完成消息未发送为历史状态，保留。0032/source-policies API/受限 Engine 接线实际确认 4ad86c1 §15，ToolAuthority._grant pre-charge 接线实际确认 f61a233 §16；两份确认与 UTC 记录在 SA03 起始证据。
 
 SA03 实施 9f64dc9000879ae84a71640a6d96bdb4668b332e，注册 304 项通过，见 HARNESS_SA03_HANDOFF.md 与验收摘要。没有修改/导入 Harness 活动文件，不改变其 H03/H04 状态。SA03 完成消息未发送/未确认，文件准备不能当送达。等待独立复验，不自动进入 SA04，0033 未预占；真实来源、模型、外发/发布保持未启用。
+
+## SAV1-05 实际所有权确认
+
+用户已确认SA04独立复验通过，并授权SA05。Trae在固定79798690c93497d1740d54cc91fc2f755f55f250第24节实际确认0034、sources/github*、GitHub管理注册/旧Webhook单owner分流归Codex。确认已只读核对，凭据见SA05起始证据；不是排队消息推断。Engine实际未改，预算/ToolAuthority/Harness未改或导入。H系列仍由Trae负责，本轮只核对上述固定交接，不运行其检查或改变其验收状态。

@@ -1,0 +1,129 @@
+{
+  "$defs": {
+    "GitHubRepository": {
+      "additionalProperties": false,
+      "properties": {
+        "repository_id": {
+          "exclusiveMinimum": 0,
+          "maximum": 9223372036854775807,
+          "title": "Repository Id",
+          "type": "integer"
+        },
+        "full_name": {
+          "pattern": "^[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+$",
+          "title": "Full Name",
+          "type": "string"
+        },
+        "private": {
+          "title": "Private",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "repository_id",
+        "full_name",
+        "private"
+      ],
+      "title": "GitHubRepository",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": "github-app-v1",
+      "default": "github-app-v1",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "app_id": {
+      "exclusiveMinimum": 0,
+      "maximum": 9223372036854775807,
+      "title": "App Id",
+      "type": "integer"
+    },
+    "account_id": {
+      "exclusiveMinimum": 0,
+      "maximum": 9223372036854775807,
+      "title": "Account Id",
+      "type": "integer"
+    },
+    "installation_id": {
+      "exclusiveMinimum": 0,
+      "maximum": 9223372036854775807,
+      "title": "Installation Id",
+      "type": "integer"
+    },
+    "repository": {
+      "$ref": "#/$defs/GitHubRepository"
+    },
+    "events": {
+      "items": {
+        "enum": [
+          "issues",
+          "issue_comment",
+          "pull_request",
+          "pull_request_review",
+          "pull_request_review_comment",
+          "workflow_run",
+          "check_run",
+          "check_suite"
+        ],
+        "type": "string"
+      },
+      "maxItems": 8,
+      "minItems": 1,
+      "title": "Events",
+      "type": "array"
+    },
+    "sender_ids": {
+      "items": {
+        "exclusiveMinimum": 0,
+        "maximum": 9223372036854775807,
+        "type": "integer"
+      },
+      "maxItems": 100,
+      "minItems": 1,
+      "title": "Sender Ids",
+      "type": "array"
+    },
+    "context_bot_ids": {
+      "default": [],
+      "items": {
+        "exclusiveMinimum": 0,
+        "maximum": 9223372036854775807,
+        "type": "integer"
+      },
+      "maxItems": 100,
+      "title": "Context Bot Ids",
+      "type": "array"
+    },
+    "own_bot_ids": {
+      "items": {
+        "exclusiveMinimum": 0,
+        "maximum": 9223372036854775807,
+        "type": "integer"
+      },
+      "maxItems": 100,
+      "minItems": 1,
+      "title": "Own Bot Ids",
+      "type": "array"
+    },
+    "enabled": {
+      "default": false,
+      "title": "Enabled",
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "app_id",
+    "account_id",
+    "installation_id",
+    "repository",
+    "events",
+    "sender_ids",
+    "own_bot_ids"
+  ],
+  "title": "GitHubSettings",
+  "type": "object"
+}

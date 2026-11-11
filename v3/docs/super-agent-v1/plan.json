@@ -101,7 +101,7 @@
       "id": "SAV1-04",
       "short_id": "SA04",
       "title": "持久入站、幂等、编辑与缺口",
-      "status": "IN_PROGRESS",
+      "status": "DONE",
       "priority": "P0",
       "phase": "S1",
       "depends_on": [
@@ -116,13 +116,14 @@
       "optional": false,
       "card": "TASKS.md#sa04",
       "verification_target_on_implementation": "SAV1-04",
-      "acceptance": "accept/SAV1-04/accept.json"
+      "acceptance": "accept/SAV1-04/accept.json",
+      "independent_review": "User confirmed independent PASS and authorized SA05 in current conversation"
     },
     {
       "id": "SAV1-05",
       "short_id": "SA05",
       "title": "GitHub App 与事件源适配",
-      "status": "PLANNED",
+      "status": "IN_PROGRESS",
       "priority": "P0",
       "phase": "S1",
       "depends_on": [
@@ -135,7 +136,8 @@
       },
       "optional": false,
       "card": "TASKS.md#sa05",
-      "verification_target_on_implementation": "SAV1-05"
+      "verification_target_on_implementation": "SAV1-05",
+      "acceptance": "accept/SAV1-05/accept.json"
     },
     {
       "id": "SAV1-06",
