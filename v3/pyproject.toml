@@ -19,6 +19,7 @@ dependencies = [
   "jieba==0.42.1",
   "pypdf>=6,<7",
   "sqlglot==27.14.0",
+  "lark-oapi==1.7.5",
 ]
 
 [project.optional-dependencies]
@@ -30,6 +31,10 @@ mgar = "mgar_v3.cli:main"
 [build-system]
 requires = ["hatchling>=1.27,<2"]
 build-backend = "hatchling.build"
+
+[[tool.uv.index]]
+url = "https://pypi.org/simple"
+default = true
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/mgar_v3"]
@@ -57,4 +62,8 @@ plugins = ["pydantic.mypy"]
 
 [[tool.mypy.overrides]]
 module = ["langgraph.*", "mcp.*", "jieba", "spacy.*"]
+ignore_missing_imports = true
+
+[[tool.mypy.overrides]]
+module = ["lark_oapi.*"]
 ignore_missing_imports = true

@@ -639,7 +639,9 @@ def test_real_33_to_34_upgrade_preserves_every_legacy_checksum_and_row(database,
             )
         )
         old.close()
-        assert migrate(dsn) == ["0034_github_app.sql"] and migrate(dsn) == []
+        assert migrate(dsn) == [
+            "0034_github_app.sql", "0035_feishu_source.sql"
+        ] and migrate(dsn) == []
         with psycopg.connect(dsn) as conn:
             assert conn.execute(
                 "SELECT count(*) FROM app.trigger_events WHERE event_id=%s", (receipt.event_id,)

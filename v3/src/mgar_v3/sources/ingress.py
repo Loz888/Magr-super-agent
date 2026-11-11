@@ -384,6 +384,7 @@ class SourceIngress:
                 "model_input": decision.model_input,
                 "body_expires_at": expiry,
                 "mode": definition.mode,
+                "context_only": event.sender.actor_kind != "human" or "requester" not in roles,
             }, "RECEIVE_ALLOWED"
         except DomainError:
             return None, "INGRESS_CURRENT_AUTHORITY_DENIED"
@@ -1008,6 +1009,7 @@ class SourceIngress:
                 )
                 context = (
                     historical
+                    or grant["context_only"]
                     or permit is not None
                     or event.historical_backfill
                     or old

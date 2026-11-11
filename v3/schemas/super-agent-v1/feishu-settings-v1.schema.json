@@ -1,0 +1,161 @@
+{
+  "$defs": {
+    "FollowupTopic": {
+      "additionalProperties": false,
+      "properties": {
+        "chat_id": {
+          "maxLength": 256,
+          "minLength": 1,
+          "title": "Chat Id",
+          "type": "string"
+        },
+        "thread_id": {
+          "maxLength": 256,
+          "minLength": 1,
+          "title": "Thread Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "chat_id",
+        "thread_id"
+      ],
+      "title": "FollowupTopic",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": "feishu-bot-v1",
+      "default": "feishu-bot-v1",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "app_id": {
+      "maxLength": 256,
+      "minLength": 1,
+      "title": "App Id",
+      "type": "string"
+    },
+    "tenant_key": {
+      "maxLength": 256,
+      "minLength": 1,
+      "title": "Tenant Key",
+      "type": "string"
+    },
+    "bot_open_id": {
+      "maxLength": 256,
+      "minLength": 1,
+      "title": "Bot Open Id",
+      "type": "string"
+    },
+    "chat_ids": {
+      "items": {
+        "maxLength": 256,
+        "minLength": 1,
+        "type": "string"
+      },
+      "maxItems": 100,
+      "minItems": 1,
+      "title": "Chat Ids",
+      "type": "array"
+    },
+    "sender_open_ids": {
+      "items": {
+        "maxLength": 256,
+        "minLength": 1,
+        "type": "string"
+      },
+      "maxItems": 100,
+      "minItems": 1,
+      "title": "Sender Open Ids",
+      "type": "array"
+    },
+    "context_bot_open_ids": {
+      "default": [],
+      "items": {
+        "maxLength": 256,
+        "minLength": 1,
+        "type": "string"
+      },
+      "maxItems": 100,
+      "title": "Context Bot Open Ids",
+      "type": "array"
+    },
+    "events": {
+      "default": [
+        "im.message.receive_v1"
+      ],
+      "items": {
+        "enum": [
+          "im.message.receive_v1",
+          "im.message.recalled_v1"
+        ],
+        "type": "string"
+      },
+      "maxItems": 2,
+      "minItems": 1,
+      "title": "Events",
+      "type": "array"
+    },
+    "receive_mode": {
+      "default": "mentions_or_topics",
+      "enum": [
+        "mentions_or_topics",
+        "all_selected"
+      ],
+      "title": "Receive Mode",
+      "type": "string"
+    },
+    "followup_topics": {
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/FollowupTopic"
+      },
+      "maxItems": 100,
+      "title": "Followup Topics",
+      "type": "array"
+    },
+    "requested_scopes": {
+      "default": [
+        "im:message.group_at_msg:readonly"
+      ],
+      "items": {
+        "maxLength": 256,
+        "minLength": 1,
+        "type": "string"
+      },
+      "maxItems": 20,
+      "minItems": 1,
+      "title": "Requested Scopes",
+      "type": "array"
+    },
+    "scopes_review_ref": {
+      "maxLength": 256,
+      "minLength": 1,
+      "title": "Scopes Review Ref",
+      "type": "string"
+    },
+    "history_enabled": {
+      "default": false,
+      "title": "History Enabled",
+      "type": "boolean"
+    },
+    "enabled": {
+      "default": false,
+      "title": "Enabled",
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "app_id",
+    "tenant_key",
+    "bot_open_id",
+    "chat_ids",
+    "sender_open_ids",
+    "scopes_review_ref"
+  ],
+  "title": "FeishuSettings",
+  "type": "object"
+}

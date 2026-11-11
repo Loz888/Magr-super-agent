@@ -1,0 +1,41 @@
+{
+  "candidate": "9fb6593cbd12a511cf089a5ddebcdb98f408f253",
+  "implementation": "cf7c17662f262b52e04cf835fdcdb0c9e6fb901f",
+  "status": "PASS_USER_INDEPENDENT_ENGINEERING_ONLY",
+  "read_verification": {
+    "utc": "2026-11-11T06:42:22.430740+00:00",
+    "head": "9fb6593cbd12a511cf089a5ddebcdb98f408f253",
+    "clean_tree": true,
+    "source_sha256": "890e475b2089ed516e2cabe01dd59928bb25f23b971c1faaf04f657ed8977b47",
+    "review": ".local/review-sa05-history-independent-20261111T060716Z/review-result.json",
+    "review_sha256": "62726b8b526dbe2570b710dd7650f5f2bbaee2f3a10b093fa25ac208f7e53a5e",
+    "registered": "evidence/SAV1-05/20261111T061353Z-476e0689/result.json",
+    "registered_sha256": "0229c17f2ecfe1705e71e82f97bf592c54d10f777d23ded4c325994bf065cf47",
+    "registered_counts": {
+      "tests": 566,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "other_junit": {
+      "original-13-junit.xml": {
+        "tests": 13,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "sa05-focused-junit.xml": {
+        "tests": 146,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      }
+    },
+    "artifacts_verified": 29,
+    "evidence_hashes_verified": 8,
+    "non_engineering_gates": "NOT_RUN",
+    "prior_evidence_unchanged": true
+  },
+  "live_gates": "NOT_RUN",
+  "authorization": "User explicitly accepted SA05 and authorized local SA06; no SA07 authorization"
+}

@@ -44,6 +44,8 @@ from mgar_v3.routing.live import load_router_permit
 from mgar_v3.routing.model import DeepSeekRouter
 from mgar_v3.routing.worker import FixtureRouter, RouterProvider, RouterWorker
 from mgar_v3.settings import ROOT, Settings
+from mgar_v3.sources.feishu_api import register as register_feishu_sources
+from mgar_v3.sources.feishu_runtime import FeishuRuntime
 from mgar_v3.sources.github_api import register as register_github_sources
 from mgar_v3.sources.github_auth import verify_signature as verify_github_signature
 from mgar_v3.sources.github_runtime import GitHubRuntime
@@ -108,6 +110,7 @@ def create_app(
     transport: Transport | None = None,
     draft_transport: Transport | None = None,
     github_runtime: GitHubRuntime | None = None,
+    feishu_runtime: FeishuRuntime | None = None,
 ) -> FastAPI:
     configuration = settings or Settings()
     provided = engine
@@ -1267,6 +1270,7 @@ def create_app(
         )
 
     register_github_sources(app, authority, browser_user, github_runtime)
+    register_feishu_sources(app, authority, browser_user, feishu_runtime)
     register_source_identities(app, authority, browser_user)
     register_source_ingress(app, authority, browser_user)
     register_source_policies(app, authority, browser_user)

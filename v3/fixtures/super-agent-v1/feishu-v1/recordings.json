@@ -1,0 +1,228 @@
+{
+  "provenance": "explicitly_synthetic_official_v2_structure_not_live_capture",
+  "live_source_channel_gate": "NOT_RUN",
+  "cases": [
+    {
+      "name": "mention",
+      "expected": "normalized",
+      "event": {
+        "schema": "2.0",
+        "header": {
+          "event_id": "synthetic-mention",
+          "event_type": "im.message.receive_v1",
+          "create_time": "1794350400000",
+          "app_id": "Cli_App-AbC",
+          "tenant_key": "Tenant-AbC"
+        },
+        "event": {
+          "sender": {
+            "sender_id": {
+              "open_id": "Ou_Alice-AbC"
+            },
+            "sender_type": "user",
+            "tenant_key": "Tenant-AbC"
+          },
+          "message": {
+            "message_id": "synthetic-message-mention",
+            "chat_id": "Oc_Chat-AbC",
+            "chat_type": "group",
+            "create_time": "1794350400000",
+            "update_time": "1794350400000",
+            "message_type": "text",
+            "content": "{\"text\": \"synthetic message @_user_1\"}",
+            "mentions": [
+              {
+                "key": "@_user_1",
+                "id": {
+                  "open_id": "Ou_Bot-AbC"
+                },
+                "name": "Synthetic Bot",
+                "tenant_key": "Tenant-AbC"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "name": "followup",
+      "expected": "normalized",
+      "event": {
+        "schema": "2.0",
+        "header": {
+          "event_id": "synthetic-followup",
+          "event_type": "im.message.receive_v1",
+          "create_time": "1794350400000",
+          "app_id": "Cli_App-AbC",
+          "tenant_key": "Tenant-AbC"
+        },
+        "event": {
+          "sender": {
+            "sender_id": {
+              "open_id": "Ou_Alice-AbC"
+            },
+            "sender_type": "user",
+            "tenant_key": "Tenant-AbC"
+          },
+          "message": {
+            "message_id": "synthetic-message-followup",
+            "chat_id": "Oc_Chat-AbC",
+            "chat_type": "group",
+            "create_time": "1794350400000",
+            "update_time": "1794350400000",
+            "message_type": "text",
+            "content": "{\"text\": \"synthetic message @_user_1\"}",
+            "mentions": [],
+            "root_id": "synthetic-topic",
+            "parent_id": "synthetic-parent"
+          }
+        }
+      }
+    },
+    {
+      "name": "private",
+      "expected": "filtered",
+      "event": {
+        "schema": "2.0",
+        "header": {
+          "event_id": "synthetic-private",
+          "event_type": "im.message.receive_v1",
+          "create_time": "1794350400000",
+          "app_id": "Cli_App-AbC",
+          "tenant_key": "Tenant-AbC"
+        },
+        "event": {
+          "sender": {
+            "sender_id": {
+              "open_id": "Ou_Alice-AbC"
+            },
+            "sender_type": "user",
+            "tenant_key": "Tenant-AbC"
+          },
+          "message": {
+            "message_id": "synthetic-message-private",
+            "chat_id": "Oc_Chat-AbC",
+            "chat_type": "p2p",
+            "create_time": "1794350400000",
+            "update_time": "1794350400000",
+            "message_type": "text",
+            "content": "{\"text\": \"synthetic message @_user_1\"}",
+            "mentions": [
+              {
+                "key": "@_user_1",
+                "id": {
+                  "open_id": "Ou_Bot-AbC"
+                },
+                "name": "Synthetic Bot",
+                "tenant_key": "Tenant-AbC"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "name": "self",
+      "expected": "filtered",
+      "event": {
+        "schema": "2.0",
+        "header": {
+          "event_id": "synthetic-self",
+          "event_type": "im.message.receive_v1",
+          "create_time": "1794350400000",
+          "app_id": "Cli_App-AbC",
+          "tenant_key": "Tenant-AbC"
+        },
+        "event": {
+          "sender": {
+            "sender_id": {
+              "open_id": "Ou_Bot-AbC"
+            },
+            "sender_type": "user",
+            "tenant_key": "Tenant-AbC"
+          },
+          "message": {
+            "message_id": "synthetic-message-self",
+            "chat_id": "Oc_Chat-AbC",
+            "chat_type": "group",
+            "create_time": "1794350400000",
+            "update_time": "1794350400000",
+            "message_type": "text",
+            "content": "{\"text\": \"synthetic message @_user_1\"}",
+            "mentions": [
+              {
+                "key": "@_user_1",
+                "id": {
+                  "open_id": "Ou_Bot-AbC"
+                },
+                "name": "Synthetic Bot",
+                "tenant_key": "Tenant-AbC"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "name": "attachment",
+      "expected": "filtered",
+      "event": {
+        "schema": "2.0",
+        "header": {
+          "event_id": "synthetic-attachment",
+          "event_type": "im.message.receive_v1",
+          "create_time": "1794350400000",
+          "app_id": "Cli_App-AbC",
+          "tenant_key": "Tenant-AbC"
+        },
+        "event": {
+          "sender": {
+            "sender_id": {
+              "open_id": "Ou_Alice-AbC"
+            },
+            "sender_type": "user",
+            "tenant_key": "Tenant-AbC"
+          },
+          "message": {
+            "message_id": "synthetic-message-attachment",
+            "chat_id": "Oc_Chat-AbC",
+            "chat_type": "group",
+            "create_time": "1794350400000",
+            "update_time": "1794350400000",
+            "message_type": "file",
+            "content": "{\"file_key\":\"synthetic-key\"}",
+            "mentions": [
+              {
+                "key": "@_user_1",
+                "id": {
+                  "open_id": "Ou_Bot-AbC"
+                },
+                "name": "Synthetic Bot",
+                "tenant_key": "Tenant-AbC"
+              }
+            ]
+          }
+        }
+      }
+    },
+    {
+      "name": "recall",
+      "expected": "normalized",
+      "event": {
+        "schema": "2.0",
+        "header": {
+          "event_id": "synthetic-recall",
+          "event_type": "im.message.recalled_v1",
+          "create_time": "1794350400000",
+          "app_id": "Cli_App-AbC",
+          "tenant_key": "Tenant-AbC"
+        },
+        "event": {
+          "message_id": "synthetic-message-mention",
+          "chat_id": "Oc_Chat-AbC",
+          "recall_time": "1794350400001"
+        }
+      }
+    }
+  ]
+}

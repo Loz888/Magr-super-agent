@@ -1,3 +1,7 @@
+# SAV1-06 本地工程实施中
+
+用户已独立放行 SA05（9fb6593，566完整/146专项/13独立），已核对原始证据和固定指纹；原失败保留。SA06 已获独占0035/飞书文件/API接线确认。官方SDK、持久入站、最小正文失效、受控Broker/历史、配置和契约回归已实施；完整固定候选注册验收尚待执行。SA06 IN_PROGRESS，SA07–SA24 PLANNED。真实平台/模型/外发/发布/完整系统安全与长期门NOT_RUN。以下是历史快照。
+
 # SAV1-05 历史补拉修复工程通过，等待独立复验
 
 实现 cf7c17662f262b52e04cf835fdcdb0c9e6fb901f；源码 890e475b2089ed516e2cabe01dd59928bb25f23b971c1faaf04f657ed8977b47，完整注册566 PASS（79+44+23+420），0 failure/error/skip；本次原独立3项和此前10项原样重跑全通过，lint/typecheck 222 files PASS。注册结果 evidence/SAV1-05/20261111T054311Z-1df918b3/result.json 由原评分器真实生成，前后指纹一致。详见 SA05_HISTORY_REPAIR_20261111.md、accept/SAV1-05/history-repair-20261111.json。

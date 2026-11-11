@@ -63,7 +63,7 @@
     },
     {
       "path": "src/mgar_v3/sources/ingress.py",
-      "sha256": "a5bb827227c65e44d0e51b34ac5253566b337b7076bfe2879e0fe07549e57c19"
+      "sha256": "457d2f29432d3e9bf56891f47fc847f242a14c3cfd9af92d33c2936a6a4cb2a2"
     },
     {
       "path": "src/mgar_v3/sources/ingress_api.py",
@@ -127,5 +127,10 @@
     "order_transition": "Shared immutable unordered-history classification independent of Receive outcome; same-version canonical dedupe first",
     "SA05_content_bound": "Configured oversized content denies body/input admission; trusted invalidation and minimal rejected receipt commit together; no rejected plaintext spool"
   },
-  "forward_compatibility_SAV1_05": "32-to-current test expects all appended migration names including 0034; old row and complete checksum assertions unchanged"
+  "forward_compatibility_SAV1_05": "32-to-current test expects all appended migration names including 0034; old row and complete checksum assertions unchanged",
+  "SA06_compatibility": {
+    "change": "Current role/kind context_only grant; no historical flag fabrication, Engine/API DTO/budget changes",
+    "baseline": "9fb6593cbd12a511cf089a5ddebcdb98f408f253",
+    "historical_acceptance": "Prior frozen commits and accept/evidence untouched"
+  }
 }

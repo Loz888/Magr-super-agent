@@ -1246,5 +1246,50 @@
       "history_repair": "Unselected authors submit bodyless trusted observations; equal live/history converge without changing strict authority fingerprints; current history scope ceiling"
     },
     "timeout_seconds": 2100
+  },
+  "SAV1-06": {
+    "tests": [
+      "tests/test_super_agent_sa06.py",
+      "tests/test_super_agent_sa06_sdk.py",
+      "tests/test_super_agent_sa06_broker.py",
+      "tests/test_super_agent_sa06_migration.py",
+      "tests/test_super_agent_sa06_privacy.py",
+      "tests/test_super_agent_sa06_contract.py",
+      "tests/test_super_agent_sa05.py",
+      "tests/test_super_agent_sa05_repair.py",
+      "tests/test_super_agent_sa05_history_repair.py",
+      "tests/test_super_agent_sa04.py",
+      "tests/test_super_agent_sa04_faults.py",
+      "tests/test_super_agent_sa04_repair.py",
+      "tests/test_super_agent_sa04_order_transition.py",
+      "tests/test_super_agent_sa03.py",
+      "tests/test_super_agent_sa02.py",
+      "tests/test_super_agent_sa01.py",
+      "tests/test_coordination.py",
+      "tests/test_api.py",
+      "tests/test_environment.py",
+      "tests/test_web_access.py",
+      "tests/test_duplex.py",
+      "tests/test_r4_experts.py",
+      "tests/test_effects.py",
+      "tests/test_models.py",
+      "tests/test_r6_policies.py",
+      "tests/test_r5_recovery.py"
+    ],
+    "components": {
+      "postgres": "real disposable PostgreSQL; 34-to-35/checksums/old rows/DDL rollback; same held Engine connection",
+      "sdk": "official lark-oapi 1.7.5 native dispatcher/protobuf/ACK with controlled socket; no live platform",
+      "history": "bounded MockTransport fixed official REST endpoints; per-IO current authority; context-only snapshots; unsupported types bodyless facts",
+      "identity": "raw installation/tenant/OpenID; configured chat/sender/structured mention/topic; nonhuman and context-only roles cannot become requests",
+      "privacy": "denied body never retained; trusted known-resource mutation invalidates old body in original transaction, conflict before deletion",
+      "legacy": "entire SA05 registry retained; old GitHub webhook body unchanged; 0001-0034 unchanged",
+      "model": "NOT_RUN; zero paid calls",
+      "harness": "no active files/imports or H card execution",
+      "live_source_channel": "NOT_RUN",
+      "live_coding": "NOT_RUN",
+      "live_publication": "NOT_RUN",
+      "continuous_operation": "NOT_RUN"
+    },
+    "timeout_seconds": 2700
   }
 }

@@ -60,7 +60,7 @@
     },
     {
       "path": "src/mgar_v3/sources/ingress.py",
-      "sha256": "a5bb827227c65e44d0e51b34ac5253566b337b7076bfe2879e0fe07549e57c19"
+      "sha256": "457d2f29432d3e9bf56891f47fc847f242a14c3cfd9af92d33c2936a6a4cb2a2"
     },
     {
       "path": "tests/test_super_agent_sa05_repair.py",
@@ -96,5 +96,10 @@
     "proof": "Authenticated GitHub resource proof normalized identically for live and history; generic ItemMetadata.fingerprint still includes moderation, body, actor, scope and operation",
     "receive": "App actor ceiling applies to history; original Engine rechecks current Receive per item; no identity evidence is synthesized",
     "shared_engine_api_schema_migration_budget_harness_changes": false
+  },
+  "SA06_compatibility": {
+    "change": "Current role/kind context_only grant; no historical flag fabrication, Engine/API DTO/budget changes",
+    "baseline": "9fb6593cbd12a511cf089a5ddebcdb98f408f253",
+    "historical_acceptance": "Prior frozen commits and accept/evidence untouched"
   }
 }

@@ -1,0 +1,52 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "connection": {
+      "enum": [
+        "unknown",
+        "disabled",
+        "online",
+        "offline",
+        "degraded"
+      ],
+      "title": "Connection",
+      "type": "string"
+    },
+    "permissions": {
+      "enum": [
+        "unknown",
+        "granted",
+        "insufficient",
+        "revoked"
+      ],
+      "title": "Permissions",
+      "type": "string"
+    },
+    "observed_at": {
+      "format": "date-time",
+      "title": "Observed At",
+      "type": "string"
+    },
+    "mode": {
+      "enum": [
+        "controlled",
+        "live"
+      ],
+      "title": "Mode",
+      "type": "string"
+    },
+    "reason_code": {
+      "title": "Reason Code",
+      "type": "string"
+    }
+  },
+  "required": [
+    "connection",
+    "permissions",
+    "observed_at",
+    "mode",
+    "reason_code"
+  ],
+  "title": "FeishuHealth",
+  "type": "object"
+}
