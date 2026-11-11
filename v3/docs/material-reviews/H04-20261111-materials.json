@@ -1,0 +1,86 @@
+{
+  "kind": "READ_ONLY_EXISTING_MATERIALS_NOT_INDEPENDENT_SECURITY_RETEST",
+  "read_at_utc": "2026-11-11T00:23:25.015707+00:00",
+  "actions": "Read existing files and Git metadata; parse existing XML/counts and hash read bytes only. No test/probe/security check/container/environment operation, no Harness writes/imports.",
+  "h04_h05_release": "NOT_GRANTED",
+  "files": [
+    {
+      "path": "/home/imini/magr-harness/v3/docs/harness-v4/accept/HV4-H04/accept.json",
+      "exists": true,
+      "sha256": "b07c34a8cb48d6e4bf9adb3f1ea8071a7d868f2918e362f9688968cf893f3577"
+    },
+    {
+      "path": "/home/imini/magr-harness/v3/docs/harness-v4/CAPABILITY_BROKER.md",
+      "exists": true,
+      "sha256": "f0289a0a8b600a41de23ed768a16451f41cf04cdd157aebc0b726630374f0cf3"
+    },
+    {
+      "path": "/home/imini/magr-harness/v3/docs/harness-v4/SUPER_AGENT_HANDOFF.md",
+      "exists": true,
+      "sha256": "3ebe420edb909fd5ef7756209c712a759c8fc30a3ea20c36916234519c5022cc"
+    },
+    {
+      "path": "/home/imini/magr-harness/v3/.local/review-h04/independent-20261110/REPORT.md",
+      "exists": true,
+      "sha256": "09dfa91a7c5feabf9ae789481ad911ab73ba96048d33151336a644f9aaa3b30d"
+    },
+    {
+      "path": "/home/imini/magr-harness/v3/evidence/harness-v4/HV4-H04/recheck-20261111/original-failure/REPORT.md",
+      "exists": true,
+      "sha256": "09dfa91a7c5feabf9ae789481ad911ab73ba96048d33151336a644f9aaa3b30d"
+    },
+    {
+      "path": "/home/imini/magr-harness/v3/evidence/harness-v4/HV4-H04/recheck-20261111/original-failure/probe-results.json",
+      "exists": true,
+      "sha256": "8e380b36e6dbd1947308f339317a534f320f63c3428900a63b38923e0d12302d"
+    },
+    {
+      "path": "/home/imini/magr-harness/v3/evidence/harness-v4/HV4-H04/recheck-20261111/probe/recheck-results.json",
+      "exists": true,
+      "sha256": "1e1957afde68277c041fc2f4d9a499ddae335d3e68a51ab284272defed663483"
+    },
+    {
+      "path": "/home/imini/magr-harness/v3/evidence/harness-v4/HV4-H04/recheck-20261111/probe/recheck-probe.log",
+      "exists": true,
+      "sha256": "3f9c551b48186e23bf30246e082ec007ac6ab12f050bbaf7e2717c09425b800d"
+    },
+    {
+      "path": "/home/imini/magr-harness/v3/evidence/harness-v4/HV4-H04/recheck-20261111/h04-junit.xml",
+      "exists": true,
+      "sha256": "c75e14c5d084fbb108b22c73139d0c895e60fdc413eb32cd27ab905a3363c9e9",
+      "recorded_counts": {
+        "tests": 26,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      }
+    },
+    {
+      "path": "/home/imini/magr-harness/v3/evidence/harness-v4/HV4-H04/recheck-20261111/h00-h03-junit.xml",
+      "exists": true,
+      "sha256": "3c2e3df696a678de3b5b397b9c690f7cdd0212c01391010b8d96d40919c4cd3c",
+      "recorded_counts": {
+        "tests": 83,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      }
+    },
+    {
+      "path": "/home/imini/magr-harness/v3/evidence/HV4-H04/20261110T183139Z-612135f1/result.json",
+      "exists": true,
+      "sha256": "f0a0b16ba0d287b26457b3d41886ee46374f35489b284f093d7a8935be6a2868"
+    },
+    {
+      "path": "/home/imini/magr-harness/v3/evidence/HV4-H04/20261110T183139Z-612135f1/junit.xml",
+      "exists": true,
+      "sha256": "bee50082dab6fe019da7632a6898743447914f05564d9eb13fe8b5c02d4f296f",
+      "recorded_counts": {
+        "tests": 26,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      }
+    }
+  ]
+}
