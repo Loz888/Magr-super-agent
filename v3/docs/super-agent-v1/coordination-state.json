@@ -14,8 +14,8 @@
     }
   },
   "active_super_agent_card": "SAV1-04",
-  "card_status": "DONE",
-  "work_state": "SAV1_04_ACCEPTED_WAITING_INDEPENDENT_REVIEW",
+  "card_status": "IN_PROGRESS",
+  "work_state": "SAV1_04_REOPENED_P1_P2_REPAIR",
   "harness_observation": {
     "head": "de4775e22e96718e880fde287b2e0928db2945e3",
     "h00_owner_reported_status": "PASS",
@@ -207,5 +207,6 @@
     "errors": 0,
     "skipped": 0
   },
-  "sa04_completion_handoff": "Fixed handoff document prepared; no completion message sent or acknowledged. Do not infer next-card approval."
+  "sa04_completion_handoff": "Fixed handoff document prepared; no completion message sent or acknowledged. Do not infer next-card approval.",
+  "sa04_independent_review": "REJECTED; P1 watermark/P2 equivalent unordered edit; no SA05"
 }

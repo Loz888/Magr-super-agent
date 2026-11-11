@@ -9,3 +9,6 @@
 Receive 外正文不持久化。许可正文采用 scope-aware 读取、独立加密、TTL 与事务撤权清理；最小 hash/tombstone 和正文生命周期分开。可选短期、私有、加密限额缓冲只重交 Engine，不 ACK、不裁决业务。PG 不可用且没有新鲜预鉴权时不缓存正文。
 
 0033/API/Engine 最小接线已获 Trae 固定 a04dbde §17、bd50830 §19 实际确认；唯一旧新 owner 与 CAS 防止双入站。其余 Engine 方法、ToolAuthority、财务算法、旧迁移与 Harness 不改。运维/备份恢复及真实 SDK、完整安全/编码/发布/长期门保持后续验收；详细协议、命令和限制见 ../SA04_INGRESS.md。
+
+
+2026-11-11 独立复验修正：接收/留存决定不能抹去已可信观测的新编辑水位。复用既有单调 native_order 和 sticky ambiguous 保存无正文事实，head 仍只引用 canonical input；等水位而无 canonical 证明也不复活。新版本隐私失效前先做等价事件/版本去重，避免无序同版本重投删除自身正文。无 schema/迁移/Engine/API/财务或 Harness 变更；原 FAIL 与评分器保留，修复后重新注册验收并等待独立复验。

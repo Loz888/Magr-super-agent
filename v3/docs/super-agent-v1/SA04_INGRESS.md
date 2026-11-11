@@ -59,3 +59,16 @@ SA01/SA03 依赖及 SA02 契约完整阅读记录、UTC/SHA、独立结果和已
 根目录运行 `make lint`、`make typecheck`、`make verify TASK=SAV1-04`。注册包括 SA04 真实 PG 并发/连接中断、独立进程 SIGKILL 四点、专属临时 Docker PG pause/unpause、32→33 升级/checksum/旧行，以及完整 SA03 注册回归。暂停对象用唯一 UUID/ownership label 核对，仅环回专属端口，不操作本副本主 PG 或 Harness PG；测试镜像固定且 `--pull=never`。旧 R5 恢复回归需要本副本已有 R5 sandbox-lock（见 SA03 文档），不能用删用例或跳过代替。
 
 保留所有 FAIL 和 NOT_RUN。真实平台 SDK、完整系统安全、模型、编码、外发、发布与长期运行均未由本卡放行。停止在 SA04 等待独立验收，不自动启动 SA05。
+
+
+## 独立复验 P1/P2 修复（2026-11-11）
+
+原 2247db3/ad4aae8 的 374 项注册全绿不构成独立放行；独立新增两项 PG 回归失败。修复前原样复现为 2 failed/3 passed，原评分器保持不变，原验收存档在 accept/SAV1-04/history/2247db3-accept.json。修复结果另见 accept/SAV1-04/repair-20261111.json，最终放行仍等待独立复验。
+
+现有 source_ingress_entities.native_order 表示已可信观测的最高原生版本水位，可高于 head_input_id 对应的已接收版本。拒收编辑只推进最小 hash/水位事实并失效旧内容；首次观测即被拒收时也保存此最小事实，不保存 body、body hash、完整事件或新业务输入。新事实只能在有界接收凭证内创建；已有实体的隐私失效仍可在积压满时执行。观察事实与回执共用原 Engine 事务并一起回滚。
+
+低于观测水位的版本不可读；等于水位但没有既有 canonical 版本证明的重投同样保持 unavailable，不因恢复角色或历史/重放而复活正文。当前权限允许的真正更高原生版本可以形成新的当前输入。拒收且没有可信原生顺序的不同编辑留下不可逆 ambiguous，之后保守拒绝把任何不确定版本当新内容；不能通过恢复角色清除此不确定性。本卡不提供自动解除歧义的入口。
+
+新编辑/删除失效之前，先使用已经通过冲突检查的事件/版本索引识别 canonical 等价投递。等价无序编辑换 delivery/remote event 或并发重投仅复用输入，不删除当前正文；真正不同的无序版本继续按歧义处理。原生排序、删除 tombstone、当前身份/Receive、保留期限与不可复活约束不放宽。
+
+本轮仅修复私有 SourceIngress 逻辑与正式回归；Engine、API、DTO/schema、迁移 0001–0033、ToolAuthority、预算和 Harness 均不变，不申请或占用新迁移。H04 另有只读材料核对，记录在 docs/material-reviews/，不属于本卡工程门，不授予 H04/H05 放行。

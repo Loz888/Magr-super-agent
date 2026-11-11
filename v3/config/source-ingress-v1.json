@@ -63,7 +63,7 @@
     },
     {
       "path": "src/mgar_v3/sources/ingress.py",
-      "sha256": "442de47b679d0e28530bd5f3933a01ea04893d8fbe8bb8abd6731128e54e7aea"
+      "sha256": "9e0b489f18b0cf0c9cf1324bdda4133bae73f7a58b851b0787673b5735ee12bd"
     },
     {
       "path": "src/mgar_v3/sources/ingress_api.py",
@@ -104,6 +104,20 @@
     {
       "path": "tests/fixtures/sa04_crash_worker.py",
       "sha256": "a78094933afba332a2531bfc240a58b8062505830581b5cd96b786171162c25d"
+    },
+    {
+      "path": "tests/test_super_agent_sa04_repair.py",
+      "sha256": "4d93e3020f823d5fb0a50409bbd786ceae77a8a410879bb2627c5ae0962e73ef"
     }
-  ]
+  ],
+  "repair": {
+    "findings": [
+      "P1 denied observed version watermark",
+      "P2 equivalent unordered edit canonical invalidation"
+    ],
+    "baseline_commit": "2247db3fbc7727238ba5f037b02701d2722747f9",
+    "no_schema_migration_engine_api_changes": true,
+    "independent_scorer": "unchanged; exact test-function ASTs registered",
+    "unsequenced_denial": "sticky ambiguity, no automatic restoration"
+  }
 }

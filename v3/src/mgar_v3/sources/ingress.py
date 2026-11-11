@@ -493,32 +493,77 @@ class SourceIngress:
                 orders[slot] = item.version_key
         return None
 
-    def _privacy_delete(self, conn: Connection, item: ItemMetadata) -> None:
+    def _privacy_delete(
+        self,
+        conn: Connection,
+        item: ItemMetadata,
+        *,
+        denied: bool = False,
+        allow_new: bool = False,
+    ) -> None:
+        """Observe genuine mutations without retaining denied content or reviving a version."""
         if item.operation not in {"delete", "edit"}:
             return
+        # _item_conflict has already proved equality. A transport alias is not a new edit.
+        known = conn.execute(
+            "SELECT 1 FROM app.source_ingress_aliases WHERE event_key=%s UNION ALL "
+            "SELECT 1 FROM app.source_ingress_inputs WHERE version_key=%s LIMIT 1",
+            (item.event.event_key, item.version_key),
+        ).fetchone()
+        if known is not None:
+            return
         entity = conn.execute(
-            "SELECT * FROM app.source_ingress_entities WHERE entity_key=%s AND project_id=%s",
+            "SELECT * FROM app.source_ingress_entities WHERE entity_key=%s AND project_id=%s "
+            "FOR UPDATE",
             (item.entity_key, self.project),
         ).fetchone()
-        if entity and (entity["author_key"] == item.event.sender.key or item.platform_moderation):
-            if (
-                item.operation == "edit"
-                and item.native_order is not None
-                and entity["native_order"] is not None
-                and item.native_order <= entity["native_order"]
-            ):
-                return
-            self._expire_entity(
-                conn,
-                item.entity_key,
-                "INGRESS_ENTITY_DELETED" if item.operation == "delete" else "INGRESS_ENTITY_EDITED",
-            )
-            if item.operation == "delete":
+        if entity is None:
+            # Only after a bounded durable receipt is allocated may a denied first edit
+            # create this minimal hash/watermark fact. No inbox, payload, body hash or input.
+            if denied and allow_new:
                 conn.execute(
-                    "UPDATE app.source_ingress_entities SET deleted=true,updated_at=now() "
-                    "WHERE entity_key=%s",
-                    (item.entity_key,),
+                    "INSERT INTO app.source_ingress_entities(entity_key,source_instance_id,"
+                    "project_id,author_key,native_order,ambiguous,deleted) "
+                    "VALUES (%s,%s,%s,%s,%s,%s,%s)",
+                    (
+                        item.entity_key,
+                        item.event.scope.source_instance_id,
+                        self.project,
+                        item.event.sender.key,
+                        item.native_order,
+                        item.operation == "edit" and item.native_order is None,
+                        item.operation == "delete",
+                    ),
                 )
+            return
+        if entity["author_key"] != item.event.sender.key and not item.platform_moderation:
+            return
+        if (
+            item.operation == "edit"
+            and item.native_order is not None
+            and entity["native_order"] is not None
+            and item.native_order <= entity["native_order"]
+        ):
+            return
+        self._expire_entity(
+            conn,
+            item.entity_key,
+            "INGRESS_ENTITY_DELETED" if item.operation == "delete" else "INGRESS_ENTITY_EDITED",
+        )
+        if item.operation == "delete":
+            conn.execute(
+                "UPDATE app.source_ingress_entities SET deleted=true,"
+                "native_order=greatest(native_order,%s),updated_at=now() WHERE entity_key=%s",
+                (item.native_order, item.entity_key),
+            )
+        elif denied:
+            # The existing monotonic field is the observed watermark, independent of
+            # body admission. Missing order is sticky ambiguity, never arrival-time order.
+            conn.execute(
+                "UPDATE app.source_ingress_entities SET native_order=greatest(native_order,%s),"
+                "ambiguous=ambiguous OR %s,updated_at=now() WHERE entity_key=%s",
+                (item.native_order, item.native_order is None, item.entity_key),
+            )
 
     @staticmethod
     def _expire_entity(conn: Connection, key: str, reason: str) -> None:
@@ -595,22 +640,26 @@ class SourceIngress:
         if item.operation == "delete" or entity["deleted"]:
             unavailable, reason, context_only = True, "INGRESS_ENTITY_DELETED", True
             self._expire_entity(conn, item.entity_key, reason)
+        elif (
+            item.native_order is not None
+            and entity["native_order"] is not None
+            and item.native_order <= entity["native_order"]
+        ):
+            # Known canonical versions returned above. Equality here has no canonical
+            # proof (e.g. previously denied version), so it cannot become current either.
+            unavailable, reason, context_only = True, "INGRESS_OLDER_VERSION", True
+        elif entity["ambiguous"] or (
+            (item.native_order is None or entity["native_order"] is None)
+            and (entity["head_input_id"] is not None or entity["native_order"] is not None)
+        ):
+            unavailable, reason, context_only = True, "INGRESS_UNORDERED_VERSION", True
+            self._expire_entity(conn, item.entity_key, reason)
+            conn.execute(
+                "UPDATE app.source_ingress_entities SET ambiguous=true WHERE entity_key=%s",
+                (item.entity_key,),
+            )
         elif entity["head_input_id"] is not None:
-            if (
-                item.native_order is not None
-                and entity["native_order"] is not None
-                and item.native_order < entity["native_order"]
-            ):
-                unavailable, reason, context_only = True, "INGRESS_OLDER_VERSION", True
-            elif entity["ambiguous"] or item.native_order is None or entity["native_order"] is None:
-                unavailable, reason, context_only = True, "INGRESS_UNORDERED_VERSION", True
-                self._expire_entity(conn, item.entity_key, reason)
-                conn.execute(
-                    "UPDATE app.source_ingress_entities SET ambiguous=true WHERE entity_key=%s",
-                    (item.entity_key,),
-                )
-            else:
-                self._expire_entity(conn, item.entity_key, "INGRESS_ENTITY_EDITED")
+            self._expire_entity(conn, item.entity_key, "INGRESS_ENTITY_EDITED")
         copied = event.model_copy(
             update={"received_at": now, "verification_ref": "durable-ingress-receipt"}
         )
@@ -808,9 +857,13 @@ class SourceIngress:
             ).fetchone()
             if cursor_prior is not None and cursor_prior["payload_sha256"] != meta.payload_sha256:
                 conflict = conflict or "INGRESS_CURSOR_CONFLICT"
+        grants = [
+            self._receive(conn, settings, instance, item, historical=historical)
+            for item in meta.items
+        ]
         if conflict is None:
-            for item in meta.items:
-                self._privacy_delete(conn, item)
+            for item, (grant, _) in zip(meta.items, grants, strict=True):
+                self._privacy_delete(conn, item, denied=grant is None)
         if count["n"] >= settings.max_receipts:
             return IngressReceipt(
                 receipt_id=None,
@@ -820,10 +873,6 @@ class SourceIngress:
                 reason_code="INGRESS_RECEIPT_CAPACITY",
                 committed=False,
             )
-        grants = [
-            self._receive(conn, settings, instance, item, historical=historical)
-            for item in meta.items
-        ]
         if any(
             body is not None and len(body) > settings.max_body_bytes for body in delivery.bodies
         ):
@@ -917,6 +966,7 @@ class SourceIngress:
                 meta.items, delivery.bodies, grants, strict=True
             ):
                 if grant is None:
+                    self._privacy_delete(conn, item, denied=True, allow_new=True)
                     denied += 1
                     continue
                 event = item.event
