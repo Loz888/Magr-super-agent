@@ -1,0 +1,377 @@
+{
+  "task": "SAV1-06",
+  "status": "I04_REPAIR_CANDIDATE_NOT_INDEPENDENTLY_PASSED",
+  "recorded_at_utc": "2026-11-11T14:02:58.335736+00:00",
+  "source_commit": "dfab5c3f449653bd4126309018559ea10d9bd78a",
+  "source_sha256": "b26d96a76edfa81c3f7ea1df720e304c77a8429838ae8397c5e79ca300cb063d",
+  "evidence_root": "evidence/super-agent-v1/SAV1-06/20261111T132123Z-i04-repair-9319e9fa",
+  "previous_independent_review": {
+    "path": ".local/sa06-current-independent/review-result.json",
+    "source_commit": "a3e8788bf51d1fd68ed92ebf123d7cf9bed800c8",
+    "status": "INDEPENDENT_ENGINEERING_FAIL",
+    "counts": {
+      "tests": 35,
+      "failures": 2,
+      "errors": 0,
+      "skipped": 0
+    },
+    "preserved": true
+  },
+  "finding": {
+    "id": "SA06-I04",
+    "priority": "P2",
+    "status": "IMPLEMENTER_FIXED_PENDING_NEW_INDEPENDENT_REVIEW",
+    "cause": "Supported content parsing failed before trusted resource metadata reached the Engine; only health and gap were recorded, leaving the old canonical body readable.",
+    "repair": [
+      "After content rejection, revalidate bounded resource metadata/provenance and exact requested chat/thread; validate every row before any invalidation.",
+      "Recheck current authority in the existing Engine root transaction; validate all deliveries and conflicts before calling existing known-only privacy invalidation. No new identity/entity/input/receipt is allocated.",
+      "Use a distinct derived revision domain for rejected content observations; preserve canonical equivalence for normal rows and conservative unordered ambiguity/tombstones.",
+      "Commit invalidation before rethrowing the original parse error; retain fixed health/gap, zero invalid-body retention, no retry/page/cursor release and newer negative permission diagnosis with its original observed_at.",
+      "A malformed continuation token cannot suppress a trusted known-resource invalidation on this rejected-content path; normal pagination behavior is unchanged."
+    ],
+    "formal_regressions_added": 30,
+    "regressions": "Malformed/duplicate text and post, same/changed timestamps, valid differential control, hash-placeholder domain separation, mixed unchanged/changed/deleted rows in either order, cross chat/thread/tenant/sender rejection, unusable continuation tokens, unknown-resource zero allocation, replay non-revival and real SQL rollback."
+  },
+  "gates": {
+    "engineering_gate": "FAIL",
+    "local_registered_gate": "PASS",
+    "independent_review": "NOT_PASSED",
+    "policy_security_gate": "NOT_RUN",
+    "live_source_channel_gate": "NOT_RUN",
+    "live_coding_gate": "NOT_RUN",
+    "live_publication_gate": "NOT_RUN",
+    "continuous_operation_gate": "NOT_RUN"
+  },
+  "registered": {
+    "command_record": "evidence/super-agent-v1/SAV1-06/20261111T132123Z-i04-repair-9319e9fa/20261111T134040Z-registered-678e2f65/commands.json",
+    "result": "evidence/SAV1-06/20261111T134040Z-e7364b40/result.json",
+    "result_data": {
+      "task": "SAV1-06",
+      "status": "PASS",
+      "engineering_gate": "PASS",
+      "live_gate": "NOT_RUN",
+      "reason": null,
+      "argv": [
+        "/home/imini/magr-super-agent/v3/.venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "tests/test_super_agent_sa06.py",
+        "tests/test_super_agent_sa06_sdk.py",
+        "tests/test_super_agent_sa06_broker.py",
+        "tests/test_super_agent_sa06_migration.py",
+        "tests/test_super_agent_sa06_privacy.py",
+        "tests/test_super_agent_sa06_contract.py",
+        "tests/test_super_agent_sa06_health.py",
+        "tests/test_super_agent_sa06_repair_topics.py",
+        "tests/test_super_agent_sa06_repair_health.py",
+        "tests/test_super_agent_sa06_repair_formats.py",
+        "tests/test_super_agent_sa05.py",
+        "tests/test_super_agent_sa05_repair.py",
+        "tests/test_super_agent_sa05_history_repair.py",
+        "tests/test_super_agent_sa04.py",
+        "tests/test_super_agent_sa04_faults.py",
+        "tests/test_super_agent_sa04_repair.py",
+        "tests/test_super_agent_sa04_order_transition.py",
+        "tests/test_super_agent_sa03.py",
+        "tests/test_super_agent_sa02.py",
+        "tests/test_super_agent_sa01.py",
+        "tests/test_coordination.py",
+        "tests/test_api.py",
+        "tests/test_environment.py",
+        "tests/test_web_access.py",
+        "tests/test_duplex.py",
+        "tests/test_r4_experts.py",
+        "tests/test_effects.py",
+        "tests/test_models.py",
+        "tests/test_r6_policies.py",
+        "tests/test_r5_recovery.py",
+        "--junitxml=/home/imini/magr-super-agent/v3/evidence/SAV1-06/20261111T134040Z-e7364b40/junit.xml"
+      ],
+      "cwd": "/home/imini/magr-super-agent/v3",
+      "started_at": "2026-11-11T13:40:40.446072+00:00",
+      "finished_at": "2026-11-11T14:02:01.404120+00:00",
+      "duration_seconds": 1280.929,
+      "command_exit_code": 0,
+      "exit_code": 0,
+      "counts": {
+        "tests": 837,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "components": {
+        "postgres": "real disposable PostgreSQL; 34-to-35/checksums/old rows/DDL rollback; same held Engine connection",
+        "sdk": "official lark-oapi 1.7.5 native dispatcher/protobuf/ACK with controlled socket; no live platform",
+        "history": "bounded MockTransport fixed official REST endpoints; per-IO current authority; context-only snapshots; unsupported types bodyless facts",
+        "identity": "raw installation/tenant/OpenID; configured chat/sender/structured mention/topic; nonhuman and context-only roles cannot become requests",
+        "privacy": "denied body never retained; trusted known-resource mutation invalidates old body in original transaction, conflict before deletion",
+        "legacy": "entire SA05 registry retained; old GitHub webhook body unchanged; 0001-0034 unchanged",
+        "model": "NOT_RUN; zero paid calls",
+        "harness": "no active files/imports or H card execution",
+        "live_source_channel": "NOT_RUN",
+        "live_coding": "NOT_RUN",
+        "live_publication": "NOT_RUN",
+        "continuous_operation": "NOT_RUN",
+        "health": "Current-config/current-mode/fresh negative facts survive fencing; stale/future/old granted never becomes current authority",
+        "independent_repair": "Native thread proof before mint; exact remote container; HMAC scope-bound cursors; chat exhaustion incomplete; disconnect preserves fresh diagnosis without TTL renewal; fixed bounded decode errors/health/gaps",
+        "original_probes": "Unmodified; unproven-topic probe may raise safe pre-network DomainError; report exact exit, never rewrite probe"
+      },
+      "git_commit": "dfab5c3f449653bd4126309018559ea10d9bd78a",
+      "source_sha256": "b26d96a76edfa81c3f7ea1df720e304c77a8429838ae8397c5e79ca300cb063d",
+      "finished_source_sha256": "b26d96a76edfa81c3f7ea1df720e304c77a8429838ae8397c5e79ca300cb063d",
+      "log_path": "evidence/SAV1-06/20261111T134040Z-e7364b40/command.log",
+      "attempt_path": "evidence/SAV1-06/20261111T134040Z-e7364b40"
+    },
+    "source_before": "b26d96a76edfa81c3f7ea1df720e304c77a8429838ae8397c5e79ca300cb063d",
+    "source_after": "b26d96a76edfa81c3f7ea1df720e304c77a8429838ae8397c5e79ca300cb063d"
+  },
+  "static": {
+    "command_record": "evidence/super-agent-v1/SAV1-06/20261111T132123Z-i04-repair-9319e9fa/20261111T133830Z-static-a2463b88/commands.json",
+    "lint_exit": 0,
+    "typecheck_exit": 0,
+    "source_files": 231
+  },
+  "delivery_contract": {
+    "command_record": "evidence/super-agent-v1/SAV1-06/20261111T132123Z-i04-repair-9319e9fa/20261111T133830Z-contract-0e52ca40/commands.json",
+    "counts": {
+      "tests": 1,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "manifest_hashes_match": 33
+  },
+  "implementer_replay_of_unmodified_independent_tests": {
+    "command_record": "evidence/super-agent-v1/SAV1-06/20261111T132123Z-i04-repair-9319e9fa/20261111T133914Z-independent-572b2b3c/commands.json",
+    "counts": {
+      "tests": 35,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "source_sha256": "b26d96a76edfa81c3f7ea1df720e304c77a8429838ae8397c5e79ca300cb063d",
+    "independent_acceptance": false
+  },
+  "targeted": {
+    "command_record": "evidence/super-agent-v1/SAV1-06/20261111T132123Z-i04-repair-9319e9fa/20261111T133438Z-targeted-88aa20e0/commands.json",
+    "counts": {
+      "tests": 93,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "source_sha256": "f97520a8fcda9ccd2e6021aa754b9dfb2efc570c1125ec9c0366a5a834c9062b",
+    "note": "Run before comment/line-wrap-only cleanup. AST equivalence is recorded in cosmetic-followup.json; final frozen full registration reruns all 93 cases."
+  },
+  "attempts": [
+    {
+      "record": "evidence/super-agent-v1/SAV1-06/20261111T132123Z-i04-repair-9319e9fa/20261111T132243Z-independent-red-6d3a3ea7/commands.json",
+      "stage": "independent-red",
+      "status": "NOT_RUN",
+      "counts": null,
+      "exit_codes": []
+    },
+    {
+      "record": "evidence/super-agent-v1/SAV1-06/20261111T132123Z-i04-repair-9319e9fa/20261111T132311Z-independent-red-53853d7c/commands.json",
+      "stage": "independent-red",
+      "status": "FAIL_PRESERVED",
+      "counts": {
+        "tests": 3,
+        "failures": 2,
+        "errors": 0,
+        "skipped": 0
+      },
+      "exit_codes": [
+        1
+      ]
+    },
+    {
+      "record": "evidence/super-agent-v1/SAV1-06/20261111T132123Z-i04-repair-9319e9fa/20261111T133131Z-formal-red-9f64740c/commands.json",
+      "stage": "formal-red",
+      "status": "FAIL_PRESERVED",
+      "counts": {
+        "tests": 10,
+        "failures": 9,
+        "errors": 0,
+        "skipped": 0
+      },
+      "exit_codes": [
+        1
+      ]
+    },
+    {
+      "record": "evidence/super-agent-v1/SAV1-06/20261111T132123Z-i04-repair-9319e9fa/20261111T133433Z-static-89b6a26b/commands.json",
+      "stage": "static",
+      "status": "FAIL_PRESERVED",
+      "counts": null,
+      "exit_codes": [
+        2,
+        0
+      ]
+    },
+    {
+      "record": "evidence/super-agent-v1/SAV1-06/20261111T132123Z-i04-repair-9319e9fa/20261111T133438Z-targeted-88aa20e0/commands.json",
+      "stage": "targeted",
+      "status": "PASS",
+      "counts": {
+        "tests": 93,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "exit_codes": [
+        0
+      ]
+    },
+    {
+      "record": "evidence/super-agent-v1/SAV1-06/20261111T132123Z-i04-repair-9319e9fa/20261111T133440Z-independent-f6f41b12/commands.json",
+      "stage": "independent",
+      "status": "PASS",
+      "counts": {
+        "tests": 35,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "exit_codes": [
+        0
+      ]
+    },
+    {
+      "record": "evidence/super-agent-v1/SAV1-06/20261111T132123Z-i04-repair-9319e9fa/20261111T133830Z-contract-0e52ca40/commands.json",
+      "stage": "contract",
+      "status": "PASS",
+      "counts": {
+        "tests": 1,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "exit_codes": [
+        0
+      ]
+    },
+    {
+      "record": "evidence/super-agent-v1/SAV1-06/20261111T132123Z-i04-repair-9319e9fa/20261111T133830Z-static-a2463b88/commands.json",
+      "stage": "static",
+      "status": "PASS",
+      "counts": null,
+      "exit_codes": [
+        0,
+        0
+      ]
+    },
+    {
+      "record": "evidence/super-agent-v1/SAV1-06/20261111T132123Z-i04-repair-9319e9fa/20261111T133914Z-independent-572b2b3c/commands.json",
+      "stage": "independent",
+      "status": "PASS",
+      "counts": {
+        "tests": 35,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "exit_codes": [
+        0
+      ]
+    },
+    {
+      "record": "evidence/super-agent-v1/SAV1-06/20261111T132123Z-i04-repair-9319e9fa/20261111T134040Z-registered-678e2f65/commands.json",
+      "stage": "registered",
+      "status": "PASS",
+      "counts": null,
+      "exit_codes": [
+        0
+      ]
+    }
+  ],
+  "failure_preservation": "Original feedback/probes and independent 33 PASS/2 FAIL retained byte-for-byte. This round also retains sandbox PG NOT_RUN, original repro 2 FAIL/1 PASS, formal red 9 FAIL/1 PASS, and initial lint line-length failure. No failure was replaced with a passing result. A delivery-assembly KeyError before any writes is retained in delivery-assembly-first-failure.json; only assembly input filtering was corrected.",
+  "original_four_case_probe": {
+    "current_candidate": "NOT_RUN",
+    "historical_raw_result": "3 PASS / 1 FAIL, exit 1",
+    "preserved": true,
+    "latest_user_independent_assessment": "The unproven-topic pre-network refusal contract was accepted in the previous independent review; SA06-I04 was the remaining blocker. Raw historical probe failure remains unchanged."
+  },
+  "cleanup": {
+    "registered_pg_before": {
+      "databases": [],
+      "sessions": []
+    },
+    "registered_pg_after": {
+      "databases": [],
+      "sessions": []
+    },
+    "fault_containers_before": {
+      "utc": "2026-11-11T13:40:40.392005+00:00",
+      "argv": [
+        "docker",
+        "ps",
+        "-a",
+        "--filter",
+        "label=magr.card=SAV1-04",
+        "--filter",
+        "name=magr-sa04-fault-",
+        "--format",
+        "{{json .}}"
+      ],
+      "exit_code": 0,
+      "containers": [],
+      "scope": "read-only own SA04 UUID fault containers; no Harness container access"
+    },
+    "fault_containers_after": {
+      "utc": "2026-11-11T14:02:01.568260+00:00",
+      "argv": [
+        "docker",
+        "ps",
+        "-a",
+        "--filter",
+        "label=magr.card=SAV1-04",
+        "--filter",
+        "name=magr-sa04-fault-",
+        "--format",
+        "{{json .}}"
+      ],
+      "exit_code": 0,
+      "containers": [],
+      "scope": "read-only own SA04 UUID fault containers; no Harness container access"
+    },
+    "final_replay_pg_after": {
+      "databases": [],
+      "sessions": []
+    },
+    "note": "Initial replay overlapped the targeted run, so its end inventory saw an active targeted fixture. Both completed and later/final inventories are empty; no manual database deletion.",
+    "active_checks_record": "evidence/super-agent-v1/SAV1-06/20261111T132123Z-i04-repair-9319e9fa/active-check-final.json"
+  },
+  "integrity": {
+    "record": "evidence/super-agent-v1/SAV1-06/20261111T132123Z-i04-repair-9319e9fa/final-integrity.json",
+    "protected_files_unchanged": 88,
+    "delivery_hashes_match": 33,
+    "registered_targets": 30,
+    "registered_timeout_seconds": 2700,
+    "grader_unchanged": true,
+    "originals_unchanged": true,
+    "user_untracked_file_unchanged": true,
+    "implementation_helper_reviews": [
+      "evidence/super-agent-v1/SAV1-06/20261111T132123Z-i04-repair-9319e9fa/design-audit.json",
+      "evidence/super-agent-v1/SAV1-06/20261111T132123Z-i04-repair-9319e9fa/design-audit-final-fingerprint.json"
+    ],
+    "helper_review_is_independent_acceptance": false
+  },
+  "constraints": {
+    "SA06": "IN_PROGRESS_NOT_PASSED",
+    "SA07": "PLANNED_NOT_STARTED",
+    "shared_engine_gateway_ingress_schema_migrations_budget_toolauthority": "UNCHANGED",
+    "Harness": "NO_EDITS_IMPORTS_OR_H_CARD_EXECUTION",
+    "push": false,
+    "real_platform_calls": 0,
+    "paid_calls": 0,
+    "external_business_writes": 0,
+    "publication": "NOT_RUN"
+  },
+  "limitations": "Controlled transports and disposable real local PostgreSQL are engineering evidence only. Implementation helper review and implementer replay do not establish new independent acceptance. Await a new independent review; do not start SA07.",
+  "reading_records": [
+    "evidence/super-agent-v1/SAV1-06/20261111T132123Z-i04-repair-9319e9fa/reading-and-original-hashes.json",
+    "evidence/super-agent-v1/SAV1-06/20261111T132123Z-i04-repair-9319e9fa/continuation-reading-20261111T1334Z.json"
+  ]
+}

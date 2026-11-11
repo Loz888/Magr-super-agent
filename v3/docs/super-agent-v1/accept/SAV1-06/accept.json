@@ -1,23 +1,22 @@
 {
   "task": "SAV1-06",
-  "status": "CONTENT_HEALTH_REPAIR_CANDIDATE_NOT_INDEPENDENTLY_PASSED",
-  "source_commit": "a3e8788bf51d1fd68ed92ebf123d7cf9bed800c8",
-  "source_sha256": "9426df584b070715feef7542202dbebc23155056a0c13eb9b601c076337292a2",
+  "status": "I04_REPAIR_CANDIDATE_NOT_INDEPENDENTLY_PASSED",
+  "source_commit": "dfab5c3f449653bd4126309018559ea10d9bd78a",
+  "source_sha256": "b26d96a76edfa81c3f7ea1df720e304c77a8429838ae8397c5e79ca300cb063d",
   "engineering_gate": "FAIL",
   "local_registered_gate": "PASS",
   "independent_review": "NOT_PASSED",
-  "repair_report": "docs/super-agent-v1/accept/SAV1-06/content-health-repair-20261111.json",
-  "prior_repair_report": "docs/super-agent-v1/accept/SAV1-06/repair-20261111.json",
-  "prior_acceptance_archive": "docs/super-agent-v1/accept/SAV1-06/history/d8004ba-before-content-health-20261111.json",
+  "repair_report": "docs/super-agent-v1/accept/SAV1-06/i04-repair-20261111.json",
+  "prior_repair_report": "docs/super-agent-v1/accept/SAV1-06/content-health-repair-20261111.json",
+  "prior_acceptance_archive": "docs/super-agent-v1/accept/SAV1-06/history/a3e8788-before-i04-20261111.json",
   "registered_counts": {
-    "tests": 807,
+    "tests": 837,
     "failures": 0,
     "errors": 0,
     "skipped": 0
   },
-  "registered_result": "evidence/SAV1-06/20261111T121259Z-37e23f1f/result.json",
+  "registered_result": "evidence/SAV1-06/20261111T134040Z-e7364b40/result.json",
   "SA07": "PLANNED_NOT_STARTED",
   "live_gates": "NOT_RUN",
-  "original_probes_this_candidate": "NOT_RUN; earlier failures retained",
-  "recorded_at_utc": "2026-11-11T12:34:48.935459+00:00"
+  "recorded_at_utc": "2026-11-11T14:02:58.335736+00:00"
 }
