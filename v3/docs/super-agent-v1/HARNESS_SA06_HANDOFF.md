@@ -1,3 +1,12 @@
+# 当前SA06仍未独立通过
+
+上一次3749013/15591ae交付独立失败，以下原文仅历史快照。当前修复源码
+d8004baadbf8e0afff1fc9e2dbbcd82ee2cf93ba完整注册795PASS，格式原探针9PASS/exit0；
+原四探针3PASS/1FAIL/exit1：无可信native thread证明时mint/GET前安全拒绝并记录gap，
+该原探针未处理允许的拒绝。不改原探针/评分器，不宣称全绿，SA06仍NOT_PASSED，
+不进入SA07。修复详情见SA06_REPAIR_20261111.md及accept/SAV1-06/repair-20261111.json。
+本文件未发送给Trae，也不代表新的送达/接收确认；无H活动树操作或新迁移占号。
+
 # SA06 固定本地工程交付（仅准备，未声称送达）
 
 源码 15591aea214e7a83f3bf5ad112bda85b4294664e；源码SHA-256 2f47b76904cff3fb2e1c062258364e1a495a310150e4a759d42bfc16772ee100。

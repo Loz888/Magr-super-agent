@@ -43,3 +43,12 @@ Harness 活动树。不改 Engine 类、ToolAuthority、预算或历史迁移000
 许可。查询JOIN当前settings revision并校验模式与[-30s,5min)新鲜度，旧granted/
 online、换配置及未来/过期记录不能继承。修复只改Feishu Runtime投影，无新接口、
 schema/迁移、Engine/预算/Harness变更，修复后重新固定与完整验收。
+
+独立失败修复（2026-11-11）：原生话题只由真实thread_id表示，root_id仅回复关联。
+当前可信入站凭证可在既有audit追加hash/receipt/metadata TTL事实；它不是授权，不能由
+策略/请求字符串产生。缺证明的thread读取在mint前拒绝+gap；当前有证明且有Receive
+才用thread容器。游标绑定scope/config的服务器MAC；chat耗尽不声称话题回复覆盖。
+连接观察与权限诊断分离，unknown不能覆盖/续命同配置模式新鲜负面；畸形有界响应
+全部固定DomainError/health，history记录gap，不泄露原正文或误判撤权。
+不改原探针以强求全绿；其无来源证明话题case安全拒绝的退出1原样交付。
+本卡维持独立未通过，完整新注册检查也不替代再次独立验收，不进入SA07。

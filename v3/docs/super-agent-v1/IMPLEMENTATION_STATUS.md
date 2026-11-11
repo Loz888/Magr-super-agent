@@ -1,3 +1,14 @@
+# SA06 修复候选已验，当前卡仍未独立通过
+
+固定源码d8004baadbf8e0afff1fc9e2dbbcd82ee2cf93ba，指纹4738e6421c3e4648e269e3720aec18c42cb5ad93528501eba5bf00f07a91a863。
+单轮完整注册795PASS（SA06原178+新增51+既有566），0failure/error/skip；
+lint/typecheck231filesPASS，33项产物hash匹配，PG新增残留库/会话0。
+原格式矩阵9PASS/exit0；原四探针3PASS/1FAIL/exit1：无原生话题证明时网络前安全拒绝，
+原探针未捕获该允许的拒绝。该失败原样保留，不改探针或猜造证明，不宣称全绿。
+本卡仍IN_PROGRESS/NOT_PASSED，SA07不启动，等待新独立验收。
+详见SA06_REPAIR_20261111.md与accept/SAV1-06/repair-20261111.json；原失败/原744的
+10个TMPDIR失败及定向重跑保持原状，不拼接结果。以下为历史快照。
+
 # SA06 独立验收失败，三类问题修复中
 
 被审3749013/源码15591ae独立未通过：话题限定授权扩大远端整群读取、SDK清理覆盖负面权限诊断、畸形响应解码漏固定错误/gap。原始4FAIL、格式5PASS4FAIL以及独立全量744/10TMPDIR失败均保留；定向9+1环境重跑不能拼成全量全绿。本卡维持IN_PROGRESS/独立FAIL，SA07保持PLANNED；真实平台/付费/外发/发布/长期门NOT_RUN。原验收是历史候选快照，以下历史记录不代表当前放行。

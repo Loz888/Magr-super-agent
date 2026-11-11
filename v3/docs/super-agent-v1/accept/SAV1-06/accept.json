@@ -1,9 +1,19 @@
 {
   "task": "SAV1-06",
-  "status": "INDEPENDENT_REVIEW_FAILED_REPAIR_IN_PROGRESS",
-  "reviewed_head": "37490134951c62f38efe614cb7749a3c505466fd",
-  "engineering_gate": "FAIL_INDEPENDENT_FINDINGS",
-  "historical_acceptance": "docs/super-agent-v1/accept/SAV1-06/history/3749013-accept.json",
+  "status": "REPAIR_CANDIDATE_NOT_INDEPENDENTLY_PASSED",
+  "source_commit": "d8004baadbf8e0afff1fc9e2dbbcd82ee2cf93ba",
+  "source_sha256": "4738e6421c3e4648e269e3720aec18c42cb5ad93528501eba5bf00f07a91a863",
+  "engineering_gate": "FAIL",
+  "local_registered_gate": "PASS",
+  "independent_review": "NOT_PASSED",
+  "repair_report": "docs/super-agent-v1/accept/SAV1-06/repair-20261111.json",
+  "original_probe_exit_code": 1,
+  "registered_counts": {
+    "tests": 795,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
   "SA07": "PLANNED_NOT_STARTED",
   "live_gates": "NOT_RUN"
 }

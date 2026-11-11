@@ -113,3 +113,13 @@ SHA原样；所有业务事实仍走同一Engine持锁PG连接。0035已在本�
 详见SA06_ACCEPTANCE_20261111.md、HARNESS_SA06_HANDOFF.md和accept/SAV1-06/accept.json。
 交接仅本地准备，未声称新的消息送达/对方接收。停在SA06等独立复验，不进入SA07；
 0036仍未预占；真实来源/模型/外发/发布/完整系统安全/长期门NOT_RUN。
+
+## SA06 三类独立失败修复候选（仍未独立通过）
+
+源码d8004baadbf8e0afff1fc9e2dbbcd82ee2cf93ba，指纹4738e6421c3e4648e269e3720aec18c42cb5ad93528501eba5bf00f07a91a863。
+只改Codex私有Feishu模块/现有审计事实和回归；无新迁移/共享Engine/API/schema/预算或
+Harness活动树操作。旧独立744/10TMPDIR失败、4FAIL及格式5PASS4FAIL保持原状。
+本次单轮795PASS/exit0，lint/typecheck231PASS；格式原探针9PASS/exit0，四项原探针
+3PASS/1FAIL/exit1（无可信native proof在mint前安全拒绝，原探针未捕获）。不猜造证明
+或修改探针强求绿，本卡仍NOT_PASSED，等待新独立验收，不进入SA07。未向Trae发送
+新的完成消息或声称送达；0036仍未预占，真实平台/付费/外发/发布/长期门NOT_RUN。

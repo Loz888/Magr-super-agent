@@ -292,3 +292,17 @@ insufficient/revoked及准确reason；runtime_current=false明确这不是恢复
 过期/未来或旧配置/模式记录不继承，失效Runtime的旧granted/online不会复活。
 初候选729注册PASS后新增登录API边界发现遗漏，原始1FAIL及正式3FAIL保留；
 后续修复和完整新候选结果单列，不能用原729全绿替代该问题验证。
+
+## 10. 独立失败后的修复边界
+
+当前修复候选与准确结果以SA06_REPAIR_20261111.md及accept/SAV1-06/repair-20261111.json为准，
+本卡仍独立NOT_PASSED。native_thread_id不再回退到root_id；Root/parent仅回复引用。
+只有原Engine持久提交的可信真实thread_id能建立带配置/receipt/metadata TTL的hash证明，
+该事实不授予权限。每次mint/GET前重验当前证明及Receive；无证明网络前拒绝+gap。
+有证明使用thread容器，chat列表耗尽不包含话题回复、complete=false；不尝试扩大查询。
+游标由服务器MAC绑定scope/config，重启失效，不把裸page_token当可跨范围许可。
+
+SDK清理只更新连接观察，不能覆盖或续命同配置/模式新鲜insufficient/revoked的原因及
+时间；audit单独保留新的连接观察。解码/大小/形状错误均固定诊断及health，历史记gap，
+不泄露原响应或误推撤权。原话题探针缺来源证明，允许的网络前拒绝仍使其exit1；
+此限制原样保留，不修改原探针/评分器放行。完整新注册795PASS也不替代独立验收。

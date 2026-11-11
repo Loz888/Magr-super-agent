@@ -1,0 +1,370 @@
+{
+  "task": "SAV1-06",
+  "status": "REPAIR_CANDIDATE_NOT_INDEPENDENTLY_PASSED",
+  "independent_review": "NOT_PASSED; await new review; do not advance SA07",
+  "source_commit": "d8004baadbf8e0afff1fc9e2dbbcd82ee2cf93ba",
+  "source_sha256": "4738e6421c3e4648e269e3720aec18c42cb5ad93528501eba5bf00f07a91a863",
+  "baseline_commit": "37490134951c62f38efe614cb7749a3c505466fd",
+  "baseline_source_sha256": "2f47b76904cff3fb2e1c062258364e1a495a310150e4a759d42bfc16772ee100",
+  "registered": {
+    "task": "SAV1-06",
+    "status": "PASS",
+    "engineering_gate": "PASS",
+    "live_gate": "NOT_RUN",
+    "reason": null,
+    "argv": [
+      "/home/imini/magr-super-agent/v3/.venv/bin/python",
+      "-m",
+      "pytest",
+      "-q",
+      "tests/test_super_agent_sa06.py",
+      "tests/test_super_agent_sa06_sdk.py",
+      "tests/test_super_agent_sa06_broker.py",
+      "tests/test_super_agent_sa06_migration.py",
+      "tests/test_super_agent_sa06_privacy.py",
+      "tests/test_super_agent_sa06_contract.py",
+      "tests/test_super_agent_sa06_health.py",
+      "tests/test_super_agent_sa06_repair_topics.py",
+      "tests/test_super_agent_sa06_repair_health.py",
+      "tests/test_super_agent_sa06_repair_formats.py",
+      "tests/test_super_agent_sa05.py",
+      "tests/test_super_agent_sa05_repair.py",
+      "tests/test_super_agent_sa05_history_repair.py",
+      "tests/test_super_agent_sa04.py",
+      "tests/test_super_agent_sa04_faults.py",
+      "tests/test_super_agent_sa04_repair.py",
+      "tests/test_super_agent_sa04_order_transition.py",
+      "tests/test_super_agent_sa03.py",
+      "tests/test_super_agent_sa02.py",
+      "tests/test_super_agent_sa01.py",
+      "tests/test_coordination.py",
+      "tests/test_api.py",
+      "tests/test_environment.py",
+      "tests/test_web_access.py",
+      "tests/test_duplex.py",
+      "tests/test_r4_experts.py",
+      "tests/test_effects.py",
+      "tests/test_models.py",
+      "tests/test_r6_policies.py",
+      "tests/test_r5_recovery.py",
+      "--junitxml=/home/imini/magr-super-agent/v3/evidence/SAV1-06/20261111T100727Z-ed7d40c7/junit.xml"
+    ],
+    "cwd": "/home/imini/magr-super-agent/v3",
+    "started_at": "2026-11-11T10:07:27.816891+00:00",
+    "finished_at": "2026-11-11T10:28:27.145342+00:00",
+    "duration_seconds": 1259.305,
+    "command_exit_code": 0,
+    "exit_code": 0,
+    "counts": {
+      "tests": 795,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "components": {
+      "postgres": "real disposable PostgreSQL; 34-to-35/checksums/old rows/DDL rollback; same held Engine connection",
+      "sdk": "official lark-oapi 1.7.5 native dispatcher/protobuf/ACK with controlled socket; no live platform",
+      "history": "bounded MockTransport fixed official REST endpoints; per-IO current authority; context-only snapshots; unsupported types bodyless facts",
+      "identity": "raw installation/tenant/OpenID; configured chat/sender/structured mention/topic; nonhuman and context-only roles cannot become requests",
+      "privacy": "denied body never retained; trusted known-resource mutation invalidates old body in original transaction, conflict before deletion",
+      "legacy": "entire SA05 registry retained; old GitHub webhook body unchanged; 0001-0034 unchanged",
+      "model": "NOT_RUN; zero paid calls",
+      "harness": "no active files/imports or H card execution",
+      "live_source_channel": "NOT_RUN",
+      "live_coding": "NOT_RUN",
+      "live_publication": "NOT_RUN",
+      "continuous_operation": "NOT_RUN",
+      "health": "Current-config/current-mode/fresh negative facts survive fencing; stale/future/old granted never becomes current authority",
+      "independent_repair": "Native thread proof before mint; exact remote container; HMAC scope-bound cursors; chat exhaustion incomplete; disconnect preserves fresh diagnosis without TTL renewal; fixed bounded decode errors/health/gaps",
+      "original_probes": "Unmodified; unproven-topic probe may raise safe pre-network DomainError; report exact exit, never rewrite probe"
+    },
+    "git_commit": "d8004baadbf8e0afff1fc9e2dbbcd82ee2cf93ba",
+    "source_sha256": "4738e6421c3e4648e269e3720aec18c42cb5ad93528501eba5bf00f07a91a863",
+    "finished_source_sha256": "4738e6421c3e4648e269e3720aec18c42cb5ad93528501eba5bf00f07a91a863",
+    "log_path": "evidence/SAV1-06/20261111T100727Z-ed7d40c7/command.log",
+    "attempt_path": "evidence/SAV1-06/20261111T100727Z-ed7d40c7"
+  },
+  "per_module_counts": {
+    "tests.test_super_agent_sa06": 58,
+    "tests.test_super_agent_sa06_sdk": 23,
+    "tests.test_super_agent_sa06_broker": 63,
+    "tests.test_super_agent_sa06_migration": 2,
+    "tests.test_super_agent_sa06_privacy": 11,
+    "tests.test_super_agent_sa06_contract": 6,
+    "tests.test_super_agent_sa06_health": 15,
+    "tests.test_super_agent_sa06_repair_topics": 12,
+    "tests.test_super_agent_sa06_repair_health": 7,
+    "tests.test_super_agent_sa06_repair_formats": 32,
+    "tests.test_super_agent_sa05": 79,
+    "tests.test_super_agent_sa05_repair": 44,
+    "tests.test_super_agent_sa05_history_repair": 23,
+    "tests.test_super_agent_sa04": 62,
+    "tests.test_super_agent_sa04_faults": 8,
+    "tests.test_super_agent_sa04_repair": 21,
+    "tests.test_super_agent_sa04_order_transition": 25,
+    "tests.test_super_agent_sa03": 88,
+    "tests.test_super_agent_sa02": 52,
+    "tests.test_super_agent_sa01": 47,
+    "tests.test_coordination": 16,
+    "tests.test_api": 5,
+    "tests.test_environment": 4,
+    "tests.test_web_access": 8,
+    "tests.test_duplex": 20,
+    "tests.test_r4_experts": 14,
+    "tests.test_effects": 10,
+    "tests.test_models": 31,
+    "tests.test_r6_policies": 5,
+    "tests.test_r5_recovery": 4
+  },
+  "new_regressions": 51,
+  "sa06_total": 229,
+  "prior_non_sa06": 566,
+  "gates": {
+    "engineering_gate": "FAIL",
+    "policy_security_gate": "NOT_RUN",
+    "live_source_channel_gate": "NOT_RUN",
+    "live_coding_gate": "NOT_RUN",
+    "live_publication_gate": "NOT_RUN",
+    "continuous_operation_gate": "NOT_RUN"
+  },
+  "gate_explanation": "795 registered checks PASS; overall SA06 remains NOT_PASSED: unmodified original topic probe still exits1 on explicitly permitted safe pre-network refusal, pending independent acceptance/probe-contract review. No claim all probes green.",
+  "static": [
+    {
+      "name": "lint",
+      "argv": [
+        "make",
+        "lint"
+      ],
+      "exit_code": 0,
+      "log": "evidence/super-agent-v1/SAV1-06/20261111T100510Z-repair-static/lint.log"
+    },
+    {
+      "name": "typecheck",
+      "argv": [
+        "make",
+        "typecheck"
+      ],
+      "exit_code": 0,
+      "log": "evidence/super-agent-v1/SAV1-06/20261111T100510Z-repair-static/typecheck.log"
+    }
+  ],
+  "typechecked_files": 231,
+  "artifact_count": 33,
+  "artifacts": [
+    {
+      "path": "src/mgar_v3/sources/feishu.py",
+      "sha256": "eb80f010bd2dd075369251955d4d4ae61b838a5e8d4527a6ff3cb1b13c0ff055"
+    },
+    {
+      "path": "src/mgar_v3/sources/feishu_api.py",
+      "sha256": "da553ad906cf66917c7b09280dce00fccd562e23520427fa5009b5f80a5f8ad2"
+    },
+    {
+      "path": "src/mgar_v3/sources/feishu_broker.py",
+      "sha256": "e4a904df43cc3f95973a2ab43566d83c6e7722fb938c721e6e095186a1937085"
+    },
+    {
+      "path": "src/mgar_v3/sources/feishu_domain.py",
+      "sha256": "66cba300b4e2a95b7ba15f4baa72878aa3757c1e856e9ef6370cd66ddde089da"
+    },
+    {
+      "path": "src/mgar_v3/sources/feishu_response.py",
+      "sha256": "5a80ec0b3eb652f0a9422c6be775a0d3e5d78960825589945784de38dcb7bf69"
+    },
+    {
+      "path": "src/mgar_v3/sources/feishu_runtime.py",
+      "sha256": "e1033fac729f7f8a8fa77bcc144eb1b8eeaa05d39c0e04d48881de6ca95e0482"
+    },
+    {
+      "path": "src/mgar_v3/sources/feishu_sdk.py",
+      "sha256": "23c8cb73f45d71bcccce83d6b0fb9775489d09ce9b95e20461ff876e5dd2f603"
+    },
+    {
+      "path": "src/mgar_v3/sources/feishu_store.py",
+      "sha256": "de34edb29c9afea7eeb79b94ec38e1c72e544a14c3498cc007171e1210205338"
+    },
+    {
+      "path": "src/mgar_v3/sources/feishu_topics.py",
+      "sha256": "4d99b1c30d76a266a81f35953a42fa473e8625e1fda2ae67f329cdb30d2731a3"
+    },
+    {
+      "path": "src/mgar_v3/sources/ingress.py",
+      "sha256": "457d2f29432d3e9bf56891f47fc847f242a14c3cfd9af92d33c2936a6a4cb2a2"
+    },
+    {
+      "path": "src/mgar_v3/api.py",
+      "sha256": "ed75284d87c1de5c604bc7eb0a72be2061cd3ea25da4b016cb83dfeb563219d5"
+    },
+    {
+      "path": "migrations/0035_feishu_source.sql",
+      "sha256": "4153ec29eae99136cd3103f4b17903411fb19f7b44f90d951c3f18199aed94b1"
+    },
+    {
+      "path": "schemas/super-agent-v1/feishu-configure-v1.schema.json",
+      "sha256": "057382a5468a11d4870ee62ff574bfb1fefe12feb80c7269219eb6ba77873807"
+    },
+    {
+      "path": "schemas/super-agent-v1/feishu-health-v1.schema.json",
+      "sha256": "6c12157aa92940eb084b16cb2b957bc3e7e65789fd78a35158a7e1e22d28133f"
+    },
+    {
+      "path": "schemas/super-agent-v1/feishu-settings-v1.schema.json",
+      "sha256": "a6b48fc3080086162fee39e4cff3f63c55980edadafcbc297b796e66f0430bdd"
+    },
+    {
+      "path": "fixtures/super-agent-v1/feishu-v1/recordings.json",
+      "sha256": "d287f41d53f2eb6b1e974e5e93c40ee6ffaad73a66cc3f3ecb05f5f381e2d3d2"
+    },
+    {
+      "path": "tests/test_super_agent_sa06.py",
+      "sha256": "5b46c228468972f245d8b217abcde4bd0f57bcdc0f4e7eddb3d198ecf5278d90"
+    },
+    {
+      "path": "tests/test_super_agent_sa06_broker.py",
+      "sha256": "3539a63b005fba01f5b5b7754011e37dbbadb847f30753f12163e470d7a419a2"
+    },
+    {
+      "path": "tests/test_super_agent_sa06_contract.py",
+      "sha256": "3b06b570f46a7f3fdbbfbf4f86c6749a872b64b5cab216c6a3f43a562e329dce"
+    },
+    {
+      "path": "tests/test_super_agent_sa06_health.py",
+      "sha256": "18a0b33eb838aea9e400c87632eeadd19cc5e32f3e3027e9b709f3c892815957"
+    },
+    {
+      "path": "tests/test_super_agent_sa06_migration.py",
+      "sha256": "01f78b5ca90def366b7f4c7aefc3ab5e67a59fe6e15cfcb46fcef9895d1db27f"
+    },
+    {
+      "path": "tests/test_super_agent_sa06_privacy.py",
+      "sha256": "c7eeba5c59666117861097755447f9dc99e028bda447421cbb69f03260eb27f4"
+    },
+    {
+      "path": "tests/test_super_agent_sa06_repair_formats.py",
+      "sha256": "168d8e874834de46836e8fbbc0fb4c9068c5931580a09070fb2bc76059b8ec98"
+    },
+    {
+      "path": "tests/test_super_agent_sa06_repair_health.py",
+      "sha256": "1f9ff64868bbe2f6da5b561e7b642e8c29e1b46b6500b942b2d80f35d3014c2f"
+    },
+    {
+      "path": "tests/test_super_agent_sa06_repair_topics.py",
+      "sha256": "0ed643430925b9d86764ee5d51cf748d141ef6f1d5a16d3d9126b684cb51d7a7"
+    },
+    {
+      "path": "tests/test_super_agent_sa06_sdk.py",
+      "sha256": "29e7e23334851df6cee71c048d718059f865e250509dfe436fd2182b9f1c8823"
+    },
+    {
+      "path": "tests/sa06_support.py",
+      "sha256": "cb9b91f25471a4d092ba5ba6abfe27fdd8cad8377ffa9a8242967fe684d4c5cc"
+    },
+    {
+      "path": "tests/test_super_agent_sa05.py",
+      "sha256": "b8d5c2ed4933f0d4d87cf54178677863a847775dcae84ab946b3567520eb88ba"
+    },
+    {
+      "path": "pyproject.toml",
+      "sha256": "e55d60f92bc94308a8caa85932dade26e1a00d432ca2593d7f418cc3f67d2ffd"
+    },
+    {
+      "path": "uv.lock",
+      "sha256": "aebd9ec38ee81c627cf5a948b1d447d60ae39e93a919eda1e4f52bba208e7c4c"
+    },
+    {
+      "path": "config/verification.json",
+      "sha256": "87ca931dd97ab986f50355f30e05b65582b7844c1df7fe4c55380788459cbca4"
+    },
+    {
+      "path": "config/source-ingress-v1.json",
+      "sha256": "ce8eb2083861bba2fca93a34b38d4cd5f3c7ac12f303162781ccc71b40a54318"
+    },
+    {
+      "path": "config/source-github-v1.json",
+      "sha256": "21476285b2530e9bc67d9cf6637bafcd8a6b508c9b46a6165829f171f289969f"
+    }
+  ],
+  "original_feedback": [
+    {
+      "path": "review-summary.json",
+      "sha256": "ebb84f0c0d10def7c2ae634cfed3b5cbb10785a6ec8371f6cc6fcd96b37e55c6",
+      "unchanged": true
+    },
+    {
+      "path": "probe.py",
+      "sha256": "d1e1e2a5c6c137bdec2fd53b23a473edca0dcbf1343de27f27685d00659232d0",
+      "unchanged": true
+    },
+    {
+      "path": "probe.log",
+      "sha256": "396403836a6b39dca967dfa434b2e7df4d260aca21e09d978db0a3be29d72a3f",
+      "unchanged": true
+    },
+    {
+      "path": "probe_formats.py",
+      "sha256": "714c684b7d92af61674b8d2911636ec8d4c4d912479fe803bceaccba99a9bc4f",
+      "unchanged": true
+    },
+    {
+      "path": "probe-formats.log",
+      "sha256": "815e69a6500eb2fc29aacef3ed39dd7bd3ef3d2e6a2f901582b1545499bec64b",
+      "unchanged": true
+    },
+    {
+      "path": "format-results.json",
+      "sha256": "528ce46be3a014418d15846ae301cbf2c998c3d5dd959b734409fa7d0c17ade6",
+      "unchanged": true
+    }
+  ],
+  "original_snapshot": "evidence/super-agent-v1/SAV1-06/20261111T094358Z-independent-repair-start/original-review",
+  "reading": "evidence/super-agent-v1/SAV1-06/20261111T094358Z-independent-repair-start/reading.json",
+  "independent_finished_before_edits": "evidence/super-agent-v1/SAV1-06/20261111T094358Z-independent-repair-start/preflight.json",
+  "scope_audit": "evidence/super-agent-v1/SAV1-06/20261111T094358Z-independent-repair-start/scope-audit-final.json",
+  "probes": {
+    "original_probe": {
+      "exit_code": 1,
+      "passed": 3,
+      "failed": 1,
+      "remaining": "topic-only-remote-scope; no native proof; FEISHU_HISTORY_THREAD_UNPROVEN before mint/GET plus gap; original probe does not handle permitted refusal",
+      "log": "evidence/super-agent-v1/SAV1-06/20261111T100528Z-repair-probe/probe.log"
+    },
+    "original_formats": {
+      "exit_code": 0,
+      "passed": 9,
+      "failed": 0,
+      "results": "evidence/super-agent-v1/SAV1-06/20261111T100633Z-repair-formats/format-results.json"
+    }
+  },
+  "pg_cleanup": {
+    "evidence": "evidence/super-agent-v1/SAV1-06/20261111T100727Z-repair-registered/pg-cleanup.json",
+    "new_remaining_databases": [],
+    "new_remaining_sessions": [],
+    "scope": "own session/upgrade database inventory; existing conftest owns cleanup; no manual deletion"
+  },
+  "failure_history": {
+    "original_probe": "4FAIL preserved",
+    "original_formats": "5PASS4FAIL preserved",
+    "independent_full": "744/10TMPDIR failures plus targeted9+1 not aggregate PASS, preserved",
+    "repair_static_first": "1 mypy dict-row connection annotation error fixed; log preserved"
+  },
+  "changes": {
+    "P1": "Only authenticated actual thread_id can establish receipt-backed expiring membership fact; root_id only reply association. Current proof/auth before every IO; exact native thread container, MAC-bound scoped cursors, validated replies/tombstones; chat exhaustion incomplete/gap.",
+    "P2": "Connection observation updates independently from fresh same-config/mode negative permission diagnosis; retain original cause and timestamp, no TTL renewal; no stale/old granted resurrection.",
+    "P3": "Bounded strict decoder fixed errors for token/probe/history; health plus history gap; no retry/released token/data/raw payload/exception diagnostics or false format revocation."
+  },
+  "costs": {
+    "real_platform_calls": 0,
+    "paid_calls": 0,
+    "paid_usd": "0",
+    "external_business_writes": 0
+  },
+  "limits": [
+    "No live Feishu/GitHub, credentials/listeners/models/outbound/publication or long-term run.",
+    "Original topic probe remains one FAIL due safe refusal with no trusted native proof; no threshold/probe modification.",
+    "Native topic proof must be currently retained under same source/config; no proof or root-only input rejects before IO; historical unseen topics may remain unavailable.",
+    "Signed cursors are runtime/Broker-local and expire on restart; no infinite replay or source-completeness claim.",
+    "No new migration/API/Engine/budget/Harness changes; own preexisting tables and sole Engine connection.",
+    "Keep SA06 IN_PROGRESS/NOT_PASSED and SA07 PLANNED until new independent acceptance."
+  ],
+  "recorded_at_utc": "2026-11-11T10:29:23.294141+00:00"
+}
