@@ -1255,6 +1255,7 @@
       "tests/test_super_agent_sa06_migration.py",
       "tests/test_super_agent_sa06_privacy.py",
       "tests/test_super_agent_sa06_contract.py",
+      "tests/test_super_agent_sa06_health.py",
       "tests/test_super_agent_sa05.py",
       "tests/test_super_agent_sa05_repair.py",
       "tests/test_super_agent_sa05_history_repair.py",
@@ -1288,7 +1289,8 @@
       "live_source_channel": "NOT_RUN",
       "live_coding": "NOT_RUN",
       "live_publication": "NOT_RUN",
-      "continuous_operation": "NOT_RUN"
+      "continuous_operation": "NOT_RUN",
+      "health": "Current-config/current-mode/fresh negative facts survive fencing; stale/future/old granted never becomes current authority"
     },
     "timeout_seconds": 2700
   }

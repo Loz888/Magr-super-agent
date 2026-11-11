@@ -38,7 +38,7 @@
     },
     {
       "path": "src/mgar_v3/sources/feishu_runtime.py",
-      "sha256": "a59be88d8d88d4a6836b59ca52d160bcb6d644050eebb03b9734c85a17279f4a"
+      "sha256": "c6d512902f4b5348710ee67bf069ae4b7df92b5f279fe8f030cf4c21a8c4c612"
     },
     {
       "path": "src/mgar_v3/sources/feishu_sdk.py",
@@ -89,6 +89,10 @@
       "sha256": "3b06b570f46a7f3fdbbfbf4f86c6749a872b64b5cab216c6a3f43a562e329dce"
     },
     {
+      "path": "tests/test_super_agent_sa06_health.py",
+      "sha256": "18a0b33eb838aea9e400c87632eeadd19cc5e32f3e3027e9b709f3c892815957"
+    },
+    {
       "path": "tests/test_super_agent_sa06_migration.py",
       "sha256": "01f78b5ca90def366b7f4c7aefc3ab5e67a59fe6e15cfcb46fcef9895d1db27f"
     },
@@ -118,7 +122,7 @@
     },
     {
       "path": "config/verification.json",
-      "sha256": "2eec6825f9e6d03708651e0270014d9bd34b729925c38bf1bd795750faedf43f"
+      "sha256": "39a8859ff351bd57105c4c5f68c782871a5607ed9266df97a4beeddbec4e07af"
     },
     {
       "path": "config/source-ingress-v1.json",

@@ -216,32 +216,45 @@ class FeishuRuntime:
         self.sources.fence(self.source_id, self.revision, self._mode(), code, permission)
 
     def status(self) -> dict[str, Any]:
-        try:
-            self.current("health")
+        with self.sources.engine._mutex:
+            current = False
+            try:
+                self.current("health")
+                current = True
+            except DomainError:
+                pass
+            # Fencing revokes authority, not a trustworthy diagnosis already observed.
+            # Re-read the actual settings revision: an old Runtime cannot project facts
+            # into a newly configured source, nor turn stale granted into permission.
             with self.sources.engine.transaction() as conn:
                 row = conn.execute(
-                    "SELECT * FROM app.feishu_source_health WHERE source_instance_id=%s",
-                    (self.source_id,),
+                    "SELECT h.*,s.revision AS settings_revision FROM app.feishu_source_health h "
+                    "JOIN app.feishu_source_settings s USING(source_instance_id) "
+                    "WHERE h.source_instance_id=%s AND s.project_id=%s",
+                    (self.source_id, self.sources.engine.settings.project_id),
                 ).fetchone()
-            if (
-                row
-                and row["config_revision"] == self.revision
-                and (datetime.now(UTC) - row["observed_at"] < timedelta(minutes=5))
-            ):
-                return {
-                    "connection": row["connection"],
-                    "permissions": row["permissions"],
-                    "observed_at": row["observed_at"],
-                    "mode": row["mode"],
-                    "reason_code": row["reason_code"],
-                    "gap_started_at": row["gap_started_at"],
-                    "live_source_channel_gate": "NOT_RUN",
-                }
-        except DomainError:
-            pass
-        return {
-            "connection": "disabled" if self.activation is None else "unknown",
-            "permissions": "unknown",
-            "mode": self._mode(),
-            "live_source_channel_gate": "NOT_RUN",
-        }
+            if row is not None:
+                age = datetime.now(UTC) - row["observed_at"]
+                if (
+                    row["config_revision"] == row["settings_revision"] == self.revision
+                    and row["mode"] == self._mode()
+                    and timedelta(seconds=-30) <= age < timedelta(minutes=5)
+                    and (current or row["permissions"] in {"insufficient", "revoked"})
+                ):
+                    return {
+                        "connection": row["connection"] if current else "degraded",
+                        "permissions": row["permissions"],
+                        "observed_at": row["observed_at"],
+                        "mode": row["mode"],
+                        "reason_code": row["reason_code"],
+                        "gap_started_at": row["gap_started_at"],
+                        "runtime_current": current,
+                        "live_source_channel_gate": "NOT_RUN",
+                    }
+            return {
+                "connection": "disabled" if self.activation is None else "unknown",
+                "permissions": "unknown",
+                "mode": self._mode(),
+                "runtime_current": False,
+                "live_source_channel_gate": "NOT_RUN",
+            }

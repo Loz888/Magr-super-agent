@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-11T03:15:17.565019+00:00",
+  "updated_at": "2026-11-11T08:25:08.629181+00:00",
   "user_instruction": "Codex owns Super-Agent; local Trae owns Harness; coordination is authorized.",
   "owners": {
     "super_agent": {
@@ -13,9 +13,9 @@
       "cards": "HV4-H00..HV4-H18"
     }
   },
-  "active_super_agent_card": "SAV1-05",
+  "active_super_agent_card": "SAV1-06",
   "card_status": "IN_PROGRESS",
-  "work_state": "SAV1_05_ENGINEERING_PASS_PENDING_INDEPENDENT_REVIEW",
+  "work_state": "SA06_HEALTH_REPAIR_16_PASS_FIXED_CANDIDATE_FULL_RECHECK",
   "harness_observation": {
     "head": "de4775e22e96718e880fde287b2e0928db2945e3",
     "h00_owner_reported_status": "PASS",
@@ -92,10 +92,10 @@
     "correction_probe": "evidence/super-agent-v1/SAV1-00/20261110T135100Z-h01-correction-review/result.json"
   },
   "sa00_candidate": "docs/super-agent-v1/sa00-draft/",
-  "migration_coordination": "ACTUALLY_ACKNOWLEDGED in 79798690 section24: Codex owns 0034; 0035 NOT_RESERVED",
+  "migration_coordination": "ACTUALLY_ACKNOWLEDGED d0053f4 section29: Codex owns0035;0036 NOT_RESERVED; future shared migrations coordinate again",
   "sa00_frozen": "docs/super-agent-v1/sa00/",
   "sa00_acceptance": "docs/super-agent-v1/accept/SAV1-00/accept.json",
-  "next_super_agent_card": "SAV1-06",
+  "next_super_agent_card": "SAV1-07",
   "sa01_read_evidence": "evidence/super-agent-v1/SAV1-01/20261110T140711Z-start/taskbook-read.json",
   "sa01_write_scope": [
     "new sources package",
@@ -234,11 +234,40 @@
     "skipped": 0
   },
   "sa05_completion_handoff": "Document prepared only; no new message sent or acknowledged",
-  "sa05_independent_review": "0548a0f history independent FAIL retained; RR01/RR02 engineering PASS pending independent review",
+  "sa05_independent_review": "USER_CONFIRMED_ENGINEERING_PASS at 9fb6593; raw 566/146/13 and artifact hashes verified; historical FAIL retained",
   "sa05_repair_reading": "evidence/super-agent-v1/SAV1-05/20261111T041740Z-repair-start/taskbook-read.json",
   "sa05_repair_report": "docs/super-agent-v1/SA05_REPAIR_20261111.md",
   "sa05_repair_scope": "Private Sources only; no new shared ownership overlap, migration or Harness work",
   "sa05_history_reading": "evidence/super-agent-v1/SAV1-05/20261111T053624Z-history-repair-start/taskbook-read.json",
   "sa05_history_report": "docs/super-agent-v1/SA05_HISTORY_REPAIR_20261111.md",
-  "sa05_history_scope": "Private GitHub sources only; no new shared overlap, migration or Harness work"
+  "sa05_history_scope": "Private GitHub sources only; no new shared overlap, migration or Harness work",
+  "next_card_gate": "SA06 independent PASS plus user instruction required; do not advance",
+  "sa06_shared_scope": {
+    "status": "ACTUALLY_CONFIRMED_FIXED_BLOB_VERIFIED",
+    "commit": "d0053f4d7bdf850f4c3c458bd36d3c10b9a3e650",
+    "section": 29,
+    "migration": "0035_feishu_source.sql",
+    "owner": "Codex",
+    "files": "sources/feishu*, Feishu private tables, /api/v3/feishu-sources and optional default-disabled /api/v3/webhooks/feishu",
+    "api_file": "default None injection/registration only; old Github handler AST unchanged",
+    "sources_ingress": "internal current-role/kind context_only; existing Codex sources ownership; no shared Engine/API DTO/schema change",
+    "no_changes": [
+      "Engine class",
+      "ToolAuthority",
+      "budget",
+      "Harness files",
+      "0001-0034 migrations"
+    ]
+  },
+  "sa06_peer_communication": {
+    "status": "USER_RELAYED_ACK_ACTUALLY_VERIFIED",
+    "channel": "user message + fixed Harness commit/blob",
+    "queued_message_was_confirmation": false,
+    "completion_handoff": "Prepared locally only; no new completion message delivered or peer receipt claimed"
+  },
+  "sa06_source_commit": "852a96d543a68b14fa2da86234d4be44921a783f",
+  "sa06_source_sha256": "41ccc299b1e9d93119c13901c3cb9a734a69ceb9e0d9c6fa0936f9b77a67f331",
+  "sa06_live_gates": "NOT_RUN",
+  "sa06_initial_registered": "evidence/SAV1-06/20261111T075645Z-dcd722bd/result.json;729PASS;source852a96d unchanged",
+  "sa06_health_followup": "Initial independent1FAIL and formal3FAIL retained; source projection repair+original assertions16PASS; full744 pending"
 }

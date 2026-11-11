@@ -284,3 +284,11 @@ id_type/tenant 并转换结构。仅当平台提供相同 OpenID、正文和资�
 缺 tenant 拒绝；缺 mentions 或不同正文表示也不宣称等价。相应差异可能留下保守
 ambiguous/gap，真实平台实际返回表示仍 NOT_RUN。derived revision 纳入是否确实
 @本机器人，未纳入全部其他被提及者身份集合；不宣称检测了所有 mention 身份差异。
+
+## 9. 撤权后的健康诊断
+
+来源被fence后仍显示当前配置/运行模式下、观察年龄[-30s,5min)内已验证的
+insufficient/revoked及准确reason；runtime_current=false明确这不是恢复授权。
+过期/未来或旧配置/模式记录不继承，失效Runtime的旧granted/online不会复活。
+初候选729注册PASS后新增登录API边界发现遗漏，原始1FAIL及正式3FAIL保留；
+后续修复和完整新候选结果单列，不能用原729全绿替代该问题验证。

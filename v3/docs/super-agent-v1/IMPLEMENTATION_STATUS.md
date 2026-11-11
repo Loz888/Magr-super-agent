@@ -1,3 +1,11 @@
+# SA06 健康投影修复专项通过，重新固定完整验收
+
+初候选852a96d的729PASS、后续独立1FAIL和正式3FAIL均保留。仅Feishu Runtime修复当前配置/模式/新鲜负面诊断，旧granted/online不继承；15正式+原独立1原样重跑16PASS，lint/typecheck229filesPASS。已注册744项完整目标，固定新候选后重跑；此刻不提前给最终工程或独立PASS。SA06仍IN_PROGRESS，SA07未启动。以下为历史快照。
+
+# SA06 新增健康显示负例阻止交付，修复中
+
+固定852a96d的完整注册729项已实跑PASS，原结果保留。随后真实PG+MockTransport+实际登录管理GET新增探针1FAIL：已知权限不足被Runtime顶层fallback改为unknown、丢失reason。此轮不凭729全绿交付，已安排正式回归和最小状态投影修复；修复后重新固定候选、完整注册、lint/typecheck。SA06仍IN_PROGRESS，SA07未启动；本轮仍无真实平台/付费/外发。以下为历史快照。
+
 # SAV1-06 本地工程实施中
 
 用户已独立放行 SA05（9fb6593，566完整/146专项/13独立），已核对原始证据和固定指纹；原失败保留。SA06 已获独占0035/飞书文件/API接线确认。官方SDK、持久入站、最小正文失效、受控Broker/历史、配置和契约回归已实施；完整固定候选注册验收尚待执行。SA06 IN_PROGRESS，SA07–SA24 PLANNED。真实平台/模型/外发/发布/完整系统安全与长期门NOT_RUN。以下是历史快照。

@@ -36,3 +36,10 @@ Harness 活动树。不改 Engine 类、ToolAuthority、预算或历史迁移000
 本地真实 PG 与官方 SDK 受控协议验证只构成 engineering_gate；完整系统安全、真实
 飞书/GitHub/编码/发布及长期运行仍 NOT_RUN。失败与未执行逐次留存，固定候选完成后
 等待独立复验，不能自行推进 SA07。具体能力、权限和引导见 ../SA06_FEISHU.md。
+
+健康投影补充：初候选852a96d完整729注册PASS后，另行真实PG/登录管理API探针1FAIL、
+正式15项中3FAIL，均保留。Runtime撤权不应抹去当前配置/模式下新鲜的可信负面事实，
+故保留insufficient/revoked与准确reason，同时标runtime_current=false；不把诊断当
+许可。查询JOIN当前settings revision并校验模式与[-30s,5min)新鲜度，旧granted/
+online、换配置及未来/过期记录不能继承。修复只改Feishu Runtime投影，无新接口、
+schema/迁移、Engine/预算/Harness变更，修复后重新固定与完整验收。
