@@ -1,0 +1,269 @@
+{
+  "card": "SAV1-04",
+  "status": "ENGINEERING_PASS_PENDING_INDEPENDENT_REVIEW",
+  "source_commit": "84ca5c3c688b825dc32763a834cc7cc973b0cb69",
+  "source_sha256": "c672efe5bde5ab50851b134c239759dbd1b9a89985df89d914c6a7fa4e7c1daf",
+  "finished_source_sha256": "c672efe5bde5ab50851b134c239759dbd1b9a89985df89d914c6a7fa4e7c1daf",
+  "recorded_at_utc": "2026-11-11T00:57:44.948188+00:00",
+  "original_baseline": "2247db3fbc7727238ba5f037b02701d2722747f9",
+  "original_independent_review": "REJECTED: 374 registered PASS but two independent PG regressions FAIL",
+  "original_acceptance_archive": "docs/super-agent-v1/accept/SAV1-04/history/2247db3-accept.json",
+  "reading": "evidence/super-agent-v1/SAV1-04/20261111T002015Z-repair-start/taskbook-read.json",
+  "fixes": {
+    "P1": "Maintain existing monotonic observed native watermark/sticky unordered ambiguity independently of body Receive. No body or business input for rejected observation; equal/lower unproven versions unavailable; fresh higher ordered version may be admitted under current authority. Also covers rejected versioned create/history snapshots and late create preserving newer canonical content.",
+    "P2": "Conflict-checked canonical event/version dedupe precedes edit/delete invalidation. Equivalent unordered aliases preserve original input/body/TTL; unseen unordered mutations remain conservative."
+  },
+  "registered_verification": "evidence/SAV1-04/20261111T004543Z-909ef8c5/result.json",
+  "counts": {
+    "tests": 395,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "sa04_cases": 91,
+  "repair_cases": 21,
+  "static": {
+    "source_files": 215,
+    "evidence": "evidence/super-agent-v1/SAV1-04/20261111T004439Z-repair-static/commands.json"
+  },
+  "earlier_targeted": {
+    "evidence": "evidence/super-agent-v1/SAV1-04/20261111T002711Z-repair-targeted/commands.json",
+    "meaning": "86-case earlier candidate; final card cases proven by 395-case registered run"
+  },
+  "original_scorer_after_fix": {
+    "evidence": "evidence/super-agent-v1/SAV1-04/20261111T004608Z-repair-review/commands.json",
+    "counts": {
+      "tests": 5,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "meaning": "Codex reran unchanged independent test source; this is repair engineering evidence, not independent reviewer approval"
+  },
+  "original_scorer_files_unchanged": {
+    ".local/review-sa04/test_independent.py": "e12c684f7ea415dfa0a1c7d1a79a56dd884b3e6bd7804bd2cd5c85819f2bfb80",
+    ".local/review-sa04/review-result.json": "9c2aff19111dd7c3fe4d19b967e1071ddcd8c68fc20b338a1d446ab6932fb4d2",
+    ".local/review-sa04/edge-cases.log": "8dce0efc533457862930b44ab21fd01cad067582412094b7ab3662c75efad5b3",
+    ".local/review-sa04/edge-cases-junit.xml": "c57d987e772571cb486f3aee070f839e312f49bed83c7a6d42a6424e4218b9e1"
+  },
+  "failed_reproductions": [
+    {
+      "evidence": "evidence/super-agent-v1/SAV1-04/20261111T002052Z-repair-baseline/commands.json",
+      "status": "FAIL_RETAINED",
+      "commands": [
+        {
+          "name": "pytest",
+          "argv": [
+            "/home/imini/magr-super-agent/v3/.venv/bin/python",
+            "-m",
+            "pytest",
+            "-q",
+            "--tb=short",
+            ".local/review-sa04/test_independent.py",
+            "--junitxml=/home/imini/magr-super-agent/v3/evidence/super-agent-v1/SAV1-04/20261111T002052Z-repair-baseline/junit.xml"
+          ],
+          "exit_code": 1,
+          "log": "evidence/super-agent-v1/SAV1-04/20261111T002052Z-repair-baseline/pytest.log",
+          "counts": {
+            "tests": 5,
+            "failures": 2,
+            "errors": 0,
+            "skipped": 0
+          }
+        }
+      ]
+    },
+    {
+      "evidence": "evidence/super-agent-v1/SAV1-04/20261111T002419Z-repair-regression/commands.json",
+      "status": "FAIL_RETAINED",
+      "commands": [
+        {
+          "name": "pytest",
+          "argv": [
+            "/home/imini/magr-super-agent/v3/.venv/bin/python",
+            "-m",
+            "pytest",
+            "-q",
+            "--tb=short",
+            "tests/test_super_agent_sa04_repair.py",
+            "--junitxml=/home/imini/magr-super-agent/v3/evidence/super-agent-v1/SAV1-04/20261111T002419Z-repair-regression/junit.xml"
+          ],
+          "exit_code": 1,
+          "log": "evidence/super-agent-v1/SAV1-04/20261111T002419Z-repair-regression/pytest.log",
+          "counts": {
+            "tests": 5,
+            "failures": 2,
+            "errors": 0,
+            "skipped": 0
+          }
+        }
+      ]
+    },
+    {
+      "evidence": "evidence/super-agent-v1/SAV1-04/20261111T004002Z-repair-neighbor/commands.json",
+      "status": "FAIL_RETAINED",
+      "commands": [
+        {
+          "name": "pytest",
+          "argv": [
+            "/home/imini/magr-super-agent/v3/.venv/bin/python",
+            "-m",
+            "pytest",
+            "-q",
+            "--tb=short",
+            ".local/repair-sa04/test_snapshot_neighbor.py",
+            "--junitxml=/home/imini/magr-super-agent/v3/evidence/super-agent-v1/SAV1-04/20261111T004002Z-repair-neighbor/junit.xml"
+          ],
+          "exit_code": 1,
+          "log": "evidence/super-agent-v1/SAV1-04/20261111T004002Z-repair-neighbor/pytest.log",
+          "counts": {
+            "tests": 1,
+            "failures": 1,
+            "errors": 0,
+            "skipped": 0
+          }
+        }
+      ]
+    }
+  ],
+  "compatibility": "evidence/super-agent-v1/SAV1-04/20261111T002015Z-repair-start/compatibility.json",
+  "schema_migrations_engine_api_toolauthority_budget_harness": "UNCHANGED; no new migration or shared ownership claimed",
+  "persistent_pg": "evidence/super-agent-v1/SAV1-04/20261111T002015Z-repair-start/persistent-pg-readonly.json",
+  "gates": {
+    "engineering_gate": "PASS",
+    "policy_security_gate": "NOT_RUN",
+    "live_source_channel_gate": "NOT_RUN",
+    "live_coding_gate": "NOT_RUN",
+    "live_publication_gate": "NOT_RUN",
+    "continuous_operation_gate": "NOT_RUN"
+  },
+  "paid_model": "NOT_RUN",
+  "new_paid_calls": 0,
+  "new_external_business_writes": 0,
+  "artifacts": [
+    {
+      "path": "config/source-ingress-v1.json",
+      "sha256": "80f61e910345f2720989c0552e34c447960a97fd43b85d6cc381df9e5e535d0f"
+    },
+    {
+      "path": "docs/super-agent-v1/SA04_INGRESS.md",
+      "sha256": "df9ffdf412fcbfe6de6615d781cdab6f6214b81e9d8666a343f9797c8014300e"
+    },
+    {
+      "path": "docs/super-agent-v1/adr/SAV1-04-durable-source-ingress.md",
+      "sha256": "dbedc9356db5fd5b5f7e1bae409e1974f68a1861b6b5cbc766a9aa605f1880dd"
+    },
+    {
+      "path": "schemas/super-agent-v1/source-ingress-configure-v1.schema.json",
+      "sha256": "f3248c0e0181c5420a65335c8a3ecd2d56d90b8c8b07aef50b7cfb06e66c2294"
+    },
+    {
+      "path": "schemas/super-agent-v1/source-ingress-cursor-reset-v1.schema.json",
+      "sha256": "a36001fd296763a3b0d24ef72abc5ebb696fca7e6989dd0ca8be3b3825b3771e"
+    },
+    {
+      "path": "schemas/super-agent-v1/source-ingress-delivery-v1.schema.json",
+      "sha256": "cd1982f8efef57713db029ab706c393b9c16c8bbb7594c3ad964cdf96c6e19e2"
+    },
+    {
+      "path": "schemas/super-agent-v1/source-ingress-gap-v1.schema.json",
+      "sha256": "8a07ee150036560e10244081ec74360ac186f84a8535924272d24040030ba80e"
+    },
+    {
+      "path": "schemas/super-agent-v1/source-ingress-history-v1.schema.json",
+      "sha256": "9444b9a8e27d5304c2aa530db5dc9f9f1deb925f15fd4e9c83f3ebc6b39fb31e"
+    },
+    {
+      "path": "schemas/super-agent-v1/source-ingress-receipt-v1.schema.json",
+      "sha256": "58d143bbde24cf0dbc21401dab556ef33b1f26e7631ead05eea1f2de7a5541da"
+    },
+    {
+      "path": "schemas/super-agent-v1/source-ingress-replay-v1.schema.json",
+      "sha256": "318c5b63140bd7ec684e30a79a730b6bcbfc10852570c5794c7a15aa1da4da22"
+    },
+    {
+      "path": "schemas/super-agent-v1/source-ingress-settings-v1.schema.json",
+      "sha256": "979cf65eef5c8c35ff0bb2d757da03d0ef22a63ed252163de3d6eef5bbdbabd5"
+    },
+    {
+      "path": "migrations/0033_source_ingress.sql",
+      "sha256": "3857e7dee48ccec855c2e4d7e207d7e50f084b6d12344c9df9c02181dc29c484"
+    },
+    {
+      "path": "src/mgar_v3/sources/ingress.py",
+      "sha256": "ad94a6d068998dfc165545936a932d1a8c870a17fce450da85c656649071bb38"
+    },
+    {
+      "path": "src/mgar_v3/sources/ingress_api.py",
+      "sha256": "b23e4a9860b9cf6b5c6d1354bf589dbd10121872a7698991c672291281cc9d0b"
+    },
+    {
+      "path": "src/mgar_v3/sources/ingress_cli.py",
+      "sha256": "9f3d02d4831b995a457d31e1724d0e0c0f9597397736609da49db9d468c0fe59"
+    },
+    {
+      "path": "src/mgar_v3/sources/ingress_crypto.py",
+      "sha256": "d98921dd9a6b3f459afa9428637067768b7816647f3b87ff956cc04d795b488a"
+    },
+    {
+      "path": "src/mgar_v3/sources/ingress_cursor.py",
+      "sha256": "95dc9cf00c86b81354255a1a4251ce490ab452900f1ccf6d48c6db63fb49ec6a"
+    },
+    {
+      "path": "src/mgar_v3/sources/ingress_domain.py",
+      "sha256": "90fb07d76e479600503ad666c19e67ca5e8a2e3ce0f6a4a2c30d64b545e6ca45"
+    },
+    {
+      "path": "src/mgar_v3/sources/gateway.py",
+      "sha256": "d7c51ca95d300bdeba9674125c41218c2b22d093cae2fa7038b7b7508f9cba8a"
+    },
+    {
+      "path": "tests/sa04_support.py",
+      "sha256": "b637806f6b5d63114ad5296255de21df61333eb9587e4bfcfbbf17a3e7403063"
+    },
+    {
+      "path": "tests/test_super_agent_sa04.py",
+      "sha256": "97f15a64d34b5e1836a064afc51184b5c44e1269f3b18c833835742f1f395e8c"
+    },
+    {
+      "path": "tests/test_super_agent_sa04_faults.py",
+      "sha256": "dbb1f3df2e8124606ba40f8d64eaa2154827a80144a0c3cf2052e01f2b738b11"
+    },
+    {
+      "path": "tests/fixtures/sa04_crash_worker.py",
+      "sha256": "a78094933afba332a2531bfc240a58b8062505830581b5cd96b786171162c25d"
+    },
+    {
+      "path": "tests/test_super_agent_sa04_repair.py",
+      "sha256": "ce86e209b9390f1c780253c2627637a9056259da5c9d311902ea7444f67361c2"
+    }
+  ],
+  "limitations": [
+    "No native ordering after denied unseen edit means sticky ambiguity; no automatic disambiguation or permission-restoration revival",
+    "Existing canonical versions still require current identity/Receive/owner/retention and cannot revive deleted/revoked/expired content",
+    "Real platform/SDK/model/coding/outbound/publication/full-system-security/long-run gates remain NOT_RUN",
+    "H04 material-only review is a separate document/commit and grants no H04/H05 safety acceptance",
+    "Historical failures and original reviewer files kept unchanged; repair waits for another independent review; SA05 not started"
+  ],
+  "prior_repair_candidate": {
+    "source_commit": "3eca8335f1dc5b03ab80226fa76917091877a09d",
+    "registered": "evidence/SAV1-04/20261111T003107Z-b1be8891/result.json",
+    "counts": {
+      "tests": 390,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "blocking_neighbor": "evidence/super-agent-v1/SAV1-04/20261111T004002Z-repair-neighbor/commands.json",
+    "neighbor_result": "1 FAIL; denied versioned create/snapshot watermark, repaired in final candidate"
+  },
+  "snapshot_neighbor_after_fix": {
+    "evidence": "evidence/super-agent-v1/SAV1-04/20261111T004611Z-repair-neighbor/commands.json",
+    "counts": {
+      "tests": 1,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  }
+}

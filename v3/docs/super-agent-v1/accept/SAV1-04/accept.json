@@ -1,10 +1,10 @@
 {
   "card": "SAV1-04",
-  "status": "DONE",
-  "accepted_at_utc": "2026-11-10T18:26:39.102528+00:00",
-  "source_commit": "ad4aae84bdc61750626eeaefc17eabf9d28c4a65",
-  "source_sha256": "e809eea055eb42424aab309bef2d000cb7f4f05e41e68e7421ee1aec458cc99c",
-  "finished_source_sha256": "e809eea055eb42424aab309bef2d000cb7f4f05e41e68e7421ee1aec458cc99c",
+  "status": "PENDING_INDEPENDENT_REVIEW",
+  "accepted_at_utc": null,
+  "source_commit": "84ca5c3c688b825dc32763a834cc7cc973b0cb69",
+  "source_sha256": "c672efe5bde5ab50851b134c239759dbd1b9a89985df89d914c6a7fa4e7c1daf",
+  "finished_source_sha256": "c672efe5bde5ab50851b134c239759dbd1b9a89985df89d914c6a7fa4e7c1daf",
   "scope": "Durable source Gateway/Engine receipt, composite dedupe/conflicts, canonical existing inbox, edits/deletes/ordering, current Receive, encrypted retention/retry-only spool, bounded history/replay/cursors/gaps and exclusive legacy cutover. No task/model/outbound activation.",
   "gates": {
     "engineering_gate": "PASS",
@@ -127,14 +127,14 @@
     "checked_at_utc": "2026-11-10T17:42:18.281871+00:00",
     "scope": "one read-only check_legacy_owner guard at Engine.ingest transaction beginning; all old business/model/budget/Harness code unchanged"
   },
-  "registered_verification": "evidence/SAV1-04/20261110T181604Z-62d17c77/result.json",
+  "registered_verification": "evidence/SAV1-04/20261111T004543Z-909ef8c5/result.json",
   "counts": {
-    "tests": 374,
+    "tests": 395,
     "failures": 0,
     "errors": 0,
     "skipped": 0
   },
-  "sa04_cases": 70,
+  "sa04_cases": 91,
   "required_cases": [
     "test_commit_before_ack_and_one_canonical_inbox_without_fake_issue",
     "test_concurrent_deliveries_commit_one_input_and_one_receipt",
@@ -167,6 +167,7 @@
         "-q",
         "tests/test_super_agent_sa04.py",
         "tests/test_super_agent_sa04_faults.py",
+        "tests/test_super_agent_sa04_repair.py",
         "tests/test_super_agent_sa03.py",
         "tests/test_super_agent_sa02.py",
         "tests/test_super_agent_sa01.py",
@@ -180,11 +181,11 @@
         "tests/test_models.py",
         "tests/test_r6_policies.py",
         "tests/test_r5_recovery.py",
-        "--junitxml=/home/imini/magr-super-agent/v3/evidence/SAV1-04/20261110T181604Z-62d17c77/junit.xml"
+        "--junitxml=/home/imini/magr-super-agent/v3/evidence/SAV1-04/20261111T004543Z-909ef8c5/junit.xml"
       ],
       "exit_code": 0,
-      "log": "evidence/SAV1-04/20261110T181604Z-62d17c77/command.log",
-      "junit": "evidence/SAV1-04/20261110T181604Z-62d17c77/junit.xml"
+      "log": "evidence/SAV1-04/20261111T004543Z-909ef8c5/command.log",
+      "junit": "evidence/SAV1-04/20261111T004543Z-909ef8c5/junit.xml"
     },
     {
       "argv": [
@@ -192,25 +193,16 @@
         "lint"
       ],
       "exit_code": 0,
-      "evidence": "evidence/super-agent-v1/SAV1-04/20261110T181529Z-static/commands.json"
+      "evidence": "evidence/super-agent-v1/SAV1-04/20261111T004439Z-repair-static/commands.json"
     },
     {
       "argv": [
         "make",
         "typecheck"
       ],
-      "exit_code": 0,
       "source_files": 215,
-      "evidence": "evidence/super-agent-v1/SAV1-04/20261110T181529Z-static/commands.json"
-    },
-    {
-      "argv": [
-        "make",
-        "migrate"
-      ],
       "exit_code": 0,
-      "evidence": "evidence/super-agent-v1/SAV1-04/20261110T182637Z-migration/commands.json",
-      "inspection": "evidence/super-agent-v1/SAV1-04/local-migration-check.json"
+      "evidence": "evidence/super-agent-v1/SAV1-04/20261111T004439Z-repair-static/commands.json"
     }
   ],
   "versions": {
@@ -225,15 +217,15 @@
   "artifacts": [
     {
       "path": "config/source-ingress-v1.json",
-      "sha256": "4d6c143cd5ff6c52a145428936ab01ffe56d3347dd84eec85b138d24fc2e1b82"
+      "sha256": "80f61e910345f2720989c0552e34c447960a97fd43b85d6cc381df9e5e535d0f"
     },
     {
       "path": "docs/super-agent-v1/SA04_INGRESS.md",
-      "sha256": "ecdfcbd6022861d7a52b6f12a778ada53835b3ab6ad108cdfc9a2b7d78e9bed7"
+      "sha256": "df9ffdf412fcbfe6de6615d781cdab6f6214b81e9d8666a343f9797c8014300e"
     },
     {
       "path": "docs/super-agent-v1/adr/SAV1-04-durable-source-ingress.md",
-      "sha256": "52d37a30d99c0fcc622590f4385908e04d01133874636d87203918f03fe0d545"
+      "sha256": "dbedc9356db5fd5b5f7e1bae409e1974f68a1861b6b5cbc766a9aa605f1880dd"
     },
     {
       "path": "schemas/super-agent-v1/source-ingress-configure-v1.schema.json",
@@ -273,7 +265,7 @@
     },
     {
       "path": "src/mgar_v3/sources/ingress.py",
-      "sha256": "442de47b679d0e28530bd5f3933a01ea04893d8fbe8bb8abd6731128e54e7aea"
+      "sha256": "ad94a6d068998dfc165545936a932d1a8c870a17fce450da85c656649071bb38"
     },
     {
       "path": "src/mgar_v3/sources/ingress_api.py",
@@ -314,6 +306,10 @@
     {
       "path": "tests/fixtures/sa04_crash_worker.py",
       "sha256": "a78094933afba332a2531bfc240a58b8062505830581b5cd96b786171162c25d"
+    },
+    {
+      "path": "tests/test_super_agent_sa04_repair.py",
+      "sha256": "ce86e209b9390f1c780253c2627637a9056259da5c9d311902ea7444f67361c2"
     }
   ],
   "compatibility_audit": "evidence/super-agent-v1/SAV1-04/compatibility-audit.json",
@@ -403,6 +399,84 @@
       "status": "FAIL_RETAINED",
       "evidence": "evidence/super-agent-v1/SAV1-03/20261110T180117Z-static/commands.json",
       "reason": "SA04 initial static attempt was written under SA03 by a runner label error; historical SA03 results unchanged"
+    },
+    {
+      "evidence": "evidence/super-agent-v1/SAV1-04/20261111T002052Z-repair-baseline/commands.json",
+      "status": "FAIL_RETAINED",
+      "commands": [
+        {
+          "name": "pytest",
+          "argv": [
+            "/home/imini/magr-super-agent/v3/.venv/bin/python",
+            "-m",
+            "pytest",
+            "-q",
+            "--tb=short",
+            ".local/review-sa04/test_independent.py",
+            "--junitxml=/home/imini/magr-super-agent/v3/evidence/super-agent-v1/SAV1-04/20261111T002052Z-repair-baseline/junit.xml"
+          ],
+          "exit_code": 1,
+          "log": "evidence/super-agent-v1/SAV1-04/20261111T002052Z-repair-baseline/pytest.log",
+          "counts": {
+            "tests": 5,
+            "failures": 2,
+            "errors": 0,
+            "skipped": 0
+          }
+        }
+      ]
+    },
+    {
+      "evidence": "evidence/super-agent-v1/SAV1-04/20261111T002419Z-repair-regression/commands.json",
+      "status": "FAIL_RETAINED",
+      "commands": [
+        {
+          "name": "pytest",
+          "argv": [
+            "/home/imini/magr-super-agent/v3/.venv/bin/python",
+            "-m",
+            "pytest",
+            "-q",
+            "--tb=short",
+            "tests/test_super_agent_sa04_repair.py",
+            "--junitxml=/home/imini/magr-super-agent/v3/evidence/super-agent-v1/SAV1-04/20261111T002419Z-repair-regression/junit.xml"
+          ],
+          "exit_code": 1,
+          "log": "evidence/super-agent-v1/SAV1-04/20261111T002419Z-repair-regression/pytest.log",
+          "counts": {
+            "tests": 5,
+            "failures": 2,
+            "errors": 0,
+            "skipped": 0
+          }
+        }
+      ]
+    },
+    {
+      "evidence": "evidence/super-agent-v1/SAV1-04/20261111T004002Z-repair-neighbor/commands.json",
+      "status": "FAIL_RETAINED",
+      "commands": [
+        {
+          "name": "pytest",
+          "argv": [
+            "/home/imini/magr-super-agent/v3/.venv/bin/python",
+            "-m",
+            "pytest",
+            "-q",
+            "--tb=short",
+            ".local/repair-sa04/test_snapshot_neighbor.py",
+            "--junitxml=/home/imini/magr-super-agent/v3/evidence/super-agent-v1/SAV1-04/20261111T004002Z-repair-neighbor/junit.xml"
+          ],
+          "exit_code": 1,
+          "log": "evidence/super-agent-v1/SAV1-04/20261111T004002Z-repair-neighbor/pytest.log",
+          "counts": {
+            "tests": 1,
+            "failures": 1,
+            "errors": 0,
+            "skipped": 0
+          }
+        }
+      ]
     }
   ],
   "prior_registered_attempts": [],
@@ -418,9 +492,22 @@
     "Retention is explicit maintenance, no periodic daemon started; complete Memory/CAS/Recall/export/notification/backup/tombstone restore lifecycle and key recovery remain SA20/21 acceptance",
     "Minimal hashes/tombstones/audit persist under bounded metadata capacity; exhaustion fails closed pending operator review, never evicts dedupe facts to permit repeated work",
     "Operator replay revalidates context only; does not reset consumption or claim the future Router has consumed inputs",
-    "Physical faults used own disposable database/process/container, not production PG or Harness; no physical host-storage power-loss or long-run recovery claim"
+    "Physical faults used own disposable database/process/container, not production PG or Harness; no physical host-storage power-loss or long-run recovery claim",
+    "No native ordering after denied unseen edit means sticky ambiguity; no automatic disambiguation or permission-restoration revival",
+    "Existing canonical versions still require current identity/Receive/owner/retention and cannot revive deleted/revoked/expired content",
+    "Real platform/SDK/model/coding/outbound/publication/full-system-security/long-run gates remain NOT_RUN",
+    "H04 material-only review is a separate document/commit and grants no H04/H05 safety acceptance",
+    "Historical failures and original reviewer files kept unchanged; repair waits for another independent review; SA05 not started"
   ],
   "next_card": "SAV1-05",
   "next_card_status": "PLANNED",
-  "handoff_rule": "Stop at SA04 pending independent acceptance; no SA05 or next migration reserved"
+  "handoff_rule": "Stop at SA04 pending independent acceptance; no SA05 or next migration reserved",
+  "repair": {
+    "record": "docs/super-agent-v1/accept/SAV1-04/repair-20261111.json",
+    "sha256": "534245d39b06d10524d2b5c8dc95da3d36866aa468cef41fdc5dbb1737800af4"
+  },
+  "independent_release": "NOT_GRANTED; wait for reviewer",
+  "original_acceptance_archive": "docs/super-agent-v1/accept/SAV1-04/history/2247db3-accept.json",
+  "recorded_at_utc": "2026-11-11T00:57:44.948188+00:00",
+  "repair_reading": "evidence/super-agent-v1/SAV1-04/20261111T002015Z-repair-start/taskbook-read.json"
 }

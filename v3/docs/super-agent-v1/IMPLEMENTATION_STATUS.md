@@ -1,3 +1,7 @@
+# SAV1-04 修复工程通过，等待独立复验
+
+原独立复验 P1/P2 已修复；原评分器原样复跑 5 PASS，完整注册 395 PASS（SA04 91），lint/typecheck 215 files PASS。修复提交 84ca5c3c688b825dc32763a834cc7cc973b0cb69。SA04 保持 IN_PROGRESS，不进入 SA05。H04 仅材料核对，安全门未放行；详见 SA04_REPAIR_20261111.md 和单独 docs/material-reviews/H04-20261111-materials.md。
+
 # SAV1-04 当前交付
 
 SAV1-04 DONE（本卡工程，等待独立复验）。实施 ad4aae84bdc61750626eeaefc17eabf9d28c4a65；注册 374 PASS，其中 SA04 70，0 failure/error/skip；lint/typecheck 215 files PASS。见 SA04_INGRESS.md 和 accept/SAV1-04/accept.json。真实平台/SDK、模型、完整安全/编码/发布/长期门 NOT_RUN。无付费或外发，停在 SA04，不自动启动 SA05，0034 未预占。
