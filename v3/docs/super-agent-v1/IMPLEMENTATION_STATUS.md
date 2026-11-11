@@ -1,3 +1,9 @@
+# SAV1-05 独立复验修复工程通过，等待再次独立核验
+
+固定修复 cc1756bfc333ba9204761a6dde6875f0124bcd0b，源码 14bcac359c25ff1469aac9ee3d39ae51adfb5eb651b24be8602435c51a5ada71；完整注册543 PASS（原SA05 79 + 修复44 + 既有420），0 failure/error/skip；原独立10项原样重跑PASS，lint/typecheck 222 files PASS。完整注册结果 evidence/SAV1-05/20261111T043250Z-2a80700f/result.json 由原评分器真实生成，前后指纹一致。详见 SA05_REPAIR_20261111.md 及 accept/SAV1-05/repair-20261111.json。
+
+两类缺陷修复和原失败记录分开保存；原独立499项虽JUnit/日志全绿但汇总器Hangup、无result.json的事实未改。旧测试/0001–0034/schema/评分器保持原样。工程PASS不替代新的独立验收，SA05仍IN_PROGRESS、SA06仍PLANNED。无Harness操作，无真实API/模型/外发/发布；完整系统安全及全部live/长期门NOT_RUN。以下为历史记录。
+
 # SAV1-05 独立复验失败修复中
 
 独立 HEAD 4ecac50 的新增10项探针为4 PASS/6 FAIL；原499项 JUnit 虽全绿，外层汇总器因 Hangup 无 result.json，不补造结果。原交付摘要另存 accept/SAV1-05/history/4ecac50-accept.json；下方旧“工程通过”均为历史快照。
