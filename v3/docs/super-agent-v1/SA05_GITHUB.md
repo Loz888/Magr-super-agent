@@ -61,3 +61,5 @@ GitHubRuntime.probe_permissions 是显式服务端只读工程端口，按已选
 Contents API 会跟随某些仓库内符号链接，因此快照不使用 Contents/download_url 获取源码。Broker 从获准 commit 取得 root tree，按有界非递归 tree 逐级核对每个路径分量，仅接受普通目录及100644/100755 blob；120000符号链接、160000子模块、非文件、截断/矛盾 tree 均拒绝，再按精确 blob SHA 读取和核算 Git 对象哈希。最多100个文件、16级路径、128个tree对象，单响应2MiB且总文件字节受 grant 限额。Git 元数据只留在受信 Broker，不把目录树或凭据交给 Worker。
 
 工程回归使用 git hash-object 独立核算对象字节，受控 blob 返回 API 风格多行 base64；不以 Contents 返回 type=file 推断路径不是符号链接。
+
+灰度切换补充：旧CI主动入口的原始 delivery 保存在 proactive_event_claims，原 Trigger 外部ID为 speculation:<uuid>，不能仅靠普通 Trigger 去重。新 Runtime 查询同项目/仓库/原始delivery的原claim，已由旧CI建工时明确拒绝再次建立 Source input。API owner预检和所有旧分支在原 Engine mutex 内线性化；不持有跨外部调用SQL事务。两项真实PG回归（既有claim回切、受控并发切换）修复前2 FAIL已保留。

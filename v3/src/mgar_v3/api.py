@@ -1166,80 +1166,84 @@ def create_app(
     @app.post("/api/v3/webhooks/github", status_code=202)
     async def webhook(request: Request, service: Annotated[Engine, Depends(authority)]) -> Any:
         raw = await request.body()
-        delivery_header = request.headers.get("X-GitHub-Delivery", "")
-        route = GitHubSources(service).legacy_route(raw, delivery_header)
-        if route is not None:
-            source_id, generation, owner = route
-            if owner == "disabled":
-                raise DomainError("INGRESS_DISABLED", "GitHub source is explicitly disabled", 409)
-            if github_runtime is None or github_runtime.source_id != source_id:
-                raise DomainError(
-                    "GITHUB_RUNTIME_NOT_CONFIGURED",
-                    "Gateway owns this repository but its runtime is disabled",
-                    503,
+        # Keep owner preflight and all legacy claim branches linearized with
+        # SourceIngress.configure/submit on the same Engine mutex, without holding
+        # a SQL transaction across local verification or any external operation.
+        with service._mutex:
+            delivery_header = request.headers.get("X-GitHub-Delivery", "")
+            route = GitHubSources(service).legacy_route(raw, delivery_header)
+            if route is not None:
+                source_id, generation, owner = route
+                if owner == "disabled":
+                    raise DomainError("INGRESS_DISABLED", "GitHub source is explicitly disabled", 409)
+                if github_runtime is None or github_runtime.source_id != source_id:
+                    raise DomainError(
+                        "GITHUB_RUNTIME_NOT_CONFIGURED",
+                        "Gateway owns this repository but its runtime is disabled",
+                        503,
+                    )
+                if github_runtime.broker.sources.engine is not service:
+                    raise DomainError(
+                        "GITHUB_ENGINE_MISMATCH", "Runtime must use the unique Engine", 503
+                    )
+                return jsonable_encoder(
+                    github_runtime.receive(TransportEnvelope(dict(request.headers), raw), generation)
                 )
-            if github_runtime.broker.sources.engine is not service:
+            secret = configuration.github_webhook_secret.get_secret_value()
+            verify_github_signature(
+                secret.encode(), raw, request.headers.get("X-Hub-Signature-256", "")
+            )
+            delivery = request.headers.get("X-GitHub-Delivery")
+            if not delivery:
                 raise DomainError(
-                    "GITHUB_ENGINE_MISMATCH", "Runtime must use the unique Engine", 503
+                    "DELIVERY_ID_REQUIRED", "Webhook delivery identifier is required", 400
                 )
-            return jsonable_encoder(
-                github_runtime.receive(TransportEnvelope(dict(request.headers), raw), generation)
-            )
-        secret = configuration.github_webhook_secret.get_secret_value()
-        verify_github_signature(
-            secret.encode(), raw, request.headers.get("X-Hub-Signature-256", "")
-        )
-        delivery = request.headers.get("X-GitHub-Delivery")
-        if not delivery:
-            raise DomainError(
-                "DELIVERY_ID_REQUIRED", "Webhook delivery identifier is required", 400
-            )
-        try:
-            payload = json.loads(raw)
-            if (
-                request.headers.get("X-GitHub-Event") == "workflow_run"
-                and payload.get("action") == "completed"
-                and payload.get("workflow_run", {}).get("conclusion") in {"failure", "timed_out"}
-            ):
-                from mgar_v3.proactivity.domain import ProactiveEvent
+            try:
+                payload = json.loads(raw)
+                if (
+                    request.headers.get("X-GitHub-Event") == "workflow_run"
+                    and payload.get("action") == "completed"
+                    and payload.get("workflow_run", {}).get("conclusion") in {"failure", "timed_out"}
+                ):
+                    from mgar_v3.proactivity.domain import ProactiveEvent
 
-                workflow = payload["workflow_run"]
-                pulls = workflow.get("pull_requests", [])
-                observations = service.proactivity.observe(
-                    ProactiveEvent(
-                        external_event_id=delivery,
-                        repository=payload["repository"]["full_name"],
-                        actor=payload["sender"]["login"],
-                        kind="ci_failure",
-                        issue_number=pulls[0]["number"] if pulls else 1,
-                        source_ref=workflow["head_sha"],
-                        body=str(workflow.get("name", ""))[:8000],
-                    ),
-                    live_permit,
+                    workflow = payload["workflow_run"]
+                    pulls = workflow.get("pull_requests", [])
+                    observations = service.proactivity.observe(
+                        ProactiveEvent(
+                            external_event_id=delivery,
+                            repository=payload["repository"]["full_name"],
+                            actor=payload["sender"]["login"],
+                            kind="ci_failure",
+                            issue_number=pulls[0]["number"] if pulls else 1,
+                            source_ref=workflow["head_sha"],
+                            body=str(workflow.get("name", ""))[:8000],
+                        ),
+                        live_permit,
+                    )
+                    return jsonable_encoder({"status": "observed", "observations": observations})
+                if (
+                    request.headers.get("X-GitHub-Event") != "issue_comment"
+                    or payload.get("action") != "created"
+                ):
+                    return {"status": "ignored", "reason": "unsupported_event"}
+                if "pull_request" in payload["issue"]:
+                    return {"status": "ignored", "reason": "r1_issue_comments_only"}
+                event = TriggerInput(
+                    source="github",
+                    external_event_id=delivery,
+                    project_id=configuration.project_id,
+                    repository=payload["repository"]["full_name"],
+                    issue_number=payload["issue"]["number"],
+                    actor=payload["sender"]["login"],
+                    body=payload["comment"]["body"],
+                    execution_mode="live" if live_permit is not None else "fixture",
                 )
-                return jsonable_encoder({"status": "observed", "observations": observations})
-            if (
-                request.headers.get("X-GitHub-Event") != "issue_comment"
-                or payload.get("action") != "created"
-            ):
-                return {"status": "ignored", "reason": "unsupported_event"}
-            if "pull_request" in payload["issue"]:
-                return {"status": "ignored", "reason": "r1_issue_comments_only"}
-            event = TriggerInput(
-                source="github",
-                external_event_id=delivery,
-                project_id=configuration.project_id,
-                repository=payload["repository"]["full_name"],
-                issue_number=payload["issue"]["number"],
-                actor=payload["sender"]["login"],
-                body=payload["comment"]["body"],
-                execution_mode="live" if live_permit is not None else "fixture",
-            )
-        except (ValueError, KeyError, TypeError, AttributeError) as exc:
-            raise DomainError("INVALID_WEBHOOK", "Webhook payload is invalid", 422) from exc
-        if service.is_own_result(event.repository, event.issue_number, event.body):
-            return {"status": "ignored", "reason": "published_result"}
-        return service.ingest(event, live_permit)
+            except (ValueError, KeyError, TypeError, AttributeError) as exc:
+                raise DomainError("INVALID_WEBHOOK", "Webhook payload is invalid", 422) from exc
+            if service.is_own_result(event.repository, event.issue_number, event.body):
+                return {"status": "ignored", "reason": "published_result"}
+            return service.ingest(event, live_permit)
 
     @app.exception_handler(psycopg.Error)
     async def database_unavailable(request: Request, exc: psycopg.Error) -> JSONResponse:

@@ -17,3 +17,5 @@ GitHub App 的共享 Webhook secret 经原 HMAC-SHA256/constant-time 分支验�
 实际归属确认：Harness 固定提交 79798690c93497d1740d54cc91fc2f755f55f250 第24节。仅只读核对该交接，不导入或修改对方活动树，也不改变 H 系列验收状态。真实平台、完整系统安全、模型、编码、外发/发布与长期运行保持 NOT_RUN。
 
 接收上界与隐私删除分离：受信、已选资源上的编辑/删除不能因 editor 没有 Receive 角色而保留旧正文。未选 editor 只经 SA04 最小事实/失效路径；Runtime 校验策略 actor 不得超过 App 白名单。令牌签发与数据 GET 是两个外部边界，后者重新检查当前快照/历史许可。
+
+灰度切换补充：旧CI主动入口的原始 delivery 保存在 proactive_event_claims，原 Trigger 外部ID为 speculation:<uuid>，不能仅靠普通 Trigger 去重。新 Runtime 查询同项目/仓库/原始delivery的原claim，已由旧CI建工时明确拒绝再次建立 Source input。API owner预检和所有旧分支在原 Engine mutex 内线性化；不持有跨外部调用SQL事务。两项真实PG回归（既有claim回切、受控并发切换）修复前2 FAIL已保留。

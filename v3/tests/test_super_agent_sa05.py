@@ -938,3 +938,115 @@ def test_published_github_schemas_samples_and_manifest_are_frozen():
     samples = json.loads((ROOT / "fixtures/super-agent-v1/github-v1/recordings.json").read_text())
     assert samples["mode"] == "SYNTHETIC_CONTROLLED_NOT_PLATFORM_CAPTURE"
     assert len(samples["deliveries"]) == 8
+
+
+def legacy_ci_policy(env):
+    from mgar_v3.proactivity.domain import Activation, Policy
+
+    policy = Policy(
+        repository=env.engine.settings.repository,
+        issue_number=7,
+        kinds=["ci_failure"],
+        allowed_actors=["MiXeD-Login"],
+        source_ref=HEAD,
+        question="Synthetic legacy CI investigation",
+        expires_at=datetime.now(UTC) + timedelta(minutes=30),
+    )
+    env.engine.proactivity.create(policy, "owner")
+    env.engine.proactivity.activate(
+        Activation(policy_hash=policy.policy_hash, mode="auto"), "owner"
+    )
+    env.engine.source_ingress.configure(
+        env.cookie,
+        env.source_id,
+        IngressConfigure(
+            expected_generation=1,
+            settings=env.control.model_copy(update={"owner": "legacy"}),
+            review_ref="test-legacy-first",
+        ),
+    )
+
+
+def legacy_ci_client(env):
+    from pydantic import SecretStr
+
+    settings = env.engine.settings.model_copy(
+        update={"github_webhook_secret": SecretStr(KEY.decode())}
+    )
+    return TestClient(
+        create_app(settings, env.engine, run_background=False, github_runtime=env.runtime),
+        base_url=ORIGIN,
+    )
+
+
+def test_old_workflow_claim_cannot_become_a_new_gateway_business_input(env):
+    legacy_ci_policy(env)
+    candidate = signed(payload("workflow_run"), "workflow_run", delivery="old-workflow-claim")
+    with legacy_ci_client(env) as client:
+        old = client.post(
+            "/api/v3/webhooks/github", content=candidate.payload, headers=candidate.headers
+        )
+        assert old.status_code == 202 and old.json()["observations"][0]["decision"] == "started"
+    env.engine.source_ingress.configure(
+        env.cookie,
+        env.source_id,
+        IngressConfigure(
+            expected_generation=2, settings=env.control, review_ref="switch-after-old-claim"
+        ),
+    )
+    with pytest.raises(DomainError) as exc:
+        env.runtime.receive(candidate, 3)
+    assert exc.value.code == "GITHUB_DELIVERY_ALREADY_LEGACY"
+    with env.engine.transaction() as conn:
+        assert conn.execute("SELECT count(*) AS n FROM app.runs").fetchone()["n"] == 1
+        assert (
+            conn.execute("SELECT count(*) AS n FROM app.source_ingress_inputs").fetchone()["n"] == 0
+        )
+
+
+def test_workflow_owner_switch_cannot_interleave_old_dispatch_claim(env, monkeypatch):
+    from threading import Event
+
+    legacy_ci_policy(env)
+    entered, release, switched = Event(), Event(), Event()
+    observe = env.engine.proactivity.observe
+
+    def paused(event, permit=None):
+        entered.set()
+        assert release.wait(5)
+        return observe(event, permit)
+
+    monkeypatch.setattr(env.engine.proactivity, "observe", paused)
+    candidate = signed(payload("workflow_run"), "workflow_run", delivery="atomic-owner")
+
+    def old():
+        with legacy_ci_client(env) as client:
+            return client.post(
+                "/api/v3/webhooks/github", content=candidate.payload, headers=candidate.headers
+            )
+
+    def switch():
+        env.engine.source_ingress.configure(
+            env.cookie,
+            env.source_id,
+            IngressConfigure(
+                expected_generation=2, settings=env.control, review_ref="concurrent-owner-switch"
+            ),
+        )
+        switched.set()
+
+    with ThreadPoolExecutor(max_workers=2) as pool:
+        first = pool.submit(old)
+        assert entered.wait(5)
+        second = pool.submit(switch)
+        try:
+            assert not switched.wait(0.1), (
+                "owner changed between legacy preflight and old workflow claim"
+            )
+        finally:
+            release.set()
+        assert first.result().status_code == 202
+        second.result()
+    with pytest.raises(DomainError) as exc:
+        env.runtime.receive(candidate, 3)
+    assert exc.value.code == "GITHUB_DELIVERY_ALREADY_LEGACY"

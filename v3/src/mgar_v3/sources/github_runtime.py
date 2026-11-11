@@ -37,6 +37,24 @@ class GitHubRuntime:
         # roles are still a separate authenticated owner's decision.
         subject = adapter.verify_identity(instance, envelope)
         with sources.engine.transaction() as conn:
+            legacy = conn.execute(
+                "SELECT 1 FROM app.proactive_event_claims WHERE project_id=%s "
+                "AND repository=%s AND external_event_id=%s",
+                (
+                    instance.project_id,
+                    settings.repository.full_name.lower(),
+                    subject.remote_event_id,
+                ),
+            ).fetchone()
+        if legacy is not None:
+            # Old workflow uses speculation:<uuid> Trigger IDs, not delivery IDs.
+            # Its durable claim, rather than a guessed Issue/body, owns this event.
+            raise DomainError(
+                "GITHUB_DELIVERY_ALREADY_LEGACY",
+                "Delivery already created work through the legacy CI claim",
+                409,
+            )
+        with sources.engine.transaction() as conn:
             exists = conn.execute(
                 "SELECT 1 FROM app.source_identity_evidence WHERE source_instance_id=%s "
                 "AND remote_event_id=%s",
