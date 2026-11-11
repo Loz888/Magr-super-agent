@@ -1,3 +1,9 @@
+# SAV1-05 历史补拉修复工程通过，等待独立复验
+
+实现 cf7c17662f262b52e04cf835fdcdb0c9e6fb901f；源码 890e475b2089ed516e2cabe01dd59928bb25f23b971c1faaf04f657ed8977b47，完整注册566 PASS（79+44+23+420），0 failure/error/skip；本次原独立3项和此前10项原样重跑全通过，lint/typecheck 222 files PASS。注册结果 evidence/SAV1-05/20261111T054311Z-1df918b3/result.json 由原评分器真实生成，前后指纹一致。详见 SA05_HISTORY_REPAIR_20261111.md、accept/SAV1-05/history-repair-20261111.json。
+
+原0548a0f候选的3项独立历史FAIL及本轮修复前失败保留；修复方重跑不是独立放行。SA05仍IN_PROGRESS、SA06仍PLANNED。通用fingerprint/旧测试/迁移0001–0034/schema/评分器不变，无Engine/API/预算/Harness改动，无真实API/模型/外发/发布。完整系统安全及所有live/长期门NOT_RUN。以下均为历史记录。
+
 # SAV1-05 历史补拉独立失败修复中
 
 0548a0f/cc1756b 的543项及原10项虽通过，独立新增3项历史边界全部FAIL；本轮原样复现3 FAIL，正式23项修复前15 FAIL/8 PASS均保留。原验收字节级存档 accept/SAV1-05/history/0548a0f-accept.json。下方工程PASS均为历史快照，不能覆盖该独立结论。

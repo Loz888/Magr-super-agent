@@ -1,11 +1,219 @@
 {
   "card": "SAV1-05",
-  "status": "INDEPENDENT_FAIL_HISTORY_REPAIR_IN_PROGRESS",
+  "status": "ENGINEERING_PASS_PENDING_INDEPENDENT_REVIEW",
+  "recorded_at_utc": "2026-11-11T06:02:10.153179+00:00",
   "baseline_commit": "0548a0f34de8e80b6d0a26002f3540d2a27cb12d",
-  "prior_acceptance": "history/0548a0f-accept.json",
-  "independent_review": ".local/review-sa05-repair-independent-20261111T050333Z/review-result.json",
+  "source_commit": "cf7c17662f262b52e04cf835fdcdb0c9e6fb901f",
+  "source_sha256": "890e475b2089ed516e2cabe01dd59928bb25f23b971c1faaf04f657ed8977b47",
+  "finished_source_sha256": "890e475b2089ed516e2cabe01dd59928bb25f23b971c1faaf04f657ed8977b47",
+  "findings": [
+    "SA05-RR01",
+    "SA05-RR02"
+  ],
+  "scope": "Private GitHub normalization/read broker/history only; generic fingerprint, Engine/API/DTO/schema/migration/budget/ToolAuthority/Harness unchanged",
+  "dependency": {
+    "SA04": "user-confirmed independent PASS unchanged"
+  },
+  "ownership": {
+    "new_shared_overlap": false,
+    "existing_confirmation": "79798690 section24 and a04dbde section17; no new migration or peer confirmation claimed"
+  },
   "reading": "evidence/super-agent-v1/SAV1-05/20261111T053624Z-history-repair-start/taskbook-read.json",
-  "regression": "23 PASS; unmodified current independent tests 3 PASS; full fixed-commit registered verification pending",
-  "next_card": "SA06 NOT_STARTED; await independent acceptance",
-  "real_platform_gate": "NOT_RUN"
+  "prior_acceptance": "history/0548a0f-accept.json",
+  "prior_independent_review": ".local/review-sa05-repair-independent-20261111T050333Z/review-result.json",
+  "prior_independent_result": "FAIL: original543/10/static passed, new3 history failed; retained unchanged",
+  "registered_verification": "evidence/SAV1-05/20261111T054311Z-1df918b3/result.json",
+  "registered_commands": "evidence/super-agent-v1/SAV1-05/20261111T054311Z-history-repair-registered/commands.json",
+  "counts": {
+    "tests": 566,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "sa05_case_counts": {
+    "test_super_agent_sa05": 79,
+    "test_super_agent_sa05_repair": 44,
+    "test_super_agent_sa05_history_repair": 23
+  },
+  "prior_cases": 420,
+  "static_evidence": "evidence/super-agent-v1/SAV1-05/20261111T054112Z-history-repair-static/commands.json",
+  "static": [
+    {
+      "name": "lint",
+      "argv": [
+        "make",
+        "lint"
+      ],
+      "exit_code": 0,
+      "log": "evidence/super-agent-v1/SAV1-05/20261111T054112Z-history-repair-static/lint.log"
+    },
+    {
+      "name": "typecheck",
+      "argv": [
+        "make",
+        "typecheck"
+      ],
+      "exit_code": 0,
+      "log": "evidence/super-agent-v1/SAV1-05/20261111T054112Z-history-repair-static/typecheck.log"
+    }
+  ],
+  "typechecked_source_files": 222,
+  "history_regression": "evidence/super-agent-v1/SAV1-05/20261111T054017Z-history-repair-regression/commands.json",
+  "independent_probes_repair_agent_reruns": {
+    "current_3": "evidence/super-agent-v1/SAV1-05/20261111T054108Z-history-repair-review/commands.json",
+    "prior_10": "evidence/super-agent-v1/SAV1-05/20261111T054111Z-history-repair-prior/commands.json",
+    "status": "PASS; not independent re-review"
+  },
+  "retained_failure_evidence": [
+    ".local/review-sa05-repair-independent-20261111T050333Z",
+    "evidence/super-agent-v1/SAV1-05/20261111T053625Z-history-repair-baseline/commands.json",
+    "evidence/super-agent-v1/SAV1-05/20261111T053811Z-history-repair-regression/commands.json",
+    "evidence/super-agent-v1/SAV1-05/20261111T053624Z-history-repair-start/initial-format-attempt.json",
+    "history/0548a0f-accept.json"
+  ],
+  "compatibility": "evidence/super-agent-v1/SAV1-05/20261111T053624Z-history-repair-start/compatibility-before.json",
+  "independent_tests_integrity": "evidence/super-agent-v1/SAV1-05/20261111T053624Z-history-repair-start/independent-tests-integrity.json",
+  "post_verification_integrity": "evidence/super-agent-v1/SAV1-05/20261111T053624Z-history-repair-start/post-verification-integrity.json",
+  "persistent_pg": "evidence/super-agent-v1/SAV1-05/20261111T053624Z-history-repair-start/persistent-pg.json",
+  "gates": {
+    "engineering_gate": "PASS",
+    "policy_security_gate": "NOT_RUN",
+    "live_source_channel_gate": "NOT_RUN",
+    "live_coding_gate": "NOT_RUN",
+    "live_publication_gate": "NOT_RUN",
+    "continuous_operation_gate": "NOT_RUN"
+  },
+  "card_policy_negative_matrix": "PASS; no full-system security PASS",
+  "new_paid_calls": 0,
+  "new_real_platform_api_calls": 0,
+  "new_external_business_writes": 0,
+  "listener": "NOT_STARTED",
+  "h_series": "OUT_OF_SCOPE; no work or active imports",
+  "next_card": "SA06 NOT_STARTED; wait for independent acceptance",
+  "report": "docs/super-agent-v1/SA05_HISTORY_REPAIR_20261111.md",
+  "limits": [
+    "No strict native order; sticky ambiguity retained",
+    "Bounded current comments only, no complete delete/edit/CI replay",
+    "Synthetic MockTransport is not real platform scope/reliability evidence",
+    "Pre-release create proof fingerprint correction; old sealed synthetic receipt contradictions fail closed",
+    "No true model/Worker/data-egress/publication/long-run gates enabled"
+  ],
+  "artifacts": [
+    {
+      "path": "config/source-github-v1.json",
+      "sha256": "77982bc4faece7ec64ec155bdc8689aa9f081a3bd667bba165a8560b1fccb0a9"
+    },
+    {
+      "path": "config/source-ingress-v1.json",
+      "sha256": "5bdcdb02714ce24f700b3026312ca2cac31a4842e8c9b58fffebc415a437cf8f"
+    },
+    {
+      "path": "config/verification.json",
+      "sha256": "a4fe77939705c645bd0154f8eabc781114e04ad27e7f19e9ae135cf231be3fa2"
+    },
+    {
+      "path": "docs/super-agent-v1/HARNESS_SA05_HANDOFF.md",
+      "sha256": "fd8664e237317cf40f90cb967b3dcf99692693ba7907237400af7e511b8cbbdf"
+    },
+    {
+      "path": "docs/super-agent-v1/SA05_GITHUB.md",
+      "sha256": "f77bc422e9aaf1db349e6eb6d49aa145fa1f79da7a8e0267d4e64f3072fe8b9a"
+    },
+    {
+      "path": "docs/super-agent-v1/SA05_HISTORY_REPAIR_20261111.md",
+      "sha256": "12187e4ea0b9845c96520b798bb8ff21948229cf46e443e6c7fe9e72c1cd9c5a"
+    },
+    {
+      "path": "docs/super-agent-v1/SA05_REPAIR_20261111.md",
+      "sha256": "d310862c369e811a6ab75106f7608c38c488ca9c1e219e9046298a2150842634"
+    },
+    {
+      "path": "docs/super-agent-v1/adr/SAV1-05-github-app-read-broker.md",
+      "sha256": "a4b6a0c9aed2ba5068aecf81a768f786f5eb0b3f72006c60f03d8a9db83dd0f0"
+    },
+    {
+      "path": "fixtures/super-agent-v1/github-v1/recordings.json",
+      "sha256": "bcda71f5124ce149f197e6f5ca27496c17776e146ba73a1204e094e239cc9b73"
+    },
+    {
+      "path": "migrations/0034_github_app.sql",
+      "sha256": "327ab8d0892410527892bd588e504f548e8898630b8207a388b36bc357b21c96"
+    },
+    {
+      "path": "schemas/super-agent-v1/github-configure-v1.schema.json",
+      "sha256": "5147ead14884091c6d1d44543c85b6f5b0834816c39a269938cd720a22810fb2"
+    },
+    {
+      "path": "schemas/super-agent-v1/github-resource-v1.schema.json",
+      "sha256": "fdeb9ee404fb7295ac18a1078638b0d064f34165ef2e2c98506c0312968263fa"
+    },
+    {
+      "path": "schemas/super-agent-v1/github-revoke-v1.schema.json",
+      "sha256": "c2a8a906242cc1bb85439d98260673917bc41e036d4671b777a64cb14e221380"
+    },
+    {
+      "path": "schemas/super-agent-v1/github-settings-v1.schema.json",
+      "sha256": "657fb5a03a14ea1b30616be0084a5739d448815938a6f29086ac87d8094b42e2"
+    },
+    {
+      "path": "schemas/super-agent-v1/github-snapshot-grant-v1.schema.json",
+      "sha256": "549f6caca23848559492100edced6a48d037d94fd86fb0fa1a38864cc4ec5a59"
+    },
+    {
+      "path": "schemas/super-agent-v1/github-snapshot-save-v1.schema.json",
+      "sha256": "12d3a0a78dfaf461c71ed2a7d765bb9fbd6b434a50636a7d8a30d87b3ef5274d"
+    },
+    {
+      "path": "src/mgar_v3/api.py",
+      "sha256": "4d84f79bb8e2b0b0eaf8d00ab374e96ce68e6c828e73443e4167b1f88718758f"
+    },
+    {
+      "path": "src/mgar_v3/sources/github.py",
+      "sha256": "3be75c5dc0a7091c8450e6a34c8d49802f052a7855ef8771fd11a14139827f26"
+    },
+    {
+      "path": "src/mgar_v3/sources/github_api.py",
+      "sha256": "2ac53e29ed16bb929417606f623c14a60b3857c135aa992798d77c501f8bd839"
+    },
+    {
+      "path": "src/mgar_v3/sources/github_auth.py",
+      "sha256": "178e8ec59bf3fa77765b555408c3d6dc680bc2e7a1d38c059b7112db952366a0"
+    },
+    {
+      "path": "src/mgar_v3/sources/github_broker.py",
+      "sha256": "5c203ee62545fa42365a3d07586aaec83922c9831a968f55345c07a97595c817"
+    },
+    {
+      "path": "src/mgar_v3/sources/github_domain.py",
+      "sha256": "d4b8f86ccc69fc8c726863849542df95a34afb363cdeac30856380e24a464a55"
+    },
+    {
+      "path": "src/mgar_v3/sources/github_runtime.py",
+      "sha256": "3acd83070a54c62fcd57d3bddcb8c0ade8ae6fc4b72d4b2dff9400aca8f4c7df"
+    },
+    {
+      "path": "src/mgar_v3/sources/github_store.py",
+      "sha256": "a795cb92d59e9e4b1fa288d4ba5afa9d3faed22039967456d484be38aecc1b7a"
+    },
+    {
+      "path": "src/mgar_v3/sources/ingress.py",
+      "sha256": "a5bb827227c65e44d0e51b34ac5253566b337b7076bfe2879e0fe07549e57c19"
+    },
+    {
+      "path": "tests/sa05_support.py",
+      "sha256": "c477a6cc232b47e3e2c8d154e53e896fb74eab8a30b114e83c4cce7718c0f6c1"
+    },
+    {
+      "path": "tests/test_super_agent_sa05.py",
+      "sha256": "392a4ddd73eaac6184fd11f82fb00f9eeacc692c492bc4897c1d74c80726399b"
+    },
+    {
+      "path": "tests/test_super_agent_sa05_history_repair.py",
+      "sha256": "dd5340f17b995104a3961f461d68174d3333e7a7ca8c1e5c79d863a63562cec3"
+    },
+    {
+      "path": "tests/test_super_agent_sa05_repair.py",
+      "sha256": "2e5dd42ac39bc34899b9e0144034950def6621038fd1a188bf0cfc369062c79d"
+    }
+  ]
 }

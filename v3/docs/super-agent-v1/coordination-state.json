@@ -225,17 +225,20 @@
     "budget_toolauthority_harness": "unchanged"
   },
   "sa05_reading": "evidence/super-agent-v1/SAV1-05/20261111T022923Z-start/taskbook-read.json",
-  "sa05_source_commit": "cc1756bfc333ba9204761a6dde6875f0124bcd0b",
-  "sa05_verification": "evidence/SAV1-05/20261111T043250Z-2a80700f/result.json",
+  "sa05_source_commit": "cf7c17662f262b52e04cf835fdcdb0c9e6fb901f",
+  "sa05_verification": "evidence/SAV1-05/20261111T054311Z-1df918b3/result.json",
   "sa05_counts": {
-    "tests": 543,
+    "tests": 566,
     "failures": 0,
     "errors": 0,
     "skipped": 0
   },
   "sa05_completion_handoff": "Document prepared only; no new message sent or acknowledged",
-  "sa05_independent_review": "Prior 4ecac50 FAIL; repair engineering PASS pending independent re-review",
+  "sa05_independent_review": "0548a0f history independent FAIL retained; RR01/RR02 engineering PASS pending independent review",
   "sa05_repair_reading": "evidence/super-agent-v1/SAV1-05/20261111T041740Z-repair-start/taskbook-read.json",
   "sa05_repair_report": "docs/super-agent-v1/SA05_REPAIR_20261111.md",
-  "sa05_repair_scope": "Private Sources only; no new shared ownership overlap, migration or Harness work"
+  "sa05_repair_scope": "Private Sources only; no new shared ownership overlap, migration or Harness work",
+  "sa05_history_reading": "evidence/super-agent-v1/SAV1-05/20261111T053624Z-history-repair-start/taskbook-read.json",
+  "sa05_history_report": "docs/super-agent-v1/SA05_HISTORY_REPAIR_20261111.md",
+  "sa05_history_scope": "Private GitHub sources only; no new shared overlap, migration or Harness work"
 }

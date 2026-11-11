@@ -138,7 +138,7 @@
       "card": "TASKS.md#sa05",
       "verification_target_on_implementation": "SAV1-05",
       "acceptance": "accept/SAV1-05/accept.json",
-      "independent_review": "0548a0f independent FAIL (3 history cases); RR01/RR02 repair in progress; SA06 remains PLANNED"
+      "independent_review": "0548a0f history independent FAIL retained; cf7c176 repair engineering566 PASS pending independent re-review; SA06 remains PLANNED"
     },
     {
       "id": "SAV1-06",
