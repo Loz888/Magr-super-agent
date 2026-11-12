@@ -1,0 +1,22 @@
+{
+  "utc": "2026-11-12T11:31:40.994978+00:00",
+  "type": "ACTUALLY_CONFIRMED_AND_APPLIED",
+  "files": [
+    "v3/docs/super-agent-v1/sa09-proposal/shared-wiring.patch",
+    "v3/docs/super-agent-v1/sa09-proposal/ownership-request-draft.txt"
+  ],
+  "patch_sha256": "73b28025f6b92d415aa2347c28e1c8959ee749c966f6e8d5e0a71ff88c445e1b",
+  "source_bases": {
+    "v3/src/mgar_v3/routing/store.py": "269065657c06983e90ed49b5e2fc225e4c772889b2b06589df0fe1d63fc13940",
+    "v3/src/mgar_v3/routing/worker.py": "1c0932e5c76ee92db2ec9d67796bb4102852665bba9d897b7a8919c17594b98a",
+    "v3/src/mgar_v3/coordination/engine.py": "8afb0a7bc46f467b93fe2ed0775a13354b9dc4ffe329fcc0fdfc43474c309f42",
+    "v3/src/mgar_v3/api.py": "26090478478ae94c1a41c33543758115387458c630821dd11fee2fa10d800c6b"
+  },
+  "formal_sources_untouched": false,
+  "checks": "NOT_RUN; draft generation only",
+  "note": "Proposal lines wrapped and blank context normalized by text generation only. No application, collection, lint, typecheck or test command run.",
+  "applied_at_utc": "2026-11-12T11:46:45.785478+00:00",
+  "ownership_commit": "0e0adc6a5bb5a7e0c3a3c8323e33513e4b911d84",
+  "ownership_section": 32,
+  "application_checks": "git apply --check followed by git apply exit0; runtime verification pending"
+}

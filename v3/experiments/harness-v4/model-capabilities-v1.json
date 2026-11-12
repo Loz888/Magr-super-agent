@@ -1,0 +1,54 @@
+{
+  "schema": "mgar-harness-model-capabilities-v1",
+  "version": "harness-model-v1",
+  "status": "FROZEN",
+  "default_provider": "deepseek",
+  "providers": {
+    "deepseek": {
+      "protocol": "openai-chat-sse",
+      "model_id": "deepseek-chat",
+      "context_tokens": 131072,
+      "max_output_tokens": 8192,
+      "supports_tools": true,
+      "supports_parallel_tools": true,
+      "supports_streaming": true,
+      "supports_structured_output": true,
+      "tokenizer": "conservative-chars-div-4",
+      "price": {
+        "version": "deepseek-2026-11",
+        "input_micros_per_million": 300000,
+        "output_micros_per_million": 1200000
+      }
+    },
+    "anthropic": {
+      "protocol": "anthropic-messages-sse",
+      "model_id": "claude-sonnet-4-5",
+      "context_tokens": 200000,
+      "max_output_tokens": 8192,
+      "supports_tools": true,
+      "supports_parallel_tools": true,
+      "supports_streaming": true,
+      "supports_structured_output": true,
+      "tokenizer": "conservative-chars-div-4",
+      "price": {
+        "version": "anthropic-2026-11",
+        "input_micros_per_million": 3000000,
+        "output_micros_per_million": 15000000
+      }
+    }
+  },
+  "policies": {
+    "version_freeze": "one request freezes model_id, provider and price.version; switching requires a later explicit turn",
+    "retry": "only known pre-send or explicit 429/5xx rejection may retry once; unknown or missing usage is never re-sent or switched",
+    "usage_missing": "usage.known=false; runtime mark_unknown keeps the reservation and does not settle 0",
+    "context_guard": "estimate_tokens(messages+tools)+1024+max_output_tokens must fit context_tokens before any request",
+    "cache": "only known successful responses are cached; cache hits settle zero cost and are marked cached=true",
+    "tool_arguments": "tool argument JSON is assembled from deltas; invalid or interrupted arguments become finish_reason=error or UnknownModelOutcome",
+    "cancellation": "checked before the request and between SSE chunks; no partial response is accepted"
+  },
+  "evidence": {
+    "controlled_protocol": "PASS",
+    "real_provider": "NOT_RUN_NO_AUTHORIZED_PAID_CALL",
+    "live_model_gate": "NOT_RUN"
+  }
+}

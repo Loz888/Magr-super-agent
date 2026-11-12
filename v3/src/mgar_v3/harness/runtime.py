@@ -8,7 +8,6 @@ replaces the adapters, not the order.
 
 from __future__ import annotations
 
-import json
 from collections.abc import Sequence
 from typing import Any, cast
 
@@ -156,9 +155,24 @@ class HarnessRuntime:
                 self.budgets.mark_unknown(reservation.reservation_id, str(exc))
                 self._emit(task, "model_unknown", revision, {"code": exc.code})
                 return self._finish(task, "unknown", "Model outcome is unknown")
-            except DomainError:
+            except DomainError as exc:
                 self.budgets.release(reservation.reservation_id)
+                if exc.code == "HARNESS_CANCELLED":
+                    return self._finish(task, "cancelled", "Cancelled during the model step")
                 raise
+            if not response.usage.known:
+                self.budgets.mark_unknown(
+                    reservation.reservation_id, "Model usage is unavailable"
+                )
+                self._emit(
+                    task,
+                    "model_unknown",
+                    revision,
+                    {"code": "MODEL_USAGE_UNKNOWN"},
+                )
+                return self._finish(
+                    task, "unknown", "Model usage is unavailable; reservation retained"
+                )
             self.budgets.settle(
                 reservation.reservation_id,
                 actual_micros=response.usage.cost_micros,
@@ -173,11 +187,23 @@ class HarnessRuntime:
                     "finish_reason": response.finish_reason,
                     "tool_calls": len(response.tool_calls),
                     "cost_micros": response.usage.cost_micros,
+                    "cached": response.cached,
                 },
             )
             if token.cancelled or response.finish_reason == "cancelled":
                 return self._finish(task, "cancelled", "Cancelled during the model step")
+            if response.finish_reason in {"length", "error"}:
+                # Failed or truncated responses may still carry proposed tool
+                # calls and authoritative usage. The usage was settled above,
+                # but no proposal is executable without an authoritative
+                # "tool_calls" completion signal.
+                suffix = f":{response.error_code}" if response.error_code else ""
+                unresolved = [f"model:{response.finish_reason}{suffix}"]
+                break
             if response.tool_calls:
+                if response.finish_reason != "tool_calls":
+                    unresolved = ["model:tool_calls_without_authoritative_finish"]
+                    break
                 denied, executed = self._dispatch_tools(
                     task,
                     grant,
@@ -192,9 +218,6 @@ class HarnessRuntime:
                 if denied is not None:
                     return denied
                 continue
-            if response.finish_reason in {"length", "error"}:
-                unresolved = [f"model:{response.finish_reason}"]
-                break
             verification = self.verifier.verify(
                 VerificationRequest(
                     task=task,
@@ -257,6 +280,13 @@ class HarnessRuntime:
         declared: dict[str, ToolSpec],
     ) -> tuple[HarnessResult | None, int]:
         executed = 0
+        history.append(
+            ModelMessage(
+                role="assistant",
+                content=response.text,
+                tool_calls=response.tool_calls,
+            )
+        )
         for index, call in enumerate(response.tool_calls):
             if token.cancelled:
                 return self._finish(task, "cancelled", "Cancelled before the tool call"), executed
@@ -309,12 +339,6 @@ class HarnessRuntime:
                     executed,
                 )
             self._collect_receipt(result, receipts)
-            history.append(
-                ModelMessage(
-                    role="assistant",
-                    content=f"tool_call {call.name} {json.dumps(call.arguments, sort_keys=True)}",
-                )
-            )
             history.append(
                 ModelMessage(
                     role="tool",

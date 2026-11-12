@@ -56,6 +56,7 @@ from mgar_v3.sources.ports import TransportEnvelope
 from mgar_v3.super_agent.budget_api import register as register_project_budgets
 from mgar_v3.super_agent.fast_path_api import register as register_source_fast_path
 from mgar_v3.super_agent.policy_api import register as register_source_policies
+from mgar_v3.super_agent.source_eval_api import register as register_source_eval
 from mgar_v3.web_access import (
     SESSION_COOKIE,
     SESSION_SECONDS,
@@ -1278,6 +1279,7 @@ def create_app(
     register_source_policies(app, authority, browser_user)
     register_project_budgets(app, authority, browser_user)
     register_source_fast_path(app, authority, browser_user)
+    register_source_eval(app, authority, browser_user)
     register(app, authority, authenticated)
     register_commerce(app, authority, authenticated)
     register_recovery(app, configuration, authority, authenticated)

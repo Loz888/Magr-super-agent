@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-12T11:07:06.032551+00:00",
+  "updated_at": "2026-11-12T12:47:52.178601+00:00",
   "user_instruction": "Codex owns Super-Agent; local Trae owns Harness; coordination is authorized.",
   "owners": {
     "super_agent": {
@@ -15,7 +15,7 @@
   },
   "active_super_agent_card": "SAV1-09",
   "card_status": "IN_PROGRESS",
-  "work_state": "SA09_DEPENDENCY_AND_INTERFACE_REVIEW",
+  "work_state": "SA09_IMPLEMENTED_COMPONENT_VERIFICATION_COMPLETE_PENDING_INITIAL_REGISTRY",
   "harness_observation": {
     "head": "de4775e22e96718e880fde287b2e0928db2945e3",
     "h00_owner_reported_status": "PASS",
@@ -337,5 +337,12 @@
   "sa08_current_registry_cases": 1361,
   "sa08_completion_handoff": "HARNESS_SA08_HANDOFF.md prepared locally only; no new message sent or acknowledgement claimed",
   "sa08_independent_closure": "docs/super-agent-v1/accept/SAV1-08/independent-closure-20261112.json",
-  "sa09_ownership": "NOT_YET_COORDINATED; SA08 section31 is not SA09 ownership"
+  "sa09_ownership": {
+    "status": "ACTUALLY_ACKNOWLEDGED_FIXED_COMMIT",
+    "commit": "0e0adc6a5bb5a7e0c3a3c8323e33513e4b911d84",
+    "section": 32,
+    "evidence": "evidence/super-agent-v1/SAV1-09/start-20261112T110706Z-588a9f55/ownership-confirmation.json"
+  },
+  "sa09_h02_integration": "Fixed169925f6blobs; H02/H01/H00 initial58PASS; no H12",
+  "sa09_registered_verification": "NOT_RUN; preparing final corpus and initial frozen registry"
 }

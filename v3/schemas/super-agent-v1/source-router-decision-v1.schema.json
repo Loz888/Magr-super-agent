@@ -1,0 +1,194 @@
+{
+  "$defs": {
+    "SourceTargetRef": {
+      "additionalProperties": false,
+      "properties": {
+        "ticket_id": {
+          "format": "uuid",
+          "title": "Ticket Id",
+          "type": "string"
+        },
+        "run_id": {
+          "format": "uuid",
+          "title": "Run Id",
+          "type": "string"
+        },
+        "thread_id": {
+          "format": "uuid",
+          "title": "Thread Id",
+          "type": "string"
+        },
+        "thread_revision": {
+          "maximum": 9223372036854775807,
+          "minimum": 1,
+          "title": "Thread Revision",
+          "type": "integer"
+        },
+        "execution_epoch": {
+          "maximum": 9223372036854775807,
+          "minimum": 0,
+          "title": "Execution Epoch",
+          "type": "integer"
+        },
+        "mandate_id": {
+          "format": "uuid",
+          "title": "Mandate Id",
+          "type": "string"
+        },
+        "mandate_sha256": {
+          "pattern": "^[a-f0-9]{64}$",
+          "title": "Mandate Sha256",
+          "type": "string"
+        },
+        "project_id": {
+          "maxLength": 100,
+          "minLength": 1,
+          "title": "Project Id",
+          "type": "string"
+        },
+        "repository": {
+          "pattern": "^[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+$",
+          "title": "Repository",
+          "type": "string"
+        },
+        "allowed": {
+          "title": "Allowed",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "ticket_id",
+        "run_id",
+        "thread_id",
+        "thread_revision",
+        "execution_epoch",
+        "mandate_id",
+        "mandate_sha256",
+        "project_id",
+        "repository",
+        "allowed"
+      ],
+      "title": "SourceTargetRef",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": "source-router-decision-v1",
+      "default": "source-router-decision-v1",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "decision_key": {
+      "pattern": "^[a-f0-9]{64}$",
+      "title": "Decision Key",
+      "type": "string"
+    },
+    "batch_id": {
+      "format": "uuid",
+      "title": "Batch Id",
+      "type": "string"
+    },
+    "group_id": {
+      "format": "uuid",
+      "title": "Group Id",
+      "type": "string"
+    },
+    "snapshot_sha256": {
+      "pattern": "^[a-f0-9]{64}$",
+      "title": "Snapshot Sha256",
+      "type": "string"
+    },
+    "fast_batch_id": {
+      "format": "uuid",
+      "title": "Fast Batch Id",
+      "type": "string"
+    },
+    "fast_batch_revision": {
+      "maximum": 9223372036854775807,
+      "minimum": 1,
+      "title": "Fast Batch Revision",
+      "type": "integer"
+    },
+    "input_ids": {
+      "items": {
+        "format": "uuid",
+        "type": "string"
+      },
+      "maxItems": 16,
+      "minItems": 1,
+      "title": "Input Ids",
+      "type": "array"
+    },
+    "input_version_fingerprints": {
+      "items": {
+        "pattern": "^[a-f0-9]{64}$",
+        "type": "string"
+      },
+      "maxItems": 16,
+      "minItems": 1,
+      "title": "Input Version Fingerprints",
+      "type": "array"
+    },
+    "intended_action": {
+      "enum": [
+        "would_ignore",
+        "would_observe",
+        "would_attach",
+        "would_create",
+        "would_ask"
+      ],
+      "title": "Intended Action",
+      "type": "string"
+    },
+    "reason_code": {
+      "enum": [
+        "IRRELEVANT",
+        "CONTEXT",
+        "EXISTING_TASK",
+        "ACTIONABLE",
+        "NEEDS_CONTEXT"
+      ],
+      "title": "Reason Code",
+      "type": "string"
+    },
+    "target": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/SourceTargetRef"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "expires_at": {
+      "format": "date-time",
+      "title": "Expires At",
+      "type": "string"
+    },
+    "eligible_for_execution": {
+      "const": false,
+      "default": false,
+      "title": "Eligible For Execution",
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "decision_key",
+    "batch_id",
+    "group_id",
+    "snapshot_sha256",
+    "fast_batch_id",
+    "fast_batch_revision",
+    "input_ids",
+    "input_version_fingerprints",
+    "intended_action",
+    "reason_code",
+    "expires_at"
+  ],
+  "title": "SourceDecision",
+  "type": "object"
+}

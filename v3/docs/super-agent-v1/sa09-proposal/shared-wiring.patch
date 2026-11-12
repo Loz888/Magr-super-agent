@@ -1,0 +1,239 @@
+--- a/v3/src/mgar_v3/routing/store.py
++++ b/v3/src/mgar_v3/routing/store.py
+@@ -54,6 +54,17 @@
+             "INSERT INTO app.router_audit(batch_id,kind,reason_code,details) VALUES (%s,%s,%s,%s)",
+             (batch_id, kind, reason, Jsonb(plain(details))),
+         )
++
++    @staticmethod
++    def _legacy_batch(batch: "Row") -> None:
++        snapshot = batch.get("snapshot")
++        if (
++            isinstance(snapshot, dict)
++            and snapshot.get("schema_version") == "source-router-snapshot-v1"
++        ):
++            raise DomainError(
++                "ROUTER_PIPELINE_MISMATCH", "Use the Source evaluation pipeline", 409
++            )
+
+     def _rows(
+         self,
+@@ -161,8 +172,10 @@
+         s = self.engine.settings
+         with self.engine.transaction() as conn:
+             prior = conn.execute(
+-                "SELECT * FROM app.router_batches WHERE project_id=%s AND mode=%s AND status "
+-                "IN ('prepared','ready','model_running') AND (expires_at>now() OR "
++                "SELECT * FROM app.router_batches WHERE project_id=%s AND mode=%s "
++                "AND (snapshot->>'schema_version') IS DISTINCT FROM "
++                "'source-router-snapshot-v1' AND status IN "
++                "('prepared','ready','model_running') AND (expires_at>now() OR "
+                 "status='model_running') ORDER BY created_at LIMIT 1",
+                 (s.project_id, mode),
+             ).fetchone()
+@@ -183,7 +196,9 @@
+                 failed = conn.execute(
+                     "SELECT b.snapshot,b.status,b.reason_code FROM app.router_batches b "
+                     "WHERE b.project_id=%s AND b.status IN ('failed','rejected','usage_unknown') "
+-                    "AND EXISTS (SELECT 1 FROM app.router_calls c WHERE c.batch_id=b.batch_id)",
++                    "AND (b.snapshot->>'schema_version') IS DISTINCT FROM "
++                    "'source-router-snapshot-v1' AND EXISTS (SELECT 1 FROM app.router_calls c "
++                    "WHERE c.batch_id=b.batch_id)",
+                     (s.project_id,),
+                 ).fetchall()
+                 for failed_batch in failed:
+@@ -274,7 +289,9 @@
+                     "SELECT b.batch_id,c.result FROM app.router_batches b "
+                     "JOIN app.router_calls c USING(batch_id) WHERE b.project_id=%s "
+                     "AND b.status IN ('prepared','model_running','ready') AND c.status='known' "
+-                    "AND c.result IS NOT NULL AND (b.snapshot-'batch_id'-'expires_at')=%s "
++                    "AND c.result IS NOT NULL AND (b.snapshot->>'schema_version') IS DISTINCT "
++                    "FROM 'source-router-snapshot-v1' "
++                    "AND (b.snapshot-'batch_id'-'expires_at')=%s "
+                     "ORDER BY b.created_at DESC LIMIT 1",
+                     (s.project_id, Jsonb(business)),
+                 ).fetchone()
+@@ -294,6 +311,7 @@
+             return batch
+
+     def wrap(self, batch: "Row", proposals: Proposals) -> list[RouterDecision]:
++        self._legacy_batch(batch)
+         groups = {t["thread_id"]: t for t in batch["snapshot"]["threads"]}
+         if {str(p.thread_id) for p in proposals.proposals} != set(groups) or len(
+             proposals.proposals
+@@ -324,7 +342,9 @@
+         with self.engine.transaction() as conn:
+             row = conn.execute(
+                 "UPDATE app.router_batches SET decisions=%s,status='ready' WHERE batch_id=%s "
+-                "AND project_id=%s AND status IN ('prepared','model_running') RETURNING "
++                "AND project_id=%s AND status IN ('prepared','model_running') "
++                "AND (snapshot->>'schema_version') IS DISTINCT FROM "
++                "'source-router-snapshot-v1' RETURNING "
+                 "batch_id",
+                 (
+                     Jsonb([d.model_dump(mode="json") for d in decisions]),
+@@ -338,6 +358,7 @@
+     def _validate(
+         self, conn: "Connection", batch: "Row", decisions: list[RouterDecision], internal: bool
+     ) -> list[tuple[RouterDecision, dict[str, Any], "Row", list["Row"]]]:
++        self._legacy_batch(batch)
+         s = self.engine.settings
+         if (
+             batch["project_id"] != s.project_id
+@@ -572,6 +593,14 @@
+         internal: bool = False,
+         permit: "LivePermit | None" = None,
+     ) -> list[dict[str, Any]]:
++        # Reject the other pipeline before even storing a fixed-template artifact.
++        with self.engine.transaction() as conn:
++            namespace = conn.execute(
++                "SELECT snapshot FROM app.router_batches WHERE batch_id=%s AND project_id=%s",
++                (batch_id, self.engine.settings.project_id),
++            ).fetchone()
++            if namespace is not None:
++                self._legacy_batch(namespace)
+         # Store fixed-template bytes before the atomic business transaction.
+         stored = {
+             d.message_code: self.engine.artifacts.put(TEMPLATES[d.message_code].encode())
+@@ -587,6 +616,7 @@
+             ).fetchone()
+             if batch is None:
+                 raise DomainError("NOT_FOUND", "Router batch was not found", 404)
++            self._legacy_batch(batch)
+             if batch["status"] == "applied":
+                 saved = conn.execute(
+                     "SELECT * FROM app.router_decisions WHERE batch_id=%s ORDER BY decision_key",
+@@ -765,7 +795,9 @@
+             batch = conn.execute(
+                 "UPDATE app.router_batches SET status=CASE WHEN status='usage_unknown' THEN "
+                 "status ELSE 'failed' END,reason_code=%s WHERE batch_id=%s AND project_id=%s "
+-                "AND status NOT IN ('applied','rejected') RETURNING snapshot",
++                "AND status NOT IN ('applied','rejected') "
++                "AND (snapshot->>'schema_version') IS DISTINCT FROM "
++                "'source-router-snapshot-v1' RETURNING snapshot",
+                 (reason, batch_id, self.engine.settings.project_id),
+             ).fetchone()
+             if batch:
+--- a/v3/src/mgar_v3/routing/worker.py
++++ b/v3/src/mgar_v3/routing/worker.py
+@@ -1,4 +1,5 @@
+-from typing import TYPE_CHECKING, Protocol
++from collections.abc import Callable
++from typing import TYPE_CHECKING, Any, Protocol
+ from uuid import UUID
+
+ from mgar_v3.domain import DomainError
+@@ -14,6 +15,30 @@
+     mode: str
+
+     def propose(self, batch: "Row") -> Proposals: ...
++
++
++class PipelineRouterProvider(Protocol):
++    """Output is schema checked by its matching injected pipeline, never trusted."""
++
++    mode: str
++
++    def propose(self, batch: "Row") -> Any: ...
++
++
++class RouterPipeline(Protocol):
++    """Structural composition only; authority remains on the original Engine."""
++
++    def prepare(self, mode: str = "fixture") -> "Row | None": ...
++
++    def wrap(self, batch: "Row", proposals: Any) -> list[Any]: ...
++
++    def save(self, batch_id: UUID, decisions: list[Any]) -> None: ...
++
++    def commit(
++        self, batch_id: UUID, decisions: list[Any], *, permit: "LivePermit | None" = None
++    ) -> Any: ...
++
++    def failure(self, batch_id: UUID, reason: str) -> None: ...
+
+
+ class FixtureRouter:
+@@ -58,24 +83,38 @@
+
+ class RouterWorker:
+     def __init__(
+-        self, engine: "Engine", provider: RouterProvider, permit: "LivePermit | None" = None
++        self,
++        engine: "Engine",
++        provider: PipelineRouterProvider,
++        permit: "LivePermit | None" = None,
++        *,
++        pipeline: RouterPipeline | None = None,
++        decision_decoder: Callable[[Any], Any] | None = None,
+     ):
++        if (pipeline is None) != (decision_decoder is None):
++            raise DomainError(
++                "ROUTER_PIPELINE_CONFIGURATION", "Supply a matching pipeline and decoder", 422
++            )
+         self.engine, self.provider, self.permit = engine, provider, permit
++        self.pipeline: RouterPipeline = pipeline if pipeline is not None else engine.routing
++        self.decision_decoder: Callable[[Any], Any] = (
++            decision_decoder if decision_decoder is not None else RouterDecision.model_validate
++        )
+
+     def tick(self) -> UUID | None:
+-        batch = self.engine.routing.prepare(self.provider.mode)
++        batch = self.pipeline.prepare(self.provider.mode)
+         if batch is None:
+             return None
+         try:
+             if batch["status"] == "ready":
+-                decisions = [RouterDecision.model_validate(d) for d in batch["decisions"]]
++                decisions = [self.decision_decoder(d) for d in batch["decisions"]]
+             else:
+                 proposals = self.provider.propose(batch)
+-                decisions = self.engine.routing.wrap(batch, proposals)
+-                self.engine.routing.save(batch["batch_id"], decisions)
+-            self.engine.routing.commit(batch["batch_id"], decisions, permit=self.permit)
++                decisions = self.pipeline.wrap(batch, proposals)
++                self.pipeline.save(batch["batch_id"], decisions)
++            self.pipeline.commit(batch["batch_id"], decisions, permit=self.permit)
+         except DomainError as exc:
+-            self.engine.routing.failure(batch["batch_id"], exc.code)
++            self.pipeline.failure(batch["batch_id"], exc.code)
+         except Exception:
+-            self.engine.routing.failure(batch["batch_id"], "ROUTER_FAILED")
++            self.pipeline.failure(batch["batch_id"], "ROUTER_FAILED")
+         return UUID(str(batch["batch_id"]))
+--- a/v3/src/mgar_v3/coordination/engine.py
++++ b/v3/src/mgar_v3/coordination/engine.py
+@@ -36,6 +36,7 @@
+ from mgar_v3.super_agent.budget import SharedBudgets
+ from mgar_v3.super_agent.fast_path import FastPath
+ from mgar_v3.super_agent.policy import SourcePolicies
++from mgar_v3.super_agent.source_eval import SourceEval
+
+ TModel = TypeVar("TModel", bound=Model)
+ Row = dict[str, Any]
+@@ -79,6 +80,7 @@
+         self.source_ingress = SourceIngress(self)
+         self.project_budgets = SharedBudgets(self)
+         self.fast_path = FastPath(self)
++        self.source_eval = SourceEval(self)
+
+     def close(self) -> None:
+         with self._mutex:
+--- a/v3/src/mgar_v3/api.py
++++ b/v3/src/mgar_v3/api.py
+@@ -56,6 +56,7 @@
+ from mgar_v3.super_agent.budget_api import register as register_project_budgets
+ from mgar_v3.super_agent.fast_path_api import register as register_source_fast_path
+ from mgar_v3.super_agent.policy_api import register as register_source_policies
++from mgar_v3.super_agent.source_eval_api import register as register_source_eval
+ from mgar_v3.web_access import (
+     SESSION_COOKIE,
+     SESSION_SECONDS,
+@@ -1278,6 +1279,7 @@
+     register_source_policies(app, authority, browser_user)
+     register_project_budgets(app, authority, browser_user)
+     register_source_fast_path(app, authority, browser_user)
++    register_source_eval(app, authority, browser_user)
+     register(app, authority, authenticated)
+     register_commerce(app, authority, authenticated)
+     register_recovery(app, configuration, authority, authenticated)

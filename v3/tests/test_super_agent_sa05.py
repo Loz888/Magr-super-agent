@@ -642,6 +642,7 @@ def test_real_33_to_34_upgrade_preserves_every_legacy_checksum_and_row(database,
         assert migrate(dsn) == [
             "0034_github_app.sql", "0035_feishu_source.sql", "0036_super_agent_budgets.sql",
             "0038_super_agent_fast_path.sql",
+            "0039_super_agent_source_eval.sql",
         ] and migrate(dsn) == []
         with psycopg.connect(dsn) as conn:
             assert conn.execute(

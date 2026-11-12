@@ -261,9 +261,12 @@
       "optional": false,
       "card": "TASKS.md#sa09",
       "verification_target_on_implementation": "SAV1-09",
-      "work_state": "DEPENDENCY_AND_INTERFACE_REVIEW",
+      "work_state": "IMPLEMENTED_PENDING_INITIAL_REGISTERED_VERIFICATION",
       "engineering_gate": "NOT_RUN",
-      "independent_review": "NOT_RUN"
+      "independent_review": "NOT_RUN",
+      "ownership_commit": "0e0adc6a5bb5a7e0c3a3c8323e33513e4b911d84",
+      "local_detail": "SA09_ROUTER_EVAL.md",
+      "corpus_detail": "SA09_CORPUS_DRAFT.md"
     },
     {
       "id": "SAV1-10",

@@ -1,0 +1,44 @@
+{
+  "utc": "2026-11-12T11:41:21.220179+00:00",
+  "type": "SHARED_PROPOSAL_REVIEW_NOT_APPLIED_OR_TESTED",
+  "patch_sha256": "73b28025f6b92d415aa2347c28e1c8959ee749c966f6e8d5e0a71ff88c445e1b",
+  "assessment": "Proposed tag isolation plus original fee ledger is viable with the following service-level invariants. Old financial settlement AST need not change.",
+  "risks_and_required_invariants": [
+    {
+      "risk": "known cost/result split crash",
+      "required": "Source sanitized proposal facts and RouterBudget.settle(cost,usage,result=None) must commit in one original Engine outer transaction. On recovery known cost with no valid Source result is a known-invalid/unavailable attempt, not permission to call again."
+    },
+    {
+      "risk": "Source unknown replay under fresh batch/config",
+      "required": "A durable original-input/group attempt identity must block a second physical call after unknown even if FastPath merges more members, policy/config changes, or caller invents new batch IDs. Reject stale commit and keep original unknown reservation; do not convert it to a free retry."
+    },
+    {
+      "risk": "Source raw-content resurrection",
+      "required": "router_batches.snapshot and sa_source_eval_* immutable facts store only IDs/hashes/revisions/enums. Never call RouterBudget.response or put source/raw model response in ordinary CAS. Assemble current authorized text in bounded memory only; provider output must be schema restricted before durable recording."
+    },
+    {
+      "risk": "cross-pipeline worker confusion",
+      "required": "All legacy prior/failed/cached paths exclude Source tag; wrap/validate/commit reject and save/failure cannot rewrite Source batches. New Source pipeline accepts only its exact fixed tag and ownership facts, not merely threads=[]. Legacy _rows has no snapshot parameter and remains unchanged."
+    },
+    {
+      "risk": "decoder/pipeline mismatch",
+      "required": "Injected pipeline and decoder are trusted server composition and must be supplied together. Any protocol only carries opaque values between the selected runtime validators; it is not a model authority field. Source wrap/commit validates strict DTO and current Source identities, every revision/epoch and budget."
+    },
+    {
+      "risk": "financial namespace accounting",
+      "required": "Continue original RouterBudget.reserve/settle and sa_budget_calls attribution in the same held Engine connection. Source call reservation must be revalidated immediately before attempt; known-invalid/stale outcomes still settle observed cost; no new financial table or custom settlement SQL."
+    },
+    {
+      "risk": "H02 task binding misuse",
+      "required": "Only reuse public SSEDecoder/ModelCapabilities/estimate_tokens through a private Source inference request. Never construct fake TaskBinding/Run/workspace or import H12."
+    },
+    {
+      "risk": "legacy metrics mix",
+      "required": "Legacy Router metrics naturally include original Source financial router_calls if unchanged. Document as shared Router totals, or coordinate separately if legacy-only UI semantics are required; do not label those as old-Worker business-task counts."
+    }
+  ],
+  "coordination_status": "ACTUALLY_CONFIRMED_0e0adc6_SECTION32; proposal not yet applied",
+  "formal_files_changed": false,
+  "checks": "NOT_RUN",
+  "previous_metadata": "evidence/super-agent-v1/SAV1-09/start-20261112T110706Z-588a9f55/shared-risk-review-before-hash-refresh.json"
+}

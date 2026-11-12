@@ -36,6 +36,7 @@ from mgar_v3.sources.ingress import SourceIngress
 from mgar_v3.super_agent.budget import SharedBudgets
 from mgar_v3.super_agent.fast_path import FastPath
 from mgar_v3.super_agent.policy import SourcePolicies
+from mgar_v3.super_agent.source_eval import SourceEval
 
 TModel = TypeVar("TModel", bound=Model)
 Row = dict[str, Any]
@@ -79,6 +80,7 @@ class Engine:
         self.source_ingress = SourceIngress(self)
         self.project_budgets = SharedBudgets(self)
         self.fast_path = FastPath(self)
+        self.source_eval = SourceEval(self)
 
     def close(self) -> None:
         with self._mutex:

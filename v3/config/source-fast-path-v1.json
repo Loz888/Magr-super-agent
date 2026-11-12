@@ -55,7 +55,7 @@
     },
     {
       "path": "tests/test_super_agent_sa08_migration.py",
-      "sha256": "7865aa9a77a4cc676bffe7283bdc913a7cb5a1bc2d407fff53c427a259ccce3a"
+      "sha256": "415fd5d159008bc3f42a50b28b0517aa70f2dad832564bb2c2c62b6b037207d1"
     },
     {
       "path": "tests/sa08_support.py",

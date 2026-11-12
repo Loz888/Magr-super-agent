@@ -1,0 +1,66 @@
+{
+  "utc": "2026-11-12T11:28:24.393781+00:00",
+  "status": "PROPOSAL_ONLY_NOT_INSTALLED_NOT_CONFIRMED",
+  "path": "/home/imini/magr-super-agent/v3/docs/super-agent-v1/sa09-proposal/0039_super_agent_source_eval.sql",
+  "sha256": "8b18840590c7841022d7985d66904cd580aee916777cadc9f8baca3cb1837669",
+  "tables": {
+    "controls": [
+      "source_instance_id",
+      "project_id",
+      "revision",
+      "settings",
+      "settings_sha256",
+      "updated_by",
+      "updated_at"
+    ],
+    "versions": [
+      "source_instance_id",
+      "project_id",
+      "revision",
+      "settings",
+      "settings_sha256",
+      "signed_by",
+      "review_ref",
+      "signed_at"
+    ],
+    "snapshots": [
+      "batch_id",
+      "source_instance_id",
+      "project_id",
+      "fast_batch_id",
+      "fast_batch_revision",
+      "eval_revision",
+      "snapshot_sha256",
+      "snapshot",
+      "created_at"
+    ],
+    "inputs": [
+      "batch_id",
+      "input_id",
+      "source_instance_id",
+      "project_id",
+      "version_fingerprint"
+    ],
+    "results": [
+      "batch_id",
+      "call_id",
+      "outcome_code",
+      "proposals",
+      "usage_known",
+      "response_sha256",
+      "created_at"
+    ],
+    "decisions": [
+      "decision_key",
+      "batch_id",
+      "group_id",
+      "payload_sha256",
+      "payload",
+      "created_at"
+    ]
+  },
+  "scope": "Only new sa_source_eval tables/functions/triggers/indexes. No old table or financial trigger alteration, no raw-body/response/artifact/cost columns.",
+  "inherited_scope": "results/decisions inherit source/project through their mandatory snapshot FK; supplied source/project columns use composite FKs.",
+  "source_snapshot_hash": "Original context_hash equals digest(SourceSnapshot without threads); original snapshot removes threads to equal stored SourceSnapshot JSON. Source tag excludes original legacy digest validator.",
+  "checks": "NOT_RUN; no migration/database/check invocation."
+}

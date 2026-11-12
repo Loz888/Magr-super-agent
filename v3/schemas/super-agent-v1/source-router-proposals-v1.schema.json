@@ -1,0 +1,79 @@
+{
+  "$defs": {
+    "SourceProposal": {
+      "additionalProperties": false,
+      "properties": {
+        "group_id": {
+          "format": "uuid",
+          "title": "Group Id",
+          "type": "string"
+        },
+        "action": {
+          "enum": [
+            "ignore",
+            "observe",
+            "attach",
+            "create",
+            "ask"
+          ],
+          "title": "Action",
+          "type": "string"
+        },
+        "target_id": {
+          "anyOf": [
+            {
+              "format": "uuid",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Target Id"
+        },
+        "reason_code": {
+          "enum": [
+            "IRRELEVANT",
+            "CONTEXT",
+            "EXISTING_TASK",
+            "ACTIONABLE",
+            "NEEDS_CONTEXT"
+          ],
+          "title": "Reason Code",
+          "type": "string"
+        }
+      },
+      "required": [
+        "group_id",
+        "action",
+        "reason_code"
+      ],
+      "title": "SourceProposal",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": "source-router-proposals-v1",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "proposals": {
+      "items": {
+        "$ref": "#/$defs/SourceProposal"
+      },
+      "maxItems": 16,
+      "minItems": 1,
+      "title": "Proposals",
+      "type": "array"
+    }
+  },
+  "required": [
+    "schema_version",
+    "proposals"
+  ],
+  "title": "SourceProposals",
+  "type": "object"
+}

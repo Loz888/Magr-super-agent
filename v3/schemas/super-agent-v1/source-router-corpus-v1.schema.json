@@ -1,0 +1,211 @@
+{
+  "$defs": {
+    "RoutingCase": {
+      "additionalProperties": false,
+      "properties": {
+        "case_id": {
+          "maxLength": 256,
+          "minLength": 1,
+          "title": "Case Id",
+          "type": "string"
+        },
+        "category": {
+          "enum": [
+            "explicit",
+            "ambiguous",
+            "quoted",
+            "automation"
+          ],
+          "title": "Category",
+          "type": "string"
+        },
+        "split": {
+          "enum": [
+            "development",
+            "proposed_holdout"
+          ],
+          "title": "Split",
+          "type": "string"
+        },
+        "topic_group": {
+          "maxLength": 256,
+          "minLength": 1,
+          "title": "Topic Group",
+          "type": "string"
+        },
+        "source_case": {
+          "maxLength": 256,
+          "minLength": 1,
+          "title": "Source Case",
+          "type": "string"
+        },
+        "text": {
+          "maxLength": 8000,
+          "minLength": 1,
+          "title": "Text",
+          "type": "string"
+        },
+        "synthetic": {
+          "title": "Synthetic",
+          "type": "boolean"
+        },
+        "receive_allowed": {
+          "title": "Receive Allowed",
+          "type": "boolean"
+        },
+        "model_input_allowed": {
+          "title": "Model Input Allowed",
+          "type": "boolean"
+        },
+        "actionable": {
+          "title": "Actionable",
+          "type": "boolean"
+        },
+        "expected_action": {
+          "enum": [
+            "ignore",
+            "observe",
+            "attach",
+            "create",
+            "ask"
+          ],
+          "title": "Expected Action",
+          "type": "string"
+        },
+        "repository": {
+          "anyOf": [
+            {
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Repository"
+        },
+        "conversation": {
+          "maxLength": 256,
+          "minLength": 1,
+          "title": "Conversation",
+          "type": "string"
+        },
+        "expected_target_id": {
+          "anyOf": [
+            {
+              "format": "uuid",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Expected Target Id"
+        },
+        "attribution_decidable": {
+          "default": true,
+          "title": "Attribution Decidable",
+          "type": "boolean"
+        },
+        "actor_role": {
+          "enum": [
+            "context_provider",
+            "requester",
+            "task_controller"
+          ],
+          "title": "Actor Role",
+          "type": "string"
+        },
+        "control_allowed": {
+          "default": false,
+          "title": "Control Allowed",
+          "type": "boolean"
+        },
+        "notification_allowed": {
+          "default": false,
+          "title": "Notification Allowed",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "case_id",
+        "category",
+        "split",
+        "topic_group",
+        "source_case",
+        "text",
+        "synthetic",
+        "receive_allowed",
+        "model_input_allowed",
+        "actionable",
+        "expected_action",
+        "conversation",
+        "actor_role"
+      ],
+      "title": "RoutingCase",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": "source-router-evaluation-corpus-v1",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "cases": {
+      "items": {
+        "$ref": "#/$defs/RoutingCase"
+      },
+      "maxItems": 10000,
+      "minItems": 1,
+      "title": "Cases",
+      "type": "array"
+    },
+    "case_payload_sha256": {
+      "pattern": "^[a-f0-9]{64}$",
+      "title": "Case Payload Sha256",
+      "type": "string"
+    },
+    "operator_review_ref": {
+      "anyOf": [
+        {
+          "maxLength": 256,
+          "minLength": 1,
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Operator Review Ref"
+    },
+    "operator_review_evidence_sha256": {
+      "anyOf": [
+        {
+          "pattern": "^[a-f0-9]{64}$",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Operator Review Evidence Sha256"
+    },
+    "independent_holdout": {
+      "default": false,
+      "title": "Independent Holdout",
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "schema_version",
+    "cases",
+    "case_payload_sha256"
+  ],
+  "title": "RoutingCorpus",
+  "type": "object"
+}

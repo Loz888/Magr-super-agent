@@ -1,0 +1,20 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "fast_batch_ids": {
+      "items": {
+        "format": "uuid",
+        "type": "string"
+      },
+      "maxItems": 16,
+      "minItems": 1,
+      "title": "Fast Batch Ids",
+      "type": "array"
+    }
+  },
+  "required": [
+    "fast_batch_ids"
+  ],
+  "title": "SourceEvaluateRequest",
+  "type": "object"
+}

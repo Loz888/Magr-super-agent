@@ -1,0 +1,431 @@
+{
+  "$defs": {
+    "ActorRef": {
+      "additionalProperties": false,
+      "properties": {
+        "scope": {
+          "$ref": "#/$defs/SourceScope"
+        },
+        "id_type": {
+          "maxLength": 256,
+          "minLength": 1,
+          "title": "Id Type",
+          "type": "string"
+        },
+        "actor_id": {
+          "maxLength": 256,
+          "minLength": 1,
+          "title": "Actor Id",
+          "type": "string"
+        },
+        "actor_kind": {
+          "enum": [
+            "human",
+            "bot",
+            "service",
+            "unknown"
+          ],
+          "title": "Actor Kind",
+          "type": "string"
+        }
+      },
+      "required": [
+        "scope",
+        "id_type",
+        "actor_id",
+        "actor_kind"
+      ],
+      "title": "ActorRef",
+      "type": "object"
+    },
+    "CanonicalInputRef": {
+      "additionalProperties": false,
+      "properties": {
+        "input_id": {
+          "format": "uuid",
+          "title": "Input Id",
+          "type": "string"
+        },
+        "version_fingerprint": {
+          "pattern": "^[a-f0-9]{64}$",
+          "title": "Version Fingerprint",
+          "type": "string"
+        },
+        "identity_id": {
+          "format": "uuid",
+          "title": "Identity Id",
+          "type": "string"
+        },
+        "identity_revision": {
+          "maximum": 9223372036854775807,
+          "minimum": 1,
+          "title": "Identity Revision",
+          "type": "integer"
+        },
+        "actor_key": {
+          "pattern": "^[a-f0-9]{64}$",
+          "title": "Actor Key",
+          "type": "string"
+        }
+      },
+      "required": [
+        "input_id",
+        "version_fingerprint",
+        "identity_id",
+        "identity_revision",
+        "actor_key"
+      ],
+      "title": "CanonicalInputRef",
+      "type": "object"
+    },
+    "SourceScope": {
+      "additionalProperties": false,
+      "properties": {
+        "source_kind": {
+          "pattern": "^[a-z][a-z0-9_]{0,31}$",
+          "title": "Source Kind",
+          "type": "string"
+        },
+        "source_instance_id": {
+          "format": "uuid",
+          "title": "Source Instance Id",
+          "type": "string"
+        },
+        "tenant_id": {
+          "maxLength": 256,
+          "minLength": 1,
+          "title": "Tenant Id",
+          "type": "string"
+        },
+        "installation_id": {
+          "maxLength": 256,
+          "minLength": 1,
+          "title": "Installation Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "source_kind",
+        "source_instance_id",
+        "tenant_id",
+        "installation_id"
+      ],
+      "title": "SourceScope",
+      "type": "object"
+    },
+    "SourceSnapshotGroup": {
+      "additionalProperties": false,
+      "properties": {
+        "group_id": {
+          "format": "uuid",
+          "title": "Group Id",
+          "type": "string"
+        },
+        "fast_batch_id": {
+          "format": "uuid",
+          "title": "Fast Batch Id",
+          "type": "string"
+        },
+        "fast_batch_revision": {
+          "maximum": 9223372036854775807,
+          "minimum": 1,
+          "title": "Fast Batch Revision",
+          "type": "integer"
+        },
+        "topic_key": {
+          "pattern": "^[a-f0-9]{64}$",
+          "title": "Topic Key",
+          "type": "string"
+        },
+        "actors": {
+          "items": {
+            "$ref": "#/$defs/ActorRef"
+          },
+          "maxItems": 16,
+          "minItems": 1,
+          "title": "Actors",
+          "type": "array"
+        },
+        "inputs": {
+          "items": {
+            "$ref": "#/$defs/CanonicalInputRef"
+          },
+          "maxItems": 16,
+          "minItems": 1,
+          "title": "Inputs",
+          "type": "array"
+        },
+        "targets": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/SourceTargetRef"
+          },
+          "maxItems": 3,
+          "title": "Targets",
+          "type": "array"
+        },
+        "repository": {
+          "anyOf": [
+            {
+              "pattern": "^[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Repository"
+        },
+        "context_complete": {
+          "default": false,
+          "title": "Context Complete",
+          "type": "boolean"
+        },
+        "allowed_actions": {
+          "items": {
+            "enum": [
+              "ignore",
+              "observe",
+              "attach",
+              "create",
+              "ask"
+            ],
+            "type": "string"
+          },
+          "maxItems": 5,
+          "minItems": 1,
+          "title": "Allowed Actions",
+          "type": "array"
+        }
+      },
+      "required": [
+        "group_id",
+        "fast_batch_id",
+        "fast_batch_revision",
+        "topic_key",
+        "actors",
+        "inputs",
+        "allowed_actions"
+      ],
+      "title": "SourceSnapshotGroup",
+      "type": "object"
+    },
+    "SourceTargetRef": {
+      "additionalProperties": false,
+      "properties": {
+        "ticket_id": {
+          "format": "uuid",
+          "title": "Ticket Id",
+          "type": "string"
+        },
+        "run_id": {
+          "format": "uuid",
+          "title": "Run Id",
+          "type": "string"
+        },
+        "thread_id": {
+          "format": "uuid",
+          "title": "Thread Id",
+          "type": "string"
+        },
+        "thread_revision": {
+          "maximum": 9223372036854775807,
+          "minimum": 1,
+          "title": "Thread Revision",
+          "type": "integer"
+        },
+        "execution_epoch": {
+          "maximum": 9223372036854775807,
+          "minimum": 0,
+          "title": "Execution Epoch",
+          "type": "integer"
+        },
+        "mandate_id": {
+          "format": "uuid",
+          "title": "Mandate Id",
+          "type": "string"
+        },
+        "mandate_sha256": {
+          "pattern": "^[a-f0-9]{64}$",
+          "title": "Mandate Sha256",
+          "type": "string"
+        },
+        "project_id": {
+          "maxLength": 100,
+          "minLength": 1,
+          "title": "Project Id",
+          "type": "string"
+        },
+        "repository": {
+          "pattern": "^[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+$",
+          "title": "Repository",
+          "type": "string"
+        },
+        "allowed": {
+          "title": "Allowed",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "ticket_id",
+        "run_id",
+        "thread_id",
+        "thread_revision",
+        "execution_epoch",
+        "mandate_id",
+        "mandate_sha256",
+        "project_id",
+        "repository",
+        "allowed"
+      ],
+      "title": "SourceTargetRef",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": "source-router-snapshot-v1",
+      "default": "source-router-snapshot-v1",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "batch_id": {
+      "format": "uuid",
+      "title": "Batch Id",
+      "type": "string"
+    },
+    "project_id": {
+      "maxLength": 100,
+      "minLength": 1,
+      "title": "Project Id",
+      "type": "string"
+    },
+    "scope": {
+      "$ref": "#/$defs/SourceScope"
+    },
+    "source_revision": {
+      "maximum": 9223372036854775807,
+      "minimum": 1,
+      "title": "Source Revision",
+      "type": "integer"
+    },
+    "generation": {
+      "maximum": 9223372036854775807,
+      "minimum": 1,
+      "title": "Generation",
+      "type": "integer"
+    },
+    "fast_config_revision": {
+      "maximum": 9223372036854775807,
+      "minimum": 1,
+      "title": "Fast Config Revision",
+      "type": "integer"
+    },
+    "eval_config_revision": {
+      "maximum": 9223372036854775807,
+      "minimum": 1,
+      "title": "Eval Config Revision",
+      "type": "integer"
+    },
+    "policy_id": {
+      "format": "uuid",
+      "title": "Policy Id",
+      "type": "string"
+    },
+    "policy_revision": {
+      "maximum": 9223372036854775807,
+      "minimum": 1,
+      "title": "Policy Revision",
+      "type": "integer"
+    },
+    "rule_ref": {
+      "anyOf": [
+        {
+          "maxLength": 256,
+          "minLength": 1,
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Rule Ref"
+    },
+    "rule_sha256": {
+      "anyOf": [
+        {
+          "pattern": "^[a-f0-9]{64}$",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Rule Sha256"
+    },
+    "prompt_version": {
+      "maxLength": 256,
+      "minLength": 1,
+      "title": "Prompt Version",
+      "type": "string"
+    },
+    "prompt_sha256": {
+      "pattern": "^[a-f0-9]{64}$",
+      "title": "Prompt Sha256",
+      "type": "string"
+    },
+    "profile_sha256": {
+      "pattern": "^[a-f0-9]{64}$",
+      "title": "Profile Sha256",
+      "type": "string"
+    },
+    "price_sha256": {
+      "pattern": "^[a-f0-9]{64}$",
+      "title": "Price Sha256",
+      "type": "string"
+    },
+    "budget_snapshot_sha256": {
+      "pattern": "^[a-f0-9]{64}$",
+      "title": "Budget Snapshot Sha256",
+      "type": "string"
+    },
+    "expires_at": {
+      "format": "date-time",
+      "title": "Expires At",
+      "type": "string"
+    },
+    "groups": {
+      "items": {
+        "$ref": "#/$defs/SourceSnapshotGroup"
+      },
+      "maxItems": 16,
+      "minItems": 1,
+      "title": "Groups",
+      "type": "array"
+    }
+  },
+  "required": [
+    "batch_id",
+    "project_id",
+    "scope",
+    "source_revision",
+    "generation",
+    "fast_config_revision",
+    "eval_config_revision",
+    "policy_id",
+    "policy_revision",
+    "prompt_version",
+    "prompt_sha256",
+    "profile_sha256",
+    "price_sha256",
+    "budget_snapshot_sha256",
+    "expires_at",
+    "groups"
+  ],
+  "title": "SourceSnapshot",
+  "type": "object"
+}

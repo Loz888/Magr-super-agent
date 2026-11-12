@@ -110,7 +110,9 @@ def test_35_to_36_preserves_known_unknown_original_fees_and_checksums(
                 assert conn.execute(
                     "SELECT count(*) FROM app.schema_migrations"
                 ).fetchone() == (35,)
-        assert migrate(dsn) == [MIGRATION, "0038_super_agent_fast_path.sql"]
+        assert migrate(dsn) == [
+            MIGRATION, "0038_super_agent_fast_path.sql", "0039_super_agent_source_eval.sql",
+        ]
         assert migrate(dsn) == []
         assert financial_snapshot(dsn) == original
         with psycopg.connect(dsn) as conn:

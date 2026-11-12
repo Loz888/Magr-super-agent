@@ -55,6 +55,17 @@ class Routing:
             (batch_id, kind, reason, Jsonb(plain(details))),
         )
 
+    @staticmethod
+    def _legacy_batch(batch: "Row") -> None:
+        snapshot = batch.get("snapshot")
+        if (
+            isinstance(snapshot, dict)
+            and snapshot.get("schema_version") == "source-router-snapshot-v1"
+        ):
+            raise DomainError(
+                "ROUTER_PIPELINE_MISMATCH", "Use the Source evaluation pipeline", 409
+            )
+
     def _rows(
         self,
         conn: "Connection",
@@ -161,8 +172,10 @@ class Routing:
         s = self.engine.settings
         with self.engine.transaction() as conn:
             prior = conn.execute(
-                "SELECT * FROM app.router_batches WHERE project_id=%s AND mode=%s AND status "
-                "IN ('prepared','ready','model_running') AND (expires_at>now() OR "
+                "SELECT * FROM app.router_batches WHERE project_id=%s AND mode=%s "
+                "AND (snapshot->>'schema_version') IS DISTINCT FROM "
+                "'source-router-snapshot-v1' AND status IN "
+                "('prepared','ready','model_running') AND (expires_at>now() OR "
                 "status='model_running') ORDER BY created_at LIMIT 1",
                 (s.project_id, mode),
             ).fetchone()
@@ -183,7 +196,9 @@ class Routing:
                 failed = conn.execute(
                     "SELECT b.snapshot,b.status,b.reason_code FROM app.router_batches b "
                     "WHERE b.project_id=%s AND b.status IN ('failed','rejected','usage_unknown') "
-                    "AND EXISTS (SELECT 1 FROM app.router_calls c WHERE c.batch_id=b.batch_id)",
+                    "AND (b.snapshot->>'schema_version') IS DISTINCT FROM "
+                    "'source-router-snapshot-v1' AND EXISTS (SELECT 1 FROM app.router_calls c "
+                    "WHERE c.batch_id=b.batch_id)",
                     (s.project_id,),
                 ).fetchall()
                 for failed_batch in failed:
@@ -274,7 +289,9 @@ class Routing:
                     "SELECT b.batch_id,c.result FROM app.router_batches b "
                     "JOIN app.router_calls c USING(batch_id) WHERE b.project_id=%s "
                     "AND b.status IN ('prepared','model_running','ready') AND c.status='known' "
-                    "AND c.result IS NOT NULL AND (b.snapshot-'batch_id'-'expires_at')=%s "
+                    "AND c.result IS NOT NULL AND (b.snapshot->>'schema_version') IS DISTINCT "
+                    "FROM 'source-router-snapshot-v1' "
+                    "AND (b.snapshot-'batch_id'-'expires_at')=%s "
                     "ORDER BY b.created_at DESC LIMIT 1",
                     (s.project_id, Jsonb(business)),
                 ).fetchone()
@@ -294,6 +311,7 @@ class Routing:
             return batch
 
     def wrap(self, batch: "Row", proposals: Proposals) -> list[RouterDecision]:
+        self._legacy_batch(batch)
         groups = {t["thread_id"]: t for t in batch["snapshot"]["threads"]}
         if {str(p.thread_id) for p in proposals.proposals} != set(groups) or len(
             proposals.proposals
@@ -324,7 +342,9 @@ class Routing:
         with self.engine.transaction() as conn:
             row = conn.execute(
                 "UPDATE app.router_batches SET decisions=%s,status='ready' WHERE batch_id=%s "
-                "AND project_id=%s AND status IN ('prepared','model_running') RETURNING "
+                "AND project_id=%s AND status IN ('prepared','model_running') "
+                "AND (snapshot->>'schema_version') IS DISTINCT FROM "
+                "'source-router-snapshot-v1' RETURNING "
                 "batch_id",
                 (
                     Jsonb([d.model_dump(mode="json") for d in decisions]),
@@ -338,6 +358,7 @@ class Routing:
     def _validate(
         self, conn: "Connection", batch: "Row", decisions: list[RouterDecision], internal: bool
     ) -> list[tuple[RouterDecision, dict[str, Any], "Row", list["Row"]]]:
+        self._legacy_batch(batch)
         s = self.engine.settings
         if (
             batch["project_id"] != s.project_id
@@ -572,6 +593,14 @@ class Routing:
         internal: bool = False,
         permit: "LivePermit | None" = None,
     ) -> list[dict[str, Any]]:
+        # Reject the other pipeline before even storing a fixed-template artifact.
+        with self.engine.transaction() as conn:
+            namespace = conn.execute(
+                "SELECT snapshot FROM app.router_batches WHERE batch_id=%s AND project_id=%s",
+                (batch_id, self.engine.settings.project_id),
+            ).fetchone()
+            if namespace is not None:
+                self._legacy_batch(namespace)
         # Store fixed-template bytes before the atomic business transaction.
         stored = {
             d.message_code: self.engine.artifacts.put(TEMPLATES[d.message_code].encode())
@@ -587,6 +616,7 @@ class Routing:
             ).fetchone()
             if batch is None:
                 raise DomainError("NOT_FOUND", "Router batch was not found", 404)
+            self._legacy_batch(batch)
             if batch["status"] == "applied":
                 saved = conn.execute(
                     "SELECT * FROM app.router_decisions WHERE batch_id=%s ORDER BY decision_key",
@@ -765,7 +795,9 @@ class Routing:
             batch = conn.execute(
                 "UPDATE app.router_batches SET status=CASE WHEN status='usage_unknown' THEN "
                 "status ELSE 'failed' END,reason_code=%s WHERE batch_id=%s AND project_id=%s "
-                "AND status NOT IN ('applied','rejected') RETURNING snapshot",
+                "AND status NOT IN ('applied','rejected') "
+                "AND (snapshot->>'schema_version') IS DISTINCT FROM "
+                "'source-router-snapshot-v1' RETURNING snapshot",
                 (reason, batch_id, self.engine.settings.project_id),
             ).fetchone()
             if batch:

@@ -82,6 +82,7 @@ def test_34_to_35_keeps_old_rows_checksums_and_all_or_nothing(database, tmp_path
         assert migrate(dsn) == [
             "0035_feishu_source.sql", "0036_super_agent_budgets.sql",
             "0038_super_agent_fast_path.sql",
+            "0039_super_agent_source_eval.sql",
         ]
         assert migrate(dsn) == []
         with psycopg.connect(dsn) as conn:

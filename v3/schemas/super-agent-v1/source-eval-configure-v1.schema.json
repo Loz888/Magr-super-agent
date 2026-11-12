@@ -1,0 +1,157 @@
+{
+  "$defs": {
+    "PriceQuote": {
+      "additionalProperties": false,
+      "properties": {
+        "model_id": {
+          "maxLength": 200,
+          "minLength": 1,
+          "title": "Model Id",
+          "type": "string"
+        },
+        "price_version": {
+          "maxLength": 200,
+          "minLength": 1,
+          "title": "Price Version",
+          "type": "string"
+        },
+        "input_micros_per_million": {
+          "maximum": 9223372036854775807,
+          "minimum": 0,
+          "title": "Input Micros Per Million",
+          "type": "integer"
+        },
+        "output_micros_per_million": {
+          "maximum": 9223372036854775807,
+          "minimum": 0,
+          "title": "Output Micros Per Million",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "model_id",
+        "price_version",
+        "input_micros_per_million",
+        "output_micros_per_million"
+      ],
+      "title": "PriceQuote",
+      "type": "object"
+    },
+    "SourceEvalProfile": {
+      "additionalProperties": false,
+      "properties": {
+        "provider_id": {
+          "maxLength": 256,
+          "minLength": 1,
+          "title": "Provider Id",
+          "type": "string"
+        },
+        "profile_ref": {
+          "maxLength": 256,
+          "minLength": 1,
+          "title": "Profile Ref",
+          "type": "string"
+        },
+        "price": {
+          "$ref": "#/$defs/PriceQuote"
+        },
+        "prompt_version": {
+          "maxLength": 256,
+          "minLength": 1,
+          "title": "Prompt Version",
+          "type": "string"
+        },
+        "prompt_sha256": {
+          "pattern": "^[a-f0-9]{64}$",
+          "title": "Prompt Sha256",
+          "type": "string"
+        }
+      },
+      "required": [
+        "provider_id",
+        "profile_ref",
+        "price",
+        "prompt_version",
+        "prompt_sha256"
+      ],
+      "title": "SourceEvalProfile",
+      "type": "object"
+    },
+    "SourceEvalSettings": {
+      "additionalProperties": false,
+      "properties": {
+        "enabled": {
+          "default": false,
+          "title": "Enabled",
+          "type": "boolean"
+        },
+        "profile": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/SourceEvalProfile"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "decision_ttl_seconds": {
+          "default": 60,
+          "maximum": 300,
+          "minimum": 1,
+          "title": "Decision Ttl Seconds",
+          "type": "integer"
+        },
+        "max_context_bytes": {
+          "default": 65536,
+          "maximum": 65536,
+          "minimum": 1,
+          "title": "Max Context Bytes",
+          "type": "integer"
+        },
+        "max_output_bytes": {
+          "default": 65536,
+          "maximum": 65536,
+          "minimum": 1,
+          "title": "Max Output Bytes",
+          "type": "integer"
+        },
+        "max_pending": {
+          "default": 256,
+          "maximum": 10000,
+          "minimum": 1,
+          "title": "Max Pending",
+          "type": "integer"
+        }
+      },
+      "title": "SourceEvalSettings",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "expected_revision": {
+      "maximum": 9223372036854775807,
+      "minimum": 0,
+      "title": "Expected Revision",
+      "type": "integer"
+    },
+    "settings": {
+      "$ref": "#/$defs/SourceEvalSettings"
+    },
+    "review_ref": {
+      "maxLength": 256,
+      "minLength": 1,
+      "title": "Review Ref",
+      "type": "string"
+    }
+  },
+  "required": [
+    "expected_revision",
+    "settings",
+    "review_ref"
+  ],
+  "title": "SourceEvalConfigure",
+  "type": "object"
+}

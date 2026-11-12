@@ -1,0 +1,31 @@
+SA09 共享范围确认请求（具体SQL/接线已就绪，尚未发送/确认）
+
+背景：SA08源码9950ebd已获用户独立工程放行；现1e397ab第31节仅确认SA08，不能当作本轮SA09共享改动许可。无H12导入或其真实实验授权继承。
+
+请固定提交确认以下范围归SA侧Codex独占实施，Harness不并行修改：
+1. 拟议0039_super_agent_source_eval.sql及app.sa_source_eval_*事实表；编号确认前不在正式迁移目录预占/安装。保留旧0001–0036和已确认0038；0037仍归Harness，不导入或伪造占位。
+2. super_agent/source_eval*.py、source-router-proposal/decision/snapshot-v1私有契约和无正文评测事实；Source snapshot标记schema_version=source-router-snapshot-v1、threads=[]，仅保留canonical ID/hash/revision和授权快照，不复制来源正文。
+3. routing/store.py：Routing.prepare的prior/failed/cached三查询排除该固定tag；legacy wrap/_validate/commit拒绝该tag；legacy save/failure不能改写Source批次。commit在写固定模板CAS前先拒绝Source批次。_rows仅查询Ticket/Mandate/Thread/Run，不接受snapshot，保持原样。
+4. routing/worker.py：可选pipeline+decision_decoder成对注入，默认使用旧engine.routing+RouterDecision解析；复用原prepare→provider→wrap/save→commit/failure分段，保持旧RouterProvider导出及旧DTO。新provider只能输出匹配pipeline严格解析的私有enum/internalID，不由Any结构协议提升权限。
+5. Engine.__init__仅新增import/组合SourceEval子服务；api.py仅新增import/注册 /api/v3/source-eval 六个cookie/Origin/CSRF/no-store管理接口。这4行接线已纳入shared-wiring.patch，不修改旧方法。
+
+预算与模型边界：
+- 原Engine持锁PG连接/事务仍是唯一业务写者，无第二Engine或费用账本。
+- 费用仍使用原router_batches/router_calls及RouterBudget.reserve/settle。新Source调用settle时仅传known cost/usage，result保持None；新sanitized提案存sa_source_eval_*自有无正文事实，与原settle放在同一原Engine外层事务原子提交。禁止伪造Proposals给旧get/settle。
+- 不调用RouterBudget.response保存原响应到永久CAS，不调用旧get解析新DTO。unknown保留原预占、不自动重发；known-invalid不自动重发，费用如实结算。禁止用新Run/重试绕过旧调用唯一性。
+- 原Engine.settle_call、RouterBudget.settle、RepositoryAnalysisStore.settle_call三处财务结算AST完全不改；原预算算法、ToolAuthority、旧Source/Trigger DTO和历史迁移不改。
+- H02只复用公开SSEDecoder、ModelCapabilities、estimate_tokens；使用独立Source请求DTO，不改H02契约，不伪造TaskBinding/Run/Workspace，不导入H12。
+- 缺预算、model_input、当前来源/身份/策略/精确目标/revision/epoch不符时不发请求/拒绝提交；模型无Shell、工具、业务写或群发能力。shadow仅记录would_*，不创建Worker/发送/发布。
+
+随附：shared-wiring.patch（仅提案，未应用，现已包含Routing/Worker/Engine/API四个文件）。
+SHA256: 73b28025f6b92d415aa2347c28e1c8959ee749c966f6e8d5e0a71ff88c445e1b
+确认请注明固定提交、第几节、0039编号和具体共享方法范围，并声明无编号/文件冲突。
+真实平台、付费调用、外发、发布与长期运行仍NOT_RUN；所有权确认不代表验收或激活许可。
+
+具体SQL草案（仍待固定确认，未安装）：0039_super_agent_source_eval.sql
+SHA256: 8b18840590c7841022d7985d66904cd580aee916777cadc9f8baca3cb1837669
+新表：app.sa_source_eval_controls、versions、snapshots、inputs、results、decisions。
+SQL只新增本卡私有事实及约束，不修改任何旧表或财务触发器；与shared-wiring.patch中原routing/store.py、routing/worker.py两处共享变更一并请确认。Engine/API最小接线已一并冻结。
+
+H02按固定169925f选择性集成4源+原受控测试+必要静态样本，本副本原H02/H01/H00首次兼容58 PASS；非复制当前Harness HEAD，不导入H12/0037。
+SA09私有严格契约/校验首次118 PASS，完整PG/接线检查尚待新共享范围确认。

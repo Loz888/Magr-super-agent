@@ -8,7 +8,7 @@ Engine and PostgreSQL transaction boundaries.
 from __future__ import annotations
 
 import hashlib
-from collections.abc import Sequence
+from collections.abc import Iterator, Sequence
 from datetime import UTC, datetime
 from typing import Any, Literal, Protocol, runtime_checkable
 from uuid import UUID, uuid4
@@ -188,11 +188,18 @@ class BudgetReservation(Model):
     reason: str = ""
 
 
+class HarnessToolCall(Model):
+    call_id: str = Field(min_length=1, max_length=100)
+    name: str = Field(pattern=r"^[a-z][a-z0-9_.-]{1,60}$")
+    arguments: dict[str, Any] = Field(default_factory=dict)
+
+
 class ModelMessage(Model):
     role: Literal["system", "user", "assistant", "tool"]
     content: str = Field(max_length=200000)
     name: str | None = None
     tool_call_id: str | None = None
+    tool_calls: tuple[HarnessToolCall, ...] = ()
 
 
 class ToolSpec(Model):
@@ -202,16 +209,11 @@ class ToolSpec(Model):
     capability: Literal["read", "write", "execute"] = "read"
 
 
-class HarnessToolCall(Model):
-    call_id: str = Field(min_length=1, max_length=100)
-    name: str = Field(pattern=r"^[a-z][a-z0-9_.-]{1,60}$")
-    arguments: dict[str, Any] = Field(default_factory=dict)
-
-
 class ModelUsage(Model):
     input_tokens: int = Field(default=0, ge=0)
     output_tokens: int = Field(default=0, ge=0)
     cost_micros: int = Field(default=0, ge=0)
+    known: bool = True
 
 
 class ModelRequest(Model):
@@ -232,6 +234,30 @@ class ModelResponse(Model):
     tool_calls: tuple[HarnessToolCall, ...] = ()
     finish_reason: FinishReason = "stop"
     usage: ModelUsage = Field(default_factory=ModelUsage)
+    provider: str = ""
+    model_id: str = ""
+    price_version: str = ""
+    error_code: str = ""
+    cached: bool = False
+
+
+class ModelStreamEvent(Model):
+    type: Literal[
+        "text_delta",
+        "tool_call_start",
+        "tool_call_delta",
+        "tool_call_end",
+        "usage",
+        "finish",
+    ]
+    text: str = ""
+    tool_index: int = Field(default=0, ge=0)
+    tool_call_id: str | None = None
+    tool_name: str | None = None
+    arguments_delta: str = ""
+    usage: ModelUsage | None = None
+    finish_reason: FinishReason | None = None
+    error_code: str = ""
 
 
 class WorkspaceSnapshot(Model):
@@ -388,6 +414,15 @@ class HarnessResult(Model):
 
 @runtime_checkable
 class ModelAdapter(Protocol):
+    def complete(self, request: ModelRequest, cancellation: CancellationToken) -> ModelResponse: ...
+
+
+@runtime_checkable
+class StreamingModelAdapter(Protocol):
+    def stream(
+        self, request: ModelRequest, cancellation: CancellationToken
+    ) -> Iterator[ModelStreamEvent]: ...
+
     def complete(self, request: ModelRequest, cancellation: CancellationToken) -> ModelResponse: ...
 
 

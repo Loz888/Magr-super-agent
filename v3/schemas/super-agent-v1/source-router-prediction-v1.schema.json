@@ -1,0 +1,111 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "case_id": {
+      "maxLength": 256,
+      "minLength": 1,
+      "title": "Case Id",
+      "type": "string"
+    },
+    "status": {
+      "enum": [
+        "completed",
+        "failed",
+        "unknown",
+        "not_run"
+      ],
+      "title": "Status",
+      "type": "string"
+    },
+    "action": {
+      "anyOf": [
+        {
+          "enum": [
+            "ignore",
+            "observe",
+            "attach",
+            "create",
+            "ask"
+          ],
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Action"
+    },
+    "target_id": {
+      "anyOf": [
+        {
+          "format": "uuid",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Target Id"
+    },
+    "repository": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Repository"
+    },
+    "model_called": {
+      "default": false,
+      "title": "Model Called",
+      "type": "boolean"
+    },
+    "settled_cost_micros": {
+      "default": 0,
+      "maximum": 9223372036854775807,
+      "minimum": 0,
+      "title": "Settled Cost Micros",
+      "type": "integer"
+    },
+    "unknown_reservation_micros": {
+      "default": 0,
+      "maximum": 9223372036854775807,
+      "minimum": 0,
+      "title": "Unknown Reservation Micros",
+      "type": "integer"
+    },
+    "created_tasks": {
+      "default": 0,
+      "maximum": 9223372036854775807,
+      "minimum": 0,
+      "title": "Created Tasks",
+      "type": "integer"
+    },
+    "sent_messages": {
+      "default": 0,
+      "maximum": 9223372036854775807,
+      "minimum": 0,
+      "title": "Sent Messages",
+      "type": "integer"
+    },
+    "publications": {
+      "default": 0,
+      "maximum": 9223372036854775807,
+      "minimum": 0,
+      "title": "Publications",
+      "type": "integer"
+    }
+  },
+  "required": [
+    "case_id",
+    "status"
+  ],
+  "title": "RoutingPrediction",
+  "type": "object"
+}
