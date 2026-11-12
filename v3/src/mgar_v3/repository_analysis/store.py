@@ -690,6 +690,19 @@ class RepositoryAnalysisStore:
                 "profile_hash,token_reservation) VALUES (%s,%s,%s,'reserved',%s,%s,%s)",
                 (call_id, run_id, step_key, reservation_micros, profile_hash, tokens),
             )
+            if self.engine.project_budgets.configured(conn):
+                model = scope["scope"]["model"]
+                self.engine.project_budgets.reserve(
+                    conn, "usage", call_id,
+                    price=self.engine.project_budgets.quote(model),
+                    tokens=(
+                        token_reservation or model["context_tokens"] + model["max_output_tokens"]
+                    ),
+                    component=(
+                        "verification" if step_key.startswith(("acceptance", "verifier", "verify"))
+                        else "subtask" if spec["parent_run_id"] is not None else "worker"
+                    ),
+                )
             conn.execute(
                 "UPDATE app.repo_analysis_runs SET model_calls_used=model_calls_used+1 "
                 "WHERE run_id=%s",

@@ -33,6 +33,7 @@ from mgar_v3.repair.store import Repairs
 from mgar_v3.routing.store import Routing
 from mgar_v3.settings import Settings
 from mgar_v3.sources.ingress import SourceIngress
+from mgar_v3.super_agent.budget import SharedBudgets
 from mgar_v3.super_agent.policy import SourcePolicies
 
 TModel = TypeVar("TModel", bound=Model)
@@ -75,6 +76,7 @@ class Engine:
         self.commerce = Commerce(self)
         self.source_policies = SourcePolicies(self)
         self.source_ingress = SourceIngress(self)
+        self.project_budgets = SharedBudgets(self)
 
     def close(self) -> None:
         with self._mutex:
@@ -1730,6 +1732,12 @@ class Engine:
                     final_budget_hash,
                 ),
             )
+            if self.project_budgets.configured(conn):
+                self.project_budgets.reserve(
+                    conn, "usage", call_id,
+                    price=self.project_budgets.quote(profile),
+                    tokens=profile.context_tokens + profile.max_output_tokens,
+                )
             self._event(
                 conn, run_id, "model_reserved", call_id=str(call_id), reserved_micros=amount
             )

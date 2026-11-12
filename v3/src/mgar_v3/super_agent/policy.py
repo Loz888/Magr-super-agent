@@ -259,6 +259,7 @@ class SourcePolicies:
         roles: set[str],
         at: datetime,
         controlled: bool = False,
+        shared_budget: bool = False,
     ) -> LayerDecision:
         def deny(code: str) -> LayerDecision:
             return self._decision(layer, False, code)
@@ -343,9 +344,8 @@ class SourcePolicies:
         ):
             return deny("EXECUTION_NETWORK_DENIED")
         if facts.capability == "model_call":
-            return deny(
-                "SOURCE_SHARED_BUDGET_NOT_AVAILABLE"
-            )  # SA07 must provide actual shared accounting.
+            if not shared_budget or definition.budget.total_limit_micros == 0:
+                return deny("SOURCE_SHARED_BUDGET_NOT_AVAILABLE")
         if definition.mode == "auto_investigate" and facts.capability in {
             "edit_files",
             "run_tests",
@@ -439,6 +439,8 @@ class SourcePolicies:
                         roles,
                         at,
                         controlled,
+                        self.engine.project_budgets.model_available(conn)
+                        if request.facts.capability == "model_call" else False,
                     ).model_dump(mode="json")
                     for layer in LAYERS
                 },
@@ -465,7 +467,9 @@ class SourcePolicies:
                 thread = SourceThreadRef.model_validate(proof["source_thread"])
                 roles, controlled = self._roles(conn, actor, thread, facts.ticket_id)
                 return self._evaluate(
-                    definition, layer, actor, thread, facts, roles, self._now(conn), controlled
+                    definition, layer, actor, thread, facts, roles, self._now(conn), controlled,
+                    self.engine.project_budgets.model_available(conn)
+                    if facts.capability == "model_call" else False,
                 )
 
     def bind_run(
@@ -635,7 +639,9 @@ class SourcePolicies:
         thread = SourceThreadRef.model_validate(proof["source_thread"])
         roles, controlled = self._roles(conn, actor, thread, facts.ticket_id)
         decision = self._evaluate(
-            definition, "execution", actor, thread, facts, roles, self._now(conn), controlled
+            definition, "execution", actor, thread, facts, roles, self._now(conn), controlled,
+            self.engine.project_budgets.model_available(conn)
+            if facts.capability == "model_call" else False,
         )
         if not decision.allowed:
             raise DomainError(
@@ -808,6 +814,8 @@ class SourcePolicies:
             }
         )
         self._notification(conn, run, request)
+        # Count actual dispatch windows; delayed authorization cannot bypass a new hour.
+        self.engine.project_budgets.notification_quota(conn, str(action["action_id"]))
         binding = self._bound(conn, run["run_id"])
         assert binding is not None
         definition = self._binding_definition(conn, binding)

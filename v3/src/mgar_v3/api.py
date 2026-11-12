@@ -53,6 +53,7 @@ from mgar_v3.sources.github_store import GitHubSources
 from mgar_v3.sources.identity_api import register as register_source_identities
 from mgar_v3.sources.ingress_api import register as register_source_ingress
 from mgar_v3.sources.ports import TransportEnvelope
+from mgar_v3.super_agent.budget_api import register as register_project_budgets
 from mgar_v3.super_agent.policy_api import register as register_source_policies
 from mgar_v3.web_access import (
     SESSION_COOKIE,
@@ -1274,6 +1275,7 @@ def create_app(
     register_source_identities(app, authority, browser_user)
     register_source_ingress(app, authority, browser_user)
     register_source_policies(app, authority, browser_user)
+    register_project_budgets(app, authority, browser_user)
     register(app, authority, authenticated)
     register_commerce(app, authority, authenticated)
     register_recovery(app, configuration, authority, authenticated)

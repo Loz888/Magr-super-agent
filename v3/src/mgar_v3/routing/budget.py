@@ -98,6 +98,13 @@ class RouterBudget:
                     p.reservation_micros,
                 ),
             )
+            if self.engine.project_budgets.configured(conn):
+                self.engine.project_budgets.reserve(
+                    conn, "router", call_id,
+                    price=self.engine.project_budgets.quote(p),
+                    tokens=p.context_tokens + p.max_output_tokens,
+                    component="router",
+                )
             conn.execute(
                 "UPDATE app.router_batches SET status='model_running' WHERE batch_id=%s",
                 (batch["batch_id"],),

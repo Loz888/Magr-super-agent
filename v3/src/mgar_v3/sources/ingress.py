@@ -902,6 +902,19 @@ class SourceIngress:
         if conflict is None:
             for item, (grant, _) in zip(meta.items, grants, strict=True):
                 self._privacy_delete(conn, item, denied=grant is None)
+            try:
+                # A quota refusal must not roll back a trusted known-body invalidation.
+                with conn.transaction():
+                    self.engine.project_budgets.quota(
+                        conn, "source", delivery_key, source_id=instance_id
+                    )
+            except DomainError as error:
+                if not error.code.startswith(("PROJECT_QUOTA_", "BUDGET_")):
+                    raise
+                return IngressReceipt(
+                    receipt_id=None, source_instance_id=instance_id, delivery_key=delivery_key,
+                    disposition="backpressure", reason_code=error.code, committed=False,
+                )
         if count["n"] >= settings.max_receipts:
             return IngressReceipt(
                 receipt_id=None,
