@@ -305,7 +305,9 @@
       "independent_review": "NOT_RUN",
       "registered_cases": 201,
       "registered_execution": "NOT_RUN_PENDING_SHARED_ACK_AND_FORMAL_WIRING",
-      "private_components": "102 contracts;18 service;6 CI;24 private API;14 SQL proposal with separate failed-only repairs; not a single164PASS run"
+      "private_components": "102 contracts;18 service;6 CI;24 private API;14 SQL proposal with separate failed-only repairs; not a single164PASS run",
+      "source_commit": "bbc8101a40105fb9882ee2feca8a2a826a5e1206",
+      "source_sha256": "b65c3c38fe2397f4d23939a99d3c0977232ee80a16491dccfb94d4e3b830cfad"
     },
     {
       "id": "SAV1-11",
