@@ -463,8 +463,31 @@ class SourceIngress:
         events: dict[str, str] = {}
         versions: dict[str, str] = {}
         orders: dict[tuple[str, int], str] = {}
+        observations_by_source: dict[UUID, list[Row]] = {}
         for item in items:
             event_key, fingerprint = item.event.event_key, item.fingerprint()
+            source_id = item.event.scope.source_instance_id
+            if source_id not in observations_by_source:
+                observations_by_source[source_id] = self._backpressure_observations(conn, source_id)
+            observations = observations_by_source[source_id]
+            vf = item.fingerprint(version=True)
+            for observed in observations:
+                if observed.get("event_key") == event_key and (
+                    observed.get("fingerprint") != fingerprint
+                ):
+                    return "INGRESS_EVENT_CONFLICT"
+                if observed["version_key"] == item.version_key and (
+                    observed.get("version_fingerprint") is not None
+                    and observed["version_fingerprint"] != vf
+                ):
+                    return "INGRESS_VERSION_CONFLICT"
+                if (
+                    item.native_order is not None
+                    and observed["entity_key"] == item.entity_key
+                    and observed["native_order"] == item.native_order
+                    and observed["version_key"] != item.version_key
+                ):
+                    return "INGRESS_ORDER_CONFLICT"
             alias = conn.execute(
                 "SELECT fingerprint FROM app.source_ingress_aliases WHERE event_key=%s",
                 (event_key,),
@@ -478,7 +501,6 @@ class SourceIngress:
                 "SELECT version_fingerprint FROM app.source_ingress_inputs WHERE version_key=%s",
                 (item.version_key,),
             ).fetchone()
-            vf = item.fingerprint(version=True)
             if (version and version["version_fingerprint"] != vf) or (
                 item.version_key in versions and versions[item.version_key] != vf
             ):
@@ -497,6 +519,108 @@ class SourceIngress:
                     return "INGRESS_ORDER_CONFLICT"
                 orders[slot] = item.version_key
         return None
+
+    def _backpressure_observations(self, conn: Connection, instance_id: UUID) -> list[Row]:
+        # Older migration/SDK compatibility paths do not have the SA07 audit table.
+        if not self.engine.project_budgets._ready(conn):
+            return []
+        return [
+            row["details"]
+            for row in conn.execute(
+                "SELECT details FROM app.sa_budget_audit WHERE project_id=%s "
+                "AND event='source_ingress_backpressure_v1' "
+                "AND details->>'source_instance_id'=%s",
+                (self.project, str(instance_id)),
+            ).fetchall()
+        ]
+
+    @staticmethod
+    def _retry_authority(instance: SourceInstance, generation: int, grant: Row) -> str:
+        # Budget revisions change when capacity returns; they are not Receive authority.
+        return digest([
+            instance.scope.key, instance.revision, generation,
+            str(grant["policy_id"]), grant["policy_revision"],
+            str(grant["identity_id"]), grant["identity_revision"],
+        ])
+
+    def _observe_backpressure(
+        self, conn: Connection, instance: SourceInstance, settings: IngressSettings,
+        generation: int, delivery: VerifiedDelivery, delivery_key: str, normalized: str,
+        grants: list[tuple[Row | None, str]], observations: list[Row], receipt_count: int,
+        *, retry_permitted: bool,
+    ) -> None:
+        if not self.engine.project_budgets._ready(conn):
+            return
+        remaining = max(0, settings.max_receipts - receipt_count - len(observations))
+        for item, (grant, _) in zip(delivery.metadata.items, grants, strict=True):
+            known = conn.execute(
+                "SELECT 1 FROM app.source_ingress_aliases WHERE event_key=%s UNION ALL "
+                "SELECT 1 FROM app.source_ingress_inputs WHERE version_key=%s LIMIT 1",
+                (item.event.event_key, item.version_key),
+            ).fetchone()
+            if known is not None:
+                continue  # Canonical aliases must not invalidate their own body.
+            entity = conn.execute(
+                "SELECT e.*,EXISTS(SELECT 1 FROM app.source_ingress_inputs i "
+                "WHERE i.entity_key=e.entity_key AND i.native_order IS NULL) AS unordered_history "
+                "FROM app.source_ingress_entities e WHERE e.entity_key=%s FOR UPDATE OF e",
+                (item.entity_key,),
+            ).fetchone()
+            if entity is not None and (
+                entity["author_key"] != item.event.sender.key and not item.platform_moderation
+            ):
+                continue
+            if entity is None and not remaining:
+                continue  # Do not allocate unbounded first observations while full.
+            fresh = entity is None or (
+                item.native_order is not None and entity["native_order"] is not None
+                and item.native_order > entity["native_order"]
+            )
+            retry = (
+                retry_permitted and grant is not None and fresh
+                and item.operation != "delete"
+                and (entity is None or (
+                    not entity["deleted"] and not self._order_ambiguous(entity, item)
+                ))
+            )
+            # Always preserve known-resource privacy/order, even without room for proof.
+            if entity is None and retry and item.native_order is None:
+                # One identified unordered version is not yet an ordering contradiction.
+                # A different observed version below makes ambiguity irreversible.
+                conn.execute(
+                    "INSERT INTO app.source_ingress_entities(entity_key,source_instance_id,"
+                    "project_id,author_key) VALUES(%s,%s,%s,%s)",
+                    (item.entity_key, instance.scope.source_instance_id,
+                     self.project, item.event.sender.key),
+                )
+            else:
+                self._privacy_delete(conn, item, denied=True, allow_new=remaining > 0)
+            if not remaining or any(
+                o["version_key"] == item.version_key and (
+                    grant is None or (
+                        o.get("delivery_key") == delivery_key
+                        and o.get("event_key") == item.event.event_key
+                    )
+                ) for o in observations
+            ):
+                continue
+            observed: Row = {
+                "source_instance_id": str(instance.scope.source_instance_id),
+                "entity_key": item.entity_key, "version_key": item.version_key,
+                "native_order": item.native_order,
+                "retry_authority": self._retry_authority(instance, generation, grant)
+                if retry and grant is not None else None,
+            }
+            if grant is not None:
+                observed.update(
+                    event_key=item.event.event_key, fingerprint=item.fingerprint(),
+                    version_fingerprint=item.fingerprint(version=True),
+                    delivery_key=delivery_key, payload_sha256=delivery.metadata.payload_sha256,
+                    normalized_sha256=normalized,
+                )
+            self.engine.project_budgets._audit(conn, "source_ingress_backpressure_v1", **observed)
+            observations.append(observed)
+            remaining -= 1
 
     @staticmethod
     def _order_ambiguous(entity: Row, item: ItemMetadata) -> bool:
@@ -537,6 +661,13 @@ class SourceIngress:
         ).fetchone()
         if known is not None:
             return
+        observations = self._backpressure_observations(conn, item.event.scope.source_instance_id)
+        if any(
+            o["version_key"] == item.version_key
+            and o.get("version_fingerprint") == item.fingerprint(version=True)
+            for o in observations
+        ):
+            return  # An equivalent bodyless observation is not a second version either.
         entity = conn.execute(
             "SELECT e.*,EXISTS(SELECT 1 FROM app.source_ingress_inputs i "
             "WHERE i.entity_key=e.entity_key AND i.native_order IS NULL) AS unordered_history "
@@ -565,6 +696,10 @@ class SourceIngress:
             return
         if entity["author_key"] != item.event.sender.key and not item.platform_moderation:
             return
+        entity["unordered_history"] |= any(
+            o["entity_key"] == item.entity_key and o["version_key"] != item.version_key
+            and o["native_order"] is None for o in observations
+        )
         if item.operation != "delete" and self._order_ambiguous(entity, item):
             self._expire_entity(conn, item.entity_key, "INGRESS_UNORDERED_VERSION")
             conn.execute(
@@ -619,6 +754,8 @@ class SourceIngress:
         grant: Row,
         *,
         context_only: bool,
+        retry_observed: bool = False,
+        observed_version: bool = False,
     ) -> UUID:
         alias = conn.execute(
             "SELECT input_id FROM app.source_ingress_aliases WHERE event_key=%s",
@@ -667,6 +804,11 @@ class SourceIngress:
                 "ambiguous": False,
                 "unordered_history": False,
             }
+        entity["unordered_history"] |= any(
+            o["entity_key"] == item.entity_key and o["version_key"] != item.version_key
+            and o["native_order"] is None
+            for o in self._backpressure_observations(conn, instance.scope.source_instance_id)
+        )
         if (
             entity.get("author_key", event.sender.key) != event.sender.key
             and not item.platform_moderation
@@ -685,10 +827,13 @@ class SourceIngress:
                 "UPDATE app.source_ingress_entities SET ambiguous=true WHERE entity_key=%s",
                 (item.entity_key,),
             )
+        elif observed_version and item.native_order is None and not retry_observed:
+            unavailable, reason, context_only = True, "INGRESS_OLDER_VERSION", True
         elif (
             item.native_order is not None
             and entity["native_order"] is not None
             and item.native_order <= entity["native_order"]
+            and not (retry_observed and item.native_order == entity["native_order"])
         ):
             # Known canonical versions returned above. Equality here has no canonical
             # proof (e.g. previously denied version), so it cannot become current either.
@@ -879,6 +1024,14 @@ class SourceIngress:
         ).fetchone()
         assert count is not None
         conflict = self._item_conflict(conn, meta.items)
+        observations = self._backpressure_observations(conn, instance_id)
+        if any(
+            o.get("delivery_key") == delivery_key and (
+                o["payload_sha256"] != meta.payload_sha256
+                or o["normalized_sha256"] != normalized
+            ) for o in observations
+        ):
+            conflict = "INGRESS_DELIVERY_CONFLICT"
         if meta.cursor is not None:
             cursor_prior = conn.execute(
                 "SELECT d.payload_sha256 FROM app.source_ingress_cursor_marks m "
@@ -899,6 +1052,20 @@ class SourceIngress:
             for item, body in zip(meta.items, delivery.bodies, strict=True)
         ]
         body_rejected = any(reason == "INGRESS_BODY_BOUND" for _, reason in grants)
+        buffer_current = permit is None or (
+            permit.generation == generation and permit.expires_at > now
+            and permit.identity_revisions == tuple(
+                (str(grant["identity_id"]), int(grant["identity_revision"]))
+                for grant, _ in grants if grant
+            )
+        )
+
+        def observe_backpressure() -> None:
+            self._observe_backpressure(
+                conn, instance, settings, generation, delivery, delivery_key, normalized,
+                grants, observations, count["n"], retry_permitted=buffer_current,
+            )
+
         if conflict is None:
             for item, (grant, _) in zip(meta.items, grants, strict=True):
                 self._privacy_delete(conn, item, denied=grant is None)
@@ -911,11 +1078,14 @@ class SourceIngress:
             except DomainError as error:
                 if not error.code.startswith(("PROJECT_QUOTA_", "BUDGET_")):
                     raise
+                observe_backpressure()
                 return IngressReceipt(
                     receipt_id=None, source_instance_id=instance_id, delivery_key=delivery_key,
                     disposition="backpressure", reason_code=error.code, committed=False,
                 )
-        if count["n"] >= settings.max_receipts:
+        if count["n"] + len(observations) >= settings.max_receipts:
+            if conflict is None:
+                observe_backpressure()
             return IngressReceipt(
                 receipt_id=None,
                 source_instance_id=instance_id,
@@ -957,6 +1127,8 @@ class SourceIngress:
         ).fetchone()
         assert existing is not None
         if pending["n"] + len(unique) - existing["n"] > settings.max_pending:
+            if conflict is None:
+                observe_backpressure()
             return IngressReceipt(
                 receipt_id=None,
                 source_instance_id=instance_id,
@@ -1030,7 +1202,19 @@ class SourceIngress:
                     or grant["mode"] in {"disabled", "shadow"}
                 )
                 identifier = self._insert_item(
-                    conn, receipt_id, instance, settings, item, body, grant, context_only=context
+                    conn, receipt_id, instance, settings, item, body, grant, context_only=context,
+                    observed_version=any(
+                        o["version_key"] == item.version_key for o in observations
+                    ),
+                    retry_observed=any(
+                        o["version_key"] == item.version_key
+                        and o.get("version_fingerprint") == item.fingerprint(version=True)
+                        and o["native_order"] == item.native_order
+                        and o["retry_authority"] == self._retry_authority(
+                            instance, generation, grant
+                        )
+                        for o in observations
+                    ),
                 )
                 if identifier not in ids:
                     ids.append(identifier)

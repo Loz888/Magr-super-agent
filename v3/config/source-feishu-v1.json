@@ -58,7 +58,7 @@
     },
     {
       "path": "src/mgar_v3/sources/ingress.py",
-      "sha256": "68f31d315157cb4e6f6df4e04b641ddd53249ccbd6d48f04beecbf24bc032a90"
+      "sha256": "1292dea796c2fdbeaf614afff2cc99f79fe15d5cfb05799a9052f4c6ef5b564d"
     },
     {
       "path": "src/mgar_v3/api.py",
@@ -142,15 +142,15 @@
     },
     {
       "path": "config/verification.json",
-      "sha256": "8adb38ccd21e8e9b028479d1340952a712da44e5a64a90c1f30c3a5c64709d1d"
+      "sha256": "ec5b655b349857aed9ebe28c454fb5a3e623f49c6bf0c1211f0b04eb6c2481d8"
     },
     {
       "path": "config/source-ingress-v1.json",
-      "sha256": "6fd1f1d87342c0a8f4d60abd9cb64e41d13286b05a7edb17cc08b9a509405561"
+      "sha256": "6e0e48754a75686cc245615a7d8639fb89187a6c1387018f14ccb73707dfe2b2"
     },
     {
       "path": "config/source-github-v1.json",
-      "sha256": "3267883740ee0f4168af947f2506cf919429409838c8ceefe929c7984b8438e3"
+      "sha256": "8f7820a9c6439918ade1b8097da777eec67c8d2aea7e441525326e7e6f49fadb"
     }
   ]
 }

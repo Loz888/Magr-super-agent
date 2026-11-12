@@ -1308,6 +1308,7 @@
       "tests/test_super_agent_sa07_repair.py",
       "tests/test_super_agent_sa07_api_regression.py",
       "tests/test_super_agent_sa07_hooks.py",
+      "tests/test_super_agent_sa07_i01.py",
       "tests/test_super_agent_sa06.py",
       "tests/test_super_agent_sa06_sdk.py",
       "tests/test_super_agent_sa06_broker.py",
@@ -1357,7 +1358,8 @@
       "live_coding": "NOT_RUN",
       "live_publication": "NOT_RUN",
       "continuous_operation": "NOT_RUN",
-      "independent_acceptance": "PENDING; implementer checks only"
+      "independent_acceptance": "PENDING; implementer checks only",
+      "quota_watermark_repair": "SA07-I01: bodyless native watermark/sticky ambiguity in the original Engine transaction; bounded hashed retry/alias proof under unchanged Receive authority; privacy, conflicts, capacity and rollback; original independent probes unchanged"
     },
     "timeout_seconds": 3600
   }
