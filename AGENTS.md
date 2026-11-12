@@ -41,3 +41,13 @@ See `v3/docs/super-agent-v1/COORDINATION.md` for the handoff protocol.
 Keep incomplete cards IN_PROGRESS or PLANNED and historical FAIL/NOT_RUN results.
 Local development does not activate listeners, bots, paid experiments or external
 publication. Use independent local test state and databases for this copy.
+
+## Repair retesting (user instruction, 2026-11-12)
+
+After repairing a failed task or check, rerun only the previously failing test
+cases or check targets. Do not automatically repeat previously passing checks or
+the full registered suite. This overrides routine full-suite rerun requirements
+for repairs; it does not change a new task's initial verification requirements.
+Preserve earlier results and record the repaired revision, exact rerun scope and
+outcome. Distinguish historical passing evidence from checks run on the repaired
+revision. Broaden repair retesting only when the user explicitly requests it.
