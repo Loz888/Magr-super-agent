@@ -94,7 +94,7 @@ def test_signed_message_preserves_scope_ids_and_no_fake_issue(env):
         "header_duplicate",
     ],
 )
-def test_authentication_failures_never_persist_body_or_identity(env, failure):
+def test_authentication_failures_never_persist_body_or_identity(env, failure, monkeypatch):
     raw = payload(body="DO_NOT_STORE_UNTRUSTED_CONTENT")
     headers = {}
     kwargs = {}
@@ -105,7 +105,19 @@ def test_authentication_failures_never_persist_body_or_identity(env, failure):
     elif failure == "stale":
         kwargs["timestamp"] = int(time.time()) - 301
     elif failure == "future":
-        kwargs["timestamp"] = int(time.time()) + 301
+        epoch = int(time.time())
+        kwargs["timestamp"] = epoch + 301
+        frozen_now = datetime.fromtimestamp(epoch, UTC)
+
+        # Keep the exact 301-second rejection boundary despite intervening PG work.
+        class FrozenDateTime(datetime):
+            @classmethod
+            def now(cls, tz=None):
+                if tz is None:
+                    return frozen_now.replace(tzinfo=None)
+                return frozen_now.astimezone(tz)
+
+        monkeypatch.setattr("mgar_v3.sources.feishu.datetime", FrozenDateTime)
     elif failure == "tenant":
         raw["header"]["tenant_key"] = TENANT.lower()
     elif failure == "app":

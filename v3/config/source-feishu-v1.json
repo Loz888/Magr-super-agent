@@ -86,7 +86,7 @@
     },
     {
       "path": "tests/test_super_agent_sa06.py",
-      "sha256": "5b46c228468972f245d8b217abcde4bd0f57bcdc0f4e7eddb3d198ecf5278d90"
+      "sha256": "24e17a6b117b655d8a44540ae071e99588d291c6e676ae11a32473b55b34d74c"
     },
     {
       "path": "tests/test_super_agent_sa06_broker.py",
