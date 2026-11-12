@@ -1,0 +1,225 @@
+{
+  "task": "SAV1-07",
+  "status": "IN_PROGRESS",
+  "delivery_status": "ENGINEERING_COMPLETE_PENDING_INDEPENDENT_REVIEW",
+  "recorded_at_utc": "2026-11-12T06:04:13.328921+00:00",
+  "source_commit": "6fd95819883ed923d963e5d89858917a2fa3eab8",
+  "source_sha256": "2d90679ae5310a8b12db4d4bc508f3521fb122ea3ac507df48d074291f19f2e7",
+  "contract": "super-agent-shared-budget-v1",
+  "migration": "0036_super_agent_budgets.sql",
+  "scope": "Local engineering implementation and registered regression only; independent review remains pending; SA08 not started",
+  "gates": {
+    "engineering_gate": "PASS",
+    "policy_security_gate": "NOT_RUN",
+    "live_source_channel_gate": "NOT_RUN",
+    "live_coding_gate": "NOT_RUN",
+    "live_publication_gate": "NOT_RUN",
+    "continuous_operation_gate": "NOT_RUN"
+  },
+  "independent_review": "NOT_RUN_PENDING_USER_REVIEW",
+  "registered": {
+    "result": "evidence/SAV1-07/20261112T053016Z-22fb6856/result.json",
+    "command": "make verify TASK=SAV1-07",
+    "counts": {
+      "tests": 1118,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "sa07_testcases": 223,
+    "existing_regression_testcases": 895,
+    "source_stable": true,
+    "exit_code": 0,
+    "components": {
+      "postgres": "real disposable PostgreSQL; same Engine advisory lock and transaction, concurrency, rollback, recovery and 0035-to-0036 upgrade",
+      "budgets": "organization/project shared original usage_calls and router_calls; Engine/Router/repository reservations; immutable signed prices and revisions; legacy fee and Token preservation",
+      "windows": "UTC half-open hour/day/minute, DST fold and non-hour transitions; unknown money and missing Token receipts carried forward",
+      "quotas": "candidate/source/notification windows; persistent queue/slot occupancy; idempotency and explicit nonrefundable releases",
+      "entrypoints": "signed Source receive/backpressure and trusted edit invalidation; current Source model policy; actual Outbox claim notification limit",
+      "admin_api": "cookie, Origin, CSRF, transaction session recheck, project/organization scope and atomic signed CAS",
+      "legacy": "entire SA06 registry plus original routing and repository-analysis regressions; historical failures retained",
+      "harness": "no active edits/imports; PersistentBudgetLedger integration remains separate and unclaimed",
+      "model": "controlled only; zero paid calls",
+      "live_source_channel": "NOT_RUN",
+      "live_coding": "NOT_RUN",
+      "live_publication": "NOT_RUN",
+      "continuous_operation": "NOT_RUN",
+      "independent_acceptance": "PENDING; implementer checks only"
+    }
+  },
+  "static": {
+    "commands": "evidence/super-agent-v1/SAV1-07/completion-20261112T042413Z-32a76fb9/20261112T045515Z-static-final-9cb806/commands.json",
+    "lint": "PASS",
+    "typecheck": "PASS",
+    "source_files": 234
+  },
+  "delivery_audit": "evidence/super-agent-v1/SAV1-07/completion-20261112T042413Z-32a76fb9/delivery-audit-20261112T060413Z.json",
+  "artifact_hashes": {
+    "config/verification.json": "8adb38ccd21e8e9b028479d1340952a712da44e5a64a90c1f30c3a5c64709d1d",
+    "migrations/0036_super_agent_budgets.sql": "eb1ccb9bbfd3131bfa98740d6eb31832f56085bc61e300bb97553ef8062cf168",
+    "config/source-feishu-v1.json": "95226020394b4e76d6073312d9467b784f9d42e42b91ba45054593d1a7864c3e",
+    "config/source-github-v1.json": "3267883740ee0f4168af947f2506cf919429409838c8ceefe929c7984b8438e3",
+    "config/source-ingress-v1.json": "6fd1f1d87342c0a8f4d60abd9cb64e41d13286b05a7edb17cc08b9a509405561",
+    "src/mgar_v3/super_agent/budget.py": "5b58ddca87e3e8c0f9121a89d3bab6c4f9a36852e29cfaedf6c82564d46f17f3",
+    "src/mgar_v3/super_agent/budget_api.py": "f98a22ff49fa22a8a8421076b72db911e78ad9705d3dc990e6987acb6e8bfc3a",
+    "src/mgar_v3/super_agent/budget_domain.py": "6bd08c7c0621cef59e7fb1ea4a2b8112ef23b1fa9cb44cdd9cf31287189f3cae",
+    "src/mgar_v3/api.py": "bd16e9966ace6a3ab22aa149264fbc308c1242a05ede8a80aed23da8fbf48d4b",
+    "src/mgar_v3/coordination/engine.py": "fa72b588d2a3f35f550b20afd7bad0162d4eb69a3d9b39fd9f407c8617f6446f",
+    "src/mgar_v3/routing/budget.py": "743481672e320d0b5799ae2d2d3e39b2a490df25c9b5c9d177c3c5a723c8bdbf",
+    "src/mgar_v3/repository_analysis/store.py": "4b811c20430fe6b4e989ea3ef0acb92a89216796925575426c42d2d291310efa",
+    "src/mgar_v3/sources/ingress.py": "68f31d315157cb4e6f6df4e04b641ddd53249ccbd6d48f04beecbf24bc032a90",
+    "src/mgar_v3/super_agent/policy.py": "14e74af7f703a19e91ad581c0ce46bb3e009c5e62c354793f36f7fcc518a70e0",
+    "tests/test_super_agent_sa07.py": "2935a13a31c4e09dd2c831859c625f530895aa033a256813e2ace7d3e95df07e",
+    "tests/test_super_agent_sa07_api.py": "a467293a6bf5427c3f3de2735584587275ff36ea2bd6ca0e707acaef5c1d9531",
+    "tests/test_super_agent_sa07_domain.py": "e00a9588c6141c6120a2e33e21e00d960de7a3bdc537455512289f0d74b65c89",
+    "tests/test_super_agent_sa07_migration.py": "ca7eb4a2441649175e0e7d59cdd1d29d9228388894307d4220ff634f4839e7db",
+    "tests/test_super_agent_sa07_repair.py": "8586fda3cd325a09ba0a1ac9f7547c23f5e3979f6c870d1f85304a8bbee52aaa",
+    "tests/test_super_agent_sa07_api_regression.py": "920f7f962bed13970a0e701a745f1c97d8a39806bda01ac9d93bc00437454ea9",
+    "tests/test_super_agent_sa07_hooks.py": "86dc525f9fd16dfdbc07293c762e571b7e6d427568ac40c3f5a41fdce095d77e",
+    "tests/sa07_support.py": "2ee7cbf1d6f9a5ba935531d80623373793ee09fb385694b6f0fb2672aadf3543",
+    "tests/test_super_agent_sa05.py": "c722b92a58fe46206fcfe23c6615d2674ec4a61c1786e0e722fa630e006ace14",
+    "tests/test_super_agent_sa06_migration.py": "35da41c5b05c29fd1c23248e38b5ca1fc1646e4574584d0ea0643e65cc5c1eb5"
+  },
+  "original_settlement_ast_unchanged": [
+    "coordination/engine.py:settle_call",
+    "routing/budget.py:settle",
+    "repository_analysis/store.py:settle_call"
+  ],
+  "prior_registry_entries_unchanged": true,
+  "old_migrations_0001_0035_unchanged": true,
+  "installed_migration_count": 36,
+  "pg_cleanup": {
+    "new_remaining_test_databases": [],
+    "new_remaining_test_sessions": []
+  },
+  "ownership": {
+    "fixed_harness_commit": "cb422c5e050eb48ad2cb0eae901453c052b5f018",
+    "section": 30,
+    "migration_0036_owner": "Codex",
+    "harness_0037": "reserved for Harness; not imported",
+    "actual_fixed_blob_check": "evidence/super-agent-v1/SAV1-07/completion-20261112T042413Z-32a76fb9/old-migrations-and-ownership.json"
+  },
+  "repairs": [
+    "Non-object historical usage JSON is treated as missing Token receipt and retains occupancy, rather than breaking the usage view.",
+    "Reliable original repository token_reservation remains usable before first shared-budget configuration.",
+    "Timestamp strings require explicit ISO timezone; numeric strings cannot be interpreted as epoch values.",
+    "Legacy issue_comment Actions without Source binding also consume the shared notification quota; Draft PR publication remains separate."
+  ],
+  "failed_attempts_preserved": [
+    {
+      "commands": "evidence/super-agent-v1/SAV1-07/completion-20261112T042413Z-32a76fb9/20261112T042628Z-core-red-76c885/commands.json",
+      "exit_code": 1,
+      "counts": {
+        "tests": 12,
+        "failures": 11,
+        "errors": 0,
+        "skipped": 0
+      },
+      "source_stable": false
+    },
+    {
+      "commands": "evidence/super-agent-v1/SAV1-07/completion-20261112T042413Z-32a76fb9/20261112T042836Z-repaired-hooks-a2be48/commands.json",
+      "exit_code": 1,
+      "counts": {
+        "tests": 27,
+        "failures": 6,
+        "errors": 3,
+        "skipped": 0
+      },
+      "source_stable": false
+    },
+    {
+      "commands": "evidence/super-agent-v1/SAV1-07/completion-20261112T042413Z-32a76fb9/20261112T043026Z-hooks-migration-67146e/commands.json",
+      "exit_code": 1,
+      "counts": {
+        "tests": 21,
+        "failures": 4,
+        "errors": 0,
+        "skipped": 0
+      },
+      "source_stable": true
+    },
+    {
+      "commands": "evidence/super-agent-v1/SAV1-07/completion-20261112T042413Z-32a76fb9/20261112T043159Z-hooks-api-final-0c122a/commands.json",
+      "exit_code": 0,
+      "counts": {
+        "tests": 34,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "source_stable": false
+    },
+    {
+      "commands": "evidence/super-agent-v1/SAV1-07/completion-20261112T042413Z-32a76fb9/20261112T043456Z-registered-4153d1/commands.json",
+      "exit_code": 2,
+      "counts": null,
+      "source_stable": true
+    },
+    {
+      "commands": "evidence/super-agent-v1/SAV1-07/completion-20261112T042413Z-32a76fb9/20261112T043548Z-registered-fixed-141f20/commands.json",
+      "exit_code": 2,
+      "counts": null,
+      "source_stable": false
+    },
+    {
+      "commands": "evidence/super-agent-v1/SAV1-07/completion-20261112T042413Z-32a76fb9/20261112T044235Z-legacy-comment-red-a96d5d/commands.json",
+      "exit_code": 1,
+      "counts": {
+        "tests": 3,
+        "failures": 3,
+        "errors": 0,
+        "skipped": 0
+      },
+      "source_stable": true
+    },
+    {
+      "commands": "evidence/super-agent-v1/SAV1-07/completion-20261112T042413Z-32a76fb9/20261112T044416Z-registered-final-ef1a62/commands.json",
+      "exit_code": 2,
+      "counts": null,
+      "source_stable": false
+    },
+    {
+      "commands": "evidence/super-agent-v1/SAV1-07/completion-20261112T042413Z-32a76fb9/20261112T045511Z-registered-delivery-final-2c1ec5/commands.json",
+      "exit_code": 2,
+      "counts": null,
+      "source_stable": true
+    },
+    {
+      "commands": "evidence/super-agent-v1/SAV1-07/completion-20261112T042413Z-32a76fb9/20261112T045606Z-finalize-on-pass-b3cfb4/commands.json",
+      "exit_code": 1,
+      "counts": null,
+      "source_stable": true
+    },
+    {
+      "commands": "evidence/super-agent-v1/SAV1-07/completion-20261112T042413Z-32a76fb9/20261112T053020Z-finalize-explicit-db-on-pass-2913c4/commands.json",
+      "exit_code": 1,
+      "counts": null,
+      "source_stable": true
+    }
+  ],
+  "daemon_interrupted_diagnostic": "evidence/super-agent-v1/SAV1-07/completion-20261112T042413Z-32a76fb9/daemon-recovery.json",
+  "intentional_precommit_interruption": "evidence/super-agent-v1/SAV1-07/completion-20261112T042413Z-32a76fb9/intentional-interruption.json",
+  "legacy_notification_repair": "evidence/super-agent-v1/SAV1-07/completion-20261112T042413Z-32a76fb9/legacy-notification-repair.json",
+  "delivery_manifest_refresh": "evidence/super-agent-v1/SAV1-07/completion-20261112T042413Z-32a76fb9/delivery-manifest-refresh.json",
+  "test_environment": {
+    "required_variable": "MGAR_V3_DATABASE_URL",
+    "value": "same independent PG DSN from this copy .env; never logged",
+    "record": "evidence/super-agent-v1/SAV1-07/completion-20261112T042413Z-32a76fb9/database-opt-in-environment.json"
+  },
+  "prior_evidence": "evidence/super-agent-v1/SAV1-07/start-20261111T141515Z-bb52f4e0/; earlier 99+7/static were component checks, not final acceptance",
+  "evidence_root": "evidence/super-agent-v1/SAV1-07/completion-20261112T042413Z-32a76fb9",
+  "limits": [
+    "Harness PersistentBudgetLedger, Scheduler, Worker/Recall bridges and actual multichannel delivery remain later-card integrations.",
+    "Candidate/queue/slot are internal quota ports; no new Scheduler or Worker is claimed.",
+    "Shared budgets only constrain existing permits; no payment, source listener, notification or publication authorization is granted.",
+    "Complete system policy/security, real platform/model coding/publication and continuous operation gates remain NOT_RUN.",
+    "Engineering checks were run by implementers and are not independent acceptance."
+  ],
+  "paid_calls": 0,
+  "real_platform_calls": 0,
+  "external_business_writes": 0,
+  "protected_user_file_unchanged": true,
+  "next_card": "SAV1-08",
+  "next_card_gate": "Do not start until SA07 independent review and user instruction"
+}

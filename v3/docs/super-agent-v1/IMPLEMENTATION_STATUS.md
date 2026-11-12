@@ -1,3 +1,9 @@
+# SA07 工程交付通过，等待独立验收
+
+固定实现 6fd9581，源码指纹 2d90679ae5310a8b12db4d4bc508f3521fb122ea3ac507df48d074291f19f2e7；单轮完整注册1118项PASS（本卡223+既有895），0failure/error/skip，lint/typecheck234filesPASS。0036已在本副本独立PG安装，旧35迁移原样。共享所有权已获Harness固定cb422c5第30节实际确认。本卡仍IN_PROGRESS，独立验收未运行，SA08不启动；真实来源/付费/外发/发布/完整安全/长期门NOT_RUN。见[交付报告](SA07_ACCEPTANCE_20261112.md)与[摘要](accept/SAV1-07/accept.json)。
+
+以下为历史记录；旧的“仅协调/未改共享源码/未获0036确认”不代表当前进度。
+
 # SA06 已获用户工程放行，SA07 进入需求与所有权协调
 
 固定源码dfab5c3的I04原两项失败独立定向复验2PASS/exit0，用户已确认关闭并允许推进下一卡。此前837项完整注册、lint/typecheck和独立历史记录分别保留，未重跑或拼接为新的独立全量成绩。详见[关闭记录](accept/SAV1-06/i04-independent-closure-20261111.json)。SA07尚未改共享源码，0036及预算/Engine/API范围正在等待实际协调确认；SA08未启动。真实平台、付费、外发、发布与长期门保持NOT_RUN。

@@ -1,7 +1,7 @@
 # MAGR Super-Agent 落地任务书
 
-状态：**SAV1-00–05 已独立工程放行；SA06 独立未通过、修复候选验收中；SA07–24 PLANNED**。更新：2026-11-11。
-当前本地交付见 [实施状态](IMPLEMENTATION_STATUS.md)、[SA06 飞书适配](SA06_FEISHU.md) 与 [任务清单](plan.json)。
+状态：**SAV1-00–SAV1-06 DONE（本地工程）；SAV1-07 IN_PROGRESS（工程交付通过，等待独立验收）；SA08–SA24 PLANNED**。更新：2026-11-12。
+当前交付见 [SA07工程验收与边界](SA07_ACCEPTANCE_20261112.md)、[实施状态](IMPLEMENTATION_STATUS.md) 与 [机器状态](plan.json)。
 仓库基线：`973994c0e6c087c2968b3d91a3a6b9220e2c0892`；该提交新增 Harness 规划，
 应用功能基线仍为 `1d07285aa27ece9bae4ccbedc3a77ce2fbcbaf3a`。
 

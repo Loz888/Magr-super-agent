@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-11T10:29:59.401790+00:00",
+  "updated_at": "2026-11-12T06:04:13.334053+00:00",
   "user_instruction": "Codex owns Super-Agent; local Trae owns Harness; coordination is authorized.",
   "owners": {
     "super_agent": {
@@ -13,9 +13,9 @@
       "cards": "HV4-H00..HV4-H18"
     }
   },
-  "active_super_agent_card": "SAV1-06",
+  "active_super_agent_card": "SAV1-07",
   "card_status": "IN_PROGRESS",
-  "work_state": "SA06_REPAIR_REGISTERED_PASS_ORIGINAL_SAFE_REFUSAL_PROBE_FAIL_PENDING_INDEPENDENT",
+  "work_state": "SA07_ENGINEERING_PASS_PENDING_INDEPENDENT_REVIEW",
   "harness_observation": {
     "head": "de4775e22e96718e880fde287b2e0928db2945e3",
     "h00_owner_reported_status": "PASS",
@@ -92,10 +92,10 @@
     "correction_probe": "evidence/super-agent-v1/SAV1-00/20261110T135100Z-h01-correction-review/result.json"
   },
   "sa00_candidate": "docs/super-agent-v1/sa00-draft/",
-  "migration_coordination": "ACTUALLY_ACKNOWLEDGED d0053f4 section29: Codex owns0035;0036 NOT_RESERVED; future shared migrations coordinate again",
+  "migration_coordination": "ACTUALLY_ACKNOWLEDGED cb422c5 section30: Codex owns0036 and minimal budget hooks; Harness0037 separate",
   "sa00_frozen": "docs/super-agent-v1/sa00/",
   "sa00_acceptance": "docs/super-agent-v1/accept/SAV1-00/accept.json",
-  "next_super_agent_card": "SAV1-07",
+  "next_super_agent_card": "SAV1-08",
   "sa01_read_evidence": "evidence/super-agent-v1/SAV1-01/20261110T140711Z-start/taskbook-read.json",
   "sa01_write_scope": [
     "new sources package",
@@ -241,7 +241,7 @@
   "sa05_history_reading": "evidence/super-agent-v1/SAV1-05/20261111T053624Z-history-repair-start/taskbook-read.json",
   "sa05_history_report": "docs/super-agent-v1/SA05_HISTORY_REPAIR_20261111.md",
   "sa05_history_scope": "Private GitHub sources only; no new shared overlap, migration or Harness work",
-  "next_card_gate": "SA06 independent PASS plus user instruction required; do not advance",
+  "next_card_gate": "SA07 independent review plus user instruction required; do not advance",
   "sa06_shared_scope": {
     "status": "ACTUALLY_CONFIRMED_FIXED_BLOB_VERIFIED",
     "commit": "d0053f4d7bdf850f4c3c458bd36d3c10b9a3e650",
@@ -265,19 +265,31 @@
     "queued_message_was_confirmation": false,
     "completion_handoff": "Prepared locally only; no new completion message delivered or peer receipt claimed"
   },
-  "sa06_source_commit": "d8004baadbf8e0afff1fc9e2dbbcd82ee2cf93ba",
-  "sa06_source_sha256": "4738e6421c3e4648e269e3720aec18c42cb5ad93528501eba5bf00f07a91a863",
+  "sa06_source_commit": "dfab5c3f449653bd4126309018559ea10d9bd78a",
+  "sa06_source_sha256": "b26d96a76edfa81c3f7ea1df720e304c77a8429838ae8397c5e79ca300cb063d",
   "sa06_live_gates": "NOT_RUN",
   "sa06_initial_registered": "evidence/SAV1-06/20261111T075645Z-dcd722bd/result.json;729PASS;source852a96d unchanged",
   "sa06_health_followup": "Independent1FAIL and formal3FAIL retained; repaired original16PASS; new fixed full registered PASS, see acceptance",
-  "sa06_verification": "evidence/SAV1-06/20261111T100727Z-ed7d40c7/result.json",
+  "sa06_verification": "evidence/SAV1-06/20261111T134040Z-e7364b40/result.json",
   "sa06_counts": {
-    "tests": 795,
+    "tests": 837,
     "failures": 0,
     "errors": 0,
     "skipped": 0
   },
-  "sa06_acceptance": "docs/super-agent-v1/accept/SAV1-06/repair-20261111.json",
+  "sa06_acceptance": "docs/super-agent-v1/accept/SAV1-06/i04-independent-closure-20261111.json",
   "sa06_completion_handoff": "HARNESS_SA06_HANDOFF.md prepared locally only; no new completion message sent/delivered/acknowledged",
-  "sa06_independent_review": "NOT_PASSED; no SA07; unchanged original topic probe exits1 on permitted network-before proof refusal"
+  "sa06_independent_review": "USER_ACCEPTED targeted2PASS closesI04; not new independent full837",
+  "sa07_acceptance": "docs/super-agent-v1/accept/SAV1-07/accept.json",
+  "sa07_source_commit": "6fd95819883ed923d963e5d89858917a2fa3eab8",
+  "sa07_source_sha256": "2d90679ae5310a8b12db4d4bc508f3521fb122ea3ac507df48d074291f19f2e7",
+  "sa07_verification": "evidence/SAV1-07/20261112T053016Z-22fb6856/result.json",
+  "sa07_counts": {
+    "tests": 1118,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "sa07_independent_review": "NOT_RUN_PENDING_USER_REVIEW",
+  "sa07_completion_handoff": "Prepared locally only; no message delivered or peer acceptance claimed"
 }
