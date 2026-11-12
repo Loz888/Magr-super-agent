@@ -108,8 +108,9 @@ def _post(value: Any) -> str:
                         raise _invalid()
                     pieces.append(text)
                 elif element["tag"] == "at":
-                    # Mention labels/IDs and image/file URLs are not command text.
-                    pieces.append(" ")
+                    # Keep structure without using mention labels/IDs as text.
+                    # Only verified Feishu mentions may strip one leading token.
+                    pieces.append("@_user_0 ")
                 else:
                     raise _unsupported()
             output.append("".join(pieces))

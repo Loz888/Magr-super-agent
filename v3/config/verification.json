@@ -1365,6 +1365,8 @@
   },
   "SAV1-08": {
     "tests": [
+      "tests/test_super_agent_sa08_post_rules.py",
+      "tests/test_super_agent_sa08_post_controls.py",
       "tests/test_super_agent_sa08.py",
       "tests/test_super_agent_sa08_rules.py",
       "tests/test_super_agent_sa08_own_result.py",
@@ -1433,7 +1435,8 @@
       "fast_path": "Real current Source ingress hook, explicit origin provenance, canonical dedupe, own-result/cooldown/filtering, policy-signed shadow decisions, bounded priority pools and topic batches; no real worker/model/effects",
       "management": "Cookie/Origin/CSRF/current transaction session/CAS/no-store, no body or source authority assertion input",
       "migration": "0036-to-0038;37 installed files; original36 checksums/data retained, no Harness0037; immutable origin/decisions/signed heads and real rollback",
-      "synthetic_benchmark": "Draft synthetic deterministic syntax/grouping only; no operator-approved semantic holdout claims"
+      "synthetic_benchmark": "Draft synthetic deterministic syntax/grouping only; no operator-approved semantic holdout claims",
+      "rich_post_control_repair": "SA08-L01: original 3 failed syntax/actualAdapter/realPG assertions retained in registered regression files; only these cases rerun after fixed structural mention placeholder"
     },
     "timeout_seconds": 4500
   }

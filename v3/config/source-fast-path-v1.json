@@ -1,6 +1,6 @@
 {
   "contract_version": "source-fast-path-v1",
-  "status": "LOCAL_IMPLEMENTATION_PENDING_VERIFICATION",
+  "status": "LOCAL_IMPLEMENTATION_PENDING_INDEPENDENT_REVIEW",
   "ownership_commit": "1e397ab73feeaa6e9a5d747963bb9889eec5a51f",
   "ownership_section": 31,
   "default_enabled": false,
@@ -27,7 +27,7 @@
     },
     {
       "path": "src/mgar_v3/super_agent/fast_path_rules.py",
-      "sha256": "8a10cf0c5298e7e437d4a400f3644abfeabe723c8dcbb40be6587b30cba5095b"
+      "sha256": "be23eae18d6970e2e541b87126c3b479e4d26fe91a6ff52b6d75b51142675a70"
     },
     {
       "path": "src/mgar_v3/super_agent/fast_path_api.py",
@@ -76,6 +76,14 @@
     {
       "path": "schemas/super-agent-v1/source-fast-path-preview-v1.schema.json",
       "sha256": "f9a5df3a79a6afb61281a3efb70f0bf7c356b049cf1319325ee045c0e0bcba0a"
+    },
+    {
+      "path": "tests/test_super_agent_sa08_post_rules.py",
+      "sha256": "8363e3a115d5823eec8fc3eb7cb73bde8548f38769c74d7b110e61706ebe5a36"
+    },
+    {
+      "path": "tests/test_super_agent_sa08_post_controls.py",
+      "sha256": "d0e819f5c27d810d81f42fed273febd9c74571e7d76a1022308e90fb52386911"
     }
   ]
 }
