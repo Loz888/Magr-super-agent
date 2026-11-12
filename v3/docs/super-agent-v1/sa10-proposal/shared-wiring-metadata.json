@@ -1,0 +1,19 @@
+{
+  "status": "PROPOSAL_ONLY_NOT_APPLIED_NOT_CONFIRMED",
+  "recorded_at_utc": "2026-11-12T14:55:22.182576+00:00",
+  "baseline_commit": "d8673adcfefc0cf83b56215267a1061d4440739d",
+  "patch_sha256": "352277eb82d61b75534a072c6ece1c6769c4653102bac1399e36d021e419c278",
+  "files": {
+    "v3/src/mgar_v3/coordination/engine.py": {
+      "before_sha256": "40c3845e9e269ad37325e827d0d1d1104d1f66b0ccf833a125097de38a6777e6",
+      "proposed_after_sha256": "5a75bda801b9b8a87899042e141843ec9eee28fc71e88eb938347847e6150b45"
+    },
+    "v3/src/mgar_v3/api.py": {
+      "before_sha256": "0f0f998f44851f61fa67f40d8233881d6908b180ce836361296b86d44dc15de6",
+      "proposed_after_sha256": "63efc74cdebebfdb16e6ae36dc3d5aafdc8c75aeff1330f548ed5e11425ebe7c"
+    }
+  },
+  "shared_scope": "Only Engine.__init__ SourceCorrelations composition and api.py six private management route registration",
+  "migration": "0041_source_correlations.sql candidate; Harness0040 fixedf554937; not allocated or installed",
+  "preserved": "SA09 v1 + I01 fence, RouterWorker/Routing, old source DTOs, financialAST, ToolAuthority, SQL0001-0039; no Harness import"
+}

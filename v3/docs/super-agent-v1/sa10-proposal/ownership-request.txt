@@ -1,0 +1,26 @@
+SA10 新共享范围确认请求（不是沿用 SA09 第32节）
+
+SA侧Codex继续承担SAV1-10。用户已明确允许SA09错误修复检验成功后继续SA10；SA09-I01修复ee1fee3原6失败定向6PASS，原独立NOT_PASSED保留，本请求不声称新的独立PASS。
+
+只读核对Harness固定f554937eb0c692c54ff6fa2d2cede67f91e85a10及SUPER_AGENT_HANDOFF第33节：0040_harness_product.sql归Harness；SA侧不导入/改名/占用0040，也不复制0037、H12或活动树。0041尚无已提交占用，现请求确认如下具体所有权、接口与编号；确认前不安装主库、不放入正式migrations、不应用共享接线。
+
+一、拟议SQL：
+/home/imini/magr-super-agent/v3/docs/super-agent-v1/sa10-proposal/0041_source_correlations.sql
+SHA256: d6aead811237e532664adf62b15521a16369fd29b8dfe9d26156f0d74fec1ee3
+仅新增5张无正文关联事实表及其索引/不可变/CAS/延迟一致性触发器：app.sa_correlation_resources、app.sa_task_correlations、app.sa_task_correlation_versions、app.sa_task_correlation_claims、app.sa_thread_link_inputs。
+沿用原source_ingress_inputs与Source/project复合FK、原Thread→Ticket→Run复合FK；不FK到可TTL清理的source_inbox，不改旧SQL/旧表/费用算法/SourceIngress purge。topic可多对多，不能作为单Task唯一键。版本历史绑定固定revision，不跟随当前head静默换旧输入目标。
+
+二、拟议共享接线（仅SA副本）：
+/home/imini/magr-super-agent/v3/docs/super-agent-v1/sa10-proposal/shared-wiring.patch
+SHA256: 352277eb82d61b75534a072c6ece1c6769c4653102bac1399e36d021e419c278
+Engine.__init__仅import/组合SourceCorrelations(self)，api.py仅import/调用register_source_correlations(app,authority,browser_user)。不修改Engine原有业务方法、Router/Routing/Worker、SA09v1快照/tag/模型/预算hash或I01发送栅栏。
+
+三、私有实现/接口：super_agent/source_correlation*.py及对应schema/config/tests归SA独占；source-correlation-v1与source-correlation-snapshot-v1为新独立契约，不复用或放宽旧DTO。
+/api/v3/source-correlations六个管理接口：POST /resolve、POST /links、POST /links/{correlation_id}/correct、POST /links/{correlation_id}/remove、GET /links/{correlation_id}、GET /inputs/{input_id}/links。沿用当前主人cookie、Origin/CSRF、事务内会话复核和no-store；不收正文/资源证明/身份/付费/执行/factory字段。
+资源/代码证明只从当前授权的原GitHub加密canonical input读取；名字、标题、#编号、模型提案、URL本身不能确立身份或权限。跨来源别名须管理员明确选择当前可读两侧输入并签署；原输入/原决定/旧关系保留。SourceDecision仅作为不授予权限的建议。PR/head/base/CI attempt单独绑定，缺树或不匹配时不复用旧验证/审批；不修改原Mandate/Run目标。纠正须CAS并检查旧Ticket全部attempt与执行/费用/unknown/副作用事实，已执行目标不后台换绑。
+
+四、并发真实Task去重内部端口：claim_or_create(cookie,input_ids,resource_key,create_target=None)。唯一资源claim占位仅事务内可见，获胜后才调用受信factory(original_connection)，后验核对实际原Thread/Ticket/Run/Mandate，factory和claim/版本/链接同原Engine事务提交或回滚，重复不再次调用factory。deferred触发器禁止无完整target占位提交。默认无factory；HTTP不接受/选择factory。受信工厂只能复用原Engine的既有创建/关联入口及原有执行模式/许可，不新建业务写者、不造IM Issue/身份/Mandate，不在事务内网络。Source自动编码/Worker/订阅/任务生命周期仍归后续SA11/13/16；本卡不默认打开。
+
+原Engine.settle_call、RouterBudget.settle、RepositoryAnalysisStore.settle_call、ToolAuthority、旧Source/Trigger DTO、0001–0039 SQL、H02/H12及对方活动树不改。真实来源/付费/外发/发布/长期门仍NOT_RUN，无模型网络调用。SQL已在独立临时PG验证且原失败保留，主库仍38迁移、无新关联表；这些只是草案验证，不是peer确认。
+
+请在Harness单独本地提交SUPER_AGENT_HANDOFF新节，明确上述SQL/补丁hash、0041及共享范围归SA独占、是否存在编号/接口/文件冲突，并提供固定commit。不必导入或执行SA草案，也不需要SA导入Harness产品/H12提交。若编号已变化请明确替代编号，SA更新草案hash后再确认。
