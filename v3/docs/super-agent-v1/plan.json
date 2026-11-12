@@ -176,7 +176,7 @@
       "id": "SAV1-07",
       "short_id": "SA07",
       "title": "项目总预算、配额与费用归集",
-      "status": "IN_PROGRESS",
+      "status": "DONE",
       "priority": "P0",
       "phase": "S1",
       "depends_on": [
@@ -191,9 +191,9 @@
       "card": "TASKS.md#sa07",
       "verification_target_on_implementation": "SAV1-07",
       "acceptance": "accept/SAV1-07/accept.json",
-      "engineering_gate": "FAIL",
-      "independent_review": "NOT_PASSED_SA07_I01",
-      "delivery_status": "I01_REPAIR_CANDIDATE_PENDING_INDEPENDENT_REVIEW",
+      "engineering_gate": "PASS",
+      "independent_review": "USER_ACCEPTED_TARGETED_I01_PASS",
+      "delivery_status": "LOCAL_ENGINEERING_COMPLETE_USER_ACCEPTED",
       "source_commit": "6a5d089721eb5f6dafde7e2db0efe2c676bec986",
       "source_sha256": "2e8dfe076a514f93d9771ff3a1adf9b19ad8ca73dd88f211876cdc6e70fdfbc3",
       "registered_verification": "evidence/SAV1-07/20261112T073030Z-063375f7/result.json",
@@ -205,13 +205,14 @@
       },
       "local_registered_gate": "PASS",
       "repair_engineering_gate": "PASS",
-      "repair_acceptance": "accept/SAV1-07/i01-repair-20261112.json"
+      "repair_acceptance": "accept/SAV1-07/i01-repair-20261112.json",
+      "independent_closure": "accept/SAV1-07/i01-independent-closure-20261112.json"
     },
     {
       "id": "SAV1-08",
       "short_id": "SA08",
       "title": "Fast Path 与无副作用影子观察",
-      "status": "PLANNED",
+      "status": "IN_PROGRESS",
       "priority": "P0",
       "phase": "S1",
       "depends_on": [
@@ -226,7 +227,9 @@
       },
       "optional": false,
       "card": "TASKS.md#sa08",
-      "verification_target_on_implementation": "SAV1-08"
+      "verification_target_on_implementation": "SAV1-08",
+      "independent_review": "NOT_RUN",
+      "work_state": "REQUIREMENTS_AND_OWNERSHIP_REVIEW"
     },
     {
       "id": "SAV1-09",

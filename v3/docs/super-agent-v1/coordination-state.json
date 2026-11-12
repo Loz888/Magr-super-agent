@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-12T08:05:01.089942+00:00",
+  "updated_at": "2026-11-12T08:18:20.611020+00:00",
   "user_instruction": "Codex owns Super-Agent; local Trae owns Harness; coordination is authorized.",
   "owners": {
     "super_agent": {
@@ -13,9 +13,9 @@
       "cards": "HV4-H00..HV4-H18"
     }
   },
-  "active_super_agent_card": "SAV1-07",
+  "active_super_agent_card": "SAV1-08",
   "card_status": "IN_PROGRESS",
-  "work_state": "SA07_I01_REPAIR_CANDIDATE_PENDING_INDEPENDENT_REVIEW",
+  "work_state": "SA08_REQUIREMENTS_AND_OWNERSHIP_REVIEW",
   "harness_observation": {
     "head": "de4775e22e96718e880fde287b2e0928db2945e3",
     "h00_owner_reported_status": "PASS",
@@ -95,7 +95,7 @@
   "migration_coordination": "ACTUALLY_ACKNOWLEDGED cb422c5 section30: Codex owns0036 and minimal budget hooks; Harness0037 separate",
   "sa00_frozen": "docs/super-agent-v1/sa00/",
   "sa00_acceptance": "docs/super-agent-v1/accept/SAV1-00/accept.json",
-  "next_super_agent_card": "SAV1-08",
+  "next_super_agent_card": "SAV1-09",
   "sa01_read_evidence": "evidence/super-agent-v1/SAV1-01/20261110T140711Z-start/taskbook-read.json",
   "sa01_write_scope": [
     "new sources package",
@@ -241,7 +241,7 @@
   "sa05_history_reading": "evidence/super-agent-v1/SAV1-05/20261111T053624Z-history-repair-start/taskbook-read.json",
   "sa05_history_report": "docs/super-agent-v1/SA05_HISTORY_REPAIR_20261111.md",
   "sa05_history_scope": "Private GitHub sources only; no new shared overlap, migration or Harness work",
-  "next_card_gate": "SA07-I01 independently closed and user instruction required; do not advance",
+  "next_card_gate": "SA08 independent acceptance and user instruction required before SA09",
   "sa06_shared_scope": {
     "status": "ACTUALLY_CONFIRMED_FIXED_BLOB_VERIFIED",
     "commit": "d0053f4d7bdf850f4c3c458bd36d3c10b9a3e650",
@@ -290,7 +290,8 @@
     "errors": 0,
     "skipped": 0
   },
-  "sa07_independent_review": "NOT_PASSED_SA07_I01",
+  "sa07_independent_review": "USER_ACCEPTED_TARGETED_I01_PASS",
   "sa07_completion_handoff": "Prepared locally only; no message delivered or peer acceptance claimed",
-  "sa07_repair_acceptance": "docs/super-agent-v1/accept/SAV1-07/i01-repair-20261112.json"
+  "sa07_repair_acceptance": "docs/super-agent-v1/accept/SAV1-07/i01-repair-20261112.json",
+  "sa07_independent_closure": "docs/super-agent-v1/accept/SAV1-07/i01-independent-closure-20261112.json"
 }

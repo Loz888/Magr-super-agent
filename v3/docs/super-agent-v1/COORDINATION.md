@@ -141,3 +141,8 @@ SA07后续实际确认：Harness固定cb422c5e050eb48ad2cb0eae901453c052b5f018�
 ## SA07-I01 本地修复候选（等待独立复验）
 
 原候选独立P1已原样确认2FAIL；修复6a5d089仅改私有SourceIngress、新增43项正式回归及当前清单。固定完整注册1161PASS，原两项修复方回放与lint/typecheck通过；原独立FAIL不改，SA07不放行、SA08未启动。见SA07_I01_REPAIR_20261112.md。无新迁移/共享Engine/API/预算或Harness活动树改动，0037仍归Harness；本轮交接仅本地准备，未发送新的消息或声称对方收讫。
+
+
+## SA07独立关闭与SA08启动
+
+用户接受固定6a5d089的SA07-I01原两项独立2PASS并授权SA08。原1161项实现方结果与历史FAIL均保留；复验只重跑原未通过项。SA08正在核对来源私有Fast Path/Shadow、共享Engine/API与迁移编号；0037已由Harness使用，未在本树占用新编号或改动其活动树。

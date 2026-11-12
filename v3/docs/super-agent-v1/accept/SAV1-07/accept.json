@@ -1,15 +1,15 @@
 {
   "task": "SAV1-07",
-  "status": "IN_PROGRESS",
-  "delivery_status": "I01_REPAIR_CANDIDATE_PENDING_INDEPENDENT_REVIEW",
+  "status": "DONE",
+  "delivery_status": "LOCAL_ENGINEERING_COMPLETE_USER_ACCEPTED",
   "recorded_at_utc": "2026-11-12T08:05:01.089942+00:00",
   "source_commit": "6a5d089721eb5f6dafde7e2db0efe2c676bec986",
   "source_sha256": "2e8dfe076a514f93d9771ff3a1adf9b19ad8ca73dd88f211876cdc6e70fdfbc3",
   "contract": "super-agent-shared-budget-v1",
   "migration": "0036_super_agent_budgets.sql",
-  "scope": "Implementer repair and local checks only; no independent release or SA08 start",
+  "scope": "Local engineering accepted by user after independent I01-only recheck; historical complete1161 remains implementer evidence",
   "gates": {
-    "engineering_gate": "FAIL",
+    "engineering_gate": "PASS",
     "policy_security_gate": "NOT_RUN",
     "live_source_channel_gate": "NOT_RUN",
     "live_coding_gate": "NOT_RUN",
@@ -18,7 +18,7 @@
     "local_registered_gate": "PASS",
     "repair_engineering_gate": "PASS"
   },
-  "independent_review": "NOT_PASSED_SA07_I01",
+  "independent_review": "USER_ACCEPTED_TARGETED_I01_PASS",
   "registered": {
     "result": "evidence/SAV1-07/20261112T073030Z-063375f7/result.json",
     "command": "make verify TASK=SAV1-07",
@@ -276,7 +276,7 @@
   "external_business_writes": 0,
   "protected_user_file_unchanged": true,
   "next_card": "SAV1-08",
-  "next_card_gate": "Do not start before independent SA07-I01 closure and user instruction",
+  "next_card_gate": "User explicitly authorized SA08",
   "finding": "SA07-I01",
   "priority": "P1",
   "bug_confirmed_before_source_change": {
@@ -423,5 +423,6 @@
   "old_migrations_0001_0036_unchanged": true,
   "old_registry_tests_and_scorer_unchanged": true,
   "repair_report": "docs/super-agent-v1/SA07_I01_REPAIR_20261112.md",
-  "repair_evidence": "evidence/super-agent-v1/SAV1-07/i01-repair-20261112T064612Z-7e49fe40"
+  "repair_evidence": "evidence/super-agent-v1/SAV1-07/i01-repair-20261112T064612Z-7e49fe40",
+  "independent_closure": "docs/super-agent-v1/accept/SAV1-07/i01-independent-closure-20261112.json"
 }

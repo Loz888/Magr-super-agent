@@ -1,0 +1,25 @@
+{
+  "task": "SAV1-07",
+  "finding": "SA07-I01",
+  "status": "DONE_LOCAL_ENGINEERING",
+  "recorded_at_utc": "2026-11-12T08:18:20.609323+00:00",
+  "user_confirmation": "User: 复验通过了，请进行SA08任务",
+  "source_commit": "6a5d089721eb5f6dafde7e2db0efe2c676bec986",
+  "source_sha256": "2e8dfe076a514f93d9771ff3a1adf9b19ad8ca73dd88f211876cdc6e70fdfbc3",
+  "independent_review": "USER_ACCEPTED_INDEPENDENT_TARGETED_PASS",
+  "independent_scope": "SA07-I01 only: the two original edit/create native-version quota-backpressure failures; no full suite, lint/typecheck or prior passed probes.",
+  "counts": {
+    "tests": 2,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "original_report": "evidence/super-agent-v1/SAV1-08/start-20261112T081641Z-5eb84f0a/sa07-independent-i01-pass-original.json",
+  "original_report_sha256": "fea816f100c80132d084dae7723c46958d449acf32d3563bcc455363f3974a1c",
+  "original_local_report": ".local/sa07-i01-independent-review-result.json",
+  "evidence_root": "evidence/super-agent-v1/SAV1-07/20261112T081006Z-independent-i01-only",
+  "prior_passes": "Historical implementer full1161/lint/typecheck retained; NOT rerun by independent reviewer",
+  "historical_failures_preserved": true,
+  "live_paid_external_publication": "NOT_RUN",
+  "authorizes_next_card": "SAV1-08"
+}

@@ -1,3 +1,9 @@
+# SA07已获用户放行，SA08需求和所有权核对中
+
+原I01 edit/create两项独立复验2PASS，用户已确认关闭并授权SA08。原1161项及lint/typecheck仍为此前实施方证据；未重复已通过测试或改写历史失败。见[关闭记录](accept/SAV1-07/i01-independent-closure-20261112.json)。SA08按确定性Fast Path/Shadow范围开始，SA09未启动；真实平台、付费、外发、发布保持NOT_RUN。
+
+以下为历史记录。
+
 # SA07-I01 修复候选工程验证通过，等待独立复验
 
 源码6a5d089，指纹2e8dfe076a514f93d9771ff3a1adf9b19ad8ca73dd88f211876cdc6e70fdfbc3；原edit/create两项负例修改前2FAIL，修复方原样回放2PASS，定向53PASS，完整注册1161PASS（原1118+新增43），lint/typecheck234filesPASS。原独立FAIL、旧1118PASS和中间失败全部保留。SA07仍IN_PROGRESS/独立NOT_PASSED，不放行SA08；真实平台/付费/外发/发布NOT_RUN。详见[修复报告](SA07_I01_REPAIR_20261112.md)与[摘要](accept/SAV1-07/i01-repair-20261112.json)。
