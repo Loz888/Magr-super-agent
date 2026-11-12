@@ -210,3 +210,15 @@ lint首轮PASS；typecheck初轮245文件仅domain两处失败后只该文件PAS
 200例合成标注仍待操作者复核，语义和所有真实/长期门NOT_RUN；工程记录见
 SA09_ACCEPTANCE_20261112.md和accept/SAV1-09/accept.json。SA09保持IN_PROGRESS等待独立，
 SA10未启动。HARNESS_SA09_HANDOFF.md仅本地准备，未发送新的完成消息或声称对方验收。
+
+
+## SA09-I01定向修复与用户授权SA10推进
+
+原93e9a9d独立NOT_PASSED/P1在预占提交后缺当前发送栅栏，三组原6FAIL已复现保留。
+仅私有SourceEval/Model修复ee1fee3/76fc815b…7a6fa，原6项定向6PASS，未重跑通过项或静态/整卡。
+已提交新6项AST相同镜像供后续注册，当前1783没有全跑；真实/语义/长期门NOT_RUN。
+144引用、38安装checksum、固定H02及旧SQL/财务AST匹配，无临时PG/会话/故障容器。
+见SA09_I01_REPAIR_20261112.md，原独立和用户文件不改，修复候选待独立复验。
+用户明确“后续如果成功修改了错误，通过了检验就继续进行SA10的任务。”原6失败复验通过已满足，
+据此推进SA10需求/所有权核对，不伪造独立PASS。Harness固定f554937第33节新增0040归Harness，
+SA10不能占0040；0039/第32节确认不扩大到SA10，新的共享范围和拟0041仍待具体协调。

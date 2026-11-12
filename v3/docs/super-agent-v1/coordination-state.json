@@ -15,7 +15,7 @@
   },
   "active_super_agent_card": "SAV1-09",
   "card_status": "IN_PROGRESS",
-  "work_state": "SA09_ENGINEERING_COMPLETE_PENDING_INDEPENDENT_REVIEW",
+  "work_state": "SA09_I01_TARGETED_REPAIR_PASS; SA10_REQUIREMENTS_AND_OWNERSHIP_AUDIT",
   "harness_observation": {
     "head": "de4775e22e96718e880fde287b2e0928db2945e3",
     "h00_owner_reported_status": "PASS",
@@ -241,7 +241,7 @@
   "sa05_history_reading": "evidence/super-agent-v1/SAV1-05/20261111T053624Z-history-repair-start/taskbook-read.json",
   "sa05_history_report": "docs/super-agent-v1/SA05_HISTORY_REPAIR_20261111.md",
   "sa05_history_scope": "Private GitHub sources only; no new shared overlap, migration or Harness work",
-  "next_card_gate": "SA09 independent acceptance and user instruction before SA10",
+  "next_card_gate": "User authorized SA10 after original failures repaired and tested; six PASS achieved",
   "sa06_shared_scope": {
     "status": "ACTUALLY_CONFIRMED_FIXED_BLOB_VERIFIED",
     "commit": "d0053f4d7bdf850f4c3c458bd36d3c10b9a3e650",
@@ -356,8 +356,8 @@
     "source_commit": "e9ab11e82920b62967568b967219d1b1fcc597ff",
     "source_sha256": "180c9b684c03b72239b464a5fe2245f9edca692d1fdc882859394154b4519417"
   },
-  "sa09_source_commit": "93e9a9d9a64bdd19889071ebf3ee33d3e46bb482",
-  "sa09_source_sha256": "684fe90a43065e642860ca3b99fbc932406951e92b3bd41392eb590e386436ce",
+  "sa09_source_commit": "ee1fee3a516bfe95e667df6ab389900f11ce55dc",
+  "sa09_source_sha256": "76fc815bf9cf75da14c9cf1ef226ae5491aa6a84f4098e606f35ea591e87a6fa",
   "sa09_repair": {
     "status": "PASS",
     "counts": {
@@ -371,9 +371,25 @@
   },
   "sa09_acceptance": "docs/super-agent-v1/accept/SAV1-09/accept.json",
   "sa09_engineering_gate": "PASS",
-  "sa09_work_state": "ENGINEERING_COMPLETE_PENDING_INDEPENDENT_REVIEW",
-  "sa09_independent_review": "NOT_RUN",
+  "sa09_work_state": "I01_REPAIR_COMPLETE_PENDING_INDEPENDENT_REVIEW",
+  "sa09_independent_review": "NOT_PASSED_93e9a9d_I01; repaired_candidate_NOT_RUN",
   "sa09_completion_handoff": "HARNESS_SA09_HANDOFF.md prepared locally only; not sent or peer-accepted",
   "sa09_semantic_quality_gate": "NOT_RUN",
-  "sa10_status": "PLANNED_NOT_STARTED"
+  "sa10_status": "IN_PROGRESS_REQUIREMENTS_AND_OWNERSHIP_AUDIT",
+  "sa09_i01_repair": {
+    "status": "IMPLEMENTER_TARGETED_PASS",
+    "counts": {
+      "tests": 6,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "summary": "docs/super-agent-v1/accept/SAV1-09/i01-repair-20261112.json"
+  },
+  "user_progression_override": {
+    "instruction": "后续如果成功修改了错误，通过了检验就继续进行SA10的任务。",
+    "interpretation": "User authorizes SA10 after successful failed-case repair verification; this does not declare independent SA09 PASS",
+    "condition_met": "all six original failed nodes now PASS",
+    "next_task": "SAV1-10"
+  }
 }

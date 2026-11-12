@@ -1,6 +1,6 @@
 # SA09 来源 Router 与受限 Eval
 
-状态：IN_PROGRESS，本地工程交付完成，等待独立验收。SA08已由用户接受原3项独立复验和
+状态：IN_PROGRESS，原独立SA09-I01未通过；本地定向修复6PASS，等待新的独立复验。SA08已由用户接受原3项独立复验和
 新增6项边界检查；SA09共享范围已获Harness固定`0e0adc6`第32节实际确认。
 本卡只交付来源候选、模型协议、确定性校验和影子决定，不激活真实来源、付费、发送或发布。
 
@@ -45,6 +45,8 @@ SourceEvalModel需要显式注入client、credential和原RouterPermit，默认�
 客户端或环境激活入口。profile_ref准确绑定许可profile hash，模型/价格/提示版本逐项核对。
 签署Source配置的上下文/输出字节上限也限制runtime对象。POST前要求原连接IDLE，拒绝在
 调用者外层事务/savepoint内执行，预占必须durable后才发送；HTTP不在业务事务内。
+I01修复在最终request_body之后，以原Engine mutex保护当前权限/完整请求复核到stream发送入口，
+短事务提交后仍持锁至响应头；流读取期间释放。HTTP请求hooks拒收，auth=None，不继承认证回调。
 
 只发一次固定HTTPS请求，不自动重试或跟随重定向，没有tools。流有总字节、帧、输出和
 时间上限，要求权威finish、完整严格JSON及合法usage。已知费用和提案合法性分开：
@@ -95,5 +97,5 @@ metrics区分recorded_model_attempts、known_billed_calls、unconfirmed_model_at
 确认依据、原始失败、组件范围与后续首次整卡结果位于
 `evidence/super-agent-v1/SAV1-09/`。首轮冻结1777项为1776 PASS、1 FAIL；唯一旧SA06 future
 时间负例仅隔离测试时钟后定向1 PASS，生产源码与全部原断言保持。未重复通过项，不称修复后全量PASS。
-当前源码93e9a9d，详细版本、原失败、静态检查和清理见[交付记录](SA09_ACCEPTANCE_20261112.md)及
-[机器摘要](accept/SAV1-09/accept.json)。SA09未独立通过前不启动SA10。
+当前修复源码ee1fee3，发送前栅栏、原六项FAIL→PASS及清理见[修复记录](SA09_I01_REPAIR_20261112.md)和
+[机器摘要](accept/SAV1-09/accept.json)。原独立NOT_PASSED不改；用户已明确允许本次失败复验通过后继续SA10。

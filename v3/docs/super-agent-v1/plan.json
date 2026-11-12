@@ -261,24 +261,25 @@
       "optional": false,
       "card": "TASKS.md#sa09",
       "verification_target_on_implementation": "SAV1-09",
-      "work_state": "ENGINEERING_COMPLETE_PENDING_INDEPENDENT_REVIEW",
+      "work_state": "I01_REPAIR_COMPLETE_PENDING_INDEPENDENT_REVIEW",
       "engineering_gate": "PASS",
-      "independent_review": "NOT_RUN",
+      "independent_review": "NOT_PASSED_PRIOR_CANDIDATE; I01_REPAIR_NOT_INDEPENDENTLY_REVIEWED",
       "ownership_commit": "0e0adc6a5bb5a7e0c3a3c8323e33513e4b911d84",
       "local_detail": "SA09_ROUTER_EVAL.md",
       "corpus_detail": "SA09_CORPUS_DRAFT.md",
       "acceptance": "accept/SAV1-09/accept.json",
-      "source_commit": "93e9a9d9a64bdd19889071ebf3ee33d3e46bb482",
-      "source_sha256": "684fe90a43065e642860ca3b99fbc932406951e92b3bd41392eb590e386436ce",
+      "source_commit": "ee1fee3a516bfe95e667df6ab389900f11ce55dc",
+      "source_sha256": "76fc815bf9cf75da14c9cf1ef226ae5491aa6a84f4098e606f35ea591e87a6fa",
       "initial_registered": "1776PASS/1FAIL;1777total;rawFAIL retained",
-      "repair": "Only original failed future node1PASS; no repeated passed checks",
-      "semantic_quality_gate": "NOT_RUN"
+      "repair": "SA09-I01 original6FAIL reproduced; repaired original6PASS only",
+      "semantic_quality_gate": "NOT_RUN",
+      "repair_acceptance": "accept/SAV1-09/i01-repair-20261112.json"
     },
     {
       "id": "SAV1-10",
       "short_id": "SA10",
       "title": "跨来源话题/任务关联与查重",
-      "status": "PLANNED",
+      "status": "IN_PROGRESS",
       "priority": "P0",
       "phase": "S1",
       "depends_on": [
@@ -291,7 +292,10 @@
       },
       "optional": false,
       "card": "TASKS.md#sa10",
-      "verification_target_on_implementation": "SAV1-10"
+      "verification_target_on_implementation": "SAV1-10",
+      "work_state": "REQUIREMENTS_AND_OWNERSHIP_AUDIT",
+      "authorized_by_user": "Continue SA10 after successful SA09 repair verification; original6 now PASS",
+      "independent_sa09_gate_waiver": "User progression authorization only, no independent PASS claim"
     },
     {
       "id": "SAV1-11",

@@ -1,10 +1,10 @@
 {
   "task": "SAV1-09",
   "status": "IN_PROGRESS",
-  "delivery_status": "ENGINEERING_COMPLETE_PENDING_INDEPENDENT_REVIEW",
-  "recorded_at_utc": "2026-11-12T13:43:27.975783+00:00",
-  "source_commit": "93e9a9d9a64bdd19889071ebf3ee33d3e46bb482",
-  "source_sha256": "684fe90a43065e642860ca3b99fbc932406951e92b3bd41392eb590e386436ce",
+  "delivery_status": "I01_REPAIR_CANDIDATE_PENDING_INDEPENDENT_REVIEW",
+  "recorded_at_utc": "2026-11-12T14:38:56.329310+00:00",
+  "source_commit": "ee1fee3a516bfe95e667df6ab389900f11ce55dc",
+  "source_sha256": "76fc815bf9cf75da14c9cf1ef226ae5491aa6a84f4098e606f35ea591e87a6fa",
   "contract": {
     "proposal": "source-router-proposals-v1",
     "snapshot": "source-router-snapshot-v1",
@@ -19,10 +19,15 @@
     "live_publication_gate": "NOT_RUN",
     "continuous_operation_gate": "NOT_RUN"
   },
-  "engineering_evidence_mode": "HISTORICAL_INITIAL_FULL_PLUS_FAILED_ONLY_REPAIR; not one full run on the repaired revision",
+  "engineering_evidence_mode": "HISTORICAL_INITIAL_FULL_PLUS_CLOCK_AND_I01_FAILED_ONLY_REPAIRS; not a complete suite on the repaired revision",
   "independent_review": {
-    "status": "NOT_RUN",
-    "next_card_blocked": true
+    "status": "NOT_PASSED",
+    "reviewed_source_commit": "93e9a9d9a64bdd19889071ebf3ee33d3e46bb482",
+    "finding": "SA09-I01",
+    "report": "evidence/super-agent-v1/SAV1-09/20261112T135535Z-independent-review/REPORT.md",
+    "repaired_candidate_independent_review": "NOT_RUN",
+    "advance_to_sa10_authorized_by_user_after_targeted_repair": true,
+    "snapshot": "docs/super-agent-v1/accept/SAV1-09/independent-20261112.json"
   },
   "ownership": {
     "status": "ACTUALLY_CONFIRMED",
@@ -113,9 +118,11 @@
   },
   "current_registry": {
     "task": "SAV1-09",
-    "test_files": 66,
-    "collected_cases": 1777,
-    "unchanged_during_initial_run": true,
+    "test_files": 67,
+    "expected_cases": 1783,
+    "last_complete_collected_cases": 1777,
+    "new_formal_mirrors": 6,
+    "formal_case_asts_identical_to_original_failures": true,
     "full_suite_rerun_after_repair": false
   },
   "static": {
@@ -151,7 +158,8 @@
       "source_files": 1,
       "scope": "Equivalent explicit uniqueness predicates, no field/schema/authorization changes; other244 previously clean files not rerun"
     },
-    "new_corpus_file_initial_lint": "PASS; see corpus component record; not a repeated whole-project lint"
+    "new_corpus_file_initial_lint": "PASS; see corpus component record; not a repeated whole-project lint",
+    "i01_repair_note": "Historical lint/typecheck results retained; no previously passed static targets rerun for I01 per user instruction"
   },
   "benchmark": {
     "scorer_scope": "23 controlled arithmetic/denominator/schema tests over original8 hand-authored examples; not model accuracy",
@@ -170,31 +178,31 @@
     "operator_draft_predictions_produced": 0,
     "real_model_predictions_produced": 0
   },
-  "delivery_audit": "evidence/super-agent-v1/SAV1-09/start-20261112T110706Z-588a9f55/delivery-audit.json",
+  "delivery_audit": "evidence/super-agent-v1/SAV1-09/repair-i01-20261112T142616Z-995a5aae/delivery-audit.json",
   "shared_scope_audit": "evidence/super-agent-v1/SAV1-09/start-20261112T110706Z-588a9f55/frozen-read-only-audit/audit.json",
   "design_audit": "evidence/super-agent-v1/SAV1-09/pre-registry-design-audit-20261112T125935Z/review.json",
   "manifest_sha256": {
     "config/harness-model-import-v1.json": "a9d23be7dc2011f58ddce71c75c71c09c669b226449c04caad4b2653241caf05",
     "config/source-contract-v1.json": "a9e250da4799d5de353224a9b5c1029b698aa8bbe3ed9a9e8ee5b43228187fa3",
-    "config/source-eval-v1.json": "fede9dc73e0c8f1e4b22f11e985f7dda14e1c29749f7639e78012e85b2f0b958",
+    "config/source-eval-v1.json": "6802ce20e7af0ba2ca022a806be5b453b9ee305fe79ecb6428070fa1b77b312a",
     "config/source-fast-path-v1.json": "b93833181aa0cf99a41eeff5c4b618e7fe8d75456e563f831889c4db3223ca4b",
-    "config/source-feishu-v1.json": "5010937a094e92effb754541da9f904c63cce1871edc71f4fd8e66013d3badfa",
+    "config/source-feishu-v1.json": "a069106be8e111b766b5a1a62be36a4596a160311b75976a85af19da3ae5724f",
     "config/source-github-v1.json": "6ee9c8e936abc59e6675da946409b38afa8f8ee4607353a3ba6716bd1bffd798",
     "config/source-identity-v1.json": "1e2adf660b230d6b5961244d6d8cc549ffd3be1d28406710fd797a276d463b73",
     "config/source-ingress-v1.json": "935def51d7e4be3f5528b5947ac6480105770d2bd4f59a6d987ff1f173db696c",
     "config/source-policy-v1.json": "8f870fb989fb96c3b591067279e3f8281cc42d49166d7410c6b7f43e36415c96"
   },
   "artifact_hashes": {
-    "config/verification.json": "547c9e7dce07966b7da2107134043055281960ac945dd99fd1bcf8781f4d1e64",
-    "config/source-eval-v1.json": "fede9dc73e0c8f1e4b22f11e985f7dda14e1c29749f7639e78012e85b2f0b958",
+    "config/verification.json": "49d28c66d1dee5c1f30236d53f4869ffa456a78935575473968265f548e9f0cd",
+    "config/source-eval-v1.json": "6802ce20e7af0ba2ca022a806be5b453b9ee305fe79ecb6428070fa1b77b312a",
     "config/harness-model-import-v1.json": "a9d23be7dc2011f58ddce71c75c71c09c669b226449c04caad4b2653241caf05",
     "migrations/0039_super_agent_source_eval.sql": "8b18840590c7841022d7985d66904cd580aee916777cadc9f8baca3cb1837669",
     "experiments/harness-v4/model-capabilities-v1.json": "0062bdae9cc9328694ee590571d17edcf3dc090d26e3ef5abea7ff16f70171e3",
     "tests/test_super_agent_sa06.py": "24e17a6b117b655d8a44540ae071e99588d291c6e676ae11a32473b55b34d74c",
-    "src/mgar_v3/super_agent/source_eval.py": "fc1219cb0de408df53724d053149c25c610b83bf30139ea09ceaa5634be07fc2",
+    "src/mgar_v3/super_agent/source_eval.py": "a6e14971c9e7da317f2f78110639348ee5e62baa231428dbcc72669231c60cdc",
     "src/mgar_v3/super_agent/source_eval_api.py": "5d74121b4ae9d3d9fda5177febd994779b9ce71902472c55b8c5b4e2eacc95ec",
     "src/mgar_v3/super_agent/source_eval_domain.py": "e9c98b64fed05a13cddd3eee74cee989310e02bdeab6a5f02e5e2ed7421b01c8",
-    "src/mgar_v3/super_agent/source_eval_model.py": "c1d2337808773bae1647855a3b33ba0c2204a7012fb60e31d68362c32af1b8dc",
+    "src/mgar_v3/super_agent/source_eval_model.py": "89a12c8caa307265cdc1d8b565a41f9ae4d57d058863244ccd7b102f387787ba",
     "src/mgar_v3/super_agent/source_eval_rules.py": "6ecf9d4081fe44ab2a980289550f63d3dc6048fe0fa3a24201992a463372b920",
     "src/mgar_v3/super_agent/source_eval_scoring.py": "83ac7bce3f52d132df9cd12daf74dcd735c5e8568dbdbc5ac5879771e2b28cc5",
     "tests/test_super_agent_sa09.py": "04c9bec6c817b05c6050e5af66e24ab8c028de80d2c30b1718758270dd023406",
@@ -218,7 +226,8 @@
     "fixtures/super-agent-v1/sa09-routing/draft-cases-v1.json": "5cea4ea451404a4e5896ac28f0c2f863692c3777041b85732ea56ef545e8505e",
     "fixtures/super-agent-v1/sa09-routing/operator-review-draft-v1.json": "02a07535b5ee098780d271b4d332cbe271fbb52e28690147c921111e07b3d764",
     "tests/sa09_support.py": "53f8bbc1087bee97045dbda5f5f248acd79c46364730385952c7d8574280387b",
-    "tests/sa09_crash_actor.py": "d5c26c62d33c825497f7a8ecd9082e1bfbed5bb53760f004a80829b8dd11b9a8"
+    "tests/sa09_crash_actor.py": "d5c26c62d33c825497f7a8ecd9082e1bfbed5bb53760f004a80829b8dd11b9a8",
+    "tests/test_super_agent_sa09_i01.py": "14e37cd3bcf3e3ea2017be76ceeb3870164aa3a0153c588ae17aa681abeb31ea"
   },
   "attempts": [
     {
@@ -563,6 +572,84 @@
       "source_before": "684fe90a43065e642860ca3b99fbc932406951e92b3bd41392eb590e386436ce",
       "source_after": "684fe90a43065e642860ca3b99fbc932406951e92b3bd41392eb590e386436ce",
       "source_stable": true
+    },
+    {
+      "commands": "evidence/super-agent-v1/SAV1-09/20261112T142616Z-I01-reproduce-845ca43b/independent-command.json",
+      "exit_code": 1,
+      "counts": {
+        "tests": 2,
+        "failures": 2,
+        "errors": 0,
+        "skipped": 0
+      },
+      "source_before": "684fe90a43065e642860ca3b99fbc932406951e92b3bd41392eb590e386436ce",
+      "source_after": "684fe90a43065e642860ca3b99fbc932406951e92b3bd41392eb590e386436ce",
+      "source_stable": true
+    },
+    {
+      "commands": "evidence/super-agent-v1/SAV1-09/20261112T142616Z-I01-reproduce-845ca43b/race-command.json",
+      "exit_code": 1,
+      "counts": {
+        "tests": 2,
+        "failures": 2,
+        "errors": 0,
+        "skipped": 0
+      },
+      "source_before": "684fe90a43065e642860ca3b99fbc932406951e92b3bd41392eb590e386436ce",
+      "source_after": "684fe90a43065e642860ca3b99fbc932406951e92b3bd41392eb590e386436ce",
+      "source_stable": true
+    },
+    {
+      "commands": "evidence/super-agent-v1/SAV1-09/20261112T142616Z-I01-reproduce-845ca43b/boundary-command.json",
+      "exit_code": 1,
+      "counts": {
+        "tests": 2,
+        "failures": 2,
+        "errors": 0,
+        "skipped": 0
+      },
+      "source_before": "684fe90a43065e642860ca3b99fbc932406951e92b3bd41392eb590e386436ce",
+      "source_after": "684fe90a43065e642860ca3b99fbc932406951e92b3bd41392eb590e386436ce",
+      "source_stable": true
+    },
+    {
+      "commands": "evidence/super-agent-v1/SAV1-09/20261112T143317Z-I01-repair-70df53cc/independent-command.json",
+      "exit_code": 0,
+      "counts": {
+        "tests": 2,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "source_before": "76fc815bf9cf75da14c9cf1ef226ae5491aa6a84f4098e606f35ea591e87a6fa",
+      "source_after": "76fc815bf9cf75da14c9cf1ef226ae5491aa6a84f4098e606f35ea591e87a6fa",
+      "source_stable": true
+    },
+    {
+      "commands": "evidence/super-agent-v1/SAV1-09/20261112T143317Z-I01-repair-70df53cc/race-command.json",
+      "exit_code": 0,
+      "counts": {
+        "tests": 2,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "source_before": "76fc815bf9cf75da14c9cf1ef226ae5491aa6a84f4098e606f35ea591e87a6fa",
+      "source_after": "76fc815bf9cf75da14c9cf1ef226ae5491aa6a84f4098e606f35ea591e87a6fa",
+      "source_stable": true
+    },
+    {
+      "commands": "evidence/super-agent-v1/SAV1-09/20261112T143317Z-I01-repair-70df53cc/boundary-command.json",
+      "exit_code": 0,
+      "counts": {
+        "tests": 2,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "source_before": "76fc815bf9cf75da14c9cf1ef226ae5491aa6a84f4098e606f35ea591e87a6fa",
+      "source_after": "76fc815bf9cf75da14c9cf1ef226ae5491aa6a84f4098e606f35ea591e87a6fa",
+      "source_stable": true
     }
   ],
   "component_records": [
@@ -604,13 +691,60 @@
   "protected_user_file_unchanged": true,
   "completion_handoff": "HARNESS_SA09_HANDOFF.md prepared locally only; no new implementation-completion message delivered or peer acceptance claimed",
   "next_card": "SAV1-10",
-  "next_card_gate": "NOT_STARTED; wait for independent SA09 review and user acceptance",
+  "next_card_gate": "User explicitly authorized SA10 after successful failed-case repair verification; six original failures now PASS; independent status remains NOT_PASSED",
   "limitations": [
     "Initial1777 includes a FAIL retained verbatim; failed-only repair does not establish a new complete1777 PASS",
-    "Local engineering assertions do not establish independent review or full-system policy/security acceptance",
-    "Synthetic200 labels/context assumptions await operator review; proposed_holdout is developer-visible and not independent",
-    "No true model quality, live platform, payment, outbound, publication or long-running acceptance was performed"
+    "No true model quality, live platform, payment, outbound, publication or long-running acceptance was performed",
+    "Previous independent SA09-I01 NOT_PASSED remains; repaired candidate has implementer-only six-case PASS",
+    "SA10 progression is user-authorized after targeted repair, not evidence of independent SA09 PASS",
+    "Only original failed probes rerun; full1783/static/previously passed probes not rerun"
   ],
   "evidence_root": "evidence/super-agent-v1/SAV1-09/",
-  "final_document_binding": "evidence/super-agent-v1/SAV1-09/start-20261112T110706Z-588a9f55/final-document-binding.json"
+  "i01_repair": {
+    "task": "SAV1-09",
+    "finding": "SA09-I01",
+    "status": "REPAIR_IMPLEMENTER_TARGETED_PASS_PENDING_INDEPENDENT_REVIEW",
+    "source_commit": "ee1fee3a516bfe95e667df6ab389900f11ce55dc",
+    "source_sha256": "76fc815bf9cf75da14c9cf1ef226ae5491aa6a84f4098e606f35ea591e87a6fa",
+    "reproduction_summary": "evidence/super-agent-v1/SAV1-09/20261112T142616Z-I01-reproduce-845ca43b/summary.json",
+    "repair_summary": "evidence/super-agent-v1/SAV1-09/20261112T143317Z-I01-repair-70df53cc/summary.json",
+    "original_failures": 6,
+    "retest_counts": {
+      "tests": 6,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "same_issue_distinct_probes": true,
+    "source_stable": true,
+    "previously_passed_cases_rerun": false,
+    "full_lint_typecheck_or_registered_suite_rerun": false,
+    "independent_review": "PREVIOUS_CANDIDATE_NOT_PASSED; repaired candidate not independently reviewed",
+    "user_progression_override": {
+      "instruction": "后续如果成功修改了错误，通过了检验就继续进行SA10的任务。",
+      "interpretation": "User authorizes SA10 after successful failed-case repair verification; this does not declare independent SA09 PASS",
+      "condition_met": "all six original failed nodes now PASS",
+      "next_task": "SAV1-10"
+    },
+    "registered_cases_now": 1783,
+    "registered_cases_reexecuted": false,
+    "scope_evidence": "evidence/super-agent-v1/SAV1-09/repair-i01-20261112T142616Z-995a5aae/repair-scope-before-test.json",
+    "formal_regression_mapping": "evidence/super-agent-v1/SAV1-09/repair-i01-20261112T142616Z-995a5aae/formal-regression-mapping.json",
+    "recorded_at_utc": "2026-11-12T14:38:56.329310+00:00",
+    "original_independent_report": "evidence/super-agent-v1/SAV1-09/20261112T135535Z-independent-review/REPORT.md",
+    "delivery_audit": "evidence/super-agent-v1/SAV1-09/repair-i01-20261112T142616Z-995a5aae/delivery-audit.json",
+    "original_files_preserved": true,
+    "live_gates": "NOT_RUN",
+    "report": "docs/super-agent-v1/SA09_I01_REPAIR_20261112.md"
+  },
+  "next_card_status": "IN_PROGRESS_REQUIREMENTS_AND_OWNERSHIP_AUDIT",
+  "user_progression_override": {
+    "instruction": "后续如果成功修改了错误，通过了检验就继续进行SA10的任务。",
+    "interpretation": "User authorizes SA10 after successful failed-case repair verification; this does not declare independent SA09 PASS",
+    "condition_met": "all six original failed nodes now PASS",
+    "next_task": "SAV1-10"
+  },
+  "prior_delivery": "history/209dd35-before-independent-I01.json",
+  "prior_final_document_binding": "evidence/super-agent-v1/SAV1-09/start-20261112T110706Z-588a9f55/final-document-binding.json",
+  "final_document_binding": "evidence/super-agent-v1/SAV1-09/repair-i01-20261112T142616Z-995a5aae/final-document-binding.json"
 }
