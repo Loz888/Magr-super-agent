@@ -15,7 +15,7 @@
   },
   "active_super_agent_card": "SAV1-09",
   "card_status": "IN_PROGRESS",
-  "work_state": "SA09_IMPLEMENTED_COMPONENT_VERIFICATION_COMPLETE_PENDING_INITIAL_REGISTRY",
+  "work_state": "SA09_ENGINEERING_COMPLETE_PENDING_INDEPENDENT_REVIEW",
   "harness_observation": {
     "head": "de4775e22e96718e880fde287b2e0928db2945e3",
     "h00_owner_reported_status": "PASS",
@@ -344,5 +344,36 @@
     "evidence": "evidence/super-agent-v1/SAV1-09/start-20261112T110706Z-588a9f55/ownership-confirmation.json"
   },
   "sa09_h02_integration": "Fixed169925f6blobs; H02/H01/H00 initial58PASS; no H12",
-  "sa09_registered_verification": "NOT_RUN; preparing final corpus and initial frozen registry"
+  "sa09_registered_verification": {
+    "status": "FAIL",
+    "result": "evidence/SAV1-09/20261112T125824Z-1f26ecbe/result.json",
+    "counts": {
+      "tests": 1777,
+      "failures": 1,
+      "errors": 0,
+      "skipped": 0
+    },
+    "source_commit": "e9ab11e82920b62967568b967219d1b1fcc597ff",
+    "source_sha256": "180c9b684c03b72239b464a5fe2245f9edca692d1fdc882859394154b4519417"
+  },
+  "sa09_source_commit": "93e9a9d9a64bdd19889071ebf3ee33d3e46bb482",
+  "sa09_source_sha256": "684fe90a43065e642860ca3b99fbc932406951e92b3bd41392eb590e386436ce",
+  "sa09_repair": {
+    "status": "PASS",
+    "counts": {
+      "tests": 1,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "evidence": "evidence/super-agent-v1/SAV1-09/start-20261112T110706Z-588a9f55/registered-failure-repair.json",
+    "previously_passed_cases_rerun": false
+  },
+  "sa09_acceptance": "docs/super-agent-v1/accept/SAV1-09/accept.json",
+  "sa09_engineering_gate": "PASS",
+  "sa09_work_state": "ENGINEERING_COMPLETE_PENDING_INDEPENDENT_REVIEW",
+  "sa09_independent_review": "NOT_RUN",
+  "sa09_completion_handoff": "HARNESS_SA09_HANDOFF.md prepared locally only; not sent or peer-accepted",
+  "sa09_semantic_quality_gate": "NOT_RUN",
+  "sa10_status": "PLANNED_NOT_STARTED"
 }

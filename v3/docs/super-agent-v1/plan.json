@@ -261,12 +261,18 @@
       "optional": false,
       "card": "TASKS.md#sa09",
       "verification_target_on_implementation": "SAV1-09",
-      "work_state": "IMPLEMENTED_PENDING_INITIAL_REGISTERED_VERIFICATION",
-      "engineering_gate": "NOT_RUN",
+      "work_state": "ENGINEERING_COMPLETE_PENDING_INDEPENDENT_REVIEW",
+      "engineering_gate": "PASS",
       "independent_review": "NOT_RUN",
       "ownership_commit": "0e0adc6a5bb5a7e0c3a3c8323e33513e4b911d84",
       "local_detail": "SA09_ROUTER_EVAL.md",
-      "corpus_detail": "SA09_CORPUS_DRAFT.md"
+      "corpus_detail": "SA09_CORPUS_DRAFT.md",
+      "acceptance": "accept/SAV1-09/accept.json",
+      "source_commit": "93e9a9d9a64bdd19889071ebf3ee33d3e46bb482",
+      "source_sha256": "684fe90a43065e642860ca3b99fbc932406951e92b3bd41392eb590e386436ce",
+      "initial_registered": "1776PASS/1FAIL;1777total;rawFAIL retained",
+      "repair": "Only original failed future node1PASS; no repeated passed checks",
+      "semantic_quality_gate": "NOT_RUN"
     },
     {
       "id": "SAV1-10",

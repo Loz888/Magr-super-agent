@@ -1,6 +1,6 @@
 # SA09 来源 Router 与受限 Eval
 
-状态：IN_PROGRESS，尚待首次整卡注册结果及独立验收。SA08已由用户接受原3项独立复验和
+状态：IN_PROGRESS，本地工程交付完成，等待独立验收。SA08已由用户接受原3项独立复验和
 新增6项边界检查；SA09共享范围已获Harness固定`0e0adc6`第32节实际确认。
 本卡只交付来源候选、模型协议、确定性校验和影子决定，不激活真实来源、付费、发送或发布。
 
@@ -93,5 +93,7 @@ metrics区分recorded_model_attempts、known_billed_calls、unconfirmed_model_at
 分别记录，真实平台、付费、外发、发布、完整系统安全与长期门保持NOT_RUN。
 
 确认依据、原始失败、组件范围与后续首次整卡结果位于
-`evidence/super-agent-v1/SAV1-09/`。首次完整注册结果尚未生成；后续失败修复只重测原失败项，
-不重复已通过检查。SA09未独立通过前不启动SA10。
+`evidence/super-agent-v1/SAV1-09/`。首轮冻结1777项为1776 PASS、1 FAIL；唯一旧SA06 future
+时间负例仅隔离测试时钟后定向1 PASS，生产源码与全部原断言保持。未重复通过项，不称修复后全量PASS。
+当前源码93e9a9d，详细版本、原失败、静态检查和清理见[交付记录](SA09_ACCEPTANCE_20261112.md)及
+[机器摘要](accept/SAV1-09/accept.json)。SA09未独立通过前不启动SA10。

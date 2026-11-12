@@ -198,3 +198,15 @@ H02仅固定169925f六blob，正式接收fee0875，首次H00/H01/H02兼容58PASS
 0037或对方活动树，不继承真实实验许可。Source只用H02公开SSE/能力helper，不造Run。
 私有协议、真实PG/恢复与API组件通过记录及原失败均保留，完整1777注册正在准备冻结，
 当前不先记整卡PASS。200合成数据仅待操作者复核草案，真实语义与其余门NOT_RUN。
+
+
+## SA09本地工程交付，等待独立验收
+
+首轮固定e9ab11e/180c9b…19417，原1777注册1776PASS/1FAIL，0ERROR/SKIP；旧SA06 future
+负例受跨秒影响，经测试时钟隔离后源码93e9a9d/684fe9…36ce仅原失败1PASS。生产源码、
+原断言、评分器、数据、SQL和schema不变，旧FAIL保留，不称修复后完整1777PASS。
+lint首轮PASS；typecheck初轮245文件仅domain两处失败后只该文件PASS，未重复通过目标。
+143引用、38安装checksum、旧37SQL和三结算AST匹配；临时PG/会话/故障容器0，主库六新表0行。
+200例合成标注仍待操作者复核，语义和所有真实/长期门NOT_RUN；工程记录见
+SA09_ACCEPTANCE_20261112.md和accept/SAV1-09/accept.json。SA09保持IN_PROGRESS等待独立，
+SA10未启动。HARNESS_SA09_HANDOFF.md仅本地准备，未发送新的完成消息或声称对方验收。
