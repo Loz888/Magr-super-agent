@@ -60,7 +60,7 @@
     },
     {
       "path": "src/mgar_v3/sources/ingress.py",
-      "sha256": "457d2f29432d3e9bf56891f47fc847f242a14c3cfd9af92d33c2936a6a4cb2a2"
+      "sha256": "68f31d315157cb4e6f6df4e04b641ddd53249ccbd6d48f04beecbf24bc032a90"
     },
     {
       "path": "tests/test_super_agent_sa05_repair.py",
