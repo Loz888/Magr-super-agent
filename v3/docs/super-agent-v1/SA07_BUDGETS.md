@@ -3,7 +3,7 @@
 状态：IN_PROGRESS。用户已接受 SA06-I04 的独立定向关闭并授权进入本卡。
 本卡依赖 SA03；共享所有权按 Harness 固定 cb422c5e050eb48ad2cb0eae901453c052b5f018
 的 SUPER_AGENT_HANDOFF.md 第30节实施，0036 归 Codex，0037 留给 Harness。
-固定实现 `6fd9581` 完整注册 1118 PASS，lint/typecheck PASS；工程交付已完成，等待独立验收，不启动 SA08。详见 [本轮交付](SA07_ACCEPTANCE_20261112.md)。
+原候选独立验收发现 SA07-I01。修复候选 `6a5d089` 完整注册1161 PASS、lint/typecheck PASS；原独立FAIL保留，等待新的独立复验，不启动SA08。详见[修复报告](SA07_I01_REPAIR_20261112.md)。
 
 ## 权威与范围
 

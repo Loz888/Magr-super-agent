@@ -136,3 +136,8 @@ SA07后续实际确认：Harness固定cb422c5e050eb48ad2cb0eae901453c052b5f018�
 ## SA07 工程固定交付（2026-11-12，待独立验收）
 
 实现6fd95819883ed923d963e5d89858917a2fa3eab8，完整注册1118PASS，lint/typecheck234filesPASS；证据见accept/SAV1-07/accept.json和SA07_ACCEPTANCE_20261112.md。0036已应用本副本，旧35迁移不改；只读复核cb422c5第30节，未编辑/导入Harness。实际PersistentBudgetLedger/0037后续集成仍单独验收。SA07保持IN_PROGRESS，独立验收未运行，SA08不启动。交接仅本地准备，不声称新的消息送达或对方接收。
+
+
+## SA07-I01 本地修复候选（等待独立复验）
+
+原候选独立P1已原样确认2FAIL；修复6a5d089仅改私有SourceIngress、新增43项正式回归及当前清单。固定完整注册1161PASS，原两项修复方回放与lint/typecheck通过；原独立FAIL不改，SA07不放行、SA08未启动。见SA07_I01_REPAIR_20261112.md。无新迁移/共享Engine/API/预算或Harness活动树改动，0037仍归Harness；本轮交接仅本地准备，未发送新的消息或声称对方收讫。

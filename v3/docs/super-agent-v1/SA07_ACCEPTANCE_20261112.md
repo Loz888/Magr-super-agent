@@ -1,3 +1,5 @@
+> 当前状态：原候选独立验收发现 SA07-I01，未获放行；新修复候选见 [SA07-I01修复报告](SA07_I01_REPAIR_20261112.md)。以下保留原交付记录，不能作为当前独立通过结论。
+
 # SAV1-07 工程交付，等待独立验收
 
 状态：IN_PROGRESS / ENGINEERING_COMPLETE_PENDING_INDEPENDENT_REVIEW。固定实现 `6fd95819883ed923d963e5d89858917a2fa3eab8`，源码指纹 `2d90679ae5310a8b12db4d4bc508f3521fb122ea3ac507df48d074291f19f2e7`。

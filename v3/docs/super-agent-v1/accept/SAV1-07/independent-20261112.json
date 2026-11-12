@@ -1,0 +1,37 @@
+{
+  "task": "SAV1-07",
+  "status": "INDEPENDENT_ENGINEERING_FAIL",
+  "finding": "SA07-I01",
+  "priority": "P1",
+  "source_commit": "6fd95819883ed923d963e5d89858917a2fa3eab8",
+  "source_sha256": "2d90679ae5310a8b12db4d4bc508f3521fb122ea3ac507df48d074291f19f2e7",
+  "registered": {
+    "status": "PASS",
+    "counts": {
+      "tests": 1118,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "command_exit_code": 0,
+    "make_exit_code": 0,
+    "result": "evidence/SAV1-07/20261112T060910Z-9d0c579e/result.json",
+    "junit": "evidence/SAV1-07/20261112T060910Z-9d0c579e/junit.xml",
+    "command_log": "evidence/SAV1-07/20261112T060910Z-9d0c579e/command.log",
+    "git_commit": "871174900b3aeff2284cb9f30e7104f55dbd5998",
+    "source_sha256": "2d90679ae5310a8b12db4d4bc508f3521fb122ea3ac507df48d074291f19f2e7",
+    "finished_source_sha256": "2d90679ae5310a8b12db4d4bc508f3521fb122ea3ac507df48d074291f19f2e7",
+    "duration_seconds": 1663.216
+  },
+  "confirmed_failing_cases": [
+    "test_independent_source_quota_denied_higher_version_keeps_watermark[edit]",
+    "test_independent_source_quota_denied_higher_version_keeps_watermark[create]"
+  ],
+  "independent_report": "evidence/super-agent-v1/SAV1-07/i01-repair-20261112T064612Z-7e49fe40/original-independent-report.json",
+  "original_user_report": ".local/sa07-independent-review-result.json",
+  "original_user_report_sha256": "e17846dbf47fe8e99f9c808b57cebced499e38c8f672ceb7250d962ae99bde2a",
+  "probe_sha256": "b7875729b863a02ae07359a3c886fcaf7e9e9ce0e410fa7fcc0dd1470d970f40",
+  "raw_originals_preserved": true,
+  "SA08": "NOT_STARTED",
+  "live_paid_external_publication": "NOT_RUN"
+}

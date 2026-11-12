@@ -1,3 +1,9 @@
+# SA07-I01 修复候选工程验证通过，等待独立复验
+
+源码6a5d089，指纹2e8dfe076a514f93d9771ff3a1adf9b19ad8ca73dd88f211876cdc6e70fdfbc3；原edit/create两项负例修改前2FAIL，修复方原样回放2PASS，定向53PASS，完整注册1161PASS（原1118+新增43），lint/typecheck234filesPASS。原独立FAIL、旧1118PASS和中间失败全部保留。SA07仍IN_PROGRESS/独立NOT_PASSED，不放行SA08；真实平台/付费/外发/发布NOT_RUN。详见[修复报告](SA07_I01_REPAIR_20261112.md)与[摘要](accept/SAV1-07/i01-repair-20261112.json)。
+
+以下为历史交付记录。
+
 # SA07 工程交付通过，等待独立验收
 
 固定实现 6fd9581，源码指纹 2d90679ae5310a8b12db4d4bc508f3521fb122ea3ac507df48d074291f19f2e7；单轮完整注册1118项PASS（本卡223+既有895），0failure/error/skip，lint/typecheck234filesPASS。0036已在本副本独立PG安装，旧35迁移原样。共享所有权已获Harness固定cb422c5第30节实际确认。本卡仍IN_PROGRESS，独立验收未运行，SA08不启动；真实来源/付费/外发/发布/完整安全/长期门NOT_RUN。见[交付报告](SA07_ACCEPTANCE_20261112.md)与[摘要](accept/SAV1-07/accept.json)。

@@ -1,0 +1,273 @@
+{
+  "task": "SAV1-07",
+  "finding": "SA07-I01",
+  "priority": "P1",
+  "status": "IN_PROGRESS",
+  "delivery_status": "I01_REPAIR_CANDIDATE_PENDING_INDEPENDENT_REVIEW",
+  "recorded_at_utc": "2026-11-12T08:05:01.089942+00:00",
+  "source_commit": "6a5d089721eb5f6dafde7e2db0efe2c676bec986",
+  "source_sha256": "2e8dfe076a514f93d9771ff3a1adf9b19ad8ca73dd88f211876cdc6e70fdfbc3",
+  "gates": {
+    "engineering_gate": "FAIL",
+    "policy_security_gate": "NOT_RUN",
+    "live_source_channel_gate": "NOT_RUN",
+    "live_coding_gate": "NOT_RUN",
+    "live_publication_gate": "NOT_RUN",
+    "continuous_operation_gate": "NOT_RUN",
+    "local_registered_gate": "PASS",
+    "repair_engineering_gate": "PASS"
+  },
+  "independent_review": "NOT_PASSED_SA07_I01",
+  "scope": "Implementer repair and local checks only; no independent release or SA08 start",
+  "bug_confirmed_before_source_change": {
+    "commands": "evidence/super-agent-v1/SAV1-07/i01-repair-20261112T064612Z-7e49fe40/20261112T064642Z-original-red-034546/commands.json",
+    "counts": {
+      "tests": 2,
+      "failures": 2,
+      "errors": 0,
+      "skipped": 0
+    },
+    "source_sha256": "2d90679ae5310a8b12db4d4bc508f3521fb122ea3ac507df48d074291f19f2e7",
+    "original_probes_unchanged": true
+  },
+  "repair": {
+    "application_source": "src/mgar_v3/sources/ingress.py",
+    "transaction": "Original Engine mutex/advisory lock/held PG connection; outer commit/rollback",
+    "watermark": "Quota/receipt/pending backpressure preserves existing monotonic native_order or sticky ambiguity, no body",
+    "minimal_observations": "Existing append-only sa_budget_audit source_ingress_backpressure_v1; hashes and minimal source/entity/version facts; no raw platform IDs, body or body_ref",
+    "same_version_retry": "Only an originally allowed fresh quota-only version with current source revision, generation, policy and identity revisions can use hash-equivalent retry proof; budget revision is not Receive authority",
+    "deny_restore": "Receive denial, revoked/restored authority, stale buffer, tombstone, ambiguity, lower versions or conflicting metadata cannot revive content",
+    "unordered": "One identified initial unordered quota-only version may retry exactly; any different observed unordered version preserves sticky ambiguity",
+    "aliases": "Noncanonical allowed observations bind each transport/event hash when capacity permits; canonical idempotence and sealed delivery-conflict semantics preserved",
+    "capacity": "Receipt and observation facts share max_receipts; at capacity known entities still invalidate/advance, new facts/proof are not allocated",
+    "no_new_migration_or_shared_writer_change": true
+  },
+  "registered": {
+    "result": "evidence/SAV1-07/20261112T073030Z-063375f7/result.json",
+    "command": "make verify TASK=SAV1-07",
+    "counts": {
+      "tests": 1161,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "sa07_testcases": 266,
+    "existing_regression_testcases": 895,
+    "source_stable": true,
+    "exit_code": 0,
+    "components": {
+      "postgres": "real disposable PostgreSQL; same Engine advisory lock and transaction, concurrency, rollback, recovery and 0035-to-0036 upgrade",
+      "budgets": "organization/project shared original usage_calls and router_calls; Engine/Router/repository reservations; immutable signed prices and revisions; legacy fee and Token preservation",
+      "windows": "UTC half-open hour/day/minute, DST fold and non-hour transitions; unknown money and missing Token receipts carried forward",
+      "quotas": "candidate/source/notification windows; persistent queue/slot occupancy; idempotency and explicit nonrefundable releases",
+      "entrypoints": "signed Source receive/backpressure and trusted edit invalidation; current Source model policy; actual Outbox claim notification limit",
+      "admin_api": "cookie, Origin, CSRF, transaction session recheck, project/organization scope and atomic signed CAS",
+      "legacy": "entire SA06 registry plus original routing and repository-analysis regressions; historical failures retained",
+      "harness": "no active edits/imports; PersistentBudgetLedger integration remains separate and unclaimed",
+      "model": "controlled only; zero paid calls",
+      "live_source_channel": "NOT_RUN",
+      "live_coding": "NOT_RUN",
+      "live_publication": "NOT_RUN",
+      "continuous_operation": "NOT_RUN",
+      "independent_acceptance": "PENDING; implementer checks only",
+      "quota_watermark_repair": "SA07-I01: bodyless native watermark/sticky ambiguity in the original Engine transaction; bounded hashed retry/alias proof under unchanged Receive authority; privacy, conflicts, capacity and rollback; original independent probes unchanged"
+    },
+    "original_testcases_retained": 1118,
+    "new_i01_testcases": 43
+  },
+  "targeted": {
+    "commands": "evidence/super-agent-v1/SAV1-07/i01-repair-20261112T064612Z-7e49fe40/20261112T072641Z-targeted-fixed-fb4fb2/commands.json",
+    "counts": {
+      "tests": 53,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "original_probe_replay": {
+      "tests": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "executor": "IMPLEMENTER, not independent acceptance"
+  },
+  "static": {
+    "lint": "PASS",
+    "typecheck": "PASS",
+    "source_files": 234,
+    "lint_commands": "evidence/super-agent-v1/SAV1-07/i01-repair-20261112T064612Z-7e49fe40/20261112T072940Z-lint-fixed-1fd87a/commands.json",
+    "typecheck_commands": "evidence/super-agent-v1/SAV1-07/i01-repair-20261112T064612Z-7e49fe40/20261112T072736Z-typecheck-fixed-02f639/commands.json"
+  },
+  "delivery_audit": "evidence/super-agent-v1/SAV1-07/i01-repair-20261112T064612Z-7e49fe40/audit-support/read-only-audit-runtime-20261112T080307Z.json",
+  "artifact_hashes": {
+    "config/verification.json": "ec5b655b349857aed9ebe28c454fb5a3e623f49c6bf0c1211f0b04eb6c2481d8",
+    "migrations/0036_super_agent_budgets.sql": "eb1ccb9bbfd3131bfa98740d6eb31832f56085bc61e300bb97553ef8062cf168",
+    "config/source-feishu-v1.json": "1ba4f405ff71e5840f1e65b8d055236351fd6c0d7e244bbd1fb16da7bbb4d631",
+    "config/source-github-v1.json": "8f7820a9c6439918ade1b8097da777eec67c8d2aea7e441525326e7e6f49fadb",
+    "config/source-ingress-v1.json": "6e0e48754a75686cc245615a7d8639fb89187a6c1387018f14ccb73707dfe2b2",
+    "src/mgar_v3/super_agent/budget.py": "5b58ddca87e3e8c0f9121a89d3bab6c4f9a36852e29cfaedf6c82564d46f17f3",
+    "src/mgar_v3/super_agent/budget_api.py": "f98a22ff49fa22a8a8421076b72db911e78ad9705d3dc990e6987acb6e8bfc3a",
+    "src/mgar_v3/super_agent/budget_domain.py": "6bd08c7c0621cef59e7fb1ea4a2b8112ef23b1fa9cb44cdd9cf31287189f3cae",
+    "src/mgar_v3/api.py": "bd16e9966ace6a3ab22aa149264fbc308c1242a05ede8a80aed23da8fbf48d4b",
+    "src/mgar_v3/coordination/engine.py": "fa72b588d2a3f35f550b20afd7bad0162d4eb69a3d9b39fd9f407c8617f6446f",
+    "src/mgar_v3/routing/budget.py": "743481672e320d0b5799ae2d2d3e39b2a490df25c9b5c9d177c3c5a723c8bdbf",
+    "src/mgar_v3/repository_analysis/store.py": "4b811c20430fe6b4e989ea3ef0acb92a89216796925575426c42d2d291310efa",
+    "src/mgar_v3/sources/ingress.py": "1292dea796c2fdbeaf614afff2cc99f79fe15d5cfb05799a9052f4c6ef5b564d",
+    "src/mgar_v3/super_agent/policy.py": "14e74af7f703a19e91ad581c0ce46bb3e009c5e62c354793f36f7fcc518a70e0",
+    "tests/test_super_agent_sa07.py": "2935a13a31c4e09dd2c831859c625f530895aa033a256813e2ace7d3e95df07e",
+    "tests/test_super_agent_sa07_api.py": "a467293a6bf5427c3f3de2735584587275ff36ea2bd6ca0e707acaef5c1d9531",
+    "tests/test_super_agent_sa07_domain.py": "e00a9588c6141c6120a2e33e21e00d960de7a3bdc537455512289f0d74b65c89",
+    "tests/test_super_agent_sa07_migration.py": "ca7eb4a2441649175e0e7d59cdd1d29d9228388894307d4220ff634f4839e7db",
+    "tests/test_super_agent_sa07_repair.py": "8586fda3cd325a09ba0a1ac9f7547c23f5e3979f6c870d1f85304a8bbee52aaa",
+    "tests/test_super_agent_sa07_api_regression.py": "920f7f962bed13970a0e701a745f1c97d8a39806bda01ac9d93bc00437454ea9",
+    "tests/test_super_agent_sa07_hooks.py": "86dc525f9fd16dfdbc07293c762e571b7e6d427568ac40c3f5a41fdce095d77e",
+    "tests/sa07_support.py": "2ee7cbf1d6f9a5ba935531d80623373793ee09fb385694b6f0fb2672aadf3543",
+    "tests/test_super_agent_sa05.py": "c722b92a58fe46206fcfe23c6615d2674ec4a61c1786e0e722fa630e006ace14",
+    "tests/test_super_agent_sa06_migration.py": "35da41c5b05c29fd1c23248e38b5ca1fc1646e4574584d0ea0643e65cc5c1eb5",
+    "tests/test_super_agent_sa07_i01.py": "61ecfc6e36548b03bd7b3d47ecc3f1873398f8175bae98432cc3c7a4c80e98cb",
+    "scripts/verify.py": "9199ac95c91519565943208d382b16a17c910ffc7ccc1d2295a3d72303e11de5"
+  },
+  "independent_failure": "docs/super-agent-v1/accept/SAV1-07/independent-20261112.json",
+  "prior_delivery": "docs/super-agent-v1/accept/SAV1-07/history/8711749-accept.json",
+  "attempts": [
+    {
+      "commands": "evidence/super-agent-v1/SAV1-07/i01-repair-20261112T064612Z-7e49fe40/20261112T064642Z-original-red-034546/commands.json",
+      "exit_code": 1,
+      "counts": {
+        "tests": 2,
+        "failures": 2,
+        "errors": 0,
+        "skipped": 0
+      },
+      "source_stable": true
+    },
+    {
+      "commands": "evidence/super-agent-v1/SAV1-07/i01-repair-20261112T064612Z-7e49fe40/20261112T065716Z-formal-red-da9b15/commands.json",
+      "exit_code": 1,
+      "counts": {
+        "tests": 35,
+        "failures": 14,
+        "errors": 0,
+        "skipped": 0
+      },
+      "source_stable": true
+    },
+    {
+      "commands": "evidence/super-agent-v1/SAV1-07/i01-repair-20261112T064612Z-7e49fe40/20261112T070308Z-targeted-green-baeba7/commands.json",
+      "exit_code": 0,
+      "counts": {
+        "tests": 45,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "source_stable": true
+    },
+    {
+      "commands": "evidence/super-agent-v1/SAV1-07/i01-repair-20261112T064612Z-7e49fe40/20261112T071424Z-proof-edge-red-0e600a/commands.json",
+      "exit_code": 1,
+      "counts": {
+        "tests": 11,
+        "failures": 2,
+        "errors": 0,
+        "skipped": 0
+      },
+      "source_stable": true
+    },
+    {
+      "commands": "evidence/super-agent-v1/SAV1-07/i01-repair-20261112T064612Z-7e49fe40/20261112T071646Z-all-targeted-4e6371/commands.json",
+      "exit_code": 1,
+      "counts": {
+        "tests": 53,
+        "failures": 1,
+        "errors": 0,
+        "skipped": 0
+      },
+      "source_stable": true
+    },
+    {
+      "commands": "evidence/super-agent-v1/SAV1-07/i01-repair-20261112T064612Z-7e49fe40/20261112T072530Z-lint-7fc6bb/commands.json",
+      "exit_code": 0,
+      "counts": null,
+      "source_stable": true
+    },
+    {
+      "commands": "evidence/super-agent-v1/SAV1-07/i01-repair-20261112T064612Z-7e49fe40/20261112T072601Z-typecheck-343143/commands.json",
+      "exit_code": 0,
+      "counts": null,
+      "source_stable": true
+    },
+    {
+      "commands": "evidence/super-agent-v1/SAV1-07/i01-repair-20261112T064612Z-7e49fe40/20261112T072641Z-targeted-fixed-fb4fb2/commands.json",
+      "exit_code": 0,
+      "counts": {
+        "tests": 53,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "source_stable": true
+    },
+    {
+      "commands": "evidence/super-agent-v1/SAV1-07/i01-repair-20261112T064612Z-7e49fe40/20261112T072736Z-typecheck-fixed-02f639/commands.json",
+      "exit_code": 0,
+      "counts": null,
+      "source_stable": true
+    },
+    {
+      "commands": "evidence/super-agent-v1/SAV1-07/i01-repair-20261112T064612Z-7e49fe40/20261112T072940Z-lint-fixed-1fd87a/commands.json",
+      "exit_code": 0,
+      "counts": null,
+      "source_stable": true
+    },
+    {
+      "commands": "evidence/super-agent-v1/SAV1-07/i01-repair-20261112T064612Z-7e49fe40/20261112T073030Z-registered-fixed-79fb47/commands.json",
+      "exit_code": 0,
+      "counts": null,
+      "source_stable": true
+    }
+  ],
+  "alias_test_expectation_review": "evidence/super-agent-v1/SAV1-07/i01-repair-20261112T064612Z-7e49fe40/alias-test-expectation-review.json",
+  "historical_failures_retained": true,
+  "old_migrations_0001_0036_unchanged": true,
+  "old_registry_tests_and_scorer_unchanged": true,
+  "original_settlement_ast_unchanged": [
+    "coordination/engine.py:settle_call",
+    "routing/budget.py:settle",
+    "repository_analysis/store.py:settle_call"
+  ],
+  "installed_migration_count": 36,
+  "pg_cleanup": {
+    "remaining_test_databases": [],
+    "remaining_other_client_sessions": [],
+    "remaining_fault_containers": []
+  },
+  "ownership": {
+    "fixed_harness_commit": "cb422c5e050eb48ad2cb0eae901453c052b5f018",
+    "section": 30,
+    "migration_0036_owner": "Codex",
+    "harness_0037": "reserved for Harness; not imported",
+    "actual_fixed_blob_check": "evidence/super-agent-v1/SAV1-07/completion-20261112T042413Z-32a76fb9/old-migrations-and-ownership.json"
+  },
+  "protected_user_file_unchanged": true,
+  "test_environment": {
+    "required_variable": "MGAR_V3_DATABASE_URL",
+    "value": "same independent PG DSN from this copy .env; never logged",
+    "record": "evidence/super-agent-v1/SAV1-07/i01-repair-20261112T064612Z-7e49fe40/database-opt-in-environment.json"
+  },
+  "evidence_root": "evidence/super-agent-v1/SAV1-07/i01-repair-20261112T064612Z-7e49fe40",
+  "paid_calls": 0,
+  "real_platform_calls": 0,
+  "external_business_writes": 0,
+  "limits": [
+    "Harness PersistentBudgetLedger, Scheduler, Worker/Recall bridges and actual multichannel delivery remain later-card integrations.",
+    "Candidate/queue/slot are internal quota ports; no new Scheduler or Worker is claimed.",
+    "Shared budgets only constrain existing permits; no payment, source listener, notification or publication authorization is granted.",
+    "Complete system policy/security, real platform/model coding/publication and continuous operation gates remain NOT_RUN.",
+    "Engineering checks were run by implementers and are not independent acceptance.",
+    "Original independent FAIL remains; this repair candidate requires a new independent review.",
+    "At a full fact ledger, known entity watermarks remain protected but no new equal-version retry proof is minted."
+  ],
+  "next_card": "SAV1-08",
+  "next_card_gate": "Do not start before independent SA07-I01 closure and user instruction"
+}
