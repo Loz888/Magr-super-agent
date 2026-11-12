@@ -10,6 +10,9 @@ from __future__ import annotations
 import hashlib
 import json
 import re
+from collections.abc import Callable, Iterator
+from contextlib import AbstractContextManager, ExitStack, contextmanager
+from contextvars import ContextVar
 from datetime import UTC, datetime
 from time import monotonic
 from typing import Any, Literal
@@ -74,6 +77,24 @@ class SourceModelOutcome(EvalModel):
     output_tokens: int | None = None
     cost_micros: int | None = None
     response_sha256: SHA256
+
+
+SourceSendGuard = Callable[
+    [SourceModelRequest, dict[str, Any]], AbstractContextManager[None]
+]
+_SEND_GUARD: ContextVar[SourceSendGuard | None] = ContextVar(
+    "source_eval_send_guard", default=None
+)
+
+
+@contextmanager
+def guard_source_send(guard: SourceSendGuard) -> Iterator[None]:
+    """Bind a trusted dispatch fence to this call's context, never to model JSON."""
+    token = _SEND_GUARD.set(guard)
+    try:
+        yield
+    finally:
+        _SEND_GUARD.reset(token)
 
 
 def _error(code: str) -> DomainError:
@@ -373,15 +394,26 @@ class SourceEvalModel:
 
     def propose(self, request: SourceModelRequest) -> SourceModelOutcome:
         body = self.request_body(request)  # Pre-send failures never become model outcomes.
+        # A request hook could re-enter Engine on this thread after the final fence.
+        # Authentication below is explicit, rather than inherited client callbacks.
+        if self.client.event_hooks.get("request"):
+            raise _error("SOURCE_EVAL_MODEL_REQUEST_HOOKS")
         state, started = _Stream(self), monotonic()
         interrupted = ""
+        dispatch = ExitStack()
+        guard = _SEND_GUARD.get()
+        if guard is not None:
+            # Authority failures propagate before the transport exception handler.
+            dispatch.enter_context(guard(request, body))
         try:
             with self.client.stream(
-                "POST", ENDPOINT, json=body, follow_redirects=False,
+                "POST", ENDPOINT, json=body, follow_redirects=False, auth=None,
                 timeout=httpx.Timeout(self.max_seconds),
                 headers={"Authorization": "Bearer " + self._api_key,
                          "Content-Type": "application/json"},
             ) as response:
+                # The request has been dispatched. Allow revocation while SSE is read.
+                dispatch.close()
                 if not response.is_success:
                     state.reject("SOURCE_EVAL_MODEL_PROVIDER_ERROR")
                 error_body = bytearray()
@@ -407,4 +439,6 @@ class SourceEvalModel:
             interrupted = error.code
         except Exception:
             interrupted = "SOURCE_EVAL_MODEL_TRANSPORT_UNKNOWN"
+        finally:
+            dispatch.close()
         return state.outcome(request, interrupted)

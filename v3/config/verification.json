@@ -1442,6 +1442,7 @@
   },
   "SAV1-09": {
     "tests": [
+      "tests/test_super_agent_sa09_i01.py",
       "tests/test_super_agent_sa09.py",
       "tests/test_super_agent_sa09_domain.py",
       "tests/test_super_agent_sa09_model.py",
@@ -1529,5 +1530,14 @@
       "paid_model": "NOT_RUN; controlled transports only"
     },
     "timeout_seconds": 7200
+  },
+  "SAV1-09-I01": {
+    "tests": [
+      "tests/test_super_agent_sa09_i01.py"
+    ],
+    "timeout_seconds": 500,
+    "components": {
+      "regression": "Exact six previously failing independent SA09-I01 cases; no full-suite rerun"
+    }
   }
 }

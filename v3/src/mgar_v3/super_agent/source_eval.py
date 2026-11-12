@@ -11,6 +11,8 @@ from __future__ import annotations
 import hashlib
 import json
 import re
+from collections.abc import Iterator
+from contextlib import contextmanager
 from datetime import datetime, timedelta
 from typing import TYPE_CHECKING, Any
 from uuid import UUID, uuid4
@@ -42,6 +44,8 @@ from mgar_v3.super_agent.source_eval_model import (
     PROMPT_SHA256,
     PROMPT_VERSION,
     SourceEvalModel,
+    SourceModelRequest,
+    guard_source_send,
     render_request,
 )
 from mgar_v3.super_agent.source_eval_rules import snapshot_hash
@@ -732,9 +736,43 @@ class SourceEvalProvider:
             )
             service._policy_budget(conn, definition, self.model.permit.profile.reservation_micros)
             call_id = budget.reserve(batch, self.model.permit, digest(body))
-        # The sole physical request is outside all PostgreSQL transactions.
+
+        @contextmanager
+        def dispatch_guard(actual: SourceModelRequest, actual_body: Row) -> Iterator[None]:
+            # Revocation uses this same Engine mutex. Keep it from the final current
+            # authority check through HTTP dispatch, while committing PG before IO.
+            with service.engine._mutex:
+                if service.engine.connection.info.transaction_status != TransactionStatus.IDLE:
+                    raise _error("SOURCE_EVAL_TRANSACTION")
+                with service.engine.transaction() as conn:
+                    current, context = service._checked(conn, batch)
+                    fresh = render_request(current, context)
+                    if (fresh.request_sha256 != actual.request_sha256
+                            or actual.request_sha256 != request.request_sha256
+                            or digest(actual_body) != digest(body)):
+                        raise _error("SOURCE_EVAL_SNAPSHOT_STALE")
+                    _, signed = service._control(conn, current.scope.source_instance_id)
+                    for field in ("max_context_bytes", "max_output_bytes"):
+                        bound = getattr(self.model, field, None)
+                        if type(bound) is not int or not 1 <= bound <= getattr(signed, field):
+                            raise _error("SOURCE_EVAL_MODEL_BOUND_MISMATCH", 403)
+                    call = conn.execute(
+                        "SELECT status FROM app.router_calls WHERE call_id=%s AND batch_id=%s "
+                        "FOR UPDATE", (call_id, current.batch_id),
+                    ).fetchone()
+                    if call is None or call["status"] != "reserved":
+                        raise _error("SOURCE_EVAL_CALL_ALREADY_RECORDED")
+                    self.model.permit.validate(actual.snapshot_sha256)
+                yield
+
+        # The sole physical request is outside all PostgreSQL transactions. The model
+        # enters this fence after final request construction, immediately before IO.
         try:
-            outcome = self.model.propose(request)
+            with guard_source_send(dispatch_guard):
+                outcome = self.model.propose(request)
+        except DomainError as error:
+            budget.settle(call_id, None)
+            raise _error(_code(error.code)) from None
         except Exception:
             budget.settle(call_id, None)
             raise _error("SOURCE_EVAL_MODEL_UNKNOWN") from None

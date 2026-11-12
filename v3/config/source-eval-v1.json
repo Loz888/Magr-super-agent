@@ -18,7 +18,7 @@
   "artifacts": [
     {
       "path": "src/mgar_v3/super_agent/source_eval.py",
-      "sha256": "fc1219cb0de408df53724d053149c25c610b83bf30139ea09ceaa5634be07fc2"
+      "sha256": "a6e14971c9e7da317f2f78110639348ee5e62baa231428dbcc72669231c60cdc"
     },
     {
       "path": "src/mgar_v3/super_agent/source_eval_api.py",
@@ -30,7 +30,7 @@
     },
     {
       "path": "src/mgar_v3/super_agent/source_eval_model.py",
-      "sha256": "c1d2337808773bae1647855a3b33ba0c2204a7012fb60e31d68362c32af1b8dc"
+      "sha256": "89a12c8caa307265cdc1d8b565a41f9ae4d57d058863244ccd7b102f387787ba"
     },
     {
       "path": "src/mgar_v3/super_agent/source_eval_rules.py",
@@ -166,7 +166,11 @@
     },
     {
       "path": "config/verification.json",
-      "sha256": "547c9e7dce07966b7da2107134043055281960ac945dd99fd1bcf8781f4d1e64"
+      "sha256": "49d28c66d1dee5c1f30236d53f4869ffa456a78935575473968265f548e9f0cd"
+    },
+    {
+      "path": "tests/test_super_agent_sa09_i01.py",
+      "sha256": "14e37cd3bcf3e3ea2017be76ceeb3870164aa3a0153c588ae17aa681abeb31ea"
     }
   ]
 }
