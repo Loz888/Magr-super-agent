@@ -29,7 +29,7 @@ def ci_input(env, *, parents=(7,), run_id=701, authorize_creation=False):
                 review_ref="SA10-owner-approved-CI-rule",
             ),
         )
-        origin.policy, origin.policy_revision = definition, saved["revision"]
+        origin.policy, origin.policy_revision = definition, saved["current_revision"]
         origin.control = origin.control.model_copy(
             update={
                 "policy_revision": origin.policy_revision,

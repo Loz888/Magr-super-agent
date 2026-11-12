@@ -9,8 +9,8 @@ from sa08_support import ingest, original_state, setup
 from sa10_support import fresh_target, install_test_schema, link_id
 from sa10_support import setup as native_setup
 
-from mgar_v3.api import create_app
-from mgar_v3.super_agent import source_correlation
+from mgar_v3 import api
+from mgar_v3.super_agent import source_correlation, source_correlation_api
 from mgar_v3.super_agent.source_correlation_domain import CorrelationResolveRequest
 from mgar_v3.web_access import SESSION_COOKIE, WebAccounts
 
@@ -23,8 +23,22 @@ TABLES = (
 )
 
 
+def private_app(engine, monkeypatch):
+    """Private composition only; this is not shared API integration acceptance."""
+    original = api.register_source_eval
+
+    def compose(app, authority, browser_user):
+        original(app, authority, browser_user)
+        if not any(route.path == PREFIX + "/resolve" for route in app.routes):
+            source_correlation_api.register(app, authority, browser_user)
+
+    with monkeypatch.context() as composition:
+        composition.setattr(api, "register_source_eval", compose)
+        return api.create_app(engine.settings, engine, run_background=False)
+
+
 @pytest.fixture
-def browser(engine):
+def browser(engine, monkeypatch):
     # Before peer ownership confirmation, only this disposable test DB may load
     # the proposal. Once formal0041 exists the normal migration fixture owns it.
     install_test_schema(engine)
@@ -35,7 +49,7 @@ def browser(engine):
     receipt = ingest(source, body=PRIVATE)
     session = WebAccounts(engine).session(source.cookie)
     assert session is not None
-    app = create_app(engine.settings, engine, run_background=False)
+    app = private_app(engine, monkeypatch)
     with TestClient(app, base_url=ORIGIN, client=("127.0.0.1", 12345)) as client:
         yield SimpleNamespace(
             engine=engine, source=source, client=client, app=app, cookie=source.cookie,
@@ -45,14 +59,14 @@ def browser(engine):
 
 
 @pytest.fixture
-def native_browser(engine):
+def native_browser(engine, monkeypatch):
     engine.settings = engine.settings.model_copy(update={
         "allow_paid": False, "allow_external_write": False,
     })
     source = native_setup(engine)
     session = WebAccounts(engine).session(source.cookie)
     assert session is not None
-    app = create_app(engine.settings, engine, run_background=False)
+    app = private_app(engine, monkeypatch)
     with TestClient(app, base_url=ORIGIN, client=("127.0.0.1", 12345)) as client:
         yield SimpleNamespace(
             engine=engine, source=source, client=client, app=app, cookie=source.cookie,

@@ -197,9 +197,10 @@ def test_committed_revocation_before_http_dispatch_must_not_release_source(
         flush=True,
     )
     assert not any(
-        (p["revocation_already_committed"] and p["contains_prior_source"] for p in posts)
+        p["revocation_already_committed"] and p["contains_prior_source"] for p in posts
     ), (
-        "A separate thread committed Source revocation before HTTP dispatch, but the model POST still contained the previously authorized plaintext"
+        "A separate thread committed Source revocation before HTTP dispatch, "
+        "but the model POST still contained the previously authorized plaintext"
     )
 
 
@@ -298,6 +299,7 @@ def test_revocation_after_reservation_commit_before_model_entry_blocks_source_se
         json.dumps(dict(kind=withdrawal, timeline=timeline, posts=posts)),
         flush=True,
     )
-    assert not any((p["revocation_precedes_post"] and p["prior_source_present"] for p in posts)), (
-        "Source revocation committed after the durable reservation and before model.propose entry, but the later POST still released cached prior plaintext"
+    assert not any(p["revocation_precedes_post"] and p["prior_source_present"] for p in posts), (
+        "Source revocation committed after the durable reservation and before model.propose entry, "
+        "but the later POST still released cached prior plaintext"
     )

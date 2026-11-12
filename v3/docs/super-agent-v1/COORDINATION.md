@@ -222,3 +222,10 @@ SA10未启动。HARNESS_SA09_HANDOFF.md仅本地准备，未发送新的完成�
 用户明确“后续如果成功修改了错误，通过了检验就继续进行SA10的任务。”原6失败复验通过已满足，
 据此推进SA10需求/所有权核对，不伪造独立PASS。Harness固定f554937第33节新增0040归Harness，
 SA10不能占0040；0039/第32节确认不扩大到SA10，新的共享范围和拟0041仍待具体协调。
+
+
+## SA10 私有组件准备与新范围待确认（2026-11-13）
+
+SA09-I01原6失败定向6PASS满足用户继续SA10的条件，未把原独立NOT_PASSED改为PASS。SA10私有实现、SQL草案和精确最小共享patch均已备齐，见[具体请求](sa10-proposal/ownership-request.txt)。已请求用户代转，目前没有新的固定确认；Harness最新固定f32bad605c57bffa481b8a69379f19a482420978的交接文档仍止第33节，0040归Harness，SA09第32节不覆盖本卡。消息请求、固定确认、实现接线和验收状态继续分别记录。
+
+拟0041草案SHA d6aead811237e532664adf62b15521a16369fd29b8dfe9d26156f0d74fec1ee3；两文件共享patch SHA 352277eb82d61b75534a072c6ece1c6769c4653102bac1399e36d021e419c278。确认前正式migrations、主库和Engine/API不变，无H12、0037、0040或Harness活动文件导入。组件成绩见[准备摘要](accept/SAV1-10/preparation-20261113.json)，正式201项仅收集未执行；独立与全部真实门NOT_RUN。

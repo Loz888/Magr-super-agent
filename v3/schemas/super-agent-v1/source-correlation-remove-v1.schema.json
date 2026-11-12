@@ -1,0 +1,35 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "snapshot_sha256": {
+      "pattern": "^[a-f0-9]{64}$",
+      "title": "Snapshot Sha256",
+      "type": "string"
+    },
+    "expected_revision": {
+      "maximum": 9223372036854775807,
+      "minimum": 1,
+      "title": "Expected Revision",
+      "type": "integer"
+    },
+    "review_ref": {
+      "maxLength": 256,
+      "minLength": 1,
+      "title": "Review Ref",
+      "type": "string"
+    },
+    "reason_code": {
+      "const": "OPERATOR_REMOVAL",
+      "default": "OPERATOR_REMOVAL",
+      "title": "Reason Code",
+      "type": "string"
+    }
+  },
+  "required": [
+    "snapshot_sha256",
+    "expected_revision",
+    "review_ref"
+  ],
+  "title": "CorrelationRemoveRequest",
+  "type": "object"
+}

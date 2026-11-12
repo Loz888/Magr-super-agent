@@ -1,0 +1,89 @@
+{
+  "$defs": {
+    "SourceScope": {
+      "additionalProperties": false,
+      "properties": {
+        "source_kind": {
+          "pattern": "^[a-z][a-z0-9_]{0,31}$",
+          "title": "Source Kind",
+          "type": "string"
+        },
+        "source_instance_id": {
+          "format": "uuid",
+          "title": "Source Instance Id",
+          "type": "string"
+        },
+        "tenant_id": {
+          "maxLength": 256,
+          "minLength": 1,
+          "title": "Tenant Id",
+          "type": "string"
+        },
+        "installation_id": {
+          "maxLength": 256,
+          "minLength": 1,
+          "title": "Installation Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "source_kind",
+        "source_instance_id",
+        "tenant_id",
+        "installation_id"
+      ],
+      "title": "SourceScope",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "description": "A verified owner's resource, never a resource guessed from a chat title.",
+  "properties": {
+    "project_id": {
+      "maxLength": 100,
+      "minLength": 1,
+      "title": "Project Id",
+      "type": "string"
+    },
+    "scope": {
+      "$ref": "#/$defs/SourceScope"
+    },
+    "repository_id": {
+      "maximum": 9223372036854775807,
+      "minimum": 1,
+      "title": "Repository Id",
+      "type": "integer"
+    },
+    "repository": {
+      "pattern": "^[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+$",
+      "title": "Repository",
+      "type": "string"
+    },
+    "kind": {
+      "enum": [
+        "issue",
+        "pull_request",
+        "workflow_run",
+        "check_run",
+        "check_suite"
+      ],
+      "title": "Kind",
+      "type": "string"
+    },
+    "resource_id": {
+      "pattern": "^[1-9][0-9]{0,18}$",
+      "title": "Resource Id",
+      "type": "string"
+    }
+  },
+  "required": [
+    "project_id",
+    "scope",
+    "repository_id",
+    "repository",
+    "kind",
+    "resource_id"
+  ],
+  "title": "ResourceRef",
+  "type": "object"
+}

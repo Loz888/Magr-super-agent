@@ -1,0 +1,33 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "input_ids": {
+      "items": {
+        "format": "uuid",
+        "type": "string"
+      },
+      "maxItems": 16,
+      "minItems": 1,
+      "title": "Input Ids",
+      "type": "array"
+    },
+    "suggestion_decision_key": {
+      "anyOf": [
+        {
+          "pattern": "^[a-f0-9]{64}$",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Suggestion Decision Key"
+    }
+  },
+  "required": [
+    "input_ids"
+  ],
+  "title": "CorrelationResolveRequest",
+  "type": "object"
+}

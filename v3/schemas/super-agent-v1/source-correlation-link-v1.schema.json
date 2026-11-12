@@ -1,0 +1,136 @@
+{
+  "$defs": {
+    "TargetRef": {
+      "additionalProperties": false,
+      "properties": {
+        "ticket_id": {
+          "format": "uuid",
+          "title": "Ticket Id",
+          "type": "string"
+        },
+        "run_id": {
+          "format": "uuid",
+          "title": "Run Id",
+          "type": "string"
+        },
+        "thread_id": {
+          "format": "uuid",
+          "title": "Thread Id",
+          "type": "string"
+        },
+        "thread_revision": {
+          "maximum": 9223372036854775807,
+          "minimum": 0,
+          "title": "Thread Revision",
+          "type": "integer"
+        },
+        "execution_epoch": {
+          "maximum": 9223372036854775807,
+          "minimum": 0,
+          "title": "Execution Epoch",
+          "type": "integer"
+        },
+        "mandate_id": {
+          "format": "uuid",
+          "title": "Mandate Id",
+          "type": "string"
+        },
+        "mandate_sha256": {
+          "pattern": "^[a-f0-9]{64}$",
+          "title": "Mandate Sha256",
+          "type": "string"
+        },
+        "project_id": {
+          "maxLength": 100,
+          "minLength": 1,
+          "title": "Project Id",
+          "type": "string"
+        },
+        "repository": {
+          "pattern": "^[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+$",
+          "title": "Repository",
+          "type": "string"
+        },
+        "allowed": {
+          "title": "Allowed",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "ticket_id",
+        "run_id",
+        "thread_id",
+        "thread_revision",
+        "execution_epoch",
+        "mandate_id",
+        "mandate_sha256",
+        "project_id",
+        "repository",
+        "allowed"
+      ],
+      "title": "TargetRef",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "input_ids": {
+      "items": {
+        "format": "uuid",
+        "type": "string"
+      },
+      "maxItems": 16,
+      "minItems": 1,
+      "title": "Input Ids",
+      "type": "array"
+    },
+    "suggestion_decision_key": {
+      "anyOf": [
+        {
+          "pattern": "^[a-f0-9]{64}$",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Suggestion Decision Key"
+    },
+    "resource_key": {
+      "pattern": "^[a-f0-9]{64}$",
+      "title": "Resource Key",
+      "type": "string"
+    },
+    "snapshot_sha256": {
+      "pattern": "^[a-f0-9]{64}$",
+      "title": "Snapshot Sha256",
+      "type": "string"
+    },
+    "expected_revision": {
+      "maximum": 9223372036854775807,
+      "minimum": 0,
+      "title": "Expected Revision",
+      "type": "integer"
+    },
+    "target": {
+      "$ref": "#/$defs/TargetRef"
+    },
+    "review_ref": {
+      "maxLength": 256,
+      "minLength": 1,
+      "title": "Review Ref",
+      "type": "string"
+    }
+  },
+  "required": [
+    "input_ids",
+    "resource_key",
+    "snapshot_sha256",
+    "expected_revision",
+    "target",
+    "review_ref"
+  ],
+  "title": "CorrelationLinkRequest",
+  "type": "object"
+}

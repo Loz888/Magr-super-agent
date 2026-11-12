@@ -1539,5 +1539,36 @@
     "components": {
       "regression": "Exact six previously failing independent SA09-I01 cases; no full-suite rerun"
     }
+  },
+  "SAV1-10": {
+    "tests": [
+      "tests/test_super_agent_sa10_contracts.py",
+      "tests/test_super_agent_sa10.py",
+      "tests/test_super_agent_sa10_ci.py",
+      "tests/test_super_agent_sa10_api.py",
+      "tests/test_super_agent_sa10_migration.py",
+      "tests/test_super_agent_sa09.py",
+      "tests/test_super_agent_sa09_recovery.py",
+      "tests/test_super_agent_sa09_i01.py"
+    ],
+    "timeout_seconds": 1800,
+    "components": {
+      "scope": "Focused initial SA10 registration: all five new test modules and direct SA09 Engine/SourceEval, recovery and I01 dependencies; not a full-project suite",
+      "postgres": "Real disposable PostgreSQL on the original Engine connection; native source fixtures, transactional uniqueness, parallel claims, rollback and immutable CAS revisions",
+      "resource_identity": "Full project/installation scope/immutable repository ID/kind/resource ID; same topic/title/number or code SHA is not a Task identity",
+      "authorization": "Current owner session, native Source/identity/policy/head/TTL, signed aliases and current original targets; all relation and HTTP evidence is context only",
+      "code_identity": "PR parent and CI claims atomic; head/base/tree/CI attempt exact; no verification reuse on missing or changed code facts",
+      "management": "Six owner cookie/Origin/CSRF/no-store routes, strict references, no bodies or factory/execution fields; separate unpatched production composition guard",
+      "migration": "Formal0041 byte identity and actual39 migration catalogue/checksums required; no0037/0040 import; five new bodyless fact tables only",
+      "factory": "Explicit trusted fixture-only creation on original Engine connection; defaultNone and no HTTP exposure or automatic source workers",
+      "status": "REGISTERED_NOT_RUN_PENDING_FIXED_HARNESS_ACK_AND_FORMAL_WIRING",
+      "independent_review": "NOT_RUN",
+      "semantic_evaluation": "NOT_RUN",
+      "live_source_channel": "NOT_RUN",
+      "paid_model": "NOT_RUN",
+      "live_coding": "NOT_RUN",
+      "live_publication": "NOT_RUN",
+      "continuous_operation": "NOT_RUN"
+    }
   }
 }

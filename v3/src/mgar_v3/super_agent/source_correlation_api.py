@@ -1,7 +1,7 @@
 """Owner-only, bodyless Source relationships; HTTP cannot create or execute tasks."""
 
 from collections.abc import Awaitable, Callable
-from typing import Annotated, TypeVar
+from typing import Annotated
 from uuid import UUID
 
 from fastapi import Depends, FastAPI, Query, Request
@@ -27,7 +27,6 @@ from mgar_v3.web_access import SESSION_COOKIE, BrowserSession
 # coercions differ here; explicit strict scalar fields and all domain validators
 # remain. Re-decode the complete domain request in JSON mode before dispatch.
 TRANSPORT = ConfigDict(extra="forbid", frozen=True, strict=False)
-Command = TypeVar("Command", bound=CorrelationModel)
 
 
 class TargetBody(TargetRef):
@@ -53,7 +52,7 @@ class RemoveBody(CorrelationRemoveRequest):
     model_config = TRANSPORT
 
 
-def _command(model: type[Command], body: CorrelationModel) -> Command:
+def _command[Command: CorrelationModel](model: type[Command], body: CorrelationModel) -> Command:
     try:
         return model.model_validate_json(body.model_dump_json())
     except ValidationError:

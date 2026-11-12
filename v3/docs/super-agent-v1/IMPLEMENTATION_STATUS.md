@@ -1,3 +1,11 @@
+# SA10 私有组件已验证，等待固定共享范围确认
+
+SA09-I01原6失败定向6PASS后，按用户授权继续SA10。明确资源/代码版本契约、原Engine连接内查重/CAS/不可变历史、六个私有管理接口、SQL草案与9份schema已完成。102契约、18服务、6CI、24私有API、14草案SQL均有逐版本通过证据；夹具失败后只复验失败项，不称单轮164PASS。首次typecheck249文件PASS；首次lint仅两文件失败，修正后只该两文件PASS。
+
+[SA10目标](SA10_CORRELATIONS.md)已注册、仅收集201项，正式执行NOT_RUN。新的0041和Engine/API最小接线需按AGENTS/协作约定取得Harness固定确认；[具体请求](sa10-proposal/ownership-request.txt)已备齐并请用户代转，尚无确认。正式迁移/主库/Engine/API未改，SA10仍IN_PROGRESS，SA11未启动。详见[机器摘要](accept/SAV1-10/preparation-20261113.json)。SA09原独立NOT_PASSED和修复候选待独立状态保留，全部真实/语义/长期门NOT_RUN。
+
+以下为历史记录。
+
 # SA09-I01定向修复通过，按用户授权推进SA10前置
 
 SA09原独立NOT_PASSED/P1发送前撤权缺口已原样确认6FAIL；仅私有模型/服务修复为ee1fee3，原6项定向6PASS，未重跑已通过项、完整注册或静态通过目标。9份清单144引用、38份迁移、原SQL/财务AST及无残留核对通过；原独立报告/失败/用户文件不改。见[修复报告](SA09_I01_REPAIR_20261112.md)。修复候选仍待独立复验；用户明确允许本次失败修复检验成功后继续SA10，现为SA10需求/所有权核对，SA11–24 PLANNED。该授权不表示独立SA09 PASS，所有真实/语义/长期门NOT_RUN。

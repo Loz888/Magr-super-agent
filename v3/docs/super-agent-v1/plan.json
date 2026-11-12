@@ -293,9 +293,19 @@
       "optional": false,
       "card": "TASKS.md#sa10",
       "verification_target_on_implementation": "SAV1-10",
-      "work_state": "REQUIREMENTS_AND_OWNERSHIP_AUDIT",
+      "work_state": "PRIVATE_COMPONENTS_VERIFIED_PENDING_FIXED_SHARED_ACK",
       "authorized_by_user": "Continue SA10 after successful SA09 repair verification; original6 now PASS",
-      "independent_sa09_gate_waiver": "User progression authorization only, no independent PASS claim"
+      "independent_sa09_gate_waiver": "User progression authorization only, no independent PASS claim",
+      "preparation": "accept/SAV1-10/preparation-20261113.json",
+      "local_detail": "SA10_CORRELATIONS.md",
+      "ownership_commit": null,
+      "ownership_request": "sa10-proposal/ownership-request.txt",
+      "engineering_gate": "NOT_RUN",
+      "policy_security_gate": "NOT_RUN",
+      "independent_review": "NOT_RUN",
+      "registered_cases": 201,
+      "registered_execution": "NOT_RUN_PENDING_SHARED_ACK_AND_FORMAL_WIRING",
+      "private_components": "102 contracts;18 service;6 CI;24 private API;14 SQL proposal with separate failed-only repairs; not a single164PASS run"
     },
     {
       "id": "SAV1-11",

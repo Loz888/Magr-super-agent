@@ -166,11 +166,11 @@
     },
     {
       "path": "config/verification.json",
-      "sha256": "49d28c66d1dee5c1f30236d53f4869ffa456a78935575473968265f548e9f0cd"
+      "sha256": "7eed025b2c7081c97c150bfa7501165898d409f3a6dd65670d49c8c54eeed6cf"
     },
     {
       "path": "tests/test_super_agent_sa09_i01.py",
-      "sha256": "14e37cd3bcf3e3ea2017be76ceeb3870164aa3a0153c588ae17aa681abeb31ea"
+      "sha256": "3cc2e45985a24f193db970a894e6dbac3f6fc92a34e49c439f79c00673308f5b"
     }
   ]
 }

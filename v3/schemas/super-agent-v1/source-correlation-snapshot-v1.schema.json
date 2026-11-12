@@ -1,0 +1,581 @@
+{
+  "$defs": {
+    "CodeRef": {
+      "additionalProperties": false,
+      "properties": {
+        "resource_key": {
+          "pattern": "^[a-f0-9]{64}$",
+          "title": "Resource Key",
+          "type": "string"
+        },
+        "proof_sha256": {
+          "pattern": "^[a-f0-9]{64}$",
+          "title": "Proof Sha256",
+          "type": "string"
+        },
+        "head_repository_id": {
+          "anyOf": [
+            {
+              "maximum": 9223372036854775807,
+              "minimum": 1,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Head Repository Id"
+        },
+        "head_sha": {
+          "anyOf": [
+            {
+              "pattern": "^[a-f0-9]{40}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Head Sha"
+        },
+        "base_sha": {
+          "anyOf": [
+            {
+              "pattern": "^[a-f0-9]{40}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Base Sha"
+        },
+        "tree_sha": {
+          "anyOf": [
+            {
+              "pattern": "^[a-f0-9]{40}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Tree Sha"
+        },
+        "run_id": {
+          "anyOf": [
+            {
+              "maximum": 9223372036854775807,
+              "minimum": 1,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Run Id"
+        },
+        "run_attempt": {
+          "anyOf": [
+            {
+              "maximum": 9223372036854775807,
+              "minimum": 1,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Run Attempt"
+        },
+        "check_run_id": {
+          "anyOf": [
+            {
+              "maximum": 9223372036854775807,
+              "minimum": 1,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Check Run Id"
+        },
+        "check_suite_id": {
+          "anyOf": [
+            {
+              "maximum": 9223372036854775807,
+              "minimum": 1,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Check Suite Id"
+        }
+      },
+      "required": [
+        "resource_key",
+        "proof_sha256"
+      ],
+      "title": "CodeRef",
+      "type": "object"
+    },
+    "CorrelationHead": {
+      "additionalProperties": false,
+      "properties": {
+        "resource_key": {
+          "pattern": "^[a-f0-9]{64}$",
+          "title": "Resource Key",
+          "type": "string"
+        },
+        "revision": {
+          "maximum": 9223372036854775807,
+          "minimum": 0,
+          "title": "Revision",
+          "type": "integer"
+        },
+        "head_sha256": {
+          "pattern": "^[a-f0-9]{64}$",
+          "title": "Head Sha256",
+          "type": "string"
+        },
+        "state": {
+          "enum": [
+            "unclaimed",
+            "bound",
+            "removed"
+          ],
+          "title": "State",
+          "type": "string"
+        },
+        "target": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/TargetRef"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "link_id": {
+          "anyOf": [
+            {
+              "format": "uuid",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Link Id"
+        }
+      },
+      "required": [
+        "resource_key",
+        "revision",
+        "head_sha256",
+        "state"
+      ],
+      "title": "CorrelationHead",
+      "type": "object"
+    },
+    "CorrelationInputRef": {
+      "additionalProperties": false,
+      "properties": {
+        "input_id": {
+          "format": "uuid",
+          "title": "Input Id",
+          "type": "string"
+        },
+        "source_instance_id": {
+          "format": "uuid",
+          "title": "Source Instance Id",
+          "type": "string"
+        },
+        "project_id": {
+          "maxLength": 100,
+          "minLength": 1,
+          "title": "Project Id",
+          "type": "string"
+        },
+        "version_fingerprint": {
+          "pattern": "^[a-f0-9]{64}$",
+          "title": "Version Fingerprint",
+          "type": "string"
+        },
+        "state_sha256": {
+          "pattern": "^[a-f0-9]{64}$",
+          "title": "State Sha256",
+          "type": "string"
+        }
+      },
+      "required": [
+        "input_id",
+        "source_instance_id",
+        "project_id",
+        "version_fingerprint",
+        "state_sha256"
+      ],
+      "title": "CorrelationInputRef",
+      "type": "object"
+    },
+    "InputUnit": {
+      "additionalProperties": false,
+      "properties": {
+        "input_id": {
+          "format": "uuid",
+          "title": "Input Id",
+          "type": "string"
+        },
+        "unit_key": {
+          "pattern": "^[a-f0-9]{64}$",
+          "title": "Unit Key",
+          "type": "string"
+        },
+        "resource_keys": {
+          "default": [],
+          "items": {
+            "pattern": "^[a-f0-9]{64}$",
+            "type": "string"
+          },
+          "maxItems": 16,
+          "title": "Resource Keys",
+          "type": "array"
+        },
+        "origin": {
+          "default": "unresolved",
+          "enum": [
+            "verified_resource",
+            "signed_alias",
+            "unresolved"
+          ],
+          "title": "Origin",
+          "type": "string"
+        }
+      },
+      "required": [
+        "input_id",
+        "unit_key"
+      ],
+      "title": "InputUnit",
+      "type": "object"
+    },
+    "ResourceEvidence": {
+      "additionalProperties": false,
+      "properties": {
+        "input_id": {
+          "format": "uuid",
+          "title": "Input Id",
+          "type": "string"
+        },
+        "resource": {
+          "$ref": "#/$defs/ResourceRef"
+        },
+        "proof_kind": {
+          "enum": [
+            "verified_resource",
+            "signed_alias",
+            "suggestion"
+          ],
+          "title": "Proof Kind",
+          "type": "string"
+        },
+        "proof_sha256": {
+          "pattern": "^[a-f0-9]{64}$",
+          "title": "Proof Sha256",
+          "type": "string"
+        },
+        "code_ref": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/CodeRef"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        },
+        "alias_id": {
+          "anyOf": [
+            {
+              "format": "uuid",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Alias Id"
+        },
+        "alias_revision": {
+          "anyOf": [
+            {
+              "maximum": 9223372036854775807,
+              "minimum": 1,
+              "type": "integer"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Alias Revision"
+        }
+      },
+      "required": [
+        "input_id",
+        "resource",
+        "proof_kind",
+        "proof_sha256"
+      ],
+      "title": "ResourceEvidence",
+      "type": "object"
+    },
+    "ResourceRef": {
+      "additionalProperties": false,
+      "description": "A verified owner's resource, never a resource guessed from a chat title.",
+      "properties": {
+        "project_id": {
+          "maxLength": 100,
+          "minLength": 1,
+          "title": "Project Id",
+          "type": "string"
+        },
+        "scope": {
+          "$ref": "#/$defs/SourceScope"
+        },
+        "repository_id": {
+          "maximum": 9223372036854775807,
+          "minimum": 1,
+          "title": "Repository Id",
+          "type": "integer"
+        },
+        "repository": {
+          "pattern": "^[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+$",
+          "title": "Repository",
+          "type": "string"
+        },
+        "kind": {
+          "enum": [
+            "issue",
+            "pull_request",
+            "workflow_run",
+            "check_run",
+            "check_suite"
+          ],
+          "title": "Kind",
+          "type": "string"
+        },
+        "resource_id": {
+          "pattern": "^[1-9][0-9]{0,18}$",
+          "title": "Resource Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "project_id",
+        "scope",
+        "repository_id",
+        "repository",
+        "kind",
+        "resource_id"
+      ],
+      "title": "ResourceRef",
+      "type": "object"
+    },
+    "SourceScope": {
+      "additionalProperties": false,
+      "properties": {
+        "source_kind": {
+          "pattern": "^[a-z][a-z0-9_]{0,31}$",
+          "title": "Source Kind",
+          "type": "string"
+        },
+        "source_instance_id": {
+          "format": "uuid",
+          "title": "Source Instance Id",
+          "type": "string"
+        },
+        "tenant_id": {
+          "maxLength": 256,
+          "minLength": 1,
+          "title": "Tenant Id",
+          "type": "string"
+        },
+        "installation_id": {
+          "maxLength": 256,
+          "minLength": 1,
+          "title": "Installation Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "source_kind",
+        "source_instance_id",
+        "tenant_id",
+        "installation_id"
+      ],
+      "title": "SourceScope",
+      "type": "object"
+    },
+    "TargetRef": {
+      "additionalProperties": false,
+      "properties": {
+        "ticket_id": {
+          "format": "uuid",
+          "title": "Ticket Id",
+          "type": "string"
+        },
+        "run_id": {
+          "format": "uuid",
+          "title": "Run Id",
+          "type": "string"
+        },
+        "thread_id": {
+          "format": "uuid",
+          "title": "Thread Id",
+          "type": "string"
+        },
+        "thread_revision": {
+          "maximum": 9223372036854775807,
+          "minimum": 0,
+          "title": "Thread Revision",
+          "type": "integer"
+        },
+        "execution_epoch": {
+          "maximum": 9223372036854775807,
+          "minimum": 0,
+          "title": "Execution Epoch",
+          "type": "integer"
+        },
+        "mandate_id": {
+          "format": "uuid",
+          "title": "Mandate Id",
+          "type": "string"
+        },
+        "mandate_sha256": {
+          "pattern": "^[a-f0-9]{64}$",
+          "title": "Mandate Sha256",
+          "type": "string"
+        },
+        "project_id": {
+          "maxLength": 100,
+          "minLength": 1,
+          "title": "Project Id",
+          "type": "string"
+        },
+        "repository": {
+          "pattern": "^[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+$",
+          "title": "Repository",
+          "type": "string"
+        },
+        "allowed": {
+          "title": "Allowed",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "ticket_id",
+        "run_id",
+        "thread_id",
+        "thread_revision",
+        "execution_epoch",
+        "mandate_id",
+        "mandate_sha256",
+        "project_id",
+        "repository",
+        "allowed"
+      ],
+      "title": "TargetRef",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": "source-correlation-snapshot-v1",
+      "default": "source-correlation-snapshot-v1",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "project_id": {
+      "maxLength": 100,
+      "minLength": 1,
+      "title": "Project Id",
+      "type": "string"
+    },
+    "inputs": {
+      "items": {
+        "$ref": "#/$defs/CorrelationInputRef"
+      },
+      "maxItems": 16,
+      "minItems": 1,
+      "title": "Inputs",
+      "type": "array"
+    },
+    "units": {
+      "items": {
+        "$ref": "#/$defs/InputUnit"
+      },
+      "maxItems": 64,
+      "minItems": 1,
+      "title": "Units",
+      "type": "array"
+    },
+    "resources": {
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/ResourceEvidence"
+      },
+      "maxItems": 256,
+      "title": "Resources",
+      "type": "array"
+    },
+    "heads": {
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/CorrelationHead"
+      },
+      "maxItems": 64,
+      "title": "Heads",
+      "type": "array"
+    },
+    "targets": {
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/TargetRef"
+      },
+      "maxItems": 64,
+      "title": "Targets",
+      "type": "array"
+    },
+    "expires_at": {
+      "format": "date-time",
+      "title": "Expires At",
+      "type": "string"
+    }
+  },
+  "required": [
+    "project_id",
+    "inputs",
+    "units",
+    "expires_at"
+  ],
+  "title": "CorrelationSnapshot",
+  "type": "object"
+}
