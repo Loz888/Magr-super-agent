@@ -143,6 +143,37 @@ SA07后续实际确认：Harness固定cb422c5e050eb48ad2cb0eae901453c052b5f018�
 原候选独立P1已原样确认2FAIL；修复6a5d089仅改私有SourceIngress、新增43项正式回归及当前清单。固定完整注册1161PASS，原两项修复方回放与lint/typecheck通过；原独立FAIL不改，SA07不放行、SA08未启动。见SA07_I01_REPAIR_20261112.md。无新迁移/共享Engine/API/预算或Harness活动树改动，0037仍归Harness；本轮交接仅本地准备，未发送新的消息或声称对方收讫。
 
 
-## SA07独立关闭与SA08启动
+## SA07独立关闭与SA08启动（历史启动记录）
 
 用户接受固定6a5d089的SA07-I01原两项独立2PASS并授权SA08。原1161项实现方结果与历史FAIL均保留；复验只重跑原未通过项。SA08正在核对来源私有Fast Path/Shadow、共享Engine/API与迁移编号；0037已由Harness使用，未在本树占用新编号或改动其活动树。
+
+
+## SA08共享范围实际确认与本地接线（历史接线阶段）
+
+用户代转Harness固定提交`1e397ab73feeaa6e9a5d747963bb9889eec5a51f`，已只读核对
+SUPER_AGENT_HANDOFF.md第31节及SQL/接线提案指纹。该提交仅增加交接文档35行，明确确认
+0038_super_agent_fast_path.sql、app.sa_fast_path_*、新super_agent/fast_path*模块，及SA副本
+Engine.__init__组合、api.py注册/api/v3/source-fast-path、SourceIngress本次新canonical输入
+观察hook归SA侧Codex；Harness不并行修改这些接线。实际确认记录见本卡主证据根的
+ownership-confirmation.json；此前等待确认和未找到回复的记录均保留其历史时点。
+
+本地固定提交`c7214a7cf9615a8f8f8381094348feb1c34a874a`已应用上述接线与0038迁移，
+六个cookie管理接口已注册。本树迁移目录为37份，即0001–0036及0038；0037继续归Harness，
+不导入、不改名、不伪造占位。原Engine同一持锁PG连接和事务保持，既有candidate配额端口
+仅被复用，历史迁移、预算/结算算法、ToolAuthority、SourceEvent DTO与Harness实现均未改。
+
+当时首次整合lint/typecheck PASS，首次完整注册1358项（SA08新增197项及原1161项）正在运行，
+结果待原评分器生成；最终结果及修复见下节。SA08保持IN_PROGRESS，独立验收NOT_RUN，SA09未启动；真实平台、
+付费、外发、发布与长期门NOT_RUN。新[SA08交接说明](HARNESS_SA08_HANDOFF.md)仅本地准备，
+未新发完成消息或声称Harness接收了本卡实现；固定第31节确认也不构成本卡验收。
+
+
+## SA08工程交付，等待独立验收（2026-11-12）
+
+共享接线/0038固定c7214a7，首轮原注册1358 PASS，指纹37a618…0898b一致。随后本地发现
+SA08-L01：飞书post前置at使合法控制退化，原3探针全部失败后，仅私有规则固定占位符修复
+为9950ebd；原断言迁正式注册定向3 PASS，当前指纹69ddeb…47f27一致。当前注册1361项，
+依用户要求未重复已通过项、完整注册或静态整库检查；历史通过与修复定向证据不混称单轮。
+见SA08_ACCEPTANCE_20261112.md和accept/SAV1-08/accept.json。37份安装checksum匹配、
+临时PG/会话/故障容器无残留，用户原文件未变。SA08仍IN_PROGRESS待独立，SA09未启动。
+HARNESS_SA08_HANDOFF.md仅本地准备，未新发消息/声称实现收讫；不改Harness或其真实门。

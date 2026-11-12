@@ -1,6 +1,7 @@
 # Super-Agent V1 完整任务书
 
 实施进度：**SAV1-00–SAV1-07 DONE（本地工程）；SAV1-08 IN_PROGRESS；SA09–SA24 PLANNED**。证据见 [SA06关闭](accept/SAV1-06/i04-independent-closure-20261111.json) 和 [SA07工程交付](accept/SAV1-07/accept.json)。短号 SA00–SA24 对应完整 ID `SAV1-00`–`SAV1-24`。
+SA08本地工程已交付，首轮1358 PASS及L01定向3 PASS分别记录，仍待独立验收，见[交付摘要](accept/SAV1-08/accept.json)。
 `HV4-Hxx` 是 [Harness V4 任务](../harness-v4/TASKS.md)，属于外部前置，不是已完成项。
 每卡以一个可复现交付单元执行；大卡可以按接口、实现、集成拆子提交，验收完整后才 DONE。
 

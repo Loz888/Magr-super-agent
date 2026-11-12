@@ -229,9 +229,17 @@
       "card": "TASKS.md#sa08",
       "verification_target_on_implementation": "SAV1-08",
       "independent_review": "NOT_RUN",
-      "work_state": "PRIVATE_COMPONENTS_PREPARED_WAITING_SHARED_OWNERSHIP",
+      "work_state": "ENGINEERING_COMPLETE_PENDING_INDEPENDENT_REVIEW",
       "preparation": "accept/SAV1-08/preparation-20261112.json",
-      "engineering_gate": "NOT_RUN"
+      "engineering_gate": "PASS",
+      "ownership_commit": "1e397ab73feeaa6e9a5d747963bb9889eec5a51f",
+      "source_commit": "9950ebd4a59127199ee00e7e407d5bc50f61619d",
+      "source_sha256": "69ddeb1cce88bba4841907ae467743d563c0691d2c812a24f011e9fa6d447f27",
+      "acceptance": "accept/SAV1-08/accept.json",
+      "initial_registered_cases": 1358,
+      "repair_failed_only_cases": 3,
+      "current_registry_cases": 1361,
+      "full_suite_on_repaired_revision": "NOT_RUN_PER_USER_RETEST_POLICY"
     },
     {
       "id": "SAV1-09",

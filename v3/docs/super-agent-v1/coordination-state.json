@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-12T09:12:57.004353+00:00",
+  "updated_at": "2026-11-12T10:38:54.275212+00:00",
   "user_instruction": "Codex owns Super-Agent; local Trae owns Harness; coordination is authorized.",
   "owners": {
     "super_agent": {
@@ -15,7 +15,7 @@
   },
   "active_super_agent_card": "SAV1-08",
   "card_status": "IN_PROGRESS",
-  "work_state": "SA08_PRIVATE_COMPONENTS_PREPARED_WAITING_SHARED_OWNERSHIP",
+  "work_state": "SA08_ENGINEERING_COMPLETE_PENDING_INDEPENDENT_REVIEW",
   "harness_observation": {
     "head": "de4775e22e96718e880fde287b2e0928db2945e3",
     "h00_owner_reported_status": "PASS",
@@ -295,7 +295,45 @@
   "sa07_repair_acceptance": "docs/super-agent-v1/accept/SAV1-07/i01-repair-20261112.json",
   "sa07_independent_closure": "docs/super-agent-v1/accept/SAV1-07/i01-independent-closure-20261112.json",
   "sa08_preparation": "docs/super-agent-v1/accept/SAV1-08/preparation-20261112.json",
-  "sa08_ownership": "PENDING_USER_RELAY; no actual peer acknowledgement",
+  "sa08_ownership": {
+    "status": "ACTUALLY_ACKNOWLEDGED_FIXED_COMMIT",
+    "commit": "1e397ab73feeaa6e9a5d747963bb9889eec5a51f",
+    "section": 31,
+    "evidence": "evidence/super-agent-v1/SAV1-08/start-20261112T081641Z-5eb84f0a/ownership-confirmation.json"
+  },
   "sa08_private_commit": "4da5c6d2bb46382ff68a597b5513ca1fcbaa2d4d",
-  "sa08_registered_verification": "NOT_RUN"
+  "sa08_registered_verification": {
+    "result": "evidence/SAV1-08/20261112T100023Z-ac25e128/result.json",
+    "counts": {
+      "tests": 1358,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "source_commit": "c7214a7",
+    "source_sha256": "37a6188e07f510edbe4365013f312a7fe6c7f378c5b5c276f07775afcd20898b"
+  },
+  "sa08_source_commit": "9950ebd4a59127199ee00e7e407d5bc50f61619d",
+  "sa08_static": {
+    "lint": "PASS",
+    "typecheck": "PASS",
+    "source_files": 238
+  },
+  "sa08_source_sha256": "69ddeb1cce88bba4841907ae467743d563c0691d2c812a24f011e9fa6d447f27",
+  "sa08_repair": {
+    "finding": "SA08-L01",
+    "source_commit": "9950ebd4a59127199ee00e7e407d5bc50f61619d",
+    "counts": {
+      "tests": 3,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "commands": "evidence/super-agent-v1/SAV1-08/start-20261112T081641Z-5eb84f0a/20261112T103557Z-rich-post-failed-only-fixed-33e8cd/commands.json",
+    "full_rerun": false
+  },
+  "sa08_acceptance": "docs/super-agent-v1/accept/SAV1-08/accept.json",
+  "sa08_independent_review": "NOT_RUN",
+  "sa08_current_registry_cases": 1361,
+  "sa08_completion_handoff": "HARNESS_SA08_HANDOFF.md prepared locally only; no new message sent or acknowledgement claimed"
 }

@@ -1,10 +1,16 @@
 # SA08 确定性过滤与影子观察
 
 状态：IN_PROGRESS。用户已接受 SA07-I01 两项独立复验并授权本卡，见
-[关闭记录](accept/SAV1-07/i01-independent-closure-20261112.json)。私有规则、观察服务、
-管理接口模块及测试已编写；共享接线和0038迁移尚待所有权确认，未安装或注册。
-目前只有纯规则/契约组件56项PASS及组件静态检查，真实PG集成与本卡完整注册验证未运行。
-这些结果不构成本卡完成或独立验收。SA09未启动，所有真实平台、付费、外发、发布与长期门NOT_RUN。
+[关闭记录](accept/SAV1-07/i01-independent-closure-20261112.json)。Harness 固定提交
+`1e397ab73feeaa6e9a5d747963bb9889eec5a51f` 的交接文档第31节已实际确认本卡共享范围。
+私有规则、观察服务、0038迁移和共享接线已随本地提交
+`c7214a7cf9615a8f8f8381094348feb1c34a874a` 固定，六个管理接口已注册。
+
+首次整合 lint、typecheck 均 PASS，冻结首轮完整注册1358 PASS。随后本地发现SA08-L01富文本
+控制识别问题，原3项FAIL确认后以`9950ebd`修复，原断言迁入正式注册并定向3 PASS；已通过项
+未重复。当前注册1361项，修复后全量NOT_RUN。见[工程交付](SA08_ACCEPTANCE_20261112.md)
+及[正式摘要](accept/SAV1-08/accept.json)。独立验收NOT_RUN，SA08仍IN_PROGRESS，SA09未启动；
+真实平台、付费、外发、发布与长期门均NOT_RUN。本地交接见[SA08交接说明](HARNESS_SA08_HANDOFF.md)。
 
 ## 来源与权限
 
@@ -13,7 +19,7 @@
 只有当前允许且仍保留有效密文的内容才在内存中做有界确定性解码；候选还要求model_input。
 没有正文时不补拉、不跟随链接，也不复制正文到观察日志、CAS或新表。
 
-拟议Ingress hook只对当前receipt新建的canonical input保存一次无正文origin。历史、缓冲、
+Ingress hook只对当前receipt新建的canonical input保存一次无正文origin。历史、缓冲、
 缺口和时效原因来自受信服务端参数，不在HTTP DTO中开放。别名不能改写origin，也不能在
 开启功能后自动激活先前未观察的输入；原有canonical若没有可信origin，保守拒绝推断为live。
 管理员可以显式提交已有input ID重新请求观察，但既有决策不可变、当前权限仍需复查。
@@ -31,7 +37,8 @@ GitHub和飞书使用其既有规范化内容格式。人类的可信mention/dir
 
 `/mgar pause|cancel <ticket UUID>`只提供意图。当前人类身份、task_controller、准确Ticket
 membership及follow_up Admission全部成立后，记录优先级100的would_pause/cancel，
-不实际暂停或撤销任务。飞书已验证mention允许一个前置`@_user_N`占位符；任意显示名、
+不实际暂停或撤销任务。飞书post的at元素规范成固定`@_user_0 `，不读取其显示名/ID作为命令；
+已验证mention才允许剥一个前置`@_user_N`占位符。任意显示名、
 引用文本或调用者priority字段不能提供控制权。控制观察优先于普通候选冷却与候选配额，
 但不绕过已有SourceGateway来源配额、ACK或积压边界。
 
@@ -58,10 +65,10 @@ canonical input，受原入站凭证/输入上界约束。观察池满时保留�
 返回当前有效成员、过时原因和绑定成员版本的snapshot_sha256；旧快照不是继续执行凭证。
 触发/拒绝/模式/优先级分布来自实际决策；SA08模型调用与费用为0，不生成模拟测试或发送回执。
 
-## 拟议管理接口与集成
+## 管理接口与集成
 
-新模块fast_path_api.py准备以下cookie/Origin/CSRF、事务内当前会话与no-store接口；
-尚未注册进主API：
+fast_path_api.py已通过主API注册以下六个接口，沿用控制台cookie、写操作Origin/CSRF、
+事务内当前会话复查与no-store：
 
 | 方法 | `/api/v3/source-fast-path` 下的路径 | 内容 |
 | --- | --- | --- |
@@ -72,19 +79,45 @@ canonical input，受原入站凭证/输入上界约束。观察池满时保留�
 | GET | /{source_id}/decisions | 最多100条无正文决定 |
 | GET | /{source_id}/metrics | 实际触发分布、pending和零模型用量 |
 
-拟议共享变化仅为Engine.__init__组合、api.py注册和SourceIngress可选新canonical观察hook。
-可审查草案：[共享接线](sa08-proposal/shared-wiring.patch)、
-[0038 SQL](sa08-proposal/0038_super_agent_fast_path.sql)、
-[具体协调请求](sa08-proposal/ownership-request.txt)。它们尚未应用到源码接线或迁移目录。
-0037已实际归Harness，不在本树导入或伪造占位；若0038
-获确认，本树源迁移文件数是37而不是38。历史0001–0036及预算/结算算法均保持。
+已应用的共享变化仅为Engine.__init__组合、api.py注册和SourceIngress新canonical观察hook，
+继续使用原Engine mutex/advisory lock、持锁PG连接及已有事务。复用既有SharedBudgets.quota
+的candidate入口；预算/结算算法、ToolAuthority、SourceEvent DTO与Harness实现均未改。
 
-协调请求见`evidence/super-agent-v1/SAV1-08/ownership-read-20261112T081530Z/ownership-request-draft.txt`。
-本会话原跨CLI消息工具缺失，受支持daemon proxy未响应；请求已交用户代转，尚无对方实际确认。
-不把准备文件当作送达、确认或本卡交付。
+0038已落入本树迁移目录，目录共有37份迁移，即0001–0036及0038。
+0037_harness_evaluation_budget.sql继续归Harness，本树不导入、不改名、不伪造占位；
+历史0001–0036字节保持。已确认并应用的[共享接线](sa08-proposal/shared-wiring.patch)及
+[0038 SQL](sa08-proposal/0038_super_agent_fast_path.sql)保留在提案目录。
+
+用户代转了实际确认提交，已只读核对固定第31节及两份本地提案hash。确认全文SHA256为
+`036090e77a01340c3e4652a470442ee8ae21c2020fe1204ac66db95d6abf4dc5`，
+SQL为`7f03acdf8e428a0cb621ab555d3b04d44f7dc76127f4e5eedf0c23a698466eb6`，
+接线补丁为`3269bc6c33ba572c9057a345bba0c1c73119be772686a2be7af1ecb0dc1422f7`。
+实际确认及读取时间记录于
+`evidence/super-agent-v1/SAV1-08/start-20261112T081641Z-5eb84f0a/ownership-confirmation.json`。
+Harness明确不并行修改上述SA接线；本卡未修改或导入其活动树，新增本地交接文档未再次发送消息。
 
 ## 验证范围
 
 纯规则测试与合成确定性基准不表示独立语义holdout。SA00冻结的200条dev/holdout协议仍需
-操作者复核，SA09才接入获准语义评估。首次本卡注册验证待共享接线具备后执行；失败修复
-仅复测原失败项，分别记录历史通过和修复版本结果，不重复已通过测试。
+操作者复核，SA09才接入获准语义评估。首次完整注册197项新增检查及1161项既有回归
+共1358 PASS/exit0，源码37a618…0898b前后一致；修复9950ebd/69ddeb…47f27仅复测
+原3项失败，结果3 PASS/exit0。当前注册200项SA08检查及1161项既有回归，共1361项；
+修复后完整注册及已通过的lint/typecheck未重复。两版本证据分别记录，不拼为单轮全量成绩。
+
+## 历史准备与协调记录
+
+以下为实际第31节确认之前的阶段记录，原失败与未实测范围继续保留。
+
+初期私有规则、观察服务、管理接口模块及测试已编写；共享接线和0038迁移尚待所有权确认，
+未安装或注册。当时只有纯规则/契约组件56项PASS及组件静态检查，真实PG集成与本卡完整
+注册验证未运行，这些组件结果不构成本卡完成或独立验收。
+
+当时拟议共享变化为Engine.__init__组合、api.py注册和SourceIngress可选新canonical观察hook。
+[共享接线](sa08-proposal/shared-wiring.patch)、[0038 SQL](sa08-proposal/0038_super_agent_fast_path.sql)
+及[具体协调请求](sa08-proposal/ownership-request.txt)仅作为可审查草案，尚未应用到源码接线
+或迁移目录。0037已实际归Harness，0038尚未确认。
+
+原协调请求位于
+`evidence/super-agent-v1/SAV1-08/ownership-read-20261112T081530Z/ownership-request-draft.txt`。
+当时跨CLI消息工具缺失，受支持daemon proxy未响应；请求已交用户代转，尚未取得对方实际
+确认。后续只读复查未找到该确认的记录也按各自时点保留；实际第31节确认在其后单独核验。

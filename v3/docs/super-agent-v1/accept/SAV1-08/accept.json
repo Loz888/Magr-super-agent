@@ -1,0 +1,299 @@
+{
+  "task": "SAV1-08",
+  "status": "IN_PROGRESS",
+  "delivery_status": "LOCAL_ENGINEERING_COMPLETE_PENDING_INDEPENDENT_REVIEW",
+  "recorded_at_utc": "2026-11-12T10:38:54.275212+00:00",
+  "source_commit": "9950ebd4a59127199ee00e7e407d5bc50f61619d",
+  "source_sha256": "69ddeb1cce88bba4841907ae467743d563c0691d2c812a24f011e9fa6d447f27",
+  "contract": "source-fast-path-v1",
+  "scope": "Deterministic canonical Source filtering, original Engine transaction observation, bounded shadow batches, trusted hypothetical control and six owner management endpoints; disabled by default",
+  "gates": {
+    "engineering_gate": "PASS",
+    "policy_security_gate": "NOT_RUN",
+    "live_source_channel_gate": "NOT_RUN",
+    "live_coding_gate": "NOT_RUN",
+    "live_publication_gate": "NOT_RUN",
+    "continuous_operation_gate": "NOT_RUN"
+  },
+  "engineering_evidence_mode": "HISTORICAL_INITIAL_FULL_PLUS_FAILED_ONLY_REPAIR; not one full run on repaired revision",
+  "independent_review": "NOT_RUN",
+  "ownership": {
+    "commit": "1e397ab73feeaa6e9a5d747963bb9889eec5a51f",
+    "section": 31,
+    "evidence": "evidence/super-agent-v1/SAV1-08/start-20261112T081641Z-5eb84f0a/ownership-confirmation.json",
+    "harness_0037_imported": false
+  },
+  "migration": "0038_super_agent_fast_path.sql",
+  "initial_registered": {
+    "status": "PASS",
+    "result": "evidence/SAV1-08/20261112T100023Z-ac25e128/result.json",
+    "junit": "evidence/SAV1-08/20261112T100023Z-ac25e128/junit.xml",
+    "command": "make verify TASK=SAV1-08",
+    "counts": {
+      "tests": 1358,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "new_sa08_cases": 197,
+    "retained_cases": 1161,
+    "source_sha256": "37a6188e07f510edbe4365013f312a7fe6c7f378c5b5c276f07775afcd20898b",
+    "finished_source_sha256": "37a6188e07f510edbe4365013f312a7fe6c7f378c5b5c276f07775afcd20898b",
+    "exit_code": 0,
+    "matching_source_commit": "c7214a7cf9615a8f8f8381094348feb1c34a874a",
+    "original_scorer_recorded_head": "7eabf7b2e21f68a2962bfd94cb2e48021ac45362",
+    "commit_binding": "evidence/super-agent-v1/SAV1-08/start-20261112T081641Z-5eb84f0a/frozen-commit-equivalence.json",
+    "note": "Initial commit attempt lacked Git identity; exact staged source was committed as c7214a7 after launch. Git archive fingerprint equivalence proves identity; original scorer HEAD record is preserved."
+  },
+  "repair": {
+    "finding": "SA08-L01",
+    "confirmed_before_edit": true,
+    "original_failures": [
+      {
+        "commands": "evidence/super-agent-v1/SAV1-08/start-20261112T081641Z-5eb84f0a/20261112T101143Z-rich-post-pure-original-2e0482/commands.json",
+        "counts": {
+          "tests": 2,
+          "failures": 2,
+          "errors": 0,
+          "skipped": 0
+        }
+      },
+      {
+        "commands": "evidence/super-agent-v1/SAV1-08/start-20261112T081641Z-5eb84f0a/20261112T101322Z-rich-post-pg-original-6db5e7/commands.json",
+        "counts": {
+          "tests": 1,
+          "failures": 1,
+          "errors": 0,
+          "skipped": 0
+        }
+      }
+    ],
+    "change": "Fixed structural post at placeholder preserves exact control syntax; hidden labels/IDs remain excluded; current human, role, exact Ticket, Receive and Admission checks unchanged",
+    "source_commit": "9950ebd4a59127199ee00e7e407d5bc50f61619d",
+    "commands": "evidence/super-agent-v1/SAV1-08/start-20261112T081641Z-5eb84f0a/20261112T103557Z-rich-post-failed-only-fixed-33e8cd/commands.json",
+    "junit": "evidence/super-agent-v1/SAV1-08/start-20261112T081641Z-5eb84f0a/20261112T103557Z-rich-post-failed-only-fixed-33e8cd/junit.xml",
+    "counts": {
+      "tests": 3,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "exit_code": 0,
+    "source_stable": true,
+    "source_before": "69ddeb1cce88bba4841907ae467743d563c0691d2c812a24f011e9fa6d447f27",
+    "source_after": "69ddeb1cce88bba4841907ae467743d563c0691d2c812a24f011e9fa6d447f27",
+    "scope_mapping": "evidence/super-agent-v1/SAV1-08/start-20261112T081641Z-5eb84f0a/rich-post-repair-scope.json",
+    "test_function_asts_identical_to_failed_probes": true,
+    "previously_passed_cases_rerun": false
+  },
+  "current_registry": {
+    "targets": 50,
+    "expected_cases": 1361,
+    "new_sa08_cases": 200,
+    "full_suite_on_repaired_revision": "NOT_RUN_PER_USER_RETEST_POLICY"
+  },
+  "static": {
+    "lint": {
+      "status": "PASS",
+      "commands": "evidence/super-agent-v1/SAV1-08/start-20261112T081641Z-5eb84f0a/20261112T095423Z-lint-integrated-initial-7b7674/commands.json",
+      "source_sha256": "37a6188e07f510edbe4365013f312a7fe6c7f378c5b5c276f07775afcd20898b",
+      "scope": "Initial integrated version; not rerun after L01 repair"
+    },
+    "typecheck": {
+      "status": "PASS",
+      "commands": "evidence/super-agent-v1/SAV1-08/start-20261112T081641Z-5eb84f0a/20261112T095423Z-typecheck-integrated-initial-ef0a49/commands.json",
+      "source_sha256": "37a6188e07f510edbe4365013f312a7fe6c7f378c5b5c276f07775afcd20898b",
+      "scope": "Initial integrated version; not rerun after L01 repair",
+      "source_files": 238
+    },
+    "new_test_files_initial_lint": {
+      "status": "PASS",
+      "commands": "evidence/super-agent-v1/SAV1-08/start-20261112T081641Z-5eb84f0a/20261112T101918Z-rich-post-new-files-lint-initial-e9f785/commands.json",
+      "scope": "Two original probe function/helper bodies in formal-prep copies; final module docstrings updated only"
+    }
+  },
+  "benchmark": "evidence/super-agent-v1/SAV1-08/start-20261112T081641Z-5eb84f0a/benchmark-summary.json",
+  "delivery_audit": "evidence/super-agent-v1/SAV1-08/start-20261112T081641Z-5eb84f0a/delivery-audit.json",
+  "shared_scope_audit": "evidence/super-agent-v1/SAV1-08/implementation-audit-20261112T092418Z/shared-applied-audit.json",
+  "artifact_hashes": {
+    "config/verification.json": "e3ea62612435fd46c4264c6e8acc8c22c7574267b7a57133917f4242ca73dc96",
+    "config/source-fast-path-v1.json": "eaa8070eaf666e785188854bc216f0f648514912111e3143846acb9c10db311a",
+    "config/source-feishu-v1.json": "0c6889df308cdec0fc7fb4a76627fa98ac34ee72ea63c2697f43aab5735fba69",
+    "migrations/0038_super_agent_fast_path.sql": "7f03acdf8e428a0cb621ab555d3b04d44f7dc76127f4e5eedf0c23a698466eb6",
+    "src/mgar_v3/super_agent/fast_path.py": "423a2222f024a8baf32b9cddea56d3b2d532b77e8d518091e256b6d26be89919",
+    "src/mgar_v3/super_agent/fast_path_api.py": "c73c3fc460ac968f4695e4ad02985fb212031cb8dd05588ceea5adb250439c6d",
+    "src/mgar_v3/super_agent/fast_path_domain.py": "597961a7e38bd38623f52ec61579cc29e47ba4cd7e4f6ba8af4cb25a7c3e42f0",
+    "src/mgar_v3/super_agent/fast_path_rules.py": "be23eae18d6970e2e541b87126c3b479e4d26fe91a6ff52b6d75b51142675a70",
+    "tests/test_super_agent_sa08.py": "b7a89c18db70ce25dc242423d8741edac979bfaa1f868b8e3fb05f0c2a847dfc",
+    "tests/test_super_agent_sa08_api.py": "abe7f7a009322d3338d57c2583cd75629ca890f50be056762d5b59873ea10e43",
+    "tests/test_super_agent_sa08_benchmark.py": "85768aa89bd668c8771737af59022e9594ebda9aefc9f7bfb02f28c2a5c0aacb",
+    "tests/test_super_agent_sa08_migration.py": "7865aa9a77a4cc676bffe7283bdc913a7cb5a1bc2d407fff53c427a259ccce3a",
+    "tests/test_super_agent_sa08_own_result.py": "03ab1b4bdcb938ab24af538238442a4dbec693f04c1350e1f543121a7a3169a9",
+    "tests/test_super_agent_sa08_post_controls.py": "d0e819f5c27d810d81f42fed273febd9c74571e7d76a1022308e90fb52386911",
+    "tests/test_super_agent_sa08_post_rules.py": "8363e3a115d5823eec8fc3eb7cb73bde8548f38769c74d7b110e61706ebe5a36",
+    "tests/test_super_agent_sa08_rules.py": "e9f11c2aa5b33a0ee284a9b9afc0d5d21618590e27b0d322a8d7d2fb7c12981f",
+    "tests/sa08_support.py": "d78f0458513fc8eda72bfc7fd6dd5c3e0a12ce61b068e634225a462e0fd207ab"
+  },
+  "attempts": [
+    {
+      "commands": "evidence/super-agent-v1/SAV1-08/start-20261112T081641Z-5eb84f0a/20261112T084014Z-private-core-lint-cd5a1d/commands.json",
+      "exit_code": 1,
+      "counts": null,
+      "source_stable": true
+    },
+    {
+      "commands": "evidence/super-agent-v1/SAV1-08/start-20261112T081641Z-5eb84f0a/20261112T084128Z-private-core-lint-retry-080a14/commands.json",
+      "exit_code": 0,
+      "counts": null,
+      "source_stable": true
+    },
+    {
+      "commands": "evidence/super-agent-v1/SAV1-08/start-20261112T081641Z-5eb84f0a/20261112T084300Z-lint-tests-initial-00ea7e/commands.json",
+      "exit_code": 1,
+      "counts": null,
+      "source_stable": true
+    },
+    {
+      "commands": "evidence/super-agent-v1/SAV1-08/start-20261112T081641Z-5eb84f0a/20261112T084300Z-rules-initial-e2eb0d/commands.json",
+      "exit_code": 0,
+      "counts": {
+        "tests": 56,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "source_stable": true
+    },
+    {
+      "commands": "evidence/super-agent-v1/SAV1-08/start-20261112T081641Z-5eb84f0a/20261112T084346Z-lint-tests-failed-only-1b037d/commands.json",
+      "exit_code": 0,
+      "counts": null,
+      "source_stable": true
+    },
+    {
+      "commands": "evidence/super-agent-v1/SAV1-08/start-20261112T081641Z-5eb84f0a/20261112T084610Z-private-typecheck-957f19/commands.json",
+      "exit_code": 0,
+      "counts": null,
+      "source_stable": true
+    },
+    {
+      "commands": "evidence/super-agent-v1/SAV1-08/start-20261112T081641Z-5eb84f0a/20261112T090449Z-benchmark-initial-a6163d/commands.json",
+      "exit_code": 0,
+      "counts": {
+        "tests": 59,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "source_stable": true
+    },
+    {
+      "commands": "evidence/super-agent-v1/SAV1-08/start-20261112T081641Z-5eb84f0a/20261112T090449Z-lint-added-initial-39bd1d/commands.json",
+      "exit_code": 1,
+      "counts": null,
+      "source_stable": true
+    },
+    {
+      "commands": "evidence/super-agent-v1/SAV1-08/start-20261112T081641Z-5eb84f0a/20261112T090600Z-lint-added-failed-only-fa831a/commands.json",
+      "exit_code": 0,
+      "counts": null,
+      "source_stable": true
+    },
+    {
+      "commands": "evidence/super-agent-v1/SAV1-08/start-20261112T081641Z-5eb84f0a/20261112T090830Z-pg-collection-only-2fa17e/commands.json",
+      "exit_code": 0,
+      "counts": {
+        "tests": 0,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "source_stable": true
+    },
+    {
+      "commands": "evidence/super-agent-v1/SAV1-08/start-20261112T081641Z-5eb84f0a/20261112T091029Z-private-core-lint-current-032d0b/commands.json",
+      "exit_code": 0,
+      "counts": null,
+      "source_stable": true
+    },
+    {
+      "commands": "evidence/super-agent-v1/SAV1-08/start-20261112T081641Z-5eb84f0a/20261112T094921Z-apply-approved-migration-439c4f/commands.json",
+      "exit_code": 0,
+      "counts": null,
+      "source_stable": true
+    },
+    {
+      "commands": "evidence/super-agent-v1/SAV1-08/start-20261112T081641Z-5eb84f0a/20261112T095423Z-lint-integrated-initial-7b7674/commands.json",
+      "exit_code": 0,
+      "counts": null,
+      "source_stable": true
+    },
+    {
+      "commands": "evidence/super-agent-v1/SAV1-08/start-20261112T081641Z-5eb84f0a/20261112T095423Z-typecheck-integrated-initial-ef0a49/commands.json",
+      "exit_code": 0,
+      "counts": null,
+      "source_stable": true
+    },
+    {
+      "commands": "evidence/super-agent-v1/SAV1-08/start-20261112T081641Z-5eb84f0a/20261112T100023Z-registered-initial-26979b/commands.json",
+      "exit_code": 0,
+      "counts": null,
+      "source_stable": true
+    },
+    {
+      "commands": "evidence/super-agent-v1/SAV1-08/start-20261112T081641Z-5eb84f0a/20261112T101143Z-rich-post-pure-original-2e0482/commands.json",
+      "exit_code": 1,
+      "counts": {
+        "tests": 2,
+        "failures": 2,
+        "errors": 0,
+        "skipped": 0
+      },
+      "source_stable": true
+    },
+    {
+      "commands": "evidence/super-agent-v1/SAV1-08/start-20261112T081641Z-5eb84f0a/20261112T101322Z-rich-post-pg-original-6db5e7/commands.json",
+      "exit_code": 1,
+      "counts": {
+        "tests": 1,
+        "failures": 1,
+        "errors": 0,
+        "skipped": 0
+      },
+      "source_stable": true
+    },
+    {
+      "commands": "evidence/super-agent-v1/SAV1-08/start-20261112T081641Z-5eb84f0a/20261112T101918Z-rich-post-new-files-lint-initial-e9f785/commands.json",
+      "exit_code": 0,
+      "counts": null,
+      "source_stable": true
+    },
+    {
+      "commands": "evidence/super-agent-v1/SAV1-08/start-20261112T081641Z-5eb84f0a/20261112T103557Z-rich-post-failed-only-fixed-33e8cd/commands.json",
+      "exit_code": 0,
+      "counts": {
+        "tests": 3,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "source_stable": true
+    }
+  ],
+  "paid_calls": 0,
+  "real_platform_calls": 0,
+  "external_business_writes": 0,
+  "protected_user_file_unchanged": true,
+  "next_card": "SAV1-09",
+  "next_card_gate": "SA08 independent acceptance and user instruction required",
+  "limitations": [
+    "Engineering checks are implementer evidence, not independent acceptance.",
+    "Initial full passing evidence is c7214a7; repaired9950ebd only reran original3 failed cases.",
+    "Synthetic syntax/grouping corpus is not an operator-reviewed semantic holdout; semantic evaluation NOT_RUN.",
+    "SA09 Router, SA11 subscriptions, Scheduler/Worker/Recall/multichannel sending remain later cards.",
+    "Harness PersistentBudgetLedger/0037 integration is separate; no active Harness edits/imports.",
+    "No live source/channel, paid model, real coding, publication or continuous-operation gate was run."
+  ],
+  "evidence_root": "evidence/super-agent-v1/SAV1-08/start-20261112T081641Z-5eb84f0a",
+  "final_registry_artifact_audit": "evidence/super-agent-v1/SAV1-08/implementation-audit-20261112T092418Z/final-repair-audit.json"
+}
