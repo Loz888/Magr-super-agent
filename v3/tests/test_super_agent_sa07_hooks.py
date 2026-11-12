@@ -5,6 +5,7 @@ from types import SimpleNamespace
 import pytest
 from sa04_support import envelope, rows, setup
 from sa07_support import ORGANIZATION, configure, definition, save, view
+from sa07_support import budget_env as budget_env
 from test_super_agent_sa03 import cookie as cookie
 from test_super_agent_sa03 import (
     definition as policy_definition,
@@ -13,6 +14,7 @@ from test_super_agent_sa03 import env as env
 from test_super_agent_sa03 import facts, notify, proposed, request_for, sign
 
 from mgar_v3.domain import DomainError
+from mgar_v3.graph.runner import Runner
 
 
 def budget_for(env):
@@ -106,3 +108,52 @@ def test_actual_outbox_claim_enforces_shared_notification_quota(env, trigger, qu
         current = env.engine.actions(receipt.run_id)[0]
         assert current["status"] == "expired"
         assert current["reason_code"] == "PROJECT_QUOTA_EXHAUSTED"
+
+
+def legacy_comment(env, trigger):
+    receipt = env.engine.ingest(trigger)
+    assert Runner(env.engine).execute(receipt.run_id) is not None
+    action = env.engine.actions(receipt.run_id)[0]
+    env.engine.approve(action["action_id"], action["payload_hash"], "owner")
+    with env.engine.transaction() as conn:
+        assert conn.execute(
+            "SELECT count(*) AS n FROM app.source_run_policies WHERE run_id=%s",
+            (receipt.run_id,),
+        ).fetchone()["n"] == 0
+    return receipt, action
+
+
+@pytest.mark.parametrize("quota", [0, 1])
+def test_legacy_comment_claim_enforces_shared_project_quota(budget_env, trigger, quota):
+    env = budget_env
+    receipt, action = legacy_comment(env, trigger)
+    configure(env, project=definition(
+        organization_id=ORGANIZATION, quotas={"notifications_hour": quota},
+    ))
+    claimed = env.engine.claim_effect("fixture")
+    assert (claimed is not None) == bool(quota)
+    assert view(env)["quota_usage"]["notification"] == quota
+    if quota:
+        with env.engine.transaction() as conn:
+            env.engine.source_policies.check_action(
+                conn, action, env.engine.get_run(receipt.run_id)
+            )
+        assert view(env)["quota_usage"]["notification"] == 1
+    else:
+        current = env.engine.actions(receipt.run_id)[0]
+        assert current["status"] == "expired"
+        assert current["reason_code"] == "PROJECT_QUOTA_EXHAUSTED"
+
+
+def test_legacy_comments_across_runs_share_notification_limit(budget_env, trigger):
+    env = budget_env
+    legacy_comment(env, trigger)
+    legacy_comment(env, trigger.model_copy(update={
+        "external_event_id": "sa07-other-legacy-comment", "issue_number": 2,
+    }))
+    configure(env, project=definition(
+        organization_id=ORGANIZATION, quotas={"notifications_hour": 1},
+    ))
+    assert env.engine.claim_effect("fixture") is not None
+    assert env.engine.claim_effect("fixture") is None
+    assert view(env)["quota_usage"]["notification"] == 1

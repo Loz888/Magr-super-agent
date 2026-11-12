@@ -793,6 +793,8 @@ class SourcePolicies:
 
     def check_action(self, conn: Connection, action: Row, run: Row) -> None:
         if self._bound(conn, run["run_id"]) is None:
+            if action["action_type"] == "issue_comment":
+                self.engine.project_budgets.notification_quota(conn, str(action["action_id"]))
             return
         saved = conn.execute(
             "SELECT * FROM app.source_notification_authorizations WHERE action_id=%s",
