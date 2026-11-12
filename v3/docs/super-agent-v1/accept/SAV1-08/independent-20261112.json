@@ -1,0 +1,122 @@
+{
+  "task": "SAV1-08",
+  "review_type": "INDEPENDENT_LOCAL_ENGINEERING_REVIEW",
+  "status": "PASS",
+  "engineering_gate": "PASS",
+  "completed_utc": "2026-11-12T10:59:02.769182+00:00",
+  "verification_complete": true,
+  "source_commit": "9950ebd4a59127199ee00e7e407d5bc50f61619d",
+  "observed_head": "a7fa6b795a655671a92fa13ac7be3176962c3a4f",
+  "source_sha256_before": "69ddeb1cce88bba4841907ae467743d563c0691d2c812a24f011e9fa6d447f27",
+  "source_sha256_after": "69ddeb1cce88bba4841907ae467743d563c0691d2c812a24f011e9fa6d447f27",
+  "evidence_mode": "Reviewed historical first full result plus unchanged source-bound L01 failed-only rerun and six new independent compositions; no whole-suite claim on repaired revision.",
+  "historical_initial_full": {
+    "status": "PASS",
+    "counts": {
+      "tests": 1358,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "command_exit_code": 0,
+    "original_recorded_head": "7eabf7b2e21f68a2962bfd94cb2e48021ac45362",
+    "source_sha256": "37a6188e07f510edbe4365013f312a7fe6c7f378c5b5c276f07775afcd20898b",
+    "finished_source_sha256": "37a6188e07f510edbe4365013f312a7fe6c7f378c5b5c276f07775afcd20898b",
+    "independent_git_archive_source_sha256": "37a6188e07f510edbe4365013f312a7fe6c7f378c5b5c276f07775afcd20898b",
+    "matches_initial_commit": true,
+    "historical_only_not_rerun": true,
+    "binding_method": "Actual unchanged scripts.verify.source_fingerprint over safely extracted Git archive; no archived code executed.",
+    "initial_custom_hash_mismatch_preserved": "integrity-first-custom-hash.json"
+  },
+  "repaired_L01": {
+    "status": "PASS",
+    "counts": {
+      "tests": 3,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "exit_code": 0,
+    "junit": "l01-junit.xml",
+    "log": "l01.log",
+    "original_test_asts_unchanged": true
+  },
+  "new_independent_boundaries": {
+    "status": "PASS",
+    "counts": {
+      "tests": 6,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "exit_code": 0,
+    "junit": "independent-junit.xml",
+    "log": "independent.log",
+    "probe": "test_independent_sa08.py",
+    "coverage": [
+      "Rich cancel with model_input=false and candidate quota 0 in shadow/auto_repair; only would_cancel, no business/financial effects",
+      "Controller withdrawal, role-only restoration and missing exact Ticket membership do not restore prior control authority or old preview",
+      "Disabled-source origin and aliases cannot automatically observe a pre-enable canonical; explicit observation is idempotent and snapshot stable",
+      "Bot sender and foreign Ticket cannot borrow control authority from rich-post body",
+      "Feature disable invalidates current rich-control preview without rewriting historical decisions"
+    ]
+  },
+  "integrity": {
+    "key_artifact_hashes_verified": 17,
+    "old_36_migrations_unchanged": true,
+    "installed_migration_count": 37,
+    "all_installed_checksums_match": true,
+    "harness_0037_not_imported": true,
+    "applied_sql_equals_confirmed_proposal": true,
+    "original_paid_budget_algorithms_unchanged": true,
+    "source_and_head_unchanged": true,
+    "user_and_failure_evidence_preserved": true,
+    "worktree_before": "?? v3/docs/super-agent-v1/accept/SAV1-06/cli-takeover-20261111.json\n",
+    "worktree_after": "?? v3/docs/super-agent-v1/accept/SAV1-06/cli-takeover-20261111.json\n"
+  },
+  "not_rerun": [
+    "Previously passed 1358-case initial registry",
+    "Full 1361-case repaired registry",
+    "Previously passed lint/typecheck targets",
+    "Original previously passed SA08 tests; six independent compositions are new review probes",
+    "Fault-container tests or any live platform/model/publication checks"
+  ],
+  "cleanup": {
+    "l01_pg_after": {
+      "databases": [],
+      "sessions": []
+    },
+    "independent_pg_after": {
+      "databases": [],
+      "sessions": []
+    },
+    "active_checks_after": [],
+    "fault_containers": "NOT_USED_THIS_REVIEW"
+  },
+  "gates": {
+    "engineering_gate": "PASS",
+    "policy_security_gate": "NOT_RUN",
+    "live_source_channel_gate": "NOT_RUN",
+    "live_coding_gate": "NOT_RUN",
+    "live_publication_gate": "NOT_RUN",
+    "continuous_operation_gate": "NOT_RUN"
+  },
+  "limits": [
+    "Local engineering acceptance only; no newly rerun full suite on repaired source and no new 1361-PASS claim.",
+    "Deterministic synthetic benchmark is not an independent semantic holdout; Router semantic evaluation remains NOT_RUN.",
+    "SA09 not started; no source, registered test, grader, Harness or task-status edits.",
+    "Real platform, paid calls, external writes and publication remain NOT_RUN/zero."
+  ],
+  "reviewer_edits": {
+    "source": false,
+    "registered_tests": false,
+    "grader": false,
+    "original_probes": false,
+    "Harness": false,
+    "task_status_files": false,
+    "push": false
+  },
+  "standing_user_retest_policy": "Do not repeat passed checks after a repair. This initial independent SA08 review reruns only the three L01 failures and adds separately recorded new independent boundary probes. No full suite, lint/typecheck replay.",
+  "calculation_note": "archive-calculation-note.json",
+  "evidence_root": "/home/imini/magr-super-agent/v3/evidence/super-agent-v1/SAV1-08/20261112T104949Z-independent-review"
+}

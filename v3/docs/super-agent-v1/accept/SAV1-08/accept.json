@@ -1,8 +1,8 @@
 {
   "task": "SAV1-08",
-  "status": "IN_PROGRESS",
-  "delivery_status": "LOCAL_ENGINEERING_COMPLETE_PENDING_INDEPENDENT_REVIEW",
-  "recorded_at_utc": "2026-11-12T10:38:54.275212+00:00",
+  "status": "DONE",
+  "delivery_status": "LOCAL_ENGINEERING_COMPLETE_USER_ACCEPTED",
+  "recorded_at_utc": "2026-11-12T11:07:06.032551+00:00",
   "source_commit": "9950ebd4a59127199ee00e7e407d5bc50f61619d",
   "source_sha256": "69ddeb1cce88bba4841907ae467743d563c0691d2c812a24f011e9fa6d447f27",
   "contract": "source-fast-path-v1",
@@ -16,7 +16,7 @@
     "continuous_operation_gate": "NOT_RUN"
   },
   "engineering_evidence_mode": "HISTORICAL_INITIAL_FULL_PLUS_FAILED_ONLY_REPAIR; not one full run on repaired revision",
-  "independent_review": "NOT_RUN",
+  "independent_review": "USER_ACCEPTED_TARGETED_3_AND_NEW_BOUNDARIES_6_PASS",
   "ownership": {
     "commit": "1e397ab73feeaa6e9a5d747963bb9889eec5a51f",
     "section": 31,
@@ -285,7 +285,7 @@
   "external_business_writes": 0,
   "protected_user_file_unchanged": true,
   "next_card": "SAV1-09",
-  "next_card_gate": "SA08 independent acceptance and user instruction required",
+  "next_card_gate": "User explicitly authorized SA09",
   "limitations": [
     "Engineering checks are implementer evidence, not independent acceptance.",
     "Initial full passing evidence is c7214a7; repaired9950ebd only reran original3 failed cases.",
@@ -295,5 +295,7 @@
     "No live source/channel, paid model, real coding, publication or continuous-operation gate was run."
   ],
   "evidence_root": "evidence/super-agent-v1/SAV1-08/start-20261112T081641Z-5eb84f0a",
-  "final_registry_artifact_audit": "evidence/super-agent-v1/SAV1-08/implementation-audit-20261112T092418Z/final-repair-audit.json"
+  "final_registry_artifact_audit": "evidence/super-agent-v1/SAV1-08/implementation-audit-20261112T092418Z/final-repair-audit.json",
+  "independent_closure": "docs/super-agent-v1/accept/SAV1-08/independent-closure-20261112.json",
+  "prior_delivery": "docs/super-agent-v1/accept/SAV1-08/history/a7fa6b7-accept.json"
 }

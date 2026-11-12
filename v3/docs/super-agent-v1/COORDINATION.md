@@ -177,3 +177,12 @@ SA08-L01：飞书post前置at使合法控制退化，原3探针全部失败后�
 见SA08_ACCEPTANCE_20261112.md和accept/SAV1-08/accept.json。37份安装checksum匹配、
 临时PG/会话/故障容器无残留，用户原文件未变。SA08仍IN_PROGRESS待独立，SA09未启动。
 HARNESS_SA08_HANDOFF.md仅本地准备，未新发消息/声称实现收讫；不改Harness或其真实门。
+
+
+## SA08独立关闭与SA09前置核对
+
+用户已接受9950ebd的独立原3项及新增6项PASS，初轮1358绑定核对通过且未重复。
+SA08本地工程DONE，历史失败/用户文件保留，真实平台/付费/外发/发布/长期门NOT_RUN。
+当前SA09开始H02固定交付及旧Router复用审计。已重读Harness1e397ab第31节，
+仅确认SA08/0038/shared FastPath；不扩大到SA09，不导入H12。若SA09需要新共享
+迁移/Worker/预算钩子，先形成具体草案再协调，当前不声称已有其确认。

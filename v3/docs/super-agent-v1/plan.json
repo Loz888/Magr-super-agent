@@ -212,7 +212,7 @@
       "id": "SAV1-08",
       "short_id": "SA08",
       "title": "Fast Path 与无副作用影子观察",
-      "status": "IN_PROGRESS",
+      "status": "DONE",
       "priority": "P0",
       "phase": "S1",
       "depends_on": [
@@ -228,8 +228,8 @@
       "optional": false,
       "card": "TASKS.md#sa08",
       "verification_target_on_implementation": "SAV1-08",
-      "independent_review": "NOT_RUN",
-      "work_state": "ENGINEERING_COMPLETE_PENDING_INDEPENDENT_REVIEW",
+      "independent_review": "USER_ACCEPTED_TARGETED_3_AND_NEW_BOUNDARIES_6_PASS",
+      "work_state": "LOCAL_ENGINEERING_COMPLETE_USER_ACCEPTED",
       "preparation": "accept/SAV1-08/preparation-20261112.json",
       "engineering_gate": "PASS",
       "ownership_commit": "1e397ab73feeaa6e9a5d747963bb9889eec5a51f",
@@ -245,7 +245,7 @@
       "id": "SAV1-09",
       "short_id": "SA09",
       "title": "Router/Eval 严格候选与校验",
-      "status": "PLANNED",
+      "status": "IN_PROGRESS",
       "priority": "P0",
       "phase": "S1",
       "depends_on": [
@@ -260,7 +260,10 @@
       },
       "optional": false,
       "card": "TASKS.md#sa09",
-      "verification_target_on_implementation": "SAV1-09"
+      "verification_target_on_implementation": "SAV1-09",
+      "work_state": "DEPENDENCY_AND_INTERFACE_REVIEW",
+      "engineering_gate": "NOT_RUN",
+      "independent_review": "NOT_RUN"
     },
     {
       "id": "SAV1-10",

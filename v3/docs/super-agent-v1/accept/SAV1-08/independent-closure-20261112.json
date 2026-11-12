@@ -1,0 +1,39 @@
+{
+  "task": "SAV1-08",
+  "status": "DONE",
+  "recorded_at_utc": "2026-11-12T11:07:06.032551+00:00",
+  "decision": "USER_ACCEPTED_INDEPENDENT_LOCAL_ENGINEERING",
+  "source_commit": "9950ebd4a59127199ee00e7e407d5bc50f61619d",
+  "source_sha256": "69ddeb1cce88bba4841907ae467743d563c0691d2c812a24f011e9fa6d447f27",
+  "independent_report": "docs/super-agent-v1/accept/SAV1-08/independent-20261112.json",
+  "independent_report_sha256": "05b798acd220ade1ba269c846998fd8d95199e6b020ca303b55c016fd5158a98",
+  "original_failures_rerun": 3,
+  "new_independent_boundary_cases": 6,
+  "reviewed_junit": [
+    {
+      "path": "evidence/super-agent-v1/SAV1-08/20261112T104949Z-independent-review/l01-junit.xml",
+      "sha256": "fba475ae75f2b9b7375a68fdbfbd78b9ea52c9efc73e4c65073d5c6948aeb153",
+      "counts": {
+        "tests": 3,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      }
+    },
+    {
+      "path": "evidence/super-agent-v1/SAV1-08/20261112T104949Z-independent-review/independent-junit.xml",
+      "sha256": "296aab460c10534aaf1dc073ef97fafa8d7ba9e38423c2fb8027d2458a0fe62d",
+      "counts": {
+        "tests": 6,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      }
+    }
+  ],
+  "historical_initial_full": 1358,
+  "no_repaired_full_suite_claim": true,
+  "other_gates": "NOT_RUN",
+  "next_card": "SAV1-09",
+  "authorization": "User explicitly permits next round; ownership1e397ab§31 confirms only SA08, H12 not required"
+}
