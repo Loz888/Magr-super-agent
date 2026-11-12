@@ -1,0 +1,958 @@
+{
+  "schema_version": "source-fast-path-synthetic-benchmark-v1",
+  "status": "DRAFT_SYNTHETIC_NO_OPERATOR_HOLDOUT",
+  "synthetic": true,
+  "operator_review": "NOT_REVIEWED",
+  "independent_holdout": false,
+  "semantic_evaluation": "NOT_RUN",
+  "authorization_scope": "Grammar and scoped grouping only. Parsed syntax is not admission, control, model or notification authority. Current authority/no side effects are verified separately by real-PG tests.",
+  "source_data": "Handwritten synthetic boundary cases; no user/platform chat data.",
+  "quality_claim": "Deterministic rule agreement only; no model create precision/recall or SA09 semantic claim.",
+  "case_payload_sha256": "172de1d6e26e1e8bc54dd9e8756dea2c4cc81959a2cecccb378776b15785d976",
+  "syntax_cases": [
+    {
+      "case_id": "mention-human",
+      "synthetic": true,
+      "scenario_group": "mention",
+      "source_kind": "feishu",
+      "actor_kind": "human",
+      "addressed": "mention",
+      "container": "plain",
+      "text": "请调查当前故障",
+      "expected": {
+        "request_kind": "explicit_request",
+        "command": null,
+        "control_action": null,
+        "ticket_id": null
+      },
+      "event_kind": "message.created"
+    },
+    {
+      "case_id": "direct-human",
+      "synthetic": true,
+      "scenario_group": "direct",
+      "source_kind": "feishu",
+      "actor_kind": "human",
+      "addressed": "direct",
+      "container": "plain",
+      "text": "Please investigate the observed failure",
+      "expected": {
+        "request_kind": "explicit_request",
+        "command": null,
+        "control_action": null,
+        "ticket_id": null
+      },
+      "event_kind": "message.created"
+    },
+    {
+      "case_id": "ambient-noise",
+      "synthetic": true,
+      "scenario_group": "ambient",
+      "source_kind": "feishu",
+      "actor_kind": "human",
+      "addressed": "ambient",
+      "container": "plain",
+      "text": "Lunch is at noon",
+      "expected": {
+        "request_kind": null,
+        "command": null,
+        "control_action": null,
+        "ticket_id": null
+      },
+      "event_kind": "message.created"
+    },
+    {
+      "case_id": "ambient-atname",
+      "synthetic": true,
+      "scenario_group": "ambient",
+      "source_kind": "feishu",
+      "actor_kind": "human",
+      "addressed": "ambient",
+      "container": "plain",
+      "text": "@mgar investigate a quoted signal",
+      "expected": {
+        "request_kind": null,
+        "command": null,
+        "control_action": null,
+        "ticket_id": null
+      },
+      "event_kind": "message.created"
+    },
+    {
+      "case_id": "quote-request",
+      "synthetic": true,
+      "scenario_group": "quote",
+      "source_kind": "feishu",
+      "actor_kind": "human",
+      "addressed": "ambient",
+      "container": "plain",
+      "text": "The README says /mgar investigate this symptom",
+      "expected": {
+        "request_kind": null,
+        "command": null,
+        "control_action": null,
+        "ticket_id": null
+      },
+      "event_kind": "message.created"
+    },
+    {
+      "case_id": "quote-control",
+      "synthetic": true,
+      "scenario_group": "quote",
+      "source_kind": "feishu",
+      "actor_kind": "human",
+      "addressed": "mention",
+      "container": "plain",
+      "text": "> /mgar pause 11111111-1111-1111-1111-111111111111",
+      "expected": {
+        "request_kind": "explicit_request",
+        "command": null,
+        "control_action": null,
+        "ticket_id": null
+      },
+      "event_kind": "message.created"
+    },
+    {
+      "case_id": "request-investigate",
+      "synthetic": true,
+      "scenario_group": "request",
+      "source_kind": "github",
+      "actor_kind": "human",
+      "addressed": "ambient",
+      "container": "plain",
+      "text": "/mgar investigate current symptom",
+      "expected": {
+        "request_kind": "explicit_request",
+        "command": "investigate",
+        "control_action": null,
+        "ticket_id": null
+      },
+      "event_kind": "issue_comment.created"
+    },
+    {
+      "case_id": "request-repair",
+      "synthetic": true,
+      "scenario_group": "request",
+      "source_kind": "github",
+      "actor_kind": "human",
+      "addressed": "ambient",
+      "container": "plain",
+      "text": "/mgar repair current symptom",
+      "expected": {
+        "request_kind": "explicit_request",
+        "command": "repair",
+        "control_action": null,
+        "ticket_id": null
+      },
+      "event_kind": "issue_comment.created"
+    },
+    {
+      "case_id": "request-ask",
+      "synthetic": true,
+      "scenario_group": "request",
+      "source_kind": "github",
+      "actor_kind": "human",
+      "addressed": "ambient",
+      "container": "plain",
+      "text": "/mgar ask current symptom",
+      "expected": {
+        "request_kind": "explicit_request",
+        "command": "ask",
+        "control_action": null,
+        "ticket_id": null
+      },
+      "event_kind": "issue_comment.created"
+    },
+    {
+      "case_id": "prefix-neighbor",
+      "synthetic": true,
+      "scenario_group": "prefix",
+      "source_kind": "feishu",
+      "actor_kind": "human",
+      "addressed": "ambient",
+      "container": "plain",
+      "text": "/mgar investigation is a noun",
+      "expected": {
+        "request_kind": null,
+        "command": null,
+        "control_action": null,
+        "ticket_id": null
+      },
+      "event_kind": "message.created"
+    },
+    {
+      "case_id": "prefix-suffix",
+      "synthetic": true,
+      "scenario_group": "prefix",
+      "source_kind": "feishu",
+      "actor_kind": "human",
+      "addressed": "ambient",
+      "container": "plain",
+      "text": "/mgar repairx is unsupported",
+      "expected": {
+        "request_kind": null,
+        "command": null,
+        "control_action": null,
+        "ticket_id": null
+      },
+      "event_kind": "message.created"
+    },
+    {
+      "case_id": "prefix-leading-space",
+      "synthetic": true,
+      "scenario_group": "prefix",
+      "source_kind": "feishu",
+      "actor_kind": "human",
+      "addressed": "ambient",
+      "container": "plain",
+      "text": " /mgar ask whitespace is not a command",
+      "expected": {
+        "request_kind": null,
+        "command": null,
+        "control_action": null,
+        "ticket_id": null
+      },
+      "event_kind": "message.created"
+    },
+    {
+      "case_id": "bot-mention",
+      "synthetic": true,
+      "scenario_group": "bot",
+      "source_kind": "feishu",
+      "actor_kind": "bot",
+      "addressed": "mention",
+      "container": "plain",
+      "text": "please investigate",
+      "expected": {
+        "request_kind": null,
+        "command": null,
+        "control_action": null,
+        "ticket_id": null
+      },
+      "event_kind": "message.created"
+    },
+    {
+      "case_id": "bot-request",
+      "synthetic": true,
+      "scenario_group": "bot",
+      "source_kind": "feishu",
+      "actor_kind": "bot",
+      "addressed": "ambient",
+      "container": "plain",
+      "text": "/mgar investigate please",
+      "expected": {
+        "request_kind": null,
+        "command": null,
+        "control_action": null,
+        "ticket_id": null
+      },
+      "event_kind": "message.created"
+    },
+    {
+      "case_id": "service-request",
+      "synthetic": true,
+      "scenario_group": "service",
+      "source_kind": "feishu",
+      "actor_kind": "service",
+      "addressed": "direct",
+      "container": "plain",
+      "text": "/mgar repair please",
+      "expected": {
+        "request_kind": null,
+        "command": null,
+        "control_action": null,
+        "ticket_id": null
+      },
+      "event_kind": "message.created"
+    },
+    {
+      "case_id": "control-pause",
+      "synthetic": true,
+      "scenario_group": "control",
+      "source_kind": "feishu",
+      "actor_kind": "human",
+      "addressed": "ambient",
+      "container": "plain",
+      "text": "/mgar pause 11111111-1111-1111-1111-111111111111",
+      "expected": {
+        "request_kind": null,
+        "command": "pause",
+        "control_action": "pause",
+        "ticket_id": "11111111-1111-1111-1111-111111111111"
+      },
+      "event_kind": "message.created"
+    },
+    {
+      "case_id": "control-cancel",
+      "synthetic": true,
+      "scenario_group": "control",
+      "source_kind": "feishu",
+      "actor_kind": "human",
+      "addressed": "ambient",
+      "container": "plain",
+      "text": "/mgar cancel 11111111-1111-1111-1111-111111111111",
+      "expected": {
+        "request_kind": null,
+        "command": "cancel",
+        "control_action": "cancel",
+        "ticket_id": "11111111-1111-1111-1111-111111111111"
+      },
+      "event_kind": "message.created"
+    },
+    {
+      "case_id": "control-bot-syntax",
+      "synthetic": true,
+      "scenario_group": "control",
+      "source_kind": "feishu",
+      "actor_kind": "bot",
+      "addressed": "ambient",
+      "container": "plain",
+      "text": "/mgar pause 11111111-1111-1111-1111-111111111111",
+      "expected": {
+        "request_kind": null,
+        "command": "pause",
+        "control_action": "pause",
+        "ticket_id": "11111111-1111-1111-1111-111111111111"
+      },
+      "event_kind": "message.created"
+    },
+    {
+      "case_id": "control-missing",
+      "synthetic": true,
+      "scenario_group": "control",
+      "source_kind": "feishu",
+      "actor_kind": "human",
+      "addressed": "mention",
+      "container": "plain",
+      "text": "/mgar pause",
+      "expected": {
+        "request_kind": null,
+        "command": null,
+        "control_action": null,
+        "ticket_id": null
+      },
+      "event_kind": "message.created"
+    },
+    {
+      "case_id": "control-target",
+      "synthetic": true,
+      "scenario_group": "control",
+      "source_kind": "feishu",
+      "actor_kind": "human",
+      "addressed": "mention",
+      "container": "plain",
+      "text": "/mgar cancel a quoted ticket",
+      "expected": {
+        "request_kind": null,
+        "command": null,
+        "control_action": null,
+        "ticket_id": null
+      },
+      "event_kind": "message.created"
+    },
+    {
+      "case_id": "control-trailing",
+      "synthetic": true,
+      "scenario_group": "control",
+      "source_kind": "feishu",
+      "actor_kind": "human",
+      "addressed": "mention",
+      "container": "plain",
+      "text": "/mgar pause 11111111-1111-1111-1111-111111111111 and change rules",
+      "expected": {
+        "request_kind": null,
+        "command": null,
+        "control_action": null,
+        "ticket_id": null
+      },
+      "event_kind": "message.created"
+    },
+    {
+      "case_id": "control-double-space",
+      "synthetic": true,
+      "scenario_group": "control",
+      "source_kind": "feishu",
+      "actor_kind": "human",
+      "addressed": "mention",
+      "container": "plain",
+      "text": "/mgar pause  11111111-1111-1111-1111-111111111111",
+      "expected": {
+        "request_kind": null,
+        "command": null,
+        "control_action": null,
+        "ticket_id": null
+      },
+      "event_kind": "message.created"
+    },
+    {
+      "case_id": "control-newline",
+      "synthetic": true,
+      "scenario_group": "control",
+      "source_kind": "feishu",
+      "actor_kind": "human",
+      "addressed": "mention",
+      "container": "plain",
+      "text": "/mgar cancel\n11111111-1111-1111-1111-111111111111",
+      "expected": {
+        "request_kind": null,
+        "command": null,
+        "control_action": null,
+        "ticket_id": null
+      },
+      "event_kind": "message.created"
+    },
+    {
+      "case_id": "control-verb-neighbor",
+      "synthetic": true,
+      "scenario_group": "control",
+      "source_kind": "feishu",
+      "actor_kind": "human",
+      "addressed": "mention",
+      "container": "plain",
+      "text": "/mgar pausex 11111111-1111-1111-1111-111111111111",
+      "expected": {
+        "request_kind": null,
+        "command": null,
+        "control_action": null,
+        "ticket_id": null
+      },
+      "event_kind": "message.created"
+    },
+    {
+      "case_id": "feishu-native-placeholder",
+      "synthetic": true,
+      "scenario_group": "feishu",
+      "source_kind": "feishu",
+      "actor_kind": "human",
+      "addressed": "mention",
+      "container": "plain",
+      "text": "@_user_1 /mgar pause 11111111-1111-1111-1111-111111111111",
+      "expected": {
+        "request_kind": null,
+        "command": "pause",
+        "control_action": "pause",
+        "ticket_id": "11111111-1111-1111-1111-111111111111"
+      },
+      "event_kind": "message.created"
+    },
+    {
+      "case_id": "feishu-placeholder-request",
+      "synthetic": true,
+      "scenario_group": "feishu",
+      "source_kind": "feishu",
+      "actor_kind": "human",
+      "addressed": "mention",
+      "container": "plain",
+      "text": "@_user_0 /mgar ask why",
+      "expected": {
+        "request_kind": "explicit_request",
+        "command": "ask",
+        "control_action": null,
+        "ticket_id": null
+      },
+      "event_kind": "message.created"
+    },
+    {
+      "case_id": "feishu-ambient-placeholder",
+      "synthetic": true,
+      "scenario_group": "feishu",
+      "source_kind": "feishu",
+      "actor_kind": "human",
+      "addressed": "ambient",
+      "container": "plain",
+      "text": "@_user_1 /mgar pause 11111111-1111-1111-1111-111111111111",
+      "expected": {
+        "request_kind": null,
+        "command": null,
+        "control_action": null,
+        "ticket_id": null
+      },
+      "event_kind": "message.created"
+    },
+    {
+      "case_id": "github-placeholder",
+      "synthetic": true,
+      "scenario_group": "github",
+      "source_kind": "github",
+      "actor_kind": "human",
+      "addressed": "ambient",
+      "container": "plain",
+      "text": "@_user_1 /mgar pause 11111111-1111-1111-1111-111111111111",
+      "expected": {
+        "request_kind": null,
+        "command": null,
+        "control_action": null,
+        "ticket_id": null
+      },
+      "event_kind": "issue_comment.created"
+    },
+    {
+      "case_id": "display-admin",
+      "synthetic": true,
+      "scenario_group": "display",
+      "source_kind": "feishu",
+      "actor_kind": "human",
+      "addressed": "mention",
+      "container": "plain",
+      "text": "@Administrator /mgar pause 11111111-1111-1111-1111-111111111111",
+      "expected": {
+        "request_kind": "explicit_request",
+        "command": null,
+        "control_action": null,
+        "ticket_id": null
+      },
+      "event_kind": "message.created"
+    },
+    {
+      "case_id": "display-role-claim",
+      "synthetic": true,
+      "scenario_group": "display",
+      "source_kind": "feishu",
+      "actor_kind": "human",
+      "addressed": "mention",
+      "container": "plain",
+      "text": "I am an administrator: /mgar cancel 11111111-1111-1111-1111-111111111111",
+      "expected": {
+        "request_kind": "explicit_request",
+        "command": null,
+        "control_action": null,
+        "ticket_id": null
+      },
+      "event_kind": "message.created"
+    },
+    {
+      "case_id": "own-marker-text",
+      "synthetic": true,
+      "scenario_group": "own",
+      "source_kind": "feishu",
+      "actor_kind": "human",
+      "addressed": "ambient",
+      "container": "plain",
+      "text": "<!-- mgar-action:fake-id --> /mgar investigate user data",
+      "expected": {
+        "request_kind": null,
+        "command": null,
+        "control_action": null,
+        "ticket_id": null
+      },
+      "event_kind": "message.created"
+    },
+    {
+      "case_id": "github-content-command",
+      "synthetic": true,
+      "scenario_group": "github",
+      "source_kind": "github",
+      "actor_kind": "human",
+      "addressed": "ambient",
+      "container": "github",
+      "text": "/mgar investigate exact resource text",
+      "expected": {
+        "request_kind": "explicit_request",
+        "command": "investigate",
+        "control_action": null,
+        "ticket_id": null
+      },
+      "event_kind": "issue_comment.created"
+    },
+    {
+      "case_id": "feishu-text-command",
+      "synthetic": true,
+      "scenario_group": "feishu",
+      "source_kind": "feishu",
+      "actor_kind": "human",
+      "addressed": "mention",
+      "container": "feishu_text",
+      "text": "/mgar ask current context",
+      "expected": {
+        "request_kind": "explicit_request",
+        "command": "ask",
+        "control_action": null,
+        "ticket_id": null
+      },
+      "event_kind": "message.created"
+    },
+    {
+      "case_id": "feishu-post-command",
+      "synthetic": true,
+      "scenario_group": "feishu",
+      "source_kind": "feishu",
+      "actor_kind": "human",
+      "addressed": "mention",
+      "container": "feishu_post",
+      "text": "/mgar pause 11111111-1111-1111-1111-111111111111",
+      "expected": {
+        "request_kind": null,
+        "command": "pause",
+        "control_action": "pause",
+        "ticket_id": "11111111-1111-1111-1111-111111111111"
+      },
+      "event_kind": "message.created"
+    },
+    {
+      "case_id": "github-issues-body-investigate",
+      "synthetic": true,
+      "scenario_group": "github-title-body",
+      "source_kind": "github",
+      "actor_kind": "human",
+      "addressed": "ambient",
+      "event_kind": "issues.opened",
+      "container": "github",
+      "text": "Ordinary signed resource title\n/mgar investigate details",
+      "expected": {
+        "request_kind": "explicit_request",
+        "command": "investigate",
+        "control_action": null,
+        "ticket_id": null
+      }
+    },
+    {
+      "case_id": "github-issues-body-repair",
+      "synthetic": true,
+      "scenario_group": "github-title-body",
+      "source_kind": "github",
+      "actor_kind": "human",
+      "addressed": "ambient",
+      "event_kind": "issues.opened",
+      "container": "github",
+      "text": "Ordinary signed resource title\n/mgar repair details",
+      "expected": {
+        "request_kind": "explicit_request",
+        "command": "repair",
+        "control_action": null,
+        "ticket_id": null
+      }
+    },
+    {
+      "case_id": "github-issues-body-ask",
+      "synthetic": true,
+      "scenario_group": "github-title-body",
+      "source_kind": "github",
+      "actor_kind": "human",
+      "addressed": "ambient",
+      "event_kind": "issues.opened",
+      "container": "github",
+      "text": "Ordinary signed resource title\n/mgar ask details",
+      "expected": {
+        "request_kind": "explicit_request",
+        "command": "ask",
+        "control_action": null,
+        "ticket_id": null
+      }
+    },
+    {
+      "case_id": "github-issues-body-pause",
+      "synthetic": true,
+      "scenario_group": "github-title-body",
+      "source_kind": "github",
+      "actor_kind": "human",
+      "addressed": "ambient",
+      "event_kind": "issues.opened",
+      "container": "github",
+      "text": "Ordinary signed resource title\n/mgar pause 11111111-1111-1111-1111-111111111111",
+      "expected": {
+        "request_kind": null,
+        "command": "pause",
+        "control_action": "pause",
+        "ticket_id": "11111111-1111-1111-1111-111111111111"
+      }
+    },
+    {
+      "case_id": "github-issues-body-cancel",
+      "synthetic": true,
+      "scenario_group": "github-title-body",
+      "source_kind": "github",
+      "actor_kind": "human",
+      "addressed": "ambient",
+      "event_kind": "issues.opened",
+      "container": "github",
+      "text": "Ordinary signed resource title\n/mgar cancel 11111111-1111-1111-1111-111111111111",
+      "expected": {
+        "request_kind": null,
+        "command": "cancel",
+        "control_action": "cancel",
+        "ticket_id": "11111111-1111-1111-1111-111111111111"
+      }
+    },
+    {
+      "case_id": "github-issues-title-is-not-control",
+      "synthetic": true,
+      "scenario_group": "github-title-body",
+      "source_kind": "github",
+      "actor_kind": "human",
+      "addressed": "ambient",
+      "event_kind": "issues.opened",
+      "container": "github",
+      "text": "/mgar pause 11111111-1111-1111-1111-111111111111\nOrdinary resource body",
+      "expected": {
+        "request_kind": null,
+        "command": null,
+        "control_action": null,
+        "ticket_id": null
+      }
+    },
+    {
+      "case_id": "github-issues-title-without-body-is-not-control",
+      "synthetic": true,
+      "scenario_group": "github-title-body",
+      "source_kind": "github",
+      "actor_kind": "human",
+      "addressed": "ambient",
+      "event_kind": "issues.opened",
+      "container": "github",
+      "text": "/mgar cancel 11111111-1111-1111-1111-111111111111",
+      "expected": {
+        "request_kind": null,
+        "command": null,
+        "control_action": null,
+        "ticket_id": null
+      }
+    },
+    {
+      "case_id": "github-pull_request-body-investigate",
+      "synthetic": true,
+      "scenario_group": "github-title-body",
+      "source_kind": "github",
+      "actor_kind": "human",
+      "addressed": "ambient",
+      "event_kind": "pull_request.opened",
+      "container": "github",
+      "text": "Ordinary signed resource title\n/mgar investigate details",
+      "expected": {
+        "request_kind": "explicit_request",
+        "command": "investigate",
+        "control_action": null,
+        "ticket_id": null
+      }
+    },
+    {
+      "case_id": "github-pull_request-body-repair",
+      "synthetic": true,
+      "scenario_group": "github-title-body",
+      "source_kind": "github",
+      "actor_kind": "human",
+      "addressed": "ambient",
+      "event_kind": "pull_request.opened",
+      "container": "github",
+      "text": "Ordinary signed resource title\n/mgar repair details",
+      "expected": {
+        "request_kind": "explicit_request",
+        "command": "repair",
+        "control_action": null,
+        "ticket_id": null
+      }
+    },
+    {
+      "case_id": "github-pull_request-body-ask",
+      "synthetic": true,
+      "scenario_group": "github-title-body",
+      "source_kind": "github",
+      "actor_kind": "human",
+      "addressed": "ambient",
+      "event_kind": "pull_request.opened",
+      "container": "github",
+      "text": "Ordinary signed resource title\n/mgar ask details",
+      "expected": {
+        "request_kind": "explicit_request",
+        "command": "ask",
+        "control_action": null,
+        "ticket_id": null
+      }
+    },
+    {
+      "case_id": "github-pull_request-body-pause",
+      "synthetic": true,
+      "scenario_group": "github-title-body",
+      "source_kind": "github",
+      "actor_kind": "human",
+      "addressed": "ambient",
+      "event_kind": "pull_request.opened",
+      "container": "github",
+      "text": "Ordinary signed resource title\n/mgar pause 11111111-1111-1111-1111-111111111111",
+      "expected": {
+        "request_kind": null,
+        "command": "pause",
+        "control_action": "pause",
+        "ticket_id": "11111111-1111-1111-1111-111111111111"
+      }
+    },
+    {
+      "case_id": "github-pull_request-body-cancel",
+      "synthetic": true,
+      "scenario_group": "github-title-body",
+      "source_kind": "github",
+      "actor_kind": "human",
+      "addressed": "ambient",
+      "event_kind": "pull_request.opened",
+      "container": "github",
+      "text": "Ordinary signed resource title\n/mgar cancel 11111111-1111-1111-1111-111111111111",
+      "expected": {
+        "request_kind": null,
+        "command": "cancel",
+        "control_action": "cancel",
+        "ticket_id": "11111111-1111-1111-1111-111111111111"
+      }
+    },
+    {
+      "case_id": "github-pull_request-title-is-not-control",
+      "synthetic": true,
+      "scenario_group": "github-title-body",
+      "source_kind": "github",
+      "actor_kind": "human",
+      "addressed": "ambient",
+      "event_kind": "pull_request.opened",
+      "container": "github",
+      "text": "/mgar pause 11111111-1111-1111-1111-111111111111\nOrdinary resource body",
+      "expected": {
+        "request_kind": null,
+        "command": null,
+        "control_action": null,
+        "ticket_id": null
+      }
+    },
+    {
+      "case_id": "github-pull_request-title-without-body-is-not-control",
+      "synthetic": true,
+      "scenario_group": "github-title-body",
+      "source_kind": "github",
+      "actor_kind": "human",
+      "addressed": "ambient",
+      "event_kind": "pull_request.opened",
+      "container": "github",
+      "text": "/mgar cancel 11111111-1111-1111-1111-111111111111",
+      "expected": {
+        "request_kind": null,
+        "command": null,
+        "control_action": null,
+        "ticket_id": null
+      }
+    },
+    {
+      "case_id": "github-comment-body-control",
+      "synthetic": true,
+      "scenario_group": "github-title-body",
+      "source_kind": "github",
+      "actor_kind": "human",
+      "addressed": "ambient",
+      "event_kind": "issue_comment.created",
+      "container": "github",
+      "text": "/mgar pause 11111111-1111-1111-1111-111111111111",
+      "expected": {
+        "request_kind": null,
+        "command": "pause",
+        "control_action": "pause",
+        "ticket_id": "11111111-1111-1111-1111-111111111111"
+      }
+    },
+    {
+      "case_id": "github-review-comment-body-request",
+      "synthetic": true,
+      "scenario_group": "github-title-body",
+      "source_kind": "github",
+      "actor_kind": "human",
+      "addressed": "ambient",
+      "event_kind": "pull_request_review_comment.created",
+      "container": "github",
+      "text": "/mgar investigate details",
+      "expected": {
+        "request_kind": "explicit_request",
+        "command": "investigate",
+        "control_action": null,
+        "ticket_id": null
+      }
+    }
+  ],
+  "grouping_cases": [
+    {
+      "case_id": "group-native-topic",
+      "left": {
+        "topic": "T",
+        "entity": "one"
+      },
+      "right": {
+        "topic": "T",
+        "entity": "two"
+      },
+      "expected_equal": true
+    },
+    {
+      "case_id": "group-different-topic",
+      "left": {
+        "topic": "T1"
+      },
+      "right": {
+        "topic": "T2"
+      },
+      "expected_equal": false
+    },
+    {
+      "case_id": "group-cross-chat",
+      "left": {
+        "topic": "T",
+        "conversation": "Chat-A"
+      },
+      "right": {
+        "topic": "T",
+        "conversation": "Chat-B"
+      },
+      "expected_equal": false
+    },
+    {
+      "case_id": "group-no-chat-fallback",
+      "left": {
+        "topic": null,
+        "entity": "one"
+      },
+      "right": {
+        "topic": null,
+        "entity": "two"
+      },
+      "expected_equal": false
+    },
+    {
+      "case_id": "group-same-unthreaded-entity",
+      "left": {
+        "topic": null,
+        "entity": "one",
+        "version": "1"
+      },
+      "right": {
+        "topic": null,
+        "entity": "one",
+        "version": "2"
+      },
+      "expected_equal": true
+    },
+    {
+      "case_id": "group-cross-installation",
+      "left": {
+        "installation": "Installation-A"
+      },
+      "right": {
+        "installation": "Installation-B"
+      },
+      "expected_equal": false
+    },
+    {
+      "case_id": "group-cross-tenant-case",
+      "left": {
+        "tenant": "Tenant-A"
+      },
+      "right": {
+        "tenant": "tenant-a"
+      },
+      "expected_equal": false
+    },
+    {
+      "case_id": "group-cross-platform",
+      "left": {
+        "platform": "feishu"
+      },
+      "right": {
+        "platform": "github"
+      },
+      "expected_equal": false
+    }
+  ],
+  "expected_actual_model_calls": 0,
+  "expected_actual_model_cost_micros": 0
+}

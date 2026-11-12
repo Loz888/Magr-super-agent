@@ -1,0 +1,56 @@
+--- a/v3/src/mgar_v3/coordination/engine.py
++++ b/v3/src/mgar_v3/coordination/engine.py
+@@ -34,6 +34,7 @@
+ from mgar_v3.settings import Settings
+ from mgar_v3.sources.ingress import SourceIngress
+ from mgar_v3.super_agent.budget import SharedBudgets
++from mgar_v3.super_agent.fast_path import FastPath
+ from mgar_v3.super_agent.policy import SourcePolicies
+ 
+ TModel = TypeVar("TModel", bound=Model)
+@@ -77,6 +78,7 @@
+         self.source_policies = SourcePolicies(self)
+         self.source_ingress = SourceIngress(self)
+         self.project_budgets = SharedBudgets(self)
++        self.fast_path = FastPath(self)
+ 
+     def close(self) -> None:
+         with self._mutex:
+--- a/v3/src/mgar_v3/api.py
++++ b/v3/src/mgar_v3/api.py
+@@ -54,6 +54,7 @@
+ from mgar_v3.sources.ingress_api import register as register_source_ingress
+ from mgar_v3.sources.ports import TransportEnvelope
+ from mgar_v3.super_agent.budget_api import register as register_project_budgets
++from mgar_v3.super_agent.fast_path_api import register as register_source_fast_path
+ from mgar_v3.super_agent.policy_api import register as register_source_policies
+ from mgar_v3.web_access import (
+     SESSION_COOKIE,
+@@ -1276,6 +1277,7 @@
+     register_source_ingress(app, authority, browser_user)
+     register_source_policies(app, authority, browser_user)
+     register_project_budgets(app, authority, browser_user)
++    register_source_fast_path(app, authority, browser_user)
+     register(app, authority, authenticated)
+     register_commerce(app, authority, authenticated)
+     register_recovery(app, configuration, authority, authenticated)
+--- a/v3/src/mgar_v3/sources/ingress.py
++++ b/v3/src/mgar_v3/sources/ingress.py
+@@ -1216,6 +1216,17 @@
+                         for o in observations
+                     ),
+                 )
++                fast_path = getattr(self.engine, "fast_path", None)
++                if fast_path is not None and fast_path._ready(conn):
++                    canonical = conn.execute(
++                        "SELECT receipt_id FROM app.source_ingress_inputs WHERE input_id=%s",
++                        (identifier,),
++                    ).fetchone()
++                    if canonical is not None and canonical["receipt_id"] == receipt_id:
++                        fast_path.ingested(
++                            conn, identifier, historical=historical or event.historical_backfill,
++                            buffered=permit is not None, gap=gap, old=old,
++                        )
+                 if identifier not in ids:
+                     ids.append(identifier)
+             if not ids:

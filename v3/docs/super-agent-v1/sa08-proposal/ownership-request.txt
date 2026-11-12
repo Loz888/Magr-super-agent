@@ -1,0 +1,16 @@
+SA08 interface coordination only; do not advance H cards or change shared implementation concurrently.
+
+The user has independently accepted SA07-I01 and explicitly authorized SA08. In magr-super-agent, Codex proposes the following uniquely owned scope; please inspect conflicts and confirm in a committed SUPER_AGENT_HANDOFF.md section, then return its exact commit/path/section:
+
+- 0038_super_agent_fast_path.sql, defining app.sa_fast_path_* objects only. 0037_harness_evaluation_budget.sql stays Harness-owned and will not be imported, renamed or represented by an empty placeholder in this copy. Preserve all installed historical migration bytes and original DDL.
+- New super_agent/fast_path*.py DTO/service/admin-API modules, related tests/config/schema/fixtures and docs.
+- Engine.__init__: one new fast-path subservice composition using the original Engine mutex, advisory lock, held PG connection and transaction. No other Engine methods/settlement algorithms changed.
+- api.py: import/register only for /api/v3/source-fast-path, reusing the current console cookie, Origin/CSRF, transaction session recheck and no-store. Preserve existing routes and all Harness endpoints.
+- Private SourceIngress: optional post-canonical-input hook only, retaining current Receive/identity/version-watermark/deletion/ambiguity/durable ACK and rollback semantics.
+- Reuse the existing SharedBudgets.quota candidate port without changing budget/financial algorithms or settlement. No ToolAuthority, Harness code or paid-model authorization changes.
+
+This card is deterministic filtering, bounded topic coalescing and bodyless shadow candidates/decision logs/preview only. No Run, Ticket, Worker, model call, notification, repository mutation or publication is created. Semantic Router evaluation remains NOT_RUN until SA09 and its separate authorization. No listener/platform/live experiment or new financial authority is enabled.
+
+Read-only committed baseline checked: Harness e626e19c0a2c9a2a861ddb4f3744bdf750d113be; its SUPER_AGENT_HANDOFF still ends at section30 (same committed blob SHA256 dea0bb911833a3eb53515da44c5b38322e28d94bde619d0b3678f7b77f63324d). 0037 is already implemented on that commit; no committed0038/sa_fast_path/path/route reservation was found. This read-only absence is NOT a reservation or confirmation.
+
+Please confirm unique ownership of0038, object names, new modules and the narrow Engine/API/Ingress hooks above, or specify exact conflicts. Codex will wait for the actual fixed handoff confirmation before shared implementation. No edits/imports to your active worktree are requested or authorized by this coordination message.
