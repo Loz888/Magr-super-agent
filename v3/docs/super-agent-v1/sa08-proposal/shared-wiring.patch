@@ -6,14 +6,14 @@
  from mgar_v3.super_agent.budget import SharedBudgets
 +from mgar_v3.super_agent.fast_path import FastPath
  from mgar_v3.super_agent.policy import SourcePolicies
- 
+
  TModel = TypeVar("TModel", bound=Model)
 @@ -77,6 +78,7 @@
          self.source_policies = SourcePolicies(self)
          self.source_ingress = SourceIngress(self)
          self.project_budgets = SharedBudgets(self)
 +        self.fast_path = FastPath(self)
- 
+
      def close(self) -> None:
          with self._mutex:
 --- a/v3/src/mgar_v3/api.py

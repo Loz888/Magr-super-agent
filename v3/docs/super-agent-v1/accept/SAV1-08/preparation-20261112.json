@@ -1,0 +1,299 @@
+{
+  "task": "SAV1-08",
+  "status": "IN_PROGRESS",
+  "work_state": "PRIVATE_COMPONENTS_PREPARED_WAITING_SHARED_OWNERSHIP",
+  "recorded_at_utc": "2026-11-12T09:12:57.004353+00:00",
+  "private_implementation_commit": "4da5c6d2bb46382ff68a597b5513ca1fcbaa2d4d",
+  "current_source_sha256": "6a06f869724ecd32d2a0854964a92ff8842eba7cc5eb6c6f4f5d542205bc8ed4",
+  "source_status": "Private WIP modules/tests; original Engine/API/Ingress and registered targets unchanged; not an integrated runnable feature",
+  "gates": {
+    "engineering_gate": "NOT_RUN",
+    "policy_security_gate": "NOT_RUN",
+    "live_source_channel_gate": "NOT_RUN",
+    "live_coding_gate": "NOT_RUN",
+    "live_publication_gate": "NOT_RUN",
+    "continuous_operation_gate": "NOT_RUN"
+  },
+  "independent_review": "NOT_RUN",
+  "dependencies": {
+    "SAV1-05": "USER_ACCEPTED",
+    "SAV1-06": "USER_ACCEPTED",
+    "SAV1-07": "USER_ACCEPTED_TARGETED_I01_2PASS"
+  },
+  "historical_component_checks": {
+    "rules_and_domains": {
+      "commands": "evidence/super-agent-v1/SAV1-08/start-20261112T081641Z-5eb84f0a/20261112T084300Z-rules-initial-e2eb0d/commands.json",
+      "started_utc": "2026-11-12T08:43:00.127631+00:00",
+      "argv": [
+        "/home/imini/magr-super-agent/v3/.venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "--tb=short",
+        "tests/test_super_agent_sa08_rules.py",
+        "--junitxml=/home/imini/magr-super-agent/v3/evidence/super-agent-v1/SAV1-08/start-20261112T081641Z-5eb84f0a/20261112T084300Z-rules-initial-e2eb0d/junit.xml"
+      ],
+      "cwd": "/home/imini/magr-super-agent/v3",
+      "source_before": "66f7ac71084dcac05179116d90f4d7ea353dac4098aeb50a8497d696062ae07d",
+      "pg_before": {
+        "databases": [],
+        "sessions": []
+      },
+      "finished_utc": "2026-11-12T08:43:06.356440+00:00",
+      "exit_code": 0,
+      "source_after": "66f7ac71084dcac05179116d90f4d7ea353dac4098aeb50a8497d696062ae07d",
+      "pg_after": {
+        "databases": [],
+        "sessions": []
+      },
+      "source_stable": true,
+      "new_remaining_databases": [],
+      "counts": {
+        "tests": 56,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      }
+    },
+    "new_synthetic_benchmark": {
+      "commands": "evidence/super-agent-v1/SAV1-08/start-20261112T081641Z-5eb84f0a/20261112T090449Z-benchmark-initial-a6163d/commands.json",
+      "started_utc": "2026-11-12T09:04:49.771198+00:00",
+      "argv": [
+        "/home/imini/magr-super-agent/v3/.venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "--tb=short",
+        "tests/test_super_agent_sa08_benchmark.py",
+        "--junitxml=/home/imini/magr-super-agent/v3/evidence/super-agent-v1/SAV1-08/start-20261112T081641Z-5eb84f0a/20261112T090449Z-benchmark-initial-a6163d/junit.xml"
+      ],
+      "cwd": "/home/imini/magr-super-agent/v3",
+      "source_before": "efb64c675716de9d7aa999498628e065355e9e3db44f1bb5ded1dce746bfc31e",
+      "pg_before": {
+        "databases": [],
+        "sessions": []
+      },
+      "finished_utc": "2026-11-12T09:04:51.147978+00:00",
+      "exit_code": 0,
+      "source_after": "efb64c675716de9d7aa999498628e065355e9e3db44f1bb5ded1dce746bfc31e",
+      "pg_after": {
+        "databases": [],
+        "sessions": []
+      },
+      "source_stable": true,
+      "new_remaining_databases": [],
+      "counts": {
+        "tests": 59,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      }
+    },
+    "private_four_file_typecheck": {
+      "commands": "evidence/super-agent-v1/SAV1-08/start-20261112T081641Z-5eb84f0a/20261112T084610Z-private-typecheck-957f19/commands.json",
+      "started_utc": "2026-11-12T08:46:10.869819+00:00",
+      "argv": [
+        "/home/imini/magr-super-agent/v3/.venv/bin/python",
+        "-m",
+        "mypy",
+        "src/mgar_v3/super_agent/fast_path.py",
+        "src/mgar_v3/super_agent/fast_path_domain.py",
+        "src/mgar_v3/super_agent/fast_path_rules.py",
+        "src/mgar_v3/super_agent/fast_path_api.py"
+      ],
+      "cwd": "/home/imini/magr-super-agent/v3",
+      "source_before": "21463be028d3f022974d607c2ba359c23cec287dacfb6db3ac27fc8f92a45085",
+      "pg_before": {
+        "databases": [],
+        "sessions": []
+      },
+      "finished_utc": "2026-11-12T08:46:12.486023+00:00",
+      "exit_code": 0,
+      "source_after": "21463be028d3f022974d607c2ba359c23cec287dacfb6db3ac27fc8f92a45085",
+      "pg_after": {
+        "databases": [],
+        "sessions": []
+      },
+      "source_stable": true,
+      "new_remaining_databases": []
+    },
+    "private_core_current_lint": {
+      "commands": "evidence/super-agent-v1/SAV1-08/start-20261112T081641Z-5eb84f0a/20261112T091029Z-private-core-lint-current-032d0b/commands.json",
+      "started_utc": "2026-11-12T09:10:29.175627+00:00",
+      "argv": [
+        "/home/imini/magr-super-agent/v3/.venv/bin/python",
+        "-m",
+        "ruff",
+        "check",
+        "src/mgar_v3/super_agent/fast_path.py"
+      ],
+      "cwd": "/home/imini/magr-super-agent/v3",
+      "source_before": "6a06f869724ecd32d2a0854964a92ff8842eba7cc5eb6c6f4f5d542205bc8ed4",
+      "pg_before": {
+        "databases": [],
+        "sessions": []
+      },
+      "finished_utc": "2026-11-12T09:10:29.359473+00:00",
+      "exit_code": 0,
+      "source_after": "6a06f869724ecd32d2a0854964a92ff8842eba7cc5eb6c6f4f5d542205bc8ed4",
+      "pg_after": {
+        "databases": [],
+        "sessions": []
+      },
+      "source_stable": true,
+      "new_remaining_databases": []
+    }
+  },
+  "component_evidence_note": "Separate component runs and recorded source versions; not a single115-test/full-card registered result. Passed checks not rerun after repairs. Earlier typecheck precedes later static review changes.",
+  "pg_tests": {
+    "status": "NOT_RUN_PENDING_OWNERSHIP",
+    "collection": {
+      "commands": "evidence/super-agent-v1/SAV1-08/start-20261112T081641Z-5eb84f0a/20261112T090830Z-pg-collection-only-2fa17e/commands.json",
+      "started_utc": "2026-11-12T09:08:30.887511+00:00",
+      "argv": [
+        "/home/imini/magr-super-agent/v3/.venv/bin/python",
+        "-m",
+        "pytest",
+        "--collect-only",
+        "-q",
+        "tests/test_super_agent_sa08.py",
+        "tests/test_super_agent_sa08_own_result.py",
+        "--junitxml=/home/imini/magr-super-agent/v3/evidence/super-agent-v1/SAV1-08/start-20261112T081641Z-5eb84f0a/20261112T090830Z-pg-collection-only-2fa17e/junit.xml"
+      ],
+      "cwd": "/home/imini/magr-super-agent/v3",
+      "source_before": "6a06f869724ecd32d2a0854964a92ff8842eba7cc5eb6c6f4f5d542205bc8ed4",
+      "pg_before": {
+        "databases": [],
+        "sessions": []
+      },
+      "finished_utc": "2026-11-12T09:08:36.850929+00:00",
+      "exit_code": 0,
+      "source_after": "6a06f869724ecd32d2a0854964a92ff8842eba7cc5eb6c6f4f5d542205bc8ed4",
+      "pg_after": {
+        "databases": [],
+        "sessions": []
+      },
+      "source_stable": true,
+      "new_remaining_databases": [],
+      "counts": {
+        "tests": 0,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      }
+    },
+    "collected_cases": 52,
+    "collection_is_not_execution": true
+  },
+  "registered_verification": "NOT_RUN; no partial SAV1-08 target falsely registered as complete",
+  "migration": {
+    "proposed": "0038_super_agent_fast_path.sql",
+    "status": "DRAFT_NOT_APPLIED",
+    "actual_source_files": 36,
+    "expected_files_if_0038_added_without_Harness0037": 37,
+    "harness_0037": "Actual committed Harness-owned migration; not imported"
+  },
+  "shared_source": "No modifications to Engine/API/Ingress, old migrations, original budget/settlement/scorer/registry",
+  "ownership": {
+    "status": "PENDING_USER_RELAY",
+    "fixed_harness_commit": "e626e19c0a2c9a2a861ddb4f3744bdf750d113be",
+    "proposal": "docs/super-agent-v1/sa08-proposal/ownership-request.txt",
+    "sql": "docs/super-agent-v1/sa08-proposal/0038_super_agent_fast_path.sql",
+    "wiring": "docs/super-agent-v1/sa08-proposal/shared-wiring.patch",
+    "original_cli_tool_available": false,
+    "supported_proxy_responded": false,
+    "message_sent_or_acknowledged": false,
+    "constraint": "AGENTS.md requires shared ownership/interfaces/migration numbering agreed with Trae before overlap"
+  },
+  "preserved_failures": [
+    {
+      "commands": "evidence/super-agent-v1/SAV1-08/start-20261112T081641Z-5eb84f0a/20261112T091029Z-private-core-lint-current-032d0b/commands.json",
+      "started_utc": "2026-11-12T09:10:29.175627+00:00",
+      "argv": [
+        "/home/imini/magr-super-agent/v3/.venv/bin/python",
+        "-m",
+        "ruff",
+        "check",
+        "src/mgar_v3/super_agent/fast_path.py"
+      ],
+      "cwd": "/home/imini/magr-super-agent/v3",
+      "source_before": "6a06f869724ecd32d2a0854964a92ff8842eba7cc5eb6c6f4f5d542205bc8ed4",
+      "pg_before": {
+        "databases": [],
+        "sessions": []
+      },
+      "finished_utc": "2026-11-12T09:10:29.359473+00:00",
+      "exit_code": 0,
+      "source_after": "6a06f869724ecd32d2a0854964a92ff8842eba7cc5eb6c6f4f5d542205bc8ed4",
+      "pg_after": {
+        "databases": [],
+        "sessions": []
+      },
+      "source_stable": true,
+      "new_remaining_databases": []
+    },
+    {
+      "commands": "evidence/super-agent-v1/SAV1-08/start-20261112T081641Z-5eb84f0a/20261112T084300Z-lint-tests-initial-00ea7e/commands.json",
+      "started_utc": "2026-11-12T08:43:00.125031+00:00",
+      "argv": [
+        "/home/imini/magr-super-agent/v3/.venv/bin/python",
+        "-m",
+        "ruff",
+        "check",
+        "tests/sa08_support.py",
+        "tests/test_super_agent_sa08.py",
+        "tests/test_super_agent_sa08_rules.py"
+      ],
+      "cwd": "/home/imini/magr-super-agent/v3",
+      "source_before": "66f7ac71084dcac05179116d90f4d7ea353dac4098aeb50a8497d696062ae07d",
+      "pg_before": {
+        "databases": [],
+        "sessions": []
+      },
+      "finished_utc": "2026-11-12T08:43:00.336576+00:00",
+      "exit_code": 1,
+      "source_after": "66f7ac71084dcac05179116d90f4d7ea353dac4098aeb50a8497d696062ae07d",
+      "pg_after": {
+        "databases": [],
+        "sessions": []
+      },
+      "source_stable": true,
+      "new_remaining_databases": []
+    },
+    {
+      "commands": "evidence/super-agent-v1/SAV1-08/start-20261112T081641Z-5eb84f0a/20261112T090449Z-lint-added-initial-39bd1d/commands.json",
+      "started_utc": "2026-11-12T09:04:49.770701+00:00",
+      "argv": [
+        "/home/imini/magr-super-agent/v3/.venv/bin/python",
+        "-m",
+        "ruff",
+        "check",
+        "tests/test_super_agent_sa08_own_result.py",
+        "tests/test_super_agent_sa08_benchmark.py"
+      ],
+      "cwd": "/home/imini/magr-super-agent/v3",
+      "source_before": "efb64c675716de9d7aa999498628e065355e9e3db44f1bb5ded1dce746bfc31e",
+      "pg_before": {
+        "databases": [],
+        "sessions": []
+      },
+      "finished_utc": "2026-11-12T09:04:49.978620+00:00",
+      "exit_code": 1,
+      "source_after": "efb64c675716de9d7aa999498628e065355e9e3db44f1bb5ded1dce746bfc31e",
+      "pg_after": {
+        "databases": [],
+        "sessions": []
+      },
+      "source_stable": true,
+      "new_remaining_databases": []
+    }
+  ],
+  "retest_policy": "Only originally failed files/targets rerun after repair; pure56PASS not repeated;59 benchmark is a distinct new initial check",
+  "benchmark_status": "DRAFT_SYNTHETIC_NO_OPERATOR_HOLDOUT; no semantic precision/recall/holdout claims",
+  "evidence_root": "evidence/super-agent-v1/SAV1-08/start-20261112T081641Z-5eb84f0a",
+  "paid_calls": 0,
+  "real_platform_calls": 0,
+  "external_business_writes": 0,
+  "publication": "NOT_RUN",
+  "SA09": "NOT_STARTED"
+}

@@ -1,9 +1,9 @@
 # SAV1-07：项目总预算、配额与费用归集
 
-状态：IN_PROGRESS。用户已接受 SA06-I04 的独立定向关闭并授权进入本卡。
+状态：DONE（本地工程）。用户已接受SA07-I01原两项独立复验，并授权SA08。
 本卡依赖 SA03；共享所有权按 Harness 固定 cb422c5e050eb48ad2cb0eae901453c052b5f018
 的 SUPER_AGENT_HANDOFF.md 第30节实施，0036 归 Codex，0037 留给 Harness。
-原候选独立验收发现 SA07-I01。修复候选 `6a5d089` 完整注册1161 PASS、lint/typecheck PASS；原独立FAIL保留，等待新的独立复验，不启动SA08。详见[修复报告](SA07_I01_REPAIR_20261112.md)。
+修复源码`6a5d089`的1161项及lint/typecheck为历史实施方证据；本轮仅原edit/create两项独立复验2PASS，用户已接受关闭。原FAIL与修复报告保留，见[独立关闭记录](accept/SAV1-07/i01-independent-closure-20261112.json)。SA08现已获授权。
 
 ## 权威与范围
 

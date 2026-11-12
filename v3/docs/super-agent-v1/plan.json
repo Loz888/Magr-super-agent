@@ -229,7 +229,9 @@
       "card": "TASKS.md#sa08",
       "verification_target_on_implementation": "SAV1-08",
       "independent_review": "NOT_RUN",
-      "work_state": "REQUIREMENTS_AND_OWNERSHIP_REVIEW"
+      "work_state": "PRIVATE_COMPONENTS_PREPARED_WAITING_SHARED_OWNERSHIP",
+      "preparation": "accept/SAV1-08/preparation-20261112.json",
+      "engineering_gate": "NOT_RUN"
     },
     {
       "id": "SAV1-09",

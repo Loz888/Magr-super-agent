@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-12T08:18:20.611020+00:00",
+  "updated_at": "2026-11-12T09:12:57.004353+00:00",
   "user_instruction": "Codex owns Super-Agent; local Trae owns Harness; coordination is authorized.",
   "owners": {
     "super_agent": {
@@ -15,7 +15,7 @@
   },
   "active_super_agent_card": "SAV1-08",
   "card_status": "IN_PROGRESS",
-  "work_state": "SA08_REQUIREMENTS_AND_OWNERSHIP_REVIEW",
+  "work_state": "SA08_PRIVATE_COMPONENTS_PREPARED_WAITING_SHARED_OWNERSHIP",
   "harness_observation": {
     "head": "de4775e22e96718e880fde287b2e0928db2945e3",
     "h00_owner_reported_status": "PASS",
@@ -293,5 +293,9 @@
   "sa07_independent_review": "USER_ACCEPTED_TARGETED_I01_PASS",
   "sa07_completion_handoff": "Prepared locally only; no message delivered or peer acceptance claimed",
   "sa07_repair_acceptance": "docs/super-agent-v1/accept/SAV1-07/i01-repair-20261112.json",
-  "sa07_independent_closure": "docs/super-agent-v1/accept/SAV1-07/i01-independent-closure-20261112.json"
+  "sa07_independent_closure": "docs/super-agent-v1/accept/SAV1-07/i01-independent-closure-20261112.json",
+  "sa08_preparation": "docs/super-agent-v1/accept/SAV1-08/preparation-20261112.json",
+  "sa08_ownership": "PENDING_USER_RELAY; no actual peer acknowledgement",
+  "sa08_private_commit": "4da5c6d2bb46382ff68a597b5513ca1fcbaa2d4d",
+  "sa08_registered_verification": "NOT_RUN"
 }

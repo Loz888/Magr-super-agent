@@ -1,6 +1,6 @@
-# SA07已获用户放行，SA08需求和所有权核对中
+# SA08私有模块就绪，等待共享接线所有权确认
 
-原I01 edit/create两项独立复验2PASS，用户已确认关闭并授权SA08。原1161项及lint/typecheck仍为此前实施方证据；未重复已通过测试或改写历史失败。见[关闭记录](accept/SAV1-07/i01-independent-closure-20261112.json)。SA08按确定性Fast Path/Shadow范围开始，SA09未启动；真实平台、付费、外发、发布保持NOT_RUN。
+SA07已获用户独立放行。SA08私有规则、无正文观察服务、管理API模块和52项PG用例已编写；原Engine/API/Ingress尚未接线，0038仍是草案。规则/契约首测56PASS、新增合成基准首测59PASS分别留存，PG仅收集52项未执行；本卡完整注册与独立验收未运行，不能记DONE。见[范围说明](SA08_FAST_PATH.md)和[阶段证据](accept/SAV1-08/preparation-20261112.json)。待[协调请求](sa08-proposal/ownership-request.txt)获Trae实际确认后继续；SA09未启动，真实平台/付费/外发/发布NOT_RUN。
 
 以下为历史记录。
 
