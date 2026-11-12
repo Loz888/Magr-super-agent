@@ -1,0 +1,20 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "input_ids": {
+      "items": {
+        "format": "uuid",
+        "type": "string"
+      },
+      "maxItems": 100,
+      "minItems": 1,
+      "title": "Input Ids",
+      "type": "array"
+    }
+  },
+  "required": [
+    "input_ids"
+  ],
+  "title": "ObserveRequest",
+  "type": "object"
+}

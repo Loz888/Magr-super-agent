@@ -280,13 +280,32 @@ def test_real_edit_delete_and_ambiguity_remove_old_candidate_from_current_previe
         engine.source_ingress.body(env.cookie, first.input_ids[0])
 
 
-def test_new_edit_is_context_only_and_not_a_fresh_automatic_request(engine):
+def test_immediate_edit_preserves_current_body_but_obeys_same_entity_cooldown(engine):
     env = setup(engine)
-    ingest(env)
+    first = ingest(env)
     edit = ingest(env, delivery="trusted-edit", version=2, operation="edit")
     decision = decision_for(env, edit.input_ids[0])
-    assert decision["disposition"] in {"ignored", "context"}
+    assert decision["disposition"] == "context"
+    assert decision["reason_code"] == "FAST_PATH_COOLDOWN"
     assert decision["batch_id"] is None
+    assert engine.source_ingress.body(env.cookie, edit.input_ids[0])
+    with pytest.raises(DomainError):
+        engine.source_ingress.body(env.cookie, first.input_ids[0])
+
+
+def test_fresh_authorized_edit_after_cooldown_is_only_a_current_hypothetical_candidate(engine):
+    env = setup(engine, fast_settings={"cooldown_seconds": 0})
+    before = original_state(engine)
+    first = ingest(env, body="previous source content")
+    edit = ingest(
+        env, delivery="fresh-edit", version=2, operation="edit", body="current revised symptom",
+    )
+    current = decision_for(env, edit.input_ids[0])
+    assert current["disposition"] == "candidate" and current["intended_action"] == "would_evaluate"
+    assert engine.source_ingress.body(env.cookie, edit.input_ids[0]) == b"current revised symptom"
+    with pytest.raises(DomainError):
+        engine.source_ingress.body(env.cookie, first.input_ids[0])
+    assert original_state(engine) == before
 
 
 def test_candidate_quota_refusal_still_records_reason_without_model_side_effects(engine):

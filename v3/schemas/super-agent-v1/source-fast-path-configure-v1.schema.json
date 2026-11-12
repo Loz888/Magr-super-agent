@@ -1,0 +1,158 @@
+{
+  "$defs": {
+    "ActorRef": {
+      "additionalProperties": false,
+      "properties": {
+        "scope": {
+          "$ref": "#/$defs/SourceScope"
+        },
+        "id_type": {
+          "maxLength": 256,
+          "minLength": 1,
+          "title": "Id Type",
+          "type": "string"
+        },
+        "actor_id": {
+          "maxLength": 256,
+          "minLength": 1,
+          "title": "Actor Id",
+          "type": "string"
+        },
+        "actor_kind": {
+          "enum": [
+            "human",
+            "bot",
+            "service",
+            "unknown"
+          ],
+          "title": "Actor Kind",
+          "type": "string"
+        }
+      },
+      "required": [
+        "scope",
+        "id_type",
+        "actor_id",
+        "actor_kind"
+      ],
+      "title": "ActorRef",
+      "type": "object"
+    },
+    "FastPathSettings": {
+      "additionalProperties": false,
+      "properties": {
+        "enabled": {
+          "default": false,
+          "title": "Enabled",
+          "type": "boolean"
+        },
+        "cooldown_seconds": {
+          "default": 30,
+          "maximum": 3600,
+          "minimum": 0,
+          "title": "Cooldown Seconds",
+          "type": "integer"
+        },
+        "merge_window_seconds": {
+          "default": 10,
+          "maximum": 300,
+          "minimum": 1,
+          "title": "Merge Window Seconds",
+          "type": "integer"
+        },
+        "max_batch_items": {
+          "default": 16,
+          "maximum": 16,
+          "minimum": 1,
+          "title": "Max Batch Items",
+          "type": "integer"
+        },
+        "max_decisions": {
+          "default": 10000,
+          "maximum": 100000,
+          "minimum": 1,
+          "title": "Max Decisions",
+          "type": "integer"
+        },
+        "max_batches": {
+          "default": 1000,
+          "maximum": 10000,
+          "minimum": 1,
+          "title": "Max Batches",
+          "type": "integer"
+        },
+        "own_actors": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/ActorRef"
+          },
+          "maxItems": 32,
+          "title": "Own Actors",
+          "type": "array"
+        }
+      },
+      "title": "FastPathSettings",
+      "type": "object"
+    },
+    "SourceScope": {
+      "additionalProperties": false,
+      "properties": {
+        "source_kind": {
+          "pattern": "^[a-z][a-z0-9_]{0,31}$",
+          "title": "Source Kind",
+          "type": "string"
+        },
+        "source_instance_id": {
+          "format": "uuid",
+          "title": "Source Instance Id",
+          "type": "string"
+        },
+        "tenant_id": {
+          "maxLength": 256,
+          "minLength": 1,
+          "title": "Tenant Id",
+          "type": "string"
+        },
+        "installation_id": {
+          "maxLength": 256,
+          "minLength": 1,
+          "title": "Installation Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "source_kind",
+        "source_instance_id",
+        "tenant_id",
+        "installation_id"
+      ],
+      "title": "SourceScope",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "expected_revision": {
+      "maximum": 9223372036854775807,
+      "minimum": 0,
+      "title": "Expected Revision",
+      "type": "integer"
+    },
+    "settings": {
+      "$ref": "#/$defs/FastPathSettings"
+    },
+    "review_ref": {
+      "maxLength": 256,
+      "minLength": 1,
+      "title": "Review Ref",
+      "type": "string"
+    }
+  },
+  "required": [
+    "expected_revision",
+    "settings",
+    "review_ref"
+  ],
+  "title": "FastPathConfigure",
+  "type": "object"
+}

@@ -34,6 +34,7 @@ from mgar_v3.routing.store import Routing
 from mgar_v3.settings import Settings
 from mgar_v3.sources.ingress import SourceIngress
 from mgar_v3.super_agent.budget import SharedBudgets
+from mgar_v3.super_agent.fast_path import FastPath
 from mgar_v3.super_agent.policy import SourcePolicies
 
 TModel = TypeVar("TModel", bound=Model)
@@ -77,6 +78,7 @@ class Engine:
         self.source_policies = SourcePolicies(self)
         self.source_ingress = SourceIngress(self)
         self.project_budgets = SharedBudgets(self)
+        self.fast_path = FastPath(self)
 
     def close(self) -> None:
         with self._mutex:

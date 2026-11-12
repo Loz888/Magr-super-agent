@@ -1216,6 +1216,17 @@ class SourceIngress:
                         for o in observations
                     ),
                 )
+                fast_path = getattr(self.engine, "fast_path", None)
+                if fast_path is not None and fast_path._ready(conn):
+                    canonical = conn.execute(
+                        "SELECT receipt_id FROM app.source_ingress_inputs WHERE input_id=%s",
+                        (identifier,),
+                    ).fetchone()
+                    if canonical is not None and canonical["receipt_id"] == receipt_id:
+                        fast_path.ingested(
+                            conn, identifier, historical=historical or event.historical_backfill,
+                            buffered=permit is not None, gap=gap, old=old,
+                        )
                 if identifier not in ids:
                     ids.append(identifier)
             if not ids:
