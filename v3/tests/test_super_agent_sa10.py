@@ -206,8 +206,8 @@ def test_unexecuted_correction_appends_revision_and_preserves_old_target(engine)
 def test_correction_rechecks_all_attempts_even_when_latest_run_is_fresh_and_queued(engine):
     env = setup(engine)
     original = env.target.run_id
-    engine.begin_run(original)
-    engine.pause(original)
+    running = engine.begin_run(original)
+    engine.fail_run(original, "GRAPH_VERSION_UNSUPPORTED", running["execution_epoch"])
     replacement = engine.resume(original)
     assert replacement != original
     current_target = env.service.target(env.cookie, env.target.ticket_id)

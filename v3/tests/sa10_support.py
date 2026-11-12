@@ -226,6 +226,15 @@ def link_id(result):
 def add_im_source(env, *, conversation="Chat-A", topic=None):
     """A second signed Source, sharing the owner/cipher but no identity authority."""
     installation = source(env.engine)
+    # This controlled HMAC adapter supplies its own exact integer order. Declare
+    # that capability before binding actors or receiving native-versioned input.
+    installation = installation.model_copy(update={
+        "revision": installation.revision + 1,
+        "capabilities": installation.capabilities.model_copy(update={
+            "native_entity_revision": "supported",
+        }),
+    })
+    SourceRegistry(env.engine).register_instance(installation)
     identities = SourceIdentities(
         env.engine, {("feishu", "controlled-v1"): ControlledPlatform(env.engine)},
     )
@@ -293,11 +302,19 @@ def other_repository_input(env):
             "repository_id": 901, "full_name": "example/other",
         }),
     })
-    github.sources.configure(
-        env.cookie, scope.source_instance_id,
-        GitHubConfigure(expected_revision=0, settings=settings,
-                        review_ref="SA10-second-verified-installation"),
-    )
+    # Original configuration validates the selected Engine repository. Prepare
+    # this explicit second-repository fixture under that repository, then restore
+    # the original product boundary before any correlation/target lookup.
+    original_settings = env.engine.settings
+    env.engine.settings = original_settings.model_copy(update={"repository": "example/other"})
+    try:
+        github.sources.configure(
+            env.cookie, scope.source_instance_id,
+            GitHubConfigure(expected_revision=0, settings=settings,
+                            review_ref="SA10-second-verified-installation"),
+        )
+    finally:
+        env.engine.settings = original_settings
     instance = registry.get_instance(scope.source_instance_id)
     adapter = GitHubAdapter(settings, KEY)
     raw = payload("issues")
@@ -330,13 +347,19 @@ def other_repository_input(env):
             review_ref="SA10-other-current-repository-boundary",
         ),
     )
-    env.engine.source_ingress.configure(
-        env.cookie, scope.source_instance_id, IngressConfigure(
-            expected_generation=0, settings=IngressSettings(
-                owner="gateway", policy_id=policy_id, policy_revision=1,
-            ), review_ref="SA10-other-current-source-owner",
-        ),
-    )
+    original_settings = env.engine.settings
+    env.engine.settings = original_settings.model_copy(update={"repository": "example/other"})
+    try:
+        env.engine.source_ingress.configure(
+            env.cookie, scope.source_instance_id, IngressConfigure(
+                expected_generation=0, settings=IngressSettings(
+                    owner="gateway", policy_id=policy_id, policy_revision=1,
+                    legacy_repository="example/other",
+                ), review_ref="SA10-other-current-source-owner",
+            ),
+        )
+    finally:
+        env.engine.settings = original_settings
     gateway = SourceGateway(
         env.engine.source_ingress, scope.source_instance_id, 1,
         {("github", VERSION): adapter},
