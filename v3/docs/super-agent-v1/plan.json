@@ -399,10 +399,12 @@
       "optional": false,
       "card": "TASKS.md#sa13",
       "verification_target_on_implementation": "SAV1-13",
-      "work_state": "REQUIREMENTS_FIXED_DEPENDENCY_AUDIT_AND_CONCRETE_INTEGRATION_PREPARATION",
+      "work_state": "PRIVATE_CONTRACTS_AND_SHARED_PROPOSAL_READY_WAITING_FIXED_OWNER_ACK",
       "engineering_gate": "NOT_RUN",
       "independent_review": "NOT_RUN",
-      "dependency_closure": "accept/SAV1-12/independent-closure-20261113.json"
+      "dependency_closure": "accept/SAV1-12/independent-closure-20261113.json",
+      "preparation": "accept/SAV1-13/preparation-20261113.json",
+      "ownership_request": "sa13-proposal/ownership-request.txt"
     },
     {
       "id": "SAV1-14",

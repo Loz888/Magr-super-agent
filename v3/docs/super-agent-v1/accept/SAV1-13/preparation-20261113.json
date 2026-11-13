@@ -1,0 +1,64 @@
+{
+  "task": "SAV1-13",
+  "status": "IN_PROGRESS",
+  "work_state": "PRIVATE_CONTRACTS_AND_CONCRETE_SHARED_PROPOSAL_READY_PENDING_FIXED_OWNER_ACK",
+  "recorded_utc": "2026-11-13T10:35:36.084436+00:00",
+  "SA12_closure": "docs/super-agent-v1/accept/SAV1-12/independent-closure-20261113.json",
+  "preparation_commit": "b6079db",
+  "private_contracts": {
+    "source_sha256": "8bf0fa7030503b2982a6e76f12b981f79c4e487ada638e325fbd359587d79031",
+    "source_at_check": "Frozen working tree before commit; exact3 added source/test files subsequently committed unchanged inb6079db",
+    "counts": {
+      "tests": 139,
+      "passed": 139,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "commands": "evidence/super-agent-v1/SAV1-13/start-20261113T092527Z-3fe7966b/20261113T100731Z-private-contracts-initial-46d70f/commands.json",
+    "junit": "evidence/super-agent-v1/SAV1-13/start-20261113T092527Z-3fe7966b/20261113T100731Z-private-contracts-initial-46d70f/junit.xml",
+    "scope": "Pure DTO/current-fact validation only; no Engine/PG/Worker proof"
+  },
+  "lint": {
+    "status": "PASS_PREPARATION_SOURCE",
+    "commands": "evidence/super-agent-v1/SAV1-13/start-20261113T092527Z-3fe7966b/20261113T100731Z-private-contracts-initial-lint-e7ceec/commands.json"
+  },
+  "typecheck": {
+    "status": "PASS_PREPARATION_SOURCE_262_FILES",
+    "commands": "evidence/super-agent-v1/SAV1-13/start-20261113T092527Z-3fe7966b/20261113T100731Z-private-contracts-initial-typecheck-892e8f/commands.json"
+  },
+  "kernel_preview": "evidence/super-agent-v1/SAV1-13/start-20261113T092527Z-3fe7966b/kernel-preview-20261113T101644Z-c56d52/result.json",
+  "draft_sql_install": "evidence/super-agent-v1/SAV1-13/start-20261113T092527Z-3fe7966b/draft0046-install-20261113T102326Z-248764/result.json",
+  "proposal": "docs/super-agent-v1/sa13-proposal/proposal-manifest.json",
+  "ownership_request": "docs/super-agent-v1/sa13-proposal/ownership-request.txt",
+  "ownership_request_status": "USER_RELAY_REQUESTED_NO_FIXED_ACK_YET",
+  "main_migration_count": 42,
+  "formal0046": "NOT_INSTALLED",
+  "shared_wiring": "NOT_APPLIED",
+  "h11_gate": "FIXED_ENGINEERING_RECOVERY_SCOPED_PASS",
+  "h12_live_agent_mvp": "FAIL_PRESERVED",
+  "formal_registered_SAV1_13": "NOT_RUN_NOT_REGISTERED_UNTIL_REAL_IMPLEMENTATION_TARGETS_EXIST",
+  "engineering_gate": "NOT_RUN_COMPLETE_CARD",
+  "independent_review": "NOT_RUN",
+  "real_platform_paid_outbound_publication_continuous": "NOT_RUN",
+  "SA14": "NOT_STARTED",
+  "workspace_facade": {
+    "status": "READ_ONLY_INTERFACE_COMPONENT_PASS",
+    "source_sha256": "20918b36f715dbe77da9248a3bb748fe769b86bde44637b59d8fda2a7eb76cea",
+    "commands": "evidence/super-agent-v1/SAV1-13/start-20261113T092527Z-3fe7966b/20261113T104435Z-workspace-initial-16021e/commands.json",
+    "junit": "evidence/super-agent-v1/SAV1-13/start-20261113T092527Z-3fe7966b/20261113T104435Z-workspace-initial-16021e/junit.xml",
+    "counts": {
+      "tests": 13,
+      "passed": 13,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "scope": "Actual local Git/H03 directory only; controlled guard is not original PG/Source authorization proof",
+    "lint": "evidence/super-agent-v1/SAV1-13/start-20261113T092527Z-3fe7966b/20261113T104435Z-workspace-initial-lint-1246b9/commands.json",
+    "typecheck_new_source_file_only": "evidence/super-agent-v1/SAV1-13/start-20261113T092527Z-3fe7966b/20261113T104435Z-workspace-initial-typecheck-450e2e/commands.json",
+    "writes": "DENIED_DURABLE_ENGINE_JOURNAL_NOT_IMPLEMENTED",
+    "prior139_and_passed_static_not_repeated": true
+  },
+  "recorded_at_utc": "2026-11-13T10:46:08.538896+00:00"
+}

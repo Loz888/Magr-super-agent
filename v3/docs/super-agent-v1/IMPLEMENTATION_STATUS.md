@@ -4,6 +4,8 @@ SA12固定6b48b7d/9171d595原五真实资源独立5PASS、新增四PG组合边�
 
 SA13为IN_PROGRESS，先核对H11/H12固定交付及当前能力门，准备原Mandate到受管Assignment/Workspace/Broker/Verifier的版本化接线。H12工程恢复或模型连通成绩不等于真实Coding/MVP放行；旧调查只读grant与旧API不自动升级。任何新增共享Engine/API/schema/预算范围先备齐具体SQL/补丁并按AGENTS协调。SA14–24仍PLANNED；真实平台、付费、外发、发布、真实Coding及长期门保持NOT_RUN。
 
+SA13具体提案b6079db已请求用户代转新共享确认；私有契约139项、只读H03 façade13项分别首次通过，原通过项不重复。隔离草案安装与kernel预览单列，主库仍42；正式Worker/Engine/API/0046接线与整卡检查NOT_RUN。见[当前边界](SA13_CODING.md)及[阶段摘要](accept/SAV1-13/preparation-20261113.json)。
+
 以下为历史记录。
 
 # SA12 本地工程完成，等待独立验收

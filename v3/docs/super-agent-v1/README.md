@@ -12,6 +12,8 @@ SA11第35/36节固定确认已核对，0042/0043及七表、11接口和四文件
 
 SA12候选6b48b7d已完成本地工程；首轮421项416PASS/5FAIL，修正测试缺失探针后仅原5项5PASS，原416未重跑，不称最新单轮421PASS。第37节共享范围已落地，当前42checksum、七表0行及无PG/会话/容器残留核对通过，见[交付](SA12_ACCEPTANCE_20261113.md)与[分版本摘要](accept/SAV1-12/accept.json)。SA12原5独立5PASS及新增4边界4PASS已核对并获用户接受，见[独立关闭](accept/SAV1-12/independent-closure-20261113.json)；当前按用户明确指令启动SA13。
 
+SA13具体准备与等待确认范围见[Worker接线说明](SA13_CODING.md)；纯组件成绩不代表整卡工程或真实Coding通过。
+
 ## 阅读入口
 
 - [架构、领域、数据与权限契约](ARCHITECTURE.md)

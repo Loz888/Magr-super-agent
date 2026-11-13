@@ -293,3 +293,10 @@ fe8ecac首轮351项309PASS/42FAIL已完整保留。36项直接PG错误及6项同
 用户已接受SA12固定6b48b7d的独立原5PASS及新增4PASS；42checksum/248refs、源码9171d595和保护材料绑定一致。关闭前已保存旧当前摘要原字节，独立原文件、原421=416PASS5FAIL与所有历史红灯不改，原416及静态通过目标不重复。见[关闭记录](accept/SAV1-12/independent-closure-20261113.json)。
 
 按用户明确指令启动SA13需求及固定H11/H12依赖审计。第37节仅覆盖SA12，H11旧任务创建/财务入口不能直接复制成第二Task/钱包，旧调查grant不能变成写许可。新增共享Engine/API/schema/预算范围须先准备具体提案并确认；0045仍归Harness，不读取或导入对方活动/未提交文件。真实能力与质量门各自核对，不把工程环境恢复或模型连通当真实Coding放行。
+
+
+## SA13 具体提案及独立准备（2026-11-13）
+
+提案提交b6079db已备齐：拟0046六表379e9de4、四文件patch01c7ec61、固定H11最小模块与兼容补丁、六个metadata接口；完整SHA见[提案清单](sa13-proposal/proposal-manifest.json)。已请求用户代转[具体文件](sa13-proposal/ownership-request.txt)，尚无新固定确认。第37节只覆盖SA12；正式迁移/Engine/API/Scheduler/contracts和固定内核导入均未应用。
+
+私有139项、lint/typecheck262首次通过；隔离草案43迁移/六表安装与临时kernel预览另列，不把这些记整卡运行通过。H12真实Agent/MVP FAIL保留，只继续受控工程准备。主库仍42、0045仍归Harness，真实/付费/外发/发布/长期及SA14不启动，见[阶段摘要](accept/SAV1-13/preparation-20261113.json)。
