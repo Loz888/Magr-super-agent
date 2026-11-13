@@ -1099,7 +1099,11 @@ class SourceSubscriptions:
         epoch: int | None = None,
     ) -> tuple[TargetRef, Row]:
         target, run = self._target(conn, run_id)
-        if epoch is not None and (run["execution_epoch"] != epoch or run["status"] != "running"):
+        # Owner reference receipts can precede execution; they apply no tools or instructions.
+        # Starting the Run advances its epoch and fences every queued-epoch page.
+        if epoch is not None and (
+            run["execution_epoch"] != epoch or run["status"] not in {"queued", "running"}
+        ):
             raise _error("SOURCE_SUBSCRIPTION_RUN_FENCED")
         self.engine.source_policies.check_run(conn, run)
         return target, run

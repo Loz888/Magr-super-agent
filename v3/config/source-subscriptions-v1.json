@@ -53,7 +53,7 @@
   "artifacts": [
     {
       "path": "src/mgar_v3/super_agent/source_subscription.py",
-      "sha256": "a06ee3ec959f6a9d76d6a49f7752efa8891eb41cb630033f5a8afeae9489a142"
+      "sha256": "8407be1a4965212d93c516e51d37da872eb4ce6f45d02b3a9ace7a5861e1d4ad"
     },
     {
       "path": "src/mgar_v3/super_agent/source_subscription_api.py",
