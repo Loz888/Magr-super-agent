@@ -674,15 +674,18 @@ class _EngineFileJournal(DurableExistingFileJournal):
             ).fetchall()
         for operation in operations:
             with workspace._access(WorkspaceAccess("snapshot", workspace._files)):
+                current = workspace._snapshot()
                 images = json.loads(
                     self.session.journal.get_payload(
-                        operation, "checkpoint", current_tree=workspace._snapshot().tree_hash
+                        operation, "checkpoint", current_tree=current.tree_hash
                     )
                 )
             paths = tuple(
                 path for path in images["before"] if images["before"][path] != images["after"][path]
             )
-            with workspace._access(WorkspaceAccess("apply", paths)):
+            with workspace._access(
+                WorkspaceAccess("apply", paths, expected_tree=current.tree_hash)
+            ):
                 self._apply_images(workspace, operation, images)
                 recovered.append(operation["operation_id"])
         return tuple(recovered)

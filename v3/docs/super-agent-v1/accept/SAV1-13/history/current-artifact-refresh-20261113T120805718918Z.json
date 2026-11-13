@@ -1,0 +1,7 @@
+{
+  "schema": "sa13-current-artifact-refresh-v1",
+  "recorded_utc": "2026-11-13T12:08:05.718906+00:00",
+  "source_coding_config_sha256": "a30c076204fe165e16ff0e48b3ee4dadd7428e1342630f6a8610dc52c40fc086",
+  "verification_sha256": "0a2a516271ff1f33627cbb1b413edbc3c81ac39dac5891c99d121d13b14a3c81",
+  "scope": "Mechanical current snapshots only. Historical raw outcomes and acceptance files are not modified."
+}

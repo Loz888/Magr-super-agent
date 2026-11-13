@@ -949,7 +949,8 @@ class SourceCoding:
                             stale = conn.execute(
                                 "SELECT 1 FROM app.sa_coding_attempts a WHERE a.coding_id=%s "
                                 "AND a.state IN ('ready','running') AND NOT app.sa_coding_current("
-                                "a.coding_id,a.run_id,a.assignment_id,a.session_id,a.execution_epoch) "
+                                "a.coding_id,a.run_id,a.assignment_id,"
+                                "a.session_id,a.execution_epoch) "
                                 "LIMIT 1",
                                 (binding["coding_id"],),
                             ).fetchone()

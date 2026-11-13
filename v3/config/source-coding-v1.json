@@ -48,7 +48,7 @@
     "rerun": false,
     "formal_integration_inferred": false
   },
-  "artifact_snapshot_utc": "2026-11-13T12:01:03.011788+00:00",
+  "artifact_snapshot_utc": "2026-11-13T12:08:05.718906+00:00",
   "artifact_snapshot_scope": "Current formal source/schema/test hashes; these hashes neither rerun historical PASS nor establish a new engineering/independent/live gate.",
   "artifacts": [
     {
@@ -64,7 +64,7 @@
       "sha256": "8046fc7a34ab283d330e9ebaf5a43590a61919968026dc32482f7024f9556a89"
     },
     {
-      "path": "docs/super-agent-v1/accept/SAV1-13/history/registration-script-20261113T120103011795Z.py",
+      "path": "docs/super-agent-v1/accept/SAV1-13/history/registration-script-20261113T120805718918Z.py",
       "sha256": "c1b4eb6cf448a0f1f0ac0074e9b8bdd6776ec9ea8087c3271b0deda17a938d4f"
     },
     {
@@ -173,7 +173,7 @@
     },
     {
       "path": "src/mgar_v3/super_agent/source_coding.py",
-      "sha256": "29eec82fa4b0d96bff48c50aa8b5e4d2b8183f998f2bad27802f0b1f4d67fc60"
+      "sha256": "e49935865205546be2c5048b42527b9fd1e72f02e8c71290b7122bc7c45745f6"
     },
     {
       "path": "src/mgar_v3/super_agent/source_coding_api.py",
@@ -197,7 +197,7 @@
     },
     {
       "path": "src/mgar_v3/super_agent/source_coding_runtime.py",
-      "sha256": "07be240c9df7c21a04b223d3f50e3a9c7b34370dd3ecf67846c5e2ed18820f1f"
+      "sha256": "6a47559d842de98d29cd48a9036798b62211186b11463c6979a5345063508b93"
     },
     {
       "path": "src/mgar_v3/super_agent/source_coding_workspace.py",
