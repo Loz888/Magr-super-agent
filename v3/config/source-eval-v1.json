@@ -66,7 +66,7 @@
     },
     {
       "path": "tests/test_super_agent_sa09_migration.py",
-      "sha256": "e0cb6cd9bfeeebab42f8f59b9523abb4927dd543a02f5fe8a8faa21c6aa57d50"
+      "sha256": "790023b05d9375775bd6f2f8889eb4676e457bdeb1a85abee2718a338d2a60b2"
     },
     {
       "path": "tests/test_super_agent_sa09_model.py",
@@ -130,7 +130,7 @@
     },
     {
       "path": "config/harness-model-import-v1.json",
-      "sha256": "a9d23be7dc2011f58ddce71c75c71c09c669b226449c04caad4b2653241caf05"
+      "sha256": "c8d26661e5a20dbaea4867bb132d0a7454723c5daef8e9ab9017e31144db91ed"
     },
     {
       "path": "src/mgar_v3/routing/store.py",
@@ -142,11 +142,11 @@
     },
     {
       "path": "src/mgar_v3/coordination/engine.py",
-      "sha256": "31a4f89a0f7308661648aa4910e9686568eed1176fb0b4990fed9df90b12d88d"
+      "sha256": "986db892ff66a4fb7f9cb1bdba63540df496abc9595b9ee3c2ec9b54de808eb7"
     },
     {
       "path": "src/mgar_v3/api.py",
-      "sha256": "dee01b4b0261996c93f82743513cfbdebeb818ead0f986398d7e08c69a640c99"
+      "sha256": "e8e71261d21c7e28855d0b6f3b06c9704e249daa77dff2bc4c85124858e7a518"
     },
     {
       "path": "src/mgar_v3/routing/budget.py",
@@ -166,11 +166,13 @@
     },
     {
       "path": "config/verification.json",
-      "sha256": "0472b59ceb32e13b767a843c584ae7a0bd6a89da8197dd6c2ddc7e883a21a22c"
+      "sha256": "81a442046a48a089976e74ad3f43c2d8296bad184d43d74278979aaf16a99033"
     },
     {
       "path": "tests/test_super_agent_sa09_i01.py",
       "sha256": "3cc2e45985a24f193db970a894e6dbac3f6fc92a34e49c439f79c00673308f5b"
     }
-  ]
+  ],
+  "artifact_snapshot_utc": "2026-11-13T08:08:00.341489+00:00",
+  "artifact_snapshot_scope": "Current formal per-file hashes refreshed for authorized SA12 composition/catalogue. Historical acceptance and source-bound raw outcomes remain unchanged."
 }

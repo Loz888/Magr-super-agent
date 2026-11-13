@@ -270,3 +270,12 @@ fe8ecac首轮351项309PASS/42FAIL已完整保留。36项直接PG错误及6项同
 用户已接受SA11 ca49b76的原42独立42PASS及六有效边界、41checksum/204refs，无序版本错误预期探针两轮FAIL仍保留；关闭记录见accept/SAV1-11/independent-closure-20261113.json。原309未重跑，源码未改，真实/付费/外发/发布/长期门不变。
 
 据用户明确指令启动SA12需求/复用/依赖核对。H03/H04必须审查固定交付及接口后在本副本验证；本地现有H01/H02端口不能冒充已导入工作区/隔离Broker。第35/36节只覆盖SA11，不扩大到Scheduler/Assignment/新迁移；先备齐SQL和精确共享patch，再请求固定确认，不直接编辑或导入对方活动树。
+
+
+## SA12 第37节固定确认及正式接线（2026-11-13）
+
+用户回传的固定确认298d4c5c5123a5c26c34a9673d676516d1503f84已逐项只读核对：仅协调文档，0044 SQL7199a802、三文件patch7899c89d、固定H03及H06绑定hook补丁ddc37d4e完整SHA一致。已只在SA副本按批准字节正式落地；不读取或导入对方活动文件，也不应用H12、0037或0040。0045_harness_github_delivery.sql仍留给Harness。
+
+原Engine/API只按三文件补丁最小接线；H02 contracts仅兼容增加ExecutionRequest.execution_epoch=0，其原版本与清单保留，其他五个H02固定产物不变。私有Scheduler和资源adapter使用原PG连接、原Task/Run/Mandate与SA07配额。默认无driver/Session/监督线程，只有显式fixture资源试验；真实Coding桥仍留SA13。
+
+当前真实PG、独立进程、H03工作区与隔离Broker测试已编写，首次正式检查尚未执行，不把schema安装草案检查或固定文件一致当运行验收。SA12仍IN_PROGRESS，独立与全部真实/语义/长期门NOT_RUN，SA13不启动。后续实际检查与清理结果另以分版本原始证据记录。

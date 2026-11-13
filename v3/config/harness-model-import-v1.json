@@ -14,7 +14,7 @@
     },
     {
       "path": "src/mgar_v3/harness/contracts.py",
-      "sha256": "b07f44ce8774a0a639fe7ea8eff67f0c3d5cf17b1a9118ba8a34ddb84c39d07c"
+      "sha256": "cdcbdda22ac13db25a0b1bb0d49c2c74a06ab1a4bfaea9e1d4011243d8e69466"
     },
     {
       "path": "src/mgar_v3/harness/model.py",
@@ -32,5 +32,19 @@
       "path": "experiments/harness-v4/model-capabilities-v1.json",
       "sha256": "0062bdae9cc9328694ee590571d17edcf3dc090d26e3ef5abea7ff16f70171e3"
     }
-  ]
+  ],
+  "compatibility_extension": {
+    "ownership_commit": "298d4c5c5123a5c26c34a9673d676516d1503f84",
+    "section": 37,
+    "scope": "Only additive ExecutionRequest.execution_epoch strict nonnegative default0; model request/runtime unchanged",
+    "path": "src/mgar_v3/harness/contracts.py",
+    "original_sha256": "b07f44ce8774a0a639fe7ea8eff67f0c3d5cf17b1a9118ba8a34ddb84c39d07c",
+    "current_sha256": "cdcbdda22ac13db25a0b1bb0d49c2c74a06ab1a4bfaea9e1d4011243d8e69466",
+    "original_blob": "git show d63e43777fb802cc788668b086df586b061fa5ae:v3/src/mgar_v3/harness/contracts.py",
+    "original_manifest": "docs/super-agent-v1/accept/SAV1-12/history/harness-model-import-before-SA12.json",
+    "other_five_fixed_artifacts": "UNCHANGED",
+    "check_results": "Recorded separately in SA12 acceptance; not implied by artifact reference refresh"
+  },
+  "artifact_snapshot_utc": "2026-11-13T08:08:00.341489+00:00",
+  "artifact_snapshot_scope": "Current formal per-file hashes refreshed for authorized SA12 composition/catalogue. Historical acceptance and source-bound raw outcomes remain unchanged."
 }

@@ -62,7 +62,7 @@
     },
     {
       "path": "src/mgar_v3/api.py",
-      "sha256": "dee01b4b0261996c93f82743513cfbdebeb818ead0f986398d7e08c69a640c99"
+      "sha256": "e8e71261d21c7e28855d0b6f3b06c9704e249daa77dff2bc4c85124858e7a518"
     },
     {
       "path": "migrations/0035_feishu_source.sql",
@@ -102,7 +102,7 @@
     },
     {
       "path": "tests/test_super_agent_sa06_migration.py",
-      "sha256": "c01c0c9d275bb9cdcc30964d0b9564d6180de5de6794a1a98f418a0edd298d3f"
+      "sha256": "b95d812b81dc26b874e15c048900b93311a270f157b6ac7732d81fe2cefb23a0"
     },
     {
       "path": "tests/test_super_agent_sa06_privacy.py",
@@ -130,7 +130,7 @@
     },
     {
       "path": "tests/test_super_agent_sa05.py",
-      "sha256": "3894662d51d467f9f8866fe043c7f3ee021aa142d4c99bf35a92a4707d6c13dd"
+      "sha256": "e54ff259702530e837ae496f3cc2472c770340e6c1493b18bb0c743189e126db"
     },
     {
       "path": "pyproject.toml",
@@ -142,7 +142,7 @@
     },
     {
       "path": "config/verification.json",
-      "sha256": "0472b59ceb32e13b767a843c584ae7a0bd6a89da8197dd6c2ddc7e883a21a22c"
+      "sha256": "81a442046a48a089976e74ad3f43c2d8296bad184d43d74278979aaf16a99033"
     },
     {
       "path": "config/source-ingress-v1.json",
@@ -152,5 +152,7 @@
       "path": "config/source-github-v1.json",
       "sha256": "6e9d41fd82319bd44d04a51621fe583ea747f4b7734412465af29c6bb292b677"
     }
-  ]
+  ],
+  "artifact_snapshot_utc": "2026-11-13T08:08:00.341489+00:00",
+  "artifact_snapshot_scope": "Current formal per-file hashes refreshed for authorized SA12 composition/catalogue. Historical acceptance and source-bound raw outcomes remain unchanged."
 }

@@ -1,0 +1,35 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "assignment_id": {
+      "format": "uuid",
+      "title": "Assignment Id",
+      "type": "string"
+    },
+    "session_id": {
+      "format": "uuid",
+      "title": "Session Id",
+      "type": "string"
+    },
+    "epoch": {
+      "maximum": 9223372036854775807,
+      "minimum": 1,
+      "title": "Epoch",
+      "type": "integer"
+    },
+    "expected_revision": {
+      "maximum": 9223372036854775807,
+      "minimum": 1,
+      "title": "Expected Revision",
+      "type": "integer"
+    }
+  },
+  "required": [
+    "assignment_id",
+    "session_id",
+    "epoch",
+    "expected_revision"
+  ],
+  "title": "SchedulerHeartbeatRequest",
+  "type": "object"
+}

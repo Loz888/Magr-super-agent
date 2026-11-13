@@ -313,6 +313,7 @@ class ExecutionRequest(Model):
     argv: tuple[str, ...] = Field(min_length=1, max_length=64)
     cwd: str = "."
     timeout_seconds: float = Field(default=60, gt=0, le=1800)
+    execution_epoch: int = Field(default=0, ge=0)
 
 
 class ExecutionReceipt(Model):

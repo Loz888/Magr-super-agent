@@ -55,7 +55,7 @@
     },
     {
       "path": "tests/test_super_agent_sa08_migration.py",
-      "sha256": "e431592f98cc431728117fcd3df555ffb58fa847063377d17a186fbf862588ca"
+      "sha256": "c49466eb7444bb0e418f19b4da28ca5367487f88ea6ef2c37650685ccbfd46e4"
     },
     {
       "path": "tests/sa08_support.py",
@@ -85,5 +85,7 @@
       "path": "tests/test_super_agent_sa08_post_controls.py",
       "sha256": "d0e819f5c27d810d81f42fed273febd9c74571e7d76a1022308e90fb52386911"
     }
-  ]
+  ],
+  "artifact_snapshot_utc": "2026-11-13T08:08:00.341489+00:00",
+  "artifact_snapshot_scope": "Current formal per-file hashes refreshed for authorized SA12 composition/catalogue. Historical acceptance and source-bound raw outcomes remain unchanged."
 }

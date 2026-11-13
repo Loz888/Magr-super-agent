@@ -1,0 +1,28 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "request_id": {
+      "format": "uuid",
+      "title": "Request Id",
+      "type": "string"
+    },
+    "session_id": {
+      "format": "uuid",
+      "title": "Session Id",
+      "type": "string"
+    },
+    "expected_config_revision": {
+      "maximum": 9223372036854775807,
+      "minimum": 1,
+      "title": "Expected Config Revision",
+      "type": "integer"
+    }
+  },
+  "required": [
+    "request_id",
+    "session_id",
+    "expected_config_revision"
+  ],
+  "title": "SchedulerClaimRequest",
+  "type": "object"
+}

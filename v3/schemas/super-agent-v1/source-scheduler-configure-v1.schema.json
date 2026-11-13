@@ -1,0 +1,128 @@
+{
+  "$defs": {
+    "SchedulerConfiguration": {
+      "additionalProperties": false,
+      "properties": {
+        "enabled": {
+          "default": false,
+          "title": "Enabled",
+          "type": "boolean"
+        },
+        "limits": {
+          "$ref": "#/$defs/SchedulerLimits"
+        },
+        "valid_from": {
+          "format": "date-time",
+          "title": "Valid From",
+          "type": "string"
+        },
+        "valid_until": {
+          "format": "date-time",
+          "title": "Valid Until",
+          "type": "string"
+        }
+      },
+      "required": [
+        "valid_from",
+        "valid_until"
+      ],
+      "title": "SchedulerConfiguration",
+      "type": "object"
+    },
+    "SchedulerLimits": {
+      "additionalProperties": false,
+      "properties": {
+        "slots": {
+          "default": 0,
+          "maximum": 2,
+          "minimum": 0,
+          "title": "Slots",
+          "type": "integer"
+        },
+        "preparing": {
+          "default": 0,
+          "maximum": 2,
+          "minimum": 0,
+          "title": "Preparing",
+          "type": "integer"
+        },
+        "cpu_millis": {
+          "default": 0,
+          "maximum": 4000,
+          "minimum": 0,
+          "title": "Cpu Millis",
+          "type": "integer"
+        },
+        "memory_mib": {
+          "default": 0,
+          "maximum": 4096,
+          "minimum": 0,
+          "title": "Memory Mib",
+          "type": "integer"
+        },
+        "queue": {
+          "default": 0,
+          "maximum": 256,
+          "minimum": 0,
+          "title": "Queue",
+          "type": "integer"
+        },
+        "source_slots": {
+          "default": 0,
+          "maximum": 2,
+          "minimum": 0,
+          "title": "Source Slots",
+          "type": "integer"
+        },
+        "lease_seconds": {
+          "default": 30,
+          "maximum": 120,
+          "minimum": 30,
+          "title": "Lease Seconds",
+          "type": "integer"
+        },
+        "preparation_seconds": {
+          "default": 120,
+          "maximum": 600,
+          "minimum": 1,
+          "title": "Preparation Seconds",
+          "type": "integer"
+        },
+        "session_ttl_seconds": {
+          "default": 3600,
+          "maximum": 86400,
+          "minimum": 1,
+          "title": "Session Ttl Seconds",
+          "type": "integer"
+        }
+      },
+      "title": "SchedulerLimits",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "expected_revision": {
+      "maximum": 9223372036854775807,
+      "minimum": 0,
+      "title": "Expected Revision",
+      "type": "integer"
+    },
+    "configuration": {
+      "$ref": "#/$defs/SchedulerConfiguration"
+    },
+    "review_ref": {
+      "maxLength": 256,
+      "minLength": 1,
+      "title": "Review Ref",
+      "type": "string"
+    }
+  },
+  "required": [
+    "expected_revision",
+    "configuration",
+    "review_ref"
+  ],
+  "title": "SchedulerConfigureRequest",
+  "type": "object"
+}

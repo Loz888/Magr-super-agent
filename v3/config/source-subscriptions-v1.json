@@ -5,8 +5,8 @@
   "ownership_status": "ACTUALLY_CONFIRMED_FIXED_COMMIT",
   "ownership_commit": "d0af0747dd129033cb7bd0abd2af9ca5a57a8d4a",
   "ownership_section": 35,
-  "artifact_snapshot_utc": "2026-11-13T05:24:38.396254+00:00",
-  "artifact_snapshot_scope": "Current per-file formal artifacts. Root refreshes references after registry or source repairs; verification outcomes are recorded separately.",
+  "artifact_snapshot_utc": "2026-11-13T08:08:00.341489+00:00",
+  "artifact_snapshot_scope": "Current formal per-file hashes refreshed for authorized SA12 composition/catalogue. Historical acceptance and source-bound raw outcomes remain unchanged.",
   "artifact_status": "CURRENT_FORMAL_HASHES",
   "migration": "0042_source_subscriptions.sql",
   "migration_status": "FORMAL0042_AND0043_INSTALLED",
@@ -81,7 +81,7 @@
     },
     {
       "path": "tests/test_super_agent_sa11_migration.py",
-      "sha256": "b0353218326ab317e755c9038da0ad455138edec25277eeb1fead8a404d6dbfc"
+      "sha256": "5f8966a7410b98a04d9472fedb0c767a5447da9307a9f9e769b9a39f371f780c"
     },
     {
       "path": "tests/test_super_agent_sa11_recovery.py",
@@ -105,11 +105,11 @@
     },
     {
       "path": "src/mgar_v3/coordination/engine.py",
-      "sha256": "31a4f89a0f7308661648aa4910e9686568eed1176fb0b4990fed9df90b12d88d"
+      "sha256": "986db892ff66a4fb7f9cb1bdba63540df496abc9595b9ee3c2ec9b54de808eb7"
     },
     {
       "path": "src/mgar_v3/api.py",
-      "sha256": "dee01b4b0261996c93f82743513cfbdebeb818ead0f986398d7e08c69a640c99"
+      "sha256": "e8e71261d21c7e28855d0b6f3b06c9704e249daa77dff2bc4c85124858e7a518"
     },
     {
       "path": "src/mgar_v3/sources/ingress.py",
@@ -125,7 +125,7 @@
     },
     {
       "path": "config/verification.json",
-      "sha256": "0472b59ceb32e13b767a843c584ae7a0bd6a89da8197dd6c2ddc7e883a21a22c"
+      "sha256": "81a442046a48a089976e74ad3f43c2d8296bad184d43d74278979aaf16a99033"
     },
     {
       "path": "schemas/super-agent-v1/source-subscription-v1.schema.json",

@@ -1,0 +1,22 @@
+{
+  "schema_version": "sa12-controlled-resource-experiment-v1",
+  "status": "FROZEN_CONTROLLED_RESOURCE_PROFILE",
+  "mode": "fixture",
+  "source": "Synthetic local Git fixture only; no remote clone/fetch",
+  "broker_image_id": "sha256:efad10932c12f9d6f2408fe960e9a292c4bdbac0f8365387838acbe4f0fdd2b6",
+  "image_provenance": "Existing local R03 sandbox immutable image ID; no H12 import or image build",
+  "argv_allowlist": [
+    "python3"
+  ],
+  "network": false,
+  "write_grant": false,
+  "max_slots": 2,
+  "timing_faults": "Real PG authority and Docker create/inspect boundaries; test-only transport wrappers are explicitly identified",
+  "cleanup": "Only this attempt exact Assignment/operation UUID labels and immutable container IDs",
+  "model_calls": 0,
+  "paid": false,
+  "outbound": false,
+  "publication": false,
+  "SA13": "PLANNED_NOT_STARTED",
+  "check_results": "Recorded separately in versioned SA12 evidence; this descriptor grants no PASS"
+}

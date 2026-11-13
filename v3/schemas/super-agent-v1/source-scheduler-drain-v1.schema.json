@@ -1,0 +1,44 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "assignment_id": {
+      "format": "uuid",
+      "title": "Assignment Id",
+      "type": "string"
+    },
+    "expected_revision": {
+      "maximum": 9223372036854775807,
+      "minimum": 1,
+      "title": "Expected Revision",
+      "type": "integer"
+    },
+    "reason_code": {
+      "enum": [
+        "WAITING_INPUT",
+        "WAITING_APPROVAL",
+        "OWNER_DRAIN",
+        "LEASE_EXPIRED",
+        "SESSION_REVOKED",
+        "AUTHORITY_CHANGED",
+        "PROCESS_RESTARTED",
+        "RUN_STOPPED"
+      ],
+      "title": "Reason Code",
+      "type": "string"
+    },
+    "review_ref": {
+      "maxLength": 256,
+      "minLength": 1,
+      "title": "Review Ref",
+      "type": "string"
+    }
+  },
+  "required": [
+    "assignment_id",
+    "expected_revision",
+    "reason_code",
+    "review_ref"
+  ],
+  "title": "SchedulerOwnerDrainRequest",
+  "type": "object"
+}

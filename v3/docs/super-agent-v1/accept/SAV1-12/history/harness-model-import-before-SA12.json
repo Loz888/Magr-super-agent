@@ -1,0 +1,36 @@
+{
+  "contract_version": "harness-model-v1",
+  "implementation_commit": "169925f22b770bbcdb1294f079d5d8c76d05b1b4",
+  "accepted_metadata_commit": "fee087569d183ff3a4e68e5ec2de6182e1d66eea",
+  "integration": "Named fixed blobs only; no H12 or0037, no current working-tree import",
+  "controlled_local_check": "H02/H01/H00 initial58PASS; see SA09 evidence",
+  "source_reuse": "SSEDecoder, ModelCapabilities, estimate_tokens; Source request has no Run/TaskBinding",
+  "default_provider": null,
+  "default_paid_activation": false,
+  "artifacts": [
+    {
+      "path": "src/mgar_v3/harness/__init__.py",
+      "sha256": "032dc91674918e144492513c90da6741247a9f3cc6db3fb8cf1e68b584548036"
+    },
+    {
+      "path": "src/mgar_v3/harness/contracts.py",
+      "sha256": "b07f44ce8774a0a639fe7ea8eff67f0c3d5cf17b1a9118ba8a34ddb84c39d07c"
+    },
+    {
+      "path": "src/mgar_v3/harness/model.py",
+      "sha256": "b5f04e023f6ce140eeb54eee170c30f43c102e1d42a45535fc2b101ea055f24f"
+    },
+    {
+      "path": "src/mgar_v3/harness/runtime.py",
+      "sha256": "b31c9f040f420d90a3137e0428c1ae27d0f9e428652714c031a92ce12f8c5d6e"
+    },
+    {
+      "path": "tests/test_harness_v4_h02.py",
+      "sha256": "a8423ad1500d423bb1930dbe5e0dafa969988464203cd4a8d299ed8f2f5e8b3d"
+    },
+    {
+      "path": "experiments/harness-v4/model-capabilities-v1.json",
+      "sha256": "0062bdae9cc9328694ee590571d17edcf3dc090d26e3ef5abea7ff16f70171e3"
+    }
+  ]
+}

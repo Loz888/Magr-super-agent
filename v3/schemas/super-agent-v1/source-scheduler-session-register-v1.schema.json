@@ -1,0 +1,35 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "request_id": {
+      "format": "uuid",
+      "title": "Request Id",
+      "type": "string"
+    },
+    "profile_sha256": {
+      "pattern": "^[a-f0-9]{64}$",
+      "title": "Profile Sha256",
+      "type": "string"
+    },
+    "ttl_seconds": {
+      "maximum": 86400,
+      "minimum": 1,
+      "title": "Ttl Seconds",
+      "type": "integer"
+    },
+    "review_ref": {
+      "maxLength": 256,
+      "minLength": 1,
+      "title": "Review Ref",
+      "type": "string"
+    }
+  },
+  "required": [
+    "request_id",
+    "profile_sha256",
+    "ttl_seconds",
+    "review_ref"
+  ],
+  "title": "SchedulerSessionRegisterRequest",
+  "type": "object"
+}

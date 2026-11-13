@@ -428,7 +428,7 @@ def test_formal0041_is_installed_with_exact_approved_source_checksums(engine):
         path.name: hashlib.sha256(path.read_bytes()).hexdigest()
         for path in sorted((APP / "migrations").glob("*.sql"))
     }
-    assert len(sources) == 41 and FORMAL_SQL_NAME in sources
+    assert len(sources) == 42 and FORMAL_SQL_NAME in sources
     assert not any(name.startswith(("0037", "0040")) for name in sources)
     with engine.transaction() as conn:
         installed = {

@@ -86,6 +86,7 @@ def test_34_to_35_keeps_old_rows_checksums_and_all_or_nothing(database, tmp_path
             "0041_source_correlations.sql",
             "0042_source_subscriptions.sql",
             "0043_source_subscription_canonical_guard.sql",
+            "0044_source_scheduler.sql",
         ]
         assert migrate(dsn) == []
         with psycopg.connect(dsn) as conn:

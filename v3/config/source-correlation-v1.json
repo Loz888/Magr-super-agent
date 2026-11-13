@@ -4,8 +4,8 @@
   "status": "FORMAL_IMPLEMENTATION",
   "ownership_status": "ACTUALLY_CONFIRMED_FIXED_COMMIT",
   "ownership_commit": "0a335a14d8ce37703b5cfe0eaa7960d4ac571fc7",
-  "artifact_snapshot_utc": "2026-11-13T03:43:09.713997+00:00",
-  "artifact_snapshot_scope": "Formal shared SQL/Engine/API and private artifacts; current per-file hashes; historical components remain bound to original snapshots",
+  "artifact_snapshot_utc": "2026-11-13T08:08:00.341489+00:00",
+  "artifact_snapshot_scope": "Current formal per-file hashes refreshed for authorized SA12 composition/catalogue. Historical acceptance and source-bound raw outcomes remain unchanged.",
   "artifact_status": "CURRENT_FORMAL_HASHES",
   "proposed_migration": "0041_source_correlations.sql",
   "migration_status": "FORMAL0041_INSTALLED",
@@ -81,7 +81,7 @@
     },
     {
       "path": "tests/test_super_agent_sa10_migration.py",
-      "sha256": "f4384d08751ee7d19e39f5796d2d2fccda57cb42bbfa462733e9c75962ed902e"
+      "sha256": "f076813a00605bae0e013f4d1ea6b0ae47b3a04773a16bc8e4ae51aaa1598f96"
     },
     {
       "path": "schemas/super-agent-v1/source-correlation-resource-v1.schema.json",
@@ -129,7 +129,7 @@
     },
     {
       "path": "config/verification.json",
-      "sha256": "0472b59ceb32e13b767a843c584ae7a0bd6a89da8197dd6c2ddc7e883a21a22c"
+      "sha256": "81a442046a48a089976e74ad3f43c2d8296bad184d43d74278979aaf16a99033"
     },
     {
       "path": "migrations/0041_source_correlations.sql",
@@ -137,11 +137,11 @@
     },
     {
       "path": "src/mgar_v3/coordination/engine.py",
-      "sha256": "31a4f89a0f7308661648aa4910e9686568eed1176fb0b4990fed9df90b12d88d"
+      "sha256": "986db892ff66a4fb7f9cb1bdba63540df496abc9595b9ee3c2ec9b54de808eb7"
     },
     {
       "path": "src/mgar_v3/api.py",
-      "sha256": "dee01b4b0261996c93f82743513cfbdebeb818ead0f986398d7e08c69a640c99"
+      "sha256": "e8e71261d21c7e28855d0b6f3b06c9704e249daa77dff2bc4c85124858e7a518"
     }
   ],
   "baseline_before_formal_integration": "e9ee378c1977cdb4feaea29bda2d00e3f6c891ca"

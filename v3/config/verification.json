@@ -1602,5 +1602,41 @@
       "live_publication": "NOT_RUN",
       "continuous_operation": "NOT_RUN"
     }
+  },
+  "SAV1-12": {
+    "tests": [
+      "tests/test_super_agent_sa12_contracts.py",
+      "tests/test_super_agent_sa12.py",
+      "tests/test_super_agent_sa12_api.py",
+      "tests/test_super_agent_sa12_migration.py",
+      "tests/test_super_agent_sa12_recovery.py",
+      "tests/test_super_agent_sa12_core_boundaries.py",
+      "tests/test_super_agent_sa12_source.py",
+      "tests/test_super_agent_sa12_runtime.py",
+      "tests/test_super_agent_sa07.py",
+      "tests/test_super_agent_sa09_i01.py",
+      "tests/test_super_agent_sa11.py",
+      "tests/test_super_agent_sa11_migration.py",
+      "tests/test_harness_v4_h02.py",
+      "tests/test_duplex.py",
+      "tests/test_routing.py"
+    ],
+    "timeout_seconds": 2400,
+    "components": {
+      "scope": "Initial SA12 actual formal integration checks, all new modules and direct original quota/Source/epoch/H02/legacy graph dependencies; not the full repository suite",
+      "postgres": "Real disposable PG; original Engine single held connection and mutex; no alternate business writer or Redis authority",
+      "ownership": "298d4c5c5123a5c26c34a9673d676516d1503f84 section37; exact0044 and three-file patch plus fixedH03/H06 bound hooks",
+      "resources": "At most2 slots; preparing/draining retain occupancy; current lease/Source/session/Run/Mandate; trusted post-fence quiescence and pending original Jobs",
+      "processes": "Real independent claim callers, original Engine-owning SIGKILL recovery and opt-in real isolated Broker tests; controlled filesystem driver explicitly separate",
+      "fairness": "Durable trusted human/automation classes plus project/source service sequence and age; no request-provided priority",
+      "defaults": "No configuration/Worker/driver/supervision thread/model/platform listener by default",
+      "independent_review": "NOT_RUN",
+      "semantic_evaluation": "NOT_RUN",
+      "live_source_channel": "NOT_RUN",
+      "paid_model": "NOT_RUN",
+      "live_coding": "NOT_RUN",
+      "live_publication": "NOT_RUN",
+      "continuous_operation": "NOT_RUN"
+    }
   }
 }

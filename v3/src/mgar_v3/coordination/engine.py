@@ -38,6 +38,7 @@ from mgar_v3.super_agent.fast_path import FastPath
 from mgar_v3.super_agent.policy import SourcePolicies
 from mgar_v3.super_agent.source_correlation import SourceCorrelations
 from mgar_v3.super_agent.source_eval import SourceEval
+from mgar_v3.super_agent.source_scheduler import SourceScheduler
 from mgar_v3.super_agent.source_subscription import SourceSubscriptions
 
 TModel = TypeVar("TModel", bound=Model)
@@ -85,6 +86,7 @@ class Engine:
         self.source_eval = SourceEval(self)
         self.source_correlations = SourceCorrelations(self)
         self.source_subscriptions = SourceSubscriptions(self)
+        self.source_scheduler = SourceScheduler(self)
 
     def close(self) -> None:
         with self._mutex:
@@ -117,6 +119,7 @@ class Engine:
             raise DomainError("FENCED", "Execution is no longer authorized")
         if epoch is not None:
             self.source_policies.check_run(conn, row)
+            self.source_scheduler.check_run(conn, row)
         return row
 
     def ingest(self, event: TriggerInput, permit: LivePermit | None = None) -> EventReceipt:
@@ -443,6 +446,9 @@ class Engine:
         with self.transaction() as conn:
             row = self._run(conn, run_id)
             self.source_policies.check_run(conn, row)
+            claimed = self.source_scheduler.before_begin(conn, row)
+            if claimed is not None:
+                return claimed
             if row["status"] != "queued":
                 raise DomainError("RUN_NOT_QUEUED", "Run cannot start in its current state")
             if (
@@ -1510,6 +1516,7 @@ class Engine:
             self.routing.recover()
             self.knowledge.recover()
             self.tools.recover()
+            self.source_scheduler.recover_conn(conn)
             return {
                 "unknown_actions": len(unknown),
                 "paused_runs": len(paused),

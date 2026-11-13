@@ -58,6 +58,7 @@ from mgar_v3.super_agent.fast_path_api import register as register_source_fast_p
 from mgar_v3.super_agent.policy_api import register as register_source_policies
 from mgar_v3.super_agent.source_correlation_api import register as register_source_correlations
 from mgar_v3.super_agent.source_eval_api import register as register_source_eval
+from mgar_v3.super_agent.source_scheduler_api import register as register_source_scheduler
 from mgar_v3.super_agent.source_subscription_api import register as register_source_subscriptions
 from mgar_v3.web_access import (
     SESSION_COOKIE,
@@ -248,6 +249,7 @@ def create_app(
                 for run in authority.list_runs():
                     if (
                         run["status"] != "queued"
+                        or authority.source_scheduler.managed(run["run_id"])
                         or run["run_id"] in workers
                         or len(workers) >= configuration.max_concurrent_runs
                     ):
@@ -1284,6 +1286,7 @@ def create_app(
     register_source_eval(app, authority, browser_user)
     register_source_correlations(app, authority, browser_user)
     register_source_subscriptions(app, authority, browser_user)
+    register_source_scheduler(app, authority, browser_user)
     register(app, authority, authenticated)
     register_commerce(app, authority, authenticated)
     register_recovery(app, configuration, authority, authenticated)
