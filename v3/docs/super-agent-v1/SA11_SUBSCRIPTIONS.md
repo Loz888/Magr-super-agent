@@ -1,10 +1,10 @@
 # SA11 动态订阅与 Source Mailbox
 
-状态：IN_PROGRESS。固定Harness `d0af0747` 第35节确认的0042、七表、11路由和四文件
-接线已落地。首轮正式351项为309PASS/42FAIL，根因为共用canonical触发器的record
-字段解析，见[原始结果](../../evidence/SAV1-11/20261113T045454Z-6ade8d74/result.json)。
-原0042字节/checksum保留；[最小0043前向修复](sa11-proposal/0043_source_subscription_canonical_guard.sql)
-已备齐，等待新编号固定确认。此前309项不会作为修复复验重复执行。
+状态：IN_PROGRESS，本地工程已具备独立验收条件。固定Harness `d0af0747` 第35节的
+0042、七表、11路由和四文件接线已落地；`a9b02bfe` 第36节确认0043前向修复。
+当前41迁移，原40 SQL原字节保留。首轮351项309PASS/42FAIL，随后仅失败范围逐轮
+42→40→26→1复验，各新增2/14/25/1PASS，剩余0；没有重复原309或中途通过项。
+各版本与原始红灯见[交付报告](SA11_ACCEPTANCE_20261113.md)和[机器摘要](accept/SAV1-11/accept.json)。
 
 ## 输入、授权与原目标
 
@@ -33,7 +33,7 @@ revision；Source各lane拥有独立的引用消费游标，旧Mailbox/Run.input
 输入不成为新任务语义candidate。原SourceEval在reserve前与I01发送前仍重验该链，
 没有模型调用、账本重置或unknown重发。
 
-页面有引用/数量/字节上限，准备与ACK分开持久化。ACK重验页hash、游标、当前
+页面有引用/数量/字节上限，准备与ACK分开持久化。主人可对queued当前epoch处理引用元数据，原Run开始后epoch提升使旧页失效；回执不表示工具或约束已应用。ACK重验页hash、游标、当前
 Run/epoch、订阅head和每个输入事实。准备后撤权、编辑或过期会阻止旧ready页消费。
 新blocked页面可确认拒绝元数据，以免无效输入堵塞积压；确认不代表读取旧正文、
 执行指令或应用工具约束。只有当前授权的ready输入能短暂物化到内存，observer不能

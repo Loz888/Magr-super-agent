@@ -1,8 +1,8 @@
 # MAGR Super-Agent 落地任务书
 
-状态：**SAV1-00–SAV1-10 DONE（本地工程及用户接受的独立闭环）；SA11 IN_PROGRESS（首轮309PASS/42FAIL，0043最小前向修复待编号确认）；SA12–SA24 PLANNED**。更新：2026-11-13。
-SA10已由用户接受[独立原2项PASS及199历史证据核对](accept/SAV1-10/i01-independent-closure-20261113.json)，旧FAIL和分版本成绩保留；当前按用户授权推进SA11动态订阅、Mailbox与交回，首轮发现的SQL触发器错误正在修复。原任务状态/写者和Source撤权/TTL约束保持；全部真实/付费/外发/发布/长期门NOT_RUN。
-SA11固定d0af0747第35节确认的0042、七表、11接口和四文件接线已落地；fe8ecac首轮351项为309PASS/42FAIL，42项保存路径被同一canonical触发器错误阻断。原40迁移及失败记录保留，[0043具体修复请求](sa11-proposal/canonical-guard-repair-request.txt)已备齐待新编号固定确认；确认后仅复验原42失败，不重复309通过。见[阶段摘要](accept/SAV1-11/preparation-20261113.json)，SA12未启动。
+状态：**SAV1-00–SAV1-10 DONE（本地工程及用户接受的独立闭环）；SA11 IN_PROGRESS（本地工程已具备独立验收条件，独立NOT_RUN）；SA12–SA24 PLANNED**。更新：2026-11-13。
+SA10已由用户接受[独立原2项PASS及199历史证据核对](accept/SAV1-10/i01-independent-closure-20261113.json)，旧FAIL和分版本成绩保留；当前按用户授权推进SA11动态订阅、Mailbox与交回，首轮失败已按失败范围定向修复并留存各版本证据。原任务状态/写者和Source撤权/TTL约束保持；全部真实/付费/外发/发布/长期门NOT_RUN。
+SA11第35/36节固定确认已核对，0042/0043及七表、11接口和四文件接线正式落地，当前41checksum一致。首轮309PASS/42FAIL保留，修复仅复验失败范围42→40→26→1，各新增2/14/25/1PASS，剩余0；未重复已通过项，不称最终351全量PASS。候选ca49b76，见[工程交付](SA11_ACCEPTANCE_20261113.md)与[分版本摘要](accept/SAV1-11/accept.json)。SA11等待独立验收，SA12未启动。
 仓库基线：`973994c0e6c087c2968b3d91a3a6b9220e2c0892`；该提交新增 Harness 规划，
 应用功能基线仍为 `1d07285aa27ece9bae4ccbedc3a77ce2fbcbaf3a`。
 

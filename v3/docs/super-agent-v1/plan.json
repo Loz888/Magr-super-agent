@@ -334,12 +334,16 @@
       "optional": false,
       "card": "TASKS.md#sa11",
       "verification_target_on_implementation": "SAV1-11",
-      "work_state": "INITIAL351_309PASS42FAIL_FORWARD0043_PENDING_NUMBERING_ACK",
-      "engineering_gate": "FAIL",
+      "work_state": "LOCAL_ENGINEERING_READY_FOR_INDEPENDENT_REVIEW",
+      "engineering_gate": "PASS",
       "independent_review": "NOT_RUN",
       "dependency_closure": "accept/SAV1-10/i01-independent-closure-20261113.json",
       "ownership_commit": "d0af0747dd129033cb7bd0abd2af9ca5a57a8d4a",
-      "preparation": "accept/SAV1-11/preparation-20261113.json"
+      "preparation": "accept/SAV1-11/preparation-20261113.json",
+      "acceptance": "accept/SAV1-11/accept.json",
+      "forward_repair_ownership_commit": "a9b02bfe946f643d58b868ad3bcb4ad851aeec5e",
+      "source_commit": "ca49b760c2439147bb4555a335c975b69a878dbb",
+      "source_sha256": "f94ed73b645a6c06514b3c1f5811c9889f74467026150236ae04232313403f2e"
     },
     {
       "id": "SAV1-12",
