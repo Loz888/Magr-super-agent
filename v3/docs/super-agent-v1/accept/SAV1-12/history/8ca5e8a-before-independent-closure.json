@@ -1,0 +1,167 @@
+{
+  "schema_version": "super-agent-card-acceptance-v1",
+  "task_id": "SAV1-12",
+  "status": "IN_PROGRESS",
+  "work_state": "LOCAL_ENGINEERING_COMPLETE_WAITING_INDEPENDENT_REVIEW",
+  "recorded_at_utc": "2026-11-13T08:38:59.915204+00:00",
+  "source_commit": "6b48b7d6d5d4f60719a9d99928589bb019169024",
+  "source_sha256": "9171d59578c14b8c726cc884794666f8c7a57de2b2d3b1ab8fc97bf8bdf346dc",
+  "production_equivalence": "Final6b48b7d changes only failed Runtime test absence-probe plus current artifact hash relative to158fb51; all production src bytes unchanged",
+  "scope": [
+    "Original Engine same-connection Scheduler/queue/Session/Assignment/operation facts; single claim epoch and original Task/Mandate",
+    "Formal0044 seven tables;15 true routes (11Owner/4Worker); original SA07 queue/slot quotas",
+    "Fixed H03 independent Task directories and actual H04/H06 isolated Broker binding/start/inspect/stop",
+    "Real PG fairness/current Source/session/config/lease gates, independent claim processes, three Engine SIGKILL points and one actual heartbeat Worker SIGKILL resource stop"
+  ],
+  "ownership": {
+    "commit": "298d4c5c5123a5c26c34a9673d676516d1503f84",
+    "section": 37,
+    "sql_sha256": "7199a8020bd17ec069e0b18efc8c48fa3a63827cb83dafbde47fbad7bba07eb6",
+    "shared_patch_sha256": "7899c89d13c9d4533e2b5dda4e68a5f9c51a6e2834f7d33929587b9dbb9bc2cd",
+    "broker_patch_sha256": "ddc37d4eac382531f6822b128599d7e40a296da515595467bbc874468af764e1",
+    "broker_nonsemantic_formatting_followup": "docs/super-agent-v1/sa12-proposal/broker-formatting-followup.json",
+    "reserved_harness_migration": "0045_harness_github_delivery.sql"
+  },
+  "gates": {
+    "engineering_gate": "PASS_VERSIONED_EVIDENCE_CHAIN",
+    "policy_security_gate": "NOT_RUN_COMPLETE_SYSTEM",
+    "live_source_channel_gate": "NOT_RUN",
+    "live_coding_gate": "NOT_RUN",
+    "live_publication_gate": "NOT_RUN",
+    "continuous_operation_gate": "NOT_RUN"
+  },
+  "local_policy_negative_checks": "PASS within registered SA12 engineering scope; not full SA21/system security acceptance",
+  "registered_initial": {
+    "source_commit": "158fb51",
+    "source_sha256": "a41ac8b2047f1075b91f61f962784038b2715dde416f32c50357163f21a0fcf9",
+    "command": "make verify TASK=SAV1-12",
+    "counts": {
+      "tests": 421,
+      "passed": 416,
+      "failures": 5,
+      "errors": 0,
+      "skipped": 0
+    },
+    "new_SA12_tests": 252,
+    "direct_dependency_tests": 169,
+    "result": "evidence/SAV1-12/20261113T081623Z-c347df46/result.json",
+    "junit": "evidence/SAV1-12/20261113T081623Z-c347df46/junit.xml",
+    "log": "evidence/SAV1-12/20261113T081623Z-c347df46/command.log",
+    "result_unchanged": "FAIL_PRESERVED"
+  },
+  "repair_retest_rounds": [
+    {
+      "source_commit": "6b48b7d6d5d4f60719a9d99928589bb019169024",
+      "source_before": "9171d59578c14b8c726cc884794666f8c7a57de2b2d3b1ab8fc97bf8bdf346dc",
+      "source_after": "9171d59578c14b8c726cc884794666f8c7a57de2b2d3b1ab8fc97bf8bdf346dc",
+      "argv": [
+        "/home/imini/magr-super-agent/v3/.venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "tests/test_super_agent_sa12_runtime.py::test_real_h06_python_terminal_receipt_does_not_complete_original_run",
+        "tests/test_super_agent_sa12_runtime.py::test_command_deadline_rebuilds_empty_driver_cache_from_pg_and_original_metadata",
+        "tests/test_super_agent_sa12_runtime.py::test_actual_create_then_revocation_or_expiry_never_reaches_actual_start[committed-session-revoke]",
+        "tests/test_super_agent_sa12_runtime.py::test_actual_create_then_revocation_or_expiry_never_reaches_actual_start[slow-inspect-expiry]",
+        "tests/test_super_agent_sa12_runtime.py::test_sigkill_heartbeat_worker_real_lease_expiry_stops_container_before_slot_release",
+        "--junitxml=/home/imini/magr-super-agent/v3/evidence/super-agent-v1/SAV1-12/start-20261113T061235Z-20197e1e/20261113T083328Z-original5-failed-only-c64025/junit.xml"
+      ],
+      "exit_code": 0,
+      "counts": {
+        "tests": 5,
+        "passed": 5,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "commands": "evidence/super-agent-v1/SAV1-12/start-20261113T061235Z-20197e1e/20261113T083328Z-original5-failed-only-c64025/commands.json",
+      "junit": "evidence/super-agent-v1/SAV1-12/start-20261113T061235Z-20197e1e/20261113T083328Z-original5-failed-only-c64025/junit.xml",
+      "log": "evidence/super-agent-v1/SAV1-12/start-20261113T061235Z-20197e1e/20261113T083328Z-original5-failed-only-c64025/command.log",
+      "scope": "Exactly five originally failed Runtime nodes; no passed nodes repeated",
+      "repair": "Only formatted Docker inspect test query and stricter exact-name absence assertions; no production change"
+    }
+  ],
+  "remaining_original_failures": 0,
+  "latest_full_registered_rerun": "NOT_RUN_BY_USER_FAILED_ONLY_POLICY",
+  "historical_passes": "416 passes remain bound to158fb51; not a new latest-revision421PASS claim",
+  "static_checks": {
+    "initial_commit": "7b0c229",
+    "initial_lint": {
+      "status": "FAIL",
+      "commands": "evidence/super-agent-v1/SAV1-12/start-20261113T061235Z-20197e1e/20261113T080827Z-card-initial-lint-aef22f/commands.json",
+      "errors": 11,
+      "failed_files": 7
+    },
+    "initial_typecheck": {
+      "status": "FAIL",
+      "commands": "evidence/super-agent-v1/SAV1-12/start-20261113T061235Z-20197e1e/20261113T080827Z-card-initial-typecheck-9c784d/commands.json",
+      "failed_source_files": 1,
+      "source_files_checked": 260
+    },
+    "lint_failed_targets_only": {
+      "status": "PASS",
+      "commit": "158fb51",
+      "commands": "evidence/super-agent-v1/SAV1-12/start-20261113T061235Z-20197e1e/20261113T081507Z-lint-only-original7failedfiles-9740b1/commands.json"
+    },
+    "configured_strict_typecheck_failed_target_only": {
+      "status": "PASS",
+      "commit": "158fb51",
+      "commands": "evidence/super-agent-v1/SAV1-12/start-20261113T061235Z-20197e1e/20261113T081605Z-typecheck-originalfailedcore-explicit-project-config-d4ddae/commands.json"
+    },
+    "unqualified_mypy_diagnostic": "Preserved but not credited; see evidence/super-agent-v1/SAV1-12/start-20261113T061235Z-20197e1e/static-failed-only-repair/mypy-invocation-audit.json",
+    "after_test_probe_repair": "No passing static target was repeated"
+  },
+  "migration": {
+    "command": "make migrate",
+    "commands": "evidence/super-agent-v1/SAV1-12/start-20261113T061235Z-20197e1e/20261113T083538Z-apply-approved0044-fb6dc3/commands.json",
+    "only_applied": [
+      "0044_source_scheduler.sql"
+    ],
+    "old_migrations_unchanged": 41,
+    "current_installed_checksums": 42,
+    "seven_new_table_rows": 0,
+    "inventory": "evidence/super-agent-v1/SAV1-12/start-20261113T061235Z-20197e1e/final-inventory.json",
+    "0037_0040_0045_imported": false
+  },
+  "defaults": {
+    "configuration": null,
+    "worker_session": null,
+    "driver": null,
+    "supervisor_thread": null,
+    "automatic_run_creation": false,
+    "models": null,
+    "paid": false,
+    "outbound": false
+  },
+  "cleanup": {
+    "temporary_pg": 0,
+    "temporary_sessions": 0,
+    "SA12_owned_containers": 0,
+    "main_usage_calls": 0,
+    "main_router_calls": 0,
+    "main_shared_budget_calls": 0,
+    "original_user_file_unchanged": true,
+    "inventory": "evidence/super-agent-v1/SAV1-12/start-20261113T061235Z-20197e1e/final-inventory.json",
+    "scoped_test_actor_processes": 0,
+    "process_inventory": "evidence/super-agent-v1/SAV1-12/start-20261113T061235Z-20197e1e/final-scoped-process-inventory.json"
+  },
+  "known_limits": [
+    "Fixture resource profile only; Worker write grant and real Coding bridge remain SA13",
+    "No H12/CommandSession/H09 or Harness0037/0040/0045 import",
+    "Explicit in-process runtime/supervisor only; no default listener or long-running service",
+    "Single existing project; SA24 multi-tenant expansion not claimed",
+    "Complete semantic/platform/paid/publication/long-term/security gates NOT_RUN"
+  ],
+  "independent_review": "NOT_RUN",
+  "SA13": "PLANNED_NOT_STARTED",
+  "evidence_root": "evidence/super-agent-v1/SAV1-12/start-20261113T061235Z-20197e1e",
+  "read_only_integrity_audit": "evidence/super-agent-v1/SAV1-12/integrated-readonly-audit-20261113T082151Z-2a0b1e/integrated-artifact-audit.json",
+  "final_delivery_binding": "evidence/super-agent-v1/SAV1-12/final-delivery-readonly-20261113T084053Z-6af928/final-delivery-binding.json",
+  "artifact_binding": {
+    "manifests": 12,
+    "artifact_references": 248,
+    "match": true,
+    "production_files_identical_to_initial_runtime_candidate": 469,
+    "protected_SA11_independent_files_unchanged": 26
+  }
+}

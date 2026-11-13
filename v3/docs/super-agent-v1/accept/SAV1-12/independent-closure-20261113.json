@@ -1,0 +1,54 @@
+{
+  "task": "SAV1-12",
+  "status": "CLOSED_USER_ACCEPTED_LOCAL_ENGINEERING_INDEPENDENT_PASS",
+  "accepted_at_utc": "2026-11-13T09:25:27.687490+00:00",
+  "source_commit": "6b48b7d6d5d4f60719a9d99928589bb019169024",
+  "source_sha256": "9171d59578c14b8c726cc884794666f8c7a57de2b2d3b1ab8fc97bf8bdf346dc",
+  "review_head": "8ca5e8aa4719bc466448358d43ea89011f3bae6b",
+  "independent_result": "evidence/super-agent-v1/SAV1-12/independent-review-20261113T084934Z-c8510930/review-result.json",
+  "independent_report": "evidence/super-agent-v1/SAV1-12/independent-review-20261113T084934Z-c8510930/REPORT.md",
+  "verified_this_independent_review": {
+    "original5": {
+      "exit_code": 0,
+      "counts": {
+        "tests": 5,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "log": "/home/imini/magr-super-agent/v3/evidence/super-agent-v1/SAV1-12/independent-review-20261113T084934Z-c8510930/original5.log",
+      "junit": "/home/imini/magr-super-agent/v3/evidence/super-agent-v1/SAV1-12/independent-review-20261113T084934Z-c8510930/original5-junit.xml"
+    },
+    "boundary": {
+      "exit_code": 0,
+      "counts": {
+        "tests": 4,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "log": "/home/imini/magr-super-agent/v3/evidence/super-agent-v1/SAV1-12/independent-review-20261113T084934Z-c8510930/boundary.log",
+      "junit": "/home/imini/magr-super-agent/v3/evidence/super-agent-v1/SAV1-12/independent-review-20261113T084934Z-c8510930/boundary-junit.xml"
+    }
+  },
+  "initial421": "416PASS5FAIL preserved; original416 not rerun",
+  "artifact_binding": {
+    "installed_migrations": 42,
+    "artifact_references": 248,
+    "old41_migrations_unchanged": true
+  },
+  "read_only_closure_audit": "evidence/super-agent-v1/SAV1-13/sa12-closure-audit-20261113T091919Z-60812aa2/audit.json",
+  "source_unchanged_at_closure": true,
+  "historical_acceptance": "docs/super-agent-v1/accept/SAV1-12/history/8ca5e8a-before-independent-closure.json",
+  "gates": {
+    "engineering_gate": "PASS",
+    "policy_security_gate": "NOT_RUN",
+    "live_source_channel_gate": "NOT_RUN",
+    "live_coding_gate": "NOT_RUN",
+    "live_publication_gate": "NOT_RUN",
+    "continuous_operation_gate": "NOT_RUN",
+    "semantic_evaluation": "NOT_RUN"
+  },
+  "user_authorized_next_card": "SAV1-13",
+  "real_platform_paid_outbound_publication_continuous": "NOT_RUN"
+}

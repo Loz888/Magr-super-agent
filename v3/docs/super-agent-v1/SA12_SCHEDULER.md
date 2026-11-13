@@ -1,8 +1,8 @@
 # SA12：Scheduler、Assignment 与资源租约
 
-状态：IN_PROGRESS。共享范围已按 Harness 固定提交
+状态：DONE（本地工程及用户接受的独立闭环）。共享范围已按 Harness 固定提交
 `298d4c5c5123a5c26c34a9673d676516d1503f84` 第37节确认；本地首次正式检查与原失败定向复验已完成，见[交付记录](SA12_ACCEPTANCE_20261113.md)。
-本卡不启动 SA13，也不授权真实平台、模型付费、外发、发布或常驻运行。
+本卡独立关闭见[接受记录](accept/SAV1-12/independent-closure-20261113.json)；用户已另行授权启动SA13。本卡不授权真实平台、模型付费、外发、发布或常驻运行。
 
 原 Engine 的 advisory lock、互斥锁和同一 PG 连接仍是唯一业务写者。正式0044只增加
 配置版本、队列、Session、Assignment、操作和事件七类资源事实，复用原 Task/Run/Mandate

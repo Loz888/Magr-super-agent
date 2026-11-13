@@ -1,8 +1,8 @@
 {
   "schema_version": "super-agent-card-acceptance-v1",
   "task_id": "SAV1-12",
-  "status": "IN_PROGRESS",
-  "work_state": "LOCAL_ENGINEERING_COMPLETE_WAITING_INDEPENDENT_REVIEW",
+  "status": "DONE",
+  "work_state": "CLOSED_USER_ACCEPTED_LOCAL_ENGINEERING_INDEPENDENT_PASS",
   "recorded_at_utc": "2026-11-13T08:38:59.915204+00:00",
   "source_commit": "6b48b7d6d5d4f60719a9d99928589bb019169024",
   "source_sha256": "9171d59578c14b8c726cc884794666f8c7a57de2b2d3b1ab8fc97bf8bdf346dc",
@@ -23,7 +23,7 @@
     "reserved_harness_migration": "0045_harness_github_delivery.sql"
   },
   "gates": {
-    "engineering_gate": "PASS_VERSIONED_EVIDENCE_CHAIN",
+    "engineering_gate": "PASS_LOCAL_ENGINEERING_AND_USER_ACCEPTED_INDEPENDENT",
     "policy_security_gate": "NOT_RUN_COMPLETE_SYSTEM",
     "live_source_channel_gate": "NOT_RUN",
     "live_coding_gate": "NOT_RUN",
@@ -152,7 +152,7 @@
     "Single existing project; SA24 multi-tenant expansion not claimed",
     "Complete semantic/platform/paid/publication/long-term/security gates NOT_RUN"
   ],
-  "independent_review": "NOT_RUN",
+  "independent_review": "PASS_USER_ACCEPTED",
   "SA13": "PLANNED_NOT_STARTED",
   "evidence_root": "evidence/super-agent-v1/SAV1-12/start-20261113T061235Z-20197e1e",
   "read_only_integrity_audit": "evidence/super-agent-v1/SAV1-12/integrated-readonly-audit-20261113T082151Z-2a0b1e/integrated-artifact-audit.json",
@@ -163,5 +163,7 @@
     "match": true,
     "production_files_identical_to_initial_runtime_candidate": 469,
     "protected_SA11_independent_files_unchanged": 26
-  }
+  },
+  "independent_closure": "docs/super-agent-v1/accept/SAV1-12/independent-closure-20261113.json",
+  "accepted_at_utc": "2026-11-13T09:25:27.687490+00:00"
 }

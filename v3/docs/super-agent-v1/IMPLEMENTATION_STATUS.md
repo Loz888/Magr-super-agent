@@ -1,3 +1,11 @@
+# SA12 独立闭环，按用户授权启动 SA13
+
+SA12固定6b48b7d/9171d595原五真实资源独立5PASS、新增四PG组合边界4PASS，42checksum/248refs、保护材料与无残留证据绑定已核对，用户已接受关闭。原421=416PASS5FAIL及后续定向成绩保留，未重跑原416或已通过静态目标。见[独立关闭](accept/SAV1-12/independent-closure-20261113.json)。
+
+SA13为IN_PROGRESS，先核对H11/H12固定交付及当前能力门，准备原Mandate到受管Assignment/Workspace/Broker/Verifier的版本化接线。H12工程恢复或模型连通成绩不等于真实Coding/MVP放行；旧调查只读grant与旧API不自动升级。任何新增共享Engine/API/schema/预算范围先备齐具体SQL/补丁并按AGENTS协调。SA14–24仍PLANNED；真实平台、付费、外发、发布、真实Coding及长期门保持NOT_RUN。
+
+以下为历史记录。
+
 # SA12 本地工程完成，等待独立验收
 
 候选 `6b48b7d6d5d4f60719a9d99928589bb019169024`，源码 SHA256 `9171d59578c14b8c726cc884794666f8c7a57de2b2d3b1ab8fc97bf8bdf346dc`。SA12 保持 IN_PROGRESS；SA13 未启动。
