@@ -1216,6 +1216,9 @@ class SourceIngress:
                         for o in observations
                     ),
                 )
+                source_subscriptions = getattr(self.engine, "source_subscriptions", None)
+                if source_subscriptions is not None and source_subscriptions._ready(conn):
+                    source_subscriptions.accepted_conn(conn, identifier, receipt_id=receipt_id)
                 fast_path = getattr(self.engine, "fast_path", None)
                 if fast_path is not None and fast_path._ready(conn):
                     canonical = conn.execute(

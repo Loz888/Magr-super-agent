@@ -273,6 +273,10 @@ class FastPath:
                           purpose_key=digest([result["topic_key"], intent.control_action,
                                               str(intent.ticket_id)]))
             return result
+        source_subscriptions = getattr(self.engine, "source_subscriptions", None)
+        if (source_subscriptions is not None and source_subscriptions._ready(conn)
+                and source_subscriptions.handled(conn, row)):
+            return context("FAST_PATH_SUBSCRIPTION_ROUTED")
         if self._own_result(conn, item, clear):
             return {**result, "reason_code": "FAST_PATH_OWN_RESULT"}
         if not grant["model_input"]:

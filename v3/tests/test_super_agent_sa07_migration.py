@@ -113,6 +113,7 @@ def test_35_to_36_preserves_known_unknown_original_fees_and_checksums(
         assert migrate(dsn) == [
             MIGRATION, "0038_super_agent_fast_path.sql", "0039_super_agent_source_eval.sql",
             "0041_source_correlations.sql",
+            "0042_source_subscriptions.sql",
         ]
         assert migrate(dsn) == []
         assert financial_snapshot(dsn) == original

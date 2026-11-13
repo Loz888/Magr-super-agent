@@ -1,0 +1,362 @@
+{
+  "$defs": {
+    "ResourceRef": {
+      "additionalProperties": false,
+      "description": "A verified owner's resource, never a resource guessed from a chat title.",
+      "properties": {
+        "project_id": {
+          "maxLength": 100,
+          "minLength": 1,
+          "title": "Project Id",
+          "type": "string"
+        },
+        "scope": {
+          "$ref": "#/$defs/SourceScope"
+        },
+        "repository_id": {
+          "maximum": 9223372036854775807,
+          "minimum": 1,
+          "title": "Repository Id",
+          "type": "integer"
+        },
+        "repository": {
+          "pattern": "^[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+$",
+          "title": "Repository",
+          "type": "string"
+        },
+        "kind": {
+          "enum": [
+            "issue",
+            "pull_request",
+            "workflow_run",
+            "check_run",
+            "check_suite"
+          ],
+          "title": "Kind",
+          "type": "string"
+        },
+        "resource_id": {
+          "pattern": "^[1-9][0-9]{0,18}$",
+          "title": "Resource Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "project_id",
+        "scope",
+        "repository_id",
+        "repository",
+        "kind",
+        "resource_id"
+      ],
+      "title": "ResourceRef",
+      "type": "object"
+    },
+    "SourceScope": {
+      "additionalProperties": false,
+      "properties": {
+        "source_kind": {
+          "pattern": "^[a-z][a-z0-9_]{0,31}$",
+          "title": "Source Kind",
+          "type": "string"
+        },
+        "source_instance_id": {
+          "format": "uuid",
+          "title": "Source Instance Id",
+          "type": "string"
+        },
+        "tenant_id": {
+          "maxLength": 256,
+          "minLength": 1,
+          "title": "Tenant Id",
+          "type": "string"
+        },
+        "installation_id": {
+          "maxLength": 256,
+          "minLength": 1,
+          "title": "Installation Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "source_kind",
+        "source_instance_id",
+        "tenant_id",
+        "installation_id"
+      ],
+      "title": "SourceScope",
+      "type": "object"
+    },
+    "SubscriptionAnchor": {
+      "additionalProperties": false,
+      "description": "A new owner-reviewed routing selector, not an everlasting readable seed.",
+      "properties": {
+        "source_instance_id": {
+          "format": "uuid",
+          "title": "Source Instance Id",
+          "type": "string"
+        },
+        "scope_sha256": {
+          "pattern": "^[a-f0-9]{64}$",
+          "title": "Scope Sha256",
+          "type": "string"
+        },
+        "conversation_sha256": {
+          "pattern": "^[a-f0-9]{64}$",
+          "title": "Conversation Sha256",
+          "type": "string"
+        },
+        "topic_sha256": {
+          "anyOf": [
+            {
+              "pattern": "^[a-f0-9]{64}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Topic Sha256"
+        },
+        "resource_key": {
+          "pattern": "^[a-f0-9]{64}$",
+          "title": "Resource Key",
+          "type": "string"
+        },
+        "resource": {
+          "$ref": "#/$defs/ResourceRef"
+        },
+        "correlation_id": {
+          "format": "uuid",
+          "title": "Correlation Id",
+          "type": "string"
+        },
+        "correlation_revision": {
+          "maximum": 9223372036854775807,
+          "minimum": 1,
+          "title": "Correlation Revision",
+          "type": "integer"
+        },
+        "selector_kind": {
+          "enum": [
+            "resource",
+            "native_topic",
+            "reply_chain"
+          ],
+          "title": "Selector Kind",
+          "type": "string"
+        },
+        "seed_input_id": {
+          "format": "uuid",
+          "title": "Seed Input Id",
+          "type": "string"
+        },
+        "seed_version_fingerprint": {
+          "pattern": "^[a-f0-9]{64}$",
+          "title": "Seed Version Fingerprint",
+          "type": "string"
+        },
+        "seed_entity_sha256": {
+          "pattern": "^[a-f0-9]{64}$",
+          "title": "Seed Entity Sha256",
+          "type": "string"
+        },
+        "source_revision": {
+          "maximum": 9223372036854775807,
+          "minimum": 1,
+          "title": "Source Revision",
+          "type": "integer"
+        },
+        "generation": {
+          "maximum": 9223372036854775807,
+          "minimum": 1,
+          "title": "Generation",
+          "type": "integer"
+        },
+        "policy_id": {
+          "format": "uuid",
+          "title": "Policy Id",
+          "type": "string"
+        },
+        "policy_revision": {
+          "maximum": 9223372036854775807,
+          "minimum": 1,
+          "title": "Policy Revision",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "source_instance_id",
+        "scope_sha256",
+        "conversation_sha256",
+        "resource_key",
+        "resource",
+        "correlation_id",
+        "correlation_revision",
+        "selector_kind",
+        "seed_input_id",
+        "seed_version_fingerprint",
+        "seed_entity_sha256",
+        "source_revision",
+        "generation",
+        "policy_id",
+        "policy_revision"
+      ],
+      "title": "SubscriptionAnchor",
+      "type": "object"
+    },
+    "TargetRef": {
+      "additionalProperties": false,
+      "properties": {
+        "ticket_id": {
+          "format": "uuid",
+          "title": "Ticket Id",
+          "type": "string"
+        },
+        "run_id": {
+          "format": "uuid",
+          "title": "Run Id",
+          "type": "string"
+        },
+        "thread_id": {
+          "format": "uuid",
+          "title": "Thread Id",
+          "type": "string"
+        },
+        "thread_revision": {
+          "maximum": 9223372036854775807,
+          "minimum": 0,
+          "title": "Thread Revision",
+          "type": "integer"
+        },
+        "execution_epoch": {
+          "maximum": 9223372036854775807,
+          "minimum": 0,
+          "title": "Execution Epoch",
+          "type": "integer"
+        },
+        "mandate_id": {
+          "format": "uuid",
+          "title": "Mandate Id",
+          "type": "string"
+        },
+        "mandate_sha256": {
+          "pattern": "^[a-f0-9]{64}$",
+          "title": "Mandate Sha256",
+          "type": "string"
+        },
+        "project_id": {
+          "maxLength": 100,
+          "minLength": 1,
+          "title": "Project Id",
+          "type": "string"
+        },
+        "repository": {
+          "pattern": "^[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+$",
+          "title": "Repository",
+          "type": "string"
+        },
+        "allowed": {
+          "title": "Allowed",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "ticket_id",
+        "run_id",
+        "thread_id",
+        "thread_revision",
+        "execution_epoch",
+        "mandate_id",
+        "mandate_sha256",
+        "project_id",
+        "repository",
+        "allowed"
+      ],
+      "title": "TargetRef",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": "source-subscription-v1",
+      "default": "source-subscription-v1",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "subscription_id": {
+      "format": "uuid",
+      "title": "Subscription Id",
+      "type": "string"
+    },
+    "project_id": {
+      "maxLength": 100,
+      "minLength": 1,
+      "title": "Project Id",
+      "type": "string"
+    },
+    "revision": {
+      "maximum": 9223372036854775807,
+      "minimum": 1,
+      "title": "Revision",
+      "type": "integer"
+    },
+    "anchor": {
+      "$ref": "#/$defs/SubscriptionAnchor"
+    },
+    "target": {
+      "$ref": "#/$defs/TargetRef"
+    },
+    "role": {
+      "enum": [
+        "primary",
+        "context_only",
+        "observer"
+      ],
+      "title": "Role",
+      "type": "string"
+    },
+    "state": {
+      "enum": [
+        "active",
+        "unsubscribed",
+        "handed_back",
+        "expired",
+        "fenced"
+      ],
+      "title": "State",
+      "type": "string"
+    },
+    "authority_sha256": {
+      "pattern": "^[a-f0-9]{64}$",
+      "title": "Authority Sha256",
+      "type": "string"
+    },
+    "valid_from": {
+      "format": "date-time",
+      "title": "Valid From",
+      "type": "string"
+    },
+    "expires_at": {
+      "format": "date-time",
+      "title": "Expires At",
+      "type": "string"
+    }
+  },
+  "required": [
+    "subscription_id",
+    "project_id",
+    "revision",
+    "anchor",
+    "target",
+    "role",
+    "state",
+    "authority_sha256",
+    "valid_from",
+    "expires_at"
+  ],
+  "title": "SourceSubscription",
+  "type": "object"
+}

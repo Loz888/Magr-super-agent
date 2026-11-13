@@ -1,0 +1,142 @@
+{
+  "$defs": {
+    "CorrelationInputRef": {
+      "additionalProperties": false,
+      "properties": {
+        "input_id": {
+          "format": "uuid",
+          "title": "Input Id",
+          "type": "string"
+        },
+        "source_instance_id": {
+          "format": "uuid",
+          "title": "Source Instance Id",
+          "type": "string"
+        },
+        "project_id": {
+          "maxLength": 100,
+          "minLength": 1,
+          "title": "Project Id",
+          "type": "string"
+        },
+        "version_fingerprint": {
+          "pattern": "^[a-f0-9]{64}$",
+          "title": "Version Fingerprint",
+          "type": "string"
+        },
+        "state_sha256": {
+          "pattern": "^[a-f0-9]{64}$",
+          "title": "State Sha256",
+          "type": "string"
+        }
+      },
+      "required": [
+        "input_id",
+        "source_instance_id",
+        "project_id",
+        "version_fingerprint",
+        "state_sha256"
+      ],
+      "title": "CorrelationInputRef",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "delivery_id": {
+      "format": "uuid",
+      "title": "Delivery Id",
+      "type": "string"
+    },
+    "subscription_id": {
+      "format": "uuid",
+      "title": "Subscription Id",
+      "type": "string"
+    },
+    "subscription_revision": {
+      "maximum": 9223372036854775807,
+      "minimum": 1,
+      "title": "Subscription Revision",
+      "type": "integer"
+    },
+    "project_id": {
+      "maxLength": 100,
+      "minLength": 1,
+      "title": "Project Id",
+      "type": "string"
+    },
+    "run_id": {
+      "format": "uuid",
+      "title": "Run Id",
+      "type": "string"
+    },
+    "sequence": {
+      "maximum": 9223372036854775807,
+      "minimum": 1,
+      "title": "Sequence",
+      "type": "integer"
+    },
+    "input": {
+      "$ref": "#/$defs/CorrelationInputRef"
+    },
+    "unit_key": {
+      "pattern": "^[a-f0-9]{64}$",
+      "title": "Unit Key",
+      "type": "string"
+    },
+    "lane": {
+      "enum": [
+        "primary",
+        "context_only",
+        "observer"
+      ],
+      "title": "Lane",
+      "type": "string"
+    },
+    "purpose": {
+      "enum": [
+        "context",
+        "directive_proposal",
+        "observer",
+        "status_query"
+      ],
+      "title": "Purpose",
+      "type": "string"
+    },
+    "disposition": {
+      "enum": [
+        "ready",
+        "blocked"
+      ],
+      "title": "Disposition",
+      "type": "string"
+    },
+    "reason_code": {
+      "pattern": "^[A-Z0-9_]{1,100}$",
+      "title": "Reason Code",
+      "type": "string"
+    },
+    "expires_at": {
+      "format": "date-time",
+      "title": "Expires At",
+      "type": "string"
+    }
+  },
+  "required": [
+    "delivery_id",
+    "subscription_id",
+    "subscription_revision",
+    "project_id",
+    "run_id",
+    "sequence",
+    "input",
+    "unit_key",
+    "lane",
+    "purpose",
+    "disposition",
+    "reason_code",
+    "expires_at"
+  ],
+  "title": "SourceDeliveryRef",
+  "type": "object"
+}

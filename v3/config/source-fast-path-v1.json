@@ -19,7 +19,7 @@
     },
     {
       "path": "src/mgar_v3/super_agent/fast_path.py",
-      "sha256": "423a2222f024a8baf32b9cddea56d3b2d532b77e8d518091e256b6d26be89919"
+      "sha256": "4a8ea9ed9afc54e6a40a7e49eca8a1ac15f33035781273b71cd4e4251bbbf8b6"
     },
     {
       "path": "src/mgar_v3/super_agent/fast_path_domain.py",
@@ -55,7 +55,7 @@
     },
     {
       "path": "tests/test_super_agent_sa08_migration.py",
-      "sha256": "a746df82e206c6f52f8a1b0e88ea628f79f8278fca824e8c8dbdc4dd36eb4f2d"
+      "sha256": "57479aaa621213287dfd36dbf217f13f8bb03e2d3eb1f0824c16b5a3bbb257ed"
     },
     {
       "path": "tests/sa08_support.py",

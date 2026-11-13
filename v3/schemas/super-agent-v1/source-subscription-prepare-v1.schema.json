@@ -1,0 +1,47 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "epoch": {
+      "maximum": 9223372036854775807,
+      "minimum": 0,
+      "title": "Epoch",
+      "type": "integer"
+    },
+    "expected_cursor": {
+      "maximum": 9223372036854775807,
+      "minimum": 0,
+      "title": "Expected Cursor",
+      "type": "integer"
+    },
+    "lane": {
+      "enum": [
+        "primary",
+        "context_only",
+        "observer"
+      ],
+      "title": "Lane",
+      "type": "string"
+    },
+    "limit": {
+      "default": 16,
+      "maximum": 16,
+      "minimum": 1,
+      "title": "Limit",
+      "type": "integer"
+    },
+    "max_bytes": {
+      "default": 65536,
+      "maximum": 65536,
+      "minimum": 1,
+      "title": "Max Bytes",
+      "type": "integer"
+    }
+  },
+  "required": [
+    "epoch",
+    "expected_cursor",
+    "lane"
+  ],
+  "title": "SubscriptionPrepareRequest",
+  "type": "object"
+}

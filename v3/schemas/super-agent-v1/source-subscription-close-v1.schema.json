@@ -1,0 +1,29 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "expected_revision": {
+      "maximum": 9223372036854775807,
+      "minimum": 1,
+      "title": "Expected Revision",
+      "type": "integer"
+    },
+    "snapshot_sha256": {
+      "pattern": "^[a-f0-9]{64}$",
+      "title": "Snapshot Sha256",
+      "type": "string"
+    },
+    "review_ref": {
+      "maxLength": 256,
+      "minLength": 1,
+      "title": "Review Ref",
+      "type": "string"
+    }
+  },
+  "required": [
+    "expected_revision",
+    "snapshot_sha256",
+    "review_ref"
+  ],
+  "title": "SubscriptionCloseRequest",
+  "type": "object"
+}

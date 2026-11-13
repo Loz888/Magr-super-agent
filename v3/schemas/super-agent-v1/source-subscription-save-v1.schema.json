@@ -1,0 +1,158 @@
+{
+  "$defs": {
+    "TargetRef": {
+      "additionalProperties": false,
+      "properties": {
+        "ticket_id": {
+          "format": "uuid",
+          "title": "Ticket Id",
+          "type": "string"
+        },
+        "run_id": {
+          "format": "uuid",
+          "title": "Run Id",
+          "type": "string"
+        },
+        "thread_id": {
+          "format": "uuid",
+          "title": "Thread Id",
+          "type": "string"
+        },
+        "thread_revision": {
+          "maximum": 9223372036854775807,
+          "minimum": 0,
+          "title": "Thread Revision",
+          "type": "integer"
+        },
+        "execution_epoch": {
+          "maximum": 9223372036854775807,
+          "minimum": 0,
+          "title": "Execution Epoch",
+          "type": "integer"
+        },
+        "mandate_id": {
+          "format": "uuid",
+          "title": "Mandate Id",
+          "type": "string"
+        },
+        "mandate_sha256": {
+          "pattern": "^[a-f0-9]{64}$",
+          "title": "Mandate Sha256",
+          "type": "string"
+        },
+        "project_id": {
+          "maxLength": 100,
+          "minLength": 1,
+          "title": "Project Id",
+          "type": "string"
+        },
+        "repository": {
+          "pattern": "^[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+$",
+          "title": "Repository",
+          "type": "string"
+        },
+        "allowed": {
+          "title": "Allowed",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "ticket_id",
+        "run_id",
+        "thread_id",
+        "thread_revision",
+        "execution_epoch",
+        "mandate_id",
+        "mandate_sha256",
+        "project_id",
+        "repository",
+        "allowed"
+      ],
+      "title": "TargetRef",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "correlation_id": {
+      "format": "uuid",
+      "title": "Correlation Id",
+      "type": "string"
+    },
+    "expected_correlation_revision": {
+      "maximum": 9223372036854775807,
+      "minimum": 1,
+      "title": "Expected Correlation Revision",
+      "type": "integer"
+    },
+    "seed_input_id": {
+      "format": "uuid",
+      "title": "Seed Input Id",
+      "type": "string"
+    },
+    "resource_key": {
+      "pattern": "^[a-f0-9]{64}$",
+      "title": "Resource Key",
+      "type": "string"
+    },
+    "target": {
+      "$ref": "#/$defs/TargetRef"
+    },
+    "role": {
+      "enum": [
+        "primary",
+        "context_only",
+        "observer"
+      ],
+      "title": "Role",
+      "type": "string"
+    },
+    "selector_kind": {
+      "enum": [
+        "resource",
+        "native_topic",
+        "reply_chain"
+      ],
+      "title": "Selector Kind",
+      "type": "string"
+    },
+    "ttl_seconds": {
+      "default": 3600,
+      "maximum": 604800,
+      "minimum": 1,
+      "title": "Ttl Seconds",
+      "type": "integer"
+    },
+    "snapshot_sha256": {
+      "pattern": "^[a-f0-9]{64}$",
+      "title": "Snapshot Sha256",
+      "type": "string"
+    },
+    "expected_revision": {
+      "default": 0,
+      "maximum": 9223372036854775807,
+      "minimum": 0,
+      "title": "Expected Revision",
+      "type": "integer"
+    },
+    "review_ref": {
+      "maxLength": 256,
+      "minLength": 1,
+      "title": "Review Ref",
+      "type": "string"
+    }
+  },
+  "required": [
+    "correlation_id",
+    "expected_correlation_revision",
+    "seed_input_id",
+    "resource_key",
+    "target",
+    "role",
+    "selector_kind",
+    "snapshot_sha256",
+    "review_ref"
+  ],
+  "title": "SubscriptionSaveRequest",
+  "type": "object"
+}

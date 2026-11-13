@@ -1,0 +1,94 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "eligible_for_execution": {
+      "const": false,
+      "default": false,
+      "title": "Eligible For Execution",
+      "type": "boolean"
+    },
+    "calls_model": {
+      "const": false,
+      "default": false,
+      "title": "Calls Model",
+      "type": "boolean"
+    },
+    "external_writes": {
+      "const": 0,
+      "default": 0,
+      "title": "External Writes",
+      "type": "integer"
+    },
+    "subscription_id": {
+      "format": "uuid",
+      "title": "Subscription Id",
+      "type": "string"
+    },
+    "subscription_revision": {
+      "maximum": 9223372036854775807,
+      "minimum": 1,
+      "title": "Subscription Revision",
+      "type": "integer"
+    },
+    "input_id": {
+      "format": "uuid",
+      "title": "Input Id",
+      "type": "string"
+    },
+    "unit_key": {
+      "pattern": "^[a-f0-9]{64}$",
+      "title": "Unit Key",
+      "type": "string"
+    },
+    "outcome": {
+      "enum": [
+        "deliver_ref",
+        "observe_ref",
+        "would_deliver",
+        "no_match",
+        "ambiguous",
+        "blocked",
+        "closed_followup",
+        "needs_explicit_rebind"
+      ],
+      "title": "Outcome",
+      "type": "string"
+    },
+    "lane": {
+      "enum": [
+        "primary",
+        "context_only",
+        "observer"
+      ],
+      "title": "Lane",
+      "type": "string"
+    },
+    "purpose": {
+      "enum": [
+        "context",
+        "directive_proposal",
+        "observer",
+        "status_query"
+      ],
+      "title": "Purpose",
+      "type": "string"
+    },
+    "reason_code": {
+      "pattern": "^[A-Z0-9_]{1,100}$",
+      "title": "Reason Code",
+      "type": "string"
+    }
+  },
+  "required": [
+    "subscription_id",
+    "subscription_revision",
+    "input_id",
+    "unit_key",
+    "outcome",
+    "lane",
+    "purpose",
+    "reason_code"
+  ],
+  "title": "SubscriptionDecision",
+  "type": "object"
+}

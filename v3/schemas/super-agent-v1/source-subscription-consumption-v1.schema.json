@@ -1,0 +1,99 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "eligible_for_execution": {
+      "const": false,
+      "default": false,
+      "title": "Eligible For Execution",
+      "type": "boolean"
+    },
+    "calls_model": {
+      "const": false,
+      "default": false,
+      "title": "Calls Model",
+      "type": "boolean"
+    },
+    "external_writes": {
+      "const": 0,
+      "default": 0,
+      "title": "External Writes",
+      "type": "integer"
+    },
+    "receipt_id": {
+      "format": "uuid",
+      "title": "Receipt Id",
+      "type": "string"
+    },
+    "snapshot_id": {
+      "format": "uuid",
+      "title": "Snapshot Id",
+      "type": "string"
+    },
+    "snapshot_sha256": {
+      "pattern": "^[a-f0-9]{64}$",
+      "title": "Snapshot Sha256",
+      "type": "string"
+    },
+    "run_id": {
+      "format": "uuid",
+      "title": "Run Id",
+      "type": "string"
+    },
+    "epoch": {
+      "maximum": 9223372036854775807,
+      "minimum": 0,
+      "title": "Epoch",
+      "type": "integer"
+    },
+    "lane": {
+      "enum": [
+        "primary",
+        "context_only",
+        "observer"
+      ],
+      "title": "Lane",
+      "type": "string"
+    },
+    "from_cursor": {
+      "maximum": 9223372036854775807,
+      "minimum": 0,
+      "title": "From Cursor",
+      "type": "integer"
+    },
+    "through_cursor": {
+      "maximum": 9223372036854775807,
+      "minimum": 1,
+      "title": "Through Cursor",
+      "type": "integer"
+    },
+    "delivery_ids": {
+      "items": {
+        "format": "uuid",
+        "type": "string"
+      },
+      "maxItems": 16,
+      "minItems": 1,
+      "title": "Delivery Ids",
+      "type": "array"
+    },
+    "status": {
+      "const": "acknowledged_refs",
+      "default": "acknowledged_refs",
+      "title": "Status",
+      "type": "string"
+    }
+  },
+  "required": [
+    "receipt_id",
+    "snapshot_id",
+    "snapshot_sha256",
+    "run_id",
+    "epoch",
+    "lane",
+    "from_cursor",
+    "through_cursor",
+    "delivery_ids"
+  ],
+  "title": "SourceConsumptionReceipt",
+  "type": "object"
+}

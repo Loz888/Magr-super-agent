@@ -38,6 +38,7 @@ from mgar_v3.super_agent.fast_path import FastPath
 from mgar_v3.super_agent.policy import SourcePolicies
 from mgar_v3.super_agent.source_correlation import SourceCorrelations
 from mgar_v3.super_agent.source_eval import SourceEval
+from mgar_v3.super_agent.source_subscription import SourceSubscriptions
 
 TModel = TypeVar("TModel", bound=Model)
 Row = dict[str, Any]
@@ -83,6 +84,7 @@ class Engine:
         self.fast_path = FastPath(self)
         self.source_eval = SourceEval(self)
         self.source_correlations = SourceCorrelations(self)
+        self.source_subscriptions = SourceSubscriptions(self)
 
     def close(self) -> None:
         with self._mutex:

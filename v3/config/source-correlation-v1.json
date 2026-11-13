@@ -81,7 +81,7 @@
     },
     {
       "path": "tests/test_super_agent_sa10_migration.py",
-      "sha256": "dd96781e4a0ba15ac2383cdb2b46e9482b6f9c27081befa37631a9f3a70dcfdd"
+      "sha256": "3e05653e043323c6404a4ac1bf4baed7198f2d78ee7249fb7fb62cf5c6e02c2b"
     },
     {
       "path": "schemas/super-agent-v1/source-correlation-resource-v1.schema.json",
@@ -129,7 +129,7 @@
     },
     {
       "path": "config/verification.json",
-      "sha256": "771fedeec10a713a37b7ae92aaedb5da94b3e04e69fc834318991e938b74745c"
+      "sha256": "0472b59ceb32e13b767a843c584ae7a0bd6a89da8197dd6c2ddc7e883a21a22c"
     },
     {
       "path": "migrations/0041_source_correlations.sql",
@@ -137,11 +137,11 @@
     },
     {
       "path": "src/mgar_v3/coordination/engine.py",
-      "sha256": "5a75bda801b9b8a87899042e141843ec9eee28fc71e88eb938347847e6150b45"
+      "sha256": "31a4f89a0f7308661648aa4910e9686568eed1176fb0b4990fed9df90b12d88d"
     },
     {
       "path": "src/mgar_v3/api.py",
-      "sha256": "63efc74cdebebfdb16e6ae36dc3d5aafdc8c75aeff1330f548ed5e11425ebe7c"
+      "sha256": "dee01b4b0261996c93f82743513cfbdebeb818ead0f986398d7e08c69a640c99"
     }
   ],
   "baseline_before_formal_integration": "e9ee378c1977cdb4feaea29bda2d00e3f6c891ca"

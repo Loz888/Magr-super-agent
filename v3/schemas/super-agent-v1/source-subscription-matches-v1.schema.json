@@ -1,0 +1,48 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "eligible_for_execution": {
+      "const": false,
+      "default": false,
+      "title": "Eligible For Execution",
+      "type": "boolean"
+    },
+    "calls_model": {
+      "const": false,
+      "default": false,
+      "title": "Calls Model",
+      "type": "boolean"
+    },
+    "external_writes": {
+      "const": 0,
+      "default": 0,
+      "title": "External Writes",
+      "type": "integer"
+    },
+    "subscription_ids": {
+      "items": {
+        "format": "uuid",
+        "type": "string"
+      },
+      "maxItems": 64,
+      "title": "Subscription Ids",
+      "type": "array"
+    },
+    "ambiguous": {
+      "title": "Ambiguous",
+      "type": "boolean"
+    },
+    "reason_code": {
+      "pattern": "^[A-Z0-9_]{1,100}$",
+      "title": "Reason Code",
+      "type": "string"
+    }
+  },
+  "required": [
+    "subscription_ids",
+    "ambiguous",
+    "reason_code"
+  ],
+  "title": "SubscriptionMatches",
+  "type": "object"
+}

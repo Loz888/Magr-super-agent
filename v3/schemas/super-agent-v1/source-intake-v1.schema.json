@@ -1,0 +1,267 @@
+{
+  "$defs": {
+    "CorrelationInputRef": {
+      "additionalProperties": false,
+      "properties": {
+        "input_id": {
+          "format": "uuid",
+          "title": "Input Id",
+          "type": "string"
+        },
+        "source_instance_id": {
+          "format": "uuid",
+          "title": "Source Instance Id",
+          "type": "string"
+        },
+        "project_id": {
+          "maxLength": 100,
+          "minLength": 1,
+          "title": "Project Id",
+          "type": "string"
+        },
+        "version_fingerprint": {
+          "pattern": "^[a-f0-9]{64}$",
+          "title": "Version Fingerprint",
+          "type": "string"
+        },
+        "state_sha256": {
+          "pattern": "^[a-f0-9]{64}$",
+          "title": "State Sha256",
+          "type": "string"
+        }
+      },
+      "required": [
+        "input_id",
+        "source_instance_id",
+        "project_id",
+        "version_fingerprint",
+        "state_sha256"
+      ],
+      "title": "CorrelationInputRef",
+      "type": "object"
+    },
+    "SourceDeliveryRef": {
+      "additionalProperties": false,
+      "properties": {
+        "delivery_id": {
+          "format": "uuid",
+          "title": "Delivery Id",
+          "type": "string"
+        },
+        "subscription_id": {
+          "format": "uuid",
+          "title": "Subscription Id",
+          "type": "string"
+        },
+        "subscription_revision": {
+          "maximum": 9223372036854775807,
+          "minimum": 1,
+          "title": "Subscription Revision",
+          "type": "integer"
+        },
+        "project_id": {
+          "maxLength": 100,
+          "minLength": 1,
+          "title": "Project Id",
+          "type": "string"
+        },
+        "run_id": {
+          "format": "uuid",
+          "title": "Run Id",
+          "type": "string"
+        },
+        "sequence": {
+          "maximum": 9223372036854775807,
+          "minimum": 1,
+          "title": "Sequence",
+          "type": "integer"
+        },
+        "input": {
+          "$ref": "#/$defs/CorrelationInputRef"
+        },
+        "unit_key": {
+          "pattern": "^[a-f0-9]{64}$",
+          "title": "Unit Key",
+          "type": "string"
+        },
+        "lane": {
+          "enum": [
+            "primary",
+            "context_only",
+            "observer"
+          ],
+          "title": "Lane",
+          "type": "string"
+        },
+        "purpose": {
+          "enum": [
+            "context",
+            "directive_proposal",
+            "observer",
+            "status_query"
+          ],
+          "title": "Purpose",
+          "type": "string"
+        },
+        "disposition": {
+          "enum": [
+            "ready",
+            "blocked"
+          ],
+          "title": "Disposition",
+          "type": "string"
+        },
+        "reason_code": {
+          "pattern": "^[A-Z0-9_]{1,100}$",
+          "title": "Reason Code",
+          "type": "string"
+        },
+        "expires_at": {
+          "format": "date-time",
+          "title": "Expires At",
+          "type": "string"
+        }
+      },
+      "required": [
+        "delivery_id",
+        "subscription_id",
+        "subscription_revision",
+        "project_id",
+        "run_id",
+        "sequence",
+        "input",
+        "unit_key",
+        "lane",
+        "purpose",
+        "disposition",
+        "reason_code",
+        "expires_at"
+      ],
+      "title": "SourceDeliveryRef",
+      "type": "object"
+    },
+    "SubscriptionHeadRef": {
+      "additionalProperties": false,
+      "properties": {
+        "subscription_id": {
+          "format": "uuid",
+          "title": "Subscription Id",
+          "type": "string"
+        },
+        "revision": {
+          "maximum": 9223372036854775807,
+          "minimum": 1,
+          "title": "Revision",
+          "type": "integer"
+        },
+        "authority_sha256": {
+          "pattern": "^[a-f0-9]{64}$",
+          "title": "Authority Sha256",
+          "type": "string"
+        }
+      },
+      "required": [
+        "subscription_id",
+        "revision",
+        "authority_sha256"
+      ],
+      "title": "SubscriptionHeadRef",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": "source-intake-v1",
+      "default": "source-intake-v1",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "snapshot_id": {
+      "format": "uuid",
+      "title": "Snapshot Id",
+      "type": "string"
+    },
+    "project_id": {
+      "maxLength": 100,
+      "minLength": 1,
+      "title": "Project Id",
+      "type": "string"
+    },
+    "run_id": {
+      "format": "uuid",
+      "title": "Run Id",
+      "type": "string"
+    },
+    "epoch": {
+      "maximum": 9223372036854775807,
+      "minimum": 0,
+      "title": "Epoch",
+      "type": "integer"
+    },
+    "lane": {
+      "enum": [
+        "primary",
+        "context_only",
+        "observer"
+      ],
+      "title": "Lane",
+      "type": "string"
+    },
+    "from_cursor": {
+      "maximum": 9223372036854775807,
+      "minimum": 0,
+      "title": "From Cursor",
+      "type": "integer"
+    },
+    "through_cursor": {
+      "maximum": 9223372036854775807,
+      "minimum": 1,
+      "title": "Through Cursor",
+      "type": "integer"
+    },
+    "items": {
+      "items": {
+        "$ref": "#/$defs/SourceDeliveryRef"
+      },
+      "maxItems": 16,
+      "minItems": 1,
+      "title": "Items",
+      "type": "array"
+    },
+    "subscription_heads": {
+      "items": {
+        "$ref": "#/$defs/SubscriptionHeadRef"
+      },
+      "maxItems": 16,
+      "minItems": 1,
+      "title": "Subscription Heads",
+      "type": "array"
+    },
+    "consumer_state_sha256": {
+      "pattern": "^[a-f0-9]{64}$",
+      "title": "Consumer State Sha256",
+      "type": "string"
+    },
+    "expires_at": {
+      "format": "date-time",
+      "title": "Expires At",
+      "type": "string"
+    }
+  },
+  "required": [
+    "snapshot_id",
+    "project_id",
+    "run_id",
+    "epoch",
+    "lane",
+    "from_cursor",
+    "through_cursor",
+    "items",
+    "subscription_heads",
+    "consumer_state_sha256",
+    "expires_at"
+  ],
+  "title": "SourceIntakeSnapshot",
+  "type": "object"
+}

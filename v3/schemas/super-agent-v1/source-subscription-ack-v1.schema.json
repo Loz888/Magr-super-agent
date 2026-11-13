@@ -1,0 +1,45 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "epoch": {
+      "maximum": 9223372036854775807,
+      "minimum": 0,
+      "title": "Epoch",
+      "type": "integer"
+    },
+    "expected_cursor": {
+      "maximum": 9223372036854775807,
+      "minimum": 0,
+      "title": "Expected Cursor",
+      "type": "integer"
+    },
+    "lane": {
+      "enum": [
+        "primary",
+        "context_only",
+        "observer"
+      ],
+      "title": "Lane",
+      "type": "string"
+    },
+    "snapshot_id": {
+      "format": "uuid",
+      "title": "Snapshot Id",
+      "type": "string"
+    },
+    "snapshot_sha256": {
+      "pattern": "^[a-f0-9]{64}$",
+      "title": "Snapshot Sha256",
+      "type": "string"
+    }
+  },
+  "required": [
+    "epoch",
+    "expected_cursor",
+    "lane",
+    "snapshot_id",
+    "snapshot_sha256"
+  ],
+  "title": "SubscriptionAckRequest",
+  "type": "object"
+}

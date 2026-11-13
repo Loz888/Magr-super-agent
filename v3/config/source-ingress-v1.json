@@ -63,7 +63,7 @@
     },
     {
       "path": "src/mgar_v3/sources/ingress.py",
-      "sha256": "6101d8ca49473ed9899b3f09df92742bdc54b03e2b55a526df4fcfc6ddb0d14f"
+      "sha256": "ca7c47e67c1f7dc1f82fc0613074eac87a96327e991c16cd8b9778e0d7353587"
     },
     {
       "path": "src/mgar_v3/sources/ingress_api.py",

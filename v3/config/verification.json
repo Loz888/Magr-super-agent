@@ -1570,5 +1570,37 @@
       "live_publication": "NOT_RUN",
       "continuous_operation": "NOT_RUN"
     }
+  },
+  "SAV1-11": {
+    "tests": [
+      "tests/test_super_agent_sa11_contracts.py",
+      "tests/test_super_agent_sa11.py",
+      "tests/test_super_agent_sa11_api.py",
+      "tests/test_super_agent_sa11_migration.py",
+      "tests/test_super_agent_sa11_recovery.py",
+      "tests/test_super_agent_sa10.py",
+      "tests/test_super_agent_sa10_migration.py",
+      "tests/test_super_agent_sa09_i01.py",
+      "tests/test_duplex.py",
+      "tests/test_routing.py"
+    ],
+    "timeout_seconds": 2400,
+    "components": {
+      "scope": "All new SA11 checks plus direct SA10 scoped-resource, migration, Source09-I01, legacy duplex/Router regression dependencies; focused registry, not whole repository",
+      "postgres": "Real disposable PostgreSQL; original Engine connection, canonical ingress same-transaction delivery, Source-lane CAS cursors and immutable facts",
+      "authorization": "Owner cookie/Origin/CSRF/current session; per-input current Source/identity/policy/head/TTL/target/Mandate; purpose never grants tools",
+      "source_mailbox": "Reference-only companion facts under original Run, separate typed lane cursors; original Thread.latest_seq ordering without Thread.revision, no legacy Trigger or persistent Source body in old snapshots",
+      "consumer": "Exact current Run/epoch/page/head/input hash; blocked metadata may drain without reading expired bodies; no automatic Worker/Run or control execution",
+      "handback": "Explicit reviewed needs_routing/loop_blocked facts and bounded cycles; old FastPath decisions/unknown model calls unchanged",
+      "formal_integration": "Fixed Harnessd0af0747§35 SQL+4file exactpatch;40 installedmigrations and11 true unpatched routes required",
+      "crash_recovery": "Real child SIGKILL after durable prepare, inside uncommitted acknowledgement, after committed cursor; old receipt/count preserved",
+      "independent_review": "NOT_RUN; implementer initial registered checks, repairs only failed cases/targets",
+      "semantic_evaluation": "NOT_RUN",
+      "live_source_channel": "NOT_RUN",
+      "paid_model": "NOT_RUN",
+      "live_coding": "NOT_RUN",
+      "live_publication": "NOT_RUN",
+      "continuous_operation": "NOT_RUN"
+    }
   }
 }
