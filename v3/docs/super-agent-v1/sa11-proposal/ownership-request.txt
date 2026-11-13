@@ -1,0 +1,70 @@
+SA11 动态订阅与 Source Mailbox：新共享范围固定确认请求
+
+SA10 已由用户接受独立工程验收：dcea520/dd47a567，原两守卫独立2PASS、其余199项首次正式通过证据核对且未重复；原独立FAIL和初轮200PASS/1FAIL保留。用户明确授权启动SA11。本请求不启动SA12，不继承真实平台、编码、付费、外发、发布或长期许可。
+
+请在Harness新节单独本地提交确认以下具体编号、所有权和接口，无需导入/执行SA草案或重新运行H12。既有0a335a1第34节只覆盖SA10/0041，不能当成本次新确认。
+
+一、候选编号和SQL
+
+只读最新Harness固定ac404d5f0dbfe552df7a28e2f1f02be2123d0e57及交接文档，正式迁移最高0040，第34节未确认SA11/0042。SA副本已有0041，拟使用0042_source_subscriptions.sql。若编号已被其他已提交工作占用，请明确替代编号，SA更新草案后重新绑定哈希；当前没有预占、安装或放入正式migrations。
+
+/home/imini/magr-super-agent/v3/docs/super-agent-v1/sa11-proposal/0042_source_subscriptions.sql
+SHA256: 3e29900f22472c4d8b0c5b2bc60a64a798134532b2e47ab09427cc5006d4c8d0
+
+仅新增7张无正文事实表及其索引/不可变/CAS/连续游标和完整版本链约束：
+app.sa_source_subscriptions
+app.sa_source_subscription_versions
+app.sa_source_subscription_routes
+app.sa_source_subscription_deliveries
+app.sa_source_subscription_intakes
+app.sa_source_subscription_consumptions
+app.sa_source_subscription_handbacks
+
+全部属于原Engine、同一持锁PG连接；复用原Source/project及canonical input、SA10固定correlation revision、原Thread→Ticket→Run/Mandate复合关系。没有指向可清理source_inbox的永久FK，不改历史SQL或SourceIngress清理规则。原业务Task/Run/Mandate仍是唯一目标与执行状态。
+
+旧Mailbox只能FK旧trigger_events，旧intake会将payload.body写入不可变run_inputs.question。因此本卡采用原Run下版本化、仅存canonical引用的Source投递/分页/消费凭证：分配原Thread.latest_seq而不推进Thread.revision，Source各lane消费游标独立于旧Mailbox游标，原legacy intake/ack/图输入及Run.input_revision保持原语义。不会伪造legacy Trigger、Issue、平台身份或在旧快照/graph checkpoint中持久化Source正文。实际物化仅在当前权限/原Run/epoch核对后短暂存在内存；HTTP管理接口只处理引用和元数据。
+
+二、精确共享补丁（仅SA副本）
+
+/home/imini/magr-super-agent/v3/docs/super-agent-v1/sa11-proposal/shared-wiring.patch
+SHA256: da51e1366a086a53125127f2fd54fec3b497629478a542d15a37c220365dedb6
+
+1. Engine.__init__仅import/组合SourceSubscriptions(self)。
+2. api.py仅import/注册source-subscriptions新管理前缀。
+3. SourceIngress在原canonical提交事务内调用accepted_conn(conn,input_id,receipt_id=...)；服务严格核对是本receipt的新canonical，普通重复/alias不自动激活旧输入。投递或容量待恢复/歧义/关闭跟进等最小事实与接收同事务提交；不另开连接、不在事务内网络。
+4. 私有FastPath._assess在现已验证控制路径之后、语义candidate之前加入只读当前订阅/投递短路。只写明原因并走context，不调用模型。SourceEval._build已有逐项_assess复核，reserve前与I01最终发送栅栏均会经过该链，所以旧缓存batch也重新检查。SourceEval/I01生产代码、旧snapshot/tag/hash和财务方法不改。
+
+候选补丁只涉及上述4文件，未应用。私有source_subscription*.py及对应新schema/config/tests由SA侧独占，Harness不并行实现这些新增接线。
+
+三、新独立接口
+
+契约source-subscription-v1/source-intake-v1，旧Source/Trigger/Router DTO及旧handback/unsubscribe拒绝行为不放宽。
+
+/api/v3/source-subscriptions 的11个主人管理接口：
+POST /subscriptions
+POST /subscriptions/{subscription_id}/renew
+POST /subscriptions/{subscription_id}/rebind
+POST /subscriptions/{subscription_id}/unsubscribe
+POST /subscriptions/{subscription_id}/handback
+GET /subscriptions/{subscription_id}
+GET /sources/{source_id}/subscriptions
+POST /dispatch
+GET /runs/{run_id}/mailbox
+POST /runs/{run_id}/prepare
+POST /runs/{run_id}/ack
+
+沿用当前主人cookie、Origin/CSRF、事务内session复核及本前缀no-store；不接受正文、角色/身份自证、factory、付费或执行授权。Snapshot只canonical refs/hash，当前主人metadata token即使seed正文TTL到期也可关闭订阅。save/renew/rebind需新鲜seed的SourceCorrelation快照；订阅签署selector的TTL与旧seed正文TTL分开，失效旧正文不可复活。
+
+角色primary/context_only/observer仅表明输入用途。每条消息重查Receive、Source/identity/policy/config/head/TTL、当前原目标和Mandate；机器人/旁观者不能提升为控制者，primary还需精确Ticket控制角色和follow_up授权。跨来源只用主人已审核的明确资源/原生话题或可证明reply链选择器；整群、同名/标题和相同编号都不能唯一绑定Task，多问题关系不明时记歧义不随机选择。
+
+同Run正常epoch变化允许fresh prepare，但旧snapshot/ack/materialize被fence；不同Run只允许主人显式rebind到同一原Ticket下已存在、获准的Run，不自动resume或创建新attempt。订阅撤销/交回、投递、分页、消费通过原事务排序，准备后撤权/编辑/到期均使原消费失效；队列满保留pending事实，不回退新任务模型。
+
+handback记录对同canonical版本一次的needs_routing或loop_blocked无正文待办，保留原输入/决定和unknown；每问题/时窗限制交回循环。不直接调用Eval、不修改旧FastPath immutable决定、不声称已运行新的语义或自动开工；后续Router/Worker适配消费这些引用仍按各卡现有许可。终态/关闭后的跟进可查原Run状态并明确需要新审批的rebind，不被普通成员/机器人复活。
+
+四、保持范围与目前验证
+
+原39份SQL、旧Engine业务方法/legacyMailbox/Routing/Router/Worker、原预算及3财务结算方法、ToolAuthority、H02/H12均不改；0037/0040继续归Harness，不导入/改名/造占位。本卡不实现SA12调度、SA13真实Worker、SA14安全点指令应用或SA16自动任务，不把消费凭证写成“工具/约束已应用”。真实门全部NOT_RUN。
+
+SQL草案已在独立临时PG通过原39迁移+7表安装检查，临时DB/会话无残留；这是草案安装检查，不是正式迁移/整卡验收。主库仍39迁移，无本卡7表；正式SQL、4文件接线均等待本次固定确认。其余私有实现/真实PG/并发恢复/权限负例仍在开发，将完整注册首次检查；后续修复仅复验原失败项。
+
+请在SUPER_AGENT_HANDOFF新节确认SA侧独占上述0042、7表、私有模块/11路由及4文件补丁范围，列出SQL/补丁完整hash、是否存在编号/接口/文件冲突，并提供该单独协调提交。无需SA导入任何H12/产品或活动树提交。

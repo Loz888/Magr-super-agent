@@ -1,0 +1,25 @@
+{
+  "status": "PROPOSAL_ONLY_NOT_APPLIED_NOT_CONFIRMED",
+  "recorded_at_utc": "2026-11-13T04:29:05.115256+00:00",
+  "baseline_commit": "2c09809",
+  "patch_sha256": "da51e1366a086a53125127f2fd54fec3b497629478a542d15a37c220365dedb6",
+  "files": {
+    "v3/src/mgar_v3/coordination/engine.py": {
+      "before_sha256": "5a75bda801b9b8a87899042e141843ec9eee28fc71e88eb938347847e6150b45",
+      "proposed_after_sha256": "31a4f89a0f7308661648aa4910e9686568eed1176fb0b4990fed9df90b12d88d"
+    },
+    "v3/src/mgar_v3/api.py": {
+      "before_sha256": "63efc74cdebebfdb16e6ae36dc3d5aafdc8c75aeff1330f548ed5e11425ebe7c",
+      "proposed_after_sha256": "dee01b4b0261996c93f82743513cfbdebeb818ead0f986398d7e08c69a640c99"
+    },
+    "v3/src/mgar_v3/sources/ingress.py": {
+      "before_sha256": "6101d8ca49473ed9899b3f09df92742bdc54b03e2b55a526df4fcfc6ddb0d14f",
+      "proposed_after_sha256": "ca7c47e67c1f7dc1f82fc0613074eac87a96327e991c16cd8b9778e0d7353587"
+    },
+    "v3/src/mgar_v3/super_agent/fast_path.py": {
+      "before_sha256": "423a2222f024a8baf32b9cddea56d3b2d532b77e8d518091e256b6d26be89919",
+      "proposed_after_sha256": "4a8ea9ed9afc54e6a40a7e49eca8a1ac15f33035781273b71cd4e4251bbbf8b6"
+    }
+  },
+  "scope": "OriginalEngine composition/API11routes; trusted canonical-ingress capture and FastPath pure current subscription gate; no changes to legacy intake/ack/Run cursor or SourceEval I01 model/financial modules"
+}

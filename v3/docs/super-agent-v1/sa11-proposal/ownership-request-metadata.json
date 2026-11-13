@@ -1,0 +1,12 @@
+{
+  "status": "CONCRETE_REQUEST_PREPARED_NOT_FIXED_CONFIRMED",
+  "recorded_at_utc": "2026-11-13T04:30:49.749128+00:00",
+  "harness_committed_baseline": "ac404d5f0dbfe552df7a28e2f1f02be2123d0e57",
+  "candidate_migration": "0042_source_subscriptions.sql",
+  "not_applied_or_installed": true,
+  "artifacts": {
+    "0042_source_subscriptions.sql": "3e29900f22472c4d8b0c5b2bc60a64a798134532b2e47ab09427cc5006d4c8d0",
+    "shared-wiring.patch": "da51e1366a086a53125127f2fd54fec3b497629478a542d15a37c220365dedb6",
+    "ownership-request.txt": "a24851da271f0b31b237ed6796b528f46e3c8de3dd5089360584ec088e745321"
+  }
+}

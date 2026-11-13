@@ -1,0 +1,61 @@
+--- a/v3/src/mgar_v3/coordination/engine.py
++++ b/v3/src/mgar_v3/coordination/engine.py
+@@ -38,6 +38,7 @@
+ from mgar_v3.super_agent.policy import SourcePolicies
+ from mgar_v3.super_agent.source_correlation import SourceCorrelations
+ from mgar_v3.super_agent.source_eval import SourceEval
++from mgar_v3.super_agent.source_subscription import SourceSubscriptions
+ 
+ TModel = TypeVar("TModel", bound=Model)
+ Row = dict[str, Any]
+@@ -83,6 +84,7 @@
+         self.fast_path = FastPath(self)
+         self.source_eval = SourceEval(self)
+         self.source_correlations = SourceCorrelations(self)
++        self.source_subscriptions = SourceSubscriptions(self)
+ 
+     def close(self) -> None:
+         with self._mutex:
+--- a/v3/src/mgar_v3/api.py
++++ b/v3/src/mgar_v3/api.py
+@@ -58,6 +58,7 @@
+ from mgar_v3.super_agent.policy_api import register as register_source_policies
+ from mgar_v3.super_agent.source_correlation_api import register as register_source_correlations
+ from mgar_v3.super_agent.source_eval_api import register as register_source_eval
++from mgar_v3.super_agent.source_subscription_api import register as register_source_subscriptions
+ from mgar_v3.web_access import (
+     SESSION_COOKIE,
+     SESSION_SECONDS,
+@@ -1282,6 +1283,7 @@
+     register_source_fast_path(app, authority, browser_user)
+     register_source_eval(app, authority, browser_user)
+     register_source_correlations(app, authority, browser_user)
++    register_source_subscriptions(app, authority, browser_user)
+     register(app, authority, authenticated)
+     register_commerce(app, authority, authenticated)
+     register_recovery(app, configuration, authority, authenticated)
+--- a/v3/src/mgar_v3/sources/ingress.py
++++ b/v3/src/mgar_v3/sources/ingress.py
+@@ -1216,6 +1216,9 @@
+                         for o in observations
+                     ),
+                 )
++                source_subscriptions = getattr(self.engine, "source_subscriptions", None)
++                if source_subscriptions is not None and source_subscriptions._ready(conn):
++                    source_subscriptions.accepted_conn(conn, identifier, receipt_id=receipt_id)
+                 fast_path = getattr(self.engine, "fast_path", None)
+                 if fast_path is not None and fast_path._ready(conn):
+                     canonical = conn.execute(
+--- a/v3/src/mgar_v3/super_agent/fast_path.py
++++ b/v3/src/mgar_v3/super_agent/fast_path.py
+@@ -273,6 +273,10 @@
+                           purpose_key=digest([result["topic_key"], intent.control_action,
+                                               str(intent.ticket_id)]))
+             return result
++        source_subscriptions = getattr(self.engine, "source_subscriptions", None)
++        if (source_subscriptions is not None and source_subscriptions._ready(conn)
++                and source_subscriptions.handled(conn, row)):
++            return context("FAST_PATH_SUBSCRIPTION_ROUTED")
+         if self._own_result(conn, item, clear):
+             return {**result, "reason_code": "FAST_PATH_OWN_RESULT"}
+         if not grant["model_input"]:
