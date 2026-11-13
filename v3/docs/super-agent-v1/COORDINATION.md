@@ -279,3 +279,10 @@ fe8ecac首轮351项309PASS/42FAIL已完整保留。36项直接PG错误及6项同
 原Engine/API只按三文件补丁最小接线；H02 contracts仅兼容增加ExecutionRequest.execution_epoch=0，其原版本与清单保留，其他五个H02固定产物不变。私有Scheduler和资源adapter使用原PG连接、原Task/Run/Mandate与SA07配额。默认无driver/Session/监督线程，只有显式fixture资源试验；真实Coding桥仍留SA13。
 
 当前真实PG、独立进程、H03工作区与隔离Broker测试已编写，首次正式检查尚未执行，不把schema安装草案检查或固定文件一致当运行验收。SA12仍IN_PROGRESS，独立与全部真实/语义/长期门NOT_RUN，SA13不启动。后续实际检查与清理结果另以分版本原始证据记录。
+
+
+## SA12 分版本工程交付（2026-11-13）
+
+第37节298d4c5c已落地。候选6b48b7d/9171d59578c14b8c…，正式0044原入口安装、42checksum/七表0行。首轮421为416PASS5FAIL；五项仅测试absence探针format不符，生产不改，仅原5复验5PASS。原416及静态已通过目标不重复，历史FAIL保留，不称最新单轮421PASS。两处Broker折行另有AST相同证明，批准原补丁不改；H02仅兼容epoch字段，其他五产物原字节。
+
+见[交付](SA12_ACCEPTANCE_20261113.md)及[分版本摘要](accept/SAV1-12/accept.json)。完整性/清理盘点与运行成绩分别记录，本地工程完成、独立NOT_RUN；SA12仍IN_PROGRESS，SA13不启动，真实/付费/外发/发布/长期门不变。没有发送完成消息或声称Harness已认证本次实现。

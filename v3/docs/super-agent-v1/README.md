@@ -1,14 +1,16 @@
 # MAGR Super-Agent 落地任务书
 
-状态：**SAV1-00–SAV1-11 DONE（本地工程及用户接受的独立闭环）；SA12 IN_PROGRESS（需求、复用与共享范围准备）；SA13–SA24 PLANNED**。更新：2026-11-13。
-SA10已由用户接受[独立原2项PASS及199历史证据核对](accept/SAV1-10/i01-independent-closure-20261113.json)，旧FAIL和分版本成绩保留；当前按用户授权推进SA11动态订阅、Mailbox与交回，首轮失败已按失败范围定向修复并留存各版本证据。原任务状态/写者和Source撤权/TTL约束保持；全部真实/付费/外发/发布/长期门NOT_RUN。
-SA11第35/36节固定确认已核对，0042/0043及七表、11接口和四文件接线正式落地，当前41checksum一致。首轮309PASS/42FAIL保留，修复仅复验失败范围42→40→26→1，各新增2/14/25/1PASS，剩余0；未重复已通过项，不称最终351全量PASS。候选ca49b76，见[工程交付](SA11_ACCEPTANCE_20261113.md)与[分版本摘要](accept/SAV1-11/accept.json)。SA11已获用户接受独立放行，见[关闭记录](accept/SAV1-11/independent-closure-20261113.json)；当前按用户授权启动SA12。
+状态：**SAV1-00–SAV1-11 DONE（本地工程及用户接受的独立闭环）；SA12 IN_PROGRESS（本地工程完成，等待独立验收）；SA13–SA24 PLANNED**。更新：2026-11-13。
+SA10已由用户接受[独立原2项PASS及199历史证据核对](accept/SAV1-10/i01-independent-closure-20261113.json)，旧FAIL和分版本成绩保留；SA11动态订阅、Mailbox与交回也已独立闭环，首轮失败按失败范围定向修复并留存各版本证据。原任务状态/写者和Source撤权/TTL约束保持；全部真实/付费/外发/发布/长期门NOT_RUN。
+SA11第35/36节固定确认已核对，0042/0043及七表、11接口和四文件接线正式落地，SA11交付时41checksum一致。首轮309PASS/42FAIL保留，修复仅复验失败范围42→40→26→1，各新增2/14/25/1PASS，剩余0；未重复已通过项，不称最终351全量PASS。候选ca49b76，见[工程交付](SA11_ACCEPTANCE_20261113.md)与[分版本摘要](accept/SAV1-11/accept.json)。SA11已获用户接受独立放行，见[关闭记录](accept/SAV1-11/independent-closure-20261113.json)；SA12当前工程交付见下述记录。
 仓库基线：`973994c0e6c087c2968b3d91a3a6b9220e2c0892`；该提交新增 Harness 规划，
 应用功能基线仍为 `1d07285aa27ece9bae4ccbedc3a77ce2fbcbaf3a`。
 
 本任务书承接用户粘贴的“Always-on Coding Harness + Event-Driven Super-Agent”需求，
 并引用 [Harness V4 规划](../harness-v4/README.md)。Harness 当前能力以其负责人固定交付及独立验收为准，本轮不跟进或变更 H 系列结论；规划条目不能当作已具备的 Worker 能力。本文件不启用监听、不安装机器人、
 不发送群消息，也不授予新模型或外部写权限；后续实施按各卡验收逐步开放能力。
+
+SA12候选6b48b7d已完成本地工程；首轮421项416PASS/5FAIL，修正测试缺失探针后仅原5项5PASS，原416未重跑，不称最新单轮421PASS。第37节共享范围已落地，当前42checksum、七表0行及无PG/会话/容器残留核对通过，见[交付](SA12_ACCEPTANCE_20261113.md)与[分版本摘要](accept/SAV1-12/accept.json)。独立验收NOT_RUN，SA13未启动。
 
 ## 阅读入口
 
@@ -129,4 +131,4 @@ Harness 接口冻结后并行开发；自动修改代码必须等待 Harness 的
 
 首批任务是 **HV4-H00/H01 + SA00–SA04**：冻结状态/权限映射、Source 与身份契约、
 策略、持久入站；之后接入 GitHub/飞书并在 Shadow 中校准。完整批次、依赖和估时见
-[路线](ROADMAP.md)。SA00–05 已独立工程放行；SA06 本地工程通过、固定候选等待独立复验，后续卡仍 PLANNED。真实渠道、编码、发布和长期运行门仍 NOT_RUN。
+[路线](ROADMAP.md)。SA00–11 已获用户接受独立闭环；SA12 本地工程完成、等待独立验收，SA13–24仍PLANNED。真实渠道、编码、发布和长期运行门仍 NOT_RUN。

@@ -1,7 +1,7 @@
 # SA12：Scheduler、Assignment 与资源租约
 
 状态：IN_PROGRESS。共享范围已按 Harness 固定提交
-`298d4c5c5123a5c26c34a9673d676516d1503f84` 第37节确认；本地首次正式检查尚未执行。
+`298d4c5c5123a5c26c34a9673d676516d1503f84` 第37节确认；本地首次正式检查与原失败定向复验已完成，见[交付记录](SA12_ACCEPTANCE_20261113.md)。
 本卡不启动 SA13，也不授权真实平台、模型付费、外发、发布或常驻运行。
 
 原 Engine 的 advisory lock、互斥锁和同一 PG 连接仍是唯一业务写者。正式0044只增加
@@ -43,7 +43,7 @@ Worker写权限与真实Coding桥留待SA13。构造和import均不自动启动�
 start。事务在Docker IO之前结束。恢复仅查询原身份；未知结果不重发。daemon错误不等于
 missing；停止仅删除精确匹配的ID，严格确认不存在并封存工作区后才能签发静默事实。
 
-首次检查使用 `make lint`、`make typecheck`、`make verify TASK=SAV1-12`。测试将区分
+首次检查使用 `make lint`、`make typecheck`、`make verify TASK=SAV1-12`。测试区分
 受控无进程文件driver、真实H03目录、真实隔离Broker与真实SIGKILL，不能相互替代。
 修复后只复验原失败项；旧通过与新通过逐版本记录。检查及独立验收未完成时本卡保持
 IN_PROGRESS，未实测的真实、语义和长期门保持NOT_RUN。

@@ -368,11 +368,14 @@
       "optional": false,
       "card": "TASKS.md#sa12",
       "verification_target_on_implementation": "SAV1-12",
-      "work_state": "AUTHORIZED_REQUIREMENTS_REUSE_AND_SHARED_SCOPE_PREPARATION",
-      "engineering_gate": "NOT_RUN",
+      "work_state": "LOCAL_ENGINEERING_COMPLETE_WAITING_INDEPENDENT_REVIEW",
+      "engineering_gate": "PASS_VERSIONED_EVIDENCE_CHAIN",
       "independent_review": "NOT_RUN",
       "dependency_closure": "accept/SAV1-11/independent-closure-20261113.json",
-      "ownership_commit": null
+      "ownership_commit": null,
+      "candidate": "6b48b7d6d5d4f60719a9d99928589bb019169024",
+      "source_sha256": "9171d59578c14b8c726cc884794666f8c7a57de2b2d3b1ab8fc97bf8bdf346dc",
+      "acceptance": "accept/SAV1-12/accept.json"
     },
     {
       "id": "SAV1-13",
