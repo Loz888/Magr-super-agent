@@ -81,7 +81,7 @@
     },
     {
       "path": "tests/test_super_agent_sa10_migration.py",
-      "sha256": "fa4a4e4dad4695832c03390ec06d6e0fbce47871d76f6e3ddb395319b932d939"
+      "sha256": "dd96781e4a0ba15ac2383cdb2b46e9482b6f9c27081befa37631a9f3a70dcfdd"
     },
     {
       "path": "schemas/super-agent-v1/source-correlation-resource-v1.schema.json",

@@ -453,7 +453,7 @@ def test_real_engine_and_unpatched_application_compose_original_connection_and_s
     routes = {
         (method, route.path)
         for route in app.routes
-        if route.path.startswith(prefix)
+        if getattr(route, "path", "").startswith(prefix)
         for method in getattr(route, "methods", ())
         if method not in {"HEAD", "OPTIONS"}
     }
