@@ -69,7 +69,7 @@
     },
     {
       "path": "tests/test_super_agent_sa11.py",
-      "sha256": "201c65cdb3751fa7e76e958599d8f1d802c8b2dd0f84be6a889abc892d047ab7"
+      "sha256": "28790838f9291e719082d80b5ca4f47ec9685a87247246fcd2c79c41b3bbb06c"
     },
     {
       "path": "tests/test_super_agent_sa11_api.py",

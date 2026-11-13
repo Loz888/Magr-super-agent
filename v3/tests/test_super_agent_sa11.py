@@ -171,7 +171,16 @@ def test_expired_source_cannot_materialize_or_ack_old_page_but_owner_can_close(e
     assert env.service.get(env.cookie, env.subscription_id)["state"] == "unsubscribed"
 
 
-def test_blocked_metadata_can_be_drained_without_materializing_expired_text(engine):
+def test_blocked_metadata_can_be_drained_without_materializing_expired_text(engine, monkeypatch):
+    import sa10_support
+
+    original_setup = sa10_support.github_setup
+
+    def model_read_source(engine, *, receive):
+        # Grant this synthetic positive read through the normal owner policy setup.
+        return original_setup(engine, receive={**receive, "model_input": True})
+
+    monkeypatch.setattr(sa10_support, "github_setup", model_read_source)
     env = setup(engine, role="context_only")
     first = followup(env, "/mgar investigate SA11-EXPIRED-PRIVATE")
     with engine.transaction() as conn:
@@ -183,6 +192,8 @@ def test_blocked_metadata_can_be_drained_without_materializing_expired_text(engi
     assert page.items[1].disposition == "ready"
     material = env.service.materialize(env.cookie, env.run_id, ack_request(page))
     assert all(x.input_id != first for x in material.items)
+    assert [x.input_id for x in material.items] == [second]
+    assert material.items[0].text == "/mgar investigate SA11-NEXT-VALID"
     assert "SA11-EXPIRED-PRIVATE" not in repr(material)
     env.service.acknowledge(env.cookie, env.run_id, ack_request(page))
 
