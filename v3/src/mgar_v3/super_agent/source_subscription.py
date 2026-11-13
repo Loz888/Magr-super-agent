@@ -12,7 +12,7 @@ import builtins
 import json
 from datetime import datetime, timedelta
 from typing import TYPE_CHECKING, Any, cast
-from uuid import UUID, uuid4
+from uuid import NAMESPACE_URL, UUID, uuid4, uuid5
 
 from psycopg.pq import TransactionStatus
 from psycopg.types.json import Jsonb
@@ -617,7 +617,7 @@ class SourceSubscriptions:
         )
         return SubscriptionInputFacts(
             input=loaded.ref,
-            unit_key=digest([loaded.ref.input_id, value.anchor.resource_key]),
+            unit_key=digest([str(loaded.ref.input_id), value.anchor.resource_key]),
             scope_sha256=event.scope.key,
             conversation_sha256=event.source_thread.conversation_key,
             topic_sha256=event.source_thread.topic_key,
@@ -1023,8 +1023,8 @@ class SourceSubscriptions:
                 [
                     old.anchor.scope_sha256,
                     old.anchor.resource_key,
-                    old.target.ticket_id,
-                    old.anchor.correlation_id,
+                    str(old.target.ticket_id),
+                    str(old.anchor.correlation_id),
                 ]
             )
             window = self._now(conn) - timedelta(hours=1)
@@ -1218,6 +1218,56 @@ class SourceSubscriptions:
             (run_id, lane, self.project, cursor, limit),
         ).fetchall()
 
+    @staticmethod
+    def _snapshot_identity(
+        snapshot: SourceIntakeSnapshot,
+        request: SubscriptionPrepareRequest,
+        watermark: int,
+    ) -> UUID:
+        # Bind paging parameters and all pending arrivals without adding mutable facts.
+        payload = snapshot.model_dump(mode="json", exclude={"snapshot_id"})
+        return uuid5(
+            NAMESPACE_URL,
+            digest(["mgar-source-intake-v1", request.limit, request.max_bytes, watermark, payload]),
+        )
+
+    def _prepared(
+        self,
+        conn: Connection,
+        snapshot: SourceIntakeSnapshot,
+        request: SubscriptionPrepareRequest,
+        watermark: int,
+    ) -> SourceIntakeSnapshot | None:
+        rows = conn.execute(
+            "SELECT s.* FROM app.sa_source_subscription_intakes s WHERE s.run_id=%s "
+            "AND s.project_id=%s AND s.lane=%s AND s.execution_epoch=%s AND s.cursor_from=%s "
+            "AND s.expires_at>%s AND NOT EXISTS "
+            "(SELECT 1 FROM app.sa_source_subscription_consumptions c "
+            "WHERE c.snapshot_id=s.snapshot_id) ORDER BY s.created_at DESC LIMIT %s",
+            (
+                snapshot.run_id,
+                self.project,
+                snapshot.lane,
+                snapshot.epoch,
+                snapshot.from_cursor,
+                self._now(conn),
+                MAX_INTAKES,
+            ),
+        ).fetchall()
+        current = snapshot.model_dump(mode="json", exclude={"snapshot_id", "expires_at"})
+        for row in rows:
+            previous = _decode(SourceIntakeSnapshot, row["payload"])
+            if previous.snapshot_sha256 != row["payload_sha256"]:
+                raise _error("SOURCE_SUBSCRIPTION_SNAPSHOT_INVALID", 403)
+            if previous.expires_at > snapshot.expires_at or current != previous.model_dump(
+                mode="json", exclude={"snapshot_id", "expires_at"}
+            ):
+                continue
+            candidate = snapshot.model_copy(update={"expires_at": previous.expires_at})
+            if self._snapshot_identity(candidate, request, watermark) == previous.snapshot_id:
+                return previous
+        return None
+
     def prepare(
         self,
         cookie: str,
@@ -1284,33 +1334,48 @@ class SourceSubscriptions:
                     break
                 selected, heads, snapshot = [*selected, item], next_heads, candidate
             assert snapshot is not None
-            pending = conn.execute(
-                "SELECT count(*) AS n FROM app.sa_source_subscription_intakes s WHERE "
-                "s.run_id=%s AND s.project_id=%s AND s.expires_at>clock_timestamp() AND NOT EXISTS "
-                "(SELECT 1 FROM app.sa_source_subscription_consumptions c "
-                "WHERE c.snapshot_id=s.snapshot_id)",
-                (run_id, self.project),
+            latest = conn.execute(
+                "SELECT coalesce(max(source_seq),0) AS sequence "
+                "FROM app.sa_source_subscription_deliveries "
+                "WHERE run_id=%s AND lane=%s AND project_id=%s",
+                (run_id, request.lane, self.project),
             ).fetchone()
-            if pending is not None and pending["n"] >= MAX_INTAKES:
-                raise _error("SOURCE_SUBSCRIPTION_INTAKE_CAPACITY")
+            assert latest is not None
+            watermark = int(latest["sequence"])
+            previous = self._prepared(conn, snapshot, request, watermark)
+            if previous is not None:
+                snapshot = previous
+            else:
+                snapshot = snapshot.model_copy(
+                    update={"snapshot_id": self._snapshot_identity(snapshot, request, watermark)}
+                )
+                pending = conn.execute(
+                    "SELECT count(*) AS n FROM app.sa_source_subscription_intakes s WHERE "
+                    "s.run_id=%s AND s.project_id=%s AND s.expires_at>clock_timestamp() "
+                    "AND NOT EXISTS (SELECT 1 FROM app.sa_source_subscription_consumptions c "
+                    "WHERE c.snapshot_id=s.snapshot_id)",
+                    (run_id, self.project),
+                ).fetchone()
+                if pending is not None and pending["n"] >= MAX_INTAKES:
+                    raise _error("SOURCE_SUBSCRIPTION_INTAKE_CAPACITY")
+                conn.execute(
+                    "INSERT INTO app.sa_source_subscription_intakes(snapshot_id,project_id,run_id,"
+                    "lane,execution_epoch,cursor_from,cursor_to,payload,payload_sha256,expires_at) "
+                    "VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)",
+                    (
+                        snapshot.snapshot_id,
+                        self.project,
+                        run_id,
+                        snapshot.lane,
+                        snapshot.epoch,
+                        snapshot.from_cursor,
+                        snapshot.through_cursor,
+                        Jsonb(snapshot.model_dump(mode="json")),
+                        snapshot.snapshot_sha256,
+                        snapshot.expires_at,
+                    ),
+                )
             payload = snapshot.model_dump(mode="json")
-            conn.execute(
-                "INSERT INTO app.sa_source_subscription_intakes(snapshot_id,project_id,run_id,"
-                "lane,execution_epoch,cursor_from,cursor_to,payload,payload_sha256,expires_at) "
-                "VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)",
-                (
-                    snapshot.snapshot_id,
-                    self.project,
-                    run_id,
-                    snapshot.lane,
-                    snapshot.epoch,
-                    snapshot.from_cursor,
-                    snapshot.through_cursor,
-                    Jsonb(payload),
-                    snapshot.snapshot_sha256,
-                    snapshot.expires_at,
-                ),
-            )
             return {
                 "snapshot_id": snapshot.snapshot_id,
                 "snapshot_sha256": snapshot.snapshot_sha256,
