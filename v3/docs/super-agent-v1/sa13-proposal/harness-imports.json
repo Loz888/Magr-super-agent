@@ -1,0 +1,191 @@
+{
+  "schema": "sa13-harness-fixed-import-proposal-v1",
+  "status": "DRAFT_ROOT_COMPATIBILITY_REVIEWED_NOT_APPLIED_NOT_TASK_TESTED",
+  "recorded_utc": "2026-11-13T09:30:32.562006+00:00",
+  "source_candidate": "d3f3457b3d9dfab68bc73a40add299e4e633fbeb",
+  "source_acceptance_metadata_commit": "8f87b0ae349dbae2b4684c29bb03a7cb354f56ff",
+  "source_acceptance_record": "v3/docs/harness-v4/accept/HV4-H11/independent-recheck-20261111T134513Z.json",
+  "h11_gate": {
+    "engineering": "PASS_INDEPENDENT_SCOPED",
+    "security": "PASS_REVIEWED_H11_SCOPE",
+    "live_model": "NOT_RUN",
+    "live_agent": "NOT_RUN",
+    "recovery": "PASS_INDEPENDENT_SCOPED"
+  },
+  "h12_fixed_observation_commit": "88c75b8dac75da7e7d0c283a451c0ff5a3a3c9b0",
+  "h12_gate": {
+    "engineering": "PASS_IN_LISTED_RECORDED_SCOPE",
+    "live_model": "PASS_OLD_H12_EXPERIMENT_ONLY_NOT_SOURCE_AUTH",
+    "live_agent": "FAIL",
+    "mvp_release": "FAIL",
+    "new_v2_quality": "PENDING_NO_NEW_FORMAL_FROZEN_REAL_EXPERIMENT"
+  },
+  "candidate_fixed_files": [
+    {
+      "path": "v3/src/mgar_v3/harness/coding_loop.py",
+      "commit": "d3f3457b3d9dfab68bc73a40add299e4e633fbeb",
+      "sha256": "9bd10946398a8744a5ba5654bb6e81870650f16091983854d0f0123f2536ac3a",
+      "lines": 2885,
+      "imports": [
+        "mgar_v3.context.compactor",
+        "mgar_v3.domain",
+        "mgar_v3.harness.contracts",
+        "mgar_v3.harness.long_context"
+      ],
+      "source_path": "v3/src/mgar_v3/harness/coding_loop.py",
+      "target_path": "v3/src/mgar_v3/harness/coding_loop.py",
+      "existing_target": "NEW_FILE"
+    },
+    {
+      "path": "v3/src/mgar_v3/harness/long_context.py",
+      "commit": "d3f3457b3d9dfab68bc73a40add299e4e633fbeb",
+      "sha256": "449149cbbcf702c10caf3b7e3770cf78e96a7a07d435150c56a0efa493c5d720",
+      "lines": 732,
+      "imports": [
+        "mgar_v3.context.builder",
+        "mgar_v3.context.compactor",
+        "mgar_v3.domain",
+        "mgar_v3.evidence.artifacts",
+        "mgar_v3.harness.contracts"
+      ],
+      "source_path": "v3/src/mgar_v3/harness/long_context.py",
+      "target_path": "v3/src/mgar_v3/harness/long_context.py",
+      "existing_target": "NEW_FILE"
+    },
+    {
+      "path": "v3/src/mgar_v3/harness/adapters.py",
+      "commit": "d3f3457b3d9dfab68bc73a40add299e4e633fbeb",
+      "sha256": "959c6a5c42223c076ffece8ff57f5a990e36cec9ccdfbec510ea519b290d30b1",
+      "lines": 787,
+      "imports": [
+        "mgar_v3.domain",
+        "mgar_v3.harness.broker",
+        "mgar_v3.harness.contracts",
+        "mgar_v3.harness.incremental"
+      ],
+      "source_path": "v3/src/mgar_v3/harness/adapters.py",
+      "target_path": "v3/src/mgar_v3/harness/source_coding_adapters.py",
+      "existing_target": "PRESERVED_REFERENCE_MODULE_DIFFERENT_TARGET"
+    },
+    {
+      "path": "v3/src/mgar_v3/harness/incremental.py",
+      "commit": "d3f3457b3d9dfab68bc73a40add299e4e633fbeb",
+      "sha256": "f11b17a1be47d773decf4a37c078b5c341f4003f33a380d19370aadf6f8cb31d",
+      "lines": 82,
+      "imports": [
+        "mgar_v3.domain",
+        "mgar_v3.harness.contracts",
+        "mgar_v3.repair.worktree"
+      ],
+      "source_path": "v3/src/mgar_v3/harness/incremental.py",
+      "target_path": "v3/src/mgar_v3/harness/incremental.py",
+      "existing_target": "NEW_FILE"
+    }
+  ],
+  "contracts_extension": {
+    "path": "v3/src/mgar_v3/harness/contracts.py",
+    "before_sha256": "cdcbdda22ac13db25a0b1bb0d49c2c74a06ab1a4bfaea9e1d4011243d8e69466",
+    "proposed_after_sha256": "d9ba15e16a80791e6e92deefea609bf809773cc4d90baa72bd31d71a9313aaf4",
+    "patch_path": "v3/docs/super-agent-v1/sa13-proposal/contracts-compatibility.patch",
+    "patch_sha256": "68d808f64459e647ece77496ab4152362d4bac98283009232e59cb7f2ab26832",
+    "copied_source_types": [
+      "TextReplacement",
+      "ExecutionProvenance"
+    ],
+    "compatibility": "All pre-existing fields/validators/defaults and SA12 ExecutionRequest.execution_epoch stay exact. Required str WorkspaceEdit.content/max_length preserved; explicit replacements key is rejected by a before-validator, including null/empty/list. No property or decoder discards supplied replacements. A None-only excluded internal field lets fixed H11 adapters read the absent form without changing legacy full-content serialization. ExecutionReceipt only adds provenance=None; its default model_dump gains additive null, so legacy canonical payload consumers require review.",
+    "excluded_capabilities": [
+      "H05 incremental/replacement-only edit wire protocol",
+      "run_app empty requirements relaxation"
+    ]
+  },
+  "incremental_dependency_issue": {
+    "fixed_imports": [
+      "mgar_v3.repair.worktree.TextReplacement",
+      "mgar_v3.repair.worktree.apply_text_replacements"
+    ],
+    "SA_existing_symbols": "ABSENT",
+    "resolution_proposal": "Explicit full-content-only compatibility patch removes unavailable H05 imports and unused conversion helper; apply_replacements raises403 and does not write. Original R5 repair/worktree untouched. All remaining fixed H11 full-content helpers retained; new field never accepts a replacement payload. Private Source tool specs must advertise full-content only."
+  },
+  "shared_dependencies": {
+    "domain.py": "Identical to fixedH11",
+    "evidence/artifacts.py": "Identical to fixedH11",
+    "context/builder.py": "Identical to fixedH11",
+    "context/compactor.py": "Only existing ArtifactPaginator.page differs; all four symbols used by LongContextManager unchanged; do not overwrite",
+    "harness/broker.py": "Use SA12 approved bound Broker; imported adapters only need existing CapabilityAuthority. Never use LocalExecutionBroker host subprocess path; Source trusted wrapper must only dispatch through actual isolated bound driver/current Engine fence."
+  },
+  "prohibited_direct_reuse": {
+    "HarnessStore.create": "Creates a new Thread/Mandate/Ticket/Run and budget, requires local_actor and graphversion; cannot represent existing SA Assignment.Run without adaptation",
+    "PersistentBudgetLedger.reserve": "DirectSQL budget/usage inserts bypass SA07 project/organization reserve hooks; must use source adapter to original Engine reserve/settle",
+    "HarnessCodingService.create_task_submit_task": "Builds on those paths, starts own thread/Task identity and process lifecycle; do not import",
+    "RecoveryIO_full_module": "Imports full H11 CommandIdentity/Broker/Workspace/Commands interfaces; use reviewed operation/checkpoint/IO protocols in same-original-connection SA adapter, no direct import",
+    "inbox_product": "Full H09/0030/0037/0040/product/SDK/GitHub publication not part of minimal SA13 import"
+  },
+  "recovery_requirements": [
+    "Intent/preimage/postimage committed before physical edit",
+    "Exact original operation ID reused; known result no re-execution, unknown no blind retry/refund",
+    "PG selects immutable checkpoint; CAS cannot grant target/epoch/lease",
+    "Source text should not be copied from ingress into durable generic Loop history/continuation without current purpose/retention policy",
+    "Workspace lock then Engine guard is H11 order; coordinate with SA12 Engine mutex actualstart guard to avoid inversion",
+    "Current source/identity/policy/config/session/Run/Assignment/final tree checked at actual edit/dispatch/completion",
+    "Original financial settlement remains truthful after fencing even when old result cannot mark business success"
+  ],
+  "open_findings": [
+    "H10-TOOLS-2 invalid UTF-8 completeness",
+    "H10-TOOLS-3 search cap before permission filter",
+    "H09-DEDICATED-01 SSE current-session review",
+    "H09-DEDICATED-02 terminal/inbox race scoped evidence separately",
+    "H09-DEDICATED-03 tuple-private field recursion"
+  ],
+  "migration_ownership": {
+    "harness_reserved": "0045_harness_github_delivery.sql",
+    "observed_harness_formal_migrations": [
+      "0030_harness_recovery.sql",
+      "0037_harness_evaluation_budget.sql",
+      "0040_harness_product.sql",
+      "0045_harness_github_delivery.sql"
+    ],
+    "proposal_next_SA_candidate": "0046, subject to new concrete ownership confirmation; no migration created by this audit"
+  },
+  "scope": "Engineering Source Worker adapter only; live Coding/paid/outbound/publish closed while H12 quality gate FAIL. No tests/SQL/runtime/source import applied.",
+  "process_exception": {
+    "issue": "One trailing plain sed mistakenly used neighbor cwd for contracts.py lines285–363",
+    "used_as_authority": false,
+    "copied_to_production": false,
+    "treatment": "Explicitly recorded; proposal and hashes use only git fixedH11 blobs plus SA current contracts. No further activity-file reads."
+  },
+  "evidence_root": "evidence/super-agent-v1/SAV1-13/harness-fixed-audit-20261113T093032Z-41e6dc",
+  "incremental_extension": {
+    "path": "v3/src/mgar_v3/harness/incremental.py",
+    "base_commit": "d3f3457b3d9dfab68bc73a40add299e4e633fbeb",
+    "base_sha256": "f11b17a1be47d773decf4a37c078b5c341f4003f33a380d19370aadf6f8cb31d",
+    "proposed_after_sha256": "3fbf3a796b3ae3d1eb1192c5a4ddfa2a249d1b111e2139471015be4fb4d29def",
+    "patch_path": "v3/docs/super-agent-v1/sa13-proposal/incremental-full-content-compatibility.patch",
+    "patch_sha256": "d94514e56c13066ee3f39c482f668fdc83b820d1c290daed05b70d520265c8a2",
+    "scope": "First SA13 engineering bridge only; no H05 replacement-only edit authority"
+  },
+  "root_design_ack": "Root internally agreed full-content-only proposal and fail-closed incremental path; external shared ownership confirmation remains required",
+  "adapter_target_decision": {
+    "source": "fixedH11 harness/adapters.py exact blob",
+    "target": "harness/source_coding_adapters.py",
+    "reason": "Preserve existing two-argument reference registry; Source strict registry still requires authority. No optional-None downgrade",
+    "existing_harness_adapters": "UNCHANGED",
+    "source_facade_required": [
+      "resolve must enforce current Source/Assignment/relative path",
+      "diff(tree_before) must return WorkspaceDiff, not H03 path-filtered str",
+      "snapshot workspace_id must map to Assignment UUID",
+      "existing-file full-content writes only; no new file or replacement-only capability claim",
+      "uniform mutex/workspace lock and journaled pre/postimage recovery; never raw H11 RecoveryIO with inverse lock order"
+    ]
+  },
+  "draft_root_review_changes": [
+    {
+      "issue": "Generic Mapping explicit replacements key could bypass dict-only guard",
+      "repair": "Use collections.abc.Mapping before-validator; preserve all explicit-key rejection",
+      "before_archive": "evidence/super-agent-v1/SAV1-13/start-20261113T092527Z-3fe7966b/kernel-proposal-review-adjustments"
+    },
+    {
+      "issue": "FixedH11 adapters registry requires authority while legacy H01/H02 reference constructors use two args",
+      "repair": "Import exact fixed blob to new source_coding_adapters module; existing adapters unchanged; Source cannot select host broker/reference path"
+    }
+  ]
+}

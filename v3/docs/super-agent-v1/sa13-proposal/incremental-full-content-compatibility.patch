@@ -1,0 +1,59 @@
+--- a/v3/src/mgar_v3/harness/incremental.py
++++ b/v3/src/mgar_v3/harness/incremental.py
+@@ -1,11 +1,10 @@
+-"""Incremental replacement edits that reuse the H05 patch protocol.
++"""Full-content-only SA13 compatibility port over a fixed H11 module.
+ 
+-The V4 write tool keeps accepting the historical full-file ``content`` form and
+-adds a hash-pinned ``replacements`` form.  Matching and ambiguity rules are
+-delegated to the H05 implementation so ``PATCH_HASH_MISMATCH``,
+-``PATCH_CONTEXT_NOT_FOUND`` and ``PATCH_AMBIGUOUS`` have exactly one definition.
+-Only the replacement fragments travel through the model output; the file itself
+-never has to be echoed back for a small change.
++The source and exact compatibility diff are recorded in the SA13 import
++proposal. Shared R5 replacement helpers are not imported or overwritten.
++Replacement payloads are rejected by WorkspaceEdit before this module is
++invoked, and direct replacement calls fail closed. Historical full-content
++output limits and the remaining fixed H11 helpers are retained.
+ """
+ 
+ from __future__ import annotations
+@@ -13,31 +12,20 @@
+ from collections.abc import Sequence
+ 
+ from mgar_v3.domain import DomainError
+-from mgar_v3.harness.contracts import TextReplacement, WorkspaceEdit, sha256_text
+-from mgar_v3.repair.worktree import TextReplacement as H05TextReplacement
+-from mgar_v3.repair.worktree import apply_text_replacements
++from mgar_v3.harness.contracts import TextReplacement, WorkspaceEdit
+ 
+ DEFAULT_MAX_OUTPUT_BYTES = 65_536
+ DEFAULT_MAX_REPLACEMENTS = 64
+ MAX_FILE_BYTES = 2_000_000
+ 
+ 
+-def _h05(replacements: Sequence[TextReplacement]) -> list[H05TextReplacement]:
+-    pinned = []
+-    for item in replacements:
+-        payload = item.model_dump()
+-        payload["old_sha256"] = item.old_sha256 or sha256_text(item.old_text)
+-        pinned.append(H05TextReplacement.model_validate(payload))
+-    return pinned
+-
+-
+ def apply_replacements(content: str, replacements: Sequence[TextReplacement]) -> str:
+-    """Apply hash-pinned replacements and reject an oversized result."""
+-    updated = apply_text_replacements(content, _h05(replacements))
+-    if len(updated.encode()) > MAX_FILE_BYTES:
+-        raise DomainError("PATCH_LIMIT", "Edited file exceeds the per-file byte bound", 413)
+-    return updated
+-
++    """SA13's reviewed bridge exposes only required, full-content edits."""
++    raise DomainError(
++        "SOURCE_WORKER_INCREMENTAL_NOT_AVAILABLE",
++        "Incremental replacement edits are outside this Source Worker capability",
++        403,
++    )
+ 
+ def output_bytes(edits: Sequence[WorkspaceEdit]) -> int:
+     """Bytes the model had to emit for these edits (not the resulting file size)."""

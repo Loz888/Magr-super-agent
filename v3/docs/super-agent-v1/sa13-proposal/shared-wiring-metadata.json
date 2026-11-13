@@ -1,0 +1,68 @@
+{
+  "status": "DRAFT_FOUR_FILE_PATCH_NOT_APPLIED_PENDING_NEW_FIXED_CONFIRMATION",
+  "recorded_utc": "2026-11-13T09:51:35.306071+00:00",
+  "base_delivery_commit": "8ca5e8aa4719bc466448358d43ea89011f3bae6b",
+  "patch_sha256": "01c7ec61c678e59099c687962b0413c9bfac0be45c0bb0167e7078f5b157d590",
+  "files": {
+    "v3/src/mgar_v3/coordination/engine.py": {
+      "before_sha256": "986db892ff66a4fb7f9cb1bdba63540df496abc9595b9ee3c2ec9b54de808eb7",
+      "proposed_after_sha256": "d1e5b16681f9d6f5f8fa0a5a60ee34d01e4c50b4a7afcc754e9db268a9f2313d"
+    },
+    "v3/src/mgar_v3/api.py": {
+      "before_sha256": "e8e71261d21c7e28855d0b6f3b06c9704e249daa77dff2bc4c85124858e7a518",
+      "proposed_after_sha256": "b404bc8e5aa7a05fa0cbe912f0fdda5cdb08b0e4fe4fcb9d9abeae11b127addf"
+    },
+    "v3/src/mgar_v3/super_agent/source_scheduler.py": {
+      "before_sha256": "51225e3ddd1a68b5cf30bc56e22c29097adae442afed6f9ae1214117fc1afef2",
+      "proposed_after_sha256": "d0a450a98b3ad2571301adbf299f7ca09c3e80d5a6818836c6cf25c0b0a6bf37"
+    },
+    "v3/src/mgar_v3/harness/contracts.py": {
+      "before_sha256": "cdcbdda22ac13db25a0b1bb0d49c2c74a06ab1a4bfaea9e1d4011243d8e69466",
+      "proposed_after_sha256": "d9ba15e16a80791e6e92deefea609bf809773cc4d90baa72bd31d71a9313aaf4"
+    }
+  },
+  "new_service_ABI": [
+    "SourceCoding(engine); constructor no IO or activation",
+    "managed(conn,run_id)->bool; only original same connection, exact new Coding graph/scope/binding",
+    "source_authority(conn,run,queue)->SourceAuthorityFacts; current canonical/identity/policy/target/graph/mandate, no legacy whitelist expansion",
+    "read_only(conn,assignment)->bool; legacy/default/cleanup alwaysTrue, only independently owner-signed new Coding namespace+current scope maywrite",
+    "recover_conn(conn)->None; epoch already fenced by original recovery, unknown retained and no auto resend",
+    "source_coding_api.register(app,authority,browser_user);6 metadata routes only"
+  ],
+  "route_prefix": "/api/v3/source-coding",
+  "routes": [
+    [
+      "GET",
+      "/capabilities"
+    ],
+    [
+      "POST",
+      "/admissions"
+    ],
+    [
+      "GET",
+      "/bindings/{coding_id}"
+    ],
+    [
+      "POST",
+      "/bindings/{coding_id}/cancel"
+    ],
+    [
+      "POST",
+      "/worker/{coding_id}/run"
+    ],
+    [
+      "GET",
+      "/worker/{coding_id}/state"
+    ]
+  ],
+  "default_activation": false,
+  "H12_live_agent_MVP_FAIL_live_coding": "DENY",
+  "financial_ASTs": "UNCHANGED; private adapter must call existing shared budget/usage ports, not use Harness ledger",
+  "old_source_eval_I01_and_public_readonly_grants": "UNCHANGED",
+  "scope_limits": "No general H12 Store/Service/ledger import or HTTP shell/provider/token surface; constructor and import activate nothing",
+  "component_patches": {
+    "engine_api_scheduler": "81ed4dcafd9f26abaa484bbe4646608fdb8aa47e99f0f722430ffa828c3d630f",
+    "contracts": "68d808f64459e647ece77496ab4152362d4bac98283009232e59cb7f2ab26832"
+  }
+}

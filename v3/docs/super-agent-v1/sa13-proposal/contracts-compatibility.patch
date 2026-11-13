@@ -1,0 +1,97 @@
+--- a/v3/src/mgar_v3/harness/contracts.py
++++ b/v3/src/mgar_v3/harness/contracts.py
+@@ -8,12 +8,12 @@
+ from __future__ import annotations
+ 
+ import hashlib
+-from collections.abc import Iterator, Sequence
++from collections.abc import Iterator, Mapping, Sequence
+ from datetime import UTC, datetime
+ from typing import Any, Literal, Protocol, runtime_checkable
+ from uuid import UUID, uuid4
+ 
+-from pydantic import Field, field_validator
++from pydantic import Field, field_validator, model_validator
+ 
+ from mgar_v3.domain import DomainError, Model, digest
+ 
+@@ -266,15 +266,41 @@
+     files: dict[str, str] = Field(default_factory=dict)
+ 
+ 
++class TextReplacement(Model):
++    """One hash-pinned snippet replacement located by unique context.
++
++    This mirrors the H05 replacement protocol: ``old_text`` must match exactly,
++    ``old_sha256`` pins that fragment when the caller can provide it (a real
++    language model cannot compute hashes, so it may omit the field and the
++    harness pins ``sha256(old_text)`` itself), ``occurrence`` disambiguates
++    repeated fragments, and a missing or non-unique context is rejected
++    instead of guessed.
++    """
++
++    old_sha256: str | None = Field(default=None, pattern=r"^[a-f0-9]{64}$")
++    old_text: str = Field(min_length=1, max_length=2000000)
++    new_text: str = Field(max_length=2000000)
++    occurrence: int | None = Field(default=None, ge=1, le=1000)
++
++
+ class WorkspaceEdit(Model):
+     path: str = Field(min_length=1, max_length=300)
+     expected_sha256: str = Field(pattern=r"^[a-f0-9]{64}$")
+     content: str = Field(max_length=2000000)
++    replacements: None = Field(default=None, exclude=True)
+ 
+     @field_validator("path")
+     @classmethod
+     def normalize_path(cls, value: str) -> str:
+         return normalize_relative_path(value)
++
++    @model_validator(mode="before")
++    @classmethod
++    def full_content_only(cls, value: Any) -> Any:
++        """Keep replacement payloads rejected; never erase or downgrade their content."""
++        if isinstance(value, Mapping) and "replacements" in value:
++            raise ValueError("Source Worker accepts only full-content edits")
++        return value
+ 
+ 
+ class WorkspaceChange(Model):
+@@ -314,6 +340,29 @@
+     cwd: str = "."
+     timeout_seconds: float = Field(default=60, gt=0, le=1800)
+     execution_epoch: int = Field(default=0, ge=0)
++
++
++class ExecutionProvenance(Model):
++    """Immutable provenance captured by the Broker's actual authorization.
++
++    This identifies the grant that generated output; it cannot restore that
++    grant or authorize reads after the current authority changes.
++    """
++
++    schema_version: Literal["harness-execution-provenance-v1"] = (
++        "harness-execution-provenance-v1"
++    )
++    operation_id: str
++    lease_id: str
++    lease_hash: str = Field(pattern=r"^[a-f0-9]{64}$")
++    actor: str
++    workspace_id: str
++    repository: str
++    execution_epoch: int = Field(ge=1)
++    read_paths: tuple[str, ...]
++    write_paths: tuple[str, ...]
++    protected_paths: tuple[str, ...]
++    grant_hash: str = Field(pattern=r"^[a-f0-9]{64}$")
+ 
+ 
+ class ExecutionReceipt(Model):
+@@ -332,6 +381,7 @@
+     environment_hash: str = Field(pattern=r"^[a-f0-9]{64}$")
+     tests_run: int = Field(default=0, ge=0)
+     tests_failed: int = Field(default=0, ge=0)
++    provenance: ExecutionProvenance | None = None
+ 
+ 
+ class VerificationCheck(Model):

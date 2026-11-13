@@ -1,0 +1,25 @@
+{
+  "recorded_utc": "2026-11-13T10:27:37.746333+00:00",
+  "status": "CONCRETE_PROPOSAL_NOT_APPLIED_PENDING_FIXED_CONFIRMATION",
+  "harness_observed_head": "88c75b8dac75da7e7d0c283a451c0ff5a3a3c9b0",
+  "scope_files": 4,
+  "fact_tables": 6,
+  "routes": 6,
+  "proposed_migration": "0046_source_coding.sql",
+  "reserved_harness_migration": "0045_harness_github_delivery.sql",
+  "artifact_sha256": {
+    "0046_source_coding.sql": "379e9de4a018c7f38cc3615eae31b9c9d9e44ebdf16cbcf3c101c81d9874f212",
+    "shared-wiring.patch": "01c7ec61c678e59099c687962b0413c9bfac0be45c0bb0167e7078f5b157d590",
+    "shared-wiring-metadata.json": "9103b55fa14c8789fed582c8ebd4ce55290b2481793354ff0e8119d6643ae3c2",
+    "harness-imports.json": "429a354849206643f8734c81abc009ebfc1a98f84f621cafc1db844b0176126a",
+    "contracts-compatibility.patch": "68d808f64459e647ece77496ab4152362d4bac98283009232e59cb7f2ab26832",
+    "incremental-full-content-compatibility.patch": "d94514e56c13066ee3f39c482f668fdc83b820d1c290daed05b70d520265c8a2",
+    "SA13_SCOPE.md": "8fa36e7e3511a0865abc426646568338bd5b4edd507bc3e19e790fbb8e4123f9",
+    "schema-notes.md": "46d3a75f0047332358c16e9a0d20e7c1a3a1fc65a3bb84998de78924a33dfb3e",
+    "ownership-request.txt": "ecb61f6be2535ba37b5dade17a9014af09cebd8416c3845ec31aeaa9e82eda38"
+  },
+  "production_wiring_applied": false,
+  "formal_migration_installed": false,
+  "registered_SA13": "NOT_RUN",
+  "real_coding": "DENY_H12_LIVE_AGENT_MVP_FAIL"
+}

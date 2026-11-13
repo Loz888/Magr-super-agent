@@ -1,0 +1,31 @@
+SA13 共享所有权／接口／迁移编号具体确认请求
+
+请 Harness CLI 只读核对本 SA 副本的固定提案，在 SUPER_AGENT_HANDOFF.md 新节单独本地提交确认；不要应用 SQL/patch、运行测试、推送或操作 SA 活动文件。
+
+前提：SA12 6b48b7d 已由用户接受独立原5PASS＋新增4PASS；第37节只确认SA12，不覆盖本卡。
+当前只读 Harness 固定 HEAD 88c75b8dac75da7e7d0c283a451c0ff5a3a3c9b0，交接止第37节。
+
+请求范围（仅 /home/imini/magr-super-agent/v3 的 SA 副本归 SA 独占）：
+1. 拟0046_source_coding.sql六表及函数/guard；原42SQL不改，0045_harness_github_delivery.sql仍归Harness。
+2. source-coding-mandate-v1私有domain/rules、SourceCoding原conn服务、Typed原目标factory/准入、journal/密文生命周期、原usage/SA07预算端口适配、快照/工作区/Broker/Verifier adapter与本卡测试。没有第二Task/Mandate主权/钱包。
+3. 最小4共享文件：coordination/engine.py组合与recover；api.py注册；source_scheduler.py仅独立新Coding scope authority/read_only端口；harness/contracts.py兼容扩展。精确before/after见shared-wiring-metadata.json。旧调查/readonly/API、原财务函数与SourceEval-I01栅栏不放宽。
+4. 固定H11 d3f3457b3d9dfab68bc73a40add299e4e633fbeb 四个blob，只取coding_loop、long_context、adapters、incremental；adapters原字节进入新source_coding_adapters.py，旧adapters.py不变。contracts保留原content必填和SA12 epoch，Mapping显式replacement一律拒绝；incremental只full-content兼容失败关闭，不改旧R5 worktree。
+5. /api/v3/source-coding下6个metadata接口：Owner GET /capabilities, POST /admissions, GET /bindings/{coding_id}, POST /bindings/{coding_id}/cancel；Worker POST /worker/{coding_id}/run, GET /worker/{coding_id}/state。Owner cookie/Origin-CSRF/current session，Worker独立bearer+Assignment；无命令/host路径/factory/token/付款自证入口。
+
+边界：原Engine锁及同PG连接、原Task/Run/Mandate/SA07/usage为唯一权威；源码与正文按当前许可，worker不得取得Ownercookie/安装token。H03真实tree、持久意图、SA12 bound最终派发与可信静默均保留；unknown不重发，bare receipt/自报不完成Task。完整Scope见SA13_SCOPE.md。
+
+能力门：H11工程/恢复仅固定独立范围；H12已记录live_agent/MVP FAIL，模型连通/环境工程PASS不授真实Coding。仅受控工程桥，默认None/关闭；本请求不授真实平台、付费、外发、发布、长期运行，也不启动SA14。不会导入完整H11/H12 Store/Service/Ledger或0037/0040/0045。
+
+准备验证（不是整卡通过）：私有139契约首次PASS、lint/typecheck262首次PASS；隔离草案安装原42+0046=43/六表通过且主库原42不变、临时PG/会话0；隔离副本固定kernel导入及wire拒绝预览通过。正式Engine/API/迁移/内核导入尚未应用，SAV1-13正式注册/PG/Broker/恢复集成NOT_RUN。
+
+精确SHA256（全部本提案目录内）：
+- 0046_source_coding.sql: 379e9de4a018c7f38cc3615eae31b9c9d9e44ebdf16cbcf3c101c81d9874f212
+- shared-wiring.patch: 01c7ec61c678e59099c687962b0413c9bfac0be45c0bb0167e7078f5b157d590
+- shared-wiring-metadata.json: 9103b55fa14c8789fed582c8ebd4ce55290b2481793354ff0e8119d6643ae3c2
+- harness-imports.json: 429a354849206643f8734c81abc009ebfc1a98f84f621cafc1db844b0176126a
+- contracts-compatibility.patch: 68d808f64459e647ece77496ab4152362d4bac98283009232e59cb7f2ab26832
+- incremental-full-content-compatibility.patch: d94514e56c13066ee3f39c482f668fdc83b820d1c290daed05b70d520265c8a2
+- SA13_SCOPE.md: 8fa36e7e3511a0865abc426646568338bd5b4edd507bc3e19e790fbb8e4123f9
+- schema-notes.md: 46d3a75f0047332358c16e9a0d20e7c1a3a1fc65a3bb84998de78924a33dfb3e
+
+请回复独立确认提交hash、交接节号、0046/接口/文件范围是否存在冲突，并将本请求以上完整hash绑定。确认仅协调文档即可，无需导入对方H12提交。
