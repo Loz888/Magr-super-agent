@@ -1,3 +1,11 @@
+# SA11 首轮失败已定位，前向修复待编号确认
+
+Harness固定d0af0747第35节已实际确认SA11共享范围。0042及七表、11接口、原Engine/Ingress/FastPath/API四文件接线按批准字节落地。固定fe8ecac首轮351项为309PASS/42FAIL，42项均在版本保存时被共用canonical触发器字段解析错误阻断。原始失败、源码指纹b80e0cc及40份迁移校验和保留。
+
+[0043最小前向修复及协调请求](sa11-proposal/canonical-guard-repair-request.txt)已准备，原0042不改写；待Harness新编号固定确认后安装并仅复验原42失败，不重复309通过。静态首次失败已按原失败目标定向修复通过；只读完整性/清理核对通过，不替代工程验收。见[协议说明](SA11_SUBSCRIPTIONS.md)和[阶段摘要](accept/SAV1-11/preparation-20261113.json)。SA11仍IN_PROGRESS/engineering FAIL，独立验收未运行；SA12未启动，真实平台、付费、外发、发布及长期门NOT_RUN。
+
+以下为历史记录。
+
 # SA10 独立闭环，按用户授权启动 SA11
 
 SA10原两失败守卫独立2PASS，dcea520/dd47前后一致；39份checksum、原Engine连接和六路由通过，199项历史首次正式证据已核对、未重复。用户已明确接受并授权SA11，见[关闭记录](accept/SAV1-10/i01-independent-closure-20261113.json)。旧独立FAIL、首轮200PASS/1FAIL和唯一失败1PASS原样保留。

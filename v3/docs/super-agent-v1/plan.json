@@ -334,11 +334,12 @@
       "optional": false,
       "card": "TASKS.md#sa11",
       "verification_target_on_implementation": "SAV1-11",
-      "work_state": "AUTHORIZED_REQUIREMENTS_REUSE_AND_SHARED_SCOPE_PREPARATION",
-      "engineering_gate": "NOT_RUN",
+      "work_state": "INITIAL351_309PASS42FAIL_FORWARD0043_PENDING_NUMBERING_ACK",
+      "engineering_gate": "FAIL",
       "independent_review": "NOT_RUN",
       "dependency_closure": "accept/SAV1-10/i01-independent-closure-20261113.json",
-      "ownership_commit": null
+      "ownership_commit": "d0af0747dd129033cb7bd0abd2af9ca5a57a8d4a",
+      "preparation": "accept/SAV1-11/preparation-20261113.json"
     },
     {
       "id": "SAV1-12",

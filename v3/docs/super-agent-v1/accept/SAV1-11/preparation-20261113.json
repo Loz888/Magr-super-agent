@@ -1,0 +1,63 @@
+{
+  "task": "SAV1-11",
+  "status": "IN_PROGRESS",
+  "work_state": "INITIAL_REGISTERED_FAILED_MINIMAL_FORWARD_REPAIR_PREPARED_PENDING_NUMBERING_CONFIRMATION",
+  "recorded_at_utc": "2026-11-13T05:06:31.200936+00:00",
+  "implementation_commit": "fe8ecacab3d3841cc9ad8540359d99a9239cdf2d",
+  "source_sha256": "b80e0cc159819e9acc3d9f99d159ba43a8263b265473fa660b6cbc6a9fd41695",
+  "ownership_commit": "d0af0747dd129033cb7bd0abd2af9ca5a57a8d4a",
+  "formal_installed_migrations": 40,
+  "source_fact_tables": 7,
+  "routes": 11,
+  "schema_artifacts": 15,
+  "registered_initial": {
+    "result": "evidence/SAV1-11/20261113T045454Z-6ade8d74/result.json",
+    "counts": {
+      "tests": 351,
+      "failures": 42,
+      "errors": 0,
+      "skipped": 0
+    },
+    "source_before": "b80e0cc159819e9acc3d9f99d159ba43a8263b265473fa660b6cbc6a9fd41695",
+    "source_after": "b80e0cc159819e9acc3d9f99d159ba43a8263b265473fa660b6cbc6a9fd41695",
+    "full_result": "FAIL"
+  },
+  "failure": {
+    "root_cause": "0042 shared canonical trigger CASE parses NEW.input_id on version records without that field;42cases blocked",
+    "reproduction": "Original failed351 attempt retained; no extra passing checks repeated",
+    "failed_node_ids": "evidence/super-agent-v1/SAV1-11/start-20261113T040752Z-8b0bf668/initial-failed42-nodeids.json"
+  },
+  "proposed_repair": {
+    "status": "PENDING_FIXED_HARNESS_NUMBERING_ACK; NOT_INSTALLED",
+    "sql": "docs/super-agent-v1/sa11-proposal/0043_source_subscription_canonical_guard.sql",
+    "sha256": "55f7e50886149eca9ae78db2bc5e72d186b41679fc403c8c318aa6fb8e10a008",
+    "request": "docs/super-agent-v1/sa11-proposal/canonical-guard-repair-request.txt",
+    "scope": "Only existing SA-owned canonical guard uses IF field evaluation; unchanged project/Source/input/version predicates, no new table/API/authority",
+    "original0042_sha256_unchanged": "3e29900f22472c4d8b0c5b2bc60a64a798134532b2e47ab09427cc5006d4c8d0",
+    "original4file_patch_unchanged": "da51e1366a086a53125127f2fd54fec3b497629478a542d15a37c220365dedb6"
+  },
+  "repair_retest_scope": "ONLY original42failed;309passing cases will not be repeated",
+  "statics": "Initial global253source mypy9errors innewcore andlint15in3files retained; onlyfailedCoremypy+3lintfiles repairedPASS, no global rerun",
+  "gates": {
+    "engineering_gate": "FAIL",
+    "policy_security_gate": "NOT_RUN",
+    "live_source_channel_gate": "NOT_RUN",
+    "live_coding_gate": "NOT_RUN",
+    "live_publication_gate": "NOT_RUN",
+    "continuous_operation_gate": "NOT_RUN"
+  },
+  "independent_review": "NOT_RUN",
+  "semantic_evaluation": "NOT_RUN",
+  "real_platform_paid_external_publication_long_running": "NOT_RUN",
+  "SA12": "PLANNED_NOT_STARTED",
+  "integrity_audit": "evidence/super-agent-v1/SAV1-11/failed-stage-integrity-20261113T050915Z-54409e/failed-stage-integrity-and-cleanup.json",
+  "integrity_audit_result": "PASS_READ_ONLY_PRESERVATION_AND_CLEANUP_ONLY",
+  "cleanup": {
+    "temporary_postgres_databases": 0,
+    "temporary_postgres_sessions": 0,
+    "this_checkout_checks": 0,
+    "this_card_fault_containers": 0,
+    "seven_new_tables": "0 rows each",
+    "audit_utc": "2026-11-13T05:09:22.902597+00:00"
+  }
+}
