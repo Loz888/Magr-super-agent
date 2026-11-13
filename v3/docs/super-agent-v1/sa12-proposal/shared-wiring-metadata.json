@@ -1,0 +1,29 @@
+{
+  "recorded_utc": "2026-11-13T06:23:54.882623+00:00",
+  "status": "DRAFT_NOT_APPLIED_NEW_SCOPE_PENDING_FIXED_CONFIRMATION",
+  "base_commit": "fa5e013",
+  "files": {
+    "v3/src/mgar_v3/coordination/engine.py": {
+      "before_sha256": "31a4f89a0f7308661648aa4910e9686568eed1176fb0b4990fed9df90b12d88d",
+      "proposed_after_sha256": "986db892ff66a4fb7f9cb1bdba63540df496abc9595b9ee3c2ec9b54de808eb7"
+    },
+    "v3/src/mgar_v3/api.py": {
+      "before_sha256": "dee01b4b0261996c93f82743513cfbdebeb818ead0f986398d7e08c69a640c99",
+      "proposed_after_sha256": "e8e71261d21c7e28855d0b6f3b06c9704e249daa77dff2bc4c85124858e7a518"
+    },
+    "v3/src/mgar_v3/harness/contracts.py": {
+      "before_sha256": "b07f44ce8774a0a639fe7ea8eff67f0c3d5cf17b1a9118ba8a34ddb84c39d07c",
+      "proposed_after_sha256": "cdcbdda22ac13db25a0b1bb0d49c2c74a06ab1a4bfaea9e1d4011243d8e69466"
+    }
+  },
+  "patch_sha256": "7899c89d13c9d4533e2b5dda4e68a5f9c51a6e2834f7d33929587b9dbb9bc2cd",
+  "scope": [
+    "Original Engine composition",
+    "Original _run(epoch) lease fence",
+    "Managed before_begin claim/graph start epoch exactly once; non-managed unchanged",
+    "Original recovery first pauses/fences; private hook retains managed resources in draining",
+    "Legacy supervisor skips already scheduler-managed original Runs",
+    "Independent owner/Worker auth API registration",
+    "Only additive ExecutionRequest.execution_epoch for fixedH04 contract"
+  ]
+}

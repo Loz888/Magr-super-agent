@@ -1,0 +1,37 @@
+SA12 Scheduler/Assignment/租约共享范围、0044及固定Harness切片确认请求
+
+SA11已获用户本地工程独立放行：ca49b76/f94ed73b，原42独立42PASS+六有效边界，41checksum/204引用匹配；原309未重跑，错误探针与各历史FAIL保留。SA侧关闭及启动记录提交fa5e013。用户明确确认后启动SA12；本请求只协调本卡，不扩大真实平台、编码、付费、外发、发布/长期许可，不启动SA13。
+
+请先阅读具体范围与15接口、claim/epoch/资源生命周期：
+/home/imini/magr-super-agent/v3/docs/super-agent-v1/sa12-proposal/SA12_SCOPE.md
+SHA256: 20a8f7c9c84067be4e1fb0725b1d39630050c8f6e1bbde99ebad5a08eca19760
+
+1) 拟0044_source_scheduler.sql归SA副本独占，新增七张原Run关联资源/配置事实表：sa_scheduler_configs、sa_scheduler_config_versions、sa_scheduler_queue、sa_scheduler_sessions、sa_scheduler_assignments、sa_scheduler_operations、sa_scheduler_events及专属索引/约束/触发器。原Task/Run/Mandate、费用与业务完成仍为原Engine真值，不复制正文、question、模型结果或钱袋。SQL草案：
+/home/imini/magr-super-agent/v3/docs/super-agent-v1/sa12-proposal/0044_source_scheduler.sql
+SHA256: 7199a8020bd17ec069e0b18efc8c48fa3a63827cb83dafbde47fbad7bba07eb6
+草案已在一次性隔离PG用原迁移器安装（42份/七新表），数据库/会话已清除；SA主库仍41、正式0044未安装。安装检查不是整卡PASS。当前只读Harness固定05899b5dfbb1c08284cc65b14b7cd8ee8d2a1796迁移最高0040，未见0044占用；如编号冲突请指定替代，SA更新草案后再绑定，双方历史SQL不改。
+
+2) SA私有source_scheduler*.py、schemas/config/tests及原Engine同conn/mutex驱动桥归SA侧。现有三文件最小补丁：
+/home/imini/magr-super-agent/v3/docs/super-agent-v1/sa12-proposal/shared-wiring.patch
+SHA256: 7899c89d13c9d4533e2b5dda4e68a5f9c51a6e2834f7d33929587b9dbb9bc2cd
+具体before/after SHA见shared-wiring-metadata.json。Engine仅组合SourceScheduler；_run(epoch非空)追加受管lease/session/PGtime当前门，原无epoch财务settlement不受影响；begin_run通过精确内部claim或Worker上下文只启动一次，旧未受管路径保持；recover原pause/unknown后把受管Assignment置draining保留资源。API仅注册独立15路由并让旧supervise跳过受管Run，不隐藏Owner list_runs。harness/contracts仅ExecutionRequest加execution_epoch: int=0兼容字段，不覆盖其它合同/旧模型/运行回路/适配器。
+
+3) 固定依赖的最小两文件导入与接口扩展，均只在SA副本实施：
+- H03 workspace.py：固定87654b5108ad8929154dc60e7c0d7b0e255b1800，原字节SHA 19f018af23bf60d5541de1fc2ab24d9c74d764a181676fc8bde3ab0fc3775649，不改；H03独立接收另据8cf07d2§18，旧pending元数据保留。
+- Broker仅固定H04/H06已验e06328d5f71d696bfb4c88510a77bcccc97b777e的broker.py，base SHA bb9a93ffe5dab9573a9d8f5c7b920a7827d9ca81b1119bb0ee08cd3ee35219a1；不导入commands.py/CommandSession/H09/H11/H12或0037/0040。
+- 在此唯一Broker上新增可选bound launch(container_name,ownership_labels,dispatch_guard)及strict inspect_bound/stop_bound，补丁：
+/home/imini/magr-super-agent/v3/docs/super-agent-v1/sa12-proposal/harness-broker-bound.patch
+SHA256: ddc37d4eac382531f6822b128599d7e40a296da515595467bbc874468af764e1
+proposed after SHA 1ac29b2baf527baa74b59f0f375eddbfd058506e79771bd8bd38788e108dc91f。
+- 完整固定来源/接口/默认兼容/排除范围：
+/home/imini/magr-super-agent/v3/docs/super-agent-v1/sa12-proposal/harness-imports.json
+SHA256: 68648ac45e45a314d7b49906fe5afd5f97ec827690c8ed6f4955065f71e31ddb
+新hook尚未运行验收，不能把历史H06 PASS扩成新hook PASS；收到确认后在SA首次正式集成检查。原完整adapters/H12 Broker不覆盖，不改变H02固定文件。
+
+Bound接口只接服务端事实：name=mgar-sa12-+原start/job operationUUID.hex；四labels mgar.sa12.assignment/operation/workspace/project从PG派生，Worker/来源/HTTP不能自提供。先在PG持久登记确切name+identity/request hash，再任何create。创建返回64hex ID，guard内严格inspect全部owner/ID/created状态，slow inspect后再次dynamic Authority.peek重读PG当前权限/时间，PG事务提交结束后才按immutable ID实际start；原Engine mutex覆盖最终检查到start。daemon/transport/畸形JSON不是missing；stop只按完整归属匹配的immutable ID处理，再证明exactname确定不存在，未知继续保留slot。默认三参数全None保持原H06调用兼容，原授权/挂载/资源/网络/凭据/外发拒绝核心保留。不另建执行Broker或可信完成判定。
+
+4) 协议与资源边界：默认disabled/无Worker driver；Owner cookie+Origin/CSRF，Worker独立Session bearer hash-only，不下发console cookie。队列只登记获准原Run，角色/Source/currentBinding/target由服务端验证，纯上下文不授予执行。SA07 queue/slot复用generation/assignment新key，不重置旧账。lease过期先fence，preparing/active/draining保留唯一Task/Run/Session/workspace与CPU/内存/准备占用；有未完/unknown operation或原read_job不能释放。只有可信、fence后新鲜quiescence事实才释放，Worker自报finished不完成业务。Source真实Worker/模型桥与安全点仍后续卡。跨副本未来集成另审固定差异，不直接套用对方活动树。
+
+请Harness只读核对编号、上述两fixed文件切片、Broker兼容新公共hook和三文件共享范围，单独本地提交新交接节并回传固定commit（需绑定本请求和SQL/两patch/imports哈希）。请明确以上仅SA副本由SA独占，确认无编号/接口/文件所有权冲突；若当前范围冲突或需替代接口，具体指出后SA再更新提案。无需执行SQL/测试/付费，不改SA或主库，不导入H12、不夹带其它工作、不推送。第35/36节仅SA11，不能替代本次新确认。
+
+确认前SA继续私有实现，不应用三文件patch、不正式导入Harness文件或0044。正式新增卡首次运行真实注册目标，失败修复后只复验失败项，保留所有历史PASS/FAIL及未实测门，不自动启动SA13。

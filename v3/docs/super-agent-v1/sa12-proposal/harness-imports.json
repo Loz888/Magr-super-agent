@@ -1,0 +1,115 @@
+{
+  "schema": "sa12-fixed-harness-import-proposal-v1",
+  "status": "ROOT_INTERNAL_REVIEWS_ABA_AND_TIME_BOUNDARY_REPAIRED_CANDIDATE_FROZEN_PENDING_FIXED_HARNESS_ACK_NOT_IMPORTED_NOT_TESTED",
+  "recorded_utc": "2026-11-13T06:45:55.976249+00:00",
+  "candidate_fixed_sources": [
+    {
+      "path": "v3/src/mgar_v3/harness/workspace.py",
+      "commit": "87654b5108ad8929154dc60e7c0d7b0e255b1800",
+      "sha256": "19f018af23bf60d5541de1fc2ab24d9c74d764a181676fc8bde3ab0fc3775649",
+      "change": "Exact H03 accepted blob; no edits"
+    },
+    {
+      "path": "v3/src/mgar_v3/harness/broker.py",
+      "commit": "e06328d5f71d696bfb4c88510a77bcccc97b777e",
+      "sha256": "bb9a93ffe5dab9573a9d8f5c7b920a7827d9ca81b1119bb0ee08cd3ee35219a1",
+      "proposed_after_sha256": "1ac29b2baf527baa74b59f0f375eddbfd058506e79771bd8bd38788e108dc91f",
+      "change": "One accepted H04/H06 Broker file plus explicit optional server binding/dispatch guard/strict owned recovery hooks",
+      "new_hook_acceptance": "NOT_RUN; new fixed Harness acknowledgement and initial SA12 integration verification required"
+    }
+  ],
+  "patch": {
+    "path": "v3/docs/super-agent-v1/sa12-proposal/harness-broker-bound.patch",
+    "sha256": "ddc37d4eac382531f6822b128599d7e40a296da515595467bbc874468af764e1",
+    "base_sha256": "bb9a93ffe5dab9573a9d8f5c7b920a7827d9ca81b1119bb0ee08cd3ee35219a1",
+    "proposed_after_sha256": "1ac29b2baf527baa74b59f0f375eddbfd058506e79771bd8bd38788e108dc91f",
+    "target_file_count": 1
+  },
+  "contracts": {
+    "path": "v3/src/mgar_v3/harness/contracts.py",
+    "ownership": "Root-prepared additive ExecutionRequest.execution_epoch only; this agent did not modify it",
+    "accepted_H04_H06_full_blob_sha256": "119864127e4d4fa3a415d27f8d75ecb54ec9ba6720c3698cbf333f59d887ae38"
+  },
+  "new_public_interfaces": {
+    "launch_optional_keyword_only": [
+      "container_name: str | None = None",
+      "ownership_labels: Mapping[str,str] | None = None",
+      "dispatch_guard: Callable[[],AbstractContextManager[None]] | None = None"
+    ],
+    "BoundCommandStatus": [
+      "name: str",
+      "container_id: str | None",
+      "state: str",
+      "exit_code: int | None"
+    ],
+    "inspect_bound_command": "(name: str, ownership_labels: Mapping[str,str]) -> BoundCommandStatus",
+    "stop_bound_command": "(name: str, ownership_labels: Mapping[str,str]) -> BoundCommandStatus"
+  },
+  "interface_semantics": {
+    "legacy": "All three launch options None preserves original random-name H06 launch; old inspect_command/stop_command remain compatibility APIs and are never SA12 quiescence proof",
+    "bound_launch": "All three options required together; server persists exact deterministic name and full owner-label tuple in Engine transaction before launch. Names/labels are trusted internal data, never HTTP/source/model authority. Original _authorize, mounts, resource limits, network/publish/dependency refusal remain intact",
+    "actual_start_fence": "Actual Docker start remains inside dispatch_guard held across IO by original Engine mutex, with every PG transaction committed/exited before IO. Inside the context first strict inspect exact canonical name/four owner labels/original Broker label, require immutable ID==actual create.stdout ID and state created. After all potentially slow inspect IO, the final noncharging authority.peek must dynamically re-read latest committed PG Run/source/policy/lease/session/config and PG current-time/expiry, finish its short transaction, then compare lease id/hash/request epoch immediately before immutable-ID start; no intervening slow IO. A cached lease or guard-enter-only read is invalid. All-None old behavior stays unchanged.",
+    "known_identity_before_io": "Engine commits exact deterministic name+four labels+request_sha operation intent before any create. Bound launch validates the actual create.stdout immutable64hex ID; unknown/invalid ID, missing/mismatched/replaced/not-created observation or inspect daemon/transport failure raises OUTCOME_UNKNOWN and preserves intent/slots. The subsequent actual start uses only that validated immutable ID. Crash recovery queries the original name/labels, never blind reruns launch.",
+    "strict_query": "Docker container inspect structured canonical Name, immutable ID, complete mgar.sa12.* owner labels and State; require exact four owner fields plus original Broker label. Only exact name-specific NoSuchContainer/Object message, return1 and empty stdout is definite missing. Other process results/JSON issues raise OUTCOME_UNKNOWN; original _docker transport/timeout DomainError also propagates and must be treated as UNKNOWN, never absence or releasable resources.",
+    "strict_stop": "Inspect exact ownership, rm -f by matched immutable container ID, then strictly re-inspect canonical name; only definite missing returns. A replacement with changed owner is never deleted. Unknown/mismatch never frees slots",
+    "label_validation": "Exact server label set: mgar.sa12.assignment/operation/workspace are canonical UUID strings, mgar.sa12.project is nonempty bounded server project identifier. Name equals mgar-sa12- plus operation UUID hex. Actual complete mgar.sa12.* labels must equal this four-field map; original mgar.v4.h04.broker=1 also required; unrelated image labels allowed. None comes from HTTP/source/model.",
+    "not_proven": "Not yet tested; stderr absence classification requires real Docker missing/daemon-denied negative cases in first new integration checks; no current H06 PASS claim for hooks",
+    "dynamic_authority_source_requirement": "The bound CapabilityAuthority MUST use Root-provided dynamic lease_source, not a fixed in-memory lease or cached guard-entry snapshot. Every final peek rechecks current PG lease/session/config/source/Run authority and database current time, commits/exits its short transaction before returning; authority expiry/fence errors deny start and retain intent/slots. peek never charges the operation/model budget."
+  },
+  "retained_original_logic": [
+    "CapabilityAuthority.current/peek/check_scope",
+    "issue_lease presets and grants",
+    "IsolatedExecutionBroker.execute",
+    "all scope/mount/mask/placeholder functions except optional labels hook in _create_args",
+    "_authorize",
+    "network/publish/dependency refusals",
+    "resource/image/credential boundaries"
+  ],
+  "explicitly_excluded": [
+    "commands.py / CommandSession",
+    "H05 adapters or incremental edits",
+    "H09/H11/H12 runtime, persistence and model loops",
+    "0037",
+    "0040",
+    "neighbor active/uncommitted files",
+    "any production import, SQL installation, tests, static checks or process execution"
+  ],
+  "coordination": "Requires new fixed Harness owner confirmation for exact base+patch hashes and public hook/interface ownership; SA11 §35/36 and historical H06 acceptance do not cover these additions",
+  "review_notes": [
+    "Query/stop uses canonical name plus full expected ownership tuple; immutable-ID removal avoids deleting a different replacement at the same name",
+    "Default legacy APIs remain intentionally unsafe as general recovery proof; SA12 must use bound variants only",
+    "Guard failures may leave created but unstarted container; persistent operation/slot remains until strict bound recovery proves absence",
+    "Successful missing observation is a point-in-time proof; Root single writer and intent CAS prevent reusing this name while reconciliations race",
+    "Root approved the three-keyword launch and bound inspect/stop design; root supplied exact four labels/name contract. This does not count as fixed Harness owner acknowledgement or independent verification.",
+    "Internal pre-external-review ABA finding repaired: previous draft ignored create ID and started mutable name; before patch/manifest/proposed-after archived verbatim under ignored dependency evidence. New bound branch validates actual create ID and strict current owner+same ID+created state inside guard, then starts by ID. No production/test/static/container execution occurred.",
+    "Internal second review repaired on the same launch path: strict inspect may take up to60s and cross lease/session/config expiry; moved the one final noncharging lease id/hash/epoch check after strict ID/owner/state validation, directly before actual start. Root source must dynamically re-read PG authority/current-time and exit its transaction; no extra pre-peek or budget call. Prior f744/21a7/cf55 proposal archived verbatim; no runtime/static/SQL/container checks executed."
+  ],
+  "server_identity_contract": {
+    "name": "mgar-sa12- + operation UUID.hex",
+    "ownership_labels": {
+      "mgar.sa12.assignment": "PG Assignment UUID canonical string",
+      "mgar.sa12.operation": "PG operation UUID canonical string",
+      "mgar.sa12.workspace": "PG workspace UUID canonical string",
+      "mgar.sa12.project": "server project identifier"
+    },
+    "original_label": "mgar.v4.h04.broker=1 retained and independently matched",
+    "ownership_source": "Original Engine committed PG operation intent with name+all labels+request_sha before any create; never HTTP request input",
+    "cleanup_scope": "Only exact canonical name plus all expected owner labels; remove the inspected immutable ID; no prefix/global-label sweep"
+  },
+  "draft_internal_review_revisions": [
+    {
+      "issue": "BOUND_LAUNCH_NAME_ABA",
+      "before_archive": "evidence/super-agent-v1/SAV1-12/dependency-audit-20261113T061305Z-2ffb79/proposal-before-bound-launch-aba-20261113T064253Z-e37f33",
+      "finding": "create returned immutable ID was ignored, mutable name dispatched after guard precheck",
+      "repair": "Bound actualcreate64hex + strict owner/ID/state observation inside guard + immutable ID dispatch; all unknown/replacement/missing cases retain intent/slot",
+      "verification": "NOT_RUN; Root internal source review only before external fixed confirmation"
+    },
+    {
+      "issue": "BOUND_LAUNCH_SLOW_INSPECT_TIME_EXPIRY",
+      "before_archive": "evidence/super-agent-v1/SAV1-12/dependency-audit-20261113T061305Z-2ffb79/proposal-before-post-inspect-authority-20261113T064555Z-32d4bd",
+      "finding": "Noncharging authority check before slow strict inspect could expire before actual Docker start",
+      "repair": "Move the single final dynamic current-PG/time lease id/hash/requestEpoch check after all inspect IO, directly before immutable-ID dispatch; no pre-peek/extra budget charge",
+      "verification": "NOT_RUN; Root internal proposal review only before fixed external acknowledgement"
+    }
+  ]
+}
