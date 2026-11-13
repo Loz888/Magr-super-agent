@@ -1,7 +1,7 @@
 # Super-Agent V1 完整任务书
 
-实施进度：**SAV1-00–SAV1-09 DONE（本地工程及已有独立闭环）；SA10 IN_PROGRESS（正式工程完成，待独立复验）；SA11–SA24 PLANNED**。短号 SA00–SA24 对应完整 ID `SAV1-00`–`SAV1-24`。
-SA08独立原3项及新增6项PASS、历史1358绑定均保留。SA09-I01已有独立原6项PASS闭环，见[关闭记录](accept/SAV1-09/i01-independent-closure-20261113.json)；未重跑历史通过项或改写原独立FAIL。SA10固定确认0a335a1第34节已落实0041及Engine/API，原201正式轮200PASS/1FAIL，唯一守卫兼容性修正后只原失败1PASS；见[SA10工程交付](SA10_ACCEPTANCE_20261113.md)。当前dcea520未全跑201，不将分版本通过合称单轮或独立PASS，真实/语义/长期门NOT_RUN。
+实施进度：**SAV1-00–SAV1-10 DONE（本地工程及用户接受的独立闭环）；SA11 IN_PROGRESS（需求、复用及共享范围准备）；SA12–SA24 PLANNED**。短号对应完整ID SAV1-00–SAV1-24。
+SA10 dcea520原两失败守卫独立2PASS，39份迁移/原连接/六路由及199历史首次正式通过证据均已核对，未重跑199，见[独立关闭记录](accept/SAV1-10/i01-independent-closure-20261113.json)。旧独立与首轮FAIL保留，不称最终源码单轮201PASS。用户已明确授权启动SA11；当前完整阅读和原Mailbox/Source权限审计已进行，新的共享范围须按协作约定核对，不沿用SA10第34节扩大授权。全部真实/语义/长期门NOT_RUN。
 `HV4-Hxx` 是 [Harness V4 任务](../harness-v4/TASKS.md)，属于外部前置，不是已完成项。
 每卡以一个可复现交付单元执行；大卡可以按接口、实现、集成拆子提交，验收完整后才 DONE。
 

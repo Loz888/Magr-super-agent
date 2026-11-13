@@ -1,0 +1,196 @@
+{
+  "task": "SAV1-10",
+  "status": "IN_PROGRESS",
+  "delivery_status": "FORMAL_ENGINEERING_REPAIR_COMPLETE_PENDING_INDEPENDENT_RECHECK",
+  "recorded_at_utc": "2026-11-13T03:54:24.492683+00:00",
+  "source_commit": "dcea520250e7d0d361cd451e20211b1fc7a86432",
+  "source_sha256": "dd47a56701afcee6a8257e1ec152d48556cc7feea6d253a6e324c4c0cd326e87",
+  "production_integration_commit": "191ed23753b590b61f76b4dfe5f9c3a4e54cd085",
+  "production_sources_unchanged_after_initial201": true,
+  "scope": "Formal cross-source exact-resource/code-version context relations, transactional claim dedupe and reviewable CAS correction on original Engine; fixture-only internal factory, no automatic worker or external effects",
+  "contract": {
+    "correlation": "source-correlation-v1",
+    "snapshot": "source-correlation-snapshot-v1",
+    "schemas": 9,
+    "management_routes": 6
+  },
+  "gates": {
+    "engineering_gate": "PASS",
+    "policy_security_gate": "NOT_RUN",
+    "live_source_channel_gate": "NOT_RUN",
+    "live_coding_gate": "NOT_RUN",
+    "live_publication_gate": "NOT_RUN",
+    "continuous_operation_gate": "NOT_RUN"
+  },
+  "engineering_evidence_mode": "FORMAL201_INITIAL_200PASS_1FAIL_PLUS_ONLY_SOLE_FAILED_GUARD_1PASS; not a complete201 run on final test-repaired revision",
+  "independent_review": {
+    "status": "NOT_PASSED_PRIOR_CANDIDATE",
+    "reviewed_source_commit": "e9ee378c1977cdb4feaea29bda2d00e3f6c891ca",
+    "finding": "SA10-I01",
+    "prior_snapshot": "docs/super-agent-v1/accept/SAV1-10/independent-readiness-20261113.json",
+    "report": "evidence/super-agent-v1/SAV1-10/independent-readiness-20261113T033549Z-8baac762/REPORT.md",
+    "counts": {
+      "tests": 2,
+      "failures": 2,
+      "errors": 0,
+      "skipped": 0
+    },
+    "remaining_at_original_review": 199,
+    "repaired_candidate_review": "NOT_RUN_PENDING_INDEPENDENT_RECHECK"
+  },
+  "ownership": {
+    "status": "ACTUALLY_CONFIRMED_FIXED_COMMIT",
+    "commit": "0a335a14d8ce37703b5cfe0eaa7960d4ac571fc7",
+    "section": 34,
+    "evidence": "evidence/super-agent-v1/SAV1-10/integrate-I01-20261113T034036Z-0de9b080/ownership-confirmation.json",
+    "request_sha256": "61e7f27134718da134bd55b77755112559fa95ce2dda6e217ba447f634127c43",
+    "sql_sha256": "d6aead811237e532664adf62b15521a16369fd29b8dfe9d26156f0d74fec1ee3",
+    "patch_sha256": "352277eb82d61b75534a072c6ece1c6769c4653102bac1399e36d021e419c278",
+    "actual_files_equal_approved_proposals": true,
+    "harness_active_files_or_H12_0037_0040_imported": false
+  },
+  "migration": {
+    "new": "0041_source_correlations.sql",
+    "installed_count": 39,
+    "layout": "0001-0036,0038,0039,0041",
+    "old38_sql_unchanged": true,
+    "formal_sql_equal_approved_proposal": true,
+    "current39_installed_checksums_match": true,
+    "new_fact_tables": 5,
+    "new_main_fact_rows": 0,
+    "original_financial_settlement_ASTs_unchanged": true
+  },
+  "registered_verification": {
+    "target": "make verify TASK=SAV1-10",
+    "registered_cases": 201,
+    "original_failed_retests": 2,
+    "previously_NOT_RUN_initial_checks": 199,
+    "original_failed_node_ids": [
+      "tests/test_super_agent_sa10_migration.py::test_formal0041_is_installed_with_exact_approved_source_checksums",
+      "tests/test_super_agent_sa10_migration.py::test_real_engine_and_unpatched_application_compose_original_connection_and_six_routes"
+    ],
+    "remaining199_first_formal": "ALL_PASS",
+    "initial_result": {
+      "status": "FAIL",
+      "git_commit": "191ed23753b590b61f76b4dfe5f9c3a4e54cd085",
+      "source_sha256": "073d3aea70a785002f15a1d8bfa41e957af606ae2d060e3a4be9887a6bd3f9f8",
+      "finished_source_sha256": "073d3aea70a785002f15a1d8bfa41e957af606ae2d060e3a4be9887a6bd3f9f8",
+      "counts": {
+        "tests": 201,
+        "failures": 1,
+        "errors": 0,
+        "skipped": 0
+      },
+      "pytest_exit_code": 1,
+      "make_exit_code": 2,
+      "result": "evidence/SAV1-10/20261113T034518Z-84ae9b20/result.json",
+      "junit": "evidence/SAV1-10/20261113T034518Z-84ae9b20/junit.xml",
+      "log": "evidence/SAV1-10/20261113T034518Z-84ae9b20/command.log"
+    },
+    "failed_only_repair": {
+      "status": "PASS",
+      "commit": "dcea520250e7d0d361cd451e20211b1fc7a86432",
+      "source_before": "dd47a56701afcee6a8257e1ec152d48556cc7feea6d253a6e324c4c0cd326e87",
+      "source_after": "dd47a56701afcee6a8257e1ec152d48556cc7feea6d253a6e324c4c0cd326e87",
+      "counts": {
+        "tests": 1,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "exit_code": 0,
+      "record": "evidence/super-agent-v1/SAV1-10/integrate-I01-20261113T034036Z-0de9b080/20261113T034949Z-sole-failed-route-guard-only-014bf0/commands.json",
+      "junit": "evidence/super-agent-v1/SAV1-10/integrate-I01-20261113T034036Z-0de9b080/20261113T034949Z-sole-failed-route-guard-only-014bf0/junit.xml",
+      "log": "evidence/super-agent-v1/SAV1-10/integrate-I01-20261113T034036Z-0de9b080/20261113T034949Z-sole-failed-route-guard-only-014bf0/command.log",
+      "change": "Only sole failing guard path filter handles FastAPI _IncludedRouter without .path; exact original assertion ASTs unchanged, production source unchanged"
+    },
+    "case_accounting": "evidence/super-agent-v1/SAV1-10/integrate-I01-20261113T034036Z-0de9b080/formal-case-outcome-accounting.json",
+    "total_unique_cases_with_passing_formal_evidence": 201,
+    "previously_passed_formal_cases_repeated_after_repair": false,
+    "all201_single_run_on_final_candidate": "NOT_RUN_PER_USER_FAILED_ONLY_POLICY",
+    "original_201_result_still_FAIL": true
+  },
+  "api_fixture_transition": {
+    "formal_tests": "Original unpatched create_app, no temporary route registration wrapper",
+    "all_actual_test_FunctionDef_ASTs_unchanged": true,
+    "integrity": "evidence/super-agent-v1/SAV1-10/integrate-I01-20261113T034036Z-0de9b080/api-formal-composition-test-integrity.json"
+  },
+  "statics": {
+    "new_integration_lint": {
+      "record": "evidence/super-agent-v1/SAV1-10/integrate-I01-20261113T034036Z-0de9b080/20261113T034407Z-initial-shared-wiring-lint-dd2cb0/commands.json",
+      "sha256": "6654a2cbf40278ad4eec61819b3d45df4174dd238eac30ab0ebfcdf669d3f0e7",
+      "argv": [
+        "/home/imini/magr-super-agent/v3/.venv/bin/ruff",
+        "check",
+        "/home/imini/magr-super-agent/v3/src/mgar_v3/api.py",
+        "/home/imini/magr-super-agent/v3/src/mgar_v3/coordination/engine.py",
+        "/home/imini/magr-super-agent/v3/tests/test_super_agent_sa10_api.py",
+        "/home/imini/magr-super-agent/v3/tests/test_super_agent_sa05.py",
+        "/home/imini/magr-super-agent/v3/tests/test_super_agent_sa06_migration.py",
+        "/home/imini/magr-super-agent/v3/tests/test_super_agent_sa07_migration.py",
+        "/home/imini/magr-super-agent/v3/tests/test_super_agent_sa08_migration.py",
+        "/home/imini/magr-super-agent/v3/tests/test_super_agent_sa09_migration.py"
+      ],
+      "exit_code": 0,
+      "source_before": "073d3aea70a785002f15a1d8bfa41e957af606ae2d060e3a4be9887a6bd3f9f8",
+      "source_after": "073d3aea70a785002f15a1d8bfa41e957af606ae2d060e3a4be9887a6bd3f9f8",
+      "source_stable": true
+    },
+    "first_scoped_typecheck_wrong_working_directory_config": {
+      "record": "evidence/super-agent-v1/SAV1-10/integrate-I01-20261113T034036Z-0de9b080/20261113T034407Z-initial-shared-wiring-typecheck-eca263/commands.json",
+      "sha256": "3aae0b6c786a8956e4cd8da8376de630269d5bad19d2c03e50e66d49155bb3b1",
+      "argv": [
+        "/home/imini/magr-super-agent/v3/.venv/bin/mypy",
+        "/home/imini/magr-super-agent/v3/src/mgar_v3/api.py",
+        "/home/imini/magr-super-agent/v3/src/mgar_v3/coordination/engine.py"
+      ],
+      "exit_code": 1,
+      "source_before": "073d3aea70a785002f15a1d8bfa41e957af606ae2d060e3a4be9887a6bd3f9f8",
+      "source_after": "073d3aea70a785002f15a1d8bfa41e957af606ae2d060e3a4be9887a6bd3f9f8",
+      "source_stable": true
+    },
+    "only_failed_api_typecheck_with_original_config": {
+      "record": "evidence/super-agent-v1/SAV1-10/integrate-I01-20261113T034036Z-0de9b080/20261113T034445Z-typecheck-only-failed-api-with-repository-config-46db7b/commands.json",
+      "sha256": "a413144d6afad873589a1ef12be502baed9dbead183d8b11f6a395cbeb0c1a4c",
+      "argv": [
+        "/home/imini/magr-super-agent/v3/.venv/bin/mypy",
+        "--config-file",
+        "/home/imini/magr-super-agent/v3/pyproject.toml",
+        "/home/imini/magr-super-agent/v3/src/mgar_v3/api.py"
+      ],
+      "exit_code": 0,
+      "source_before": "073d3aea70a785002f15a1d8bfa41e957af606ae2d060e3a4be9887a6bd3f9f8",
+      "source_after": "073d3aea70a785002f15a1d8bfa41e957af606ae2d060e3a4be9887a6bd3f9f8",
+      "source_stable": true
+    }
+  },
+  "static_limits": "Only newly touched shared/fixture/catalogue files linted. First two-file mypy command lacked application config and falsely required2Settings arguments; loaded original config and reran only failing API file, no production code change. Historical whole249-source-file typecheck and all other prior passing static/component pipelines not repeated. No new static check after sole1line guard compatibility repair.",
+  "sa09_dependency": {
+    "status": "INDEPENDENT_I01_CLOSED6PASS",
+    "source_commit": "ee1fee3a516bfe95e667df6ab389900f11ce55dc",
+    "closure": "docs/super-agent-v1/accept/SAV1-09/i01-independent-closure-20261113.json",
+    "metadata_synchronization_only": true,
+    "old_FAIL_and_initial_full_history_preserved": true
+  },
+  "integrity": {
+    "record": "evidence/super-agent-v1/SAV1-10/integrate-I01-20261113T034036Z-0de9b080/delivery-integrity-audit/final.json",
+    "sha256": "38d67c9737564c3d9e8554a5180325bab2807d8d91f357894d99f21bcab925b2",
+    "manifest_files": 10,
+    "current_artifact_refs": 169,
+    "all_refs_match": true,
+    "installed_migration_checksums": 39,
+    "temporary_databases": 0,
+    "temporary_sessions": 0,
+    "fault_containers": 0,
+    "protected_user_file_unchanged_and_untracked": true,
+    "historical_FAILs_and_raw_source_evidence_unchanged": true,
+    "updated_active_preparation_old_bytes_preserved": "docs/super-agent-v1/accept/SAV1-10/history/e9ee378-preparation-before-integration.json",
+    "updated_sa09_accept_old_bytes_preserved": "docs/super-agent-v1/accept/SAV1-09/history/e9ee378-before-independent-closure.json"
+  },
+  "semantic_evaluation": "NOT_RUN",
+  "paid_model_calls": 0,
+  "external_business_writes": 0,
+  "live_platform_paid_external_publication_continuous_operation": "NOT_RUN",
+  "SA11": "PLANNED_NOT_STARTED",
+  "next": "Independent recheck SA10-I01 using preserved initial199 evidence and exact failed-only repair binding; do not repeat passing suites or startSA11 without release"
+}

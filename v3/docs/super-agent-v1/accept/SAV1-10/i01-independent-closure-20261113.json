@@ -1,0 +1,47 @@
+{
+  "task": "SAV1-10",
+  "finding": "SA10-I01",
+  "status": "CLOSED_INDEPENDENTLY",
+  "user_accepted_and_authorized_sa11": true,
+  "observed_at_utc": "2026-11-13T04:17:49.326602+00:00",
+  "independent_recorded_at_utc": "2026-11-13T04:03:14.953620+00:00",
+  "source_commit": "dcea520250e7d0d361cd451e20211b1fc7a86432",
+  "source_sha256_before": "dd47a56701afcee6a8257e1ec152d48556cc7feea6d253a6e324c4c0cd326e87",
+  "source_sha256_after": "dd47a56701afcee6a8257e1ec152d48556cc7feea6d253a6e324c4c0cd326e87",
+  "counts": {
+    "tests": 2,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "exit_code": 0,
+  "scope": "Original two failed integration guards only; other199 first-formal evidence audited, not rerun",
+  "engineering_review": {
+    "status": "PASS",
+    "evidence_mode": "Historical first formal201(200PASS1FAIL) plus sole failed-case repair1PASS, with independent original2-failure closure2PASS.",
+    "limits": "Local controlled engineering only. This is not independent execution of all201 or full-system/semantic/live approval."
+  },
+  "other_gates": {
+    "engineering_gate": "PASS",
+    "policy_security_gate": "NOT_RUN",
+    "live_source_channel_gate": "NOT_RUN",
+    "live_coding_gate": "NOT_RUN",
+    "live_publication_gate": "NOT_RUN",
+    "continuous_operation_gate": "NOT_RUN",
+    "semantic_evaluation": "NOT_RUN"
+  },
+  "evidence_sha256": {
+    "evidence/super-agent-v1/SAV1-10/independent-I01-recheck-20261113T040025Z-331c7150/REPORT.md": "ab35221a25856581c70cf537433049642aded09851d58a387dc51ca896ea3dfb",
+    "evidence/super-agent-v1/SAV1-10/independent-I01-recheck-20261113T040025Z-331c7150/baseline.json": "6051ec26e058ac6698908c4b00257a5af127dd487a14b45f0e2f495fec5cabcd",
+    "evidence/super-agent-v1/SAV1-10/independent-I01-recheck-20261113T040025Z-331c7150/command.json": "9a65f8b58ec36a02216a5a135e652bf4dafe8214d7439741c32ec2453a689a27",
+    "evidence/super-agent-v1/SAV1-10/independent-I01-recheck-20261113T040025Z-331c7150/command.log": "89faf5367d31693b1ebecffadc98d6aedb5a7b719d4f3829426aa53e2c0aa05d",
+    "evidence/super-agent-v1/SAV1-10/independent-I01-recheck-20261113T040025Z-331c7150/evidence-sha256.json": "2d20f1737e5ec03bda1927743dac55c4ddf419b542a8db28a70c6863527093f1",
+    "evidence/super-agent-v1/SAV1-10/independent-I01-recheck-20261113T040025Z-331c7150/final-integrity-and-cleanup.json": "da38857de71a015c2c3f45632f4c003a8b7cee113c85a4eb616b3637ea129e5b",
+    "evidence/super-agent-v1/SAV1-10/independent-I01-recheck-20261113T040025Z-331c7150/formal201-case-accounting.json": "7847e170e8fd6376d728a6d9a82e3b4e5b50db87dcfb464dc62007a42ca07e5f",
+    "evidence/super-agent-v1/SAV1-10/independent-I01-recheck-20261113T040025Z-331c7150/historical-evidence-and-integration-audit.json": "d0dbcf948f2d35bd7a4dc0ae09f3aea5e150533e8739b497f58c19b214820426",
+    "evidence/super-agent-v1/SAV1-10/independent-I01-recheck-20261113T040025Z-331c7150/junit.xml": "c96e38d64fe788cb604d7a23752e604922c4942c8a70e4dd84b92fcb71b9fe6b",
+    "evidence/super-agent-v1/SAV1-10/independent-I01-recheck-20261113T040025Z-331c7150/review-result.json": "9f6d03e80a1fe95aedace66ab2b3267ca9110e707ee139856236d511ead8cfa2"
+  },
+  "new_runtime_or_static_checks": "NOT_RUN; closure material verification only",
+  "original_independent_FAIL": "docs/super-agent-v1/accept/SAV1-10/independent-readiness-20261113.json"
+}

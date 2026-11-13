@@ -1,3 +1,11 @@
+# SA10 独立闭环，按用户授权启动 SA11
+
+SA10原两失败守卫独立2PASS，dcea520/dd47前后一致；39份checksum、原Engine连接和六路由通过，199项历史首次正式证据已核对、未重复。用户已明确接受并授权SA11，见[关闭记录](accept/SAV1-10/i01-independent-closure-20261113.json)。旧独立FAIL、首轮200PASS/1FAIL和唯一失败1PASS原样保留。
+
+SA11为IN_PROGRESS，正在完成动态订阅、typed Source Mailbox/消费凭证和交回的需求/原实现审计；旧Mailbox不可直接复制可撤权正文，不伪造Trigger/Issue。新共享迁移与接线范围待具体协调，SA12–24 PLANNED，全部真实/付费/外发/发布/长期门NOT_RUN。
+
+以下为历史记录。
+
 # SA10 正式工程修复完成，等待独立复验
 
 Harness固定0a335a1第34节已实际确认，正式0041与两文件最小共享接线按批准hash落地。191ed23上原201正式轮200PASS/1FAIL；原SQL守卫及其余199项首次检查全部PASS，唯一接线守卫因FastAPI无path路由对象中断。只改该失败守卫的一处枚举兼容性过滤、原断言AST不变，dcea520上仅原失败1PASS，其余200项未重复。生产源码仍与191ed23相同。详见[交付报告](SA10_ACCEPTANCE_20261113.md)与[机器摘要](accept/SAV1-10/accept.json)。

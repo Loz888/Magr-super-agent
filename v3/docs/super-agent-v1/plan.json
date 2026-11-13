@@ -280,7 +280,7 @@
       "id": "SAV1-10",
       "short_id": "SA10",
       "title": "跨来源话题/任务关联与查重",
-      "status": "IN_PROGRESS",
+      "status": "DONE",
       "priority": "P0",
       "phase": "S1",
       "depends_on": [
@@ -294,7 +294,7 @@
       "optional": false,
       "card": "TASKS.md#sa10",
       "verification_target_on_implementation": "SAV1-10",
-      "work_state": "FORMAL_ENGINEERING_REPAIR_COMPLETE_PENDING_INDEPENDENT_RECHECK",
+      "work_state": "LOCAL_ENGINEERING_COMPLETE_USER_ACCEPTED_INDEPENDENT_I01_CLOSED",
       "authorized_by_user": "Continue SA10 after successful SA09 repair verification; original6 now PASS",
       "independent_sa09_gate_waiver": "User progression authorization only, no independent PASS claim",
       "preparation": "accept/SAV1-10/preparation-20261113.json",
@@ -303,7 +303,7 @@
       "ownership_request": "sa10-proposal/ownership-request.txt",
       "engineering_gate": "PASS",
       "policy_security_gate": "NOT_RUN",
-      "independent_review": "NOT_PASSED_ON_E9EE378; REPAIRED_CANDIDATE_PENDING_INDEPENDENT_RECHECK",
+      "independent_review": "PASS_ORIGINAL2_FAILED_GUARDS_199HISTORICAL_EVIDENCE_AUDITED",
       "registered_cases": 201,
       "registered_execution": "201formal=200PASS/1FAIL on191ed23; only solefailed1PASS ondcea520; no200repeated",
       "private_components": "102 contracts;18 service;6 CI;24 private API;14 SQL proposal with separate failed-only repairs; not a single164PASS run",
@@ -313,13 +313,14 @@
       "initial_remaining199": "PASS",
       "current_registry_cases": 201,
       "repair_failed_only_cases": 1,
-      "full_suite_on_final_repaired_revision": "NOT_RUN_PER_USER_RETEST_POLICY"
+      "full_suite_on_final_repaired_revision": "NOT_RUN_PER_USER_RETEST_POLICY",
+      "independent_closure": "accept/SAV1-10/i01-independent-closure-20261113.json"
     },
     {
       "id": "SAV1-11",
       "short_id": "SA11",
       "title": "动态订阅、Mailbox 与交回",
-      "status": "PLANNED",
+      "status": "IN_PROGRESS",
       "priority": "P0",
       "phase": "S2",
       "depends_on": [
@@ -332,7 +333,12 @@
       },
       "optional": false,
       "card": "TASKS.md#sa11",
-      "verification_target_on_implementation": "SAV1-11"
+      "verification_target_on_implementation": "SAV1-11",
+      "work_state": "AUTHORIZED_REQUIREMENTS_REUSE_AND_SHARED_SCOPE_PREPARATION",
+      "engineering_gate": "NOT_RUN",
+      "independent_review": "NOT_RUN",
+      "dependency_closure": "accept/SAV1-10/i01-independent-closure-20261113.json",
+      "ownership_commit": null
     },
     {
       "id": "SAV1-12",
