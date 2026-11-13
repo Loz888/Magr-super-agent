@@ -1,0 +1,750 @@
+{
+  "task": "SAV1-09",
+  "status": "IN_PROGRESS",
+  "delivery_status": "I01_REPAIR_CANDIDATE_PENDING_INDEPENDENT_REVIEW",
+  "recorded_at_utc": "2026-11-12T14:38:56.329310+00:00",
+  "source_commit": "ee1fee3a516bfe95e667df6ab389900f11ce55dc",
+  "source_sha256": "76fc815bf9cf75da14c9cf1ef226ae5491aa6a84f4098e606f35ea591e87a6fa",
+  "contract": {
+    "proposal": "source-router-proposals-v1",
+    "snapshot": "source-router-snapshot-v1",
+    "decision": "source-router-decision-v1"
+  },
+  "scope": "Local Source Router/Eval, deterministic validation and non-executable shadow decisions on the original Engine/Router financial ledger; no source listener, real model, Task/Run/Worker creation, notification or publication activation",
+  "gates": {
+    "engineering_gate": "PASS",
+    "policy_security_gate": "NOT_RUN",
+    "live_source_channel_gate": "NOT_RUN",
+    "live_coding_gate": "NOT_RUN",
+    "live_publication_gate": "NOT_RUN",
+    "continuous_operation_gate": "NOT_RUN"
+  },
+  "engineering_evidence_mode": "HISTORICAL_INITIAL_FULL_PLUS_CLOCK_AND_I01_FAILED_ONLY_REPAIRS; not a complete suite on the repaired revision",
+  "independent_review": {
+    "status": "NOT_PASSED",
+    "reviewed_source_commit": "93e9a9d9a64bdd19889071ebf3ee33d3e46bb482",
+    "finding": "SA09-I01",
+    "report": "evidence/super-agent-v1/SAV1-09/20261112T135535Z-independent-review/REPORT.md",
+    "repaired_candidate_independent_review": "NOT_RUN",
+    "advance_to_sa10_authorized_by_user_after_targeted_repair": true,
+    "snapshot": "docs/super-agent-v1/accept/SAV1-09/independent-20261112.json"
+  },
+  "ownership": {
+    "status": "ACTUALLY_CONFIRMED",
+    "commit": "0e0adc6a5bb5a7e0c3a3c8323e33513e4b911d84",
+    "section": 32,
+    "evidence": "evidence/super-agent-v1/SAV1-09/start-20261112T110706Z-588a9f55/ownership-confirmation.json",
+    "patch_sha256": "73b28025f6b92d415aa2347c28e1c8959ee749c966f6e8d5e0a71ff88c445e1b",
+    "sql_sha256": "8b18840590c7841022d7985d66904cd580aee916777cadc9f8baca3cb1837669",
+    "stale_risk_metadata_original_retained": "evidence/super-agent-v1/SAV1-09/start-20261112T110706Z-588a9f55/shared-risk-review-before-hash-refresh.json",
+    "scope_confirmation_is_not_implementation_acceptance": true
+  },
+  "h02": {
+    "implementation_commit": "169925f22b770bbcdb1294f079d5d8c76d05b1b4",
+    "formal_acceptance_commit": "fee087569d183ff3a4e68e5ec2de6182e1d66eea",
+    "selective_blobs": 6,
+    "integration_manifest": "config/harness-model-import-v1.json",
+    "initial_compatibility_counts": {
+      "tests": 58,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "source_reuse": "Public SSEDecoder/ModelCapabilities/ModelPrice/estimate_tokens only; independent Source request, no fake TaskBinding/Run/Workspace",
+    "h12_or0037_imported": false
+  },
+  "migration": {
+    "new": "0039_super_agent_source_eval.sql",
+    "installed_count": 38,
+    "layout": "0001-0036,0038,0039",
+    "old37_unchanged": true,
+    "new_source_eval_tables": 6,
+    "original_financial_settlement_asts_unchanged": true
+  },
+  "initial_registered": {
+    "status": "FAIL",
+    "result": "evidence/SAV1-09/20261112T125824Z-1f26ecbe/result.json",
+    "junit": "evidence/SAV1-09/20261112T125824Z-1f26ecbe/junit.xml",
+    "command": "make verify TASK=SAV1-09",
+    "counts": {
+      "tests": 1777,
+      "failures": 1,
+      "errors": 0,
+      "skipped": 0
+    },
+    "source_commit": "e9ab11e82920b62967568b967219d1b1fcc597ff",
+    "source_sha256": "180c9b684c03b72239b464a5fe2245f9edca692d1fdc882859394154b4519417",
+    "finished_source_sha256": "180c9b684c03b72239b464a5fe2245f9edca692d1fdc882859394154b4519417",
+    "exit_code": 1,
+    "retained_sa08_current_registry_cases": 1361,
+    "added_registered_cases": 416,
+    "new_sa09_cases": 345,
+    "h02_and_legacy_router_cases": 71,
+    "source_stable": true,
+    "wrapper": "evidence/super-agent-v1/SAV1-09/start-20261112T110706Z-588a9f55/20261112T125823Z-registered-initial-cfec76/commands.json"
+  },
+  "repair": {
+    "finding": "SA09-L01_TEST_CLOCK",
+    "status": "PASS",
+    "source_commit": "93e9a9d9a64bdd19889071ebf3ee33d3e46bb482",
+    "source_before": "684fe90a43065e642860ca3b99fbc932406951e92b3bd41392eb590e386436ce",
+    "source_after": "684fe90a43065e642860ca3b99fbc932406951e92b3bd41392eb590e386436ce",
+    "source_stable": true,
+    "counts": {
+      "tests": 1,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "exit_code": 0,
+    "failed_nodes": [
+      "tests/test_super_agent_sa06.py::test_authentication_failures_never_persist_body_or_identity[future]"
+    ],
+    "rerun_nodes": [
+      "tests/test_super_agent_sa06.py::test_authentication_failures_never_persist_body_or_identity[future]"
+    ],
+    "commands": "evidence/super-agent-v1/SAV1-09/start-20261112T110706Z-588a9f55/20261112T134253Z-registered-future-failed-only-fixed-df5bcd/commands.json",
+    "junit": "evidence/super-agent-v1/SAV1-09/start-20261112T110706Z-588a9f55/20261112T134253Z-registered-future-failed-only-fixed-df5bcd/junit.xml",
+    "initial_failed_result": "evidence/SAV1-09/20261112T125824Z-1f26ecbe/result.json",
+    "scope_mapping": "evidence/super-agent-v1/SAV1-09/start-20261112T110706Z-588a9f55/registered-failure-repair-scope.json",
+    "diagnosis": "evidence/super-agent-v1/SAV1-09/start-20261112T110706Z-588a9f55/registered-failure-diagnosis.json",
+    "change": "Freeze Feishu verifier datetime only in original future test branch at timestamp epoch; keep exact301-second deviation and all prior assertions; no production changes",
+    "previously_passed_cases_rerun": false,
+    "full_suite_rerun": false,
+    "production_source_identical_to_initial": true,
+    "original_assertions_unchanged": true,
+    "paid_calls": 0,
+    "external_business_writes": 0
+  },
+  "current_registry": {
+    "task": "SAV1-09",
+    "test_files": 67,
+    "expected_cases": 1783,
+    "last_complete_collected_cases": 1777,
+    "new_formal_mirrors": 6,
+    "formal_case_asts_identical_to_original_failures": true,
+    "full_suite_rerun_after_repair": false
+  },
+  "static": {
+    "lint": {
+      "commands": "evidence/super-agent-v1/SAV1-09/start-20261112T110706Z-588a9f55/20261112T124432Z-lint-integrated-initial-a22962/commands.json",
+      "exit_code": 0,
+      "source_before": "c7bda8a5a12f2093a866d7f2fbb74e697bfdbdb6f98050c0b669ecb2432f8091",
+      "source_after": "c7bda8a5a12f2093a866d7f2fbb74e697bfdbdb6f98050c0b669ecb2432f8091",
+      "source_stable": true,
+      "status": "PASS",
+      "scope": "Initial integrated version; not rerun after passing lint or failed-case clock repair"
+    },
+    "typecheck_initial": {
+      "commands": "evidence/super-agent-v1/SAV1-09/start-20261112T110706Z-588a9f55/20261112T124432Z-typecheck-integrated-initial-cf12c5/commands.json",
+      "exit_code": 2,
+      "source_before": "c7bda8a5a12f2093a866d7f2fbb74e697bfdbdb6f98050c0b669ecb2432f8091",
+      "source_after": "c7bda8a5a12f2093a866d7f2fbb74e697bfdbdb6f98050c0b669ecb2432f8091",
+      "source_stable": true,
+      "status": "FAIL",
+      "source_files": 245,
+      "failed_files": [
+        "src/mgar_v3/super_agent/source_eval_domain.py"
+      ],
+      "errors": 2
+    },
+    "typecheck_failed_file_repair": {
+      "commands": "evidence/super-agent-v1/SAV1-09/start-20261112T110706Z-588a9f55/20261112T124624Z-typecheck-failed-file-only-fixed-dcbcc9/commands.json",
+      "exit_code": 0,
+      "source_before": "9ed09160cb1307be6811a918b66a27962460cc837320dd66c90b0232e8a9e22c",
+      "source_after": "9ed09160cb1307be6811a918b66a27962460cc837320dd66c90b0232e8a9e22c",
+      "source_stable": true,
+      "status": "PASS",
+      "source_files": 1,
+      "scope": "Equivalent explicit uniqueness predicates, no field/schema/authorization changes; other244 previously clean files not rerun"
+    },
+    "new_corpus_file_initial_lint": "PASS; see corpus component record; not a repeated whole-project lint",
+    "i01_repair_note": "Historical lint/typecheck results retained; no previously passed static targets rerun for I01 per user instruction"
+  },
+  "benchmark": {
+    "scorer_scope": "23 controlled arithmetic/denominator/schema tests over original8 hand-authored examples; not model accuracy",
+    "synthetic_draft": "fixtures/super-agent-v1/sa09-routing/operator-review-draft-v1.json",
+    "cases": 200,
+    "development": 100,
+    "proposed_holdout": 100,
+    "actionable_each": 40,
+    "not_new_task_each": 80,
+    "operator_review": null,
+    "independent_holdout": false,
+    "case_payload_sha256": "19c304b5fca03be072ce620bbf1945887407f52ec4974c1b2a7ce92e8f7bee53",
+    "semantic_quality_gate": "NOT_RUN",
+    "precision": null,
+    "recall": null,
+    "operator_draft_predictions_produced": 0,
+    "real_model_predictions_produced": 0
+  },
+  "delivery_audit": "evidence/super-agent-v1/SAV1-09/repair-i01-20261112T142616Z-995a5aae/delivery-audit.json",
+  "shared_scope_audit": "evidence/super-agent-v1/SAV1-09/start-20261112T110706Z-588a9f55/frozen-read-only-audit/audit.json",
+  "design_audit": "evidence/super-agent-v1/SAV1-09/pre-registry-design-audit-20261112T125935Z/review.json",
+  "manifest_sha256": {
+    "config/harness-model-import-v1.json": "a9d23be7dc2011f58ddce71c75c71c09c669b226449c04caad4b2653241caf05",
+    "config/source-contract-v1.json": "a9e250da4799d5de353224a9b5c1029b698aa8bbe3ed9a9e8ee5b43228187fa3",
+    "config/source-eval-v1.json": "6802ce20e7af0ba2ca022a806be5b453b9ee305fe79ecb6428070fa1b77b312a",
+    "config/source-fast-path-v1.json": "b93833181aa0cf99a41eeff5c4b618e7fe8d75456e563f831889c4db3223ca4b",
+    "config/source-feishu-v1.json": "a069106be8e111b766b5a1a62be36a4596a160311b75976a85af19da3ae5724f",
+    "config/source-github-v1.json": "6ee9c8e936abc59e6675da946409b38afa8f8ee4607353a3ba6716bd1bffd798",
+    "config/source-identity-v1.json": "1e2adf660b230d6b5961244d6d8cc549ffd3be1d28406710fd797a276d463b73",
+    "config/source-ingress-v1.json": "935def51d7e4be3f5528b5947ac6480105770d2bd4f59a6d987ff1f173db696c",
+    "config/source-policy-v1.json": "8f870fb989fb96c3b591067279e3f8281cc42d49166d7410c6b7f43e36415c96"
+  },
+  "artifact_hashes": {
+    "config/verification.json": "49d28c66d1dee5c1f30236d53f4869ffa456a78935575473968265f548e9f0cd",
+    "config/source-eval-v1.json": "6802ce20e7af0ba2ca022a806be5b453b9ee305fe79ecb6428070fa1b77b312a",
+    "config/harness-model-import-v1.json": "a9d23be7dc2011f58ddce71c75c71c09c669b226449c04caad4b2653241caf05",
+    "migrations/0039_super_agent_source_eval.sql": "8b18840590c7841022d7985d66904cd580aee916777cadc9f8baca3cb1837669",
+    "experiments/harness-v4/model-capabilities-v1.json": "0062bdae9cc9328694ee590571d17edcf3dc090d26e3ef5abea7ff16f70171e3",
+    "tests/test_super_agent_sa06.py": "24e17a6b117b655d8a44540ae071e99588d291c6e676ae11a32473b55b34d74c",
+    "src/mgar_v3/super_agent/source_eval.py": "a6e14971c9e7da317f2f78110639348ee5e62baa231428dbcc72669231c60cdc",
+    "src/mgar_v3/super_agent/source_eval_api.py": "5d74121b4ae9d3d9fda5177febd994779b9ce71902472c55b8c5b4e2eacc95ec",
+    "src/mgar_v3/super_agent/source_eval_domain.py": "e9c98b64fed05a13cddd3eee74cee989310e02bdeab6a5f02e5e2ed7421b01c8",
+    "src/mgar_v3/super_agent/source_eval_model.py": "89a12c8caa307265cdc1d8b565a41f9ae4d57d058863244ccd7b102f387787ba",
+    "src/mgar_v3/super_agent/source_eval_rules.py": "6ecf9d4081fe44ab2a980289550f63d3dc6048fe0fa3a24201992a463372b920",
+    "src/mgar_v3/super_agent/source_eval_scoring.py": "83ac7bce3f52d132df9cd12daf74dcd735c5e8568dbdbc5ac5879771e2b28cc5",
+    "tests/test_super_agent_sa09.py": "04c9bec6c817b05c6050e5af66e24ab8c028de80d2c30b1718758270dd023406",
+    "tests/test_super_agent_sa09_api.py": "d48e242eef7b4e33d9f2a07a272049e9c38cd173c2da12b4ffe4a65d44ad8fc9",
+    "tests/test_super_agent_sa09_boundaries.py": "19314d1a497c5ae435c656637605e4ced8b93761a098c53f1d09772f02e9ad51",
+    "tests/test_super_agent_sa09_corpus.py": "a431209299157581ccbb2a1492422b896c77790e026ea97e90fc3042074c2405",
+    "tests/test_super_agent_sa09_domain.py": "225d56412f7eb5656e562914654560e9b36b1bc8eafbd25b654596a39e412941",
+    "tests/test_super_agent_sa09_legacy.py": "e0c131e31dc15fa971aa7e2947b8f08756317a9e2b6a6b1d330c6a38e21712ba",
+    "tests/test_super_agent_sa09_metrics.py": "9e495ade78f0c669e2425639eb3b51d5f70f24bd3e4d50e453b5d687d516b519",
+    "tests/test_super_agent_sa09_migration.py": "db55af4eade64309d2cf751387f4a35b65cd4866b39b747375c16b4f89543671",
+    "tests/test_super_agent_sa09_model.py": "4595c6518207d7840cc0c4d365ee7e5e0f9b4daf8c4c3b27869d131889c45782",
+    "tests/test_super_agent_sa09_recovery.py": "48a11ebd927722857b01e72cca6fd5f749068cb921f0f0216c9fc5cf1a74b7af",
+    "tests/test_super_agent_sa09_scoring.py": "6cf40857a7f88cac14974af7bacc7aca8464ca42a21f1dc0a9be6bf87ee6cdbc",
+    "schemas/super-agent-v1/source-router-corpus-v1.schema.json": "6a502997402c6f1bec023a045e9d3ef206f4ca1510b26293c5372d422c37fbb1",
+    "schemas/super-agent-v1/source-router-decision-v1.schema.json": "83996e77ef68b24e155ceda10e05668300f1d09ccd3fec2ff4806edd9e4a2105",
+    "schemas/super-agent-v1/source-router-prediction-v1.schema.json": "8b882dfee1e4f2505f0662970d5e0a796318c22665018dc00b89612f2b9ff6ed",
+    "schemas/super-agent-v1/source-router-proposals-v1.schema.json": "5b5dea5cdf15688b8e854007b1e2613c94ce1fc93e028f8f741bbf87d13bedd8",
+    "schemas/super-agent-v1/source-router-snapshot-v1.schema.json": "606a9e4ccf8bf8802e113f9353dcba8abf65d2830bb96e226711cece55c23601",
+    "schemas/super-agent-v1/source-eval-configure-v1.schema.json": "f0199e7b71e6248b0af4956baf33330e0183bde5449453fdd3a8a31ae808cdf5",
+    "schemas/super-agent-v1/source-eval-enqueue-v1.schema.json": "7ae32aa8b14c193813d90d4be5975827ee45c81e4330488d5f97fd2b847afbba",
+    "fixtures/super-agent-v1/sa09-routing/draft-cases-v1.json": "5cea4ea451404a4e5896ac28f0c2f863692c3777041b85732ea56ef545e8505e",
+    "fixtures/super-agent-v1/sa09-routing/operator-review-draft-v1.json": "02a07535b5ee098780d271b4d332cbe271fbb52e28690147c921111e07b3d764",
+    "tests/sa09_support.py": "53f8bbc1087bee97045dbda5f5f248acd79c46364730385952c7d8574280387b",
+    "tests/sa09_crash_actor.py": "d5c26c62d33c825497f7a8ecd9082e1bfbed5bb53760f004a80829b8dd11b9a8",
+    "tests/test_super_agent_sa09_i01.py": "14e37cd3bcf3e3ea2017be76ceeb3870164aa3a0153c588ae17aa681abeb31ea"
+  },
+  "attempts": [
+    {
+      "commands": "evidence/super-agent-v1/SAV1-09/start-20261112T110706Z-588a9f55/20261112T112040Z-h02-local-initial-e09d1c/commands.json",
+      "exit_code": 0,
+      "counts": {
+        "tests": 58,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "source_before": "efaba14f55ce37e3341a21dce54aff87c010c93dc9b44ad28b5962ff1985e32b",
+      "source_after": "efaba14f55ce37e3341a21dce54aff87c010c93dc9b44ad28b5962ff1985e32b",
+      "source_stable": true
+    },
+    {
+      "commands": "evidence/super-agent-v1/SAV1-09/start-20261112T110706Z-588a9f55/20261112T113751Z-source-model-new-file-initial-7b77b8/commands.json",
+      "exit_code": 1,
+      "counts": {
+        "tests": 55,
+        "failures": 1,
+        "errors": 0,
+        "skipped": 0
+      },
+      "source_before": "a21efbe9681be304f0250e70e8c23d8f1aff50433c4a6d7587c882a631981b5d",
+      "source_after": "0ab6ea4c059c24ee221ab33fd5ab19015984e5095debdc7b2a87103c31137488",
+      "source_stable": false
+    },
+    {
+      "commands": "evidence/super-agent-v1/SAV1-09/start-20261112T110706Z-588a9f55/20261112T113751Z-source-model-new-files-lint-initial-87912b/commands.json",
+      "exit_code": 1,
+      "counts": null,
+      "source_before": "a21efbe9681be304f0250e70e8c23d8f1aff50433c4a6d7587c882a631981b5d",
+      "source_after": "a21efbe9681be304f0250e70e8c23d8f1aff50433c4a6d7587c882a631981b5d",
+      "source_stable": true
+    },
+    {
+      "commands": "evidence/super-agent-v1/SAV1-09/start-20261112T110706Z-588a9f55/20261112T113752Z-budget-hash-new-case-initial-92c425/commands.json",
+      "exit_code": 0,
+      "counts": {
+        "tests": 1,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "source_before": "0ab6ea4c059c24ee221ab33fd5ab19015984e5095debdc7b2a87103c31137488",
+      "source_after": "0ab6ea4c059c24ee221ab33fd5ab19015984e5095debdc7b2a87103c31137488",
+      "source_stable": true
+    },
+    {
+      "commands": "evidence/super-agent-v1/SAV1-09/start-20261112T110706Z-588a9f55/20261112T114022Z-source-model-failed-files-lint-fixed-3b1f19/commands.json",
+      "exit_code": 0,
+      "counts": null,
+      "source_before": "bdbcc4f1b99f93c30fc8202a51a235f03f86e7768d5d7604a701ce9507ca5967",
+      "source_after": "bdbcc4f1b99f93c30fc8202a51a235f03f86e7768d5d7604a701ce9507ca5967",
+      "source_stable": true
+    },
+    {
+      "commands": "evidence/super-agent-v1/SAV1-09/start-20261112T110706Z-588a9f55/20261112T114022Z-source-model-failed1-plus-new-utf8-b8cc8e/commands.json",
+      "exit_code": 0,
+      "counts": {
+        "tests": 2,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "source_before": "bdbcc4f1b99f93c30fc8202a51a235f03f86e7768d5d7604a701ce9507ca5967",
+      "source_after": "bdbcc4f1b99f93c30fc8202a51a235f03f86e7768d5d7604a701ce9507ca5967",
+      "source_stable": true
+    },
+    {
+      "commands": "evidence/super-agent-v1/SAV1-09/start-20261112T110706Z-588a9f55/20261112T114121Z-apply-approved-migration-c093bd/commands.json",
+      "exit_code": 0,
+      "counts": null,
+      "source_before": "f5764fb3e78389a3d1c32d9c346028fef9158826ceb06d4e588fdd3631b15f9a",
+      "source_after": "f5764fb3e78389a3d1c32d9c346028fef9158826ceb06d4e588fdd3631b15f9a",
+      "source_stable": true
+    },
+    {
+      "commands": "evidence/super-agent-v1/SAV1-09/start-20261112T110706Z-588a9f55/20261112T114304Z-source-model-extra-protocol-original-1040bb/commands.json",
+      "exit_code": 1,
+      "counts": {
+        "tests": 2,
+        "failures": 2,
+        "errors": 0,
+        "skipped": 0
+      },
+      "source_before": "5546c4b2c2ee2e1dc9c3d845306e8688934fb69f0723c497a507e148e4b13d2d",
+      "source_after": "5546c4b2c2ee2e1dc9c3d845306e8688934fb69f0723c497a507e148e4b13d2d",
+      "source_stable": true
+    },
+    {
+      "commands": "evidence/super-agent-v1/SAV1-09/start-20261112T110706Z-588a9f55/20261112T114349Z-source-model-extra-protocol-failed-only-fixed-364c6b/commands.json",
+      "exit_code": 0,
+      "counts": {
+        "tests": 2,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "source_before": "ff5b980c8f58db373a80e8a5415132a8a6041c60e5bcfaaadcfb3a31b012a23b",
+      "source_after": "ff5b980c8f58db373a80e8a5415132a8a6041c60e5bcfaaadcfb3a31b012a23b",
+      "source_stable": true
+    },
+    {
+      "commands": "evidence/super-agent-v1/SAV1-09/start-20261112T110706Z-588a9f55/20261112T115741Z-scoring-new-file-initial-d793e5/commands.json",
+      "exit_code": 0,
+      "counts": {
+        "tests": 23,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "source_before": "1fee24876ac7d1f541f2cdc9138afaa66e99db040840d27880506596e2d48a9a",
+      "source_after": "1fee24876ac7d1f541f2cdc9138afaa66e99db040840d27880506596e2d48a9a",
+      "source_stable": true
+    },
+    {
+      "commands": "evidence/super-agent-v1/SAV1-09/start-20261112T110706Z-588a9f55/20261112T115741Z-scoring-new-files-lint-initial-fc7166/commands.json",
+      "exit_code": 1,
+      "counts": null,
+      "source_before": "1fee24876ac7d1f541f2cdc9138afaa66e99db040840d27880506596e2d48a9a",
+      "source_after": "1fee24876ac7d1f541f2cdc9138afaa66e99db040840d27880506596e2d48a9a",
+      "source_stable": true
+    },
+    {
+      "commands": "evidence/super-agent-v1/SAV1-09/start-20261112T110706Z-588a9f55/20261112T115832Z-service-initial-126f41/commands.json",
+      "exit_code": 1,
+      "counts": {
+        "tests": 19,
+        "failures": 1,
+        "errors": 0,
+        "skipped": 0
+      },
+      "source_before": "e347230e71053b3c390df68cb51adc6c55aa588b10abf6d0b7eb756f9cf87e50",
+      "source_after": "d84bffdd3a862667307ed1fc22241191d8caab79175b34da6d7ef88283b65167",
+      "source_stable": false
+    },
+    {
+      "commands": "evidence/super-agent-v1/SAV1-09/start-20261112T110706Z-588a9f55/20261112T115914Z-scoring-failed-lint-only-fixed-13c703/commands.json",
+      "exit_code": 0,
+      "counts": null,
+      "source_before": "d84bffdd3a862667307ed1fc22241191d8caab79175b34da6d7ef88283b65167",
+      "source_after": "d84bffdd3a862667307ed1fc22241191d8caab79175b34da6d7ef88283b65167",
+      "source_stable": true
+    },
+    {
+      "commands": "evidence/super-agent-v1/SAV1-09/start-20261112T110706Z-588a9f55/20261112T120525Z-service-budget-failed-only-261900/commands.json",
+      "exit_code": 0,
+      "counts": {
+        "tests": 1,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "source_before": "f9614ec7824c51fe6df8b5524da70379e308915414980b24f73c9f8d570220f1",
+      "source_after": "f9614ec7824c51fe6df8b5524da70379e308915414980b24f73c9f8d570220f1",
+      "source_stable": true
+    },
+    {
+      "commands": "evidence/super-agent-v1/SAV1-09/start-20261112T110706Z-588a9f55/20261112T120822Z-service-new-hard-bound-original-2a94ad/commands.json",
+      "exit_code": 1,
+      "counts": {
+        "tests": 1,
+        "failures": 1,
+        "errors": 0,
+        "skipped": 0
+      },
+      "source_before": "6e80c04a499fb3820f437450f158153a4c56f657680d17e52791062f339512c3",
+      "source_after": "6e80c04a499fb3820f437450f158153a4c56f657680d17e52791062f339512c3",
+      "source_stable": true
+    },
+    {
+      "commands": "evidence/super-agent-v1/SAV1-09/start-20261112T110706Z-588a9f55/20261112T120909Z-service-hard-bound-failed-only-5e9f92/commands.json",
+      "exit_code": 0,
+      "counts": {
+        "tests": 1,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "source_before": "57c54c714d50fa3300b9305d7234f2bf2676fd022551cb1d5ed26929257474dc",
+      "source_after": "57c54c714d50fa3300b9305d7234f2bf2676fd022551cb1d5ed26929257474dc",
+      "source_stable": true
+    },
+    {
+      "commands": "evidence/super-agent-v1/SAV1-09/start-20261112T110706Z-588a9f55/20261112T121432Z-source-provider-boundaries-original-98fb12/commands.json",
+      "exit_code": 1,
+      "counts": {
+        "tests": 3,
+        "failures": 3,
+        "errors": 0,
+        "skipped": 0
+      },
+      "source_before": "784027126981fa2513b7aa5a985e3203b113d763453c160211b4921fd9a57374",
+      "source_after": "784027126981fa2513b7aa5a985e3203b113d763453c160211b4921fd9a57374",
+      "source_stable": true
+    },
+    {
+      "commands": "evidence/super-agent-v1/SAV1-09/start-20261112T110706Z-588a9f55/20261112T121757Z-source-provider-boundaries-failed-only-fixed-1e6db0/commands.json",
+      "exit_code": 0,
+      "counts": {
+        "tests": 3,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "source_before": "61f48b9fe004fa1ce6fb15904abe1804bd55a3a03d01823e6a7a84f8d6bc1168",
+      "source_after": "61f48b9fe004fa1ce6fb15904abe1804bd55a3a03d01823e6a7a84f8d6bc1168",
+      "source_stable": true
+    },
+    {
+      "commands": "evidence/super-agent-v1/SAV1-09/start-20261112T110706Z-588a9f55/20261112T122441Z-source-recovery-new-files-lint-initial-e6f0f4/commands.json",
+      "exit_code": 1,
+      "counts": null,
+      "source_before": "db405f16b458d7c744b3b7b4a72b0802366cc991e4fdc164c75c9923d1fb1c64",
+      "source_after": "db405f16b458d7c744b3b7b4a72b0802366cc991e4fdc164c75c9923d1fb1c64",
+      "source_stable": true
+    },
+    {
+      "commands": "evidence/super-agent-v1/SAV1-09/start-20261112T110706Z-588a9f55/20261112T122441Z-source-recovery-new-six-initial-f8d3c5/commands.json",
+      "exit_code": 0,
+      "counts": {
+        "tests": 6,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "source_before": "db405f16b458d7c744b3b7b4a72b0802366cc991e4fdc164c75c9923d1fb1c64",
+      "source_after": "db405f16b458d7c744b3b7b4a72b0802366cc991e4fdc164c75c9923d1fb1c64",
+      "source_stable": true
+    },
+    {
+      "commands": "evidence/super-agent-v1/SAV1-09/start-20261112T110706Z-588a9f55/20261112T122612Z-source-recovery-failed-file-lint-fixed-035f59/commands.json",
+      "exit_code": 0,
+      "counts": null,
+      "source_before": "abb3b5dc294ac30f4ac7f6349f8fcfc5dd4692297e0649dcf03f3be7e11f28cc",
+      "source_after": "abb3b5dc294ac30f4ac7f6349f8fcfc5dd4692297e0649dcf03f3be7e11f28cc",
+      "source_stable": true
+    },
+    {
+      "commands": "evidence/super-agent-v1/SAV1-09/start-20261112T110706Z-588a9f55/20261112T122931Z-source-model-utf8-budget-original-d0d1a8/commands.json",
+      "exit_code": 1,
+      "counts": {
+        "tests": 1,
+        "failures": 1,
+        "errors": 0,
+        "skipped": 0
+      },
+      "source_before": "da3c47916841ef7ab15624debcc2f41e313e1b6ec5ef1788f7375974c248f290",
+      "source_after": "da3c47916841ef7ab15624debcc2f41e313e1b6ec5ef1788f7375974c248f290",
+      "source_stable": true
+    },
+    {
+      "commands": "evidence/super-agent-v1/SAV1-09/start-20261112T110706Z-588a9f55/20261112T123016Z-source-model-utf8-budget-failed-only-fixed-d13b3c/commands.json",
+      "exit_code": 0,
+      "counts": {
+        "tests": 1,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "source_before": "3dff41bc4fe7a85b6d8e85d2d869d1ba360efc69de9cd995c615086538a4ab34",
+      "source_after": "3dff41bc4fe7a85b6d8e85d2d869d1ba360efc69de9cd995c615086538a4ab34",
+      "source_stable": true
+    },
+    {
+      "commands": "evidence/super-agent-v1/SAV1-09/start-20261112T110706Z-588a9f55/20261112T123430Z-metrics-new-reservation-original-cbfeb2/commands.json",
+      "exit_code": 1,
+      "counts": {
+        "tests": 1,
+        "failures": 1,
+        "errors": 0,
+        "skipped": 0
+      },
+      "source_before": "ad3edf9e5b2fdabb0638fa71b837d15ca2d4b63e89673a2117157f5d8d43e161",
+      "source_after": "ad3edf9e5b2fdabb0638fa71b837d15ca2d4b63e89673a2117157f5d8d43e161",
+      "source_stable": true
+    },
+    {
+      "commands": "evidence/super-agent-v1/SAV1-09/start-20261112T110706Z-588a9f55/20261112T123548Z-metrics-reservation-failed-only-b30210/commands.json",
+      "exit_code": 0,
+      "counts": {
+        "tests": 1,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "source_before": "c7bda8a5a12f2093a866d7f2fbb74e697bfdbdb6f98050c0b669ecb2432f8091",
+      "source_after": "c7bda8a5a12f2093a866d7f2fbb74e697bfdbdb6f98050c0b669ecb2432f8091",
+      "source_stable": true
+    },
+    {
+      "commands": "evidence/super-agent-v1/SAV1-09/start-20261112T110706Z-588a9f55/20261112T124432Z-lint-integrated-initial-a22962/commands.json",
+      "exit_code": 0,
+      "counts": null,
+      "source_before": "c7bda8a5a12f2093a866d7f2fbb74e697bfdbdb6f98050c0b669ecb2432f8091",
+      "source_after": "c7bda8a5a12f2093a866d7f2fbb74e697bfdbdb6f98050c0b669ecb2432f8091",
+      "source_stable": true
+    },
+    {
+      "commands": "evidence/super-agent-v1/SAV1-09/start-20261112T110706Z-588a9f55/20261112T124432Z-typecheck-integrated-initial-cf12c5/commands.json",
+      "exit_code": 2,
+      "counts": null,
+      "source_before": "c7bda8a5a12f2093a866d7f2fbb74e697bfdbdb6f98050c0b669ecb2432f8091",
+      "source_after": "c7bda8a5a12f2093a866d7f2fbb74e697bfdbdb6f98050c0b669ecb2432f8091",
+      "source_stable": true
+    },
+    {
+      "commands": "evidence/super-agent-v1/SAV1-09/start-20261112T110706Z-588a9f55/20261112T124624Z-typecheck-failed-file-only-fixed-dcbcc9/commands.json",
+      "exit_code": 0,
+      "counts": null,
+      "source_before": "9ed09160cb1307be6811a918b66a27962460cc837320dd66c90b0232e8a9e22c",
+      "source_after": "9ed09160cb1307be6811a918b66a27962460cc837320dd66c90b0232e8a9e22c",
+      "source_stable": true
+    },
+    {
+      "commands": "evidence/super-agent-v1/SAV1-09/start-20261112T110706Z-588a9f55/20261112T125350Z-registered-collection-only-b9eeec/commands.json",
+      "exit_code": 0,
+      "counts": null,
+      "source_before": "5371d39405a651ceb729cd9ab72df0a45180e1882c5ebeea97e2f6e2da2a47f3",
+      "source_after": "5371d39405a651ceb729cd9ab72df0a45180e1882c5ebeea97e2f6e2da2a47f3",
+      "source_stable": true
+    },
+    {
+      "commands": "evidence/super-agent-v1/SAV1-09/start-20261112T110706Z-588a9f55/20261112T125823Z-registered-initial-cfec76/commands.json",
+      "exit_code": 2,
+      "counts": null,
+      "source_before": "180c9b684c03b72239b464a5fe2245f9edca692d1fdc882859394154b4519417",
+      "source_after": "180c9b684c03b72239b464a5fe2245f9edca692d1fdc882859394154b4519417",
+      "source_stable": true
+    },
+    {
+      "commands": "evidence/super-agent-v1/SAV1-09/start-20261112T110706Z-588a9f55/20261112T134253Z-registered-future-failed-only-fixed-df5bcd/commands.json",
+      "exit_code": 0,
+      "counts": {
+        "tests": 1,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "source_before": "684fe90a43065e642860ca3b99fbc932406951e92b3bd41392eb590e386436ce",
+      "source_after": "684fe90a43065e642860ca3b99fbc932406951e92b3bd41392eb590e386436ce",
+      "source_stable": true
+    },
+    {
+      "commands": "evidence/super-agent-v1/SAV1-09/20261112T142616Z-I01-reproduce-845ca43b/independent-command.json",
+      "exit_code": 1,
+      "counts": {
+        "tests": 2,
+        "failures": 2,
+        "errors": 0,
+        "skipped": 0
+      },
+      "source_before": "684fe90a43065e642860ca3b99fbc932406951e92b3bd41392eb590e386436ce",
+      "source_after": "684fe90a43065e642860ca3b99fbc932406951e92b3bd41392eb590e386436ce",
+      "source_stable": true
+    },
+    {
+      "commands": "evidence/super-agent-v1/SAV1-09/20261112T142616Z-I01-reproduce-845ca43b/race-command.json",
+      "exit_code": 1,
+      "counts": {
+        "tests": 2,
+        "failures": 2,
+        "errors": 0,
+        "skipped": 0
+      },
+      "source_before": "684fe90a43065e642860ca3b99fbc932406951e92b3bd41392eb590e386436ce",
+      "source_after": "684fe90a43065e642860ca3b99fbc932406951e92b3bd41392eb590e386436ce",
+      "source_stable": true
+    },
+    {
+      "commands": "evidence/super-agent-v1/SAV1-09/20261112T142616Z-I01-reproduce-845ca43b/boundary-command.json",
+      "exit_code": 1,
+      "counts": {
+        "tests": 2,
+        "failures": 2,
+        "errors": 0,
+        "skipped": 0
+      },
+      "source_before": "684fe90a43065e642860ca3b99fbc932406951e92b3bd41392eb590e386436ce",
+      "source_after": "684fe90a43065e642860ca3b99fbc932406951e92b3bd41392eb590e386436ce",
+      "source_stable": true
+    },
+    {
+      "commands": "evidence/super-agent-v1/SAV1-09/20261112T143317Z-I01-repair-70df53cc/independent-command.json",
+      "exit_code": 0,
+      "counts": {
+        "tests": 2,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "source_before": "76fc815bf9cf75da14c9cf1ef226ae5491aa6a84f4098e606f35ea591e87a6fa",
+      "source_after": "76fc815bf9cf75da14c9cf1ef226ae5491aa6a84f4098e606f35ea591e87a6fa",
+      "source_stable": true
+    },
+    {
+      "commands": "evidence/super-agent-v1/SAV1-09/20261112T143317Z-I01-repair-70df53cc/race-command.json",
+      "exit_code": 0,
+      "counts": {
+        "tests": 2,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "source_before": "76fc815bf9cf75da14c9cf1ef226ae5491aa6a84f4098e606f35ea591e87a6fa",
+      "source_after": "76fc815bf9cf75da14c9cf1ef226ae5491aa6a84f4098e606f35ea591e87a6fa",
+      "source_stable": true
+    },
+    {
+      "commands": "evidence/super-agent-v1/SAV1-09/20261112T143317Z-I01-repair-70df53cc/boundary-command.json",
+      "exit_code": 0,
+      "counts": {
+        "tests": 2,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "source_before": "76fc815bf9cf75da14c9cf1ef226ae5491aa6a84f4098e606f35ea591e87a6fa",
+      "source_after": "76fc815bf9cf75da14c9cf1ef226ae5491aa6a84f4098e606f35ea591e87a6fa",
+      "source_stable": true
+    }
+  ],
+  "component_records": [
+    {
+      "record": "evidence/super-agent-v1/SAV1-09/api-preparation-20261112T113632Z/component-result.json",
+      "record_sha256": "c9b86d9b564b03d8d283c9b1ee813535fca5f178a5a64b0fac7a137bdbe61e4e"
+    },
+    {
+      "record": "evidence/super-agent-v1/SAV1-09/corpus-draft-20261112T124813Z/component-result.json",
+      "record_sha256": "aafa0264c618ec4d41a71bbe53590c436e4ec5c8df31689a54228241ae608315"
+    },
+    {
+      "record": "evidence/super-agent-v1/SAV1-09/domain-implementation-20261112T111453Z/component-result.json",
+      "record_sha256": "15184d7eaeef9defc073cb7ec5a0227af7da2d355ebea4f9780562fcaac63351"
+    },
+    {
+      "record": "evidence/super-agent-v1/SAV1-09/extra-boundaries-20261112T121321Z/component-result.json",
+      "record_sha256": "0892a82ac77b6082adfb0204c393087326099390ad87c186b484cf32e0141e2a"
+    },
+    {
+      "record": "evidence/super-agent-v1/SAV1-09/migration-legacy-20261112T115047Z/component-result.json",
+      "record_sha256": "201ea8f2ca43995d1c0c4b0e36c77968c413c0fb1864e995e77ab31a8df87343"
+    }
+  ],
+  "specialized_deliveries": [
+    "evidence/super-agent-v1/SAV1-09/start-20261112T110706Z-588a9f55/model-adapter/delivery.json",
+    "evidence/super-agent-v1/SAV1-09/start-20261112T110706Z-588a9f55/recovery/delivery.json",
+    "evidence/super-agent-v1/SAV1-09/private-service-summary.json"
+  ],
+  "taskbook_reading": [
+    "evidence/super-agent-v1/SAV1-09/start-20261112T110706Z-588a9f55/taskbook-reading.json",
+    "evidence/super-agent-v1/SAV1-09/start-20261112T110706Z-588a9f55/final-taskbook-rereading.json",
+    "evidence/super-agent-v1/SAV1-09/start-20261112T110706Z-588a9f55/context-reset-rereading-20261112T1326.json"
+  ],
+  "paid_calls": 0,
+  "real_platform_calls": 0,
+  "external_business_writes": 0,
+  "new_live_activations": 0,
+  "protected_user_file_unchanged": true,
+  "completion_handoff": "HARNESS_SA09_HANDOFF.md prepared locally only; no new implementation-completion message delivered or peer acceptance claimed",
+  "next_card": "SAV1-10",
+  "next_card_gate": "User explicitly authorized SA10 after successful failed-case repair verification; six original failures now PASS; independent status remains NOT_PASSED",
+  "limitations": [
+    "Initial1777 includes a FAIL retained verbatim; failed-only repair does not establish a new complete1777 PASS",
+    "No true model quality, live platform, payment, outbound, publication or long-running acceptance was performed",
+    "Previous independent SA09-I01 NOT_PASSED remains; repaired candidate has implementer-only six-case PASS",
+    "SA10 progression is user-authorized after targeted repair, not evidence of independent SA09 PASS",
+    "Only original failed probes rerun; full1783/static/previously passed probes not rerun"
+  ],
+  "evidence_root": "evidence/super-agent-v1/SAV1-09/",
+  "i01_repair": {
+    "task": "SAV1-09",
+    "finding": "SA09-I01",
+    "status": "REPAIR_IMPLEMENTER_TARGETED_PASS_PENDING_INDEPENDENT_REVIEW",
+    "source_commit": "ee1fee3a516bfe95e667df6ab389900f11ce55dc",
+    "source_sha256": "76fc815bf9cf75da14c9cf1ef226ae5491aa6a84f4098e606f35ea591e87a6fa",
+    "reproduction_summary": "evidence/super-agent-v1/SAV1-09/20261112T142616Z-I01-reproduce-845ca43b/summary.json",
+    "repair_summary": "evidence/super-agent-v1/SAV1-09/20261112T143317Z-I01-repair-70df53cc/summary.json",
+    "original_failures": 6,
+    "retest_counts": {
+      "tests": 6,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "same_issue_distinct_probes": true,
+    "source_stable": true,
+    "previously_passed_cases_rerun": false,
+    "full_lint_typecheck_or_registered_suite_rerun": false,
+    "independent_review": "PREVIOUS_CANDIDATE_NOT_PASSED; repaired candidate not independently reviewed",
+    "user_progression_override": {
+      "instruction": "后续如果成功修改了错误，通过了检验就继续进行SA10的任务。",
+      "interpretation": "User authorizes SA10 after successful failed-case repair verification; this does not declare independent SA09 PASS",
+      "condition_met": "all six original failed nodes now PASS",
+      "next_task": "SAV1-10"
+    },
+    "registered_cases_now": 1783,
+    "registered_cases_reexecuted": false,
+    "scope_evidence": "evidence/super-agent-v1/SAV1-09/repair-i01-20261112T142616Z-995a5aae/repair-scope-before-test.json",
+    "formal_regression_mapping": "evidence/super-agent-v1/SAV1-09/repair-i01-20261112T142616Z-995a5aae/formal-regression-mapping.json",
+    "recorded_at_utc": "2026-11-12T14:38:56.329310+00:00",
+    "original_independent_report": "evidence/super-agent-v1/SAV1-09/20261112T135535Z-independent-review/REPORT.md",
+    "delivery_audit": "evidence/super-agent-v1/SAV1-09/repair-i01-20261112T142616Z-995a5aae/delivery-audit.json",
+    "original_files_preserved": true,
+    "live_gates": "NOT_RUN",
+    "report": "docs/super-agent-v1/SA09_I01_REPAIR_20261112.md"
+  },
+  "next_card_status": "IN_PROGRESS_REQUIREMENTS_AND_OWNERSHIP_AUDIT",
+  "user_progression_override": {
+    "instruction": "后续如果成功修改了错误，通过了检验就继续进行SA10的任务。",
+    "interpretation": "User authorizes SA10 after successful failed-case repair verification; this does not declare independent SA09 PASS",
+    "condition_met": "all six original failed nodes now PASS",
+    "next_task": "SAV1-10"
+  },
+  "prior_delivery": "history/209dd35-before-independent-I01.json",
+  "prior_final_document_binding": "evidence/super-agent-v1/SAV1-09/start-20261112T110706Z-588a9f55/final-document-binding.json",
+  "final_document_binding": "evidence/super-agent-v1/SAV1-09/repair-i01-20261112T142616Z-995a5aae/final-document-binding.json"
+}

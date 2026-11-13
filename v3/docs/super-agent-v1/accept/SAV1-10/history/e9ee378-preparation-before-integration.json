@@ -1,0 +1,244 @@
+{
+  "schema": "sav1-preparation-v1",
+  "task": "SAV1-10",
+  "status": "IN_PROGRESS_PRIVATE_COMPONENTS_VERIFIED_PENDING_FIXED_SHARED_ACK",
+  "recorded_at_utc": "2026-11-12T16:16:42.466798+00:00",
+  "local_date": "2026-11-13 Asia/Shanghai",
+  "source_commit": "bbc8101a40105fb9882ee2feca8a2a826a5e1206",
+  "source_sha256": "b65c3c38fe2397f4d23939a99d3c0977232ee80a16491dccfb94d4e3b830cfad",
+  "source_snapshot_scope": "Preparation implementation/config/schemas/tests; independent and formal shared integration NOT_RUN",
+  "authorization": "User explicitly permits SA10 after SA09 errors repaired and verified; original6 failed I01 probes passed on ee1fee3",
+  "sa09_dependency": {
+    "repair_commit": "ee1fee3a516bfe95e667df6ab389900f11ce55dc",
+    "original_failed_only": "6PASS",
+    "independent_prior_candidate": "NOT_PASSED; preserved",
+    "independent_repair_candidate": "NOT_RUN",
+    "detail": "../SAV1-09/i01-repair-20261112.json"
+  },
+  "scope": "Private source-correlation-v1 DTO/rules/current-source proof service/API,5-table SQL proposal,9 schemas,201-case real focused registry; no production shared integration yet",
+  "gates": {
+    "engineering_gate": "NOT_RUN",
+    "policy_security_gate": "NOT_RUN",
+    "live_source_channel_gate": "NOT_RUN",
+    "live_coding_gate": "NOT_RUN",
+    "live_publication_gate": "NOT_RUN",
+    "continuous_operation_gate": "NOT_RUN"
+  },
+  "independent_review": "NOT_RUN",
+  "semantic_evaluation": "NOT_RUN",
+  "private_component_scores": [
+    {
+      "component": "Private contracts/rules",
+      "sequence": "collection ERROR before cases -> repaired original unexecuted file102PASS",
+      "known_distinct_cases_with_passing_evidence": 102,
+      "single_full_card_run": false,
+      "binding": "Per-owned-file hashes in private-contracts-summary; no global snapshot claimed"
+    },
+    {
+      "component": "Draft SQL on disposable PG",
+      "sequence": "setup collection1ERROR -> initial14cases 4PASS10FAIL -> only original10 failed cases10PASS",
+      "known_distinct_cases_with_passing_evidence": 14,
+      "single14_PASS_run": false,
+      "SQL_bytes_unchanged": true,
+      "SQL_sha256": "d6aead811237e532664adf62b15521a16369fd29b8dfe9d26156f0d74fec1ee3",
+      "formal_migration_installation": "NOT_RUN"
+    },
+    {
+      "component": "Private service real PG",
+      "sequence": "initial18cases14PASS4FAIL -> only4failed3PASS1FAIL -> only1remainingPASS",
+      "known_distinct_cases_with_passing_evidence": 18,
+      "single18_PASS_run": false,
+      "initial_source_sha256": "a0622688210f2779b721ab78456d1b2d03798ffe6581119709595c1eca901e8e",
+      "source_service_sha256_unchanged": "6b85d3533ef4d2fb657b4b633c66af6079d09b00d7c9180e0e1408299170ceea",
+      "fix_scope": "Fixture setup only; original business assertions and historical passes retained"
+    },
+    {
+      "component": "New CI canonical-parent/factory boundaries",
+      "sequence": "initial6cases4PASS2FAIL -> only original2 fixture-key failures2PASS",
+      "known_distinct_cases_with_passing_evidence": 6,
+      "single6_PASS_run": false,
+      "initial": {
+        "path": "evidence/super-agent-v1/SAV1-10/start-20261112T144938Z-0131551f/20261112T154823Z-ci-canonical-new-initial-2d2b32/commands.json",
+        "sha256": "f3f365bc87fa3ef806c0c14b7ed459b1d7546391324525f4ab0705e153800066",
+        "counts": {
+          "tests": 6,
+          "failures": 2,
+          "errors": 0,
+          "skipped": 0
+        },
+        "source_before": "719c27e0f6ed6546e9f79c61de79cda8a97baceb559f52ea8e934468af8dfa8e",
+        "source_after": "719c27e0f6ed6546e9f79c61de79cda8a97baceb559f52ea8e934468af8dfa8e"
+      },
+      "repair": {
+        "path": "evidence/super-agent-v1/SAV1-10/start-20261112T144938Z-0131551f/20261112T155106Z-ci-fixture-failed-two-fixed-d5f8e3/commands.json",
+        "sha256": "80d1781d5f920fc8298284a8dbc0d84e58abd367a180a85ecbc6ef7b081f5c1c",
+        "counts": {
+          "tests": 2,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        "source_before": "d49f798b240367336f679ede58f9bce2472624cdc30c4e4b211c281d253ac0f9",
+        "source_after": "d49f798b240367336f679ede58f9bce2472624cdc30c4e4b211c281d253ac0f9"
+      },
+      "fix_scope": "Test helper reads PolicySave current_revision, not revision; service bytes unchanged"
+    },
+    {
+      "component": "Private HTTP API with actual create_app authentication closures",
+      "sequence": "single first new file24PASS0FAIL0ERROR0SKIP",
+      "known_distinct_cases_with_passing_evidence": 24,
+      "scope": "PRIVATE_API_COMPOSITION_ONLY_NOT_SHARED_INTEGRATION",
+      "binding": {
+        "commands": "evidence/super-agent-v1/SAV1-10/start-20261112T144938Z-0131551f/20261112T155347Z-api-private-composition-initial-cf153f/commands.json",
+        "junit": "evidence/super-agent-v1/SAV1-10/start-20261112T144938Z-0131551f/20261112T155347Z-api-private-composition-initial-cf153f/junit.xml",
+        "log": "evidence/super-agent-v1/SAV1-10/start-20261112T144938Z-0131551f/20261112T155347Z-api-private-composition-initial-cf153f/command.log",
+        "exit_code": 0,
+        "counts": {
+          "tests": 24,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        "source_before": "42c782febd20239fd782a9bd13c6c1224aa27d274313caaa9d80e261d49ab6b7",
+        "source_after": "42c782febd20239fd782a9bd13c6c1224aa27d274313caaa9d80e261d49ab6b7",
+        "source_stable": true,
+        "pg_before": {
+          "databases": [],
+          "sessions": []
+        },
+        "pg_after": {
+          "databases": [],
+          "sessions": []
+        },
+        "h02_fixture_stable": true
+      },
+      "test_only_composition": "Temporarily wraps register_source_eval; production shared api.py/Engine untouched",
+      "formal_registered_routes_acceptance": "NOT_RUN"
+    }
+  ],
+  "component_score_limits": "Cross-version and failed-only evidence, not a single164PASS or201PASS run. Formal SQL14 mirrors have not been executed again; new2 integration guards have no PASS yet. API24 binds pre-style-change private composition, not production registration.",
+  "statics": {
+    "initial_lint": {
+      "record": "evidence/super-agent-v1/SAV1-10/start-20261112T144938Z-0131551f/20261112T161019Z-card-initial-lint-7faf2f/commands.json",
+      "record_sha256": "84f65555d381c277e9eabb5b3e21ce2e1d5cb9c1b95b08fa593e6da9fd18fe5e",
+      "exit_code": 2,
+      "source_before": "122fb86768b60d30cfeb01128479f58c77872ff16acb35eeda04a5684b8f93ca",
+      "source_after": "122fb86768b60d30cfeb01128479f58c77872ff16acb35eeda04a5684b8f93ca",
+      "source_stable": true,
+      "argv": [
+        "make",
+        "-C",
+        "/home/imini/magr-super-agent/v3",
+        "lint"
+      ]
+    },
+    "initial_typecheck": {
+      "record": "evidence/super-agent-v1/SAV1-10/start-20261112T144938Z-0131551f/20261112T161019Z-card-initial-typecheck-f28d7e/commands.json",
+      "record_sha256": "e19d916f9072bb184aa6206531fc382bb9a3fca013ae0574b869684ba6aed8c9",
+      "exit_code": 0,
+      "source_before": "122fb86768b60d30cfeb01128479f58c77872ff16acb35eeda04a5684b8f93ca",
+      "source_after": "122fb86768b60d30cfeb01128479f58c77872ff16acb35eeda04a5684b8f93ca",
+      "source_stable": true,
+      "argv": [
+        "make",
+        "-C",
+        "/home/imini/magr-super-agent/v3",
+        "typecheck"
+      ]
+    },
+    "repaired_lint_only_two_failed_files": {
+      "record": "evidence/super-agent-v1/SAV1-10/start-20261112T144938Z-0131551f/20261112T161129Z-lint-only-previous-two-failed-files-b8a414/commands.json",
+      "record_sha256": "b387e23efd7481f473cc9a7c9b4ca92c211301965d58974a670e3e286f155df7",
+      "exit_code": 0,
+      "source_before": "159a69cd3e212670892afc9029e68d89526010038a3d58596bf264afb2098ffe",
+      "source_after": "159a69cd3e212670892afc9029e68d89526010038a3d58596bf264afb2098ffe",
+      "source_stable": true,
+      "argv": [
+        "/home/imini/magr-super-agent/v3/.venv/bin/ruff",
+        "check",
+        "/home/imini/magr-super-agent/v3/src/mgar_v3/super_agent/source_correlation_api.py",
+        "/home/imini/magr-super-agent/v3/tests/test_super_agent_sa09_i01.py"
+      ]
+    }
+  },
+  "static_limits": "First249-source-file mypy PASS remains historical before lint syntax repair; only the two failed lint files checked afterward, no passing pytest/typecheck repeated. API generic annotation and test-only formatting changed; SA09 entire mirror AST and API function body equivalent.",
+  "format_equivalence": "evidence/super-agent-v1/SAV1-10/start-20261112T144938Z-0131551f/static-style-repair/ast-equivalence.json",
+  "registry": {
+    "target": "make verify TASK=SAV1-10",
+    "files": [
+      "tests/test_super_agent_sa10_contracts.py",
+      "tests/test_super_agent_sa10.py",
+      "tests/test_super_agent_sa10_ci.py",
+      "tests/test_super_agent_sa10_api.py",
+      "tests/test_super_agent_sa10_migration.py",
+      "tests/test_super_agent_sa09.py",
+      "tests/test_super_agent_sa09_recovery.py",
+      "tests/test_super_agent_sa09_i01.py"
+    ],
+    "initial_registered_execution": "NOT_RUN_PENDING_FIXED_ACK_AND_FORMAL_WIRING",
+    "collect_only_count": 201,
+    "new_cases": 166,
+    "direct_sa09_dependency_cases": 35,
+    "executed_by_collect": 0,
+    "collect_record": "evidence/super-agent-v1/SAV1-10/start-20261112T144938Z-0131551f/20261112T161244Z-sa10-first-registration-collect-only-0aa1e8/commands.json",
+    "old_registry_entries_preserved": true
+  },
+  "ownership": {
+    "status": "PENDING_FIXED_HARNESS_ACK",
+    "request": "../../sa10-proposal/ownership-request.txt",
+    "sql_proposal": "../../sa10-proposal/0041_source_correlations.sql",
+    "sql_sha256": "d6aead811237e532664adf62b15521a16369fd29b8dfe9d26156f0d74fec1ee3",
+    "patch": "../../sa10-proposal/shared-wiring.patch",
+    "patch_sha256": "352277eb82d61b75534a072c6ece1c6769c4653102bac1399e36d021e419c278",
+    "latest_committed_harness_read": {
+      "fixed_head": "f32bad605c57bffa481b8a69379f19a482420978",
+      "handoff_path": "v3/docs/harness-v4/SUPER_AGENT_HANDOFF.md",
+      "handoff_sha256": "fec30acb31f87b7b9a2a90e1d543392f1533292aed8737ba09637ed5c5cf795a",
+      "last_sections": [
+        "## 30. SAV1-07 共享预算接口所有权确认（2026-11-11）",
+        "## 31. SAV1-08 Fast Path 共享范围确认（2026-11-12）",
+        "## 32. SAV1-09 Source Router 共享范围确认（2026-11-12）",
+        "## 33. HV4-PRODUCT 自然语言入口整合范围（2026-11-12）"
+      ],
+      "SA10_or0041_mentions": [],
+      "matching_SA10_confirmation_found": false,
+      "latest_committed_migration_names": [
+        "v3/migrations/0029_analysis_token_reservations.sql",
+        "v3/migrations/0030_harness_recovery.sql",
+        "v3/migrations/0037_harness_evaluation_budget.sql",
+        "v3/migrations/0040_harness_product.sql"
+      ],
+      "meaning": "Section32 covers SA09 only; section33 reserves Harness0040, no new0041/SΑ10 approval. f32bad6 H12 preparation is not a scope confirmation.",
+      "working_tree_user_files_read_or_imported": false
+    },
+    "formal_migration": "NOT_INSTALLED",
+    "formal_engine_api_wiring": "NOT_APPLIED",
+    "reason": "AGENTS.md requires ownership/interfaces/migration numbering agreement before overlapping shared Engine/API/schema changes; prior SA09 section32 is not SA10 acknowledgement.",
+    "harness_active_files_modified_or_imported": false
+  },
+  "integrity": {
+    "record": "evidence/super-agent-v1/SAV1-10/start-20261112T144938Z-0131551f/delivery-integrity-20261112T161500Z/metadata.json",
+    "record_sha256": "fd222862749e5966ef5ca6858bbdfc760e8d9eb41e28f4eeab01f4c3da986fd9",
+    "installed_migrations": 38,
+    "new_tables_present": false,
+    "temporary_databases": 0,
+    "temporary_sessions": 0,
+    "task_fault_containers": 0,
+    "manifest_files": 10,
+    "artifact_refs": 166,
+    "all_current_refs_match": true,
+    "old38_sql_and_financial_ast_fixed_h02_sourceeval_i01_production_user_and_historical_failures": "UNCHANGED"
+  },
+  "model_calls": 0,
+  "paid_cost": "0",
+  "external_business_writes": 0,
+  "real_platform_paid_external_publication_continuous_operation": "NOT_RUN",
+  "SA11": "PLANNED_NOT_STARTED",
+  "next_steps_after_actual_ack": [
+    "Verify committed handoff exact SQL/patch hashes,0041 ownership and no conflicting scope; do not import H12/0037/0040/active files",
+    "Apply approved two-file shared patch and exact formal0041; original migration runner and own database,39 checksums",
+    "Mechanically extend old migration catalog assertions and refresh affected current manifests; freeze integration source",
+    "Initial201 registered checks; any repair reruns only exact failed cases or check targets, preserve prior results",
+    "Write engineering delivery then stop before independent SA10; do not open SA11 or real gates"
+  ]
+}

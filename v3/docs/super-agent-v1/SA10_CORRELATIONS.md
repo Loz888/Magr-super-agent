@@ -1,10 +1,10 @@
 # SA10 跨来源关联与原任务查重
 
-状态：IN_PROGRESS，私有组件验证完成，等待共享范围固定确认。首次整卡目标已注册并收集201项，尚未执行正式集成验收，详见[准备摘要](accept/SAV1-10/preparation-20261113.json)。用户明确授权SA09-I01失败修复检验成功后继续SA10；该条件已由原六项定向6PASS满足，原独立NOT_PASSED及修复候选待独立状态保留，见[修复记录](SA09_I01_REPAIR_20261112.md)。SA11未启动；真实平台、付费、外发、发布、语义质量和长期门均NOT_RUN。
+状态：IN_PROGRESS，本地正式集成和工程复验已完成，等待独立复验。当前源码候选`dcea520`；正式201项首轮200PASS/1FAIL，唯一守卫兼容性修正后仅原失败1PASS，未重复其余200项，也不称最终源码单轮201PASS。详见[工程交付](SA10_ACCEPTANCE_20261113.md)及[机器摘要](accept/SAV1-10/accept.json)。SA09-I01已有独立原6项PASS闭环，当前元数据已同步[关闭记录](accept/SAV1-09/i01-independent-closure-20261113.json)，旧独立FAIL保留。SA11未启动；真实平台、付费、外发、发布、语义质量和长期门均NOT_RUN。
 
 ## 所有权与集成状态
 
-Harness固定`f554937eb0c692c54ff6fa2d2cede67f91e85a10`第33节已占0040，本副本不导入或占用该编号。SA10拟0041_source_correlations.sql；SQL和仅两文件接线已经形成[具体协调请求](sa10-proposal/ownership-request.txt)，当前等待新的固定Harness确认。SA09第32节不覆盖本次新表和接口。确认前，正式migrations、主库和共享Engine/API保持不变；组件测试仅在自己的临时PG显式安装SQL草案。
+Harness固定`0a335a14d8ce37703b5cfe0eaa7960d4ac571fc7`第34节实际确认0041、私有模块和SA副本最小Engine/API接线；SQL、补丁及请求哈希均匹配。`0041_source_correlations.sql`已按原草案字节进入正式migrations，经原`make migrate`安装；当前39份checksum一致，无0037/0040导入。原Engine.__init__仅组合服务，原api.py仅注册六个管理接口，实际字节等于已确认补丁。没有修改或导入Harness活动文件、H12或产品实现。
 
 新SQL只有5张无正文事实表：当前native资源观察、correlation head、不可变版本、唯一资源claim及固定revision的输入链接。canonical input/source/project及原Thread→Ticket→Run复合外键保持；没有指向可清理source_inbox的永久外键。deferred约束使事务内占位必须在commit前具备完整原目标、native claim和输入链接；历史不可更新或删除，不复制业务状态机或费用账本。
 
@@ -26,7 +26,7 @@ CodeRef单独绑定head/base/head-repository/tree及CI run/attempt/check。相�
 
 ## 管理接口
 
-以下为待共享注册的私有接口，沿用cookie、Origin/CSRF、事务内会话复核和仅本前缀的no-store。请求仅接受现有引用及精确CAS，不接受正文、资源证明、身份、付费、执行或factory字段。
+以下为已由正式应用注册的管理接口，沿用cookie、Origin/CSRF、事务内会话复核和仅本前缀的no-store。请求仅接受现有引用及精确CAS，不接受正文、资源证明、身份、付费、执行或factory字段。
 
 | 方法 | `/api/v3/source-correlations` 路径 | 行为 |
 | --- | --- | --- |
@@ -39,12 +39,10 @@ CodeRef单独绑定head/base/head-repository/tree及CI run/attempt/check。相�
 
 ## 当前验证证据
 
-契约/纯规则102项PASS；初始collection和静态失败及对应失败范围修复均保留。SQL草案实际临时PG首轮4PASS/10FAIL，修正失败项的原工厂fixture后仅10失败PASS；SQL字节未改，不合称单轮14全绿。
+独立e9ee378的原两项正式守卫FAIL完整保留。落实正式0041及共享接线后，`191ed23`原`make verify TASK=SAV1-10`实际执行201项：200PASS/1FAIL，0error/skip，其中原SQL守卫PASS及其余199项首次正式检查全部PASS。
 
-服务首轮18项为14PASS/4FAIL；四项均为测试布置与既有约束不符，未改生产逻辑或业务断言，仅原失败4项复验3PASS/1FAIL，再只剩余1项PASS。新增CI parent及工厂边界首次6项为4PASS/2FAIL，仅两项夹具的策略保存返回字段修正后定向2PASS。API私有组合首次24PASS；测试临时注册私有模块，不代表生产API已接线。
+唯一剩余接线守卫在确认真实Engine及原PG连接后，因FastAPI的`_IncludedRouter`没有path属性而中断。只将该失败守卫的枚举过滤改为`getattr(route,"path","")`；原六个精确路由/方法、Engine和原连接断言AST全部不变，生产源码未改。固定`dcea520`后仅该原失败节点1PASS，200项未重复，原201轮FAIL不改。最终源码指纹`dd47a56701afcee6a8257e1ec152d48556cc7feea6d253a6e324c4c0cd326e87`复验前后一致。
 
-首次整库typecheck为249源码文件PASS。首次整库lint仅两个文件有5处格式失败；只修改API泛型标注和SA09复现镜像括号/字符串折行，随后仅这两个失败文件lint PASS，未重复typecheck或已通过pytest。SA09镜像整文件AST相同，原独立探针和SA09生产修复模块未改。API的24PASS绑定格式修改前源码，后续正式集成不借用该成绩冒充新的执行。
+24项API首次正式检查全部使用原create_app；移除私有测试临时注册组合，所有实际测试函数和业务断言AST保持。之前私有组件、收集201及静态结果均作为各自版本的历史证据保留；本次只对新接线/夹具/目录变更做定向静态检查，没有重跑历史整库lint/typecheck或组件流水线。
 
-`make verify TASK=SAV1-10`现有8个真实测试文件，collect-only共201项（166项SA10、35项直接SA09依赖），不是201PASS。迁移14项正式镜像保持原整函数及断言AST，另加两项尚未执行的正式迁移/Engine/API接线guard，防止仅测试草案和私有组合就误报整卡通过。实际运行须在固定Harness确认、正式0041和共享接线完成后进行；不能绕过已知未完成的集成前置。
-
-原始证据位于`evidence/super-agent-v1/SAV1-10/`。所有失败、命令、JUnit、源码范围和未实测门分版本保存；后续修复仍只复验原未通过项。
+原始证据位于`evidence/SAV1-10/20261113T034518Z-84ae9b20/`和`evidence/super-agent-v1/SAV1-10/integrate-I01-20261113T034036Z-0de9b080/`。两项原失败守卫及199项首次检查的逐例账本、命令、JUnit和各版本源码绑定均在新工程摘要引用。独立复验前本卡保持IN_PROGRESS。

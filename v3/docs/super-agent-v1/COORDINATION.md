@@ -229,3 +229,12 @@ SA10不能占0040；0039/第32节确认不扩大到SA10，新的共享范围和�
 SA09-I01原6失败定向6PASS满足用户继续SA10的条件，未把原独立NOT_PASSED改为PASS。SA10私有实现、SQL草案和精确最小共享patch均已备齐，见[具体请求](sa10-proposal/ownership-request.txt)。已请求用户代转，目前没有新的固定确认；Harness最新固定f32bad605c57bffa481b8a69379f19a482420978的交接文档仍止第33节，0040归Harness，SA09第32节不覆盖本卡。消息请求、固定确认、实现接线和验收状态继续分别记录。
 
 拟0041草案SHA d6aead811237e532664adf62b15521a16369fd29b8dfe9d26156f0d74fec1ee3；两文件共享patch SHA 352277eb82d61b75534a072c6ece1c6769c4653102bac1399e36d021e419c278。确认前正式migrations、主库和Engine/API不变，无H12、0037、0040或Harness活动文件导入。组件成绩见[准备摘要](accept/SAV1-10/preparation-20261113.json)，正式201项仅收集未执行；独立与全部真实门NOT_RUN。
+
+
+## SA10实际确认与正式集成修复（2026-11-13）
+
+用户转达并只读核对Harness固定0a335a14d8ce37703b5cfe0eaa7960d4ac571fc7第34节，SQL d6aead81、补丁352277eb、请求61e7f271的完整SHA均匹配。确认后在SA副本按原补丁组合SourceCorrelations并注册六个管理接口，0041正式落地及原入口安装；原38SQL不变、当前39，无0037/0040或H12导入，没有操作对方活动树。上方“等待共享确认”保留为历史时点。
+
+SA10正式191ed23原201轮200PASS/1FAIL；只修剩余接线守卫对无path FastAPI对象的枚举，生产源码和原断言不改，dcea520仅原失败1PASS。见[工程交付](SA10_ACCEPTANCE_20261113.md)及[交接说明](HARNESS_SA10_HANDOFF.md)。本卡本地工程完成、当前候选待独立复验，SA11不推进；全部真实/语义/长期门NOT_RUN。新完成交接文档仅本地准备，未声称消息已发出或Harness已收讫本次实现。
+
+SA09依赖元数据也同步既有真实独立6PASS：原ee1fee3/76fc815b候选三组发送前撤权负例全部零POST，见[关闭记录](accept/SAV1-09/i01-independent-closure-20261113.json)。本轮未新跑其独立流水线；原独立FAIL、原始日志和旧摘要字节保留。正式201中SA09依赖35项属于本卡用户要求的首次正式集成范围，不能冒称新的独立闭环。

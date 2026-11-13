@@ -1,0 +1,42 @@
+{
+  "task": "SAV1-09",
+  "finding": "SA09-I01",
+  "status": "CLOSED_INDEPENDENTLY",
+  "source_of_conclusion": "Existing independent failed-only recheck, explicitly cited by user-supplied SA10 readiness review; metadata synchronization only, no new recheck",
+  "observed_at_utc": "2026-11-13T03:46:19.017918+00:00",
+  "independent_recorded_at_utc": "2026-11-12T14:41:23.205010+00:00",
+  "source_commit": "ee1fee3a516bfe95e667df6ab389900f11ce55dc",
+  "source_sha256_before": "76fc815bf9cf75da14c9cf1ef226ae5491aa6a84f4098e606f35ea591e87a6fa",
+  "source_sha256_after": "76fc815bf9cf75da14c9cf1ef226ae5491aa6a84f4098e606f35ea591e87a6fa",
+  "counts": {
+    "tests": 6,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "exit_code": 0,
+  "controlled_posts_total": 0,
+  "scope": "Exactly the six original failed node IDs; original probes unchanged and formal regression ASTs identical. No previously passing tests, full registry, lint, typecheck or new boundary tests run.",
+  "original_failure_retained": "independent-20261112.json",
+  "evidence_files": {
+    "evidence/super-agent-v1/SAV1-09/independent-i01-recheck-20261112T143724Z-ce2beda9/REPORT.md": "4b0336ac17352a9ba0539eee446b5b25c3d0486a9d56f321b3c480e380e73e67",
+    "evidence/super-agent-v1/SAV1-09/independent-i01-recheck-20261112T143724Z-ce2beda9/review-result.json": "f88ee5f07a0d2f4898550e0df2af007ebad465ca36db3bed93b921b3b7407a21",
+    "evidence/super-agent-v1/SAV1-09/independent-i01-recheck-20261112T143724Z-ce2beda9/command.json": "ebebdf79d186cdec8f3acaef8817221b6f55969a5eaa819f9073d2ffcd154786",
+    "evidence/super-agent-v1/SAV1-09/independent-i01-recheck-20261112T143724Z-ce2beda9/command.log": "bb8d2a6492b60e265fca8beba1467341dcfc967d41d7d05e8f69b2d3018779b5",
+    "evidence/super-agent-v1/SAV1-09/independent-i01-recheck-20261112T143724Z-ce2beda9/junit.xml": "f03ff9ad2d13b26002cc94a424b2dceb7ec2dbcdea41b5f5ffc76732c9dac08b"
+  },
+  "engineering_review": {
+    "status": "PASS",
+    "evidence_mode": "Historical initial full evidence, previous passing independent checks, and this failed-only independent closure. Not a new full all-green run on repaired candidate.",
+    "basis": "Prior independent engineering review had only SA09-I01 open; all six original failed probes now independently PASS."
+  },
+  "other_gates": {
+    "policy_security_gate": "NOT_RUN",
+    "live_source_channel_gate": "NOT_RUN",
+    "live_coding_gate": "NOT_RUN",
+    "live_publication_gate": "NOT_RUN",
+    "continuous_operation_gate": "NOT_RUN",
+    "semantic_evaluation": "NOT_RUN"
+  },
+  "new_tests_or_static_checks_run": false
+}

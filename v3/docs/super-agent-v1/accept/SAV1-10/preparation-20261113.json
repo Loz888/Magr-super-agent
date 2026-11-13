@@ -1,7 +1,7 @@
 {
   "schema": "sav1-preparation-v1",
   "task": "SAV1-10",
-  "status": "IN_PROGRESS_PRIVATE_COMPONENTS_VERIFIED_PENDING_FIXED_SHARED_ACK",
+  "status": "HISTORICAL_PREPARATION_SUPERSEDED_BY_FORMAL_INTEGRATION",
   "recorded_at_utc": "2026-11-12T16:16:42.466798+00:00",
   "local_date": "2026-11-13 Asia/Shanghai",
   "source_commit": "bbc8101a40105fb9882ee2feca8a2a826a5e1206",
@@ -12,8 +12,9 @@
     "repair_commit": "ee1fee3a516bfe95e667df6ab389900f11ce55dc",
     "original_failed_only": "6PASS",
     "independent_prior_candidate": "NOT_PASSED; preserved",
-    "independent_repair_candidate": "NOT_RUN",
-    "detail": "../SAV1-09/i01-repair-20261112.json"
+    "independent_repair_candidate": "PASS_EXISTING_FAILED_ONLY_INDEPENDENT6",
+    "detail": "../SAV1-09/i01-repair-20261112.json",
+    "independent_closure": "docs/super-agent-v1/accept/SAV1-09/i01-independent-closure-20261113.json"
   },
   "scope": "Private source-correlation-v1 DTO/rules/current-source proof service/API,5-table SQL proposal,9 schemas,201-case real focused registry; no production shared integration yet",
   "gates": {
@@ -184,7 +185,7 @@
     "old_registry_entries_preserved": true
   },
   "ownership": {
-    "status": "PENDING_FIXED_HARNESS_ACK",
+    "status": "ACTUALLY_CONFIRMED_FIXED_COMMIT",
     "request": "../../sa10-proposal/ownership-request.txt",
     "sql_proposal": "../../sa10-proposal/0041_source_correlations.sql",
     "sql_sha256": "d6aead811237e532664adf62b15521a16369fd29b8dfe9d26156f0d74fec1ee3",
@@ -211,10 +212,12 @@
       "meaning": "Section32 covers SA09 only; section33 reserves Harness0040, no new0041/SΑ10 approval. f32bad6 H12 preparation is not a scope confirmation.",
       "working_tree_user_files_read_or_imported": false
     },
-    "formal_migration": "NOT_INSTALLED",
-    "formal_engine_api_wiring": "NOT_APPLIED",
-    "reason": "AGENTS.md requires ownership/interfaces/migration numbering agreement before overlapping shared Engine/API/schema changes; prior SA09 section32 is not SA10 acknowledgement.",
-    "harness_active_files_modified_or_imported": false
+    "formal_migration": "FORMAL0041_INSTALLED",
+    "formal_engine_api_wiring": "EXACT_APPROVED_PATCH_APPLIED",
+    "harness_active_files_modified_or_imported": false,
+    "commit": "0a335a14d8ce37703b5cfe0eaa7960d4ac571fc7",
+    "section": 34,
+    "prior_pending_reason_historical": "AGENTS.md requires ownership/interfaces/migration numbering agreement before overlapping shared Engine/API/schema changes; prior SA09 section32 is not SA10 acknowledgement."
   },
   "integrity": {
     "record": "evidence/super-agent-v1/SAV1-10/start-20261112T144938Z-0131551f/delivery-integrity-20261112T161500Z/metadata.json",
@@ -240,5 +243,8 @@
     "Mechanically extend old migration catalog assertions and refresh affected current manifests; freeze integration source",
     "Initial201 registered checks; any repair reruns only exact failed cases or check targets, preserve prior results",
     "Write engineering delivery then stop before independent SA10; do not open SA11 or real gates"
-  ]
+  ],
+  "historical_snapshot_retained": "docs/super-agent-v1/accept/SAV1-10/history/e9ee378-preparation-before-integration.json",
+  "current_formal_integration": "docs/super-agent-v1/accept/SAV1-10/accept.json",
+  "metadata_synchronized_at_utc": "2026-11-13T03:46:19.017918+00:00"
 }

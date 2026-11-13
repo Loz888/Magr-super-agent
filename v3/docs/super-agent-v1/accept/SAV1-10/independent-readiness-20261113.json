@@ -1,0 +1,22 @@
+{
+  "task": "SAV1-10",
+  "status": "NOT_PASSED",
+  "finding": "SA10-I01",
+  "reviewed_source_commit": "e9ee378c1977cdb4feaea29bda2d00e3f6c891ca",
+  "reviewed_source_sha256": "b65c3c38fe2397f4d23939a99d3c0977232ee80a16491dccfb94d4e3b830cfad",
+  "source_of_conclusion": "User-supplied existing independent readiness review; no independent work claimed by implementer",
+  "scope": "Only2 original formal integration guards;2FAIL,199NOT_RUN",
+  "report": "evidence/super-agent-v1/SAV1-10/independent-readiness-20261113T033549Z-8baac762/REPORT.md",
+  "evidence_sha256": {
+    "evidence/super-agent-v1/SAV1-10/independent-readiness-20261113T033549Z-8baac762/REPORT.md": "b67a7289f4fb7f6bfeacbb0a5706d17b78541e5489a42820d9d8f7d188c535ce",
+    "evidence/super-agent-v1/SAV1-10/independent-readiness-20261113T033549Z-8baac762/baseline.json": "5a22d45a68d5017430b14b9728395e85c9ad64c54467081800698f0140fca74e",
+    "evidence/super-agent-v1/SAV1-10/independent-readiness-20261113T033549Z-8baac762/command.json": "153d360667221b9c08c0e1aafa2e58d39368329794365710c0576dc23d4b3d13",
+    "evidence/super-agent-v1/SAV1-10/independent-readiness-20261113T033549Z-8baac762/command.log": "c4a84062fb7863df340cec10de076700683820615889a629b9bbfa56667d6535",
+    "evidence/super-agent-v1/SAV1-10/independent-readiness-20261113T033549Z-8baac762/evidence-sha256.json": "d7662817bf6b675453f683bfbd5cd6fe091bbd1f34a25a1394713594d54c62f3",
+    "evidence/super-agent-v1/SAV1-10/independent-readiness-20261113T033549Z-8baac762/harness-committed-handoff.md": "6021d5e0e2c1a1f44c0f043e4638450fd214fc3b33f758bd31c7b45efc827194",
+    "evidence/super-agent-v1/SAV1-10/independent-readiness-20261113T033549Z-8baac762/junit.xml": "63dc41e1f9913fa2199bbc0b0c84f49d62c082c609f20c48c1e1d9f79a29a8f2",
+    "evidence/super-agent-v1/SAV1-10/independent-readiness-20261113T033549Z-8baac762/latest-state.json": "cc59ef5288aa304e5993fac1465623d716de69f05de2cce139394bb4bfb0cd14",
+    "evidence/super-agent-v1/SAV1-10/independent-readiness-20261113T033549Z-8baac762/review-result.json": "d7b741332e873fa39ad1d86fec2cb8fd65b67dc59be02d393fc173e06df1d7df"
+  },
+  "repaired_candidate_independent_review": "NOT_RUN"
+}

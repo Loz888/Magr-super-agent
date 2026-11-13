@@ -1,8 +1,7 @@
 # MAGR Super-Agent 落地任务书
 
-状态：**SAV1-00–SAV1-08 DONE（本地工程）；SAV1-09 IN_PROGRESS（I01修复待独立）；SA10 IN_PROGRESS（私有组件已验证，待共享确认）；SA11–SA24 PLANNED**。更新：2026-11-13。
-SA10当前范围见[关联说明](SA10_CORRELATIONS.md)和[准备摘要](accept/SAV1-10/preparation-20261113.json)；整卡和独立验收尚未通过。
-当前交付见 [SA09-I01修复记录](SA09_I01_REPAIR_20261112.md)、[实施状态](IMPLEMENTATION_STATUS.md) 与 [机器状态](plan.json)。
+状态：**SAV1-00–SAV1-09 DONE（本地工程及已有独立闭环）；SA10 IN_PROGRESS（正式工程完成，待独立复验）；SA11–SA24 PLANNED**。更新：2026-11-13。
+当前交付见[SA10工程结果](SA10_ACCEPTANCE_20261113.md)、[关联契约](SA10_CORRELATIONS.md)与[机器摘要](accept/SAV1-10/accept.json)。原201轮200PASS/1FAIL，修正唯一守卫后仅原失败1PASS，不称最终源码单轮全绿。SA09真实[独立6PASS闭环](accept/SAV1-09/i01-independent-closure-20261113.json)已同步；旧FAIL与[阶段准备](accept/SAV1-10/history/e9ee378-preparation-before-integration.json)保留。所有真实/语义/长期门NOT_RUN。
 仓库基线：`973994c0e6c087c2968b3d91a3a6b9220e2c0892`；该提交新增 Harness 规划，
 应用功能基线仍为 `1d07285aa27ece9bae4ccbedc3a77ce2fbcbaf3a`。
 

@@ -1,8 +1,8 @@
 {
   "task": "SAV1-09",
-  "status": "IN_PROGRESS",
-  "delivery_status": "I01_REPAIR_CANDIDATE_PENDING_INDEPENDENT_REVIEW",
-  "recorded_at_utc": "2026-11-12T14:38:56.329310+00:00",
+  "status": "DONE",
+  "delivery_status": "LOCAL_ENGINEERING_COMPLETE_INDEPENDENT_I01_CLOSED",
+  "recorded_at_utc": "2026-11-13T03:46:19.017918+00:00",
   "source_commit": "ee1fee3a516bfe95e667df6ab389900f11ce55dc",
   "source_sha256": "76fc815bf9cf75da14c9cf1ef226ae5491aa6a84f4098e606f35ea591e87a6fa",
   "contract": {
@@ -21,13 +21,28 @@
   },
   "engineering_evidence_mode": "HISTORICAL_INITIAL_FULL_PLUS_CLOCK_AND_I01_FAILED_ONLY_REPAIRS; not a complete suite on the repaired revision",
   "independent_review": {
-    "status": "NOT_PASSED",
-    "reviewed_source_commit": "93e9a9d9a64bdd19889071ebf3ee33d3e46bb482",
+    "status": "PASS",
     "finding": "SA09-I01",
-    "report": "evidence/super-agent-v1/SAV1-09/20261112T135535Z-independent-review/REPORT.md",
-    "repaired_candidate_independent_review": "NOT_RUN",
-    "advance_to_sa10_authorized_by_user_after_targeted_repair": true,
-    "snapshot": "docs/super-agent-v1/accept/SAV1-09/independent-20261112.json"
+    "finding_status": "CLOSED_INDEPENDENTLY",
+    "reviewed_source_commit": "ee1fee3a516bfe95e667df6ab389900f11ce55dc",
+    "failed_only_counts": {
+      "tests": 6,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "report": "evidence/super-agent-v1/SAV1-09/independent-i01-recheck-20261112T143724Z-ce2beda9/REPORT.md",
+    "closure": "docs/super-agent-v1/accept/SAV1-09/i01-independent-closure-20261113.json",
+    "prior_not_passed": {
+      "status": "NOT_PASSED",
+      "reviewed_source_commit": "93e9a9d9a64bdd19889071ebf3ee33d3e46bb482",
+      "finding": "SA09-I01",
+      "report": "evidence/super-agent-v1/SAV1-09/20261112T135535Z-independent-review/REPORT.md",
+      "repaired_candidate_independent_review": "NOT_RUN",
+      "advance_to_sa10_authorized_by_user_after_targeted_repair": true,
+      "snapshot": "docs/super-agent-v1/accept/SAV1-09/independent-20261112.json"
+    },
+    "no_new_full_suite_claim": true
   },
   "ownership": {
     "status": "ACTUALLY_CONFIRMED",

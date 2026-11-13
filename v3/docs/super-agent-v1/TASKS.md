@@ -1,7 +1,7 @@
 # Super-Agent V1 完整任务书
 
-实施进度：**SAV1-00–SAV1-08 DONE（本地工程）；SAV1-09 IN_PROGRESS（I01修复待独立）；SA10 IN_PROGRESS（私有组件已验证，待共享确认）；SA11–SA24 PLANNED**。证据见 [SA06关闭](accept/SAV1-06/i04-independent-closure-20261111.json) 和 [SA07工程交付](accept/SAV1-07/accept.json)。短号 SA00–SA24 对应完整 ID `SAV1-00`–`SAV1-24`。
-SA08已由用户接受独立原3项及新增6项PASS，历史1358项不重复，见[关闭记录](accept/SAV1-08/independent-closure-20261112.json)。SA09原独立I01未通过已保留；修复候选仅原6失败定向6PASS，待独立复验，见[修复记录](SA09_I01_REPAIR_20261112.md)。用户明确允许本次修复复验通过后继续SA10，现按该授权推进SA10私有组件和共享范围确认，不宣称独立PASS或继承真实实验许可。
+实施进度：**SAV1-00–SAV1-09 DONE（本地工程及已有独立闭环）；SA10 IN_PROGRESS（正式工程完成，待独立复验）；SA11–SA24 PLANNED**。短号 SA00–SA24 对应完整 ID `SAV1-00`–`SAV1-24`。
+SA08独立原3项及新增6项PASS、历史1358绑定均保留。SA09-I01已有独立原6项PASS闭环，见[关闭记录](accept/SAV1-09/i01-independent-closure-20261113.json)；未重跑历史通过项或改写原独立FAIL。SA10固定确认0a335a1第34节已落实0041及Engine/API，原201正式轮200PASS/1FAIL，唯一守卫兼容性修正后只原失败1PASS；见[SA10工程交付](SA10_ACCEPTANCE_20261113.md)。当前dcea520未全跑201，不将分版本通过合称单轮或独立PASS，真实/语义/长期门NOT_RUN。
 `HV4-Hxx` 是 [Harness V4 任务](../harness-v4/TASKS.md)，属于外部前置，不是已完成项。
 每卡以一个可复现交付单元执行；大卡可以按接口、实现、集成拆子提交，验收完整后才 DONE。
 
