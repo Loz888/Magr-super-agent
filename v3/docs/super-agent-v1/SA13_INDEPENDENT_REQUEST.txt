@@ -1,0 +1,19 @@
+请对 SA13 固定候选 f53f4233721b095844c8376695f774195754ab40 做独立本地工程验收。
+源码指纹：e7f8dd7b37357dff2163834a034c3b6722565d097ea052a0b7b65d5d940ef956。
+其生产源码、测试、迁移、脚本和schema与最后功能复验47fb162逐字节一致，差异仅就绪元数据。
+
+交付入口：v3/docs/super-agent-v1/SA13_ACCEPTANCE_20261113.md。
+机器摘要及逐例账本：v3/docs/super-agent-v1/accept/SAV1-13/{accept,case-ledger}.json。
+正式登记：v3/config/verification.json 的 SAV1-13（当前212目标）；不要自动重复历史已通过项。
+原185项首轮156PASS/29FAIL；仅原29→3→2复验，分别新增26/1/2PASS；新增27边界首次27PASS。
+212独特正式目标均有分版本PASS证据，并非最终候选单轮212PASS。旧139契约和13workspace准备PASS未重跑。
+
+共享确认617e14a第38节；0046与批准SQL完全一致，43份迁移checksum一致、原42SQL未改。
+六张新表主库0行；六个正式路由、原Engine同连接、SA07和原usage结算、H03及bound H06均有证据。
+重点独立边界：最后派发前已提交撤权、真实多轮失败后修复与同树验证、unknown不重发/退款、
+多文件精确pre/postimage恢复与外来内容拒绝、三处真实SIGKILL、TTL/当前权限持久擦除、初始树漂移。
+原失败、错误测试预期、分版本日志及不可复活水位均保留。验收请使用隔离PG和本卡受控容器，保留用户文件。
+
+仅开放本地public fixture_git中已有纯函数.py文件；私有/GitHub live snapshot/通用feature等不支持。
+固定H12 live_agent/MVP仍FAIL，真实平台、模型付费、外发、真实Coding、发布及长期运行均NOT_RUN。
+默认runtime/cipher/profile/Worker均未激活，旧环境flags不构成Coding授权。SA13独立未放行前不启动SA14。

@@ -1,0 +1,2509 @@
+{
+  "schema": "sa13-versioned-case-ledger-v1",
+  "distinct_cases": 212,
+  "passed_cases_repeated": 0,
+  "cases": [
+    {
+      "node": "tests/test_super_agent_sa13.py::test_coding_constructor_is_inert_and_has_no_default_runtime",
+      "attempts": [
+        {
+          "outcome": "PASS",
+          "source_sha256": "aa112e5a6338517b7154bb8df59fe04e624f089e35725d44987d85015058a0b0",
+          "junit": "evidence/SAV1-13/20261113T112859Z-455078f1/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13.py::test_admission_uses_original_graph_principal_scope_and_no_plaintext",
+      "attempts": [
+        {
+          "outcome": "PASS",
+          "source_sha256": "aa112e5a6338517b7154bb8df59fe04e624f089e35725d44987d85015058a0b0",
+          "junit": "evidence/SAV1-13/20261113T112859Z-455078f1/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13.py::test_admission_replays_same_receipt_without_new_fact",
+      "attempts": [
+        {
+          "outcome": "PASS",
+          "source_sha256": "aa112e5a6338517b7154bb8df59fe04e624f089e35725d44987d85015058a0b0",
+          "junit": "evidence/SAV1-13/20261113T112859Z-455078f1/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13.py::test_admission_stale_bindings_roll_back_all_writes[changes0]",
+      "attempts": [
+        {
+          "outcome": "PASS",
+          "source_sha256": "aa112e5a6338517b7154bb8df59fe04e624f089e35725d44987d85015058a0b0",
+          "junit": "evidence/SAV1-13/20261113T112859Z-455078f1/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13.py::test_admission_stale_bindings_roll_back_all_writes[changes1]",
+      "attempts": [
+        {
+          "outcome": "PASS",
+          "source_sha256": "aa112e5a6338517b7154bb8df59fe04e624f089e35725d44987d85015058a0b0",
+          "junit": "evidence/SAV1-13/20261113T112859Z-455078f1/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13.py::test_admission_stale_bindings_roll_back_all_writes[changes2]",
+      "attempts": [
+        {
+          "outcome": "PASS",
+          "source_sha256": "aa112e5a6338517b7154bb8df59fe04e624f089e35725d44987d85015058a0b0",
+          "junit": "evidence/SAV1-13/20261113T112859Z-455078f1/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13.py::test_admission_stale_bindings_roll_back_all_writes[changes3]",
+      "attempts": [
+        {
+          "outcome": "PASS",
+          "source_sha256": "aa112e5a6338517b7154bb8df59fe04e624f089e35725d44987d85015058a0b0",
+          "junit": "evidence/SAV1-13/20261113T112859Z-455078f1/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13.py::test_admission_stale_bindings_roll_back_all_writes[changes4]",
+      "attempts": [
+        {
+          "outcome": "PASS",
+          "source_sha256": "aa112e5a6338517b7154bb8df59fe04e624f089e35725d44987d85015058a0b0",
+          "junit": "evidence/SAV1-13/20261113T112859Z-455078f1/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13.py::test_admission_stale_bindings_roll_back_all_writes[changes5]",
+      "attempts": [
+        {
+          "outcome": "PASS",
+          "source_sha256": "aa112e5a6338517b7154bb8df59fe04e624f089e35725d44987d85015058a0b0",
+          "junit": "evidence/SAV1-13/20261113T112859Z-455078f1/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13.py::test_admission_request_collision_cannot_change_original_target",
+      "attempts": [
+        {
+          "outcome": "FAIL",
+          "source_sha256": "aa112e5a6338517b7154bb8df59fe04e624f089e35725d44987d85015058a0b0",
+          "junit": "evidence/SAV1-13/20261113T112859Z-455078f1/junit.xml"
+        },
+        {
+          "outcome": "PASS",
+          "source_sha256": "8fed2e3c8dffd6ef72e1f7b3b30fe40c9436ffc147c034e6a0ea70fbd6749a20",
+          "junit": "evidence/super-agent-v1/SAV1-13/start-20261113T092527Z-3fe7966b/20261113T113913Z-failed29-recheck-f869a8/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13.py::test_legacy_readonly_original_run_is_never_upgraded",
+      "attempts": [
+        {
+          "outcome": "FAIL",
+          "source_sha256": "aa112e5a6338517b7154bb8df59fe04e624f089e35725d44987d85015058a0b0",
+          "junit": "evidence/SAV1-13/20261113T112859Z-455078f1/junit.xml"
+        },
+        {
+          "outcome": "PASS",
+          "source_sha256": "8fed2e3c8dffd6ef72e1f7b3b30fe40c9436ffc147c034e6a0ea70fbd6749a20",
+          "junit": "evidence/super-agent-v1/SAV1-13/start-20261113T092527Z-3fe7966b/20261113T113913Z-failed29-recheck-f869a8/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13.py::test_trusted_profile_still_cannot_enable_private_or_live[changes0]",
+      "attempts": [
+        {
+          "outcome": "FAIL",
+          "source_sha256": "aa112e5a6338517b7154bb8df59fe04e624f089e35725d44987d85015058a0b0",
+          "junit": "evidence/SAV1-13/20261113T112859Z-455078f1/junit.xml"
+        },
+        {
+          "outcome": "PASS",
+          "source_sha256": "8fed2e3c8dffd6ef72e1f7b3b30fe40c9436ffc147c034e6a0ea70fbd6749a20",
+          "junit": "evidence/super-agent-v1/SAV1-13/start-20261113T092527Z-3fe7966b/20261113T113913Z-failed29-recheck-f869a8/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13.py::test_trusted_profile_still_cannot_enable_private_or_live[changes1]",
+      "attempts": [
+        {
+          "outcome": "FAIL",
+          "source_sha256": "aa112e5a6338517b7154bb8df59fe04e624f089e35725d44987d85015058a0b0",
+          "junit": "evidence/SAV1-13/20261113T112859Z-455078f1/junit.xml"
+        },
+        {
+          "outcome": "PASS",
+          "source_sha256": "8fed2e3c8dffd6ef72e1f7b3b30fe40c9436ffc147c034e6a0ea70fbd6749a20",
+          "junit": "evidence/super-agent-v1/SAV1-13/start-20261113T092527Z-3fe7966b/20261113T113913Z-failed29-recheck-f869a8/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13.py::test_trusted_profile_still_cannot_enable_private_or_live[changes2]",
+      "attempts": [
+        {
+          "outcome": "FAIL",
+          "source_sha256": "aa112e5a6338517b7154bb8df59fe04e624f089e35725d44987d85015058a0b0",
+          "junit": "evidence/SAV1-13/20261113T112859Z-455078f1/junit.xml"
+        },
+        {
+          "outcome": "PASS",
+          "source_sha256": "8fed2e3c8dffd6ef72e1f7b3b30fe40c9436ffc147c034e6a0ea70fbd6749a20",
+          "junit": "evidence/super-agent-v1/SAV1-13/start-20261113T092527Z-3fe7966b/20261113T113913Z-failed29-recheck-f869a8/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13.py::test_caller_pass_claim_does_not_override_fixed_failed_h12",
+      "attempts": [
+        {
+          "outcome": "FAIL",
+          "source_sha256": "aa112e5a6338517b7154bb8df59fe04e624f089e35725d44987d85015058a0b0",
+          "junit": "evidence/SAV1-13/20261113T112859Z-455078f1/junit.xml"
+        },
+        {
+          "outcome": "PASS",
+          "source_sha256": "8fed2e3c8dffd6ef72e1f7b3b30fe40c9436ffc147c034e6a0ea70fbd6749a20",
+          "junit": "evidence/super-agent-v1/SAV1-13/start-20261113T092527Z-3fe7966b/20261113T113913Z-failed29-recheck-f869a8/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13.py::test_unvalidated_extra_context_reference_is_rejected",
+      "attempts": [
+        {
+          "outcome": "FAIL",
+          "source_sha256": "aa112e5a6338517b7154bb8df59fe04e624f089e35725d44987d85015058a0b0",
+          "junit": "evidence/SAV1-13/20261113T112859Z-455078f1/junit.xml"
+        },
+        {
+          "outcome": "PASS",
+          "source_sha256": "8fed2e3c8dffd6ef72e1f7b3b30fe40c9436ffc147c034e6a0ea70fbd6749a20",
+          "junit": "evidence/super-agent-v1/SAV1-13/start-20261113T092527Z-3fe7966b/20261113T113913Z-failed29-recheck-f869a8/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13.py::test_duplicate_target_factory_does_not_create_another_task",
+      "attempts": [
+        {
+          "outcome": "FAIL",
+          "source_sha256": "aa112e5a6338517b7154bb8df59fe04e624f089e35725d44987d85015058a0b0",
+          "junit": "evidence/SAV1-13/20261113T112859Z-455078f1/junit.xml"
+        },
+        {
+          "outcome": "PASS",
+          "source_sha256": "8fed2e3c8dffd6ef72e1f7b3b30fe40c9436ffc147c034e6a0ea70fbd6749a20",
+          "junit": "evidence/super-agent-v1/SAV1-13/start-20261113T092527Z-3fe7966b/20261113T113913Z-failed29-recheck-f869a8/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13.py::test_original_connection_is_mandatory",
+      "attempts": [
+        {
+          "outcome": "FAIL",
+          "source_sha256": "aa112e5a6338517b7154bb8df59fe04e624f089e35725d44987d85015058a0b0",
+          "junit": "evidence/SAV1-13/20261113T112859Z-455078f1/junit.xml"
+        },
+        {
+          "outcome": "PASS",
+          "source_sha256": "8fed2e3c8dffd6ef72e1f7b3b30fe40c9436ffc147c034e6a0ea70fbd6749a20",
+          "junit": "evidence/super-agent-v1/SAV1-13/start-20261113T092527Z-3fe7966b/20261113T113913Z-failed29-recheck-f869a8/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13.py::test_origin_metadata_is_exact_current_source_fact[identity_id]",
+      "attempts": [
+        {
+          "outcome": "PASS",
+          "source_sha256": "aa112e5a6338517b7154bb8df59fe04e624f089e35725d44987d85015058a0b0",
+          "junit": "evidence/SAV1-13/20261113T112859Z-455078f1/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13.py::test_origin_metadata_is_exact_current_source_fact[policy_id]",
+      "attempts": [
+        {
+          "outcome": "PASS",
+          "source_sha256": "aa112e5a6338517b7154bb8df59fe04e624f089e35725d44987d85015058a0b0",
+          "junit": "evidence/SAV1-13/20261113T112859Z-455078f1/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13.py::test_origin_metadata_is_exact_current_source_fact[expires_at]",
+      "attempts": [
+        {
+          "outcome": "PASS",
+          "source_sha256": "aa112e5a6338517b7154bb8df59fe04e624f089e35725d44987d85015058a0b0",
+          "junit": "evidence/SAV1-13/20261113T112859Z-455078f1/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13.py::test_current_assignment_projection_and_attempt_replay_are_exact",
+      "attempts": [
+        {
+          "outcome": "PASS",
+          "source_sha256": "aa112e5a6338517b7154bb8df59fe04e624f089e35725d44987d85015058a0b0",
+          "junit": "evidence/SAV1-13/20261113T112859Z-455078f1/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13.py::test_worker_cannot_substitute_assignment_tuple[coding_id]",
+      "attempts": [
+        {
+          "outcome": "PASS",
+          "source_sha256": "aa112e5a6338517b7154bb8df59fe04e624f089e35725d44987d85015058a0b0",
+          "junit": "evidence/SAV1-13/20261113T112859Z-455078f1/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13.py::test_worker_cannot_substitute_assignment_tuple[run_id]",
+      "attempts": [
+        {
+          "outcome": "PASS",
+          "source_sha256": "aa112e5a6338517b7154bb8df59fe04e624f089e35725d44987d85015058a0b0",
+          "junit": "evidence/SAV1-13/20261113T112859Z-455078f1/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13.py::test_worker_cannot_substitute_assignment_tuple[assignment_id]",
+      "attempts": [
+        {
+          "outcome": "PASS",
+          "source_sha256": "aa112e5a6338517b7154bb8df59fe04e624f089e35725d44987d85015058a0b0",
+          "junit": "evidence/SAV1-13/20261113T112859Z-455078f1/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13.py::test_worker_cannot_substitute_assignment_tuple[session_id]",
+      "attempts": [
+        {
+          "outcome": "PASS",
+          "source_sha256": "aa112e5a6338517b7154bb8df59fe04e624f089e35725d44987d85015058a0b0",
+          "junit": "evidence/SAV1-13/20261113T112859Z-455078f1/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13.py::test_worker_cannot_substitute_assignment_tuple[epoch]",
+      "attempts": [
+        {
+          "outcome": "PASS",
+          "source_sha256": "aa112e5a6338517b7154bb8df59fe04e624f089e35725d44987d85015058a0b0",
+          "junit": "evidence/SAV1-13/20261113T112859Z-455078f1/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13.py::test_missing_runtime_rejects_after_auth_without_persistent_work",
+      "attempts": [
+        {
+          "outcome": "FAIL",
+          "source_sha256": "aa112e5a6338517b7154bb8df59fe04e624f089e35725d44987d85015058a0b0",
+          "junit": "evidence/SAV1-13/20261113T112859Z-455078f1/junit.xml"
+        },
+        {
+          "outcome": "PASS",
+          "source_sha256": "8fed2e3c8dffd6ef72e1f7b3b30fe40c9436ffc147c034e6a0ea70fbd6749a20",
+          "junit": "evidence/super-agent-v1/SAV1-13/start-20261113T092527Z-3fe7966b/20261113T113913Z-failed29-recheck-f869a8/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13.py::test_committed_source_and_target_changes_block_next_boundary[context]",
+      "attempts": [
+        {
+          "outcome": "PASS",
+          "source_sha256": "aa112e5a6338517b7154bb8df59fe04e624f089e35725d44987d85015058a0b0",
+          "junit": "evidence/SAV1-13/20261113T112859Z-455078f1/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13.py::test_committed_source_and_target_changes_block_next_boundary[requester]",
+      "attempts": [
+        {
+          "outcome": "PASS",
+          "source_sha256": "aa112e5a6338517b7154bb8df59fe04e624f089e35725d44987d85015058a0b0",
+          "junit": "evidence/SAV1-13/20261113T112859Z-455078f1/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13.py::test_committed_source_and_target_changes_block_next_boundary[policy]",
+      "attempts": [
+        {
+          "outcome": "PASS",
+          "source_sha256": "aa112e5a6338517b7154bb8df59fe04e624f089e35725d44987d85015058a0b0",
+          "junit": "evidence/SAV1-13/20261113T112859Z-455078f1/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13.py::test_committed_source_and_target_changes_block_next_boundary[edited]",
+      "attempts": [
+        {
+          "outcome": "PASS",
+          "source_sha256": "aa112e5a6338517b7154bb8df59fe04e624f089e35725d44987d85015058a0b0",
+          "junit": "evidence/SAV1-13/20261113T112859Z-455078f1/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13.py::test_committed_source_and_target_changes_block_next_boundary[deleted]",
+      "attempts": [
+        {
+          "outcome": "PASS",
+          "source_sha256": "aa112e5a6338517b7154bb8df59fe04e624f089e35725d44987d85015058a0b0",
+          "junit": "evidence/SAV1-13/20261113T112859Z-455078f1/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13.py::test_committed_source_and_target_changes_block_next_boundary[target]",
+      "attempts": [
+        {
+          "outcome": "PASS",
+          "source_sha256": "aa112e5a6338517b7154bb8df59fe04e624f089e35725d44987d85015058a0b0",
+          "junit": "evidence/SAV1-13/20261113T112859Z-455078f1/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13.py::test_guard_holds_mutex_without_sql_transaction_across_io",
+      "attempts": [
+        {
+          "outcome": "PASS",
+          "source_sha256": "aa112e5a6338517b7154bb8df59fe04e624f089e35725d44987d85015058a0b0",
+          "junit": "evidence/SAV1-13/20261113T112859Z-455078f1/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13.py::test_cancel_fences_attempt_and_does_not_complete_business_task",
+      "attempts": [
+        {
+          "outcome": "PASS",
+          "source_sha256": "aa112e5a6338517b7154bb8df59fe04e624f089e35725d44987d85015058a0b0",
+          "junit": "evidence/SAV1-13/20261113T112859Z-455078f1/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13.py::test_restart_fences_open_attempt_without_resend_or_financial_reset",
+      "attempts": [
+        {
+          "outcome": "FAIL",
+          "source_sha256": "aa112e5a6338517b7154bb8df59fe04e624f089e35725d44987d85015058a0b0",
+          "junit": "evidence/SAV1-13/20261113T112859Z-455078f1/junit.xml"
+        },
+        {
+          "outcome": "PASS",
+          "source_sha256": "8fed2e3c8dffd6ef72e1f7b3b30fe40c9436ffc147c034e6a0ea70fbd6749a20",
+          "junit": "evidence/super-agent-v1/SAV1-13/start-20261113T092527Z-3fe7966b/20261113T113913Z-failed29-recheck-f869a8/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13.py::test_original_scope_tampering_never_changes_bound_permissions",
+      "attempts": [
+        {
+          "outcome": "PASS",
+          "source_sha256": "aa112e5a6338517b7154bb8df59fe04e624f089e35725d44987d85015058a0b0",
+          "junit": "evidence/SAV1-13/20261113T112859Z-455078f1/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13_api.py::test_original_app_registers_exact_six_coding_routes",
+      "attempts": [
+        {
+          "outcome": "PASS",
+          "source_sha256": "aa112e5a6338517b7154bb8df59fe04e624f089e35725d44987d85015058a0b0",
+          "junit": "evidence/SAV1-13/20261113T112859Z-455078f1/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13_api.py::test_owner_routes_require_current_cookie_not_worker_or_operator",
+      "attempts": [
+        {
+          "outcome": "PASS",
+          "source_sha256": "aa112e5a6338517b7154bb8df59fe04e624f089e35725d44987d85015058a0b0",
+          "junit": "evidence/SAV1-13/20261113T112859Z-455078f1/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13_api.py::test_owner_writes_require_origin_and_csrf[origin_missing]",
+      "attempts": [
+        {
+          "outcome": "PASS",
+          "source_sha256": "aa112e5a6338517b7154bb8df59fe04e624f089e35725d44987d85015058a0b0",
+          "junit": "evidence/SAV1-13/20261113T112859Z-455078f1/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13_api.py::test_owner_writes_require_origin_and_csrf[csrf_missing]",
+      "attempts": [
+        {
+          "outcome": "PASS",
+          "source_sha256": "aa112e5a6338517b7154bb8df59fe04e624f089e35725d44987d85015058a0b0",
+          "junit": "evidence/SAV1-13/20261113T112859Z-455078f1/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13_api.py::test_owner_writes_require_origin_and_csrf[cross_origin]",
+      "attempts": [
+        {
+          "outcome": "PASS",
+          "source_sha256": "aa112e5a6338517b7154bb8df59fe04e624f089e35725d44987d85015058a0b0",
+          "junit": "evidence/SAV1-13/20261113T112859Z-455078f1/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13_api.py::test_worker_routes_cannot_use_owner_cookie_or_operator_token",
+      "attempts": [
+        {
+          "outcome": "PASS",
+          "source_sha256": "aa112e5a6338517b7154bb8df59fe04e624f089e35725d44987d85015058a0b0",
+          "junit": "evidence/SAV1-13/20261113T112859Z-455078f1/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13_api.py::test_worker_bearer_syntax_is_rejected_without_echo[Basic SA13-synthetic-independent-bearer-not-a-real-session]",
+      "attempts": [
+        {
+          "outcome": "PASS",
+          "source_sha256": "aa112e5a6338517b7154bb8df59fe04e624f089e35725d44987d85015058a0b0",
+          "junit": "evidence/SAV1-13/20261113T112859Z-455078f1/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13_api.py::test_worker_bearer_syntax_is_rejected_without_echo[Bearer ]",
+      "attempts": [
+        {
+          "outcome": "PASS",
+          "source_sha256": "aa112e5a6338517b7154bb8df59fe04e624f089e35725d44987d85015058a0b0",
+          "junit": "evidence/SAV1-13/20261113T112859Z-455078f1/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13_api.py::test_worker_bearer_syntax_is_rejected_without_echo[Bearer SA13-synthetic-independent-bearer-not-a-real-session extra]",
+      "attempts": [
+        {
+          "outcome": "PASS",
+          "source_sha256": "aa112e5a6338517b7154bb8df59fe04e624f089e35725d44987d85015058a0b0",
+          "junit": "evidence/SAV1-13/20261113T112859Z-455078f1/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13_api.py::test_worker_bearer_syntax_is_rejected_without_echo[Bearer\\tSA13-synthetic-independent-bearer-not-a-real-session]",
+      "attempts": [
+        {
+          "outcome": "PASS",
+          "source_sha256": "aa112e5a6338517b7154bb8df59fe04e624f089e35725d44987d85015058a0b0",
+          "junit": "evidence/SAV1-13/20261113T112859Z-455078f1/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13_api.py::test_worker_bearer_syntax_is_rejected_without_echo[authorization4]",
+      "attempts": [
+        {
+          "outcome": "PASS",
+          "source_sha256": "aa112e5a6338517b7154bb8df59fe04e624f089e35725d44987d85015058a0b0",
+          "junit": "evidence/SAV1-13/20261113T112859Z-455078f1/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13_api.py::test_multiple_authorization_headers_cannot_select_a_worker",
+      "attempts": [
+        {
+          "outcome": "PASS",
+          "source_sha256": "aa112e5a6338517b7154bb8df59fe04e624f089e35725d44987d85015058a0b0",
+          "junit": "evidence/SAV1-13/20261113T112859Z-455078f1/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13_api.py::test_transport_body_cannot_add_authority_or_side_effects[body-admit]",
+      "attempts": [
+        {
+          "outcome": "PASS",
+          "source_sha256": "aa112e5a6338517b7154bb8df59fe04e624f089e35725d44987d85015058a0b0",
+          "junit": "evidence/SAV1-13/20261113T112859Z-455078f1/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13_api.py::test_transport_body_cannot_add_authority_or_side_effects[body-cancel]",
+      "attempts": [
+        {
+          "outcome": "PASS",
+          "source_sha256": "aa112e5a6338517b7154bb8df59fe04e624f089e35725d44987d85015058a0b0",
+          "junit": "evidence/SAV1-13/20261113T112859Z-455078f1/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13_api.py::test_transport_body_cannot_add_authority_or_side_effects[body-run]",
+      "attempts": [
+        {
+          "outcome": "PASS",
+          "source_sha256": "aa112e5a6338517b7154bb8df59fe04e624f089e35725d44987d85015058a0b0",
+          "junit": "evidence/SAV1-13/20261113T112859Z-455078f1/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13_api.py::test_transport_body_cannot_add_authority_or_side_effects[command-admit]",
+      "attempts": [
+        {
+          "outcome": "PASS",
+          "source_sha256": "aa112e5a6338517b7154bb8df59fe04e624f089e35725d44987d85015058a0b0",
+          "junit": "evidence/SAV1-13/20261113T112859Z-455078f1/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13_api.py::test_transport_body_cannot_add_authority_or_side_effects[command-cancel]",
+      "attempts": [
+        {
+          "outcome": "PASS",
+          "source_sha256": "aa112e5a6338517b7154bb8df59fe04e624f089e35725d44987d85015058a0b0",
+          "junit": "evidence/SAV1-13/20261113T112859Z-455078f1/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13_api.py::test_transport_body_cannot_add_authority_or_side_effects[command-run]",
+      "attempts": [
+        {
+          "outcome": "PASS",
+          "source_sha256": "aa112e5a6338517b7154bb8df59fe04e624f089e35725d44987d85015058a0b0",
+          "junit": "evidence/SAV1-13/20261113T112859Z-455078f1/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13_api.py::test_transport_body_cannot_add_authority_or_side_effects[host_path-admit]",
+      "attempts": [
+        {
+          "outcome": "PASS",
+          "source_sha256": "aa112e5a6338517b7154bb8df59fe04e624f089e35725d44987d85015058a0b0",
+          "junit": "evidence/SAV1-13/20261113T112859Z-455078f1/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13_api.py::test_transport_body_cannot_add_authority_or_side_effects[host_path-cancel]",
+      "attempts": [
+        {
+          "outcome": "PASS",
+          "source_sha256": "aa112e5a6338517b7154bb8df59fe04e624f089e35725d44987d85015058a0b0",
+          "junit": "evidence/SAV1-13/20261113T112859Z-455078f1/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13_api.py::test_transport_body_cannot_add_authority_or_side_effects[host_path-run]",
+      "attempts": [
+        {
+          "outcome": "PASS",
+          "source_sha256": "aa112e5a6338517b7154bb8df59fe04e624f089e35725d44987d85015058a0b0",
+          "junit": "evidence/SAV1-13/20261113T112859Z-455078f1/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13_api.py::test_transport_body_cannot_add_authority_or_side_effects[factory-admit]",
+      "attempts": [
+        {
+          "outcome": "PASS",
+          "source_sha256": "aa112e5a6338517b7154bb8df59fe04e624f089e35725d44987d85015058a0b0",
+          "junit": "evidence/SAV1-13/20261113T112859Z-455078f1/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13_api.py::test_transport_body_cannot_add_authority_or_side_effects[factory-cancel]",
+      "attempts": [
+        {
+          "outcome": "PASS",
+          "source_sha256": "aa112e5a6338517b7154bb8df59fe04e624f089e35725d44987d85015058a0b0",
+          "junit": "evidence/SAV1-13/20261113T112859Z-455078f1/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13_api.py::test_transport_body_cannot_add_authority_or_side_effects[factory-run]",
+      "attempts": [
+        {
+          "outcome": "PASS",
+          "source_sha256": "aa112e5a6338517b7154bb8df59fe04e624f089e35725d44987d85015058a0b0",
+          "junit": "evidence/SAV1-13/20261113T112859Z-455078f1/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13_api.py::test_transport_body_cannot_add_authority_or_side_effects[token-admit]",
+      "attempts": [
+        {
+          "outcome": "PASS",
+          "source_sha256": "aa112e5a6338517b7154bb8df59fe04e624f089e35725d44987d85015058a0b0",
+          "junit": "evidence/SAV1-13/20261113T112859Z-455078f1/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13_api.py::test_transport_body_cannot_add_authority_or_side_effects[token-cancel]",
+      "attempts": [
+        {
+          "outcome": "PASS",
+          "source_sha256": "aa112e5a6338517b7154bb8df59fe04e624f089e35725d44987d85015058a0b0",
+          "junit": "evidence/SAV1-13/20261113T112859Z-455078f1/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13_api.py::test_transport_body_cannot_add_authority_or_side_effects[token-run]",
+      "attempts": [
+        {
+          "outcome": "PASS",
+          "source_sha256": "aa112e5a6338517b7154bb8df59fe04e624f089e35725d44987d85015058a0b0",
+          "junit": "evidence/SAV1-13/20261113T112859Z-455078f1/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13_api.py::test_transport_body_cannot_add_authority_or_side_effects[allow_paid-admit]",
+      "attempts": [
+        {
+          "outcome": "PASS",
+          "source_sha256": "aa112e5a6338517b7154bb8df59fe04e624f089e35725d44987d85015058a0b0",
+          "junit": "evidence/SAV1-13/20261113T112859Z-455078f1/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13_api.py::test_transport_body_cannot_add_authority_or_side_effects[allow_paid-cancel]",
+      "attempts": [
+        {
+          "outcome": "PASS",
+          "source_sha256": "aa112e5a6338517b7154bb8df59fe04e624f089e35725d44987d85015058a0b0",
+          "junit": "evidence/SAV1-13/20261113T112859Z-455078f1/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13_api.py::test_transport_body_cannot_add_authority_or_side_effects[allow_paid-run]",
+      "attempts": [
+        {
+          "outcome": "PASS",
+          "source_sha256": "aa112e5a6338517b7154bb8df59fe04e624f089e35725d44987d85015058a0b0",
+          "junit": "evidence/SAV1-13/20261113T112859Z-455078f1/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13_api.py::test_transport_body_cannot_add_authority_or_side_effects[succeeded-admit]",
+      "attempts": [
+        {
+          "outcome": "PASS",
+          "source_sha256": "aa112e5a6338517b7154bb8df59fe04e624f089e35725d44987d85015058a0b0",
+          "junit": "evidence/SAV1-13/20261113T112859Z-455078f1/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13_api.py::test_transport_body_cannot_add_authority_or_side_effects[succeeded-cancel]",
+      "attempts": [
+        {
+          "outcome": "PASS",
+          "source_sha256": "aa112e5a6338517b7154bb8df59fe04e624f089e35725d44987d85015058a0b0",
+          "junit": "evidence/SAV1-13/20261113T112859Z-455078f1/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13_api.py::test_transport_body_cannot_add_authority_or_side_effects[succeeded-run]",
+      "attempts": [
+        {
+          "outcome": "PASS",
+          "source_sha256": "aa112e5a6338517b7154bb8df59fe04e624f089e35725d44987d85015058a0b0",
+          "junit": "evidence/SAV1-13/20261113T112859Z-455078f1/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13_api.py::test_path_body_coding_identity_must_match_before_service[cancel]",
+      "attempts": [
+        {
+          "outcome": "PASS",
+          "source_sha256": "aa112e5a6338517b7154bb8df59fe04e624f089e35725d44987d85015058a0b0",
+          "junit": "evidence/SAV1-13/20261113T112859Z-455078f1/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13_api.py::test_path_body_coding_identity_must_match_before_service[run]",
+      "attempts": [
+        {
+          "outcome": "PASS",
+          "source_sha256": "aa112e5a6338517b7154bb8df59fe04e624f089e35725d44987d85015058a0b0",
+          "junit": "evidence/SAV1-13/20261113T112859Z-455078f1/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13_api.py::test_json_preserves_strict_integer_fences[True-admit-expected_epoch]",
+      "attempts": [
+        {
+          "outcome": "PASS",
+          "source_sha256": "aa112e5a6338517b7154bb8df59fe04e624f089e35725d44987d85015058a0b0",
+          "junit": "evidence/SAV1-13/20261113T112859Z-455078f1/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13_api.py::test_json_preserves_strict_integer_fences[True-admit-expected_policy_revision]",
+      "attempts": [
+        {
+          "outcome": "PASS",
+          "source_sha256": "aa112e5a6338517b7154bb8df59fe04e624f089e35725d44987d85015058a0b0",
+          "junit": "evidence/SAV1-13/20261113T112859Z-455078f1/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13_api.py::test_json_preserves_strict_integer_fences[True-admit-expected_revision]",
+      "attempts": [
+        {
+          "outcome": "PASS",
+          "source_sha256": "aa112e5a6338517b7154bb8df59fe04e624f089e35725d44987d85015058a0b0",
+          "junit": "evidence/SAV1-13/20261113T112859Z-455078f1/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13_api.py::test_json_preserves_strict_integer_fences[True-cancel-expected_epoch]",
+      "attempts": [
+        {
+          "outcome": "PASS",
+          "source_sha256": "aa112e5a6338517b7154bb8df59fe04e624f089e35725d44987d85015058a0b0",
+          "junit": "evidence/SAV1-13/20261113T112859Z-455078f1/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13_api.py::test_json_preserves_strict_integer_fences[True-cancel-expected_revision]",
+      "attempts": [
+        {
+          "outcome": "PASS",
+          "source_sha256": "aa112e5a6338517b7154bb8df59fe04e624f089e35725d44987d85015058a0b0",
+          "junit": "evidence/SAV1-13/20261113T112859Z-455078f1/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13_api.py::test_json_preserves_strict_integer_fences[True-run-epoch]",
+      "attempts": [
+        {
+          "outcome": "PASS",
+          "source_sha256": "aa112e5a6338517b7154bb8df59fe04e624f089e35725d44987d85015058a0b0",
+          "junit": "evidence/SAV1-13/20261113T112859Z-455078f1/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13_api.py::test_json_preserves_strict_integer_fences[True-run-expected_revision]",
+      "attempts": [
+        {
+          "outcome": "PASS",
+          "source_sha256": "aa112e5a6338517b7154bb8df59fe04e624f089e35725d44987d85015058a0b0",
+          "junit": "evidence/SAV1-13/20261113T112859Z-455078f1/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13_api.py::test_json_preserves_strict_integer_fences[1-admit-expected_epoch]",
+      "attempts": [
+        {
+          "outcome": "PASS",
+          "source_sha256": "aa112e5a6338517b7154bb8df59fe04e624f089e35725d44987d85015058a0b0",
+          "junit": "evidence/SAV1-13/20261113T112859Z-455078f1/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13_api.py::test_json_preserves_strict_integer_fences[1-admit-expected_policy_revision]",
+      "attempts": [
+        {
+          "outcome": "PASS",
+          "source_sha256": "aa112e5a6338517b7154bb8df59fe04e624f089e35725d44987d85015058a0b0",
+          "junit": "evidence/SAV1-13/20261113T112859Z-455078f1/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13_api.py::test_json_preserves_strict_integer_fences[1-admit-expected_revision]",
+      "attempts": [
+        {
+          "outcome": "PASS",
+          "source_sha256": "aa112e5a6338517b7154bb8df59fe04e624f089e35725d44987d85015058a0b0",
+          "junit": "evidence/SAV1-13/20261113T112859Z-455078f1/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13_api.py::test_json_preserves_strict_integer_fences[1-cancel-expected_epoch]",
+      "attempts": [
+        {
+          "outcome": "PASS",
+          "source_sha256": "aa112e5a6338517b7154bb8df59fe04e624f089e35725d44987d85015058a0b0",
+          "junit": "evidence/SAV1-13/20261113T112859Z-455078f1/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13_api.py::test_json_preserves_strict_integer_fences[1-cancel-expected_revision]",
+      "attempts": [
+        {
+          "outcome": "PASS",
+          "source_sha256": "aa112e5a6338517b7154bb8df59fe04e624f089e35725d44987d85015058a0b0",
+          "junit": "evidence/SAV1-13/20261113T112859Z-455078f1/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13_api.py::test_json_preserves_strict_integer_fences[1-run-epoch]",
+      "attempts": [
+        {
+          "outcome": "PASS",
+          "source_sha256": "aa112e5a6338517b7154bb8df59fe04e624f089e35725d44987d85015058a0b0",
+          "junit": "evidence/SAV1-13/20261113T112859Z-455078f1/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13_api.py::test_json_preserves_strict_integer_fences[1-run-expected_revision]",
+      "attempts": [
+        {
+          "outcome": "PASS",
+          "source_sha256": "aa112e5a6338517b7154bb8df59fe04e624f089e35725d44987d85015058a0b0",
+          "junit": "evidence/SAV1-13/20261113T112859Z-455078f1/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13_api.py::test_json_preserves_strict_integer_fences[1.0-admit-expected_epoch]",
+      "attempts": [
+        {
+          "outcome": "PASS",
+          "source_sha256": "aa112e5a6338517b7154bb8df59fe04e624f089e35725d44987d85015058a0b0",
+          "junit": "evidence/SAV1-13/20261113T112859Z-455078f1/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13_api.py::test_json_preserves_strict_integer_fences[1.0-admit-expected_policy_revision]",
+      "attempts": [
+        {
+          "outcome": "PASS",
+          "source_sha256": "aa112e5a6338517b7154bb8df59fe04e624f089e35725d44987d85015058a0b0",
+          "junit": "evidence/SAV1-13/20261113T112859Z-455078f1/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13_api.py::test_json_preserves_strict_integer_fences[1.0-admit-expected_revision]",
+      "attempts": [
+        {
+          "outcome": "PASS",
+          "source_sha256": "aa112e5a6338517b7154bb8df59fe04e624f089e35725d44987d85015058a0b0",
+          "junit": "evidence/SAV1-13/20261113T112859Z-455078f1/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13_api.py::test_json_preserves_strict_integer_fences[1.0-cancel-expected_epoch]",
+      "attempts": [
+        {
+          "outcome": "PASS",
+          "source_sha256": "aa112e5a6338517b7154bb8df59fe04e624f089e35725d44987d85015058a0b0",
+          "junit": "evidence/SAV1-13/20261113T112859Z-455078f1/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13_api.py::test_json_preserves_strict_integer_fences[1.0-cancel-expected_revision]",
+      "attempts": [
+        {
+          "outcome": "PASS",
+          "source_sha256": "aa112e5a6338517b7154bb8df59fe04e624f089e35725d44987d85015058a0b0",
+          "junit": "evidence/SAV1-13/20261113T112859Z-455078f1/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13_api.py::test_json_preserves_strict_integer_fences[1.0-run-epoch]",
+      "attempts": [
+        {
+          "outcome": "PASS",
+          "source_sha256": "aa112e5a6338517b7154bb8df59fe04e624f089e35725d44987d85015058a0b0",
+          "junit": "evidence/SAV1-13/20261113T112859Z-455078f1/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13_api.py::test_json_preserves_strict_integer_fences[1.0-run-expected_revision]",
+      "attempts": [
+        {
+          "outcome": "PASS",
+          "source_sha256": "aa112e5a6338517b7154bb8df59fe04e624f089e35725d44987d85015058a0b0",
+          "junit": "evidence/SAV1-13/20261113T112859Z-455078f1/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13_api.py::test_invalid_json_and_prefix_errors_never_echo_private_input_or_cache",
+      "attempts": [
+        {
+          "outcome": "PASS",
+          "source_sha256": "aa112e5a6338517b7154bb8df59fe04e624f089e35725d44987d85015058a0b0",
+          "junit": "evidence/SAV1-13/20261113T112859Z-455078f1/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13_api.py::test_default_capabilities_are_metadata_and_do_not_enable_runtime",
+      "attempts": [
+        {
+          "outcome": "PASS",
+          "source_sha256": "aa112e5a6338517b7154bb8df59fe04e624f089e35725d44987d85015058a0b0",
+          "junit": "evidence/SAV1-13/20261113T112859Z-455078f1/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13_api.py::test_owner_session_is_rechecked_inside_original_transaction[capabilities]",
+      "attempts": [
+        {
+          "outcome": "PASS",
+          "source_sha256": "aa112e5a6338517b7154bb8df59fe04e624f089e35725d44987d85015058a0b0",
+          "junit": "evidence/SAV1-13/20261113T112859Z-455078f1/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13_api.py::test_owner_session_is_rechecked_inside_original_transaction[admit]",
+      "attempts": [
+        {
+          "outcome": "PASS",
+          "source_sha256": "aa112e5a6338517b7154bb8df59fe04e624f089e35725d44987d85015058a0b0",
+          "junit": "evidence/SAV1-13/20261113T112859Z-455078f1/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13_api.py::test_owner_session_is_rechecked_inside_original_transaction[binding]",
+      "attempts": [
+        {
+          "outcome": "PASS",
+          "source_sha256": "aa112e5a6338517b7154bb8df59fe04e624f089e35725d44987d85015058a0b0",
+          "junit": "evidence/SAV1-13/20261113T112859Z-455078f1/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13_api.py::test_owner_session_is_rechecked_inside_original_transaction[cancel]",
+      "attempts": [
+        {
+          "outcome": "PASS",
+          "source_sha256": "aa112e5a6338517b7154bb8df59fe04e624f089e35725d44987d85015058a0b0",
+          "junit": "evidence/SAV1-13/20261113T112859Z-455078f1/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13_api.py::test_http_binding_and_worker_state_are_actual_original_metadata",
+      "attempts": [
+        {
+          "outcome": "PASS",
+          "source_sha256": "aa112e5a6338517b7154bb8df59fe04e624f089e35725d44987d85015058a0b0",
+          "junit": "evidence/SAV1-13/20261113T112859Z-455078f1/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13_api.py::test_http_run_cannot_activate_default_absent_runtime",
+      "attempts": [
+        {
+          "outcome": "PASS",
+          "source_sha256": "aa112e5a6338517b7154bb8df59fe04e624f089e35725d44987d85015058a0b0",
+          "junit": "evidence/SAV1-13/20261113T112859Z-455078f1/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13_api.py::test_http_worker_state_rejects_wrong_original_run_and_bearer",
+      "attempts": [
+        {
+          "outcome": "PASS",
+          "source_sha256": "aa112e5a6338517b7154bb8df59fe04e624f089e35725d44987d85015058a0b0",
+          "junit": "evidence/SAV1-13/20261113T112859Z-455078f1/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13_api.py::test_http_current_bearer_for_another_real_session_cannot_borrow_assignment",
+      "attempts": [
+        {
+          "outcome": "PASS",
+          "source_sha256": "aa112e5a6338517b7154bb8df59fe04e624f089e35725d44987d85015058a0b0",
+          "junit": "evidence/SAV1-13/20261113T112859Z-455078f1/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13_api.py::test_http_worker_run_checks_exact_current_binding_before_runtime_availability[run_id]",
+      "attempts": [
+        {
+          "outcome": "PASS",
+          "source_sha256": "aa112e5a6338517b7154bb8df59fe04e624f089e35725d44987d85015058a0b0",
+          "junit": "evidence/SAV1-13/20261113T112859Z-455078f1/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13_api.py::test_http_worker_run_checks_exact_current_binding_before_runtime_availability[assignment_id]",
+      "attempts": [
+        {
+          "outcome": "PASS",
+          "source_sha256": "aa112e5a6338517b7154bb8df59fe04e624f089e35725d44987d85015058a0b0",
+          "junit": "evidence/SAV1-13/20261113T112859Z-455078f1/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13_api.py::test_http_worker_run_checks_exact_current_binding_before_runtime_availability[session_id]",
+      "attempts": [
+        {
+          "outcome": "PASS",
+          "source_sha256": "aa112e5a6338517b7154bb8df59fe04e624f089e35725d44987d85015058a0b0",
+          "junit": "evidence/SAV1-13/20261113T112859Z-455078f1/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13_api.py::test_http_worker_run_checks_exact_current_binding_before_runtime_availability[epoch]",
+      "attempts": [
+        {
+          "outcome": "PASS",
+          "source_sha256": "aa112e5a6338517b7154bb8df59fe04e624f089e35725d44987d85015058a0b0",
+          "junit": "evidence/SAV1-13/20261113T112859Z-455078f1/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13_api.py::test_http_worker_run_checks_exact_current_binding_before_runtime_availability[expected_revision]",
+      "attempts": [
+        {
+          "outcome": "PASS",
+          "source_sha256": "aa112e5a6338517b7154bb8df59fe04e624f089e35725d44987d85015058a0b0",
+          "junit": "evidence/SAV1-13/20261113T112859Z-455078f1/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13_api.py::test_http_worker_state_query_cannot_smuggle_or_duplicate_authority",
+      "attempts": [
+        {
+          "outcome": "PASS",
+          "source_sha256": "aa112e5a6338517b7154bb8df59fe04e624f089e35725d44987d85015058a0b0",
+          "junit": "evidence/SAV1-13/20261113T112859Z-455078f1/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13_api.py::test_http_worker_session_revocation_blocks_metadata_immediately",
+      "attempts": [
+        {
+          "outcome": "PASS",
+          "source_sha256": "aa112e5a6338517b7154bb8df59fe04e624f089e35725d44987d85015058a0b0",
+          "junit": "evidence/SAV1-13/20261113T112859Z-455078f1/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13_api.py::test_http_owner_cancel_does_not_allow_worker_to_resume_or_complete_task",
+      "attempts": [
+        {
+          "outcome": "PASS",
+          "source_sha256": "aa112e5a6338517b7154bb8df59fe04e624f089e35725d44987d85015058a0b0",
+          "junit": "evidence/SAV1-13/20261113T112859Z-455078f1/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13_api.py::test_http_admission_uses_existing_new_mandate_and_is_idempotent",
+      "attempts": [
+        {
+          "outcome": "PASS",
+          "source_sha256": "aa112e5a6338517b7154bb8df59fe04e624f089e35725d44987d85015058a0b0",
+          "junit": "evidence/SAV1-13/20261113T112859Z-455078f1/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13_migration.py::test_formal0046_exact_approved_sql_and_original_connection",
+      "attempts": [
+        {
+          "outcome": "PASS",
+          "source_sha256": "aa112e5a6338517b7154bb8df59fe04e624f089e35725d44987d85015058a0b0",
+          "junit": "evidence/SAV1-13/20261113T112859Z-455078f1/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13_migration.py::test_all_six_tables_have_enabled_exact_row_guard[sa_coding_bindings]",
+      "attempts": [
+        {
+          "outcome": "PASS",
+          "source_sha256": "aa112e5a6338517b7154bb8df59fe04e624f089e35725d44987d85015058a0b0",
+          "junit": "evidence/SAV1-13/20261113T112859Z-455078f1/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13_migration.py::test_all_six_tables_have_enabled_exact_row_guard[sa_coding_attempts]",
+      "attempts": [
+        {
+          "outcome": "PASS",
+          "source_sha256": "aa112e5a6338517b7154bb8df59fe04e624f089e35725d44987d85015058a0b0",
+          "junit": "evidence/SAV1-13/20261113T112859Z-455078f1/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13_migration.py::test_all_six_tables_have_enabled_exact_row_guard[sa_coding_operations]",
+      "attempts": [
+        {
+          "outcome": "PASS",
+          "source_sha256": "aa112e5a6338517b7154bb8df59fe04e624f089e35725d44987d85015058a0b0",
+          "junit": "evidence/SAV1-13/20261113T112859Z-455078f1/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13_migration.py::test_all_six_tables_have_enabled_exact_row_guard[sa_coding_payloads]",
+      "attempts": [
+        {
+          "outcome": "PASS",
+          "source_sha256": "aa112e5a6338517b7154bb8df59fe04e624f089e35725d44987d85015058a0b0",
+          "junit": "evidence/SAV1-13/20261113T112859Z-455078f1/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13_migration.py::test_all_six_tables_have_enabled_exact_row_guard[sa_coding_verifications]",
+      "attempts": [
+        {
+          "outcome": "PASS",
+          "source_sha256": "aa112e5a6338517b7154bb8df59fe04e624f089e35725d44987d85015058a0b0",
+          "junit": "evidence/SAV1-13/20261113T112859Z-455078f1/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13_migration.py::test_all_six_tables_have_enabled_exact_row_guard[sa_coding_events]",
+      "attempts": [
+        {
+          "outcome": "PASS",
+          "source_sha256": "aa112e5a6338517b7154bb8df59fe04e624f089e35725d44987d85015058a0b0",
+          "junit": "evidence/SAV1-13/20261113T112859Z-455078f1/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13_migration.py::test_coding_audit_metadata_is_permanent[UPDATE]",
+      "attempts": [
+        {
+          "outcome": "PASS",
+          "source_sha256": "aa112e5a6338517b7154bb8df59fe04e624f089e35725d44987d85015058a0b0",
+          "junit": "evidence/SAV1-13/20261113T112859Z-455078f1/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13_migration.py::test_coding_audit_metadata_is_permanent[DELETE]",
+      "attempts": [
+        {
+          "outcome": "PASS",
+          "source_sha256": "aa112e5a6338517b7154bb8df59fe04e624f089e35725d44987d85015058a0b0",
+          "junit": "evidence/SAV1-13/20261113T112859Z-455078f1/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13_migration.py::test_binding_cannot_be_deleted_or_change_identity[DELETE FROM app.sa_coding_bindings]",
+      "attempts": [
+        {
+          "outcome": "PASS",
+          "source_sha256": "aa112e5a6338517b7154bb8df59fe04e624f089e35725d44987d85015058a0b0",
+          "junit": "evidence/SAV1-13/20261113T112859Z-455078f1/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13_migration.py::test_binding_cannot_be_deleted_or_change_identity[mutation1]",
+      "attempts": [
+        {
+          "outcome": "PASS",
+          "source_sha256": "aa112e5a6338517b7154bb8df59fe04e624f089e35725d44987d85015058a0b0",
+          "junit": "evidence/SAV1-13/20261113T112859Z-455078f1/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13_migration.py::test_binding_cannot_be_deleted_or_change_identity[UPDATE app.sa_coding_bindings SET revision=revision+1,updated_at=clock_timestamp()]",
+      "attempts": [
+        {
+          "outcome": "PASS",
+          "source_sha256": "aa112e5a6338517b7154bb8df59fe04e624f089e35725d44987d85015058a0b0",
+          "junit": "evidence/SAV1-13/20261113T112859Z-455078f1/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13_migration.py::test_attempt_identity_and_result_need_original_trusted_facts[DELETE FROM app.sa_coding_attempts]",
+      "attempts": [
+        {
+          "outcome": "PASS",
+          "source_sha256": "aa112e5a6338517b7154bb8df59fe04e624f089e35725d44987d85015058a0b0",
+          "junit": "evidence/SAV1-13/20261113T112859Z-455078f1/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13_migration.py::test_attempt_identity_and_result_need_original_trusted_facts[mutation1]",
+      "attempts": [
+        {
+          "outcome": "PASS",
+          "source_sha256": "aa112e5a6338517b7154bb8df59fe04e624f089e35725d44987d85015058a0b0",
+          "junit": "evidence/SAV1-13/20261113T112859Z-455078f1/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13_migration.py::test_attempt_identity_and_result_need_original_trusted_facts[mutation2]",
+      "attempts": [
+        {
+          "outcome": "PASS",
+          "source_sha256": "aa112e5a6338517b7154bb8df59fe04e624f089e35725d44987d85015058a0b0",
+          "junit": "evidence/SAV1-13/20261113T112859Z-455078f1/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13_migration.py::test_sql_current_function_rejects_foreign_assignment_or_epoch",
+      "attempts": [
+        {
+          "outcome": "PASS",
+          "source_sha256": "aa112e5a6338517b7154bb8df59fe04e624f089e35725d44987d85015058a0b0",
+          "junit": "evidence/SAV1-13/20261113T112859Z-455078f1/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13_migration.py::test_assignment_failure_rolls_back_attempt_and_events_together",
+      "attempts": [
+        {
+          "outcome": "PASS",
+          "source_sha256": "aa112e5a6338517b7154bb8df59fe04e624f089e35725d44987d85015058a0b0",
+          "junit": "evidence/SAV1-13/20261113T112859Z-455078f1/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13_compatibility.py::test_historical_full_content_wire_and_sa12_epoch_default_remain_supported",
+      "attempts": [
+        {
+          "outcome": "PASS",
+          "source_sha256": "aa112e5a6338517b7154bb8df59fe04e624f089e35725d44987d85015058a0b0",
+          "junit": "evidence/SAV1-13/20261113T112859Z-455078f1/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13_compatibility.py::test_replacement_key_is_rejected_even_for_general_mapping_or_empty_payload[dict-False-None]",
+      "attempts": [
+        {
+          "outcome": "PASS",
+          "source_sha256": "aa112e5a6338517b7154bb8df59fe04e624f089e35725d44987d85015058a0b0",
+          "junit": "evidence/SAV1-13/20261113T112859Z-455078f1/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13_compatibility.py::test_replacement_key_is_rejected_even_for_general_mapping_or_empty_payload[dict-False-replacement1]",
+      "attempts": [
+        {
+          "outcome": "PASS",
+          "source_sha256": "aa112e5a6338517b7154bb8df59fe04e624f089e35725d44987d85015058a0b0",
+          "junit": "evidence/SAV1-13/20261113T112859Z-455078f1/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13_compatibility.py::test_replacement_key_is_rejected_even_for_general_mapping_or_empty_payload[dict-False-replacement2]",
+      "attempts": [
+        {
+          "outcome": "PASS",
+          "source_sha256": "aa112e5a6338517b7154bb8df59fe04e624f089e35725d44987d85015058a0b0",
+          "junit": "evidence/SAV1-13/20261113T112859Z-455078f1/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13_compatibility.py::test_replacement_key_is_rejected_even_for_general_mapping_or_empty_payload[dict-True-None]",
+      "attempts": [
+        {
+          "outcome": "PASS",
+          "source_sha256": "aa112e5a6338517b7154bb8df59fe04e624f089e35725d44987d85015058a0b0",
+          "junit": "evidence/SAV1-13/20261113T112859Z-455078f1/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13_compatibility.py::test_replacement_key_is_rejected_even_for_general_mapping_or_empty_payload[dict-True-replacement1]",
+      "attempts": [
+        {
+          "outcome": "PASS",
+          "source_sha256": "aa112e5a6338517b7154bb8df59fe04e624f089e35725d44987d85015058a0b0",
+          "junit": "evidence/SAV1-13/20261113T112859Z-455078f1/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13_compatibility.py::test_replacement_key_is_rejected_even_for_general_mapping_or_empty_payload[dict-True-replacement2]",
+      "attempts": [
+        {
+          "outcome": "PASS",
+          "source_sha256": "aa112e5a6338517b7154bb8df59fe04e624f089e35725d44987d85015058a0b0",
+          "junit": "evidence/SAV1-13/20261113T112859Z-455078f1/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13_compatibility.py::test_replacement_key_is_rejected_even_for_general_mapping_or_empty_payload[UserDict-False-None]",
+      "attempts": [
+        {
+          "outcome": "PASS",
+          "source_sha256": "aa112e5a6338517b7154bb8df59fe04e624f089e35725d44987d85015058a0b0",
+          "junit": "evidence/SAV1-13/20261113T112859Z-455078f1/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13_compatibility.py::test_replacement_key_is_rejected_even_for_general_mapping_or_empty_payload[UserDict-False-replacement1]",
+      "attempts": [
+        {
+          "outcome": "PASS",
+          "source_sha256": "aa112e5a6338517b7154bb8df59fe04e624f089e35725d44987d85015058a0b0",
+          "junit": "evidence/SAV1-13/20261113T112859Z-455078f1/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13_compatibility.py::test_replacement_key_is_rejected_even_for_general_mapping_or_empty_payload[UserDict-False-replacement2]",
+      "attempts": [
+        {
+          "outcome": "PASS",
+          "source_sha256": "aa112e5a6338517b7154bb8df59fe04e624f089e35725d44987d85015058a0b0",
+          "junit": "evidence/SAV1-13/20261113T112859Z-455078f1/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13_compatibility.py::test_replacement_key_is_rejected_even_for_general_mapping_or_empty_payload[UserDict-True-None]",
+      "attempts": [
+        {
+          "outcome": "PASS",
+          "source_sha256": "aa112e5a6338517b7154bb8df59fe04e624f089e35725d44987d85015058a0b0",
+          "junit": "evidence/SAV1-13/20261113T112859Z-455078f1/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13_compatibility.py::test_replacement_key_is_rejected_even_for_general_mapping_or_empty_payload[UserDict-True-replacement1]",
+      "attempts": [
+        {
+          "outcome": "PASS",
+          "source_sha256": "aa112e5a6338517b7154bb8df59fe04e624f089e35725d44987d85015058a0b0",
+          "junit": "evidence/SAV1-13/20261113T112859Z-455078f1/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13_compatibility.py::test_replacement_key_is_rejected_even_for_general_mapping_or_empty_payload[UserDict-True-replacement2]",
+      "attempts": [
+        {
+          "outcome": "PASS",
+          "source_sha256": "aa112e5a6338517b7154bb8df59fe04e624f089e35725d44987d85015058a0b0",
+          "junit": "evidence/SAV1-13/20261113T112859Z-455078f1/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13_compatibility.py::test_full_content_is_still_required_and_cannot_be_replaced_by_an_optional_field[None]",
+      "attempts": [
+        {
+          "outcome": "PASS",
+          "source_sha256": "aa112e5a6338517b7154bb8df59fe04e624f089e35725d44987d85015058a0b0",
+          "junit": "evidence/SAV1-13/20261113T112859Z-455078f1/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13_compatibility.py::test_full_content_is_still_required_and_cannot_be_replaced_by_an_optional_field[7]",
+      "attempts": [
+        {
+          "outcome": "PASS",
+          "source_sha256": "aa112e5a6338517b7154bb8df59fe04e624f089e35725d44987d85015058a0b0",
+          "junit": "evidence/SAV1-13/20261113T112859Z-455078f1/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13_compatibility.py::test_full_content_is_still_required_and_cannot_be_replaced_by_an_optional_field[True]",
+      "attempts": [
+        {
+          "outcome": "PASS",
+          "source_sha256": "aa112e5a6338517b7154bb8df59fe04e624f089e35725d44987d85015058a0b0",
+          "junit": "evidence/SAV1-13/20261113T112859Z-455078f1/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13_compatibility.py::test_direct_incremental_helper_fails_closed_without_touching_old_content",
+      "attempts": [
+        {
+          "outcome": "PASS",
+          "source_sha256": "aa112e5a6338517b7154bb8df59fe04e624f089e35725d44987d85015058a0b0",
+          "junit": "evidence/SAV1-13/20261113T112859Z-455078f1/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13_compatibility.py::test_old_receipt_json_loads_with_explicitly_untrusted_null_provenance",
+      "attempts": [
+        {
+          "outcome": "PASS",
+          "source_sha256": "aa112e5a6338517b7154bb8df59fe04e624f089e35725d44987d85015058a0b0",
+          "junit": "evidence/SAV1-13/20261113T112859Z-455078f1/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13_compatibility.py::test_fixed_strict_registry_does_not_replace_public_reference_constructor",
+      "attempts": [
+        {
+          "outcome": "PASS",
+          "source_sha256": "aa112e5a6338517b7154bb8df59fe04e624f089e35725d44987d85015058a0b0",
+          "junit": "evidence/SAV1-13/20261113T112859Z-455078f1/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13_compatibility.py::test_h02_transport_preserves_full_content_and_forbidden_replacement_key[ABSENT]",
+      "attempts": [
+        {
+          "outcome": "PASS",
+          "source_sha256": "aa112e5a6338517b7154bb8df59fe04e624f089e35725d44987d85015058a0b0",
+          "junit": "evidence/SAV1-13/20261113T112859Z-455078f1/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13_compatibility.py::test_h02_transport_preserves_full_content_and_forbidden_replacement_key[None]",
+      "attempts": [
+        {
+          "outcome": "PASS",
+          "source_sha256": "aa112e5a6338517b7154bb8df59fe04e624f089e35725d44987d85015058a0b0",
+          "junit": "evidence/SAV1-13/20261113T112859Z-455078f1/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13_compatibility.py::test_h02_transport_preserves_full_content_and_forbidden_replacement_key[replacement2]",
+      "attempts": [
+        {
+          "outcome": "PASS",
+          "source_sha256": "aa112e5a6338517b7154bb8df59fe04e624f089e35725d44987d85015058a0b0",
+          "junit": "evidence/SAV1-13/20261113T112859Z-455078f1/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13_runtime.py::test_real_loop_failed_patch_then_repair_uses_same_original_target_and_budgets",
+      "attempts": [
+        {
+          "outcome": "FAIL",
+          "source_sha256": "aa112e5a6338517b7154bb8df59fe04e624f089e35725d44987d85015058a0b0",
+          "junit": "evidence/SAV1-13/20261113T112859Z-455078f1/junit.xml"
+        },
+        {
+          "outcome": "FAIL",
+          "source_sha256": "8fed2e3c8dffd6ef72e1f7b3b30fe40c9436ffc147c034e6a0ea70fbd6749a20",
+          "junit": "evidence/super-agent-v1/SAV1-13/start-20261113T092527Z-3fe7966b/20261113T113913Z-failed29-recheck-f869a8/junit.xml"
+        },
+        {
+          "outcome": "PASS",
+          "source_sha256": "1099db710d2da7279330cbc0817aa21820340f82e29b3ffe3e256900f65fd7c8",
+          "junit": "evidence/super-agent-v1/SAV1-13/start-20261113T092527Z-3fe7966b/20261113T120323Z-failed3-and-new-boundaries-initial-397da3/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13_runtime.py::test_committed_withdrawal_after_original_reservation_blocks_actual_model_call[policy]",
+      "attempts": [
+        {
+          "outcome": "FAIL",
+          "source_sha256": "aa112e5a6338517b7154bb8df59fe04e624f089e35725d44987d85015058a0b0",
+          "junit": "evidence/SAV1-13/20261113T112859Z-455078f1/junit.xml"
+        },
+        {
+          "outcome": "PASS",
+          "source_sha256": "8fed2e3c8dffd6ef72e1f7b3b30fe40c9436ffc147c034e6a0ea70fbd6749a20",
+          "junit": "evidence/super-agent-v1/SAV1-13/start-20261113T092527Z-3fe7966b/20261113T113913Z-failed29-recheck-f869a8/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13_runtime.py::test_committed_withdrawal_after_original_reservation_blocks_actual_model_call[context]",
+      "attempts": [
+        {
+          "outcome": "FAIL",
+          "source_sha256": "aa112e5a6338517b7154bb8df59fe04e624f089e35725d44987d85015058a0b0",
+          "junit": "evidence/SAV1-13/20261113T112859Z-455078f1/junit.xml"
+        },
+        {
+          "outcome": "PASS",
+          "source_sha256": "8fed2e3c8dffd6ef72e1f7b3b30fe40c9436ffc147c034e6a0ea70fbd6749a20",
+          "junit": "evidence/super-agent-v1/SAV1-13/start-20261113T092527Z-3fe7966b/20261113T113913Z-failed29-recheck-f869a8/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13_runtime.py::test_withdrawal_after_actual_response_preserves_cost_and_discards_tools[policy]",
+      "attempts": [
+        {
+          "outcome": "FAIL",
+          "source_sha256": "aa112e5a6338517b7154bb8df59fe04e624f089e35725d44987d85015058a0b0",
+          "junit": "evidence/SAV1-13/20261113T112859Z-455078f1/junit.xml"
+        },
+        {
+          "outcome": "PASS",
+          "source_sha256": "8fed2e3c8dffd6ef72e1f7b3b30fe40c9436ffc147c034e6a0ea70fbd6749a20",
+          "junit": "evidence/super-agent-v1/SAV1-13/start-20261113T092527Z-3fe7966b/20261113T113913Z-failed29-recheck-f869a8/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13_runtime.py::test_withdrawal_after_actual_response_preserves_cost_and_discards_tools[context]",
+      "attempts": [
+        {
+          "outcome": "FAIL",
+          "source_sha256": "aa112e5a6338517b7154bb8df59fe04e624f089e35725d44987d85015058a0b0",
+          "junit": "evidence/SAV1-13/20261113T112859Z-455078f1/junit.xml"
+        },
+        {
+          "outcome": "PASS",
+          "source_sha256": "8fed2e3c8dffd6ef72e1f7b3b30fe40c9436ffc147c034e6a0ea70fbd6749a20",
+          "junit": "evidence/super-agent-v1/SAV1-13/start-20261113T092527Z-3fe7966b/20261113T113913Z-failed29-recheck-f869a8/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13_runtime.py::test_unknown_model_response_retains_original_reservation_and_never_resends",
+      "attempts": [
+        {
+          "outcome": "FAIL",
+          "source_sha256": "aa112e5a6338517b7154bb8df59fe04e624f089e35725d44987d85015058a0b0",
+          "junit": "evidence/SAV1-13/20261113T112859Z-455078f1/junit.xml"
+        },
+        {
+          "outcome": "PASS",
+          "source_sha256": "8fed2e3c8dffd6ef72e1f7b3b30fe40c9436ffc147c034e6a0ea70fbd6749a20",
+          "junit": "evidence/super-agent-v1/SAV1-13/start-20261113T092527Z-3fe7966b/20261113T113913Z-failed29-recheck-f869a8/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13_runtime.py::test_real_container_create_then_committed_session_revoke_prevents_start",
+      "attempts": [
+        {
+          "outcome": "FAIL",
+          "source_sha256": "aa112e5a6338517b7154bb8df59fe04e624f089e35725d44987d85015058a0b0",
+          "junit": "evidence/SAV1-13/20261113T112859Z-455078f1/junit.xml"
+        },
+        {
+          "outcome": "PASS",
+          "source_sha256": "8fed2e3c8dffd6ef72e1f7b3b30fe40c9436ffc147c034e6a0ea70fbd6749a20",
+          "junit": "evidence/super-agent-v1/SAV1-13/start-20261113T092527Z-3fe7966b/20261113T113913Z-failed29-recheck-f869a8/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13_runtime.py::test_changed_server_profile_cannot_use_original_reviewed_binding",
+      "attempts": [
+        {
+          "outcome": "FAIL",
+          "source_sha256": "aa112e5a6338517b7154bb8df59fe04e624f089e35725d44987d85015058a0b0",
+          "junit": "evidence/SAV1-13/20261113T112859Z-455078f1/junit.xml"
+        },
+        {
+          "outcome": "PASS",
+          "source_sha256": "8fed2e3c8dffd6ef72e1f7b3b30fe40c9436ffc147c034e6a0ea70fbd6749a20",
+          "junit": "evidence/super-agent-v1/SAV1-13/start-20261113T092527Z-3fe7966b/20261113T113913Z-failed29-recheck-f869a8/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13_runtime.py::test_network_model_adapter_is_rejected_before_fixture_can_call_it",
+      "attempts": [
+        {
+          "outcome": "FAIL",
+          "source_sha256": "aa112e5a6338517b7154bb8df59fe04e624f089e35725d44987d85015058a0b0",
+          "junit": "evidence/SAV1-13/20261113T112859Z-455078f1/junit.xml"
+        },
+        {
+          "outcome": "PASS",
+          "source_sha256": "8fed2e3c8dffd6ef72e1f7b3b30fe40c9436ffc147c034e6a0ea70fbd6749a20",
+          "junit": "evidence/super-agent-v1/SAV1-13/start-20261113T092527Z-3fe7966b/20261113T113913Z-failed29-recheck-f869a8/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13_runtime.py::test_malicious_tool_cannot_edit_frozen_test_files",
+      "attempts": [
+        {
+          "outcome": "FAIL",
+          "source_sha256": "aa112e5a6338517b7154bb8df59fe04e624f089e35725d44987d85015058a0b0",
+          "junit": "evidence/SAV1-13/20261113T112859Z-455078f1/junit.xml"
+        },
+        {
+          "outcome": "PASS",
+          "source_sha256": "8fed2e3c8dffd6ef72e1f7b3b30fe40c9436ffc147c034e6a0ea70fbd6749a20",
+          "junit": "evidence/super-agent-v1/SAV1-13/start-20261113T092527Z-3fe7966b/20261113T113913Z-failed29-recheck-f869a8/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13_runtime.py::test_candidate_cannot_forge_test_totals_or_terminate_trusted_runner[print('Ran 2 tests')\\nraise SystemExit(0)\\n]",
+      "attempts": [
+        {
+          "outcome": "FAIL",
+          "source_sha256": "aa112e5a6338517b7154bb8df59fe04e624f089e35725d44987d85015058a0b0",
+          "junit": "evidence/SAV1-13/20261113T112859Z-455078f1/junit.xml"
+        },
+        {
+          "outcome": "PASS",
+          "source_sha256": "8fed2e3c8dffd6ef72e1f7b3b30fe40c9436ffc147c034e6a0ea70fbd6749a20",
+          "junit": "evidence/super-agent-v1/SAV1-13/start-20261113T092527Z-3fe7966b/20261113T113913Z-failed29-recheck-f869a8/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13_runtime.py::test_candidate_cannot_forge_test_totals_or_terminate_trusted_runner[import unittest\\nunittest.TextTestRunner.run = lambda *args: None\\n]",
+      "attempts": [
+        {
+          "outcome": "FAIL",
+          "source_sha256": "aa112e5a6338517b7154bb8df59fe04e624f089e35725d44987d85015058a0b0",
+          "junit": "evidence/SAV1-13/20261113T112859Z-455078f1/junit.xml"
+        },
+        {
+          "outcome": "PASS",
+          "source_sha256": "8fed2e3c8dffd6ef72e1f7b3b30fe40c9436ffc147c034e6a0ea70fbd6749a20",
+          "junit": "evidence/super-agent-v1/SAV1-13/start-20261113T092527Z-3fe7966b/20261113T113913Z-failed29-recheck-f869a8/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13_runtime.py::test_candidate_cannot_forge_test_totals_or_terminate_trusted_runner[def total(values):\\n    print('2 passed')\\n    return 5\\n]",
+      "attempts": [
+        {
+          "outcome": "FAIL",
+          "source_sha256": "aa112e5a6338517b7154bb8df59fe04e624f089e35725d44987d85015058a0b0",
+          "junit": "evidence/SAV1-13/20261113T112859Z-455078f1/junit.xml"
+        },
+        {
+          "outcome": "PASS",
+          "source_sha256": "8fed2e3c8dffd6ef72e1f7b3b30fe40c9436ffc147c034e6a0ea70fbd6749a20",
+          "junit": "evidence/super-agent-v1/SAV1-13/start-20261113T092527Z-3fe7966b/20261113T113913Z-failed29-recheck-f869a8/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13_recovery.py::test_real_sigkill_recovery_fences_old_epoch_without_resend_refund_or_false_completion[durable_images_before_write]",
+      "attempts": [
+        {
+          "outcome": "FAIL",
+          "source_sha256": "aa112e5a6338517b7154bb8df59fe04e624f089e35725d44987d85015058a0b0",
+          "junit": "evidence/SAV1-13/20261113T112859Z-455078f1/junit.xml"
+        },
+        {
+          "outcome": "PASS",
+          "source_sha256": "8fed2e3c8dffd6ef72e1f7b3b30fe40c9436ffc147c034e6a0ea70fbd6749a20",
+          "junit": "evidence/super-agent-v1/SAV1-13/start-20261113T092527Z-3fe7966b/20261113T113913Z-failed29-recheck-f869a8/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13_recovery.py::test_real_sigkill_recovery_fences_old_epoch_without_resend_refund_or_false_completion[first_physical_write_before_receipt]",
+      "attempts": [
+        {
+          "outcome": "FAIL",
+          "source_sha256": "aa112e5a6338517b7154bb8df59fe04e624f089e35725d44987d85015058a0b0",
+          "junit": "evidence/SAV1-13/20261113T112859Z-455078f1/junit.xml"
+        },
+        {
+          "outcome": "PASS",
+          "source_sha256": "8fed2e3c8dffd6ef72e1f7b3b30fe40c9436ffc147c034e6a0ea70fbd6749a20",
+          "junit": "evidence/super-agent-v1/SAV1-13/start-20261113T092527Z-3fe7966b/20261113T113913Z-failed29-recheck-f869a8/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13_recovery.py::test_real_sigkill_recovery_fences_old_epoch_without_resend_refund_or_false_completion[known_model_before_worker_receipt]",
+      "attempts": [
+        {
+          "outcome": "FAIL",
+          "source_sha256": "aa112e5a6338517b7154bb8df59fe04e624f089e35725d44987d85015058a0b0",
+          "junit": "evidence/SAV1-13/20261113T112859Z-455078f1/junit.xml"
+        },
+        {
+          "outcome": "PASS",
+          "source_sha256": "8fed2e3c8dffd6ef72e1f7b3b30fe40c9436ffc147c034e6a0ea70fbd6749a20",
+          "junit": "evidence/super-agent-v1/SAV1-13/start-20261113T092527Z-3fe7966b/20261113T113913Z-failed29-recheck-f869a8/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13_recovery.py::test_same_controller_partial_write_reconciles_only_exact_pre_and_postimages[False]",
+      "attempts": [
+        {
+          "outcome": "FAIL",
+          "source_sha256": "aa112e5a6338517b7154bb8df59fe04e624f089e35725d44987d85015058a0b0",
+          "junit": "evidence/SAV1-13/20261113T112859Z-455078f1/junit.xml"
+        },
+        {
+          "outcome": "FAIL",
+          "source_sha256": "8fed2e3c8dffd6ef72e1f7b3b30fe40c9436ffc147c034e6a0ea70fbd6749a20",
+          "junit": "evidence/super-agent-v1/SAV1-13/start-20261113T092527Z-3fe7966b/20261113T113913Z-failed29-recheck-f869a8/junit.xml"
+        },
+        {
+          "outcome": "FAIL",
+          "source_sha256": "1099db710d2da7279330cbc0817aa21820340f82e29b3ffe3e256900f65fd7c8",
+          "junit": "evidence/super-agent-v1/SAV1-13/start-20261113T092527Z-3fe7966b/20261113T120323Z-failed3-and-new-boundaries-initial-397da3/junit.xml"
+        },
+        {
+          "outcome": "PASS",
+          "source_sha256": "2b32953d1210e97e0bb8584c41f612a681edaed261dfee0e61be17f37977309a",
+          "junit": "evidence/super-agent-v1/SAV1-13/start-20261113T092527Z-3fe7966b/20261113T120833Z-failed2-recheck-dc7cc0/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13_recovery.py::test_same_controller_partial_write_reconciles_only_exact_pre_and_postimages[True]",
+      "attempts": [
+        {
+          "outcome": "FAIL",
+          "source_sha256": "aa112e5a6338517b7154bb8df59fe04e624f089e35725d44987d85015058a0b0",
+          "junit": "evidence/SAV1-13/20261113T112859Z-455078f1/junit.xml"
+        },
+        {
+          "outcome": "FAIL",
+          "source_sha256": "8fed2e3c8dffd6ef72e1f7b3b30fe40c9436ffc147c034e6a0ea70fbd6749a20",
+          "junit": "evidence/super-agent-v1/SAV1-13/start-20261113T092527Z-3fe7966b/20261113T113913Z-failed29-recheck-f869a8/junit.xml"
+        },
+        {
+          "outcome": "FAIL",
+          "source_sha256": "1099db710d2da7279330cbc0817aa21820340f82e29b3ffe3e256900f65fd7c8",
+          "junit": "evidence/super-agent-v1/SAV1-13/start-20261113T092527Z-3fe7966b/20261113T120323Z-failed3-and-new-boundaries-initial-397da3/junit.xml"
+        },
+        {
+          "outcome": "PASS",
+          "source_sha256": "2b32953d1210e97e0bb8584c41f612a681edaed261dfee0e61be17f37977309a",
+          "junit": "evidence/super-agent-v1/SAV1-13/start-20261113T092527Z-3fe7966b/20261113T120833Z-failed2-recheck-dc7cc0/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13_verification.py::test_formal_registry_can_select_one_case_without_repeating_others",
+      "attempts": [
+        {
+          "outcome": "PASS",
+          "source_sha256": "aa112e5a6338517b7154bb8df59fe04e624f089e35725d44987d85015058a0b0",
+          "junit": "evidence/SAV1-13/20261113T112859Z-455078f1/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13_verification.py::test_focused_node_still_rejects_a_file_outside_registered_root",
+      "attempts": [
+        {
+          "outcome": "PASS",
+          "source_sha256": "aa112e5a6338517b7154bb8df59fe04e624f089e35725d44987d85015058a0b0",
+          "junit": "evidence/SAV1-13/20261113T112859Z-455078f1/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_harness_v4_h01.py::test_reference_loop_reads_edits_and_runs_real_tests",
+      "attempts": [
+        {
+          "outcome": "PASS",
+          "source_sha256": "aa112e5a6338517b7154bb8df59fe04e624f089e35725d44987d85015058a0b0",
+          "junit": "evidence/SAV1-13/20261113T112859Z-455078f1/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_harness_v4_h01.py::test_executor_is_replaceable_without_changing_the_runtime",
+      "attempts": [
+        {
+          "outcome": "PASS",
+          "source_sha256": "aa112e5a6338517b7154bb8df59fe04e624f089e35725d44987d85015058a0b0",
+          "junit": "evidence/SAV1-13/20261113T112859Z-455078f1/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_harness_v4_h02.py::test_two_adapters_share_the_tool_contract[deepseek-payload0-call_1]",
+      "attempts": [
+        {
+          "outcome": "PASS",
+          "source_sha256": "aa112e5a6338517b7154bb8df59fe04e624f089e35725d44987d85015058a0b0",
+          "junit": "evidence/SAV1-13/20261113T112859Z-455078f1/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_harness_v4_h02.py::test_two_adapters_share_the_tool_contract[anthropic-payload1-tool_1]",
+      "attempts": [
+        {
+          "outcome": "PASS",
+          "source_sha256": "aa112e5a6338517b7154bb8df59fe04e624f089e35725d44987d85015058a0b0",
+          "junit": "evidence/SAV1-13/20261113T112859Z-455078f1/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_harness_v4_h02.py::test_tool_roundtrip_preserves_native_history[deepseek]",
+      "attempts": [
+        {
+          "outcome": "PASS",
+          "source_sha256": "aa112e5a6338517b7154bb8df59fe04e624f089e35725d44987d85015058a0b0",
+          "junit": "evidence/SAV1-13/20261113T112859Z-455078f1/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_harness_v4_h02.py::test_tool_roundtrip_preserves_native_history[anthropic]",
+      "attempts": [
+        {
+          "outcome": "PASS",
+          "source_sha256": "aa112e5a6338517b7154bb8df59fe04e624f089e35725d44987d85015058a0b0",
+          "junit": "evidence/SAV1-13/20261113T112859Z-455078f1/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_harness_v4_h02.py::test_cache_hit_is_not_billed_twice",
+      "attempts": [
+        {
+          "outcome": "PASS",
+          "source_sha256": "aa112e5a6338517b7154bb8df59fe04e624f089e35725d44987d85015058a0b0",
+          "junit": "evidence/SAV1-13/20261113T112859Z-455078f1/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa12_migration.py::test_formal0044_exact_source_catalogue_and_original_engine_connection",
+      "attempts": [
+        {
+          "outcome": "PASS",
+          "source_sha256": "aa112e5a6338517b7154bb8df59fe04e624f089e35725d44987d85015058a0b0",
+          "junit": "evidence/SAV1-13/20261113T112859Z-455078f1/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa12_migration.py::test_controller_transactions_roll_back_claim_start_and_quota_together",
+      "attempts": [
+        {
+          "outcome": "PASS",
+          "source_sha256": "aa112e5a6338517b7154bb8df59fe04e624f089e35725d44987d85015058a0b0",
+          "junit": "evidence/SAV1-13/20261113T112859Z-455078f1/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa12_source.py::test_current_source_change_fences_already_claimed_worker_before_new_operation[policy_revoke]",
+      "attempts": [
+        {
+          "outcome": "PASS",
+          "source_sha256": "aa112e5a6338517b7154bb8df59fe04e624f089e35725d44987d85015058a0b0",
+          "junit": "evidence/SAV1-13/20261113T112859Z-455078f1/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa12_source.py::test_current_source_change_fences_already_claimed_worker_before_new_operation[source_edit]",
+      "attempts": [
+        {
+          "outcome": "PASS",
+          "source_sha256": "aa112e5a6338517b7154bb8df59fe04e624f089e35725d44987d85015058a0b0",
+          "junit": "evidence/SAV1-13/20261113T112859Z-455078f1/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa12_runtime.py::test_actual_create_then_revocation_or_expiry_never_reaches_actual_start[committed-session-revoke]",
+      "attempts": [
+        {
+          "outcome": "PASS",
+          "source_sha256": "aa112e5a6338517b7154bb8df59fe04e624f089e35725d44987d85015058a0b0",
+          "junit": "evidence/SAV1-13/20261113T112859Z-455078f1/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa12_runtime.py::test_actual_create_then_revocation_or_expiry_never_reaches_actual_start[slow-inspect-expiry]",
+      "attempts": [
+        {
+          "outcome": "PASS",
+          "source_sha256": "aa112e5a6338517b7154bb8df59fe04e624f089e35725d44987d85015058a0b0",
+          "junit": "evidence/SAV1-13/20261113T112859Z-455078f1/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13_lifecycle.py::test_server_retention_rejects_unsafe_values_without_io[True]",
+      "attempts": [
+        {
+          "outcome": "PASS",
+          "source_sha256": "1099db710d2da7279330cbc0817aa21820340f82e29b3ffe3e256900f65fd7c8",
+          "junit": "evidence/super-agent-v1/SAV1-13/start-20261113T092527Z-3fe7966b/20261113T120323Z-failed3-and-new-boundaries-initial-397da3/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13_lifecycle.py::test_server_retention_rejects_unsafe_values_without_io[False]",
+      "attempts": [
+        {
+          "outcome": "PASS",
+          "source_sha256": "1099db710d2da7279330cbc0817aa21820340f82e29b3ffe3e256900f65fd7c8",
+          "junit": "evidence/super-agent-v1/SAV1-13/start-20261113T092527Z-3fe7966b/20261113T120323Z-failed3-and-new-boundaries-initial-397da3/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13_lifecycle.py::test_server_retention_rejects_unsafe_values_without_io[0]",
+      "attempts": [
+        {
+          "outcome": "PASS",
+          "source_sha256": "1099db710d2da7279330cbc0817aa21820340f82e29b3ffe3e256900f65fd7c8",
+          "junit": "evidence/super-agent-v1/SAV1-13/start-20261113T092527Z-3fe7966b/20261113T120323Z-failed3-and-new-boundaries-initial-397da3/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13_lifecycle.py::test_server_retention_rejects_unsafe_values_without_io[-1]",
+      "attempts": [
+        {
+          "outcome": "PASS",
+          "source_sha256": "1099db710d2da7279330cbc0817aa21820340f82e29b3ffe3e256900f65fd7c8",
+          "junit": "evidence/super-agent-v1/SAV1-13/start-20261113T092527Z-3fe7966b/20261113T120323Z-failed3-and-new-boundaries-initial-397da3/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13_lifecycle.py::test_server_retention_rejects_unsafe_values_without_io[1801]",
+      "attempts": [
+        {
+          "outcome": "PASS",
+          "source_sha256": "1099db710d2da7279330cbc0817aa21820340f82e29b3ffe3e256900f65fd7c8",
+          "junit": "evidence/super-agent-v1/SAV1-13/start-20261113T092527Z-3fe7966b/20261113T120323Z-failed3-and-new-boundaries-initial-397da3/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13_lifecycle.py::test_server_retention_rejects_unsafe_values_without_io[1.5]",
+      "attempts": [
+        {
+          "outcome": "PASS",
+          "source_sha256": "1099db710d2da7279330cbc0817aa21820340f82e29b3ffe3e256900f65fd7c8",
+          "junit": "evidence/super-agent-v1/SAV1-13/start-20261113T092527Z-3fe7966b/20261113T120323Z-failed3-and-new-boundaries-initial-397da3/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13_lifecycle.py::test_server_retention_rejects_unsafe_values_without_io[1]",
+      "attempts": [
+        {
+          "outcome": "PASS",
+          "source_sha256": "1099db710d2da7279330cbc0817aa21820340f82e29b3ffe3e256900f65fd7c8",
+          "junit": "evidence/super-agent-v1/SAV1-13/start-20261113T092527Z-3fe7966b/20261113T120323Z-failed3-and-new-boundaries-initial-397da3/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13_lifecycle.py::test_actual_cipher_read_requires_current_authority_and_keeps_only_ciphertext",
+      "attempts": [
+        {
+          "outcome": "PASS",
+          "source_sha256": "1099db710d2da7279330cbc0817aa21820340f82e29b3ffe3e256900f65fd7c8",
+          "junit": "evidence/super-agent-v1/SAV1-13/start-20261113T092527Z-3fe7966b/20261113T120323Z-failed3-and-new-boundaries-initial-397da3/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13_lifecycle.py::test_another_journal_attempt_cannot_decrypt_a_current_payload",
+      "attempts": [
+        {
+          "outcome": "PASS",
+          "source_sha256": "1099db710d2da7279330cbc0817aa21820340f82e29b3ffe3e256900f65fd7c8",
+          "junit": "evidence/super-agent-v1/SAV1-13/start-20261113T092527Z-3fe7966b/20261113T120323Z-failed3-and-new-boundaries-initial-397da3/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13_lifecycle.py::test_actual_one_second_ttl_erases_ciphertext_in_committed_transaction[maintain]",
+      "attempts": [
+        {
+          "outcome": "PASS",
+          "source_sha256": "1099db710d2da7279330cbc0817aa21820340f82e29b3ffe3e256900f65fd7c8",
+          "junit": "evidence/super-agent-v1/SAV1-13/start-20261113T092527Z-3fe7966b/20261113T120323Z-failed3-and-new-boundaries-initial-397da3/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13_lifecycle.py::test_actual_one_second_ttl_erases_ciphertext_in_committed_transaction[read]",
+      "attempts": [
+        {
+          "outcome": "PASS",
+          "source_sha256": "1099db710d2da7279330cbc0817aa21820340f82e29b3ffe3e256900f65fd7c8",
+          "junit": "evidence/super-agent-v1/SAV1-13/start-20261113T092527Z-3fe7966b/20261113T120323Z-failed3-and-new-boundaries-initial-397da3/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13_lifecycle.py::test_committed_authority_loss_durably_erases_payload_before_decrypt[maintain-policy]",
+      "attempts": [
+        {
+          "outcome": "PASS",
+          "source_sha256": "1099db710d2da7279330cbc0817aa21820340f82e29b3ffe3e256900f65fd7c8",
+          "junit": "evidence/super-agent-v1/SAV1-13/start-20261113T092527Z-3fe7966b/20261113T120323Z-failed3-and-new-boundaries-initial-397da3/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13_lifecycle.py::test_committed_authority_loss_durably_erases_payload_before_decrypt[maintain-context_role]",
+      "attempts": [
+        {
+          "outcome": "PASS",
+          "source_sha256": "1099db710d2da7279330cbc0817aa21820340f82e29b3ffe3e256900f65fd7c8",
+          "junit": "evidence/super-agent-v1/SAV1-13/start-20261113T092527Z-3fe7966b/20261113T120323Z-failed3-and-new-boundaries-initial-397da3/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13_lifecycle.py::test_committed_authority_loss_durably_erases_payload_before_decrypt[maintain-requester_role]",
+      "attempts": [
+        {
+          "outcome": "PASS",
+          "source_sha256": "1099db710d2da7279330cbc0817aa21820340f82e29b3ffe3e256900f65fd7c8",
+          "junit": "evidence/super-agent-v1/SAV1-13/start-20261113T092527Z-3fe7966b/20261113T120323Z-failed3-and-new-boundaries-initial-397da3/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13_lifecycle.py::test_committed_authority_loss_durably_erases_payload_before_decrypt[maintain-edit]",
+      "attempts": [
+        {
+          "outcome": "PASS",
+          "source_sha256": "1099db710d2da7279330cbc0817aa21820340f82e29b3ffe3e256900f65fd7c8",
+          "junit": "evidence/super-agent-v1/SAV1-13/start-20261113T092527Z-3fe7966b/20261113T120323Z-failed3-and-new-boundaries-initial-397da3/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13_lifecycle.py::test_committed_authority_loss_durably_erases_payload_before_decrypt[maintain-delete]",
+      "attempts": [
+        {
+          "outcome": "PASS",
+          "source_sha256": "1099db710d2da7279330cbc0817aa21820340f82e29b3ffe3e256900f65fd7c8",
+          "junit": "evidence/super-agent-v1/SAV1-13/start-20261113T092527Z-3fe7966b/20261113T120323Z-failed3-and-new-boundaries-initial-397da3/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13_lifecycle.py::test_committed_authority_loss_durably_erases_payload_before_decrypt[read-policy]",
+      "attempts": [
+        {
+          "outcome": "PASS",
+          "source_sha256": "1099db710d2da7279330cbc0817aa21820340f82e29b3ffe3e256900f65fd7c8",
+          "junit": "evidence/super-agent-v1/SAV1-13/start-20261113T092527Z-3fe7966b/20261113T120323Z-failed3-and-new-boundaries-initial-397da3/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13_lifecycle.py::test_committed_authority_loss_durably_erases_payload_before_decrypt[read-context_role]",
+      "attempts": [
+        {
+          "outcome": "PASS",
+          "source_sha256": "1099db710d2da7279330cbc0817aa21820340f82e29b3ffe3e256900f65fd7c8",
+          "junit": "evidence/super-agent-v1/SAV1-13/start-20261113T092527Z-3fe7966b/20261113T120323Z-failed3-and-new-boundaries-initial-397da3/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13_lifecycle.py::test_committed_authority_loss_durably_erases_payload_before_decrypt[read-requester_role]",
+      "attempts": [
+        {
+          "outcome": "PASS",
+          "source_sha256": "1099db710d2da7279330cbc0817aa21820340f82e29b3ffe3e256900f65fd7c8",
+          "junit": "evidence/super-agent-v1/SAV1-13/start-20261113T092527Z-3fe7966b/20261113T120323Z-failed3-and-new-boundaries-initial-397da3/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13_lifecycle.py::test_committed_authority_loss_durably_erases_payload_before_decrypt[read-edit]",
+      "attempts": [
+        {
+          "outcome": "PASS",
+          "source_sha256": "1099db710d2da7279330cbc0817aa21820340f82e29b3ffe3e256900f65fd7c8",
+          "junit": "evidence/super-agent-v1/SAV1-13/start-20261113T092527Z-3fe7966b/20261113T120323Z-failed3-and-new-boundaries-initial-397da3/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13_lifecycle.py::test_committed_authority_loss_durably_erases_payload_before_decrypt[read-delete]",
+      "attempts": [
+        {
+          "outcome": "PASS",
+          "source_sha256": "1099db710d2da7279330cbc0817aa21820340f82e29b3ffe3e256900f65fd7c8",
+          "junit": "evidence/super-agent-v1/SAV1-13/start-20261113T092527Z-3fe7966b/20261113T120323Z-failed3-and-new-boundaries-initial-397da3/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13_lifecycle.py::test_source_body_actual_expiry_erases_dependent_coding_checkpoint",
+      "attempts": [
+        {
+          "outcome": "PASS",
+          "source_sha256": "1099db710d2da7279330cbc0817aa21820340f82e29b3ffe3e256900f65fd7c8",
+          "junit": "evidence/super-agent-v1/SAV1-13/start-20261113T092527Z-3fe7966b/20261113T120323Z-failed3-and-new-boundaries-initial-397da3/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13_lifecycle.py::test_cancel_or_recovery_payload_erasure_cannot_be_reversed[cancel]",
+      "attempts": [
+        {
+          "outcome": "PASS",
+          "source_sha256": "1099db710d2da7279330cbc0817aa21820340f82e29b3ffe3e256900f65fd7c8",
+          "junit": "evidence/super-agent-v1/SAV1-13/start-20261113T092527Z-3fe7966b/20261113T120323Z-failed3-and-new-boundaries-initial-397da3/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13_lifecycle.py::test_cancel_or_recovery_payload_erasure_cannot_be_reversed[recovery]",
+      "attempts": [
+        {
+          "outcome": "PASS",
+          "source_sha256": "1099db710d2da7279330cbc0817aa21820340f82e29b3ffe3e256900f65fd7c8",
+          "junit": "evidence/super-agent-v1/SAV1-13/start-20261113T092527Z-3fe7966b/20261113T120323Z-failed3-and-new-boundaries-initial-397da3/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13_lifecycle.py::test_maintenance_never_claims_rolled_back_erasure_inside_callers_transaction",
+      "attempts": [
+        {
+          "outcome": "PASS",
+          "source_sha256": "1099db710d2da7279330cbc0817aa21820340f82e29b3ffe3e256900f65fd7c8",
+          "junit": "evidence/super-agent-v1/SAV1-13/start-20261113T092527Z-3fe7966b/20261113T120323Z-failed3-and-new-boundaries-initial-397da3/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13_lifecycle.py::test_valid_maintenance_is_idempotent_metadata_only_without_releasing_reservation",
+      "attempts": [
+        {
+          "outcome": "PASS",
+          "source_sha256": "1099db710d2da7279330cbc0817aa21820340f82e29b3ffe3e256900f65fd7c8",
+          "junit": "evidence/super-agent-v1/SAV1-13/start-20261113T092527Z-3fe7966b/20261113T120323Z-failed3-and-new-boundaries-initial-397da3/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa13_initial_tree.py::test_valid_h03_owner_edit_cannot_replace_the_reviewed_initial_coding_tree",
+      "attempts": [
+        {
+          "outcome": "PASS",
+          "source_sha256": "1099db710d2da7279330cbc0817aa21820340f82e29b3ffe3e256900f65fd7c8",
+          "junit": "evidence/super-agent-v1/SAV1-13/start-20261113T092527Z-3fe7966b/20261113T120323Z-failed3-and-new-boundaries-initial-397da3/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    }
+  ]
+}

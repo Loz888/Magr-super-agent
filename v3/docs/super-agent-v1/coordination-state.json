@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-13T10:46:08.543532+00:00",
+  "updated_at": "2026-11-13T12:16:07.358695+00:00",
   "user_instruction": "Codex owns Super-Agent; local Trae owns Harness; coordination is authorized.",
   "owners": {
     "super_agent": {
@@ -15,7 +15,7 @@
   },
   "active_super_agent_card": "SAV1-13",
   "card_status": "IN_PROGRESS",
-  "work_state": "SA13_PRIVATE_COMPONENTS_PASS_SHARED_PROPOSAL_READY_WAITING_FIXED_CONFIRMATION",
+  "work_state": "SA13_LOCAL_ENGINEERING_READY_PENDING_INDEPENDENT_REVIEW",
   "harness_observation": {
     "head": "de4775e22e96718e880fde287b2e0928db2945e3",
     "h00_owner_reported_status": "PASS",
@@ -404,12 +404,24 @@
     "SA13": "NOT_STARTED"
   },
   "SA13_shared_scope": {
-    "status": "REQUESTED_USER_RELAY_NO_FIXED_ACK",
+    "status": "CONFIRMED_APPLIED_LOCAL_ENGINEERING_PASS_VERSIONED",
     "prior_section37": "SA12 only; no SA13 scope inferred",
     "reserved_harness_migration": "0045_harness_github_delivery.sql",
     "real_capabilities": "NOT_RUN",
     "proposal_commit": "b6079db",
     "sql_sha256": "379e9de4a018c7f38cc3615eae31b9c9d9e44ebdf16cbcf3c101c81d9874f212",
-    "patch_sha256": "01c7ec61c678e59099c687962b0413c9bfac0be45c0bb0167e7078f5b157d590"
+    "patch_sha256": "01c7ec61c678e59099c687962b0413c9bfac0be45c0bb0167e7078f5b157d590",
+    "commit": "617e14a52d65c5276bcd3ef87dbd0f05b4a3c08d",
+    "section": 38,
+    "migration": "0046_source_coding.sql",
+    "migration_count": 43,
+    "interfaces": 6,
+    "source_functional_candidate": "47fb162",
+    "outstanding_failed_cases": 0,
+    "independent_review": "NOT_RUN",
+    "SA14": "PLANNED_NOT_STARTED",
+    "source_candidate": "f53f4233721b095844c8376695f774195754ab40",
+    "source_sha256": "e7f8dd7b37357dff2163834a034c3b6722565d097ea052a0b7b65d5d940ef956",
+    "acceptance": "docs/super-agent-v1/accept/SAV1-13/accept.json"
   }
 }

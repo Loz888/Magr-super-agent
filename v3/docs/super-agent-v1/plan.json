@@ -399,12 +399,17 @@
       "optional": false,
       "card": "TASKS.md#sa13",
       "verification_target_on_implementation": "SAV1-13",
-      "work_state": "PRIVATE_CONTRACTS_AND_SHARED_PROPOSAL_READY_WAITING_FIXED_OWNER_ACK",
-      "engineering_gate": "NOT_RUN",
+      "work_state": "LOCAL_ENGINEERING_READY_PENDING_INDEPENDENT_REVIEW",
+      "engineering_gate": "PASS_VERSIONED_LOCAL_SCOPE",
       "independent_review": "NOT_RUN",
       "dependency_closure": "accept/SAV1-12/independent-closure-20261113.json",
       "preparation": "accept/SAV1-13/preparation-20261113.json",
-      "ownership_request": "sa13-proposal/ownership-request.txt"
+      "ownership_request": "sa13-proposal/ownership-request.txt",
+      "acceptance": "accept/SAV1-13/accept.json",
+      "ownership_confirmation": "617e14a52d65c5276bcd3ef87dbd0f05b4a3c08d section38",
+      "distinct_formal_cases": 212,
+      "source_commit": "f53f4233721b095844c8376695f774195754ab40",
+      "source_sha256": "e7f8dd7b37357dff2163834a034c3b6722565d097ea052a0b7b65d5d940ef956"
     },
     {
       "id": "SAV1-14",
