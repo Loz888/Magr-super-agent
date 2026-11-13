@@ -1,3 +1,11 @@
+# SA11 独立闭环，按用户授权启动 SA12
+
+SA11 ca49b76/f94ed73b 原42失败独立42PASS，含三处真实SIGKILL；新增六项有效边界有分版本PASS证据，41checksum/204refs及无残留核对通过。GitHub updated_at错误预期的两轮FAIL原样保留，另按既有无序契约独立验证通过，不改生产或弱化旧断言。用户已接受并授权SA12，见[关闭记录](accept/SAV1-11/independent-closure-20261113.json)。未重跑原309、整卡或静态通过项。
+
+SA12为IN_PROGRESS，当前完成Scheduler/Assignment租约权威、原心跳/Worker/队列/预算复用及Harness H03/H04固定依赖核对；新共享Engine/API/schema范围需具体协调。SA13–24 PLANNED，全部真实/付费/外发/发布/长期门仍NOT_RUN。
+
+以下为历史记录。
+
 # SA11 本地工程完成，等待独立验收
 
 候选ca49b76，源码f94ed73b前后稳定。Harness第35/36节固定确认后，0042/0043及七表、11接口和四文件最小接线正式落地。首轮351项309PASS/42FAIL完整保留；修复仅按失败范围42→40→26→1逐轮复验，各新增2/14/25/1PASS，原42全部闭环。没有重复原309或中途通过项，不称最终源码单轮全量PASS。详见[交付报告](SA11_ACCEPTANCE_20261113.md)和[机器摘要](accept/SAV1-11/accept.json)。

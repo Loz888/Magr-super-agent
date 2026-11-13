@@ -1,0 +1,51 @@
+{
+  "task": "SAV1-11",
+  "status": "CLOSED_USER_ACCEPTED_LOCAL_ENGINEERING_INDEPENDENT_PASS",
+  "accepted_at_utc": "2026-11-13T06:12:35.658880+00:00",
+  "source_commit": "ca49b760c2439147bb4555a335c975b69a878dbb",
+  "source_sha256": "f94ed73b645a6c06514b3c1f5811c9889f74467026150236ae04232313403f2e",
+  "review_head": "8644060f9a52bd1e3486d03d98dbb5f33ed3303f",
+  "independent_result": "evidence/super-agent-v1/SAV1-11/independent-review-20261113T055103Z-b903e09d/review-result.json",
+  "independent_report": "evidence/super-agent-v1/SAV1-11/independent-review-20261113T055103Z-b903e09d/REPORT.md",
+  "verified_junit_counts": {
+    "original42": {
+      "tests": 42,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "boundary": {
+      "tests": 6,
+      "failures": 1,
+      "errors": 0,
+      "skipped": 0
+    },
+    "diagnostic": {
+      "tests": 1,
+      "failures": 1,
+      "errors": 0,
+      "skipped": 0
+    },
+    "edit_contract": {
+      "tests": 1,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    }
+  },
+  "valid_additional_boundary_passes": 6,
+  "invalid_probe_expectation": "Two retainedFAIL runs used GitHub updated_at as order; original SA04/SA05 unordered contract explicitly refutes this, separate stronger correct-contract1PASS; no product source/test changes",
+  "original309_not_rerun": true,
+  "original_history_retained": "docs/super-agent-v1/accept/SAV1-11/history/8644060-before-independent-closure.json",
+  "user_authorization": "User accepted SA11 and explicitly requested to confirm then startSA12",
+  "gates": {
+    "engineering_gate": "PASS",
+    "policy_security_gate": "NOT_RUN",
+    "live_source_channel_gate": "NOT_RUN",
+    "live_coding_gate": "NOT_RUN",
+    "live_publication_gate": "NOT_RUN",
+    "continuous_operation_gate": "NOT_RUN",
+    "semantic_evaluation": "NOT_RUN"
+  },
+  "SA12": "AUTHORIZED_STARTING_REQUIREMENTS_REUSE_AND_SHARED_SCOPE_REVIEW"
+}

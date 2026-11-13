@@ -1,0 +1,202 @@
+{
+  "schema_version": "super-agent-card-acceptance-v1",
+  "task_id": "SAV1-11",
+  "status": "IN_PROGRESS",
+  "work_state": "LOCAL_ENGINEERING_READY_FOR_INDEPENDENT_REVIEW",
+  "recorded_at_utc": "2026-11-13T05:45:25.179391+00:00",
+  "source_commit": "ca49b760c2439147bb4555a335c975b69a878dbb",
+  "source_sha256": "f94ed73b645a6c06514b3c1f5811c9889f74467026150236ae04232313403f2e",
+  "production_equivalence": "Final ca49b76 changes only failed fixture+manifest relative to8b5fc1f; production SourceSubscriptions8407be1a SHA unchanged",
+  "scope": [
+    "source-subscription-v1/source-intake-v1",
+    "Original Engine same-connection reference-only subscription/canonical delivery/intake/consumption/handback",
+    "Seven new metadata fact tables;11 owner API routes; formal0042 plus forward0043",
+    "Current Source/identity/policy/head/TTL/Task/Mandate/epoch rechecks; immutable bounded independent Source-lane cursors; actual concurrent and SIGKILL recovery checks"
+  ],
+  "ownership": [
+    {
+      "commit": "d0af0747dd129033cb7bd0abd2af9ca5a57a8d4a",
+      "section": 35,
+      "scope": "0042/seven tables/11routes/four minimal shared wiring files",
+      "sql_sha256": "3e29900f22472c4d8b0c5b2bc60a64a798134532b2e47ab09427cc5006d4c8d0",
+      "patch_sha256": "da51e1366a086a53125127f2fd54fec3b497629478a542d15a37c220365dedb6"
+    },
+    {
+      "commit": "a9b02bfe946f643d58b868ad3bcb4ad851aeec5e",
+      "section": 36,
+      "scope": "0043 existing canonical trigger minimal forward repair; no scope expansion",
+      "sql_sha256": "55f7e50886149eca9ae78db2bc5e72d186b41679fc403c8c318aa6fb8e10a008"
+    }
+  ],
+  "registered_initial": {
+    "source_commit": "fe8ecacab3d3841cc9ad8540359d99a9239cdf2d",
+    "source_sha256": "b80e0cc159819e9acc3d9f99d159ba43a8263b265473fa660b6cbc6a9fd41695",
+    "command": "make verify TASK=SAV1-11",
+    "counts": {
+      "tests": 351,
+      "passed": 309,
+      "failures": 42,
+      "errors": 0,
+      "skipped": 0
+    },
+    "result": "evidence/SAV1-11/20261113T045454Z-6ade8d74/result.json",
+    "junit": "evidence/SAV1-11/20261113T045454Z-6ade8d74/junit.xml",
+    "result_unchanged": "FAIL_PRESERVED"
+  },
+  "repair_retest_rounds": [
+    {
+      "source_commit": "4615aa1c1d964489f25e4fb662d4e1d88424cc3b",
+      "source_sha256": "6aaf56c70951cd535ef119362411ac896d407f706630984e1c53969ad120893b",
+      "source_after": "6aaf56c70951cd535ef119362411ac896d407f706630984e1c53969ad120893b",
+      "evidence": "evidence/super-agent-v1/SAV1-11/start-20261113T040752Z-8b0bf668/20261113T052519Z-original42-failed-only-a1715d",
+      "junit": "evidence/super-agent-v1/SAV1-11/start-20261113T040752Z-8b0bf668/20261113T052519Z-original42-failed-only-a1715d/junit.xml",
+      "commands": "evidence/super-agent-v1/SAV1-11/start-20261113T040752Z-8b0bf668/20261113T052519Z-original42-failed-only-a1715d/commands.json",
+      "counts": {
+        "tests": 42,
+        "failures": 40,
+        "errors": 0,
+        "skipped": 0
+      },
+      "exit_code": 1,
+      "repair": "0043 canonical record-field evaluation",
+      "raw_sha256": {
+        "commands.json": "fac7a78f6ff5169e83c5067ee05e9cec58a7f66c9884212d9e687090df10a0a0",
+        "command.log": "a72524b35cc103712f019c57f30f49753ab88728c5d79343a2c5a2427bd590d6",
+        "junit.xml": "f418c270db847e3043e7a30631f97f09271cb9a0f4607cc0ded3159667ae7f68"
+      }
+    },
+    {
+      "source_commit": "4ef3e18eb80a838be39577e8b3ba3fecb5d098e1",
+      "source_sha256": "924e6a487b5452f07ae30fa3883381581302c6f4f8f718ea398ffc952eb48a10",
+      "source_after": "924e6a487b5452f07ae30fa3883381581302c6f4f8f718ea398ffc952eb48a10",
+      "evidence": "evidence/super-agent-v1/SAV1-11/start-20261113T040752Z-8b0bf668/20261113T053354Z-remaining40-failed-only-3a4d69",
+      "junit": "evidence/super-agent-v1/SAV1-11/start-20261113T040752Z-8b0bf668/20261113T053354Z-remaining40-failed-only-3a4d69/junit.xml",
+      "commands": "evidence/super-agent-v1/SAV1-11/start-20261113T040752Z-8b0bf668/20261113T053354Z-remaining40-failed-only-3a4d69/commands.json",
+      "counts": {
+        "tests": 40,
+        "failures": 26,
+        "errors": 0,
+        "skipped": 0
+      },
+      "exit_code": 1,
+      "repair": "Private UUID normalization and equivalent prepare reuse",
+      "raw_sha256": {
+        "commands.json": "09d397176b500a49ffd4d1dd62fbe7055df18462fe7cd7ee3db4f020d8b03661",
+        "command.log": "f1424336171b8e4e298b750928c38c587360d36e834cfa4313ce7c1fcd0078e4",
+        "junit.xml": "638d289c16feeb869b4ba04898acc44588eb24c0eb3483c60a0cf9e055822704"
+      }
+    },
+    {
+      "source_commit": "8b5fc1f98bfe618187950f3b4b230d9666107224",
+      "source_sha256": "f30bca86eae0b26a954f74413f73a732d65f62138ee741b5b56c39bde9716298",
+      "source_after": "f30bca86eae0b26a954f74413f73a732d65f62138ee741b5b56c39bde9716298",
+      "evidence": "evidence/super-agent-v1/SAV1-11/start-20261113T040752Z-8b0bf668/20261113T053819Z-remaining26-failed-only-d0f704",
+      "junit": "evidence/super-agent-v1/SAV1-11/start-20261113T040752Z-8b0bf668/20261113T053819Z-remaining26-failed-only-d0f704/junit.xml",
+      "commands": "evidence/super-agent-v1/SAV1-11/start-20261113T040752Z-8b0bf668/20261113T053819Z-remaining26-failed-only-d0f704/commands.json",
+      "counts": {
+        "tests": 26,
+        "failures": 1,
+        "errors": 0,
+        "skipped": 0
+      },
+      "exit_code": 1,
+      "repair": "Owner reference metadata accepts current queued epoch; execution gates unchanged",
+      "raw_sha256": {
+        "commands.json": "c8e39527a3e1befe23e04fb3eb75d22d1455d88a8d72d81d760f2b36da8bd271",
+        "command.log": "27f8cff85778c421408b1f8e3f2192eed7a3bc502390a3987e8b232b937fe7e9",
+        "junit.xml": "7d756a4110fbef3a8f1703c5570196b48efd2d5ee807040e1d930624657b35e6"
+      }
+    },
+    {
+      "source_commit": "ca49b760c2439147bb4555a335c975b69a878dbb",
+      "source_sha256": "f94ed73b645a6c06514b3c1f5811c9889f74467026150236ae04232313403f2e",
+      "source_after": "f94ed73b645a6c06514b3c1f5811c9889f74467026150236ae04232313403f2e",
+      "evidence": "evidence/super-agent-v1/SAV1-11/start-20261113T040752Z-8b0bf668/20261113T054159Z-remaining1-failed-only-8072bb",
+      "junit": "evidence/super-agent-v1/SAV1-11/start-20261113T040752Z-8b0bf668/20261113T054159Z-remaining1-failed-only-8072bb/junit.xml",
+      "commands": "evidence/super-agent-v1/SAV1-11/start-20261113T040752Z-8b0bf668/20261113T054159Z-remaining1-failed-only-8072bb/commands.json",
+      "counts": {
+        "tests": 1,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "exit_code": 0,
+      "repair": "Only failed positive source-read fixture gets explicit model_input through normal owner setup; assertions retained and strengthened",
+      "raw_sha256": {
+        "commands.json": "0777210fec073046c0cf6117f4b808d62a8df16ab46a9d1d649394cc3427d386",
+        "command.log": "a08d835c8cae0ee7dcfa058e73a221afcd8923b93f080b32c60efc059625d663",
+        "junit.xml": "96a95bf94da02a9342959fc3aca8a252252cbcc3b1948928556f3d9cff64876a"
+      }
+    }
+  ],
+  "accounting": {
+    "historical_initial_passes": 309,
+    "original_failures_with_later_versioned_pass": 42,
+    "new_passes_by_round": [
+      2,
+      14,
+      25,
+      1
+    ],
+    "remaining_failures": 0,
+    "scope": "Each later round runs exactly previous failures; no passing case repeated",
+    "no_final_full351_pass_claim": true,
+    "no_final_full42_pass_claim": true,
+    "current_revision_tests_executed": 1
+  },
+  "statics": {
+    "initial": "Global lint15errors in3newfiles; mypy253sources9errors only privateCore; original logs retained",
+    "failed_only_rechecks": [
+      {
+        "scope": "Only3original failed lintfiles",
+        "exit_code": 0,
+        "source_sha256": "b80e0cc159819e9acc3d9f99d159ba43a8263b265473fa660b6cbc6a9fd41695",
+        "evidence": "evidence/super-agent-v1/SAV1-11/start-20261113T040752Z-8b0bf668/20261113T045416Z-lint-only-original3failedfiles-40364e/commands.json"
+      },
+      {
+        "scope": "Only original failed Core mypytarget",
+        "exit_code": 0,
+        "source_sha256": "b80e0cc159819e9acc3d9f99d159ba43a8263b265473fa660b6cbc6a9fd41695",
+        "evidence": "evidence/super-agent-v1/SAV1-11/start-20261113T040752Z-8b0bf668/20261113T045416Z-typecheck-only-originalfailedcore-49df20/commands.json"
+      }
+    ],
+    "after_later_repairs": "NOT_RERUN_USER_ONLY_PREVIOUSLY_FAILED_SCOPE; no current-global-static PASS claim"
+  },
+  "final_integrity": {
+    "evidence": "evidence/super-agent-v1/SAV1-11/final-integrity-20261113T052537Z-082a20/final-integrity-and-cleanup.json",
+    "pass": true,
+    "manifest_count": 11,
+    "artifact_references": 204,
+    "installed_migration_count": 41,
+    "old40_sql_unchanged": true,
+    "approved_four_shared_files_unchanged": true,
+    "I01_dispatch_fence_H02_financial_AST_user_and_history_preserved": true,
+    "seven_new_tables_empty": true,
+    "temporary_PG_databases_sessions_fault_containers_this_checkout_checks": 0
+  },
+  "gates": {
+    "engineering_gate": "PASS",
+    "policy_security_gate": "NOT_RUN",
+    "live_source_channel_gate": "NOT_RUN",
+    "live_coding_gate": "NOT_RUN",
+    "live_publication_gate": "NOT_RUN",
+    "continuous_operation_gate": "NOT_RUN"
+  },
+  "independent_review": "NOT_RUN",
+  "semantic_evaluation": "NOT_RUN",
+  "real_platform_paid_outbound_publication": "NOT_RUN",
+  "limitations": [
+    "Owner queued metadata preparation/ACK applies no tool or constraint; begin_run advances epoch and fences queued pages",
+    "Only fresh authorized model_input/auto may materialize in memory; live additionally requires original exact binding/model_call checks; no materialize HTTP endpoint",
+    "No Scheduler/Worker/Job/safepoint bridge or automatic task reopening; these remain later cards",
+    "Handback only immutable needs_routing/loop_blocked refs; no direct semantic re-evaluation or unknown retry",
+    "Cross-version evidence retained; no latest-revision fullsuite or current-global-static claim"
+  ],
+  "SA12": "PLANNED_NOT_STARTED",
+  "history": [
+    "docs/super-agent-v1/accept/SAV1-11/preparation-20261113.json",
+    "docs/super-agent-v1/sa11-proposal/canonical-guard-repair-request.txt"
+  ],
+  "real_model_calls_this_card": 0,
+  "source_subscription_direct_model_calls": 0
+}

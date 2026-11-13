@@ -1,8 +1,8 @@
 {
   "schema_version": "super-agent-card-acceptance-v1",
   "task_id": "SAV1-11",
-  "status": "IN_PROGRESS",
-  "work_state": "LOCAL_ENGINEERING_READY_FOR_INDEPENDENT_REVIEW",
+  "status": "DONE",
+  "work_state": "CLOSED_USER_ACCEPTED_LOCAL_ENGINEERING_INDEPENDENT_PASS",
   "recorded_at_utc": "2026-11-13T05:45:25.179391+00:00",
   "source_commit": "ca49b760c2439147bb4555a335c975b69a878dbb",
   "source_sha256": "f94ed73b645a6c06514b3c1f5811c9889f74467026150236ae04232313403f2e",
@@ -182,7 +182,7 @@
     "live_publication_gate": "NOT_RUN",
     "continuous_operation_gate": "NOT_RUN"
   },
-  "independent_review": "NOT_RUN",
+  "independent_review": "PASS",
   "semantic_evaluation": "NOT_RUN",
   "real_platform_paid_outbound_publication": "NOT_RUN",
   "limitations": [
@@ -198,5 +198,6 @@
     "docs/super-agent-v1/sa11-proposal/canonical-guard-repair-request.txt"
   ],
   "real_model_calls_this_card": 0,
-  "source_subscription_direct_model_calls": 0
+  "source_subscription_direct_model_calls": 0,
+  "independent_evidence": "docs/super-agent-v1/accept/SAV1-11/independent-closure-20261113.json"
 }
