@@ -28,7 +28,7 @@
   "live_publication": "NOT_RUN",
   "continuous_operation": "NOT_RUN",
   "SA13": "PLANNED_NOT_STARTED",
-  "artifact_snapshot_utc": "2026-11-13T08:15:07.636482+00:00",
+  "artifact_snapshot_utc": "2026-11-13T08:33:27.942841+00:00",
   "verification_registration": "SAV1-12; outcomes separate, no PASS implied by hashes",
   "artifacts": [
     {
@@ -201,7 +201,7 @@
     },
     {
       "path": "tests/test_super_agent_sa12_runtime.py",
-      "sha256": "0162ca47c18687e7d41f523ff9990115f96909935e41bb0fd26c158ed64ba140"
+      "sha256": "d5884e6157b2f851903257cceffb2d0a822a16cd7e1c1074c96642aa06d2d35f"
     },
     {
       "path": "tests/test_super_agent_sa12_source.py",

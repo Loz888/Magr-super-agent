@@ -85,9 +85,16 @@ def names(env, assignment_id):
 
 def assert_absent(env, assignment_id):
     for name in names(env, assignment_id):
-        probe = docker("container", "inspect", name)
+        probe = docker("container", "inspect", "--format", "{{json .}}", name)
         assert probe.returncode != 0 and not probe.stdout.strip()
-        assert "No such" in probe.stderr.decode()
+        assert probe.returncode == 1
+        message = probe.stderr.decode("utf-8", "replace").strip()
+        assert "No such" in message
+        assert message in {
+            f"Error response from daemon: No such container: {name}",
+            f"Error: No such container: {name}",
+            f"Error: No such object: {name}",
+        }
 
 
 @contextmanager
