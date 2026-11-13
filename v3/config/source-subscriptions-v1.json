@@ -5,12 +5,12 @@
   "ownership_status": "ACTUALLY_CONFIRMED_FIXED_COMMIT",
   "ownership_commit": "d0af0747dd129033cb7bd0abd2af9ca5a57a8d4a",
   "ownership_section": 35,
-  "artifact_snapshot_utc": "2026-11-13T04:48:38.968099+00:00",
+  "artifact_snapshot_utc": "2026-11-13T05:24:38.396254+00:00",
   "artifact_snapshot_scope": "Current per-file formal artifacts. Root refreshes references after registry or source repairs; verification outcomes are recorded separately.",
   "artifact_status": "CURRENT_FORMAL_HASHES",
   "migration": "0042_source_subscriptions.sql",
-  "migration_status": "FORMAL0042_INSTALLED",
-  "installed_migration_count": 40,
+  "migration_status": "FORMAL0042_AND0043_INSTALLED",
+  "installed_migration_count": 41,
   "shared_wiring_status": "EXACT_APPROVED_PATCH_APPLIED",
   "shared_proposal": {
     "sql_path": "docs/super-agent-v1/sa11-proposal/0042_source_subscriptions.sql",
@@ -81,7 +81,7 @@
     },
     {
       "path": "tests/test_super_agent_sa11_migration.py",
-      "sha256": "0c6109aee38b701c400cf9a603b059cc7a8c265f51202f7e85de6d6b10281780"
+      "sha256": "b0353218326ab317e755c9038da0ad455138edec25277eeb1fead8a404d6dbfc"
     },
     {
       "path": "tests/test_super_agent_sa11_recovery.py",
@@ -186,6 +186,17 @@
     {
       "path": "schemas/super-agent-v1/source-subscription-matches-v1.schema.json",
       "sha256": "75bc1e12f71fcb5a91fb2a2fe45f228a8a5249211dca674b1c2969fca442c96e"
+    },
+    {
+      "path": "migrations/0043_source_subscription_canonical_guard.sql",
+      "sha256": "55f7e50886149eca9ae78db2bc5e72d186b41679fc403c8c318aa6fb8e10a008"
     }
-  ]
+  ],
+  "forward_repair": {
+    "migration": "0043_source_subscription_canonical_guard.sql",
+    "sql_sha256": "55f7e50886149eca9ae78db2bc5e72d186b41679fc403c8c318aa6fb8e10a008",
+    "ownership_commit": "a9b02bfe946f643d58b868ad3bcb4ad851aeec5e",
+    "ownership_section": 36,
+    "scope": "Minimal original canonical-version trigger function repair in a forward migration; original40 SQL byte history preserved"
+  }
 }

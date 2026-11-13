@@ -66,7 +66,7 @@
     },
     {
       "path": "tests/test_super_agent_sa09_migration.py",
-      "sha256": "03e7336a9e1d38ab9e116b3145d1bf67df16e94e4d5d93268ee7c42c53562c72"
+      "sha256": "e0cb6cd9bfeeebab42f8f59b9523abb4927dd543a02f5fe8a8faa21c6aa57d50"
     },
     {
       "path": "tests/test_super_agent_sa09_model.py",

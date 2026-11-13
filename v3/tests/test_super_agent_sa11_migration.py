@@ -25,7 +25,7 @@ def test_formal0042_checksum_and_original40_migration_catalogue(engine):
         p.name: hashlib.sha256(p.read_bytes()).hexdigest()
         for p in (APP / "migrations").glob("*.sql")
     }
-    assert len(source) == 40
+    assert len(source) == 41
     assert not any(n.startswith(("0037", "0040")) for n in source)
     with engine.transaction() as conn:
         installed = {

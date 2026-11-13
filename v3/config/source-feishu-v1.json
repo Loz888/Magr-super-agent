@@ -102,7 +102,7 @@
     },
     {
       "path": "tests/test_super_agent_sa06_migration.py",
-      "sha256": "53afae11cc71edbec293761e9e963b7341c5cbc234e1b5502d3baff49b6c3eff"
+      "sha256": "c01c0c9d275bb9cdcc30964d0b9564d6180de5de6794a1a98f418a0edd298d3f"
     },
     {
       "path": "tests/test_super_agent_sa06_privacy.py",
@@ -130,7 +130,7 @@
     },
     {
       "path": "tests/test_super_agent_sa05.py",
-      "sha256": "bb0ce73f1c7ccbcf94749d8c00e1307d2db208856943cb69f87c77018b333b55"
+      "sha256": "3894662d51d467f9f8866fe043c7f3ee021aa142d4c99bf35a92a4707d6c13dd"
     },
     {
       "path": "pyproject.toml",

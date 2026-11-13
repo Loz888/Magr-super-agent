@@ -63,6 +63,7 @@ def test_36_to_0038_preserves_old_source_and_financial_facts_and_rolls_failed_dd
     assert {path.name for path in paths} == set(baseline) | {
         MIGRATION, "0039_super_agent_source_eval.sql", "0041_source_correlations.sql",
         "0042_source_subscriptions.sql",
+        "0043_source_subscription_canonical_guard.sql",
     }
     directory = tmp_path / "before0038"
     directory.mkdir()
@@ -141,12 +142,13 @@ def test_36_to_0038_preserves_old_source_and_financial_facts_and_rolls_failed_dd
         assert migrate(dsn) == [
             MIGRATION, "0039_super_agent_source_eval.sql", "0041_source_correlations.sql",
             "0042_source_subscriptions.sql",
+            "0043_source_subscription_canonical_guard.sql",
         ]
         assert migrate(dsn) == []
         assert snapshot(dsn, old_tables) == before
         with psycopg.connect(dsn) as conn:
             checksums = dict(conn.execute("SELECT name,sha256 FROM app.schema_migrations"))
-            assert len(checksums) == 40 and checksums == {
+            assert len(checksums) == 41 and checksums == {
                 path.name: hashlib.sha256(path.read_bytes()).hexdigest() for path in paths
             }
             assert {row[0] for row in conn.execute(
