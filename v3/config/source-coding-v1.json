@@ -1,7 +1,7 @@
 {
   "contract_version": "source-coding-mandate-v1",
   "runtime_version": "source-coding-fixture-runtime-v1",
-  "status": "FORMAL_IMPLEMENTATION_IN_PROGRESS",
+  "status": "FORMAL_IMPLEMENTATION_LOCAL_ENGINEERING_READY_PENDING_INDEPENDENT",
   "ownership_status": "ACTUALLY_CONFIRMED_FIXED_COMMIT",
   "ownership_commit": "617e14a52d65c5276bcd3ef87dbd0f05b4a3c08d",
   "ownership_section": 38,
@@ -31,7 +31,7 @@
   "harness_h12_commit": "88c75b8dac75da7e7d0c283a451c0ff5a3a3c9b0",
   "harness_h12_live_agent": "FAIL",
   "harness_h12_mvp": "FAIL",
-  "engineering_gate": "NOT_RUN",
+  "engineering_gate": "PASS",
   "policy_security_gate": "NOT_RUN",
   "independent_review": "NOT_RUN",
   "semantic_evaluation": "NOT_RUN",
@@ -48,9 +48,13 @@
     "rerun": false,
     "formal_integration_inferred": false
   },
-  "artifact_snapshot_utc": "2026-11-13T12:08:05.718906+00:00",
+  "artifact_snapshot_utc": "2026-11-13T12:17:05.918025+00:00",
   "artifact_snapshot_scope": "Current formal source/schema/test hashes; these hashes neither rerun historical PASS nor establish a new engineering/independent/live gate.",
   "artifacts": [
+    {
+      "path": "config/source-scheduler-v1.json",
+      "sha256": "a56c4ecc3cd3c731f703cfc582314dd1bfccb457b5b10b099aa4c2f8542a0228"
+    },
     {
       "path": "config/verification.json",
       "sha256": "0a2a516271ff1f33627cbb1b413edbc3c81ac39dac5891c99d121d13b14a3c81"
@@ -66,6 +70,10 @@
     {
       "path": "docs/super-agent-v1/accept/SAV1-13/history/registration-script-20261113T120805718918Z.py",
       "sha256": "c1b4eb6cf448a0f1f0ac0074e9b8bdd6776ec9ea8087c3271b0deda17a938d4f"
+    },
+    {
+      "path": "docs/super-agent-v1/accept/SAV1-13/history/registration-script-20261113T121705918034Z.py",
+      "sha256": "82bf6df340048d4a81b0774824eca1d0ebbc1570c1fdbb8878159a1eb20463f0"
     },
     {
       "path": "docs/super-agent-v1/accept/SAV1-13/history/registration-script.py",
@@ -317,5 +325,14 @@
     "read_path": "SourceCodingJournal.get_payload performs scoped maintenance before current authority and decryption.",
     "effects": "Fence invalid attempts and erase expired or withdrawn ciphertext while preserving minimal facts; no resource/model IO, financial settlement, resource release, resend or business completion."
   },
-  "initial_tree_binding": "Before first Coding execution, recheck actual H03 manifest, registration and immutable reviewed initial tree; a storage-owner edit is not an approved replacement. Subsequent changes require the original trusted pre/postimage journal and current authority."
+  "initial_tree_binding": "Before first Coding execution, recheck actual H03 manifest, registration and immutable reviewed initial tree; a storage-owner edit is not an approved replacement. Subsequent changes require the original trusted pre/postimage journal and current authority.",
+  "migration_status": "FORMAL0046_INSTALLED_MAIN_AND_DISPOSABLE_PG",
+  "outcomes_are_versioned": true,
+  "local_policy_negative_checks": "PASS_REGISTERED_CONTROLLED_SCOPE_ONLY_NOT_COMPLETE_SYSTEM",
+  "readiness_summary": "docs/super-agent-v1/accept/SAV1-13/accept.json",
+  "latest_functional_source_commit": "47fb162",
+  "latest_functional_source_sha256": "2b32953d1210e97e0bb8584c41f612a681edaed261dfee0e61be17f37977309a",
+  "distinct_formal_cases_with_passing_evidence": 212,
+  "latest_single_full_suite_pass_claimed": false,
+  "remaining_failed_cases": 0
 }

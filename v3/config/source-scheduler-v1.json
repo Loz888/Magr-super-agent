@@ -27,7 +27,7 @@
   "live_coding": "NOT_RUN",
   "live_publication": "NOT_RUN",
   "continuous_operation": "NOT_RUN",
-  "SA13": "PLANNED_NOT_STARTED",
+  "SA13": "SEE_SOURCE_CODING_V1_CURRENT_STATE",
   "artifact_snapshot_utc": "2026-11-13T12:01:03.011788+00:00",
   "verification_registration": "SAV1-12; outcomes separate, no PASS implied by hashes",
   "artifacts": [
