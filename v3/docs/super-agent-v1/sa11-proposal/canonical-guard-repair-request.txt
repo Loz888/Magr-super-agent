@@ -1,0 +1,16 @@
+SA11 首轮失败：0043最小前向修复编号/所有权确认请求
+
+第35节d0af0747确认的0042和四文件补丁已按原hash正式落地；原注册351项首次运行结果309PASS/42FAIL。42项均被同一0042触发器错误阻断（API表现为存储503）：CASE在解析时同时引用NEW.seed_input_id/NEW.input_id，而版本表只有前者、其他三表只有后者，实际PG报record "new" has no field "input_id"。原始失败完整保留：
+/home/imini/magr-super-agent/v3/evidence/SAV1-11/20261113T045454Z-6ade8d74/{result.json,command.log,junit.xml}
+
+0042已安装，SA不改写其原SQL/checksum，也不重跑已通过309项。现拟新增0043_source_subscription_canonical_guard.sql，仅CREATE OR REPLACE既有SA专属app.sa_source_subscription_canonical_guard()函数，把同一CASE表达式改为独立PL/pgSQL IF分支，按实际表只求值存在的字段；原canonical input/source/project/fingerprint拒绝谓词、7表、11接口和四文件接线完全不改。无新业务表/入口/授权，也不修改预算/Harness/H12。
+
+具体前向SQL：
+/home/imini/magr-super-agent/v3/docs/super-agent-v1/sa11-proposal/0043_source_subscription_canonical_guard.sql
+SHA256: 55f7e50886149eca9ae78db2bc5e72d186b41679fc403c8c318aa6fb8e10a008
+
+原0042 SHA仍为3e29900f22472c4d8b0c5b2bc60a64a798134532b2e47ab09427cc5006d4c8d0；原patch SHA仍为da51e1366a086a53125127f2fd54fec3b497629478a542d15a37c220365dedb6。这里只申请新前向迁移编号和既有函数的最小修补，不扩大第35节接口/所有权边界。
+
+只读Harness固定be9900051cb9965ca5eac1a621bd3de8e2721473迁移最高0040，未见0043已提交占用。请单独提交新交接节，确认0043及此函数修复由SA侧独占、SQL精确hash与无编号/接口/文件冲突，并提供固定commit。若编号被占请明确替代，SA再更新草案。不要执行SQL，不改SA/主库，不夹带其他工作，无需运行H12或付费检查。
+
+确认后SA用原迁移入口安装，原40 SQL不变，只复验原42失败节点并保存分版本结果。SA12不启动，真实/付费/外发/发布/长期门仍NOT_RUN。
