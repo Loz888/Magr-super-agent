@@ -62,7 +62,7 @@
     },
     {
       "path": "src/mgar_v3/api.py",
-      "sha256": "0f0f998f44851f61fa67f40d8233881d6908b180ce836361296b86d44dc15de6"
+      "sha256": "63efc74cdebebfdb16e6ae36dc3d5aafdc8c75aeff1330f548ed5e11425ebe7c"
     },
     {
       "path": "migrations/0035_feishu_source.sql",
@@ -102,7 +102,7 @@
     },
     {
       "path": "tests/test_super_agent_sa06_migration.py",
-      "sha256": "989e052fdc612eb61de78c075b417b9a3ea4418f0bb85923dbad65bd21e0fdd6"
+      "sha256": "4c607271c778a43f66e465556a471b0f5126d883a6b4473136c7e5b9bce93368"
     },
     {
       "path": "tests/test_super_agent_sa06_privacy.py",
@@ -130,7 +130,7 @@
     },
     {
       "path": "tests/test_super_agent_sa05.py",
-      "sha256": "7cf0b5870aecf1b92ef67edbf573f45f03ceb3e2ea3a3862d4d135694f688122"
+      "sha256": "918f70a22738a65788ee554f772a508f1ffe8af57321094a8de3654550516e57"
     },
     {
       "path": "pyproject.toml",
@@ -142,7 +142,7 @@
     },
     {
       "path": "config/verification.json",
-      "sha256": "7eed025b2c7081c97c150bfa7501165898d409f3a6dd65670d49c8c54eeed6cf"
+      "sha256": "771fedeec10a713a37b7ae92aaedb5da94b3e04e69fc834318991e938b74745c"
     },
     {
       "path": "config/source-ingress-v1.json",

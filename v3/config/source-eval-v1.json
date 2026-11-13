@@ -66,7 +66,7 @@
     },
     {
       "path": "tests/test_super_agent_sa09_migration.py",
-      "sha256": "db55af4eade64309d2cf751387f4a35b65cd4866b39b747375c16b4f89543671"
+      "sha256": "8f9ae4a68dfc4c7368a799b32b330dfb8680630e588d97ca4f2f5860dda2df13"
     },
     {
       "path": "tests/test_super_agent_sa09_model.py",
@@ -142,11 +142,11 @@
     },
     {
       "path": "src/mgar_v3/coordination/engine.py",
-      "sha256": "40c3845e9e269ad37325e827d0d1d1104d1f66b0ccf833a125097de38a6777e6"
+      "sha256": "5a75bda801b9b8a87899042e141843ec9eee28fc71e88eb938347847e6150b45"
     },
     {
       "path": "src/mgar_v3/api.py",
-      "sha256": "0f0f998f44851f61fa67f40d8233881d6908b180ce836361296b86d44dc15de6"
+      "sha256": "63efc74cdebebfdb16e6ae36dc3d5aafdc8c75aeff1330f548ed5e11425ebe7c"
     },
     {
       "path": "src/mgar_v3/routing/budget.py",
@@ -166,7 +166,7 @@
     },
     {
       "path": "config/verification.json",
-      "sha256": "7eed025b2c7081c97c150bfa7501165898d409f3a6dd65670d49c8c54eeed6cf"
+      "sha256": "771fedeec10a713a37b7ae92aaedb5da94b3e04e69fc834318991e938b74745c"
     },
     {
       "path": "tests/test_super_agent_sa09_i01.py",

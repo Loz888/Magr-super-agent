@@ -61,7 +61,7 @@ def test_36_to_0038_preserves_old_source_and_financial_facts_and_rolls_failed_dd
     assert hashlib.sha256(manifest.encode()).hexdigest() == BASELINE_SHA256
     assert not any(path.name.startswith("0037") for path in paths)
     assert {path.name for path in paths} == set(baseline) | {
-        MIGRATION, "0039_super_agent_source_eval.sql",
+        MIGRATION, "0039_super_agent_source_eval.sql", "0041_source_correlations.sql",
     }
     directory = tmp_path / "before0038"
     directory.mkdir()
@@ -137,12 +137,14 @@ def test_36_to_0038_preserves_old_source_and_financial_facts_and_rolls_failed_dd
                     "SELECT tablename FROM pg_tables WHERE schemaname='app' "
                     "AND tablename LIKE 'sa_fast_path_%'",
                 ).fetchall() == []
-        assert migrate(dsn) == [MIGRATION, "0039_super_agent_source_eval.sql"]
+        assert migrate(dsn) == [
+            MIGRATION, "0039_super_agent_source_eval.sql", "0041_source_correlations.sql",
+        ]
         assert migrate(dsn) == []
         assert snapshot(dsn, old_tables) == before
         with psycopg.connect(dsn) as conn:
             checksums = dict(conn.execute("SELECT name,sha256 FROM app.schema_migrations"))
-            assert len(checksums) == 38 and checksums == {
+            assert len(checksums) == 39 and checksums == {
                 path.name: hashlib.sha256(path.read_bytes()).hexdigest() for path in paths
             }
             assert {row[0] for row in conn.execute(

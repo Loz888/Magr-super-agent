@@ -1,16 +1,15 @@
 {
   "contract_version": "source-correlation-v1",
   "snapshot_version": "source-correlation-snapshot-v1",
-  "status": "PRIVATE_IMPLEMENTATION_DRAFT_PENDING_SHARED_SCOPE",
-  "ownership_status": "PENDING_FIXED_HARNESS_ACK",
-  "ownership_commit": null,
-  "private_source_commit": "8940ee93db10fcf3b1d1268d3e91249f81018d76",
-  "artifact_snapshot_utc": "2026-11-12T16:09:36.886339+00:00",
-  "artifact_snapshot_scope": "Current per-file private artifacts after lint-only style repair and real registry preparation; historical tests remain bound to their original versions",
-  "artifact_status": "CURRENT_PRIVATE_HASHES_PENDING_ROOT_SHARED_WIRING_REFRESH",
+  "status": "FORMAL_IMPLEMENTATION",
+  "ownership_status": "ACTUALLY_CONFIRMED_FIXED_COMMIT",
+  "ownership_commit": "0a335a14d8ce37703b5cfe0eaa7960d4ac571fc7",
+  "artifact_snapshot_utc": "2026-11-13T03:43:09.713997+00:00",
+  "artifact_snapshot_scope": "Formal shared SQL/Engine/API and private artifacts; current per-file hashes; historical components remain bound to original snapshots",
+  "artifact_status": "CURRENT_FORMAL_HASHES",
   "proposed_migration": "0041_source_correlations.sql",
-  "migration_status": "PROPOSED_NOT_INSTALLED",
-  "shared_wiring_status": "PROPOSAL_NOT_APPLIED",
+  "migration_status": "FORMAL0041_INSTALLED",
+  "shared_wiring_status": "EXACT_APPROVED_PATCH_APPLIED",
   "shared_proposal": {
     "sql_path": "docs/super-agent-v1/sa10-proposal/0041_source_correlations.sql",
     "sql_sha256": "d6aead811237e532664adf62b15521a16369fd29b8dfe9d26156f0d74fec1ee3",
@@ -37,8 +36,8 @@
   "correction": "CAS revision plus current snapshot and exact original target; all prior Ticket attempts checked, executed targets cannot be silently reassigned",
   "source_eval_v1_and_i01_fence_unchanged": true,
   "financial_truth": "Original Engine/Router/SA07 ledgers unchanged; no new costs, reservations or parallel monetary ledger",
-  "verification_registration": "SAV1-10 registered:201 collected cases (166 new +35 direct SA09 dependencies); first execution NOT_RUN pending fixed shared ownership ACK",
-  "refresh_after_ack": "Root refreshes affected artifact hashes after approved wiring/registry changes; installed 0041 is listed only once an actual formal file exists",
+  "verification_registration": "SAV1-10:201 formal cases, exact2 previouslyfailed guard retests +199 previouslyNOT_RUN first checks; results are recorded separately in docs/super-agent-v1/accept/SAV1-10/accept.json",
+  "refresh_after_ack": "Confirmed exact SQL and shared patch applied; hashes refreshed for formal files; prior proposal histories preserved",
   "semantic_evaluation": "NOT_RUN",
   "independent_review": "NOT_RUN",
   "real_platform_paid_external_publication_continuous_operation": "NOT_RUN",
@@ -78,7 +77,7 @@
     },
     {
       "path": "tests/test_super_agent_sa10_api.py",
-      "sha256": "f0ac2f1633536c2ece4708219d972a3c11c41ee2999c49f262dc8fecd12ee081"
+      "sha256": "6d1ddbb01cfbe66c49f63cd154fe1bd96d4700171b88ad8bab31ef81fba1caca"
     },
     {
       "path": "tests/test_super_agent_sa10_migration.py",
@@ -130,7 +129,20 @@
     },
     {
       "path": "config/verification.json",
-      "sha256": "7eed025b2c7081c97c150bfa7501165898d409f3a6dd65670d49c8c54eeed6cf"
+      "sha256": "771fedeec10a713a37b7ae92aaedb5da94b3e04e69fc834318991e938b74745c"
+    },
+    {
+      "path": "migrations/0041_source_correlations.sql",
+      "sha256": "d6aead811237e532664adf62b15521a16369fd29b8dfe9d26156f0d74fec1ee3"
+    },
+    {
+      "path": "src/mgar_v3/coordination/engine.py",
+      "sha256": "5a75bda801b9b8a87899042e141843ec9eee28fc71e88eb938347847e6150b45"
+    },
+    {
+      "path": "src/mgar_v3/api.py",
+      "sha256": "63efc74cdebebfdb16e6ae36dc3d5aafdc8c75aeff1330f548ed5e11425ebe7c"
     }
-  ]
+  ],
+  "baseline_before_formal_integration": "e9ee378c1977cdb4feaea29bda2d00e3f6c891ca"
 }
