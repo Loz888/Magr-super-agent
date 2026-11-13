@@ -138,7 +138,8 @@ def test_real_canonical_ci_flood_cannot_take_next_turn_from_authorized_human(
     with engine.transaction() as conn:
         assert (
             conn.execute(
-                "SELECT count(*) AS n FROM app.sa_scheduler_queue WHERE classification='automation' "
+                "SELECT count(*) AS n FROM app.sa_scheduler_queue "
+                "WHERE classification='automation' "
                 "AND state='queued'",
             ).fetchone()["n"]
             == 5

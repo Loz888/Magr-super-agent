@@ -270,7 +270,9 @@ def test_all_control_requests_keep_cas_and_review_without_worker_secret_fields()
     ]
     for request in requests:
         assert type(request).model_validate_json(request.model_dump_json()) == request
-        assert not ({"bearer", "token", "session_token", "body"} & type(request).model_fields.keys())
+        assert not (
+            {"bearer", "token", "session_token", "body"} & type(request).model_fields.keys()
+        )
         if hasattr(request, "expected_revision"):
             with pytest.raises(ValidationError):
                 changed(request, expected_revision=True)

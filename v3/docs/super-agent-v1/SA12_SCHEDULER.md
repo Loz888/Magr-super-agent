@@ -28,6 +28,8 @@ claim先在原事务中核对当前配置、Session、Run/Mandate、Source和共
 工作区只取固定H03文件；每个Assignment映射到独立Task副本，registration ID不充当
 唯一Task目录。实际准备回执绑定H03内容树，模型或HTTP不能选择宿主路径、调用apply_back。
 Broker只取固定H06文件加已确认的绑定hook；不导入H05/H09/H11/H12或CommandSession。
+首轮lint发现新增hook两处行长问题，仅折行修复，AST与批准版本一致；原批准补丁不改，
+当前字节差异和哈希另见 `sa12-proposal/broker-formatting-followup.json`。
 既有H02 contracts仅增加兼容的 `ExecutionRequest.execution_epoch=0`，原版本保存在Git及
 清单历史中，其余五个H02固定产物保持原字节，不把这一扩展说成六个文件全部未变。
 

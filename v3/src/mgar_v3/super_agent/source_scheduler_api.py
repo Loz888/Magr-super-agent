@@ -137,7 +137,9 @@ def register(
         user: Annotated[BrowserSession, Depends(browser_user)],
         limit: Annotated[int, Query(ge=1, le=100)] = 100,
     ) -> JSONResponse:
-        return response(_service(engine).queue(request.cookies.get(SESSION_COOKIE, ""), limit=limit))
+        return response(_service(engine).queue(
+            request.cookies.get(SESSION_COOKIE, ""), limit=limit,
+        ))
 
     @app.post(PREFIX + "/queue/{queue_id}/cancel")
     def cancel_queue(
@@ -148,7 +150,9 @@ def register(
         body: Annotated[SchedulerQueueCancelRequest, Depends(_body(SchedulerQueueCancelRequest))],
     ) -> JSONResponse:
         _same_reference(queue_id, body.queue_id)
-        return response(_service(engine).cancel_queue(request.cookies.get(SESSION_COOKIE, ""), body))
+        return response(_service(engine).cancel_queue(
+            request.cookies.get(SESSION_COOKIE, ""), body,
+        ))
 
     @app.post(PREFIX + "/sessions")
     def register_session(

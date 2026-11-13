@@ -429,7 +429,8 @@ class H03SchedulerResourceDriver:
             project_id=context.project_id, assignment_id=context.assignment_id,
             run_id=context.run_id, session_id=context.session_id, workspace_id=context.workspace_id,
             epoch=context.epoch, operation_id=context.operation_id,
-            request_sha256=context.request_sha256, provider_operation_id=context.provider_operation_id,
+            request_sha256=context.request_sha256,
+            provider_operation_id=context.provider_operation_id,
             state=state, observed_at=observed_at or datetime.now(UTC), result_code=code,
             tree_sha256=tree, exit_code=exit_code, processes_stopped=stopped,
             workspace_fenced=fenced, related=related,
@@ -444,7 +445,9 @@ class H03SchedulerResourceDriver:
         return registry
 
     def _open(self, context: ResourceContext) -> TaskWorkspace:
-        workspace = self._registry().open_task_workspace(self.registration, str(context.assignment_id))
+        workspace = self._registry().open_task_workspace(
+            self.registration, str(context.assignment_id),
+        )
         if (
             workspace.root != self._directory(context.assignment_id)
             or workspace.manifest.task_id != str(context.assignment_id)

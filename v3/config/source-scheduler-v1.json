@@ -28,7 +28,7 @@
   "live_publication": "NOT_RUN",
   "continuous_operation": "NOT_RUN",
   "SA13": "PLANNED_NOT_STARTED",
-  "artifact_snapshot_utc": "2026-11-13T08:08:00.341489+00:00",
+  "artifact_snapshot_utc": "2026-11-13T08:15:07.636482+00:00",
   "verification_registration": "SAV1-12; outcomes separate, no PASS implied by hashes",
   "artifacts": [
     {
@@ -42,6 +42,14 @@
     {
       "path": "docs/super-agent-v1/sa12-proposal/SA12_SCOPE.md",
       "sha256": "20a8f7c9c84067be4e1fb0725b1d39630050c8f6e1bbde99ebad5a08eca19760"
+    },
+    {
+      "path": "docs/super-agent-v1/sa12-proposal/broker-formatting-followup.json",
+      "sha256": "af17e1f8697c6e7d0a4ffffc2a1206ac187d52d407f8bcd651cf4ae38aae1c8c"
+    },
+    {
+      "path": "docs/super-agent-v1/sa12-proposal/broker-formatting-followup.patch",
+      "sha256": "5747885e146633d044c5b888d76cfffd0b8abfe23b2f72b13477a1dec9d057eb"
     },
     {
       "path": "docs/super-agent-v1/sa12-proposal/draft-contracts.md",
@@ -129,7 +137,7 @@
     },
     {
       "path": "src/mgar_v3/harness/broker.py",
-      "sha256": "1ac29b2baf527baa74b59f0f375eddbfd058506e79771bd8bd38788e108dc91f"
+      "sha256": "2fe3e706bbdba761e53d92fce4674f14214ba3abe9997b1a6b3d11d06a5bbf36"
     },
     {
       "path": "src/mgar_v3/harness/contracts.py",
@@ -141,11 +149,11 @@
     },
     {
       "path": "src/mgar_v3/super_agent/source_scheduler.py",
-      "sha256": "43292a33d2ad3bb870885544ee3470a12337cec4270cd016fe02ddafd7997b5d"
+      "sha256": "51225e3ddd1a68b5cf30bc56e22c29097adae442afed6f9ae1214117fc1afef2"
     },
     {
       "path": "src/mgar_v3/super_agent/source_scheduler_api.py",
-      "sha256": "c9978a18546b74ad94b8323245625137e0e90c3746bc0ee98f2ff9dced7126b3"
+      "sha256": "8716728769f8fa367f86dab36e50fbb87a62f4eacbc9325c29e7426180813e3d"
     },
     {
       "path": "src/mgar_v3/super_agent/source_scheduler_domain.py",
@@ -157,7 +165,7 @@
     },
     {
       "path": "src/mgar_v3/super_agent/source_scheduler_runtime.py",
-      "sha256": "3d542e1c22c18713cd2f40fab4b6f4082315cd150c60c104ca028d9ed0210838"
+      "sha256": "ac8aa5d08646a0075a65ccc682b75fe9350eb6d9f605d32e54ab8a75eafa9ada"
     },
     {
       "path": "tests/sa12_crash_actor.py",
@@ -177,11 +185,11 @@
     },
     {
       "path": "tests/test_super_agent_sa12_contracts.py",
-      "sha256": "150c2cb7a553880de2f54a2b564e8e13830670a53f47d34a2ffd84d4de5e853e"
+      "sha256": "061eebec2af73f7298066150e67e736a9dc8c86df25ff18bd8533dfaf2624289"
     },
     {
       "path": "tests/test_super_agent_sa12_core_boundaries.py",
-      "sha256": "0a132b1eada5299a1f60a679d12ae289f4aa90fc4eb62eb69b74119c95606246"
+      "sha256": "b72125bfd107d4a23b313af4540c695550263d1ce0f1972b28a0eab5e92c98b5"
     },
     {
       "path": "tests/test_super_agent_sa12_migration.py",
@@ -193,11 +201,11 @@
     },
     {
       "path": "tests/test_super_agent_sa12_runtime.py",
-      "sha256": "f06db711061508de02b4bced0f3a9be0d20eb13763dc1fd9c6aa3d3c3ca8e46f"
+      "sha256": "0162ca47c18687e7d41f523ff9990115f96909935e41bb0fd26c158ed64ba140"
     },
     {
       "path": "tests/test_super_agent_sa12_source.py",
-      "sha256": "bcba782475f514339ea0e375e3a786cba357423bd6f517f5e261cf9a631535f5"
+      "sha256": "a5b86afa6a671b765b3bbf266f6f050caa7ec5970569b0be48d700fbbdba94e7"
     }
   ]
 }

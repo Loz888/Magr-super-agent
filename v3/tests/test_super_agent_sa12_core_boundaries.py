@@ -64,7 +64,8 @@ def occupied_slot(env):
 def original_context(engine, run_id):
     with engine.transaction() as conn:
         return conn.execute(
-            "SELECT r.question,r.input_revision,r.mailbox_cursor,t.ticket_id,t.status AS ticket_status,"
+            "SELECT r.question,r.input_revision,r.mailbox_cursor,t.ticket_id,"
+            "t.status AS ticket_status,"
             "t.thread_id,t.mandate_id FROM app.runs r JOIN app.tickets t USING(ticket_id) "
             "WHERE r.run_id=%s",
             (run_id,),
@@ -81,7 +82,8 @@ def test_real_pg_lease_expiry_fences_heartbeat_and_old_success_report(engine, tm
         # A valid future short lease fixture crosses actual PG time; no fake past
         # clock, terminal status, grant, completion or business result is injected.
         shortened = conn.execute(
-            "UPDATE app.sa_scheduler_assignments SET lease_until=clock_timestamp()+interval '0.15 seconds',"
+            "UPDATE app.sa_scheduler_assignments SET "
+            "lease_until=clock_timestamp()+interval '0.15 seconds',"
             "last_heartbeat_at=clock_timestamp(),updated_at=clock_timestamp(),revision=revision+1 "
             "WHERE assignment_id=%s AND revision=%s RETURNING *",
             (active["assignment_id"], active["revision"]),

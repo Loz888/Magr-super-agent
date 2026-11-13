@@ -1,0 +1,12 @@
+{
+  "recorded_utc": "2026-11-13T08:11:04.950002+00:00",
+  "ownership": "Existing SA-exclusive SA12 Broker hook scope confirmed298d4c5c section37; no new interface/schema/numbering",
+  "reason": "First make lint E501 only: wrap two new DomainError argument lists; no expression or behavior change",
+  "original_approved_after_sha256": "1ac29b2baf527baa74b59f0f375eddbfd058506e79771bd8bd38788e108dc91f",
+  "formal_after_sha256": "2fe3e706bbdba761e53d92fce4674f14214ba3abe9997b1a6b3d11d06a5bbf36",
+  "AST_identical": true,
+  "original_approved_patch_unchanged": true,
+  "source_of_change": "First lint failure, same existing hook lines; historical exactapproved source preserved in commit7b0c229 and ignored evidence",
+  "new_shared_ownership_required": false,
+  "scope_interpretation": "Nonsemantic formatting within exclusively-owned confirmed implementation; no overlap or interface change inferred"
+}

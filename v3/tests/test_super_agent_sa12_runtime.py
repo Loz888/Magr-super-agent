@@ -339,7 +339,8 @@ def test_sigkill_heartbeat_worker_real_lease_expiry_stops_container_before_slot_
         script = (
             "import json,pathlib,sys,time,urllib.request;"
             "s=json.loads(pathlib.Path(sys.argv[1]).read_text());"
-            "r=urllib.request.Request(s['url'],data=b'',headers={'Authorization':'Bearer '+s['bearer']});"
+            "r=urllib.request.Request(s['url'],data=b'',"
+            "headers={'Authorization':'Bearer '+s['bearer']});"
             "urllib.request.urlopen(r,timeout=3).read();"
             "pathlib.Path(s['marker']).write_text('ready');"
             "exec(\"while True:\\n time.sleep(.5)\\n urllib.request.urlopen(r,timeout=3).read()\")"

@@ -640,7 +640,9 @@ class IsolatedExecutionBroker:
         }
         if set(labels) != required:
             raise DomainError(
-                "HARNESS_COMMAND_BINDING_INVALID", "Complete SA12 ownership labels are required", 422
+                "HARNESS_COMMAND_BINDING_INVALID",
+                "Complete SA12 ownership labels are required",
+                422,
             )
         for key, value in labels.items():
             if (
@@ -758,7 +760,9 @@ class IsolatedExecutionBroker:
         after = self.inspect_bound_command(name, ownership_labels)
         if after.state != "missing":
             raise DomainError(
-                "HARNESS_COMMAND_OUTCOME_UNKNOWN", "Container quiescence could not be established", 503
+                "HARNESS_COMMAND_OUTCOME_UNKNOWN",
+                "Container quiescence could not be established",
+                503,
             )
         self._remove_placeholders(name)
         return after

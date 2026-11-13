@@ -1133,7 +1133,7 @@ class SourceScheduler:
                 started = self.engine.begin_run(run["run_id"])
             at = self._now(conn)
             limits = config.configuration.limits
-            row = conn.execute(
+            inserted = conn.execute(
                 "INSERT INTO app.sa_scheduler_assignments(assignment_id,project_id,request_id,"
                 "request_sha256,"
                 "queue_id,session_id,thread_id,ticket_id,run_id,mandate_id,target_sha256,"
@@ -1172,7 +1172,8 @@ class SourceScheduler:
                     at,
                 ),
             ).fetchone()
-            assert row is not None
+            assert inserted is not None
+            row = inserted
             self._authority(conn, row, self._request(row), preparing=True)
             conn.execute(
                 "UPDATE app.sa_scheduler_queue SET state='claimed',assignment_id=%s,"
