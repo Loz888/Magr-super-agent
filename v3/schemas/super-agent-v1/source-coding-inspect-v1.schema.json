@@ -1,0 +1,21 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "coding_id": {
+      "format": "uuid",
+      "title": "Coding Id",
+      "type": "string"
+    },
+    "run_id": {
+      "format": "uuid",
+      "title": "Run Id",
+      "type": "string"
+    }
+  },
+  "required": [
+    "coding_id",
+    "run_id"
+  ],
+  "title": "CodingInspectRequest",
+  "type": "object"
+}

@@ -1,4 +1,4 @@
-"""Guarded read-only H03 facade; writes await the original Engine journal.
+"""Guarded H03 facade; writes require the original Engine durable journal.
 
 Construction performs no filesystem IO. The supplied authority must hold the
 original Engine mutex and recheck current Source/Assignment permissions before
@@ -8,6 +8,7 @@ it yields. This facade then takes its private workspace lock, in that order.
 import difflib
 import os
 import stat
+from abc import ABC, abstractmethod
 from collections.abc import Callable, Iterator, Sequence
 from contextlib import AbstractContextManager, contextmanager
 from dataclasses import dataclass
@@ -63,6 +64,23 @@ class ExistingFileJournal(Protocol):
     ) -> WorkspaceSnapshot: ...
 
 
+class DurableExistingFileJournal(ABC):
+    """Explicit trusted server port, separate from structural duck typing.
+
+    The Engine adapter implements this port. A random object, including one
+    with a similarly named method, cannot turn the read-only facade writable.
+    """
+
+    @abstractmethod
+    def commit_guarded(
+        self,
+        workspace: "CodingWorkspace",
+        edits: Sequence[WorkspaceEdit],
+        *,
+        expected_tree: str,
+    ) -> WorkspaceSnapshot: ...
+
+
 class CodingWorkspace:
     def __init__(
         self,
@@ -70,11 +88,9 @@ class CodingWorkspace:
         workspace_id: UUID,
         *,
         authority: WorkspaceAuthority | None = None,
-        journal: ExistingFileJournal | None = None,
+        journal: ExistingFileJournal | DurableExistingFileJournal | None = None,
     ) -> None:
-        if not isinstance(workspace, TaskWorkspace) or not isinstance(
-            workspace_id, UUID
-        ):
+        if not isinstance(workspace, TaskWorkspace) or not isinstance(workspace_id, UUID):
             raise _deny("SOURCE_CODING_WORKSPACE_BINDING_INVALID")
         self._workspace = workspace
         self._root = workspace.root
@@ -148,9 +164,7 @@ class CodingWorkspace:
     def _descriptor(self, path: str, *, directory: bool = False) -> Iterator[int]:
         descriptors: list[int] = []
         try:
-            descriptor = os.open(
-                self._root, os.O_RDONLY | os.O_DIRECTORY | os.O_NOFOLLOW
-            )
+            descriptor = os.open(self._root, os.O_RDONLY | os.O_DIRECTORY | os.O_NOFOLLOW)
             descriptors.append(descriptor)
             parts = path.split("/") if path else []
             for number, part in enumerate(parts):
@@ -203,15 +217,11 @@ class CodingWorkspace:
             8 * 1024 * 1024,
         ):
             raise _deny("SOURCE_CODING_WORKSPACE_LIMIT", 413)
-        tree = digest(
-            {path: sha256(value.encode()).hexdigest() for path, value in files.items()}
-        )
+        tree = digest({path: sha256(value.encode()).hexdigest() for path, value in files.items()})
         self._snapshots[tree] = dict(files)
         while len(self._snapshots) > 8:
             del self._snapshots[next(iter(self._snapshots))]
-        return WorkspaceSnapshot(
-            workspace_id=self.workspace_id, tree_hash=tree, files=dict(files)
-        )
+        return WorkspaceSnapshot(workspace_id=self.workspace_id, tree_hash=tree, files=dict(files))
 
     def snapshot(self) -> WorkspaceSnapshot:
         with self._access(WorkspaceAccess("snapshot", self._files)):
@@ -247,9 +257,7 @@ class CodingWorkspace:
                 )
 
     def diff(self, tree_before: str) -> WorkspaceDiff:
-        with self._access(
-            WorkspaceAccess("diff", self._files, baseline_tree=tree_before)
-        ):
+        with self._access(WorkspaceAccess("diff", self._files, baseline_tree=tree_before)):
             before = self._snapshots.get(tree_before)
             if before is None:
                 raise _deny("SOURCE_CODING_WORKSPACE_SNAPSHOT_UNKNOWN", 409)
@@ -284,11 +292,11 @@ class CodingWorkspace:
                 patch="".join(patch),
             )
 
-    def apply(
-        self, edits: Sequence[WorkspaceEdit], *, expected_tree: str
-    ) -> WorkspaceSnapshot:
+    def apply(self, edits: Sequence[WorkspaceEdit], *, expected_tree: str) -> WorkspaceSnapshot:
         paths = tuple(self._relative(edit.path) for edit in edits)
         with self._access(WorkspaceAccess("apply", paths, expected_tree=expected_tree)):
             if self._journal is None:
                 raise _deny("SOURCE_CODING_DURABLE_JOURNAL_REQUIRED")
-            raise _deny("SOURCE_CODING_JOURNAL_EXECUTION_UNAVAILABLE")
+            if not isinstance(self._journal, DurableExistingFileJournal):
+                raise _deny("SOURCE_CODING_JOURNAL_EXECUTION_UNAVAILABLE")
+            return self._journal.commit_guarded(self, edits, expected_tree=expected_tree)

@@ -1,0 +1,14 @@
+{
+  "schema": "sa13-approved-api-import-order-only-followup-v1",
+  "recorded_utc": "2026-11-13T11:26:07.303764+00:00",
+  "ownership_commit": "617e14a52d65c5276bcd3ef87dbd0f05b4a3c08d",
+  "ownership_section": 38,
+  "approved_after_sha256": "b404bc8e5aa7a05fa0cbe912f0fdda5cdb08b0e4fe4fcb9d9abeae11b127addf",
+  "actual_before_sha256": "b404bc8e5aa7a05fa0cbe912f0fdda5cdb08b0e4fe4fcb9d9abeae11b127addf",
+  "actual_after_sha256": "d8714f22c357ac400abc4441b25fb4fe6637ab0e56af954c602b5e982bf4c09d",
+  "scope": "Only move source_coding_api import into lexical order to fix initial lint I001. Original approved integration patch remains preserved; no route, dependency, business or runtime behavior change. No test rerun or PASS implied.",
+  "patch_path": "docs/super-agent-v1/accept/SAV1-13/history/api-import-order-followup.patch",
+  "patch_sha256": "8046fc7a34ab283d330e9ebaf5a43590a61919968026dc32482f7024f9556a89",
+  "source_file": "src/mgar_v3/api.py",
+  "checks_executed": false
+}

@@ -1,0 +1,588 @@
+{
+  "$defs": {
+    "CodingBudgetRef": {
+      "additionalProperties": false,
+      "properties": {
+        "organization_id": {
+          "maxLength": 256,
+          "minLength": 1,
+          "title": "Organization Id",
+          "type": "string"
+        },
+        "organization_revision": {
+          "maximum": 9223372036854775807,
+          "minimum": 1,
+          "title": "Organization Revision",
+          "type": "integer"
+        },
+        "project_revision": {
+          "maximum": 9223372036854775807,
+          "minimum": 1,
+          "title": "Project Revision",
+          "type": "integer"
+        },
+        "profile_sha256": {
+          "pattern": "^[a-f0-9]{64}$",
+          "title": "Profile Sha256",
+          "type": "string"
+        },
+        "price_version": {
+          "maxLength": 256,
+          "minLength": 1,
+          "title": "Price Version",
+          "type": "string"
+        },
+        "price_sha256": {
+          "pattern": "^[a-f0-9]{64}$",
+          "title": "Price Sha256",
+          "type": "string"
+        },
+        "limits_sha256": {
+          "pattern": "^[a-f0-9]{64}$",
+          "title": "Limits Sha256",
+          "type": "string"
+        }
+      },
+      "required": [
+        "organization_id",
+        "organization_revision",
+        "project_revision",
+        "profile_sha256",
+        "price_version",
+        "price_sha256",
+        "limits_sha256"
+      ],
+      "title": "CodingBudgetRef",
+      "type": "object"
+    },
+    "CodingGrant": {
+      "additionalProperties": false,
+      "properties": {
+        "read_paths": {
+          "items": {
+            "maxLength": 256,
+            "type": "string"
+          },
+          "maxItems": 64,
+          "minItems": 1,
+          "title": "Read Paths",
+          "type": "array"
+        },
+        "write_paths": {
+          "items": {
+            "maxLength": 256,
+            "type": "string"
+          },
+          "maxItems": 32,
+          "minItems": 1,
+          "title": "Write Paths",
+          "type": "array"
+        },
+        "allowed_commands": {
+          "items": {
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_+.-]{0,63}$",
+            "type": "string"
+          },
+          "maxItems": 32,
+          "minItems": 1,
+          "title": "Allowed Commands",
+          "type": "array"
+        },
+        "protected_paths": {
+          "default": [
+            ".git",
+            ".mgar",
+            ".env"
+          ],
+          "items": {
+            "maxLength": 256,
+            "type": "string"
+          },
+          "maxItems": 64,
+          "minItems": 3,
+          "title": "Protected Paths",
+          "type": "array"
+        },
+        "network": {
+          "default": false,
+          "title": "Network",
+          "type": "boolean"
+        },
+        "resources": {
+          "$ref": "#/$defs/ResourceRequest"
+        },
+        "environment_sha256": {
+          "pattern": "^[a-f0-9]{64}$",
+          "title": "Environment Sha256",
+          "type": "string"
+        },
+        "max_seconds": {
+          "default": 120,
+          "maximum": 600,
+          "minimum": 1,
+          "title": "Max Seconds",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "read_paths",
+        "write_paths",
+        "allowed_commands",
+        "resources",
+        "environment_sha256"
+      ],
+      "title": "CodingGrant",
+      "type": "object"
+    },
+    "CodingHarnessGate": {
+      "additionalProperties": false,
+      "properties": {
+        "card": {
+          "enum": [
+            "HV4-H11",
+            "HV4-H12"
+          ],
+          "title": "Card",
+          "type": "string"
+        },
+        "commit": {
+          "pattern": "^[a-f0-9]{40}$",
+          "title": "Commit",
+          "type": "string"
+        },
+        "source_sha256": {
+          "pattern": "^[a-f0-9]{64}$",
+          "title": "Source Sha256",
+          "type": "string"
+        },
+        "evidence_sha256": {
+          "pattern": "^[a-f0-9]{64}$",
+          "title": "Evidence Sha256",
+          "type": "string"
+        },
+        "engineering": {
+          "default": "NOT_RUN",
+          "enum": [
+            "PASS",
+            "FAIL",
+            "NOT_RUN"
+          ],
+          "title": "Engineering",
+          "type": "string"
+        },
+        "recovery": {
+          "default": "NOT_RUN",
+          "enum": [
+            "PASS",
+            "FAIL",
+            "NOT_RUN"
+          ],
+          "title": "Recovery",
+          "type": "string"
+        },
+        "live_agent": {
+          "default": "NOT_RUN",
+          "enum": [
+            "PASS",
+            "FAIL",
+            "NOT_RUN"
+          ],
+          "title": "Live Agent",
+          "type": "string"
+        },
+        "mvp": {
+          "default": "NOT_RUN",
+          "enum": [
+            "PASS",
+            "FAIL",
+            "NOT_RUN"
+          ],
+          "title": "Mvp",
+          "type": "string"
+        }
+      },
+      "required": [
+        "card",
+        "commit",
+        "source_sha256",
+        "evidence_sha256"
+      ],
+      "title": "CodingHarnessGate",
+      "type": "object"
+    },
+    "CodingHarnessGates": {
+      "additionalProperties": false,
+      "properties": {
+        "h11": {
+          "$ref": "#/$defs/CodingHarnessGate"
+        },
+        "h12": {
+          "$ref": "#/$defs/CodingHarnessGate"
+        }
+      },
+      "required": [
+        "h11",
+        "h12"
+      ],
+      "title": "CodingHarnessGates",
+      "type": "object"
+    },
+    "CodingOrigin": {
+      "additionalProperties": false,
+      "properties": {
+        "input": {
+          "$ref": "#/$defs/CorrelationInputRef"
+        },
+        "identity_id": {
+          "format": "uuid",
+          "title": "Identity Id",
+          "type": "string"
+        },
+        "identity_revision": {
+          "maximum": 9223372036854775807,
+          "minimum": 1,
+          "title": "Identity Revision",
+          "type": "integer"
+        },
+        "principal_id": {
+          "format": "uuid",
+          "title": "Principal Id",
+          "type": "string"
+        },
+        "engine_actor": {
+          "pattern": "^[A-Za-z0-9_-]{1,100}$",
+          "title": "Engine Actor",
+          "type": "string"
+        },
+        "policy_id": {
+          "format": "uuid",
+          "title": "Policy Id",
+          "type": "string"
+        },
+        "policy_revision": {
+          "maximum": 9223372036854775807,
+          "minimum": 1,
+          "title": "Policy Revision",
+          "type": "integer"
+        },
+        "policy_sha256": {
+          "pattern": "^[a-f0-9]{64}$",
+          "title": "Policy Sha256",
+          "type": "string"
+        },
+        "expires_at": {
+          "format": "date-time",
+          "title": "Expires At",
+          "type": "string"
+        }
+      },
+      "required": [
+        "input",
+        "identity_id",
+        "identity_revision",
+        "principal_id",
+        "engine_actor",
+        "policy_id",
+        "policy_revision",
+        "policy_sha256",
+        "expires_at"
+      ],
+      "title": "CodingOrigin",
+      "type": "object"
+    },
+    "CodingRepository": {
+      "additionalProperties": false,
+      "properties": {
+        "repository": {
+          "maxLength": 200,
+          "pattern": "^[a-z0-9_.-]+/[a-z0-9_.-]+$",
+          "title": "Repository",
+          "type": "string"
+        },
+        "repository_id": {
+          "maximum": 9223372036854775807,
+          "minimum": 1,
+          "title": "Repository Id",
+          "type": "integer"
+        },
+        "source_kind": {
+          "enum": [
+            "fixture_git",
+            "github_snapshot"
+          ],
+          "title": "Source Kind",
+          "type": "string"
+        },
+        "base_commit": {
+          "pattern": "^[a-f0-9]{40}$",
+          "title": "Base Commit",
+          "type": "string"
+        },
+        "upstream_tree": {
+          "pattern": "^[a-f0-9]{40}$",
+          "title": "Upstream Tree",
+          "type": "string"
+        },
+        "materialized_commit": {
+          "pattern": "^[a-f0-9]{40}$",
+          "title": "Materialized Commit",
+          "type": "string"
+        },
+        "materialized_tree_sha256": {
+          "pattern": "^[a-f0-9]{64}$",
+          "title": "Materialized Tree Sha256",
+          "type": "string"
+        },
+        "registration_sha256": {
+          "pattern": "^[a-f0-9]{64}$",
+          "title": "Registration Sha256",
+          "type": "string"
+        },
+        "snapshot_sha256": {
+          "pattern": "^[a-f0-9]{64}$",
+          "title": "Snapshot Sha256",
+          "type": "string"
+        },
+        "private": {
+          "default": false,
+          "title": "Private",
+          "type": "boolean"
+        },
+        "model_disclosure": {
+          "default": "denied",
+          "enum": [
+            "denied",
+            "controlled_fixture",
+            "approved_live"
+          ],
+          "title": "Model Disclosure",
+          "type": "string"
+        }
+      },
+      "required": [
+        "repository",
+        "repository_id",
+        "source_kind",
+        "base_commit",
+        "upstream_tree",
+        "materialized_commit",
+        "materialized_tree_sha256",
+        "registration_sha256",
+        "snapshot_sha256"
+      ],
+      "title": "CodingRepository",
+      "type": "object"
+    },
+    "CodingTarget": {
+      "additionalProperties": false,
+      "properties": {
+        "project_id": {
+          "maxLength": 100,
+          "minLength": 1,
+          "title": "Project Id",
+          "type": "string"
+        },
+        "thread_id": {
+          "format": "uuid",
+          "title": "Thread Id",
+          "type": "string"
+        },
+        "ticket_id": {
+          "format": "uuid",
+          "title": "Ticket Id",
+          "type": "string"
+        },
+        "run_id": {
+          "format": "uuid",
+          "title": "Run Id",
+          "type": "string"
+        },
+        "mandate_id": {
+          "format": "uuid",
+          "title": "Mandate Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "project_id",
+        "thread_id",
+        "ticket_id",
+        "run_id",
+        "mandate_id"
+      ],
+      "title": "CodingTarget",
+      "type": "object"
+    },
+    "CorrelationInputRef": {
+      "additionalProperties": false,
+      "properties": {
+        "input_id": {
+          "format": "uuid",
+          "title": "Input Id",
+          "type": "string"
+        },
+        "source_instance_id": {
+          "format": "uuid",
+          "title": "Source Instance Id",
+          "type": "string"
+        },
+        "project_id": {
+          "maxLength": 100,
+          "minLength": 1,
+          "title": "Project Id",
+          "type": "string"
+        },
+        "version_fingerprint": {
+          "pattern": "^[a-f0-9]{64}$",
+          "title": "Version Fingerprint",
+          "type": "string"
+        },
+        "state_sha256": {
+          "pattern": "^[a-f0-9]{64}$",
+          "title": "State Sha256",
+          "type": "string"
+        }
+      },
+      "required": [
+        "input_id",
+        "source_instance_id",
+        "project_id",
+        "version_fingerprint",
+        "state_sha256"
+      ],
+      "title": "CorrelationInputRef",
+      "type": "object"
+    },
+    "ResourceRequest": {
+      "additionalProperties": false,
+      "properties": {
+        "cpu_millis": {
+          "maximum": 2000,
+          "minimum": 100,
+          "title": "Cpu Millis",
+          "type": "integer"
+        },
+        "memory_mib": {
+          "maximum": 2048,
+          "minimum": 64,
+          "title": "Memory Mib",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "cpu_millis",
+        "memory_mib"
+      ],
+      "title": "ResourceRequest",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": "source-coding-mandate-v1",
+      "default": "source-coding-mandate-v1",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "scope_kind": {
+      "const": "source-coding-mandate-v1",
+      "default": "source-coding-mandate-v1",
+      "title": "Scope Kind",
+      "type": "string"
+    },
+    "coding_id": {
+      "format": "uuid",
+      "title": "Coding Id",
+      "type": "string"
+    },
+    "revision": {
+      "maximum": 9223372036854775807,
+      "minimum": 1,
+      "title": "Revision",
+      "type": "integer"
+    },
+    "target": {
+      "$ref": "#/$defs/CodingTarget"
+    },
+    "origin": {
+      "$ref": "#/$defs/CodingOrigin"
+    },
+    "repository": {
+      "$ref": "#/$defs/CodingRepository"
+    },
+    "grant": {
+      "$ref": "#/$defs/CodingGrant"
+    },
+    "budget": {
+      "$ref": "#/$defs/CodingBudgetRef"
+    },
+    "harness": {
+      "$ref": "#/$defs/CodingHarnessGates"
+    },
+    "context_refs": {
+      "items": {
+        "$ref": "#/$defs/CorrelationInputRef"
+      },
+      "maxItems": 32,
+      "minItems": 1,
+      "title": "Context Refs",
+      "type": "array"
+    },
+    "context_sha256": {
+      "pattern": "^[a-f0-9]{64}$",
+      "title": "Context Sha256",
+      "type": "string"
+    },
+    "acceptance_sha256": {
+      "pattern": "^[a-f0-9]{64}$",
+      "title": "Acceptance Sha256",
+      "type": "string"
+    },
+    "worker_profile_sha256": {
+      "pattern": "^[a-f0-9]{64}$",
+      "title": "Worker Profile Sha256",
+      "type": "string"
+    },
+    "review_sha256": {
+      "pattern": "^[a-f0-9]{64}$",
+      "title": "Review Sha256",
+      "type": "string"
+    },
+    "signed_by": {
+      "format": "uuid",
+      "title": "Signed By",
+      "type": "string"
+    },
+    "valid_from": {
+      "format": "date-time",
+      "title": "Valid From",
+      "type": "string"
+    },
+    "valid_until": {
+      "format": "date-time",
+      "title": "Valid Until",
+      "type": "string"
+    }
+  },
+  "required": [
+    "coding_id",
+    "revision",
+    "target",
+    "origin",
+    "repository",
+    "grant",
+    "budget",
+    "harness",
+    "context_refs",
+    "context_sha256",
+    "acceptance_sha256",
+    "worker_profile_sha256",
+    "review_sha256",
+    "signed_by",
+    "valid_from",
+    "valid_until"
+  ],
+  "title": "CodingMandate",
+  "type": "object"
+}

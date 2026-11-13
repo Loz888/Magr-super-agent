@@ -35,7 +35,7 @@ def test_formal0044_exact_source_catalogue_and_original_engine_connection(engine
         p.name: hashlib.sha256(p.read_bytes()).hexdigest()
         for p in (APP / "migrations").glob("*.sql")
     }
-    assert len(expected) == 42
+    assert len(expected) == 43
     assert not any(n.startswith(("0037", "0040", "0045")) for n in expected)
     assert isinstance(engine.source_scheduler, SourceScheduler)
     assert engine.source_scheduler.engine is engine

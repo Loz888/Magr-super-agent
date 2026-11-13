@@ -1,0 +1,211 @@
+{
+  "contract_version": "source-scheduler-v1",
+  "runtime_version": "source-scheduler-runtime-v1",
+  "status": "FORMAL_IMPLEMENTATION",
+  "ownership_commit": "298d4c5c5123a5c26c34a9673d676516d1503f84",
+  "ownership_section": 37,
+  "migration": "0044_source_scheduler.sql",
+  "migration_sha256": "7199a8020bd17ec069e0b18efc8c48fa3a63827cb83dafbde47fbad7bba07eb6",
+  "migration_count_after_install": 42,
+  "source_fact_tables": 7,
+  "management_prefix": "/api/v3/source-scheduler",
+  "management_routes": 11,
+  "worker_routes": 4,
+  "default_configuration": null,
+  "default_driver": null,
+  "default_worker": null,
+  "default_supervisor_thread": null,
+  "model_calls": 0,
+  "external_business_writes": 0,
+  "resource_authority": "Original Engine same held PG connection, mutex and advisory lock; original Task/Run/Mandate and SA07 quotas; no duplicate task/financial ledger",
+  "cleanup": "Exact persisted operation/container identity, owner labels and trusted post-fence quiescence; pending original Jobs or unknowns retain occupied resources",
+  "integration": "Exact approved three-file patch; fixed H03 workspace plus accepted H06 bound-hook patch. H02 contracts compatible execution_epoch addition is separately documented",
+  "independent_review": "NOT_RUN",
+  "semantic_evaluation": "NOT_RUN",
+  "live_source_channel": "NOT_RUN",
+  "paid_model": "NOT_RUN",
+  "live_coding": "NOT_RUN",
+  "live_publication": "NOT_RUN",
+  "continuous_operation": "NOT_RUN",
+  "SA13": "PLANNED_NOT_STARTED",
+  "artifact_snapshot_utc": "2026-11-13T08:33:27.942841+00:00",
+  "verification_registration": "SAV1-12; outcomes separate, no PASS implied by hashes",
+  "artifacts": [
+    {
+      "path": "config/verification.json",
+      "sha256": "81a442046a48a089976e74ad3f43c2d8296bad184d43d74278979aaf16a99033"
+    },
+    {
+      "path": "docs/super-agent-v1/sa12-proposal/0044_source_scheduler.sql",
+      "sha256": "7199a8020bd17ec069e0b18efc8c48fa3a63827cb83dafbde47fbad7bba07eb6"
+    },
+    {
+      "path": "docs/super-agent-v1/sa12-proposal/SA12_SCOPE.md",
+      "sha256": "20a8f7c9c84067be4e1fb0725b1d39630050c8f6e1bbde99ebad5a08eca19760"
+    },
+    {
+      "path": "docs/super-agent-v1/sa12-proposal/broker-formatting-followup.json",
+      "sha256": "af17e1f8697c6e7d0a4ffffc2a1206ac187d52d407f8bcd651cf4ae38aae1c8c"
+    },
+    {
+      "path": "docs/super-agent-v1/sa12-proposal/broker-formatting-followup.patch",
+      "sha256": "5747885e146633d044c5b888d76cfffd0b8abfe23b2f72b13477a1dec9d057eb"
+    },
+    {
+      "path": "docs/super-agent-v1/sa12-proposal/draft-contracts.md",
+      "sha256": "15dd1d1128ada114d78ca3deb1bdaae7c2fa0f6364ec50933e818664cfaf8e9d"
+    },
+    {
+      "path": "docs/super-agent-v1/sa12-proposal/harness-broker-bound.patch",
+      "sha256": "ddc37d4eac382531f6822b128599d7e40a296da515595467bbc874468af764e1"
+    },
+    {
+      "path": "docs/super-agent-v1/sa12-proposal/harness-imports.json",
+      "sha256": "68648ac45e45a314d7b49906fe5afd5f97ec827690c8ed6f4955065f71e31ddb"
+    },
+    {
+      "path": "docs/super-agent-v1/sa12-proposal/ownership-request.txt",
+      "sha256": "cc4529844f1a0398293b242895c0dbe440e6e87867c242c01fd4a1214e527bd5"
+    },
+    {
+      "path": "docs/super-agent-v1/sa12-proposal/shared-wiring-metadata.json",
+      "sha256": "ff9804812cd2c3804edafade3d08ef3108c0da54f166d98a47b78e4f87d35154"
+    },
+    {
+      "path": "docs/super-agent-v1/sa12-proposal/shared-wiring.patch",
+      "sha256": "7899c89d13c9d4533e2b5dda4e68a5f9c51a6e2834f7d33929587b9dbb9bc2cd"
+    },
+    {
+      "path": "experiments/super-agent-v1/scheduler-resources-v1.json",
+      "sha256": "46d62978c4e24bb33bd3fb9721c7693683a4d75923b6fa6c4f23583e76a0bb64"
+    },
+    {
+      "path": "migrations/0044_source_scheduler.sql",
+      "sha256": "7199a8020bd17ec069e0b18efc8c48fa3a63827cb83dafbde47fbad7bba07eb6"
+    },
+    {
+      "path": "schemas/super-agent-v1/source-scheduler-claim-v1.schema.json",
+      "sha256": "55ac8e1eacdddfb5731985ad7de77a800cd84d8df9d85105a386b72ef242f572"
+    },
+    {
+      "path": "schemas/super-agent-v1/source-scheduler-configure-v1.schema.json",
+      "sha256": "0f8e3a1dd3baa82bcf5c28066c1dcde4ea9ea592bd0281536767b95ef3803e5b"
+    },
+    {
+      "path": "schemas/super-agent-v1/source-scheduler-drain-v1.schema.json",
+      "sha256": "c0c151228fd7e619894cfb4f566ea6029ccd9f7bc3f3a5e9319d50f4f13a7003"
+    },
+    {
+      "path": "schemas/super-agent-v1/source-scheduler-enqueue-v1.schema.json",
+      "sha256": "db2d62894de43f97f28f32d4cc8194d2398cb2810a26d5733e32997c1b36cd0c"
+    },
+    {
+      "path": "schemas/super-agent-v1/source-scheduler-heartbeat-v1.schema.json",
+      "sha256": "ea59b45b0b2680d2fab71f7f456d7cb37a62edac785255d255238e67a7eb581c"
+    },
+    {
+      "path": "schemas/super-agent-v1/source-scheduler-queue-cancel-v1.schema.json",
+      "sha256": "7bd2a8768d8aff9e99072fdf3d6e67eb99089ed9e5e2db3807865c6d6ecac2ff"
+    },
+    {
+      "path": "schemas/super-agent-v1/source-scheduler-ready-v1.schema.json",
+      "sha256": "5fab05dd9ecb713f299912bb231fd8d05914c94ad1b01a26a15c54bed858313d"
+    },
+    {
+      "path": "schemas/super-agent-v1/source-scheduler-reconcile-v1.schema.json",
+      "sha256": "6e92e2a36f990f75aece688f7dcb6239575b660a8eac0b875fd3a56289e0ddf2"
+    },
+    {
+      "path": "schemas/super-agent-v1/source-scheduler-report-v1.schema.json",
+      "sha256": "d6b30ba1adae6b19c77a2ad2bb48c5543ec4e34898ce9b69ff939a3b88f0bfe2"
+    },
+    {
+      "path": "schemas/super-agent-v1/source-scheduler-session-register-v1.schema.json",
+      "sha256": "78e754fb0852ba7b4918ecf6bd459327b54d8e0eccbbf00aa68b752ecf9802b4"
+    },
+    {
+      "path": "schemas/super-agent-v1/source-scheduler-session-revoke-v1.schema.json",
+      "sha256": "ac447e7dc90925da451706d87b5d95fbf3308389cddee117013bfd3a3a791a09"
+    },
+    {
+      "path": "src/mgar_v3/api.py",
+      "sha256": "e8e71261d21c7e28855d0b6f3b06c9704e249daa77dff2bc4c85124858e7a518"
+    },
+    {
+      "path": "src/mgar_v3/coordination/engine.py",
+      "sha256": "986db892ff66a4fb7f9cb1bdba63540df496abc9595b9ee3c2ec9b54de808eb7"
+    },
+    {
+      "path": "src/mgar_v3/harness/broker.py",
+      "sha256": "2fe3e706bbdba761e53d92fce4674f14214ba3abe9997b1a6b3d11d06a5bbf36"
+    },
+    {
+      "path": "src/mgar_v3/harness/contracts.py",
+      "sha256": "cdcbdda22ac13db25a0b1bb0d49c2c74a06ab1a4bfaea9e1d4011243d8e69466"
+    },
+    {
+      "path": "src/mgar_v3/harness/workspace.py",
+      "sha256": "19f018af23bf60d5541de1fc2ab24d9c74d764a181676fc8bde3ab0fc3775649"
+    },
+    {
+      "path": "src/mgar_v3/super_agent/source_scheduler.py",
+      "sha256": "51225e3ddd1a68b5cf30bc56e22c29097adae442afed6f9ae1214117fc1afef2"
+    },
+    {
+      "path": "src/mgar_v3/super_agent/source_scheduler_api.py",
+      "sha256": "8716728769f8fa367f86dab36e50fbb87a62f4eacbc9325c29e7426180813e3d"
+    },
+    {
+      "path": "src/mgar_v3/super_agent/source_scheduler_domain.py",
+      "sha256": "f040d550694b9423da2edb76d41331d5927a01f1d61bf313bf0c7dd9bf1ed1ea"
+    },
+    {
+      "path": "src/mgar_v3/super_agent/source_scheduler_rules.py",
+      "sha256": "0aa678c6103935f3a070f304f7e90d0968f6e01edbdd4dbc00845fd32e1099c5"
+    },
+    {
+      "path": "src/mgar_v3/super_agent/source_scheduler_runtime.py",
+      "sha256": "ac8aa5d08646a0075a65ccc682b75fe9350eb6d9f605d32e54ab8a75eafa9ada"
+    },
+    {
+      "path": "tests/sa12_crash_actor.py",
+      "sha256": "4afcb9e9492c42af774da09bf406bfdb4b54c35c8b5028c7535c75288a97291e"
+    },
+    {
+      "path": "tests/sa12_support.py",
+      "sha256": "4a69b802486b7fd497073430075987d7908f4ae2283a8826d0e6a0e7aa4b902a"
+    },
+    {
+      "path": "tests/test_super_agent_sa12.py",
+      "sha256": "093705e79248c97ef1a23e063c56b12d503d15cff14bceb54589b7edd176a89a"
+    },
+    {
+      "path": "tests/test_super_agent_sa12_api.py",
+      "sha256": "a04ea0f0d95b5d1737a762cbddafd907010580d864dca0366826c495b67aae80"
+    },
+    {
+      "path": "tests/test_super_agent_sa12_contracts.py",
+      "sha256": "061eebec2af73f7298066150e67e736a9dc8c86df25ff18bd8533dfaf2624289"
+    },
+    {
+      "path": "tests/test_super_agent_sa12_core_boundaries.py",
+      "sha256": "b72125bfd107d4a23b313af4540c695550263d1ce0f1972b28a0eab5e92c98b5"
+    },
+    {
+      "path": "tests/test_super_agent_sa12_migration.py",
+      "sha256": "b08423c2f4931554e813ae811c89c7663399df3b27de31e4f9756621e752c230"
+    },
+    {
+      "path": "tests/test_super_agent_sa12_recovery.py",
+      "sha256": "fa2e77848fe80a394c14e272f9a720b1c38dfef91b43e528f76543fcd2afbf91"
+    },
+    {
+      "path": "tests/test_super_agent_sa12_runtime.py",
+      "sha256": "d5884e6157b2f851903257cceffb2d0a822a16cd7e1c1074c96642aa06d2d35f"
+    },
+    {
+      "path": "tests/test_super_agent_sa12_source.py",
+      "sha256": "a5b86afa6a671b765b3bbf266f6f050caa7ec5970569b0be48d700fbbdba94e7"
+    }
+  ]
+}

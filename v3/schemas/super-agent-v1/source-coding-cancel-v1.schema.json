@@ -1,0 +1,48 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "request_id": {
+      "format": "uuid",
+      "title": "Request Id",
+      "type": "string"
+    },
+    "coding_id": {
+      "format": "uuid",
+      "title": "Coding Id",
+      "type": "string"
+    },
+    "run_id": {
+      "format": "uuid",
+      "title": "Run Id",
+      "type": "string"
+    },
+    "expected_epoch": {
+      "maximum": 9223372036854775807,
+      "minimum": 0,
+      "title": "Expected Epoch",
+      "type": "integer"
+    },
+    "expected_revision": {
+      "maximum": 9223372036854775807,
+      "minimum": 1,
+      "title": "Expected Revision",
+      "type": "integer"
+    },
+    "review_ref": {
+      "maxLength": 256,
+      "minLength": 1,
+      "title": "Review Ref",
+      "type": "string"
+    }
+  },
+  "required": [
+    "request_id",
+    "coding_id",
+    "run_id",
+    "expected_epoch",
+    "expected_revision",
+    "review_ref"
+  ],
+  "title": "CodingCancelRequest",
+  "type": "object"
+}

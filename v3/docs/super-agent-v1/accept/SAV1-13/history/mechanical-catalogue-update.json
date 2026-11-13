@@ -1,0 +1,48 @@
+{
+  "schema": "sa13-mechanical-current-catalogue-update-v1",
+  "recorded_utc": "2026-11-13T11:21:05.535875+00:00",
+  "formal_migration": "0046_source_coding.sql",
+  "scope": "Only current directory size42→43 and expected forward migration0046 appended. Historical baseline counts/checksums and all old SQL remain unchanged. These source edits do not rerun or replace historical PASS evidence.",
+  "files": [
+    {
+      "path": "tests/test_super_agent_sa05.py",
+      "before_sha256": "e54ff259702530e837ae496f3cc2472c770340e6c1493b18bb0c743189e126db",
+      "after_sha256": "364a86237475e1311cdf526f0c69d238273468b1ab5875b80250c430615e5ce8"
+    },
+    {
+      "path": "tests/test_super_agent_sa06_migration.py",
+      "before_sha256": "b95d812b81dc26b874e15c048900b93311a270f157b6ac7732d81fe2cefb23a0",
+      "after_sha256": "ebf92f03da43566b99eb064c252b4835111cfb0c47609f9951220e360fb44b69"
+    },
+    {
+      "path": "tests/test_super_agent_sa07_migration.py",
+      "before_sha256": "a82172d05243d97c990eb05f9e268bd46b8d9f07f517d4562abf907435ec4bb5",
+      "after_sha256": "c8d443034b3f5143cfb1e92bee9f42ba26db2b88ca5a6f067da754eef94cc5af"
+    },
+    {
+      "path": "tests/test_super_agent_sa08_migration.py",
+      "before_sha256": "c49466eb7444bb0e418f19b4da28ca5367487f88ea6ef2c37650685ccbfd46e4",
+      "after_sha256": "23d888627d6079b8df8974979de9dfd7016950822fbba5cdcbaa3262348cae72"
+    },
+    {
+      "path": "tests/test_super_agent_sa09_migration.py",
+      "before_sha256": "790023b05d9375775bd6f2f8889eb4676e457bdeb1a85abee2718a338d2a60b2",
+      "after_sha256": "58947c8e489575bca4dc34bb04f35503b43ce2f8e33ae5aa1ac4eceaffff4e6a"
+    },
+    {
+      "path": "tests/test_super_agent_sa10_migration.py",
+      "before_sha256": "f076813a00605bae0e013f4d1ea6b0ae47b3a04773a16bc8e4ae51aaa1598f96",
+      "after_sha256": "911f89a869543d4a6ffcb182923afd22964500c8c24ebe0d46d02b0a44a91113"
+    },
+    {
+      "path": "tests/test_super_agent_sa11_migration.py",
+      "before_sha256": "5f8966a7410b98a04d9472fedb0c767a5447da9307a9f9e769b9a39f371f780c",
+      "after_sha256": "f44aa3c7f75a8854d1636229a11a6da4f1efbd16e5b38a5350e8ca908d42df63"
+    },
+    {
+      "path": "tests/test_super_agent_sa12_migration.py",
+      "before_sha256": "b08423c2f4931554e813ae811c89c7663399df3b27de31e4f9756621e752c230",
+      "after_sha256": "8a0937909a32362cfca9b9135a43ef09a35b16196165626652af6f32c32041ec"
+    }
+  ]
+}

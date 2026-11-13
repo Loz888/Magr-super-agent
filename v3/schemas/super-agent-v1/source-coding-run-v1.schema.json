@@ -1,0 +1,53 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "request_id": {
+      "format": "uuid",
+      "title": "Request Id",
+      "type": "string"
+    },
+    "coding_id": {
+      "format": "uuid",
+      "title": "Coding Id",
+      "type": "string"
+    },
+    "run_id": {
+      "format": "uuid",
+      "title": "Run Id",
+      "type": "string"
+    },
+    "assignment_id": {
+      "format": "uuid",
+      "title": "Assignment Id",
+      "type": "string"
+    },
+    "session_id": {
+      "format": "uuid",
+      "title": "Session Id",
+      "type": "string"
+    },
+    "epoch": {
+      "maximum": 9223372036854775807,
+      "minimum": 1,
+      "title": "Epoch",
+      "type": "integer"
+    },
+    "expected_revision": {
+      "maximum": 9223372036854775807,
+      "minimum": 1,
+      "title": "Expected Revision",
+      "type": "integer"
+    }
+  },
+  "required": [
+    "request_id",
+    "coding_id",
+    "run_id",
+    "assignment_id",
+    "session_id",
+    "epoch",
+    "expected_revision"
+  ],
+  "title": "CodingRunRequest",
+  "type": "object"
+}

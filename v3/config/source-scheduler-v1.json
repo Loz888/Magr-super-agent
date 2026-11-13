@@ -28,12 +28,12 @@
   "live_publication": "NOT_RUN",
   "continuous_operation": "NOT_RUN",
   "SA13": "PLANNED_NOT_STARTED",
-  "artifact_snapshot_utc": "2026-11-13T08:33:27.942841+00:00",
+  "artifact_snapshot_utc": "2026-11-13T12:01:03.011788+00:00",
   "verification_registration": "SAV1-12; outcomes separate, no PASS implied by hashes",
   "artifacts": [
     {
       "path": "config/verification.json",
-      "sha256": "81a442046a48a089976e74ad3f43c2d8296bad184d43d74278979aaf16a99033"
+      "sha256": "0a2a516271ff1f33627cbb1b413edbc3c81ac39dac5891c99d121d13b14a3c81"
     },
     {
       "path": "docs/super-agent-v1/sa12-proposal/0044_source_scheduler.sql",
@@ -129,11 +129,11 @@
     },
     {
       "path": "src/mgar_v3/api.py",
-      "sha256": "e8e71261d21c7e28855d0b6f3b06c9704e249daa77dff2bc4c85124858e7a518"
+      "sha256": "d8714f22c357ac400abc4441b25fb4fe6637ab0e56af954c602b5e982bf4c09d"
     },
     {
       "path": "src/mgar_v3/coordination/engine.py",
-      "sha256": "986db892ff66a4fb7f9cb1bdba63540df496abc9595b9ee3c2ec9b54de808eb7"
+      "sha256": "d1e5b16681f9d6f5f8fa0a5a60ee34d01e4c50b4a7afcc754e9db268a9f2313d"
     },
     {
       "path": "src/mgar_v3/harness/broker.py",
@@ -141,7 +141,7 @@
     },
     {
       "path": "src/mgar_v3/harness/contracts.py",
-      "sha256": "cdcbdda22ac13db25a0b1bb0d49c2c74a06ab1a4bfaea9e1d4011243d8e69466"
+      "sha256": "d9ba15e16a80791e6e92deefea609bf809773cc4d90baa72bd31d71a9313aaf4"
     },
     {
       "path": "src/mgar_v3/harness/workspace.py",
@@ -149,7 +149,7 @@
     },
     {
       "path": "src/mgar_v3/super_agent/source_scheduler.py",
-      "sha256": "51225e3ddd1a68b5cf30bc56e22c29097adae442afed6f9ae1214117fc1afef2"
+      "sha256": "a663a49c99cea566c04a3bb2487772984b5ea04aad4e6fcdd7f2b5c5c48bc2c9"
     },
     {
       "path": "src/mgar_v3/super_agent/source_scheduler_api.py",
@@ -193,7 +193,7 @@
     },
     {
       "path": "tests/test_super_agent_sa12_migration.py",
-      "sha256": "b08423c2f4931554e813ae811c89c7663399df3b27de31e4f9756621e752c230"
+      "sha256": "8a0937909a32362cfca9b9135a43ef09a35b16196165626652af6f32c32041ec"
     },
     {
       "path": "tests/test_super_agent_sa12_recovery.py",
@@ -207,5 +207,7 @@
       "path": "tests/test_super_agent_sa12_source.py",
       "sha256": "a5b86afa6a671b765b3bbf266f6f050caa7ec5970569b0be48d700fbbdba94e7"
     }
-  ]
+  ],
+  "artifact_snapshot_scope": "Current formal per-file hashes refreshed for authorized SA13 composition/catalogue. Historical source-bound PASS/FAIL records remain unchanged; pre-SA13 original bytes are preserved in docs/super-agent-v1/accept/SAV1-13/history/pre-sa13/. This refresh is not acceptance evidence.",
+  "artifact_status": "CURRENT_FORMAL_HASHES"
 }

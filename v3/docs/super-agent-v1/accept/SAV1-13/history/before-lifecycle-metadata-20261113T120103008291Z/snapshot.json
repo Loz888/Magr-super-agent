@@ -1,0 +1,17 @@
+{
+  "schema": "sa13-before-lifecycle-metadata-bytes-v1",
+  "recorded_utc": "2026-11-13T12:01:03.009290+00:00",
+  "scope": "Original bytes preserved before adding two new first-run registrations and current lifecycle support metadata. No historical outcome is edited or reinterpreted.",
+  "files": [
+    {
+      "path": "config/verification.json",
+      "sha256": "7b435fac06d37bd649b167d1ca11c21de5da14d9e988ac6ac2a35c8cbd1cbbcb",
+      "preserved_path": "docs/super-agent-v1/accept/SAV1-13/history/before-lifecycle-metadata-20261113T120103008291Z/verification.json"
+    },
+    {
+      "path": "config/source-coding-v1.json",
+      "sha256": "079c93648bd27049b81531fe2aaffe67dc25cc8f5bd65e3d187b2e7e2a2b5c5b",
+      "preserved_path": "docs/super-agent-v1/accept/SAV1-13/history/before-lifecycle-metadata-20261113T120103008291Z/source-coding-v1.json"
+    }
+  ]
+}

@@ -14,7 +14,7 @@
     },
     {
       "path": "src/mgar_v3/harness/contracts.py",
-      "sha256": "cdcbdda22ac13db25a0b1bb0d49c2c74a06ab1a4bfaea9e1d4011243d8e69466"
+      "sha256": "d9ba15e16a80791e6e92deefea609bf809773cc4d90baa72bd31d71a9313aaf4"
     },
     {
       "path": "src/mgar_v3/harness/model.py",
@@ -45,6 +45,7 @@
     "other_five_fixed_artifacts": "UNCHANGED",
     "check_results": "Recorded separately in SA12 acceptance; not implied by artifact reference refresh"
   },
-  "artifact_snapshot_utc": "2026-11-13T08:08:00.341489+00:00",
-  "artifact_snapshot_scope": "Current formal per-file hashes refreshed for authorized SA12 composition/catalogue. Historical acceptance and source-bound raw outcomes remain unchanged."
+  "artifact_snapshot_utc": "2026-11-13T11:27:58.804521+00:00",
+  "artifact_snapshot_scope": "Current formal per-file hashes refreshed for authorized SA13 composition/catalogue. Historical source-bound PASS/FAIL records remain unchanged; pre-SA13 original bytes are preserved in docs/super-agent-v1/accept/SAV1-13/history/pre-sa13/. This refresh is not acceptance evidence.",
+  "artifact_status": "CURRENT_FORMAL_HASHES"
 }

@@ -1,7 +1,7 @@
 # SA13：Coding Worker 与 Mandate 接线
 
 状态：IN_PROGRESS。用户已接受 SA12 独立闭环并授权本卡；当前完成固定依赖审计、
-私有契约／校验器和具体共享提案。正式 Worker、Engine/API 接线、0046 与内核导入尚未应用。
+私有契约／校验器和具体共享提案。Harness固定617e14a第38节已确认，原批准0046、四文件接线及固定最小内核已精确应用；私有Worker与真实集成检查进行中，尚未形成整卡通过成绩。
 
 H11 固定 d3f3457 的工程／恢复范围有独立证据。H12 固定观察 88c75b8 的真实 Agent／
 MVP 门仍 FAIL，新的 Source Coding 门保持关闭；模型连通或环境恢复不替代该门。
@@ -25,7 +25,19 @@ PG运行、Broker、恢复、独立或真实编码验收通过。Workspace faça
 具体协调材料已提交 b6079db，见[转发请求](sa13-proposal/ownership-request.txt)、
 [范围及六接口](sa13-proposal/SA13_SCOPE.md)、[SQL及补丁哈希](sa13-proposal/proposal-manifest.json)。
 AGENTS 要求共享 Engine/API/schema/budget 变更前对齐所有权、接口与编号；第37节只覆盖
-SA12，正在等待新的 Harness 固定确认。0045 仍归 Harness，0046 仅拟编号；确认前不改
-正式迁移或接线，不导入对方活动文件。
+SA12，固定确认617e14a第38节现已完成。0045仍归Harness，0046归SA；主库暂未安装0046，首次检查在独立PG中执行。固定提案文件保留原始草案状态，不以其文本状态替代实际交付记录。
 
 真实来源、付费、外发、真实编码、发布、语义和长期门均 NOT_RUN；SA14 不启动。
+
+当前正式实现把模型端口限定为显式 ControlledCodingModel，普通网络模型适配器不能直接注入
+fixture profile；没有默认 Worker 或 Provider。受控首片仅开放现有 `.py` 文件的纯函数
+算术子集，禁止导入、属性访问、装饰器、打印、主动退出及替换测试运行器；固定原测试
+目录只读。服务端固定命令与工作目录、真实验收要求一起进入 acceptance SHA，不允许
+调用者只提供一个无实际内容绑定的 opaque hash。此限制用于本地工程证明，不是通用
+Python 沙箱或真实修复门已通过的声明。
+
+恢复区分控制器与局部 Worker 丢失：完整 Engine 恢复沿原流程暂停 Run、推进 epoch、
+排空 SA12 租约，并停止旧 Coding attempt、保留 unknown 财务与操作水位、擦除载荷。
+不会在旧 epoch 下自动续写。原控制器及授权仍有效时，局部写入恢复端口只接受精确
+pre/postimage 混合，遇到外来内容拒绝覆盖。逐文件 atomic replace+fsync 防止截断；
+整个多文件操作仍由持久意图和恢复事实描述，不假称文件系统多文件原子事务。

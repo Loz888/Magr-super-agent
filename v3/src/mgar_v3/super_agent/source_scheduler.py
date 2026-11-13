@@ -442,6 +442,9 @@ class SourceScheduler:
         return row
 
     def _source(self, conn: Connection, row: Row, run: Row) -> SourceAuthorityFacts:
+        coding = getattr(self.engine, "source_coding", None)
+        if coding is not None and coding.managed(conn, run["run_id"]):
+            return cast(SourceAuthorityFacts, coding.source_authority(conn, run, row))
         if row["input_id"] is None:
             self.engine.source_policies.check_run(conn, run)
             return SourceAuthorityFacts(required=False)
@@ -1425,6 +1428,14 @@ class SourceScheduler:
                 (row["mandate_id"], self.project),
             ).fetchone()
             assert mandate is not None
+            read_only = True
+            coding = getattr(self.engine, "source_coding", None)
+            if (
+                not context.cleanup_only
+                and coding is not None
+                and coding.managed(conn, row["run_id"])
+            ):
+                read_only = coding.read_only(conn, row)
             return {
                 **facts,
                 "actor": mandate["actor"],
@@ -1437,7 +1448,7 @@ class SourceScheduler:
                     facts["configuration"].configuration.valid_until,
                 ),
                 "execution_authorized": not context.cleanup_only,
-                "read_only": True,
+                "read_only": read_only,
                 "target_sha256": row["target_sha256"],
                 "workspace_sha256": row["workspace_sha256"],
                 "operation_state": operation["state"],

@@ -36,6 +36,7 @@ from mgar_v3.sources.ingress import SourceIngress
 from mgar_v3.super_agent.budget import SharedBudgets
 from mgar_v3.super_agent.fast_path import FastPath
 from mgar_v3.super_agent.policy import SourcePolicies
+from mgar_v3.super_agent.source_coding import SourceCoding
 from mgar_v3.super_agent.source_correlation import SourceCorrelations
 from mgar_v3.super_agent.source_eval import SourceEval
 from mgar_v3.super_agent.source_scheduler import SourceScheduler
@@ -87,6 +88,7 @@ class Engine:
         self.source_correlations = SourceCorrelations(self)
         self.source_subscriptions = SourceSubscriptions(self)
         self.source_scheduler = SourceScheduler(self)
+        self.source_coding = SourceCoding(self)
 
     def close(self) -> None:
         with self._mutex:
@@ -1517,6 +1519,7 @@ class Engine:
             self.knowledge.recover()
             self.tools.recover()
             self.source_scheduler.recover_conn(conn)
+            self.source_coding.recover_conn(conn)
             return {
                 "unknown_actions": len(unknown),
                 "paused_runs": len(paused),

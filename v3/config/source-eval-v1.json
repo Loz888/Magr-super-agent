@@ -66,7 +66,7 @@
     },
     {
       "path": "tests/test_super_agent_sa09_migration.py",
-      "sha256": "790023b05d9375775bd6f2f8889eb4676e457bdeb1a85abee2718a338d2a60b2"
+      "sha256": "58947c8e489575bca4dc34bb04f35503b43ce2f8e33ae5aa1ac4eceaffff4e6a"
     },
     {
       "path": "tests/test_super_agent_sa09_model.py",
@@ -130,7 +130,7 @@
     },
     {
       "path": "config/harness-model-import-v1.json",
-      "sha256": "c8d26661e5a20dbaea4867bb132d0a7454723c5daef8e9ab9017e31144db91ed"
+      "sha256": "e44c227fa058c41a439cd28ade90b7b65ddeb746d3de7e982fa77cf83b2502c9"
     },
     {
       "path": "src/mgar_v3/routing/store.py",
@@ -142,11 +142,11 @@
     },
     {
       "path": "src/mgar_v3/coordination/engine.py",
-      "sha256": "986db892ff66a4fb7f9cb1bdba63540df496abc9595b9ee3c2ec9b54de808eb7"
+      "sha256": "d1e5b16681f9d6f5f8fa0a5a60ee34d01e4c50b4a7afcc754e9db268a9f2313d"
     },
     {
       "path": "src/mgar_v3/api.py",
-      "sha256": "e8e71261d21c7e28855d0b6f3b06c9704e249daa77dff2bc4c85124858e7a518"
+      "sha256": "d8714f22c357ac400abc4441b25fb4fe6637ab0e56af954c602b5e982bf4c09d"
     },
     {
       "path": "src/mgar_v3/routing/budget.py",
@@ -166,13 +166,14 @@
     },
     {
       "path": "config/verification.json",
-      "sha256": "81a442046a48a089976e74ad3f43c2d8296bad184d43d74278979aaf16a99033"
+      "sha256": "0a2a516271ff1f33627cbb1b413edbc3c81ac39dac5891c99d121d13b14a3c81"
     },
     {
       "path": "tests/test_super_agent_sa09_i01.py",
       "sha256": "3cc2e45985a24f193db970a894e6dbac3f6fc92a34e49c439f79c00673308f5b"
     }
   ],
-  "artifact_snapshot_utc": "2026-11-13T08:08:00.341489+00:00",
-  "artifact_snapshot_scope": "Current formal per-file hashes refreshed for authorized SA12 composition/catalogue. Historical acceptance and source-bound raw outcomes remain unchanged."
+  "artifact_snapshot_utc": "2026-11-13T12:01:03.011788+00:00",
+  "artifact_snapshot_scope": "Current formal per-file hashes refreshed for authorized SA13 composition/catalogue. Historical source-bound PASS/FAIL records remain unchanged; pre-SA13 original bytes are preserved in docs/super-agent-v1/accept/SAV1-13/history/pre-sa13/. This refresh is not acceptance evidence.",
+  "artifact_status": "CURRENT_FORMAL_HASHES"
 }

@@ -50,8 +50,8 @@ def execute(root: Path, task: str, registry: dict, evidence_root: Path | None = 
     targets = entry.get("tests", [])
     if not targets or any(
         not isinstance(p, str)
-        or not (root / p).is_file()
-        or not (root / p).resolve().is_relative_to(root.resolve())
+        or not (root / p.split("::", 1)[0]).is_file()
+        or not (root / p.split("::", 1)[0]).resolve().is_relative_to(root.resolve())
         for p in targets
     ):
         return {"task": task, "status": "NOT_RUN", "reason": "missing_test_targets", "exit_code": 2}

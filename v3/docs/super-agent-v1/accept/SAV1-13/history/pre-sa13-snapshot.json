@@ -1,0 +1,113 @@
+{
+  "schema": "sa13-pre-registration-bytes-v1",
+  "recorded_utc": "2026-11-13T11:21:05.525455+00:00",
+  "source_commit": "73f747771a21f720da3b2a733fff93a4da903218",
+  "purpose": "Preserve original config and mechanical catalogue test bytes before SA13 registration. Historical source-bound PASS/FAIL evidence is not edited or reinterpreted.",
+  "files": [
+    {
+      "path": "config/harness-model-import-v1.json",
+      "sha256": "c8d26661e5a20dbaea4867bb132d0a7454723c5daef8e9ab9017e31144db91ed",
+      "preserved_path": "docs/super-agent-v1/accept/SAV1-13/history/pre-sa13/config/harness-model-import-v1.json"
+    },
+    {
+      "path": "config/source-contract-v1.json",
+      "sha256": "a9e250da4799d5de353224a9b5c1029b698aa8bbe3ed9a9e8ee5b43228187fa3",
+      "preserved_path": "docs/super-agent-v1/accept/SAV1-13/history/pre-sa13/config/source-contract-v1.json"
+    },
+    {
+      "path": "config/source-correlation-v1.json",
+      "sha256": "a0beea4a4bc854112827da9d93d40349e7e29173b1db724c7bb216b9b0c5da58",
+      "preserved_path": "docs/super-agent-v1/accept/SAV1-13/history/pre-sa13/config/source-correlation-v1.json"
+    },
+    {
+      "path": "config/source-eval-v1.json",
+      "sha256": "edf14393bb09673388e0d8eab6a3501b4824a8a088a03b2cdce6d639de081b9a",
+      "preserved_path": "docs/super-agent-v1/accept/SAV1-13/history/pre-sa13/config/source-eval-v1.json"
+    },
+    {
+      "path": "config/source-fast-path-v1.json",
+      "sha256": "0ac81086fd434eb7159e37b9aab706610e573256003505737652c7dfc3e6eefd",
+      "preserved_path": "docs/super-agent-v1/accept/SAV1-13/history/pre-sa13/config/source-fast-path-v1.json"
+    },
+    {
+      "path": "config/source-feishu-v1.json",
+      "sha256": "024b21fc7f3d1985f7fc3abfa9498461d4e1c1fabecfb62ea4f77d33b6a47ffa",
+      "preserved_path": "docs/super-agent-v1/accept/SAV1-13/history/pre-sa13/config/source-feishu-v1.json"
+    },
+    {
+      "path": "config/source-github-v1.json",
+      "sha256": "6e9d41fd82319bd44d04a51621fe583ea747f4b7734412465af29c6bb292b677",
+      "preserved_path": "docs/super-agent-v1/accept/SAV1-13/history/pre-sa13/config/source-github-v1.json"
+    },
+    {
+      "path": "config/source-identity-v1.json",
+      "sha256": "1e2adf660b230d6b5961244d6d8cc549ffd3be1d28406710fd797a276d463b73",
+      "preserved_path": "docs/super-agent-v1/accept/SAV1-13/history/pre-sa13/config/source-identity-v1.json"
+    },
+    {
+      "path": "config/source-ingress-v1.json",
+      "sha256": "3d7f5cf8de711fcd06f0f9a7f4619bd2671d1347c5185edfe511fc254c2f44f5",
+      "preserved_path": "docs/super-agent-v1/accept/SAV1-13/history/pre-sa13/config/source-ingress-v1.json"
+    },
+    {
+      "path": "config/source-policy-v1.json",
+      "sha256": "8f870fb989fb96c3b591067279e3f8281cc42d49166d7410c6b7f43e36415c96",
+      "preserved_path": "docs/super-agent-v1/accept/SAV1-13/history/pre-sa13/config/source-policy-v1.json"
+    },
+    {
+      "path": "config/source-scheduler-v1.json",
+      "sha256": "db090c31f5f84cfa24663565383f7e9a4c5b38de96ea3d91cf9d526bc7c5a764",
+      "preserved_path": "docs/super-agent-v1/accept/SAV1-13/history/pre-sa13/config/source-scheduler-v1.json"
+    },
+    {
+      "path": "config/source-subscriptions-v1.json",
+      "sha256": "0e9966b43e0a43b6a25611b75d3ac4d84fe947c1dfb8d92b9350f39975b23ab0",
+      "preserved_path": "docs/super-agent-v1/accept/SAV1-13/history/pre-sa13/config/source-subscriptions-v1.json"
+    },
+    {
+      "path": "config/verification.json",
+      "sha256": "81a442046a48a089976e74ad3f43c2d8296bad184d43d74278979aaf16a99033",
+      "preserved_path": "docs/super-agent-v1/accept/SAV1-13/history/pre-sa13/config/verification.json"
+    },
+    {
+      "path": "tests/test_super_agent_sa05.py",
+      "sha256": "e54ff259702530e837ae496f3cc2472c770340e6c1493b18bb0c743189e126db",
+      "preserved_path": "docs/super-agent-v1/accept/SAV1-13/history/pre-sa13/tests/test_super_agent_sa05.py"
+    },
+    {
+      "path": "tests/test_super_agent_sa06_migration.py",
+      "sha256": "b95d812b81dc26b874e15c048900b93311a270f157b6ac7732d81fe2cefb23a0",
+      "preserved_path": "docs/super-agent-v1/accept/SAV1-13/history/pre-sa13/tests/test_super_agent_sa06_migration.py"
+    },
+    {
+      "path": "tests/test_super_agent_sa07_migration.py",
+      "sha256": "a82172d05243d97c990eb05f9e268bd46b8d9f07f517d4562abf907435ec4bb5",
+      "preserved_path": "docs/super-agent-v1/accept/SAV1-13/history/pre-sa13/tests/test_super_agent_sa07_migration.py"
+    },
+    {
+      "path": "tests/test_super_agent_sa08_migration.py",
+      "sha256": "c49466eb7444bb0e418f19b4da28ca5367487f88ea6ef2c37650685ccbfd46e4",
+      "preserved_path": "docs/super-agent-v1/accept/SAV1-13/history/pre-sa13/tests/test_super_agent_sa08_migration.py"
+    },
+    {
+      "path": "tests/test_super_agent_sa09_migration.py",
+      "sha256": "790023b05d9375775bd6f2f8889eb4676e457bdeb1a85abee2718a338d2a60b2",
+      "preserved_path": "docs/super-agent-v1/accept/SAV1-13/history/pre-sa13/tests/test_super_agent_sa09_migration.py"
+    },
+    {
+      "path": "tests/test_super_agent_sa10_migration.py",
+      "sha256": "f076813a00605bae0e013f4d1ea6b0ae47b3a04773a16bc8e4ae51aaa1598f96",
+      "preserved_path": "docs/super-agent-v1/accept/SAV1-13/history/pre-sa13/tests/test_super_agent_sa10_migration.py"
+    },
+    {
+      "path": "tests/test_super_agent_sa11_migration.py",
+      "sha256": "5f8966a7410b98a04d9472fedb0c767a5447da9307a9f9e769b9a39f371f780c",
+      "preserved_path": "docs/super-agent-v1/accept/SAV1-13/history/pre-sa13/tests/test_super_agent_sa11_migration.py"
+    },
+    {
+      "path": "tests/test_super_agent_sa12_migration.py",
+      "sha256": "b08423c2f4931554e813ae811c89c7663399df3b27de31e4f9756621e752c230",
+      "preserved_path": "docs/super-agent-v1/accept/SAV1-13/history/pre-sa13/tests/test_super_agent_sa12_migration.py"
+    }
+  ]
+}

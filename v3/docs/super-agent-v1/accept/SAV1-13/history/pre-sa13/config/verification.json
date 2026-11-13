@@ -1,0 +1,1642 @@
+{
+  "B00": {
+    "components": {
+      "github": "not_used",
+      "langgraph": "fixture_deterministic",
+      "mcp": "not_used",
+      "model": "fixture_no_network",
+      "postgres": "real",
+      "redis": "real"
+    },
+    "tests": [
+      "tests/test_v32_repository_analysis.py"
+    ],
+    "timeout_seconds": 120
+  },
+  "A01": {
+    "components": {
+      "docker": "not_used",
+      "git": "real_local_fixture_repositories_fixed_commit",
+      "manifest": "deterministic_content_addressed",
+      "model": "not_used",
+      "network": "not_used",
+      "postgres": "not_used",
+      "redis": "not_used"
+    },
+    "tests": [
+      "tests/test_v33_workspace.py"
+    ],
+    "timeout_seconds": 120
+  },
+  "A02": {
+    "components": {
+      "docker": "real_pinned_golang_image_observed_network_none_readonly_nonroot_capdrop",
+      "languages": "go_and_python_scanned_other_source_languages_explicitly_unsupported",
+      "model": "not_used",
+      "network": "not_used",
+      "postgres": "not_used",
+      "redis": "not_used",
+      "sandbox": "local_process_rlimits_and_disposable_verified_snapshot",
+      "tools": "real_ruff_real_pytest_fake_pyright_fake_semgrep_fake_go_and_race_harness"
+    },
+    "tests": [
+      "tests/test_v33_scanners.py"
+    ],
+    "timeout_seconds": 600
+  },
+  "A03": {
+    "components": {
+      "dedupe": "path_rule_and_root_cause_with_evidence_registry",
+      "findings": "deterministic_contract_and_enforced_lifecycle_gates",
+      "model": "not_used",
+      "network": "not_used",
+      "postgres": "not_used",
+      "redis": "not_used",
+      "scanners": "consumed_synthetic_scan_reports_without_tool_execution"
+    },
+    "tests": [
+      "tests/test_v33_findings.py"
+    ],
+    "timeout_seconds": 180
+  },
+  "A04": {
+    "components": {
+      "baseline": "real_pytest_baseline_bound_to_commit_and_environment",
+      "findings": "lifecycle_advanced_only_by_verifier_minted_receipts",
+      "model": "not_used",
+      "network": "not_used",
+      "postgres": "not_used",
+      "redis": "not_used",
+      "sandbox": "local_process_rlimits_with_command_policy",
+      "tools": "real_pytest_and_real_python_subprocesses"
+    },
+    "tests": [
+      "tests/test_v33_defect_verifier.py"
+    ],
+    "timeout_seconds": 300
+  },
+  "M01": {
+    "components": {
+      "evidence": "real_evidence_and_artifact_references_scope_checked",
+      "legacy": "knowledge_memories_read_through_and_explicit_import_without_rewrite",
+      "lifecycle": "append_only_content_supersede_revoke_stale_enforced_by_schema_triggers_and_store",
+      "model": "not_used",
+      "network": "not_used",
+      "postgres": "real_disposable_database_0021_migration",
+      "redis": "not_used",
+      "scope": "project_repository_commit_and_actor_checked_on_every_read_and_write"
+    },
+    "tests": [
+      "tests/test_v33_memory_schema.py"
+    ],
+    "timeout_seconds": 300
+  },
+  "M02": {
+    "components": {
+      "candidates": "six_execution_triggers_with_outcome_matrix_and_digest_identity",
+      "confirmation": "semantic_procedural_and_high_risk_require_external_digest_bound_confirmation",
+      "filtering": "secrets_prompt_injection_inferred_and_disputed_content_rejected",
+      "findings": "a03_findings_become_outcome_scoped_candidates_without_mixing_success_and_failure",
+      "model": "not_used",
+      "network": "not_used",
+      "postgres": "real_disposable_database_0021_migration_and_reference_scope_checks",
+      "redis": "not_used"
+    },
+    "tests": [
+      "tests/test_v33_memory_write.py"
+    ],
+    "timeout_seconds": 300
+  },
+  "M03": {
+    "components": {
+      "degradation": "lexical_bm25_when_embedding_is_absent_or_unavailable_with_reported_reason",
+      "embedding": "fixture_protocol_only_no_vector_model_required",
+      "evidence": "hits_return_source_uris_evidence_ids_confidence_and_verification_status",
+      "fusion": "bm25_plus_optional_dense_rrf_with_optional_reranker",
+      "model": "not_used",
+      "network": "not_used",
+      "postgres": "real_disposable_database_0021_migration",
+      "redis": "not_used",
+      "scope": "project_repository_actor_filtered_before_scoring",
+      "versioning": "commit_scope_marked_current_historical_stale_with_reverification_required"
+    },
+    "tests": [
+      "tests/test_v33_memory_retrieval.py"
+    ],
+    "timeout_seconds": 300
+  },
+  "M04": {
+    "components": {
+      "artifact": "content_addressed_immutable_bytes_verified_and_paginated_with_forward_backward_cursors",
+      "budget": "deterministic_section_allocation_with_pinned_constraints_and_recent_window",
+      "compaction": "dedupe_long_segment_references_structured_summary_and_invariant_check",
+      "evidence": "evidence_ids_and_artifact_hashes_pinned_across_compaction",
+      "model": "fixture_no_network",
+      "network": "not_used",
+      "permissions": "no_permission_or_tool_escalation_possible_after_compaction",
+      "postgres": "not_used",
+      "redis": "not_used"
+    },
+    "tests": [
+      "tests/test_v33_context_compaction.py",
+      "tests/test_v32_repository_analysis.py"
+    ],
+    "timeout_seconds": 300
+  },
+  "M05": {
+    "components": {
+      "candidates": "post_verification_investigation_candidate_with_evidence_and_m02_confirmation_gate",
+      "compaction": "m04_context_builder_reused_while_memory_and_evidence_sections_survive",
+      "filtering": "unverified_disputed_injected_and_authority_claiming_memories_excluded_or_downweighted",
+      "model": "fixture_no_network",
+      "network": "not_used",
+      "postgres": "real_disposable_database_0021_migration",
+      "recall": "task_start_recall_with_plan_hints_and_followup_confirmed_facts_at_exact_commit",
+      "redis": "not_used",
+      "safety": "memory_reference_only_never_changes_tools_repository_commit_budget_approval_or_sandbox",
+      "working": "post_tool_working_memory_created_and_superseded_per_run"
+    },
+    "tests": [
+      "tests/test_v33_memory_agent.py"
+    ],
+    "timeout_seconds": 600
+  },
+  "R01": {
+    "components": {
+      "authorization": "explicit_time_bound_actor_and_repository_scoped_repair_authority",
+      "budget": "repair_budget_bounded_by_authorization_limits",
+      "evidence": "finding_evidence_registry_resolved_and_retained",
+      "handoff": "ten_field_content_addressed_contract_repository_commit_finding_evidence_reproduction_objective_paths_budget_authorization_parent_run",
+      "model": "not_used",
+      "network": "not_used",
+      "postgres": "not_used",
+      "reproduction": "verifier_minted_execution_receipt_or_static_confirmation_never_conflated",
+      "target": "only_reproduced_or_statically_confirmed_findings_at_the_parent_commit"
+    },
+    "tests": [
+      "tests/test_v34_repair_handoff.py"
+    ],
+    "timeout_seconds": 300
+  },
+  "R02": {
+    "components": {
+      "diff": "unified_diff_against_baseline_with_git_headers",
+      "isolation": "mkdtemp_worktree_from_explicit_base_tree_never_host_project",
+      "limits": "configurable_max_files_changed_lines_total_bytes_file_bytes_deletions_new_files",
+      "model": "not_used",
+      "network": "not_used",
+      "paths": "repo_relative_traversal_hidden_and_symlink_escape_rejected_r01_scope_enforced",
+      "postgres": "not_used",
+      "protected": "dependency_manifests_ci_dockerfile_and_env_denied_by_default",
+      "redis": "not_used",
+      "revert": "last_patch_revert_restores_preimages_and_tree_hash",
+      "tools": "read_worktree_file_apply_patch_get_diff_revert_patch_get_changed_files",
+      "tree": "git_style_tree_hash_before_and_after_every_patch"
+    },
+    "tests": [
+      "tests/test_v34_patch_workspace.py"
+    ],
+    "timeout_seconds": 300
+  },
+  "R03": {
+    "components": {
+      "adapters": "trusted_go_and_python_adapters_generate_fixed_argv_no_model_shell",
+      "dependencies": "separate_preparation_phase_waits_when_offline_bundle_is_missing",
+      "image": "fixed_base_pinned_by_image_id_in_r03_sandbox_lock_built_offline",
+      "limits": "cpus_memory_pids_wall_clock_output_workspace_and_tmp_disk_quotas",
+      "model": "not_used",
+      "network": "container_network_none_verified_from_docker_inspect",
+      "postgres": "not_used",
+      "redis": "not_used",
+      "results": "passed_build_failed_test_failed_timeout_sandbox_error_no_tests_and_waiting",
+      "secrets": "host_credentials_never_injected_allowlisted_environment_verified",
+      "tests": "python_unittest_runner_and_go_test_json_parser"
+    },
+    "tests": [
+      "tests/test_v34_sandbox_executor.py"
+    ],
+    "timeout_seconds": 300
+  },
+  "R04": {
+    "components": {
+      "baseline": "public_tests_must_fail_before_any_patch_is_proposed",
+      "budget": "max_attempts_max_test_runs_and_wall_clock_deadline_enforced",
+      "feedback": "structured_stage_code_message_and_public_failed_tests_only",
+      "isolation": "r03_fixed_image_no_network_no_host_files_no_credentials",
+      "memory": "episodic_episode_per_failed_attempt_and_final_outcome",
+      "model": "trusted_provider_protocol_returns_patch_plans_never_shell_commands",
+      "postgres": "not_used",
+      "proposal": "only_public_and_independent_verification_both_passing",
+      "redis": "not_used",
+      "scope": "r02_authorized_paths_protected_configuration_and_frozen_tests",
+      "tests": "real_python_and_go_repairs_with_hidden_verification",
+      "verification": "hidden_suite_never_visible_to_provider_and_failures_do_not_leak_names"
+    },
+    "tests": [
+      "tests/test_v34_repair_agent.py"
+    ],
+    "timeout_seconds": 300
+  },
+  "E01": {
+    "components": {
+      "arms": "A_B_C_paired_same_task_commit_model_budget_and_grader",
+      "coverage": "four_public_repositories_python_and_go_at_pinned_commits",
+      "honesty": "live_arms_executed_with_paid_model_under_usd_cap_and_per_call_usage_recorded",
+      "holdout": "three_tasks_withheld_from_development_and_from_the_offline_selftest",
+      "metrics": "precision_at_k_recall_at_budget_citation_call_chain_repair_gates_and_memory_metrics",
+      "offline_harness": "fifteen_dev_tasks_verified_against_real_upstream_fix_patches",
+      "tasks": "ten_review_three_repair_two_negative_dev_plus_three_holdout",
+      "tests": "offline_grading_math_patch_traversal_guard_and_holdout_isolation"
+    },
+    "tests": [
+      "tests/test_v34_evaluation.py"
+    ],
+    "timeout_seconds": 600
+  },
+  "E02": {
+    "components": {
+      "approval": "stale_tree_hash_approval_rejected_before_any_write",
+      "dispatch": "eight_concurrent_ticks_deliver_one_outbox_effect",
+      "injection": "readme_comment_untrusted_data_never_enters_trusted_memory_or_system_instructions",
+      "memory": "repository_scoped_reads_commit_scoped_stale_reverification_and_cross_repo_isolation",
+      "model": "malformed_truncated_and_unmetered_responses_fail_closed_with_usage_status",
+      "patch": "path_traversal_symlink_escape_and_stale_expected_hash_denied",
+      "publication": "lost_draft_pr_receipt_reconciled_read_only_without_replaying_writes",
+      "recovery": "real_sigkill_pauses_run_fences_old_epoch_and_resumes_without_duplicate_actions",
+      "repair": "budget_exhaustion_and_absent_defect_stop_without_proposal",
+      "sandbox": "hostile_repository_tests_cannot_reach_host_files_credentials_or_network",
+      "tests": "eighteen_security_failure_and_recovery_scenarios"
+    },
+    "tests": [
+      "tests/test_v34_security_recovery.py"
+    ],
+    "timeout_seconds": 600
+  },
+  "R05": {
+    "components": {
+      "approval": "binds_repository_base_commit_tested_tree_and_payload_hash",
+      "diff": "complete_diff_review_before_any_write",
+      "draft_only": "creates_draft_pull_requests_and_never_merges",
+      "fallback": "exports_patch_when_write_credential_is_missing",
+      "memory": "publication_episodes_for_success_and_failure",
+      "reconcile": "read_only_lookup_after_unknown_result_without_replay",
+      "steps": "branch_commit_and_pull_request_written_and_receipted_separately",
+      "tokens": "github_write_credential_is_separate_from_read_only_token",
+      "tests": "fixture_mcp_real_draft_pr_publication",
+      "verification": "base_commit_rechecked_before_first_write"
+    },
+    "tests": [
+      "tests/test_v34_pr_delivery.py"
+    ],
+    "timeout_seconds": 300
+  },
+  "U01": {
+    "components": {
+      "coverage": "explicit_repository_or_path_scope_with_observed_scanned_unscanned_and_languages",
+      "findings": "risk_ranked_single_source_with_evidence_uri_quote_hash_and_reproduction_plan",
+      "memory": "m05_task_recall_hits_exposed_as_references_only",
+      "modes": "audit_issue_repair_and_audit_and_repair_shared_by_web_cli_and_api",
+      "network": "not_used_fixture_in_memory_remote_only",
+      "postgres": "real_disposable_database_0022_migration",
+      "publication": "r05_draft_pr_contract_never_merges",
+      "reproduction": "real_pytest_subprocess_failing_before_and_passing_after_receipts",
+      "review": "suggested_fix_never_rendered_as_fixed_and_five_stage_labels_evidence_gated",
+      "surfaces": "authenticated_api_cli_and_static_web_workbench",
+      "timeline": "append_only_agent_execution_timeline_and_follow_up_threads"
+    },
+    "tests": [
+      "tests/test_v34_repository_api.py"
+    ],
+    "timeout_seconds": 600
+  },
+  "V31-P0-IMPLEMENT": {
+    "components": {
+      "final_scope": "P0_only_patch_schema_exhaustion_classification_and_acceptance_startup_recovery",
+      "historical_results": "unchanged",
+      "live": "NOT_RUN_pending_exact_frozen_grants_and_complete_Action_review",
+      "model": "controlled_HTTP_ONLY_in_registered_tests",
+      "postgres": "real_disposable_database_18_migrations",
+      "prior_full_regression": "404_PASS_at_b0b75e036fd0094fda4a61114ba9df554dfbd62ac052afecef56d73ad2834783",
+      "publication": "controlled_persistent_stdio_MCP_three_writes_and_readonly_reconciliation",
+      "redis": "real_local_coordination",
+      "results": "append_only_case_spec_and_business_results_SQL_only_atomic_commit",
+      "sandbox": "real_pinned_Docker_Go_public_28_independent_cases_and_observed_Case_window"
+    },
+    "tests": [
+      "tests/test_p0_commerce.py",
+      "tests/test_p0_live_adapter.py"
+    ],
+    "timeout_seconds": 900
+  },
+  "V31-P0-REVIEW": {
+    "components": {
+      "history": "original_business_results_and_actions_immutable",
+      "models": "none",
+      "postgres": "real_disposable_database_19_migrations",
+      "publication": "controlled_stdio_MCP_exact_approved_payload",
+      "sandbox": "real_pinned_Docker_Go_public_independent_and_observed_window"
+    },
+    "tests": [
+      "tests/test_p0_review.py",
+      "tests/test_environment.py"
+    ],
+    "timeout_seconds": 900
+  },
+  "V31-R0-02": {
+    "components": {
+      "github": "controlled_server",
+      "langgraph": "import_checked",
+      "mcp": "real_stdio_controlled_server",
+      "model": "not_used",
+      "postgres": "real",
+      "redis": "real"
+    },
+    "tests": [
+      "tests/test_environment.py",
+      "tests/test_verification.py",
+      "tests/test_mcp.py",
+      "tests/test_rate_limit.py"
+    ],
+    "timeout_seconds": 90
+  },
+  "V31-R0-03": {
+    "components": {
+      "github": "not_used",
+      "langgraph": "not_used",
+      "model": "not_used",
+      "postgres": "real",
+      "redis": "not_used"
+    },
+    "tests": [
+      "tests/test_coordination.py"
+    ],
+    "timeout_seconds": 90
+  },
+  "V31-R1-01": {
+    "components": {
+      "github": "controlled_server",
+      "langgraph": "real_postgres_checkpoint",
+      "mcp": "real_stdio_controlled_server",
+      "model": "fixture_http_transport",
+      "postgres": "real",
+      "redis": "real"
+    },
+    "tests": [
+      "tests/test_pipeline.py",
+      "tests/test_effects.py",
+      "tests/test_recovery.py",
+      "tests/test_api.py",
+      "tests/test_cli.py",
+      "tests/test_models.py"
+    ],
+    "timeout_seconds": 120
+  },
+  "V31-R1-BUDGET-02": {
+    "components": {
+      "github": "controlled_server",
+      "langgraph": "real_postgres_checkpoint",
+      "mcp": "real_stdio_controlled_server",
+      "model": "fixture_http_transport",
+      "postgres": "real",
+      "redis": "real"
+    },
+    "tests": [
+      "tests/test_environment.py",
+      "tests/test_verification.py",
+      "tests/test_mcp.py",
+      "tests/test_rate_limit.py",
+      "tests/test_coordination.py",
+      "tests/test_pipeline.py",
+      "tests/test_effects.py",
+      "tests/test_recovery.py",
+      "tests/test_api.py",
+      "tests/test_cli.py",
+      "tests/test_models.py"
+    ],
+    "timeout_seconds": 120
+  },
+  "V31-R2": {
+    "components": {
+      "github": "controlled_server",
+      "langgraph": "real_postgres_checkpoint",
+      "mcp": "real_stdio_controlled_server",
+      "model": "fixture_http_transport",
+      "postgres": "real",
+      "redis": "real",
+      "router_llm": "not_used"
+    },
+    "tests": [
+      "tests/test_duplex.py",
+      "tests/test_models.py",
+      "tests/test_api.py",
+      "tests/test_cli.py",
+      "tests/test_environment.py"
+    ],
+    "timeout_seconds": 120
+  },
+  "V31-R3": {
+    "components": {
+      "github": "signed_fixture_webhook_and_controlled_transport",
+      "langgraph": "real_postgres_checkpoint",
+      "mcp": "not_used_by_router",
+      "model": "fixture_http_transport",
+      "postgres": "real",
+      "redis": "real",
+      "router": "real_engine_with_bounded_proposals",
+      "web": "real_fastapi_static_and_authenticated_api"
+    },
+    "tests": [
+      "tests/test_routing.py",
+      "tests/test_router_model.py",
+      "tests/test_router_api.py",
+      "tests/test_coordination.py",
+      "tests/test_duplex.py",
+      "tests/test_effects.py",
+      "tests/test_cli.py",
+      "tests/test_environment.py"
+    ],
+    "timeout_seconds": 150
+  },
+  "V31-R4": {
+    "components": {
+      "business_oracle": "independent_frozen_synthetic_case_grader",
+      "data": "independent_postgresql_readonly_role_and_typed_cells",
+      "embedding": "fixture_protocol_only_in_this_target; real model gate is make rag-eval",
+      "expert_model": "fixture_deterministic_protocol_provider",
+      "github": "controlled_transport_no_new_publication",
+      "langgraph": "real_postgres_checkpoint_parallel_Send",
+      "mcp": "real_http_knowledge_and_data",
+      "postgres": "real_pgvector_exact_filtered_search",
+      "redis": "real_cache_with_acl_recheck_and_signed_values",
+      "reranker": "fixture_protocol_only_in_this_target; real model gate is make rag-eval",
+      "trial_budget": "real_shared_postgres_ledger_with_fixture_HTTP_models",
+      "web": "real_fastapi_static_and_authenticated_api"
+    },
+    "tests": [
+      "tests/test_r4_knowledge.py",
+      "tests/test_r4_experts.py",
+      "tests/test_r4_context.py",
+      "tests/test_r4_mcp.py",
+      "tests/test_r4_recovery.py",
+      "tests/test_r4_api.py",
+      "tests/test_environment.py",
+      "tests/test_models.py",
+      "tests/test_api.py",
+      "tests/test_effects.py",
+      "tests/test_duplex.py",
+      "tests/test_r4_trials.py",
+      "tests/test_mcp.py"
+    ],
+    "timeout_seconds": 180
+  },
+  "V31-R5": {
+    "components": {
+      "budget": "real_cumulative_PG_group_including_R1_R4_predecessors",
+      "docker": "real_nonroot_network_none_readonly_no_credentials",
+      "github": "real_stdio_MCP_controlled_remote_and_Git_tree_proof",
+      "go": "real_compiler_public_and_independent_hidden_tests",
+      "langgraph": "real_postgres_checkpoint_and_approval_interrupt",
+      "model": "controlled_HTTP_of_production_R5_adapter",
+      "postgres": "real",
+      "recovery": "real_SIGKILL_sandbox_candidate_branch_PR_and_costed_model_cache",
+      "web": "shared_authenticated_API"
+    },
+    "tests": [
+      "tests/test_acceptance.py",
+      "tests/test_api.py",
+      "tests/test_cli.py",
+      "tests/test_coordination.py",
+      "tests/test_duplex.py",
+      "tests/test_effects.py",
+      "tests/test_environment.py",
+      "tests/test_mcp.py",
+      "tests/test_models.py",
+      "tests/test_pipeline.py",
+      "tests/test_r4_api.py",
+      "tests/test_r4_context.py",
+      "tests/test_r4_experts.py",
+      "tests/test_r4_knowledge.py",
+      "tests/test_r4_mcp.py",
+      "tests/test_r4_recovery.py",
+      "tests/test_r4_trials.py",
+      "tests/test_r5_live.py",
+      "tests/test_r5_model_recovery.py",
+      "tests/test_r5_recount.py",
+      "tests/test_r5_recovery.py",
+      "tests/test_r5_repair.py",
+      "tests/test_r5_review_renewal.py",
+      "tests/test_rate_limit.py",
+      "tests/test_recovery.py",
+      "tests/test_router_api.py",
+      "tests/test_router_model.py",
+      "tests/test_routing.py",
+      "tests/test_verification.py"
+    ],
+    "timeout_seconds": 1200
+  },
+  "V31-R6": {
+    "components": {
+      "benchmark": "fixed_30_cases_90_assignments_protocol_only_live_NOT_RUN",
+      "docker_go": "real_isolated_public_and_independent_hidden_tests",
+      "github": "controlled_MCP_and_Git_metadata_no_publication",
+      "model": "controlled_HTTP_no_paid_calls",
+      "postgres": "real_disposable_database_17_migrations",
+      "proactivity": "Engine_scoped_bounded_readonly_independent_budget",
+      "recovery": "real_SIGKILL_and_unknown_effect_reconciliation",
+      "redis": "real",
+      "watchdog": "separate_process_loopback_HTTP_limited_identity"
+    },
+    "tests": [
+      "tests/test_acceptance.py",
+      "tests/test_api.py",
+      "tests/test_billing_reconciliation.py",
+      "tests/test_cli.py",
+      "tests/test_coordination.py",
+      "tests/test_duplex.py",
+      "tests/test_effects.py",
+      "tests/test_environment.py",
+      "tests/test_final_evaluation.py",
+      "tests/test_final_resume.py",
+      "tests/test_mcp.py",
+      "tests/test_models.py",
+      "tests/test_pipeline.py",
+      "tests/test_r4_api.py",
+      "tests/test_r4_context.py",
+      "tests/test_r4_experts.py",
+      "tests/test_r4_knowledge.py",
+      "tests/test_r4_mcp.py",
+      "tests/test_r4_recovery.py",
+      "tests/test_r4_trials.py",
+      "tests/test_r5_live.py",
+      "tests/test_r5_model_recovery.py",
+      "tests/test_r5_recount.py",
+      "tests/test_r5_recovery.py",
+      "tests/test_r5_repair.py",
+      "tests/test_r5_review_renewal.py",
+      "tests/test_r6_policies.py",
+      "tests/test_r6_runtime.py",
+      "tests/test_r6_watchdog.py",
+      "tests/test_rate_limit.py",
+      "tests/test_recovery.py",
+      "tests/test_router_api.py",
+      "tests/test_router_model.py",
+      "tests/test_routing.py",
+      "tests/test_verification.py",
+      "tests/test_r6_repair_contract.py",
+      "tests/test_r6_wire_protocol.py"
+    ],
+    "timeout_seconds": 1800
+  },
+  "V31-R6-01": {
+    "components": {
+      "authorization": "distinct_limited_watchdog_token_admin_decisions_separate",
+      "external_writes": "controlled_regression_only_no_live_GitHub_publication",
+      "model": "none_in_watchdog_controlled_in_regression",
+      "postgres": "real_Engine_single_writer_same_session",
+      "recovery": "deterministic_facts_dedupe_stale_epoch_manual_fencing_and_rollback",
+      "watchdog": "real_separate_process_and_loopback_HTTP_observe_only"
+    },
+    "tests": [
+      "tests/test_r6_watchdog.py",
+      "tests/test_environment.py",
+      "tests/test_api.py",
+      "tests/test_cli.py",
+      "tests/test_coordination.py",
+      "tests/test_duplex.py",
+      "tests/test_effects.py",
+      "tests/test_recovery.py",
+      "tests/test_r5_review_renewal.py"
+    ],
+    "timeout_seconds": 300
+  },
+  "V31-R6-BILLING": {
+    "components": {
+      "billing": "exact_hourly_request_and_token_attribution_same_Run_budget_idempotent_no_invented_per_call_usage",
+      "continuation": "AST_proof_of_identical_generation_and_pricing",
+      "go": "real_isolated_hidden_oracle_checks",
+      "model": "controlled_HTTP_only_no_new_paid_calls",
+      "postgres": "real"
+    },
+    "tests": [
+      "tests/test_billing_reconciliation.py",
+      "tests/test_final_resume.py",
+      "tests/test_final_evaluation.py",
+      "tests/test_models.py",
+      "tests/test_environment.py",
+      "tests/test_verification.py"
+    ],
+    "timeout_seconds": 300
+  },
+  "V31-R6-COORD": {
+    "components": {
+      "business_history": "original_ABC87_PASS3_FAIL_unmodified",
+      "live": "NOT_RUN_until_exact_new_manifest_authorization",
+      "model": "controlled_HTTP_ONLY_in_registered_tests",
+      "postgres": "real_17_original_migrations_and_separate_DEF_schema",
+      "recovery": "real_SIGKILL_known_response_reuse_epoch_fencing_unknown_no_resend",
+      "redis": "real_source_cache_trial_namespace_only",
+      "worker": "same_real_LangGraph_R2_and_production_Verifier"
+    },
+    "tests": [
+      "tests/test_coordination_eval.py",
+      "tests/test_router_model.py",
+      "tests/test_routing.py",
+      "tests/test_duplex.py",
+      "tests/test_environment.py",
+      "tests/test_verification.py"
+    ],
+    "timeout_seconds": 300
+  },
+  "V31-R6-COORD-REPAIR": {
+    "components": {
+      "business_history": "original_ABC87_PASS3_FAIL_unmodified",
+      "live": "NOT_RUN_until_exact_new_manifest_authorization",
+      "model": "controlled_HTTP_ONLY_in_registered_tests",
+      "postgres": "real_17_original_migrations_and_separate_DEF_schema",
+      "recovery": "real_SIGKILL_known_response_reuse_epoch_fencing_unknown_no_resend",
+      "redis": "real_source_cache_trial_namespace_only",
+      "worker": "same_real_LangGraph_R2_and_production_Verifier"
+    },
+    "tests": [
+      "tests/test_coordination_candidates.py",
+      "tests/test_coordination_eval.py",
+      "tests/test_router_model.py",
+      "tests/test_routing.py",
+      "tests/test_duplex.py",
+      "tests/test_environment.py",
+      "tests/test_verification.py"
+    ],
+    "timeout_seconds": 300
+  },
+  "V31-R6-REPAIR": {
+    "components": {
+      "contract": "strict_fields_boolean_strings_fail_closed_and_bounded_repair",
+      "go": "real_isolated_hidden_oracle_regression",
+      "model": "controlled_only_no_paid_calls",
+      "numeric": "observed_SQL_aggregate_min_event_and_exact_Decimal",
+      "policy": "public_capabilities_current_ACL_scope_revision_no_oracle_labels",
+      "postgres": "real_disposable_database_17_migrations",
+      "wire": "exact_quote_catalog_body_only_patch_rendering_known_invalid_expert_fallback_unknown_stop"
+    },
+    "tests": [
+      "tests/test_r6_repair_contract.py",
+      "tests/test_final_evaluation.py",
+      "tests/test_final_resume.py",
+      "tests/test_billing_reconciliation.py",
+      "tests/test_models.py",
+      "tests/test_verification.py",
+      "tests/test_r6_wire_protocol.py"
+    ],
+    "timeout_seconds": 600
+  },
+  "V31-R6-RESUME": {
+    "components": {
+      "go": "real_isolated_reference_oracles",
+      "model": "controlled_HTTP_only_no_new_paid_calls",
+      "postgres": "real",
+      "recovery": "explicit_continuation_no_reruns_no_reset_sealed_results_unknown_stop"
+    },
+    "tests": [
+      "tests/test_final_resume.py",
+      "tests/test_final_evaluation.py",
+      "tests/test_models.py",
+      "tests/test_environment.py",
+      "tests/test_verification.py"
+    ],
+    "timeout_seconds": 300
+  },
+  "V35-B00": {
+    "components": {
+      "audit": "baseline_sha_frozen_and_real_call_graphs_with_component_reachability",
+      "fixture_isolation": "fixed_dispatcher_in_memory_remote_and_host_pytest_entries_enumerated",
+      "github": "not_used",
+      "model": "not_used",
+      "postgres": "real",
+      "redis": "not_used",
+      "state": "single_owner_per_state_documented_with_gap_matrix"
+    },
+    "tests": [
+      "tests/test_v34_repository_api.py",
+      "tests/test_v32_repository_analysis.py"
+    ],
+    "timeout_seconds": 600
+  },
+  "V35-U01": {
+    "components": {
+      "cas": "revision_bound_transition_allows_exactly_one_worker",
+      "compatibility": "legacy_v34_status_and_repo_analysis_r5_contract_preserved",
+      "epoch_fence": "run_pause_resume_cancel_bump_execution_epoch_and_fence_old_writers",
+      "events": "append_only_with_task_scoped_idempotency_key",
+      "model": "not_used",
+      "phase_machine": "python_service_and_postgres_trigger_share_one_seed_table",
+      "postgres": "real_disposable_database_0023_migration",
+      "redis": "not_used",
+      "run_ledger": "audit_repair_verifier_runs_linked_to_one_task_id"
+    },
+    "tests": [
+      "tests/test_v35_u01.py",
+      "tests/test_v34_repository_api.py",
+      "tests/test_v32_repository_analysis.py"
+    ],
+    "timeout_seconds": 600
+  },
+  "V35-U02": {
+    "components": {
+      "artifact": "handoff_serialized_by_sha256_and_registered_in_app_artifacts",
+      "evidence_binding": "evidence_id_source_uri_line_range_and_commit_required",
+      "handoff_gate": "reproduced_receipt_or_static_confirmation_only",
+      "ledger": "workbench_handoffs_append_only_bound_to_task_and_finding",
+      "live_auto_repair": "no_fixture_dispatcher_and_waiting_input_without_handoff",
+      "model": "not_used",
+      "postgres": "real_disposable_database_0024_migration",
+      "resume": "same_handoff_reused_after_evidence_and_authorization_revalidation"
+    },
+    "tests": [
+      "tests/test_v35_u02.py",
+      "tests/test_v34_repair_handoff.py",
+      "tests/test_v33_defect_verifier.py"
+    ],
+    "timeout_seconds": 600
+  },
+  "V35-R01": {
+    "components": {
+      "accounting": "usage_required_prompt_completion_tokens_cost_parse_errors_and_success_rate",
+      "e01_replay": "three_click_patch_failures_provider_level_applied_or_recoverable",
+      "model": "mock_structured_no_network",
+      "postgres": "not_used",
+      "prompt": "allowed_paths_only_with_latest_sha_and_no_hidden_tests",
+      "provider": "strict_json_full_file_edits_with_preimage_sha_no_shell_no_diff",
+      "redis": "not_used",
+      "worktree": "real_local_temp_worktree_apply"
+    },
+    "tests": [
+      "tests/test_v35_r01.py",
+      "tests/test_v34_patch_workspace.py",
+      "tests/test_v34_repair_agent.py"
+    ],
+    "timeout_seconds": 600
+  },
+  "V35-R02": {
+    "components": {
+      "cleanup": "container_finally_and_owner_label_reclaim",
+      "docker": "pinned_real_sandbox_image",
+      "fixture_isolation": "live_repair_cannot_reach_host_pytest_or_fixture_files",
+      "network": "not_used_inside_and_outside_the_sandbox",
+      "postgres": "not_used",
+      "redis": "not_used",
+      "snapshot": "fixed_commit_git_blob_and_sha256_verified",
+      "sources": "pallets_click_and_golang_example_public_snapshots",
+      "statuses": "baseline_not_reproduced_waiting_build_test_timeout_sandbox_error"
+    },
+    "tests": [
+      "tests/test_v35_r02.py",
+      "tests/test_v34_sandbox_executor.py",
+      "tests/test_v34_patch_workspace.py"
+    ],
+    "timeout_seconds": 900
+  },
+  "V35-R03": {
+    "components": {
+      "authorization": "independent_allow_repair_denied_by_default_scope_revalidated",
+      "budget": "attempts_test_runs_and_deadline_inside_task_and_run_ledger",
+      "cancel": "cooperative_token_at_node_boundaries_late_receipts_discarded",
+      "docker": "pinned_real_sandbox_image",
+      "hidden_tests": "verification_files_never_enter_provider_prompt",
+      "model": "fixture_provider_no_paid_network",
+      "postgres": "real_disposable_database_repair_checkpoints_in_workbench_events",
+      "recovery": "sigkill_resumes_from_recorded_plan_patch_hash_and_receipt_without_repeat",
+      "rollback": "failed_public_or_hidden_stage_returns_worktree_and_structured_feedback",
+      "sources": "golang_example_public_snapshot",
+      "terminal": "waiting_approval_review_bundle_without_pr_or_github_write"
+    },
+    "tests": [
+      "tests/test_v35_r03.py",
+      "tests/test_v34_repair_agent.py",
+      "tests/test_v34_repository_api.py"
+    ],
+    "timeout_seconds": 1200
+  },
+  "V35-R04": {
+    "components": {
+      "approval": "binds_repository_base_commit_tested_tree_diff_sha_full_files_and_payload_hash",
+      "concurrency": "leased_claim_under_skip_locked_publishes_one_approval_once",
+      "dispatch": "http_requests_only_enqueue_a_durable_publication_outbox_row",
+      "idempotency": "unique_task_finding_payload_hash_with_reused_approval_identity",
+      "invalidation": "payload_change_marks_queued_publication_stale_and_revocation_fails_before_write",
+      "live_github_write": "NOT_RUN_no_authorized_test_repository",
+      "model": "not_used",
+      "postgres": "real_disposable_database_0025_migration_publications_and_step_receipts",
+      "reconcile": "read_only_lookup_after_unknown_and_never_replay",
+      "recovery": "restart_marks_in_flight_publication_outcome_unknown_without_retry",
+      "steps": "branch_then_commit_then_draft_pull_request_receipted_separately",
+      "tokens": "separate_read_and_write_transports_with_write_scope_revalidation",
+      "write_denied": "full_patch_exported_as_exported_or_waiting_approval_never_claimed_published"
+    },
+    "tests": [
+      "tests/test_v35_r04.py",
+      "tests/test_v34_pr_delivery.py",
+      "tests/test_v34_repository_api.py",
+      "tests/test_recovery.py"
+    ],
+    "timeout_seconds": 900
+  },
+  "V35-R05": {
+    "components": {
+      "cli_api_parity": "same_task_view_and_publish_reconcile_routes_reachable_from_cli_and_web",
+      "dependency_states": "missing_profile_parks_task_in_waiting_for_dependencies_and_missing_write_scope_reports_waiting_approval",
+      "diff_review": "full_diff_loaded_before_approval_and_approval_bound_to_the_reviewed_payload_hash",
+      "failure_reasons": "failed_events_exposed_as_structured_reason_code_and_text",
+      "fixture_pr_link": "fixture_publication_never_rendered_as_a_github_link",
+      "labels": "five_stage_labels_with_suggested_fix_never_presented_as_fixed",
+      "live_agent": "NOT_RUN_no_paid_model_or_authorized_repository",
+      "live_github_write": "NOT_RUN_no_authorized_test_repository",
+      "live_model": "NOT_RUN_no_paid_model",
+      "negative_paths": "unauthenticated_direct_approve_stale_hash_refresh_duplicate_and_cancel_after_approval",
+      "postgres": "real_disposable_database_same_workbench_schema",
+      "usage": "runs_retries_and_settled_cost_reported_from_the_ledger",
+      "web": "single_page_uses_the_api_contract_and_reviews_the_full_diff"
+    },
+    "tests": [
+      "tests/test_v35_r05.py",
+      "tests/test_v34_repository_api.py"
+    ],
+    "timeout_seconds": 900
+  },
+  "V35-M01": {
+    "components": {
+      "audit": "failed_writes_persisted_in_memory_write_attempts_with_candidate_jsonb_and_retry",
+      "contract": "existing_four_memory_kinds_and_knowledge_schema_no_fifth_store",
+      "gates": "secret_prompt_injection_low_confidence_and_scope_mismatch_rejected_and_audited",
+      "historical": "cross_commit_recall_marked_historical_with_requires_reverification",
+      "live_agent": "NOT_RUN_no_paid_model",
+      "live_github_write": "NOT_RUN_no_authorized_test_repository",
+      "live_model": "NOT_RUN_no_paid_model",
+      "postgres": "real_disposable_database_0026_memory_write_attempts",
+      "publication": "release_receipts_recorded_for_published_and_write_denied_outcomes",
+      "trace": "task_run_finding_evidence_repair_attempt_test_receipt_to_memory_chain",
+      "workbench": "fixture_task_memory_bound_to_the_real_audit_run_and_evidence",
+      "working_memory": "never_surfaces_as_a_cross_task_fact"
+    },
+    "tests": [
+      "tests/test_v35_m01.py",
+      "tests/test_v33_memory_write.py",
+      "tests/test_v33_memory_retrieval.py",
+      "tests/test_v33_memory_agent.py"
+    ],
+    "timeout_seconds": 900
+  },
+  "V35-M02": {
+    "components": {
+      "background_compaction": "NOT_IMPLEMENTED_deterministic_compactor_retained",
+      "budget": "deterministic_section_budgets_with_pinned_hard_constraints_and_recent_window",
+      "context_bundle": "shared_by_investigation_and_repair_planner_with_one_truncation_policy",
+      "degradation": "summary_failure_degrades_to_a_safe_short_window_without_losing_authority_or_evidence",
+      "evidence": "evidence_ids_and_artifact_hashes_pinned_and_reverified_after_compaction",
+      "live_agent": "NOT_RUN_no_paid_model",
+      "live_github_write": "NOT_RUN_no_authorized_test_repository",
+      "live_model": "NOT_RUN_no_paid_model",
+      "metrics": "input_tokens_context_chars_loss_checks_latency_and_zero_cost_reported",
+      "model": "fixture_no_network",
+      "network": "not_used",
+      "postgres": "not_used",
+      "recovery": "context_revision_guard_rejects_a_stale_bundle_after_new_tool_results",
+      "redis": "not_used",
+      "sections": "system_task_constraints_scope_plan_observations_summary_evidence_memories_failures_approvals_actions_questions_permissions_tools_budget",
+      "untrusted_claims": "authority_claims_inside_observations_surface_as_data_never_permission"
+    },
+    "tests": [
+      "tests/test_v35_m02.py",
+      "tests/test_v33_context_compaction.py",
+      "tests/test_v32_repository_analysis.py"
+    ],
+    "timeout_seconds": 900
+  },
+  "V35-X01": {
+    "components": {
+      "benchmark": "offline_recorded_arms_success_cost_latency_simple_overhead_and_honest_conclusion",
+      "budget": "max_experts_rounds_calls_per_revision_and_timeout_hard_caps",
+      "dedupe": "same_revision_and_question_reuses_cached_advice_without_new_calls_or_budget",
+      "degradation": "timeout_failure_empty_conflict_invalid_evidence_and_missing_provider_degrade_without_blocking",
+      "dispatch": "parallel_experts_share_one_authoritative_input_revision",
+      "experts": "read_only_advisory_without_write_access_or_main_state_mutation",
+      "live_agent": "NOT_RUN_no_paid_model",
+      "live_github_write": "NOT_RUN_no_authorized_test_repository",
+      "live_model": "NOT_RUN_no_paid_model",
+      "main_agent": "payload_exposes_optional_expert_advice_with_main_agent_decides_and_write_access_false",
+      "model": "fixture_deterministic_no_network",
+      "postgres": "real_disposable_database_r4_expert_graph_regression",
+      "r4_graph": "expert_route_event_and_on_demand_role_plan_keep_existing_fixture_three_role_question",
+      "redis": "not_used",
+      "routing": "deterministic_triggers_only_no_model_decision",
+      "triggers": "multi_file_dependency_verification_failure_security_conflict_user_request_and_documented_data_cross_source"
+    },
+    "tests": [
+      "tests/test_v35_x01.py",
+      "tests/test_r4_experts.py",
+      "tests/test_r4_recovery.py",
+      "tests/test_v35_m02.py",
+      "tests/test_v32_repository_analysis.py"
+    ],
+    "timeout_seconds": 1200
+  },
+  "V35-E01": {
+    "components": {
+      "adversarial": "first_patch_fails_public_tests_then_second_patch_after_feedback",
+      "budget": "attempts_model_calls_test_runs_and_deadline_are_hard_caps",
+      "cost": "model_calls_cost_latency_recorded_per_task_and_aggregated",
+      "coverage": "known_bug_regression_multifile_and_adversarial_with_pinned_commit_initial_failure_hidden_verification_and_success_criteria",
+      "dataset": "pinned_snapshots_public_hidden_split_gold_patch_without_holdout_contamination",
+      "grader": "reproduction_fix_regression_scope_cost_calls_publication_and_failure_mode_separation",
+      "holdout": "isolated_not_loaded_by_development_requires_explicit_evaluate_holdout",
+      "live_agent": "NOT_RUN_no_paid_model_authorization",
+      "live_github_write": "NOT_RUN_no_authorized_test_repository",
+      "live_model": "NOT_RUN_no_paid_model",
+      "publication": "waiting_approval_only_no_draft_pr",
+      "resume": "interrupted_provider_call_refused_without_duplicate_model_calls",
+      "runtime": "authorized_orchestrator_snapshot_runtime_r03_docker_network_none",
+      "sandbox": "pinned_r03_image_real_write_patch_test_and_hidden_verification",
+      "scoring": "public_and_hidden_pass_with_zero_unrelated_or_out_of_scope_changes"
+    },
+    "tests": [
+      "tests/test_v35_e01.py",
+      "tests/test_v34_sandbox_executor.py"
+    ],
+    "timeout_seconds": 1800
+  },
+  "V35-E02": {
+    "components": {
+      "ablation": "four_paired_arms_A_no_memory_B_memory_C_memory_compaction_D_memory_compaction_experts_same_task_commit_budget_and_grader",
+      "memory": "commit_scoped_verified_active_facts_only_stale_unverified_and_superseded_excluded",
+      "compaction": "shared_M02_policy_dedupe_compress_omit_with_context_loss_and_duplicate_work_rates",
+      "experts": "on_demand_X01_read_only_repo_expert_only_for_multifile_or_two_failed_attempts",
+      "statistics": "paired_bootstrap_95ci_seed_20261110_four_dev_tasks_exploratory_only",
+      "decision": "all_failed_live_arms_inconclusive_no_winner_history_preserved",
+      "live_model": "DEEPSEEK_CHAT_paid_calls_bounded_by_authorization_call_and_cost_caps",
+      "live_agent": "FAIL_live_probe_four_arms_PATCH_TRUNCATED_output_length_limit",
+      "engineering_gate": "PASS_fixture_grid_16_of_16",
+      "reports": "immutable_per_arm_and_per_task_never_overwritten",
+      "live_github_write": "NOT_RUN_no_authorized_test_repository",
+      "security": "api_key_never_logged_or_reported_transport_failures_fail_closed"
+    },
+    "tests": [
+      "tests/test_v35_e02.py",
+      "tests/test_v35_m02.py",
+      "tests/test_v35_x01.py"
+    ],
+    "timeout_seconds": 1800
+  },
+  "V35-E03": {
+    "components": {
+      "scenario_registry": "35_registered_scenarios_across_six_required_categories_each_with_node_id_failure_point_observed_state_and_recovery_result",
+      "v34_regression": "all_18_v3_4_security_recovery_tests_kept_as_regression_subset",
+      "cross_stage": "memory_gate_rejects_injected_readme_before_context_and_observation_authority_claims_cannot_widen_permissions",
+      "multi_round": "adversarial_two_round_run_compaction_preserves_pending_and_failed_state_experts_read_only",
+      "restart": "interrupted_resume_and_forked_checkpoint_resume_zero_provider_calls_no_duplicate_effect",
+      "concurrency": "duplicate_publication_approval_and_outbox_replay_write_once",
+      "disaster": "sigkill_redis_loss_database_outage_docker_unavailable_model_429_500_truncation_transport_loss_all_fail_closed",
+      "external_write": "read_only_reconcile_base_drift_expired_token_archived_repository_rate_limit_no_fabricated_success",
+      "postgres_restart": "NOT_RUN_shared_database_restart_deferred_connection_loss_probe_covers_outage_path",
+      "live_github_write": "NOT_RUN_no_authorized_test_repository_external_failures_injected_at_transport_boundary",
+      "security": "no_paid_calls_no_live_write_no_secret_logged_scenario_report_immutable"
+    },
+    "tests": [
+      "tests/test_v35_e03.py",
+      "tests/test_v34_security_recovery.py"
+    ],
+    "timeout_seconds": 2400
+  },
+  "V35-D01": {
+    "components": {
+      "docs": "product_description_90s_demo_and_evaluation_index_with_live_fixture_separation",
+      "demo_repo": "pinned_click_snapshot_copied_offline_with_sha256_digest_check_and_overwrite_guard",
+      "demo_run": "single_adversarial_fixture_task_via_make_demo_real_docker_report_not_overwritten",
+      "aggregate": "engineering_pass_live_model_fail_live_github_write_not_run_live_agent_fail_security_pass",
+      "model": "not_used",
+      "github": "not_used",
+      "postgres": "real",
+      "redis": "real",
+      "docker": "real_pinned_r03_image_observed_by_demo_run",
+      "live": "inherited_from_e01_e02_e03_not_rerun"
+    },
+    "tests": [
+      "tests/test_v35_d01.py"
+    ],
+    "timeout_seconds": 300
+  },
+  "AGENT-UI": {
+    "components": {
+      "postgres": "real_disposable_database",
+      "redis": "real_model_rate_limit",
+      "langgraph": "real_background_supervisor_and_postgres_checkpoints",
+      "model": "real_client_with_controlled_http_responses",
+      "github": "real_read_gateway_with_controlled_mcp_responses",
+      "live_model": "NOT_RUN_missing_runtime_credentials",
+      "live_github_write": "NOT_APPLICABLE_read_only_analysis"
+    },
+    "tests": [
+      "tests/test_agent_page.py",
+      "tests/test_analysis_streaming.py",
+      "tests/test_web_access.py",
+      "tests/test_api.py",
+      "tests/test_r4_api.py",
+      "tests/test_router_api.py",
+      "tests/test_v32_repository_analysis.py"
+    ],
+    "timeout_seconds": 180
+  },
+  "HV4-H00": {
+    "components": {
+      "baseline": "origin_main_973994c_with_application_baseline_1d07285_frozen",
+      "static_checks": "full_repo_ruff_23_to_0_and_mypy_16_to_0_with_original_logs",
+      "regression": "20_file_core_suite_real_postgres_redis_and_r03_sandbox_full_922_run_recorded_not_completed",
+      "task_catalog": "12_dev_12_holdout_six_real_projects_python_javascript_typescript_go",
+      "judge": "canonical_judge_sha256_per_task_v35_hidden_file_hashes_bound_holdout_isolated",
+      "contracts": "task_types_and_scoring_v1_frozen_before_any_hv4_result",
+      "model": "not_used",
+      "github": "not_used",
+      "postgres": "real_migrate_doctor_and_core_regression",
+      "redis": "real_doctor_and_core_regression",
+      "docker": "real_r03_sandbox_in_core_regression",
+      "live": "NOT_RUN_no_paid_calls_or_external_writes"
+    },
+    "tests": [
+      "tests/test_harness_v4_h00.py"
+    ],
+    "timeout_seconds": 300
+  },
+  "HV4-H01": {
+    "components": {
+      "contracts": "harness_contract_v1_1_frozen_model_tool_workspace_broker_context_verifier_event_budget",
+      "runtime": "reference_read_edit_test_loop_with_replaceable_model_and_executor_adapters",
+      "permissions": "runtime_fail_closed_declared_tools_and_capability_checks",
+      "budget": "reservation_before_model_and_tool_calls_unknown_keeps_reservation",
+      "legacy": "read_only_analysis_adapter_and_repair_agent_delegating_adapter",
+      "deepseek_harness": "NOT_RUN_NO_NODE_RUNTIME_source_only_assessment",
+      "model": "not_used",
+      "github": "not_used",
+      "postgres": "not_used",
+      "redis": "not_used",
+      "docker": "not_used",
+      "live": "NOT_RUN_no_paid_calls_or_external_writes"
+    },
+    "tests": [
+      "tests/test_harness_v4_h01.py"
+    ],
+    "timeout_seconds": 300
+  },
+  "SAV1-00": {
+    "tests": [
+      "tests/test_coordination.py",
+      "tests/test_api.py",
+      "tests/test_routing.py",
+      "tests/test_duplex.py",
+      "tests/test_effects.py",
+      "tests/test_r6_policies.py",
+      "tests/test_r6_watchdog.py",
+      "tests/test_harness_v4_h01.py",
+      "tests/test_harness_v4_baseline.py"
+    ],
+    "components": {
+      "postgres": "real isolated Super-Agent database; same Engine authority",
+      "audit": "eight code symbols and existing regression entries, current hashes",
+      "harness": "fixed H00/H01 commits reviewed and locally rerun; two independent authorization probes required",
+      "new_runtime": "not implemented by this planning card",
+      "model": "controlled only; no paid calls",
+      "platform": "controlled only; no live source listeners or writes",
+      "historical": "FAIL/NOT_RUN preserved; six live/system gates remain separate"
+    },
+    "timeout_seconds": 600
+  },
+  "SAV1-01": {
+    "tests": [
+      "tests/test_super_agent_sa01.py",
+      "tests/test_coordination.py",
+      "tests/test_api.py",
+      "tests/test_environment.py",
+      "tests/test_verification.py"
+    ],
+    "components": {
+      "postgres": "real disposable databases, 29-to-30 forward upgrade and unchanged old records",
+      "contracts": "installation-scoped case-sensitive identity, event/entity/delivery versions, missing-topic and late-event cases",
+      "registry": "same held Engine connection; immutable source versions; metadata-only unassociated inbox",
+      "compatibility": "opt-in exact legacy wrapper; original TriggerInput/API/Engine behavior unchanged",
+      "security": "structural scope, FK chains, no content retention in metadata, fail-closed capability availability",
+      "source_adapter": "controlled verification/normalization ports only; no SDK/platform connection",
+      "model": "not_used",
+      "external_writes": "not_used",
+      "live_source_channel": "NOT_RUN",
+      "live_coding": "NOT_RUN",
+      "live_publication": "NOT_RUN"
+    },
+    "timeout_seconds": 600
+  },
+  "SAV1-02": {
+    "tests": [
+      "tests/test_super_agent_sa02.py",
+      "tests/test_super_agent_sa01.py",
+      "tests/test_web_access.py",
+      "tests/test_api.py",
+      "tests/test_environment.py",
+      "tests/test_coordination.py"
+    ],
+    "components": {
+      "postgres": "real disposable PostgreSQL; 30-to-31 upgrade, same Engine connection, rollback and concurrency",
+      "identity": "trusted server verifier only, scoped raw IDs and internal bearer hashes; no plaintext/model/display-name authority",
+      "roles": "independent conversation roles, exact Ticket controller membership, current revision/expiry/revocation checks",
+      "admin_api": "current console cookie+Origin+CSRF and in-transaction session recheck; no source proof issuance endpoint",
+      "platform": "controlled real HMAC over synthetic envelopes; no live GitHub/Feishu SDK connection",
+      "model": "not_used",
+      "paid_calls": "0",
+      "external_writes": "0",
+      "live_source_channel": "NOT_RUN",
+      "live_coding": "NOT_RUN",
+      "live_publication": "NOT_RUN"
+    },
+    "timeout_seconds": 900
+  },
+  "SAV1-03": {
+    "tests": [
+      "tests/test_super_agent_sa03.py",
+      "tests/test_super_agent_sa02.py",
+      "tests/test_super_agent_sa01.py",
+      "tests/test_coordination.py",
+      "tests/test_api.py",
+      "tests/test_environment.py",
+      "tests/test_web_access.py",
+      "tests/test_duplex.py",
+      "tests/test_r4_experts.py",
+      "tests/test_effects.py",
+      "tests/test_models.py",
+      "tests/test_r6_policies.py",
+      "tests/test_r5_recovery.py"
+    ],
+    "components": {
+      "postgres": "real disposable PostgreSQL; policy CAS, immutable signatures, current-role fencing, 31-to-32 upgrade and same-connection rollback",
+      "policy": "four independent layers; disabled/shadow/auto_investigate/auto_repair; scoped repository/path/capability and exact notification boundary",
+      "revocation": "pending tools/heartbeat leases/Action invalidated; in-flight results/unknown/usage preserved",
+      "model": "NOT_RUN; no paid or semantic experiments",
+      "platform": "controlled synthetic signed envelopes only; live NOT_RUN",
+      "harness": "no changes or active imports"
+    },
+    "timeout_seconds": 1200
+  },
+  "SAV1-04": {
+    "tests": [
+      "tests/test_super_agent_sa04.py",
+      "tests/test_super_agent_sa04_faults.py",
+      "tests/test_super_agent_sa04_repair.py",
+      "tests/test_super_agent_sa04_order_transition.py",
+      "tests/test_super_agent_sa03.py",
+      "tests/test_super_agent_sa02.py",
+      "tests/test_super_agent_sa01.py",
+      "tests/test_coordination.py",
+      "tests/test_api.py",
+      "tests/test_environment.py",
+      "tests/test_web_access.py",
+      "tests/test_duplex.py",
+      "tests/test_r4_experts.py",
+      "tests/test_effects.py",
+      "tests/test_models.py",
+      "tests/test_r6_policies.py",
+      "tests/test_r5_recovery.py"
+    ],
+    "components": {
+      "postgres": "real disposable PostgreSQL; concurrent duplicate, migration 32-to-33, physical isolated pause and SIGKILL",
+      "source": "controlled signed transport; no real platform SDK or listener",
+      "model": "NOT_RUN; zero paid calls",
+      "harness": "no active changes/imports"
+    },
+    "timeout_seconds": 1800
+  },
+  "SAV1-05": {
+    "tests": [
+      "tests/test_super_agent_sa05.py",
+      "tests/test_super_agent_sa05_repair.py",
+      "tests/test_super_agent_sa05_history_repair.py",
+      "tests/test_super_agent_sa04.py",
+      "tests/test_super_agent_sa04_faults.py",
+      "tests/test_super_agent_sa04_repair.py",
+      "tests/test_super_agent_sa04_order_transition.py",
+      "tests/test_super_agent_sa03.py",
+      "tests/test_super_agent_sa02.py",
+      "tests/test_super_agent_sa01.py",
+      "tests/test_coordination.py",
+      "tests/test_api.py",
+      "tests/test_environment.py",
+      "tests/test_web_access.py",
+      "tests/test_duplex.py",
+      "tests/test_r4_experts.py",
+      "tests/test_effects.py",
+      "tests/test_models.py",
+      "tests/test_r6_policies.py",
+      "tests/test_r5_recovery.py"
+    ],
+    "components": {
+      "postgres": "real disposable PG; 33-to-34 upgrade/checksums/legacy retention, settings CAS/rollback, simultaneous CI input dedupe and current revocation",
+      "github": "real HMAC/RS256 on explicitly synthetic recordings; fixed REST contract via MockTransport; no real GitHub or listener",
+      "credentials": "one repository/read permissions/short expiry, no token API/cache/worker disclosure; per-claim authorization before/after mint and data read",
+      "privacy": "Receive body TTL/crypto/current scope inherited SA04, signed outside-Receive mutation invalidation and no new denied content",
+      "legacy": "original Issue Webhook and pre-workflow single owner split; original registered recovery/fault regressions retained",
+      "model": "NOT_RUN; zero paid calls",
+      "harness": "no active files or changes imported; only fixed ownership confirmation read",
+      "live_source_channel": "NOT_RUN",
+      "live_coding": "NOT_RUN",
+      "live_publication": "NOT_RUN",
+      "repair": "Original independent assertions unchanged; oversized edits/deletes, real resource author/operator, current Receive, history, no spool, rollback and equal version redelivery",
+      "history_repair": "Unselected authors submit bodyless trusted observations; equal live/history converge without changing strict authority fingerprints; current history scope ceiling"
+    },
+    "timeout_seconds": 2100
+  },
+  "SAV1-06": {
+    "tests": [
+      "tests/test_super_agent_sa06.py",
+      "tests/test_super_agent_sa06_sdk.py",
+      "tests/test_super_agent_sa06_broker.py",
+      "tests/test_super_agent_sa06_migration.py",
+      "tests/test_super_agent_sa06_privacy.py",
+      "tests/test_super_agent_sa06_contract.py",
+      "tests/test_super_agent_sa06_health.py",
+      "tests/test_super_agent_sa06_repair_topics.py",
+      "tests/test_super_agent_sa06_repair_health.py",
+      "tests/test_super_agent_sa06_repair_formats.py",
+      "tests/test_super_agent_sa05.py",
+      "tests/test_super_agent_sa05_repair.py",
+      "tests/test_super_agent_sa05_history_repair.py",
+      "tests/test_super_agent_sa04.py",
+      "tests/test_super_agent_sa04_faults.py",
+      "tests/test_super_agent_sa04_repair.py",
+      "tests/test_super_agent_sa04_order_transition.py",
+      "tests/test_super_agent_sa03.py",
+      "tests/test_super_agent_sa02.py",
+      "tests/test_super_agent_sa01.py",
+      "tests/test_coordination.py",
+      "tests/test_api.py",
+      "tests/test_environment.py",
+      "tests/test_web_access.py",
+      "tests/test_duplex.py",
+      "tests/test_r4_experts.py",
+      "tests/test_effects.py",
+      "tests/test_models.py",
+      "tests/test_r6_policies.py",
+      "tests/test_r5_recovery.py"
+    ],
+    "components": {
+      "postgres": "real disposable PostgreSQL; 34-to-35/checksums/old rows/DDL rollback; same held Engine connection",
+      "sdk": "official lark-oapi 1.7.5 native dispatcher/protobuf/ACK with controlled socket; no live platform",
+      "history": "bounded MockTransport fixed official REST endpoints; per-IO current authority; context-only snapshots; unsupported types bodyless facts",
+      "identity": "raw installation/tenant/OpenID; configured chat/sender/structured mention/topic; nonhuman and context-only roles cannot become requests",
+      "privacy": "denied body never retained; trusted known-resource mutation invalidates old body in original transaction, conflict before deletion",
+      "legacy": "entire SA05 registry retained; old GitHub webhook body unchanged; 0001-0034 unchanged",
+      "model": "NOT_RUN; zero paid calls",
+      "harness": "no active files/imports or H card execution",
+      "live_source_channel": "NOT_RUN",
+      "live_coding": "NOT_RUN",
+      "live_publication": "NOT_RUN",
+      "continuous_operation": "NOT_RUN",
+      "health": "Current-config/current-mode/fresh negative facts survive fencing; stale/future/old granted never becomes current authority",
+      "independent_repair": "Native thread proof before mint; exact remote container; HMAC scope-bound cursors; chat exhaustion incomplete; disconnect preserves fresh diagnosis without TTL renewal; fixed bounded decode errors/health/gaps",
+      "original_probes": "Unmodified; unproven-topic probe may raise safe pre-network DomainError; report exact exit, never rewrite probe"
+    },
+    "timeout_seconds": 2700
+  },
+  "SAV1-07": {
+    "tests": [
+      "tests/test_super_agent_sa07.py",
+      "tests/test_super_agent_sa07_api.py",
+      "tests/test_super_agent_sa07_domain.py",
+      "tests/test_super_agent_sa07_migration.py",
+      "tests/test_super_agent_sa07_repair.py",
+      "tests/test_super_agent_sa07_api_regression.py",
+      "tests/test_super_agent_sa07_hooks.py",
+      "tests/test_super_agent_sa07_i01.py",
+      "tests/test_super_agent_sa06.py",
+      "tests/test_super_agent_sa06_sdk.py",
+      "tests/test_super_agent_sa06_broker.py",
+      "tests/test_super_agent_sa06_migration.py",
+      "tests/test_super_agent_sa06_privacy.py",
+      "tests/test_super_agent_sa06_contract.py",
+      "tests/test_super_agent_sa06_health.py",
+      "tests/test_super_agent_sa06_repair_topics.py",
+      "tests/test_super_agent_sa06_repair_health.py",
+      "tests/test_super_agent_sa06_repair_formats.py",
+      "tests/test_super_agent_sa05.py",
+      "tests/test_super_agent_sa05_repair.py",
+      "tests/test_super_agent_sa05_history_repair.py",
+      "tests/test_super_agent_sa04.py",
+      "tests/test_super_agent_sa04_faults.py",
+      "tests/test_super_agent_sa04_repair.py",
+      "tests/test_super_agent_sa04_order_transition.py",
+      "tests/test_super_agent_sa03.py",
+      "tests/test_super_agent_sa02.py",
+      "tests/test_super_agent_sa01.py",
+      "tests/test_coordination.py",
+      "tests/test_api.py",
+      "tests/test_environment.py",
+      "tests/test_web_access.py",
+      "tests/test_duplex.py",
+      "tests/test_r4_experts.py",
+      "tests/test_effects.py",
+      "tests/test_models.py",
+      "tests/test_r6_policies.py",
+      "tests/test_r5_recovery.py",
+      "tests/test_routing.py",
+      "tests/test_v32_repository_analysis_db.py",
+      "tests/test_v32_repository_analysis.py",
+      "tests/test_v34_repository_api.py"
+    ],
+    "components": {
+      "postgres": "real disposable PostgreSQL; same Engine advisory lock and transaction, concurrency, rollback, recovery and 0035-to-0036 upgrade",
+      "budgets": "organization/project shared original usage_calls and router_calls; Engine/Router/repository reservations; immutable signed prices and revisions; legacy fee and Token preservation",
+      "windows": "UTC half-open hour/day/minute, DST fold and non-hour transitions; unknown money and missing Token receipts carried forward",
+      "quotas": "candidate/source/notification windows; persistent queue/slot occupancy; idempotency and explicit nonrefundable releases",
+      "entrypoints": "signed Source receive/backpressure and trusted edit invalidation; current Source model policy; actual Outbox claim notification limit",
+      "admin_api": "cookie, Origin, CSRF, transaction session recheck, project/organization scope and atomic signed CAS",
+      "legacy": "entire SA06 registry plus original routing and repository-analysis regressions; historical failures retained",
+      "harness": "no active edits/imports; PersistentBudgetLedger integration remains separate and unclaimed",
+      "model": "controlled only; zero paid calls",
+      "live_source_channel": "NOT_RUN",
+      "live_coding": "NOT_RUN",
+      "live_publication": "NOT_RUN",
+      "continuous_operation": "NOT_RUN",
+      "independent_acceptance": "PENDING; implementer checks only",
+      "quota_watermark_repair": "SA07-I01: bodyless native watermark/sticky ambiguity in the original Engine transaction; bounded hashed retry/alias proof under unchanged Receive authority; privacy, conflicts, capacity and rollback; original independent probes unchanged"
+    },
+    "timeout_seconds": 3600
+  },
+  "SAV1-08": {
+    "tests": [
+      "tests/test_super_agent_sa08_post_rules.py",
+      "tests/test_super_agent_sa08_post_controls.py",
+      "tests/test_super_agent_sa08.py",
+      "tests/test_super_agent_sa08_rules.py",
+      "tests/test_super_agent_sa08_own_result.py",
+      "tests/test_super_agent_sa08_benchmark.py",
+      "tests/test_super_agent_sa08_api.py",
+      "tests/test_super_agent_sa08_migration.py",
+      "tests/test_super_agent_sa07.py",
+      "tests/test_super_agent_sa07_api.py",
+      "tests/test_super_agent_sa07_domain.py",
+      "tests/test_super_agent_sa07_migration.py",
+      "tests/test_super_agent_sa07_repair.py",
+      "tests/test_super_agent_sa07_api_regression.py",
+      "tests/test_super_agent_sa07_hooks.py",
+      "tests/test_super_agent_sa07_i01.py",
+      "tests/test_super_agent_sa06.py",
+      "tests/test_super_agent_sa06_sdk.py",
+      "tests/test_super_agent_sa06_broker.py",
+      "tests/test_super_agent_sa06_migration.py",
+      "tests/test_super_agent_sa06_privacy.py",
+      "tests/test_super_agent_sa06_contract.py",
+      "tests/test_super_agent_sa06_health.py",
+      "tests/test_super_agent_sa06_repair_topics.py",
+      "tests/test_super_agent_sa06_repair_health.py",
+      "tests/test_super_agent_sa06_repair_formats.py",
+      "tests/test_super_agent_sa05.py",
+      "tests/test_super_agent_sa05_repair.py",
+      "tests/test_super_agent_sa05_history_repair.py",
+      "tests/test_super_agent_sa04.py",
+      "tests/test_super_agent_sa04_faults.py",
+      "tests/test_super_agent_sa04_repair.py",
+      "tests/test_super_agent_sa04_order_transition.py",
+      "tests/test_super_agent_sa03.py",
+      "tests/test_super_agent_sa02.py",
+      "tests/test_super_agent_sa01.py",
+      "tests/test_coordination.py",
+      "tests/test_api.py",
+      "tests/test_environment.py",
+      "tests/test_web_access.py",
+      "tests/test_duplex.py",
+      "tests/test_r4_experts.py",
+      "tests/test_effects.py",
+      "tests/test_models.py",
+      "tests/test_r6_policies.py",
+      "tests/test_r5_recovery.py",
+      "tests/test_routing.py",
+      "tests/test_v32_repository_analysis_db.py",
+      "tests/test_v32_repository_analysis.py",
+      "tests/test_v34_repository_api.py"
+    ],
+    "components": {
+      "postgres": "real disposable PostgreSQL; same Engine advisory lock and transaction, concurrency, rollback, recovery and 0035-to-0036 upgrade",
+      "budgets": "organization/project shared original usage_calls and router_calls; Engine/Router/repository reservations; immutable signed prices and revisions; legacy fee and Token preservation",
+      "windows": "UTC half-open hour/day/minute, DST fold and non-hour transitions; unknown money and missing Token receipts carried forward",
+      "quotas": "candidate/source/notification windows; persistent queue/slot occupancy; idempotency and explicit nonrefundable releases",
+      "entrypoints": "signed Source receive/backpressure and trusted edit invalidation; current Source model policy; actual Outbox claim notification limit",
+      "admin_api": "cookie, Origin, CSRF, transaction session recheck, project/organization scope and atomic signed CAS",
+      "legacy": "entire SA06 registry plus original routing and repository-analysis regressions; historical failures retained",
+      "harness": "no active edits/imports; PersistentBudgetLedger integration remains separate and unclaimed",
+      "model": "controlled only; zero paid calls",
+      "live_source_channel": "NOT_RUN",
+      "live_coding": "NOT_RUN",
+      "live_publication": "NOT_RUN",
+      "continuous_operation": "NOT_RUN",
+      "independent_acceptance": "NOT_RUN; implementer initial registration then only failed targets after repair",
+      "quota_watermark_repair": "SA07-I01: bodyless native watermark/sticky ambiguity in the original Engine transaction; bounded hashed retry/alias proof under unchanged Receive authority; privacy, conflicts, capacity and rollback; original independent probes unchanged",
+      "fast_path": "Real current Source ingress hook, explicit origin provenance, canonical dedupe, own-result/cooldown/filtering, policy-signed shadow decisions, bounded priority pools and topic batches; no real worker/model/effects",
+      "management": "Cookie/Origin/CSRF/current transaction session/CAS/no-store, no body or source authority assertion input",
+      "migration": "0036-to-0038;37 installed files; original36 checksums/data retained, no Harness0037; immutable origin/decisions/signed heads and real rollback",
+      "synthetic_benchmark": "Draft synthetic deterministic syntax/grouping only; no operator-approved semantic holdout claims",
+      "rich_post_control_repair": "SA08-L01: original 3 failed syntax/actualAdapter/realPG assertions retained in registered regression files; only these cases rerun after fixed structural mention placeholder"
+    },
+    "timeout_seconds": 4500
+  },
+  "SAV1-09": {
+    "tests": [
+      "tests/test_super_agent_sa09_i01.py",
+      "tests/test_super_agent_sa09.py",
+      "tests/test_super_agent_sa09_domain.py",
+      "tests/test_super_agent_sa09_model.py",
+      "tests/test_super_agent_sa09_api.py",
+      "tests/test_super_agent_sa09_legacy.py",
+      "tests/test_super_agent_sa09_migration.py",
+      "tests/test_super_agent_sa09_boundaries.py",
+      "tests/test_super_agent_sa09_recovery.py",
+      "tests/test_super_agent_sa09_metrics.py",
+      "tests/test_super_agent_sa09_scoring.py",
+      "tests/test_super_agent_sa09_corpus.py",
+      "tests/test_harness_v4_h02.py",
+      "tests/test_harness_v4_h01.py",
+      "tests/test_harness_v4_h00.py",
+      "tests/test_router_model.py",
+      "tests/test_router_api.py",
+      "tests/test_super_agent_sa08_post_rules.py",
+      "tests/test_super_agent_sa08_post_controls.py",
+      "tests/test_super_agent_sa08.py",
+      "tests/test_super_agent_sa08_rules.py",
+      "tests/test_super_agent_sa08_own_result.py",
+      "tests/test_super_agent_sa08_benchmark.py",
+      "tests/test_super_agent_sa08_api.py",
+      "tests/test_super_agent_sa08_migration.py",
+      "tests/test_super_agent_sa07.py",
+      "tests/test_super_agent_sa07_api.py",
+      "tests/test_super_agent_sa07_domain.py",
+      "tests/test_super_agent_sa07_migration.py",
+      "tests/test_super_agent_sa07_repair.py",
+      "tests/test_super_agent_sa07_api_regression.py",
+      "tests/test_super_agent_sa07_hooks.py",
+      "tests/test_super_agent_sa07_i01.py",
+      "tests/test_super_agent_sa06.py",
+      "tests/test_super_agent_sa06_sdk.py",
+      "tests/test_super_agent_sa06_broker.py",
+      "tests/test_super_agent_sa06_migration.py",
+      "tests/test_super_agent_sa06_privacy.py",
+      "tests/test_super_agent_sa06_contract.py",
+      "tests/test_super_agent_sa06_health.py",
+      "tests/test_super_agent_sa06_repair_topics.py",
+      "tests/test_super_agent_sa06_repair_health.py",
+      "tests/test_super_agent_sa06_repair_formats.py",
+      "tests/test_super_agent_sa05.py",
+      "tests/test_super_agent_sa05_repair.py",
+      "tests/test_super_agent_sa05_history_repair.py",
+      "tests/test_super_agent_sa04.py",
+      "tests/test_super_agent_sa04_faults.py",
+      "tests/test_super_agent_sa04_repair.py",
+      "tests/test_super_agent_sa04_order_transition.py",
+      "tests/test_super_agent_sa03.py",
+      "tests/test_super_agent_sa02.py",
+      "tests/test_super_agent_sa01.py",
+      "tests/test_coordination.py",
+      "tests/test_api.py",
+      "tests/test_environment.py",
+      "tests/test_web_access.py",
+      "tests/test_duplex.py",
+      "tests/test_r4_experts.py",
+      "tests/test_effects.py",
+      "tests/test_models.py",
+      "tests/test_r6_policies.py",
+      "tests/test_r5_recovery.py",
+      "tests/test_routing.py",
+      "tests/test_v32_repository_analysis_db.py",
+      "tests/test_v32_repository_analysis.py",
+      "tests/test_v34_repository_api.py"
+    ],
+    "components": {
+      "postgres": "Real disposable PostgreSQL, original held Engine connection and transaction; exact canonical IDs and current permission snapshots; controlled Source input and providers",
+      "source_eval": "Strict ignore/observe/attach/create/ask suggestions; bodyless immutable snapshots, program-bound hypothetical decisions, exact follow_up controllers and budget/config/epoch/version rechecks",
+      "h02": "Selective169925f fixed4 sources+original test+static fixture; acceptedfee0875; H00/H01/H02 controlled compatibility; no H12 or0037",
+      "original_ledgers": "Original RouterBudget reserve/settle with result=None, shared SA07 budgets and SourcePolicy additional conservative upper bounds; settle+sanitized result atomic; no financial AST change",
+      "privacy": "No raw Source text/provider response in durable snapshots or ordinary CAS; current encrypted body TTL, fixed errors, bounded temporary context, no links/downloads",
+      "recovery": "Actual SIGKILL before reservation, after durable reservation, after atomic known result and after ready; Engine.recover, no repost; in-flight withdrawal/edit retain known cost",
+      "legacy": "Complete original1361 registry retained; old Router namespace isolation, default Worker semantics, old model/API regressions and H02 compatibility added",
+      "admin_api": "Actual registered six routes; cookie/OriginCSRF/current session/CAS/no-store, only existing batch IDs, defaultdisabled, fixture queue only viaHTTP",
+      "corpus": "Synthetic200 development100/proposed_holdout100 with transitive context hash; operator review and independent semantic holdout NOT_RUN",
+      "scoring": "All original cases in denominators including failure/unknown/notrun; perclass numerator/denominator/uncertainty; controlled protocol not real quality",
+      "independent_review": "NOT_RUN; implementer initial registry; repair only failed targets per user policy",
+      "policy_security_gate": "NOT_RUN; engineering critical negatives only",
+      "live_source_channel": "NOT_RUN",
+      "live_coding": "NOT_RUN",
+      "live_publication": "NOT_RUN",
+      "continuous_operation": "NOT_RUN",
+      "paid_model": "NOT_RUN; controlled transports only"
+    },
+    "timeout_seconds": 7200
+  },
+  "SAV1-09-I01": {
+    "tests": [
+      "tests/test_super_agent_sa09_i01.py"
+    ],
+    "timeout_seconds": 500,
+    "components": {
+      "regression": "Exact six previously failing independent SA09-I01 cases; no full-suite rerun"
+    }
+  },
+  "SAV1-10": {
+    "tests": [
+      "tests/test_super_agent_sa10_contracts.py",
+      "tests/test_super_agent_sa10.py",
+      "tests/test_super_agent_sa10_ci.py",
+      "tests/test_super_agent_sa10_api.py",
+      "tests/test_super_agent_sa10_migration.py",
+      "tests/test_super_agent_sa09.py",
+      "tests/test_super_agent_sa09_recovery.py",
+      "tests/test_super_agent_sa09_i01.py"
+    ],
+    "timeout_seconds": 1800,
+    "components": {
+      "scope": "Focused initial SA10 registration: all five new test modules and direct SA09 Engine/SourceEval, recovery and I01 dependencies; not a full-project suite",
+      "postgres": "Real disposable PostgreSQL on the original Engine connection; native source fixtures, transactional uniqueness, parallel claims, rollback and immutable CAS revisions",
+      "resource_identity": "Full project/installation scope/immutable repository ID/kind/resource ID; same topic/title/number or code SHA is not a Task identity",
+      "authorization": "Current owner session, native Source/identity/policy/head/TTL, signed aliases and current original targets; all relation and HTTP evidence is context only",
+      "code_identity": "PR parent and CI claims atomic; head/base/tree/CI attempt exact; no verification reuse on missing or changed code facts",
+      "management": "Six formally registered owner routes from unpatched create_app; cookie/Origin/CSRF/current session/no-store; no body/identity/factory/paid/execution fields",
+      "migration": "Formal0041 byte identity and actual39 migration catalogue/checksums required; no0037/0040 import; five new bodyless fact tables only",
+      "factory": "Explicit trusted fixture-only creation on original Engine connection; defaultNone and no HTTP exposure or automatic source workers",
+      "status": "FORMAL0041_ENGINE_API_APPLIED_FIXED_HARNESS_0a335a1;201FORMAL_CASES:2FAILED_RETEST+199INITIAL",
+      "independent_review": "NOT_RUN",
+      "semantic_evaluation": "NOT_RUN",
+      "live_source_channel": "NOT_RUN",
+      "paid_model": "NOT_RUN",
+      "live_coding": "NOT_RUN",
+      "live_publication": "NOT_RUN",
+      "continuous_operation": "NOT_RUN"
+    }
+  },
+  "SAV1-11": {
+    "tests": [
+      "tests/test_super_agent_sa11_contracts.py",
+      "tests/test_super_agent_sa11.py",
+      "tests/test_super_agent_sa11_api.py",
+      "tests/test_super_agent_sa11_migration.py",
+      "tests/test_super_agent_sa11_recovery.py",
+      "tests/test_super_agent_sa10.py",
+      "tests/test_super_agent_sa10_migration.py",
+      "tests/test_super_agent_sa09_i01.py",
+      "tests/test_duplex.py",
+      "tests/test_routing.py"
+    ],
+    "timeout_seconds": 2400,
+    "components": {
+      "scope": "All new SA11 checks plus direct SA10 scoped-resource, migration, Source09-I01, legacy duplex/Router regression dependencies; focused registry, not whole repository",
+      "postgres": "Real disposable PostgreSQL; original Engine connection, canonical ingress same-transaction delivery, Source-lane CAS cursors and immutable facts",
+      "authorization": "Owner cookie/Origin/CSRF/current session; per-input current Source/identity/policy/head/TTL/target/Mandate; purpose never grants tools",
+      "source_mailbox": "Reference-only companion facts under original Run, separate typed lane cursors; original Thread.latest_seq ordering without Thread.revision, no legacy Trigger or persistent Source body in old snapshots",
+      "consumer": "Exact current Run/epoch/page/head/input hash; blocked metadata may drain without reading expired bodies; no automatic Worker/Run or control execution",
+      "handback": "Explicit reviewed needs_routing/loop_blocked facts and bounded cycles; old FastPath decisions/unknown model calls unchanged",
+      "formal_integration": "Fixed Harnessd0af0747§35 SQL+4file exactpatch;40 installedmigrations and11 true unpatched routes required",
+      "crash_recovery": "Real child SIGKILL after durable prepare, inside uncommitted acknowledgement, after committed cursor; old receipt/count preserved",
+      "independent_review": "NOT_RUN; implementer initial registered checks, repairs only failed cases/targets",
+      "semantic_evaluation": "NOT_RUN",
+      "live_source_channel": "NOT_RUN",
+      "paid_model": "NOT_RUN",
+      "live_coding": "NOT_RUN",
+      "live_publication": "NOT_RUN",
+      "continuous_operation": "NOT_RUN"
+    }
+  },
+  "SAV1-12": {
+    "tests": [
+      "tests/test_super_agent_sa12_contracts.py",
+      "tests/test_super_agent_sa12.py",
+      "tests/test_super_agent_sa12_api.py",
+      "tests/test_super_agent_sa12_migration.py",
+      "tests/test_super_agent_sa12_recovery.py",
+      "tests/test_super_agent_sa12_core_boundaries.py",
+      "tests/test_super_agent_sa12_source.py",
+      "tests/test_super_agent_sa12_runtime.py",
+      "tests/test_super_agent_sa07.py",
+      "tests/test_super_agent_sa09_i01.py",
+      "tests/test_super_agent_sa11.py",
+      "tests/test_super_agent_sa11_migration.py",
+      "tests/test_harness_v4_h02.py",
+      "tests/test_duplex.py",
+      "tests/test_routing.py"
+    ],
+    "timeout_seconds": 2400,
+    "components": {
+      "scope": "Initial SA12 actual formal integration checks, all new modules and direct original quota/Source/epoch/H02/legacy graph dependencies; not the full repository suite",
+      "postgres": "Real disposable PG; original Engine single held connection and mutex; no alternate business writer or Redis authority",
+      "ownership": "298d4c5c5123a5c26c34a9673d676516d1503f84 section37; exact0044 and three-file patch plus fixedH03/H06 bound hooks",
+      "resources": "At most2 slots; preparing/draining retain occupancy; current lease/Source/session/Run/Mandate; trusted post-fence quiescence and pending original Jobs",
+      "processes": "Real independent claim callers, original Engine-owning SIGKILL recovery and opt-in real isolated Broker tests; controlled filesystem driver explicitly separate",
+      "fairness": "Durable trusted human/automation classes plus project/source service sequence and age; no request-provided priority",
+      "defaults": "No configuration/Worker/driver/supervision thread/model/platform listener by default",
+      "independent_review": "NOT_RUN",
+      "semantic_evaluation": "NOT_RUN",
+      "live_source_channel": "NOT_RUN",
+      "paid_model": "NOT_RUN",
+      "live_coding": "NOT_RUN",
+      "live_publication": "NOT_RUN",
+      "continuous_operation": "NOT_RUN"
+    }
+  }
+}

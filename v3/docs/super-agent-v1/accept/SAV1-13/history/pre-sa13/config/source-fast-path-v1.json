@@ -1,0 +1,91 @@
+{
+  "contract_version": "source-fast-path-v1",
+  "status": "LOCAL_IMPLEMENTATION_PENDING_INDEPENDENT_REVIEW",
+  "ownership_commit": "1e397ab73feeaa6e9a5d747963bb9889eec5a51f",
+  "ownership_section": 31,
+  "default_enabled": false,
+  "mode": "Current owner-signed SourcePolicy; SA08 always hypothetical even auto modes",
+  "transaction": "Original held Engine PG connection and mutex/advisory lock",
+  "migration": "0038_super_agent_fast_path.sql",
+  "harness_0037": "Not imported; namespace remains Harness",
+  "model_calls": 0,
+  "external_business_writes": 0,
+  "semantic_evaluation": "NOT_RUN",
+  "capacity": "max_decisions/max_batches each bound separately per priority0 and100; bounded control reserve",
+  "artifacts": [
+    {
+      "path": "migrations/0038_super_agent_fast_path.sql",
+      "sha256": "7f03acdf8e428a0cb621ab555d3b04d44f7dc76127f4e5eedf0c23a698466eb6"
+    },
+    {
+      "path": "src/mgar_v3/super_agent/fast_path.py",
+      "sha256": "4a8ea9ed9afc54e6a40a7e49eca8a1ac15f33035781273b71cd4e4251bbbf8b6"
+    },
+    {
+      "path": "src/mgar_v3/super_agent/fast_path_domain.py",
+      "sha256": "597961a7e38bd38623f52ec61579cc29e47ba4cd7e4f6ba8af4cb25a7c3e42f0"
+    },
+    {
+      "path": "src/mgar_v3/super_agent/fast_path_rules.py",
+      "sha256": "be23eae18d6970e2e541b87126c3b479e4d26fe91a6ff52b6d75b51142675a70"
+    },
+    {
+      "path": "src/mgar_v3/super_agent/fast_path_api.py",
+      "sha256": "c73c3fc460ac968f4695e4ad02985fb212031cb8dd05588ceea5adb250439c6d"
+    },
+    {
+      "path": "tests/test_super_agent_sa08.py",
+      "sha256": "b7a89c18db70ce25dc242423d8741edac979bfaa1f868b8e3fb05f0c2a847dfc"
+    },
+    {
+      "path": "tests/test_super_agent_sa08_rules.py",
+      "sha256": "e9f11c2aa5b33a0ee284a9b9afc0d5d21618590e27b0d322a8d7d2fb7c12981f"
+    },
+    {
+      "path": "tests/test_super_agent_sa08_own_result.py",
+      "sha256": "03ab1b4bdcb938ab24af538238442a4dbec693f04c1350e1f543121a7a3169a9"
+    },
+    {
+      "path": "tests/test_super_agent_sa08_benchmark.py",
+      "sha256": "85768aa89bd668c8771737af59022e9594ebda9aefc9f7bfb02f28c2a5c0aacb"
+    },
+    {
+      "path": "tests/test_super_agent_sa08_api.py",
+      "sha256": "abe7f7a009322d3338d57c2583cd75629ca890f50be056762d5b59873ea10e43"
+    },
+    {
+      "path": "tests/test_super_agent_sa08_migration.py",
+      "sha256": "c49466eb7444bb0e418f19b4da28ca5367487f88ea6ef2c37650685ccbfd46e4"
+    },
+    {
+      "path": "tests/sa08_support.py",
+      "sha256": "d78f0458513fc8eda72bfc7fd6dd5c3e0a12ce61b068e634225a462e0fd207ab"
+    },
+    {
+      "path": "fixtures/super-agent-v1/sa08-fast-path/rules-v1.json",
+      "sha256": "4a608ae766b620c1eece2ab46083955e385e3b44658ce0d3f40e68d673bb405f"
+    },
+    {
+      "path": "schemas/super-agent-v1/source-fast-path-configure-v1.schema.json",
+      "sha256": "cdd11e8ad64a03d63da244f95cec0a134908527814221ea8082151f35e3ad7c7"
+    },
+    {
+      "path": "schemas/super-agent-v1/source-fast-path-observe-v1.schema.json",
+      "sha256": "204844e9fa460e8d46073f21eb3187b01935fde37e22b479b02c773c1fa65c26"
+    },
+    {
+      "path": "schemas/super-agent-v1/source-fast-path-preview-v1.schema.json",
+      "sha256": "f9a5df3a79a6afb61281a3efb70f0bf7c356b049cf1319325ee045c0e0bcba0a"
+    },
+    {
+      "path": "tests/test_super_agent_sa08_post_rules.py",
+      "sha256": "8363e3a115d5823eec8fc3eb7cb73bde8548f38769c74d7b110e61706ebe5a36"
+    },
+    {
+      "path": "tests/test_super_agent_sa08_post_controls.py",
+      "sha256": "d0e819f5c27d810d81f42fed273febd9c74571e7d76a1022308e90fb52386911"
+    }
+  ],
+  "artifact_snapshot_utc": "2026-11-13T08:08:00.341489+00:00",
+  "artifact_snapshot_scope": "Current formal per-file hashes refreshed for authorized SA12 composition/catalogue. Historical acceptance and source-bound raw outcomes remain unchanged."
+}

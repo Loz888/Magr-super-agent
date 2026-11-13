@@ -1,0 +1,107 @@
+{
+  "$defs": {
+    "CorrelationInputRef": {
+      "additionalProperties": false,
+      "properties": {
+        "input_id": {
+          "format": "uuid",
+          "title": "Input Id",
+          "type": "string"
+        },
+        "source_instance_id": {
+          "format": "uuid",
+          "title": "Source Instance Id",
+          "type": "string"
+        },
+        "project_id": {
+          "maxLength": 100,
+          "minLength": 1,
+          "title": "Project Id",
+          "type": "string"
+        },
+        "version_fingerprint": {
+          "pattern": "^[a-f0-9]{64}$",
+          "title": "Version Fingerprint",
+          "type": "string"
+        },
+        "state_sha256": {
+          "pattern": "^[a-f0-9]{64}$",
+          "title": "State Sha256",
+          "type": "string"
+        }
+      },
+      "required": [
+        "input_id",
+        "source_instance_id",
+        "project_id",
+        "version_fingerprint",
+        "state_sha256"
+      ],
+      "title": "CorrelationInputRef",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "request_id": {
+      "format": "uuid",
+      "title": "Request Id",
+      "type": "string"
+    },
+    "run_id": {
+      "format": "uuid",
+      "title": "Run Id",
+      "type": "string"
+    },
+    "expected_epoch": {
+      "maximum": 9223372036854775807,
+      "minimum": 0,
+      "title": "Expected Epoch",
+      "type": "integer"
+    },
+    "source_input": {
+      "$ref": "#/$defs/CorrelationInputRef"
+    },
+    "expected_policy_revision": {
+      "maximum": 9223372036854775807,
+      "minimum": 1,
+      "title": "Expected Policy Revision",
+      "type": "integer"
+    },
+    "expected_revision": {
+      "maximum": 9223372036854775807,
+      "minimum": 0,
+      "title": "Expected Revision",
+      "type": "integer"
+    },
+    "target_sha256": {
+      "pattern": "^[a-f0-9]{64}$",
+      "title": "Target Sha256",
+      "type": "string"
+    },
+    "profile_sha256": {
+      "pattern": "^[a-f0-9]{64}$",
+      "title": "Profile Sha256",
+      "type": "string"
+    },
+    "review_ref": {
+      "maxLength": 256,
+      "minLength": 1,
+      "title": "Review Ref",
+      "type": "string"
+    }
+  },
+  "required": [
+    "request_id",
+    "run_id",
+    "expected_epoch",
+    "source_input",
+    "expected_policy_revision",
+    "expected_revision",
+    "target_sha256",
+    "profile_sha256",
+    "review_ref"
+  ],
+  "title": "CodingAdmitRequest",
+  "type": "object"
+}
