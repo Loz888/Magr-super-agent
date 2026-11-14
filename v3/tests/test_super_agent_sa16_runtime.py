@@ -56,6 +56,12 @@ def autonomous_setup(engine, tmp_path, *, ready=True, **kwargs):
             "rule_sha256": digest("sa16-real-fixture-rule"),
         },
         execution=raw,
+        budget={
+            "total_limit_micros": 1000000,
+            "router_limit_micros": 1000000,
+            "accounting_ref": "SA16-controlled-fixture-shared-ledger",
+            "timezone": "UTC",
+        },
     )
     configure_fast_path(source, source.fast_settings)
     source.service = engine.source_eval

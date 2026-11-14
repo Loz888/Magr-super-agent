@@ -113,6 +113,10 @@ def test_reopen_rejects_stale_authority_without_recreating_task_or_refunding(
         engine, tmp_path, rule_changes={"max_attempts": 1 if fault == "attempt_limit" else 3}
     )
     work = admitted(env)
+    env.autonomy.stop(
+        env.cookie, work.attempt_id, AutonomyRevisionRequest(expected_revision=1, review_ref="stop")
+    )
+    receipt, suggestion = decision(env)
     if fault == "unknown":
         from uuid import uuid4
 
@@ -122,10 +126,6 @@ def test_reopen_rejects_stale_authority_without_recreating_task_or_refunding(
                 "VALUES(%s,%s,'pending-original','unknown',17)",
                 (uuid4(), work.run_id),
             )
-    env.autonomy.stop(
-        env.cookie, work.attempt_id, AutonomyRevisionRequest(expected_revision=1, review_ref="stop")
-    )
-    receipt, suggestion = decision(env)
     with engine.transaction() as conn:
         ref = engine.source_correlations._input(
             conn, (work.receipt if fault == "same_source" else receipt).input_ids[0]
