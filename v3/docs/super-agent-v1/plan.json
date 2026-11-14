@@ -432,7 +432,7 @@
       "optional": false,
       "card": "TASKS.md#sa14",
       "verification_target_on_implementation": "SAV1-14",
-      "work_state": "PRIVATE_COMPONENTS_VERIFIED_PENDING_SHARED_CONFIRMATION",
+      "work_state": "FORMAL_IMPLEMENTATION_AND_FIRST_REGISTERED_CHECKS",
       "engineering_gate": "NOT_RUN",
       "independent_review": "NOT_RUN",
       "dependency_closure": "accept/SAV1-13/independent-closure-20261114.json",
@@ -441,7 +441,8 @@
       "proposal_manifest": "sa14-proposal/proposal-manifest.json",
       "unique_preparation_checks_passed_across_versions": 94,
       "single_final_full_pass_claimed": false,
-      "formal_integration": "NOT_IMPLEMENTED_PENDING_CONFIRMATION"
+      "formal_integration": "IMPLEMENTED_AWAITING_FIRST_REGISTERED_CHECKS",
+      "ownership_commit": "c711d54504c4945625505f47e9df56e22bc1bdac"
     },
     {
       "id": "SAV1-15",

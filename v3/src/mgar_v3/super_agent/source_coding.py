@@ -372,6 +372,14 @@ class SourceCoding:
         )
 
     def source_authority(self, conn: Connection, run: Row, queue: Row) -> SourceAuthorityFacts:
+        asynchronous = getattr(self.engine, "source_async", None)
+        if asynchronous is not None:
+            binding = conn.execute(
+                "SELECT coding_id FROM app.sa_coding_bindings WHERE run_id=%s AND project_id=%s",
+                (run["run_id"], self.project),
+            ).fetchone()
+            if binding is not None:
+                asynchronous.check_managed_access(conn, binding["coding_id"])
         _, mandate = self._mandate(conn, run["run_id"])
         binding = self.binding(conn, mandate.coding_id)
         source = self._source(conn, mandate)
@@ -797,6 +805,9 @@ class SourceCoding:
     def run(self, bearer: str, request: CodingRunRequest) -> Row:
         with self.engine.transaction() as conn:
             self.current(conn, bearer, request)
+            asynchronous = getattr(self.engine, "source_async", None)
+            if asynchronous is not None and asynchronous.managed(conn, request.coding_id):
+                raise _error("SOURCE_ASYNC_EXPLICIT_START_REQUIRED")
         if self.runtime is None:
             raise _error("SOURCE_CODING_RUNTIME_REQUIRED")
         return self.runtime.execute(bearer, request)

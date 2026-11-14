@@ -239,6 +239,11 @@ class SourceCodingJournal:
             mandate.valid_until,
             mandate.origin.expires_at,
         )
+        asynchronous = getattr(self.core.engine, "source_async", None)
+        if asynchronous is not None:
+            view_expiry = asynchronous.payload_expiry(conn, self.bearer, self.request, operation)
+            if view_expiry is not None:
+                expiry = min(expiry, view_expiry)
         ciphertext = self.core.cipher.encrypt(clear, self._payload_binding(operation, kind))
         conn.execute(
             "INSERT INTO app.sa_coding_payloads(payload_id,operation_id,attempt_id,coding_id,"
@@ -277,6 +282,9 @@ class SourceCodingJournal:
     ) -> bytes:
         # This transaction must commit even if current() below denies access.
         self.core.maintain(coding_id=self.request.coding_id)
+        asynchronous = getattr(self.core.engine, "source_async", None)
+        if asynchronous is not None:
+            asynchronous.maintain(self.request.coding_id)
         unavailable = False
         clear: bytes | None = None
         try:
@@ -287,6 +295,8 @@ class SourceCodingJournal:
                     self.request,
                     tree_sha256=current_tree or operation["tree_sha256"],
                 )
+                if asynchronous is not None:
+                    asynchronous.payload_expiry(conn, self.bearer, self.request, operation)
                 row = conn.execute(
                     "SELECT *,clock_timestamp() AS current_at FROM app.sa_coding_payloads "
                     "WHERE operation_id=%s AND payload_kind=%s AND attempt_id=%s "
@@ -326,6 +336,8 @@ class SourceCodingJournal:
             # A revocation committed between maintenance and the read still
             # gets its own durable erasure after the rejected read rolls back.
             self.core.maintain(coding_id=self.request.coding_id)
+            if asynchronous is not None:
+                asynchronous.maintain(self.request.coding_id)
             raise
         if unavailable or clear is None:
             raise _deny("SOURCE_CODING_PAYLOAD_UNAVAILABLE")

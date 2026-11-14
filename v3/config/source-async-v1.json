@@ -1,0 +1,135 @@
+{
+  "contract_version": "source-async-v1",
+  "status": "FORMAL_IMPLEMENTATION_AWAITING_FIRST_REGISTERED_CHECKS",
+  "scope": "Only original accepted public fixture_git / existing pure-function Python; no actual DB writes, arbitrary command, host execution, network or payment",
+  "ownership_commit": "c711d54504c4945625505f47e9df56e22bc1bdac",
+  "ownership_section": 39,
+  "formal_migration": "0047_source_async.sql",
+  "formal_migration_sha256": "9ce372e6a82cbf747c51624486ef7548faf056cc60912e0287279be8b569f041",
+  "shared_patch_sha256": "c43e05c0d8aabe1bccf3484cbb7922c5f6f1897f6d2cd5ac0840b4454ff85b5e",
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/capabilities",
+      "auth": "owner",
+      "body": null
+    },
+    {
+      "method": "POST",
+      "path": "/admissions",
+      "auth": "owner",
+      "body": "AsyncAdmitRequest"
+    },
+    {
+      "method": "GET",
+      "path": "/bindings/{coding_id}",
+      "auth": "owner",
+      "body": null
+    },
+    {
+      "method": "POST",
+      "path": "/bindings/{coding_id}/restrictions",
+      "auth": "owner",
+      "body": "AsyncRestrictRequest"
+    },
+    {
+      "method": "GET",
+      "path": "/bindings/{coding_id}/inputs",
+      "auth": "owner",
+      "body": null
+    },
+    {
+      "method": "GET",
+      "path": "/bindings/{coding_id}/jobs",
+      "auth": "owner",
+      "body": null
+    },
+    {
+      "method": "GET",
+      "path": "/bindings/{coding_id}/events",
+      "auth": "owner",
+      "body": null
+    },
+    {
+      "method": "POST",
+      "path": "/bindings/{coding_id}/jobs/{job_id}/cancel",
+      "auth": "owner",
+      "body": "AsyncJobCancelRequest"
+    },
+    {
+      "method": "POST",
+      "path": "/worker/{coding_id}/start",
+      "auth": "worker",
+      "body": "AsyncWorkerRequest"
+    },
+    {
+      "method": "GET",
+      "path": "/worker/{coding_id}/state",
+      "auth": "worker",
+      "body": null
+    },
+    {
+      "method": "GET",
+      "path": "/worker/{coding_id}/jobs/{job_id}",
+      "auth": "worker",
+      "body": null
+    },
+    {
+      "method": "POST",
+      "path": "/worker/{coding_id}/jobs/{job_id}/cancel",
+      "auth": "worker",
+      "body": "AsyncWorkerJobCancelRequest"
+    }
+  ],
+  "limits": {
+    "ordinary_inputs_per_run": 256,
+    "source_refs_per_view": 64,
+    "checkpoints_per_run": 512,
+    "jobs_per_run": 128,
+    "page_size": 64,
+    "view_seconds_max": 1800,
+    "no_new_input_no_periodic_model_calls": true
+  },
+  "states": {
+    "inputs": [
+      "received",
+      "applied",
+      "blocked"
+    ],
+    "jobs": [
+      "prepared",
+      "running",
+      "stop_requested",
+      "unknown",
+      "known"
+    ]
+  },
+  "control": "Current human task_controller plus exact Ticket membership and Source model-input read permission, or current Owner typed deny sets; only precise database mapping; no quotes/code/link labels/CI control",
+  "frozen_control_profile": "Server-only AsyncControlProfile digest included in AsyncScope; registration immutable; mismatch fences old execution",
+  "model_dispatch": "ControlledAsyncCodingModel base start performs prepare outside mutex, then verifies actual immutable request under a final dispatch guard; waiting is outside mutex; usage settles even after permission loss",
+  "activation": {
+    "constructor_starts_threads": false,
+    "default_runtime": null,
+    "explicit_current_worker_start_required": true,
+    "legacy_coding_scheduler_bypass": "deny async-managed targets without original guarded execution context"
+  },
+  "fixed_harness": {
+    "h09": "7d8f0ab5df1d4b98ff3140af553c11bc1ca74a1c",
+    "h09_followup": "096300eed8946086f99e331ae4c8c9c733108ff9",
+    "already_integrated_h11": "d3f3457b3d9dfab68bc73a40add299e4e633fbeb",
+    "new_Harness_blob_imports": [],
+    "scope": "SafePoint existing port only; no H09 file inbox/Store/Service/Ledger/SSE and no H12 import"
+  },
+  "registration": "make verify TASK=SAV1-14",
+  "historical_preparation": "docs/super-agent-v1/accept/SAV1-14/preparation-20261114.json",
+  "six_gates": {
+    "engineering_gate": "NOT_RUN",
+    "policy_security_gate": "NOT_RUN",
+    "live_source_channel_gate": "NOT_RUN",
+    "live_coding_gate": "NOT_RUN",
+    "live_publication_gate": "NOT_RUN",
+    "continuous_operation_gate": "NOT_RUN"
+  },
+  "h12_real_agent_MVP": "FAIL",
+  "SA15": "NOT_STARTED"
+}

@@ -37,6 +37,7 @@ class AsyncScope(AsyncModel):
     mandate_sha256: SHA256
     profile_sha256: SHA256
     initial_context_sha256: SHA256
+    control_profile_sha256: SHA256 | None = None
 
     @property
     def scope_sha256(self) -> str:

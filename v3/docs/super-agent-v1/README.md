@@ -1,6 +1,6 @@
 # MAGR Super-Agent 落地任务书
 
-状态：**SAV1-00–SAV1-13 DONE（受控本地工程及用户接受的独立闭环）；SA14 IN_PROGRESS（私有组件及SQL草案分版本通过，等待新共享范围确认）；SA15–SA24 PLANNED**。更新：2026-11-14。
+状态：**SAV1-00–SAV1-13 DONE（受控本地工程及用户接受的独立闭环）；SA14 IN_PROGRESS（第39节已确认，正式接线与异步集成实现／首次检查中）；SA15–SA24 PLANNED**。更新：2026-11-14。
 SA10已由用户接受[独立原2项PASS及199历史证据核对](accept/SAV1-10/i01-independent-closure-20261113.json)，旧FAIL和分版本成绩保留；SA11动态订阅、Mailbox与交回也已独立闭环，首轮失败按失败范围定向修复并留存各版本证据。原任务状态/写者和Source撤权/TTL约束保持；全部真实/付费/外发/发布/长期门NOT_RUN。
 SA11第35/36节固定确认已核对，0042/0043及七表、11接口和四文件接线正式落地，SA11交付时41checksum一致。首轮309PASS/42FAIL保留，修复仅复验失败范围42→40→26→1，各新增2/14/25/1PASS，剩余0；未重复已通过项，不称最终351全量PASS。候选ca49b76，见[工程交付](SA11_ACCEPTANCE_20261113.md)与[分版本摘要](accept/SAV1-11/accept.json)。SA11已获用户接受独立放行，见[关闭记录](accept/SAV1-11/independent-closure-20261113.json)；SA12当前工程交付见下述记录。
 仓库基线：`973994c0e6c087c2968b3d91a3a6b9220e2c0892`；该提交新增 Harness 规划，
@@ -140,3 +140,5 @@ SA13第38节617e14a已正式落地，0046及六接口、固定H11切片与受控
 SA13 f53f423／c49cf1f 已获用户接受独立本地受控验收，原29及新3独立32PASS；212分版本、43checksum及313refs核对一致，前两轮只有工作树指纹、无不可变归档的证据限制保留，未重跑历史通过。见[关闭记录](accept/SAV1-13/independent-closure-20261114.json)。现按用户明确指令启动SA14；H12真实Agent/MVP仍FAIL，真实/付费/外发/发布/长期门NOT_RUN，SA15不启动。
 
 SA14私有契约／planner65PASS、SQL草案29项分版本通过，静态错误已定向修复；详见[当前状态](SA14_ASYNC.md)与[准备摘要](accept/SAV1-14/preparation-20261114.json)。正式迁移／接线／Runtime及整卡验收NOT_RUN，待新Harness确认[具体请求](sa14-proposal/ownership-request.txt)，SA15不启动。
+
+SA14新确认[c711d545第39节](sa14-proposal/ownership-confirmed.json)已核对，正式0047和三文件按精确hash落地；服务／12路由／异步原Job与受控模型端口已实现，首次正式检查尚未运行。原私有65／草案29历史通过不重跑；H12由另一CLI验收，SA15不启动。

@@ -1684,5 +1684,30 @@
       "initial_tree": "New first-run guard for actual H03 manifest/registration/reviewed immutable initial tree: a legitimate storage-owner edit cannot substitute for the original Coding tree.",
       "engineering_gate": "NOT_RUN"
     }
+  },
+  "SAV1-14": {
+    "tests": [
+      "tests/test_super_agent_sa14_inbox.py",
+      "tests/test_super_agent_sa14_api.py",
+      "tests/test_super_agent_sa14_runtime.py",
+      "tests/test_super_agent_sa14_recovery.py"
+    ],
+    "timeout_seconds": 2400,
+    "components": {
+      "scope": "First formal SA14 Engine/Source/API/realPG/H03/H06/async model/SIGKILL integration; preparation65+29 and all prior passed registries excluded",
+      "ownership": "c711d54504c4945625505f47e9df56e22bc1bdac §39; exact0047 and 3 shared file hooks",
+      "single_writer": "original held advisory-lock PG connection and Engine mutex; no IO in SQL transaction",
+      "inbox": "reference-only Source; exact reply/native topic or existing verified delivery; received/applied/blocked and transactional CAS/once-only cursor",
+      "authority": "current original Coding/SA12 scope, role/Ticket membership, canonical Source revision and TTL, monotone restrictions, explicit managed path prevents legacy dispatcher bypass",
+      "runtime": "actual H03/bound H06 original job intent and receipt; explicit controlled async start/poll model only; no wait under Engine mutex; last dispatch checks; old reply discard and original usage settlement",
+      "privacy": "original encrypted Coding payload gets exact operation_view+Source dependency expiry; sticky Source revoke/delete fencing and bodyless facts",
+      "recovery": "three real original-owner process SIGKILL points: committed input, actual controlled model dispatch, actual running owned Docker job; no unknown resend/refund or Task completion",
+      "http": "exact12 metadata/no-store routes, current Owner cookie/Origin-CSRF and independent Worker bearer+scope",
+      "test_policy": "Initial formal tests only; repair reruns only failed cases/check targets; original preparation and historical passing cases are not repeated",
+      "h12_real_agent_MVP": "FAIL",
+      "live_source_paid_outbound_publication_longterm": "NOT_RUN",
+      "independent_review": "NOT_RUN",
+      "SA15": "NOT_STARTED"
+    }
   }
 }

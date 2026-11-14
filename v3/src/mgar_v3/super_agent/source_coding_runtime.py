@@ -15,7 +15,7 @@ import stat
 import time
 from abc import ABC, abstractmethod
 from collections.abc import Callable, Iterator, Sequence
-from contextlib import contextmanager
+from contextlib import contextmanager, nullcontext
 from dataclasses import dataclass
 from datetime import datetime
 from hashlib import sha256
@@ -70,6 +70,7 @@ from mgar_v3.super_agent.source_coding_workspace import (
 from mgar_v3.super_agent.source_scheduler_domain import SchedulerAssignmentRequest
 
 if TYPE_CHECKING:
+    from mgar_v3.super_agent.source_async_runtime import AsyncAttempt
     from mgar_v3.super_agent.source_coding import SourceCoding
     from mgar_v3.super_agent.source_scheduler import ResourceContext
     from mgar_v3.super_agent.source_scheduler_runtime import H03SchedulerResourceDriver
@@ -354,14 +355,25 @@ class _SourceContext(SimpleContextManager):
                     conn, self.session.bearer, self.session.request, tree_sha256=tree
                 )
                 clear = self.session.core.fresh_context(conn, mandate)
+        context_revision = mandate.context_sha256
+        additional: tuple[str, ...] = ()
+        if self.session.bridge is not None:
+            # Follow-up data is freshly attached to every actual model request,
+            # without passing Source text through SafePoint.instructions.
+            context_revision = self.session.bridge.publish("before_model").context_sha256
         return view.model_copy(
             update={
-                "revision": mandate.context_sha256,
+                "revision": context_revision,
                 "messages": (
                     *view.messages,
                     ModelMessage(role="user", content="Untrusted Source context:\n" + clear),
+                    *(
+                        ModelMessage(role="user", content="Untrusted follow-up context:\n" + body)
+                        for body in additional
+                    ),
                 ),
-                "estimated_tokens": view.estimated_tokens + len(clear) // 4,
+                "estimated_tokens": view.estimated_tokens
+                + (len(clear) + sum(map(len, additional))) // 4,
             }
         )
 
@@ -423,6 +435,8 @@ class _ControlledModel:
             or request.workspace_tree != session.tree()
         ):
             raise _deny("SOURCE_CODING_MODEL_SCOPE")
+        if session.bridge is not None:
+            request = session.bridge.model_request(request)
         call_id = session.budgets.call_id(request.operation_id)
         previous = session.journal.find(request.operation_id, "model")
         if previous is not None:
@@ -461,9 +475,14 @@ class _ControlledModel:
         try:
             # This is deliberately AFTER the original reservation and all
             # request construction, directly at the injected provider boundary.
-            with session.core.guard(session.bearer, session.request, tree_sha256=session.tree()):
-                cancellation.ensure_active()
-                response = session.profile.model.complete(request, cancellation)
+            if session.bridge is not None:
+                response = session.bridge.complete(request, cancellation)
+            else:
+                with session.core.guard(
+                    session.bearer, session.request, tree_sha256=session.tree()
+                ):
+                    cancellation.ensure_active()
+                    response = session.profile.model.complete(request, cancellation)
         except BaseException as exc:
             failure = exc
         if response is None or not response.usage.known:
@@ -484,6 +503,11 @@ class _ControlledModel:
             raise _deny("HARNESS_MODEL_UNKNOWN")
         if failure is not None:
             raise failure
+        if session.bridge is not None and not session.bridge.response_usable():
+            # The exact original usage and operation are already settled. The
+            # kernel's after_model SafePoint discards this entire ephemeral
+            # response; an obsolete view is never written as a new payload.
+            return response
         session.journal.put_payload(
             operation, "model_response", response.model_dump_json().encode()
         )
@@ -711,6 +735,9 @@ class _BoundExecution:
         # server-selected readable subdirectory; its actual cwd is journaled.
         request = request.model_copy(update={"cwd": session.profile.working_directory})
         tree = session.workspace.snapshot().tree_hash
+        if session.bridge is not None:
+            with session.bridge.guard("execute", command=request.argv[0].rsplit("/", 1)[-1]):
+                pass
         with session.core.guard(session.bearer, session.request, tree_sha256=tree) as (
             mandate,
             facts,
@@ -772,6 +799,7 @@ class _BoundExecution:
         )
         if not session.journal.dispatch(operation):
             raise _deny("SOURCE_CODING_EXECUTION_UNKNOWN")
+        async_job = session.bridge.service.job_prepared(operation) if session.bridge else None
         driver = session.profile.driver
         started = time.monotonic()
         broker = None
@@ -790,7 +818,7 @@ class _BoundExecution:
                 cancellation,
                 container_name=driver._name(context),
                 ownership_labels=driver._labels(context),
-                dispatch_guard=lambda: session.command_guard(context, tree),
+                dispatch_guard=lambda: session.command_guard(context, tree, async_job=async_job),
             )
             # H06's display tree includes additional protected/ignored files.
             # The authoritative tree is independently scanned by bound H03.
@@ -802,10 +830,28 @@ class _BoundExecution:
             deadline = started + min(command.timeout_seconds, session.profile.limits.max_seconds)
             while True:
                 cancellation.ensure_active()
-                with session.core.guard(
-                    session.bearer, session.request, tree_sha256=session.tree()
-                ):
+                if session.bridge is not None and async_job is not None:
+                    if session.bridge.poll_command(async_job):
+                        stopped = broker.stop_bound_command(command.name, driver._labels(context))
+                        if stopped.state != "missing":
+                            raise _deny("SOURCE_CODING_EXECUTION_UNKNOWN")
+                        cancelled = driver._save(
+                            context,
+                            driver._receipt(
+                                context, "known_terminal", code="cancelled", tree=tree, stopped=True
+                            ),
+                        )
+                        scheduler.record_resource_receipt(context, cancelled)
+                        session.journal.known(operation, "cancelled", cancelled.result_sha256)
+                        session.bridge.service.job_observed(session.request.coding_id, async_job)
+                        raise _deny("SOURCE_ASYNC_JOB_STOPPED")
+                    # Trusted ownership inspection is IO outside Engine locks.
                     status = broker.inspect_bound_command(command.name, driver._labels(context))
+                else:
+                    with session.core.guard(
+                        session.bearer, session.request, tree_sha256=session.tree()
+                    ):
+                        status = broker.inspect_bound_command(command.name, driver._labels(context))
                 if status.state in {"exited", "dead"}:
                     break
                 if status.state == "missing":
@@ -818,7 +864,9 @@ class _BoundExecution:
             if total > command.max_output_bytes:
                 raise _deny("SOURCE_CODING_EXECUTION_OUTPUT_LIMIT")
             text = raw.decode("utf-8", "replace")
-            after_tree = session.workspace.snapshot().tree_hash
+            after_tree = (
+                session.tree() if session.bridge else session.workspace.snapshot().tree_hash
+            )
             if after_tree != tree:
                 raise _deny("SOURCE_CODING_EXECUTION_TREE_CHANGED")
             resource_receipt = driver._receipt(
@@ -833,6 +881,8 @@ class _BoundExecution:
                 context, resource_receipt, container_id=status.container_id
             )
             scheduler.record_resource_receipt(context, resource_receipt)
+            if session.bridge is not None and async_job is not None:
+                session.bridge.service.job_observed(session.request.coding_id, async_job)
             lease = broker.authority.peek()
             provenance = ExecutionProvenance(
                 operation_id=str(context.operation_id),
@@ -887,12 +937,19 @@ class _BoundExecution:
                 tests_failed=min(tests, failures),
                 provenance=provenance,
             )
-            session.journal.put_payload(operation, "checkpoint", receipt.model_dump_json().encode())
+            if session.bridge is None:
+                session.journal.put_payload(
+                    operation, "checkpoint", receipt.model_dump_json().encode()
+                )
             session.journal.known(
                 operation,
                 "ok" if receipt.status == "passed" else "failed",
                 digest(receipt.model_dump(mode="json")),
             )
+            if session.bridge is not None and session.bridge.operation_payload_usable(operation):
+                session.journal.put_payload(
+                    operation, "checkpoint", receipt.model_dump_json().encode()
+                )
             # Success is only usable after exact owned cleanup; daemon errors
             # cannot be turned into a released resource slot.
             absent = broker.stop_bound_command(command.name, driver._labels(context))
@@ -903,6 +960,9 @@ class _BoundExecution:
                 return receipt
         except BaseException:
             session.journal.unknown(operation)
+            if session.bridge is not None and async_job is not None:
+                session.bridge.service.job_observed(session.request.coding_id, async_job)
+                session.bridge.service.job_unknown(session.request.coding_id, async_job)
             try:
                 scheduler.request_stop(context, "RUNTIME_SHUTDOWN")
                 scheduler.maintain()
@@ -1052,6 +1112,9 @@ class _Tools(HarnessToolRegistry):
             raise _deny("SOURCE_CODING_TOOL_CONTEXT")
         self.session.active_tool = context.operation_id
         try:
+            if self.session.bridge is not None:
+                with self.session.bridge.guard("read"):
+                    pass
             # Mutable tools have their durable intent at the actual adapter.
             if call.name in {"apply_edits", "run_tests"}:
                 return super().invoke(call, context, cancellation)
@@ -1083,8 +1146,10 @@ class _Attempt:
         bearer: str,
         request: CodingRunRequest,
         attempt: dict[str, Any],
+        bridge: AsyncAttempt | None = None,
     ) -> None:
         self.core, self.profile, self.bearer, self.request = core, profile, bearer, request
+        self.bridge = bridge
         self.journal = SourceCodingJournal(core, bearer, request, attempt["attempt_id"])
         self.active_tool: str | None = None
         with core.engine.transaction() as conn:
@@ -1150,6 +1215,8 @@ class _Attempt:
             limits=profile.limits,
             reserved_tokens=profile.reserved_tokens,
         )
+        if self.bridge is not None:
+            self.bridge.attach(self)
 
     def _open_workspace(self, attempt: dict[str, Any]) -> TaskWorkspace:
         initial = self.mandate.repository.materialized_tree_sha256
@@ -1241,7 +1308,13 @@ class _Attempt:
                     path=path,
                     expected_tree_sha256=access.expected_tree if capability == "write" else None,
                 )
-            yield
+            if self.bridge is None:
+                yield
+            else:
+                with self.bridge.guard(
+                    capability, paths=access.paths if capability == "write" else ()
+                ):
+                    yield
 
     def lease(self) -> CapabilityLease:
         with self.core.guard(self.bearer, self.request, tree_sha256=self.tree()) as (
@@ -1277,7 +1350,9 @@ class _Attempt:
             return self._lease
 
     @contextmanager
-    def command_guard(self, context: ResourceContext, tree: str) -> Iterator[None]:
+    def command_guard(
+        self, context: ResourceContext, tree: str, *, async_job: UUID | None = None
+    ) -> Iterator[None]:
         with self.core.guard(self.bearer, self.request, tree_sha256=self.tree()) as (
             mandate,
             facts,
@@ -1294,7 +1369,17 @@ class _Attempt:
                 expected_tree_sha256=tree,
             )
             with self.core.engine.source_scheduler.dispatch_guard(context):
-                yield
+                asynchronous = (
+                    self.bridge.guard(
+                        "execute", command=self.profile.baseline_command[0].rsplit("/", 1)[-1]
+                    )
+                    if self.bridge
+                    else nullcontext()
+                )
+                with asynchronous:
+                    if self.bridge is not None and async_job is not None:
+                        self.bridge.service.job_running(self.request.coding_id, async_job)
+                    yield
 
     def _write_boundary(self, operation: dict[str, Any], path: str) -> None:
         # Private deterministic crash-test hook. Production construction does
@@ -1311,10 +1396,27 @@ class SourceCodingRuntime:
         self.write_boundary: Callable[[UUID, str], None] | None = None
 
     def execute(self, bearer: str, request: CodingRunRequest) -> dict[str, Any]:
+        with self.core.engine.transaction() as conn:
+            asynchronous = getattr(self.core.engine, "source_async", None)
+            if asynchronous is not None and asynchronous.managed(conn, request.coding_id):
+                raise _deny("SOURCE_ASYNC_EXPLICIT_START_REQUIRED")
+        return self._execute(bearer, request)
+
+    def execute_managed(
+        self, bearer: str, request: CodingRunRequest, bridge: AsyncAttempt
+    ) -> dict[str, Any]:
+        if bridge.service is not self.core.engine.source_async or bridge.request != request:
+            raise _deny("SOURCE_ASYNC_SCOPE_FENCED")
+        with bridge.service.execution_scope(bridge.async_id):
+            return self._execute(bearer, request, bridge)
+
+    def _execute(
+        self, bearer: str, request: CodingRunRequest, bridge: AsyncAttempt | None = None
+    ) -> dict[str, Any]:
         with self.core.guard(bearer, request):
             with self.core.engine.transaction() as conn:
                 attempt = self.core.begin_attempt(conn, bearer, request)
-            session = _Attempt(self.core, self.profile, bearer, request, attempt)
+            session = _Attempt(self.core, self.profile, bearer, request, attempt, bridge)
         session.file_journal.recover(session.workspace)
         validate_fixture_python(
             session.workspace.snapshot().files, session.mandate.grant.write_paths
@@ -1337,7 +1439,9 @@ class SourceCodingRuntime:
             max_seconds=self.profile.limits.max_seconds,
         )
         plan = loop.plan(session.task, baseline_command=self.profile.baseline_command)
-        result = loop.run(session.task, session.grant, plan)
+        result = loop.run(
+            session.task, session.grant, plan, checkpoint=bridge.checkpoint if bridge else None
+        )
         with self.core.guard(bearer, request, tree_sha256=session.tree()):
             if result.verification is not None:
                 session.journal.finish(result.tree_after)
