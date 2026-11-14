@@ -130,19 +130,6 @@ class AsyncAttempt:
             cancelled=False,
         )
 
-    def _fresh(self, stage: SafePointKind, *, model_reply: bool) -> AsyncCheckpoint:
-        session = self._session()
-        tree = session.tree()
-        with self.service.engine.transaction() as conn:
-            row, _ = self.service.current(conn, self.bearer, self.request, tree)
-            if (
-                model_reply
-                and self.reply_revision is not None
-                and self.reply_revision != row["input_revision"]
-            ):
-                raise _deny("SOURCE_ASYNC_MODEL_REPLY_STALE")
-        return self.publish(stage)
-
     @contextmanager
     def guard(
         self,
@@ -154,18 +141,18 @@ class AsyncAttempt:
     ) -> Iterator[None]:
         session = self._session()
         tree = session.tree()
-        cp = self._fresh(
-            "before_command" if capability == "execute" else "before_tool", model_reply=model_reply
-        )
-        with self.service.guard(
+        with self.service.operation_guard(
             self.bearer,
             self.request,
-            cp,
             tree=tree,
             capability=capability,
             paths=paths,
             command=command,
-        ):
+            reply_revision=self.reply_revision if model_reply else None,
+        ) as cp:
+            if cp.async_id != self.async_id:
+                raise _deny("SOURCE_ASYNC_SCOPE_FENCED")
+            self.view = cp
             yield
 
     def context(self) -> tuple[str, tuple[str, ...]]:

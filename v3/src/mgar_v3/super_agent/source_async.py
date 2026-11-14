@@ -813,172 +813,184 @@ class SourceAsync:
     ) -> AsyncCheckpoint:
         with self.engine.transaction() as conn:
             row, current = self.current(conn, bearer, request, tree)
-            previous = (
-                self._checkpoint(conn, row, row["current_checkpoint_id"])
-                if row["current_checkpoint_id"]
-                else None
-            )
-            retained = self._dependencies(conn, row, previous) if previous else ()
-            if (
-                previous is not None
-                and previous.through_sequence == row["received_sequence"]
-                and previous.input_revision == current.input_revision
-                and previous.tree_sha256 == tree
-                and previous.environment_sha256 == current.environment_sha256
-                and previous.restriction == current.restriction
-                and previous.expires_at > self.now(conn)
-            ):
-                validate_view(previous, current, at=self.now(conn))
-                return previous
-            raw = conn.execute(
-                "SELECT * FROM app.sa_async_inputs WHERE async_id=%s AND sequence>%s ORDER BY "
-                "sequence LIMIT 257",
-                (row["async_id"], previous.through_sequence if previous else 0),
-            ).fetchall()
-            # Terminal blocked inputs are acknowledged as blocked in the same new view.
-            pending = []
-            for item in raw:
-                if item["state"] == "applied":
-                    raise _deny("SOURCE_ASYNC_INPUT_CURSOR_CONFLICT")
-                if item["origin"] == "source":
-                    try:
-                        source, facts = self._source(conn, row, item)
-                        facts = self._source_facts(
-                            conn,
-                            row,
-                            source,
-                            item["kind"],
-                            _decode(AsyncRestriction, item["restriction"])
-                            if item["restriction"]
-                            else None,
-                        )
-                    except DomainError:
-                        facts = AsyncInputFacts(
-                            kind=item["kind"],
-                            source="source",
-                            expires_at=item["expires_at"],
-                            source_input=CorrelationInputRef(
-                                input_id=item["source_input_id"],
-                                source_instance_id=item["source_instance_id"],
-                                project_id=self.project,
-                                version_fingerprint=item["version_fingerprint"],
-                                state_sha256=item["source_state_sha256"],
-                            ),
-                            restriction=_decode(AsyncRestriction, item["restriction"])
-                            if item["restriction"]
-                            else None,
-                        )
-                else:
-                    observed = (
-                        item["origin"] == "job"
-                        and conn.execute(
-                            "SELECT 1 FROM app.sa_scheduler_operations WHERE operation_id=%s "
-                            "AND assignment_id=%s AND state='known_terminal'",
-                            (item["resource_operation_id"], row["assignment_id"]),
-                        ).fetchone()
-                        is not None
+            return self._plan_checkpoint(conn, row, current, tree=tree, stage=stage)
+
+    def _plan_checkpoint(
+        self,
+        conn: Connection,
+        row: Row,
+        current: AsyncCurrentFacts,
+        *,
+        tree: str,
+        stage: SafePointKind,
+    ) -> AsyncCheckpoint:
+        self._conn(conn)
+        previous = (
+            self._checkpoint(conn, row, row["current_checkpoint_id"])
+            if row["current_checkpoint_id"]
+            else None
+        )
+        retained = self._dependencies(conn, row, previous) if previous else ()
+        if (
+            previous is not None
+            and previous.through_sequence == row["received_sequence"]
+            and previous.input_revision == current.input_revision
+            and previous.tree_sha256 == tree
+            and previous.environment_sha256 == current.environment_sha256
+            and previous.restriction == current.restriction
+            and previous.expires_at > self.now(conn)
+        ):
+            validate_view(previous, current, at=self.now(conn))
+            return previous
+        raw = conn.execute(
+            "SELECT * FROM app.sa_async_inputs WHERE async_id=%s AND sequence>%s ORDER BY "
+            "sequence LIMIT 257",
+            (row["async_id"], previous.through_sequence if previous else 0),
+        ).fetchall()
+        # Terminal blocked inputs are acknowledged as blocked in the same new view.
+        pending = []
+        for item in raw:
+            if item["state"] == "applied":
+                raise _deny("SOURCE_ASYNC_INPUT_CURSOR_CONFLICT")
+            if item["origin"] == "source":
+                try:
+                    source, facts = self._source(conn, row, item)
+                    facts = self._source_facts(
+                        conn,
+                        row,
+                        source,
+                        item["kind"],
+                        _decode(AsyncRestriction, item["restriction"])
+                        if item["restriction"]
+                        else None,
                     )
+                except DomainError:
                     facts = AsyncInputFacts(
                         kind=item["kind"],
-                        source=item["origin"],
+                        source="source",
                         expires_at=item["expires_at"],
-                        exact_target=True,
-                        owner_session_current=item["origin"] == "owner",
-                        trusted_observation=bool(observed),
+                        source_input=CorrelationInputRef(
+                            input_id=item["source_input_id"],
+                            source_instance_id=item["source_instance_id"],
+                            project_id=self.project,
+                            version_fingerprint=item["version_fingerprint"],
+                            state_sha256=item["source_state_sha256"],
+                        ),
                         restriction=_decode(AsyncRestriction, item["restriction"])
                         if item["restriction"]
                         else None,
                     )
-                if item["state"] == "blocked":
-                    facts = facts.model_copy(update={"exact_target": False})
-                pending.append(
-                    PendingInput(
-                        receipt=AsyncInputReceipt(
-                            input_id=item["input_id"],
-                            async_id=row["async_id"],
-                            scope_sha256=row["scope_sha256"],
-                            sequence=item["sequence"],
-                            kind=item["kind"],
-                            state="received",
-                            input_revision=item["input_revision"],
-                            request_sha256=item["request_sha256"],
-                            source_input=facts.source_input,
-                            restriction=facts.restriction,
-                        ),
-                        facts=facts,
-                    )
+            else:
+                observed = (
+                    item["origin"] == "job"
+                    and conn.execute(
+                        "SELECT 1 FROM app.sa_scheduler_operations WHERE operation_id=%s "
+                        "AND assignment_id=%s AND state='known_terminal'",
+                        (item["resource_operation_id"], row["assignment_id"]),
+                    ).fetchone()
+                    is not None
                 )
-            now = self.now(conn)
-            plan = plan_safe_point(
-                checkpoint_id=uuid4(),
-                current=current,
-                stage=stage,
-                at=now,
-                received_sequence=row["received_sequence"],
-                pending=tuple(pending),
-                previous=previous,
-                retained_facts=retained,
-            )
-            cp = plan.checkpoint
-            conn.execute(
-                "INSERT INTO "
-                "app.sa_async_checkpoints(checkpoint_id,async_id,project_id,scope_sha256,"
-                "request_id,stage,"
-                "input_revision,through_sequence,restriction,context_sha256,tree_sha256,"
-                "environment_sha256,created_at,expires_at) "
-                "VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)",
-                (
-                    cp.checkpoint_id,
-                    row["async_id"],
-                    self.project,
-                    row["scope_sha256"],
-                    cp.checkpoint_id,
-                    stage,
-                    cp.input_revision,
-                    cp.through_sequence,
-                    Jsonb(cp.restriction.model_dump(mode="json")),
-                    cp.context_sha256,
-                    tree,
-                    cp.environment_sha256,
-                    now,
-                    cp.expires_at,
-                ),
-            )
-            for item in raw:
-                if item["state"] == "blocked":
-                    continue
-                applied = item["input_id"] in plan.applied_ids
-                conn.execute(
-                    "UPDATE app.sa_async_inputs SET "
-                    "state=%s,applied_checkpoint_id=%s,reason_code=%s,"
-                    "updated_at=clock_timestamp() WHERE input_id=%s",
-                    (
-                        "applied" if applied else "blocked",
-                        cp.checkpoint_id if applied else None,
-                        None if applied else "SOURCE_ASYNC_INPUT_DENIED",
-                        item["input_id"],
+                facts = AsyncInputFacts(
+                    kind=item["kind"],
+                    source=item["origin"],
+                    expires_at=item["expires_at"],
+                    exact_target=True,
+                    owner_session_current=item["origin"] == "owner",
+                    trusted_observation=bool(observed),
+                    restriction=_decode(AsyncRestriction, item["restriction"])
+                    if item["restriction"]
+                    else None,
+                )
+            if item["state"] == "blocked":
+                facts = facts.model_copy(update={"exact_target": False})
+            pending.append(
+                PendingInput(
+                    receipt=AsyncInputReceipt(
+                        input_id=item["input_id"],
+                        async_id=row["async_id"],
+                        scope_sha256=row["scope_sha256"],
+                        sequence=item["sequence"],
+                        kind=item["kind"],
+                        state="received",
+                        input_revision=item["input_revision"],
+                        request_sha256=item["request_sha256"],
+                        source_input=facts.source_input,
+                        restriction=facts.restriction,
                     ),
+                    facts=facts,
                 )
-                self._event(
-                    conn,
-                    row,
-                    "applied" if applied else "blocked",
-                    input_id=item["input_id"],
-                    checkpoint_id=cp.checkpoint_id if applied else None,
-                    reason=None if applied else "SOURCE_ASYNC_INPUT_DENIED",
-                )
+            )
+        now = self.now(conn)
+        plan = plan_safe_point(
+            checkpoint_id=uuid4(),
+            current=current,
+            stage=stage,
+            at=now,
+            received_sequence=row["received_sequence"],
+            pending=tuple(pending),
+            previous=previous,
+            retained_facts=retained,
+        )
+        cp = plan.checkpoint
+        conn.execute(
+            "INSERT INTO "
+            "app.sa_async_checkpoints(checkpoint_id,async_id,project_id,scope_sha256,"
+            "request_id,stage,"
+            "input_revision,through_sequence,restriction,context_sha256,tree_sha256,"
+            "environment_sha256,created_at,expires_at) "
+            "VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)",
+            (
+                cp.checkpoint_id,
+                row["async_id"],
+                self.project,
+                row["scope_sha256"],
+                cp.checkpoint_id,
+                stage,
+                cp.input_revision,
+                cp.through_sequence,
+                Jsonb(cp.restriction.model_dump(mode="json")),
+                cp.context_sha256,
+                tree,
+                cp.environment_sha256,
+                now,
+                cp.expires_at,
+            ),
+        )
+        for item in raw:
+            if item["state"] == "blocked":
+                continue
+            applied = item["input_id"] in plan.applied_ids
             conn.execute(
-                "UPDATE app.sa_async_bindings SET "
-                "current_checkpoint_id=%s,applied_sequence=%s,restriction=%s,"
-                "revision=revision+1,updated_at=clock_timestamp() WHERE async_id=%s",
+                "UPDATE app.sa_async_inputs SET "
+                "state=%s,applied_checkpoint_id=%s,reason_code=%s,"
+                "updated_at=clock_timestamp() WHERE input_id=%s",
                 (
-                    cp.checkpoint_id,
-                    cp.through_sequence,
-                    Jsonb(cp.restriction.model_dump(mode="json")),
-                    row["async_id"],
+                    "applied" if applied else "blocked",
+                    cp.checkpoint_id if applied else None,
+                    None if applied else "SOURCE_ASYNC_INPUT_DENIED",
+                    item["input_id"],
                 ),
             )
-            return cp
+            self._event(
+                conn,
+                row,
+                "applied" if applied else "blocked",
+                input_id=item["input_id"],
+                checkpoint_id=cp.checkpoint_id if applied else None,
+                reason=None if applied else "SOURCE_ASYNC_INPUT_DENIED",
+            )
+        conn.execute(
+            "UPDATE app.sa_async_bindings SET "
+            "current_checkpoint_id=%s,applied_sequence=%s,restriction=%s,"
+            "revision=revision+1,updated_at=clock_timestamp() WHERE async_id=%s",
+            (
+                cp.checkpoint_id,
+                cp.through_sequence,
+                Jsonb(cp.restriction.model_dump(mode="json")),
+                row["async_id"],
+            ),
+        )
+        return cp
 
     def validate(
         self,
@@ -1032,6 +1044,49 @@ class SourceAsync:
                     command=command,
                 )
             yield
+
+    @contextmanager
+    def operation_guard(
+        self,
+        bearer: str,
+        request: CodingRunRequest,
+        *,
+        tree: str,
+        capability: Literal["read", "model", "write", "execute", "verify"],
+        paths: tuple[str, ...] = (),
+        command: str | None = None,
+        reply_revision: int | None = None,
+    ) -> Iterator[AsyncCheckpoint]:
+        # One current original authority snapshot per operation. The mutex is
+        # held continuously through its actual IO, but the SQL transaction ends
+        # before IO starts. No authority snapshot is reused across operations.
+        with self.engine._mutex:
+            with self.engine.transaction() as conn:
+                row, facts = self.current(conn, bearer, request, tree)
+                if reply_revision is not None and reply_revision != row["input_revision"]:
+                    raise _deny("SOURCE_ASYNC_MODEL_REPLY_STALE")
+                cp = self._plan_checkpoint(
+                    conn,
+                    row,
+                    facts,
+                    tree=tree,
+                    stage="before_command" if capability == "execute" else "before_tool",
+                )
+                # The plan only unions the just-validated pending denies. Its
+                # scope, revision and dependency TTL retain the current facts.
+                applied = facts.model_copy(update={"restriction": cp.restriction})
+                if capability in {"write", "execute"}:
+                    validate_mutation(
+                        cp,
+                        applied,
+                        at=self.now(conn),
+                        capability=cast(Literal["write", "execute"], capability),
+                        paths=paths,
+                        command=command,
+                    )
+                else:
+                    validate_view(cp, applied, at=self.now(conn))
+            yield cp
 
     def materialize(
         self, bearer: str, request: CodingRunRequest, cp: AsyncCheckpoint, *, tree: str
