@@ -1,0 +1,56 @@
+--- a/v3/src/mgar_v3/coordination/engine.py
++++ b/v3/src/mgar_v3/coordination/engine.py
+@@ -36,6 +36,7 @@
+ from mgar_v3.super_agent.budget import SharedBudgets
+ from mgar_v3.super_agent.fast_path import FastPath
+ from mgar_v3.super_agent.policy import SourcePolicies
++from mgar_v3.super_agent.source_async import SourceAsync
+ from mgar_v3.super_agent.source_coding import SourceCoding
+ from mgar_v3.super_agent.source_correlation import SourceCorrelations
+ from mgar_v3.super_agent.source_eval import SourceEval
+@@ -89,6 +90,7 @@
+         self.source_subscriptions = SourceSubscriptions(self)
+         self.source_scheduler = SourceScheduler(self)
+         self.source_coding = SourceCoding(self)
++        self.source_async = SourceAsync(self)
+ 
+     def close(self) -> None:
+         with self._mutex:
+@@ -1520,6 +1522,7 @@
+             self.tools.recover()
+             self.source_scheduler.recover_conn(conn)
+             self.source_coding.recover_conn(conn)
++            self.source_async.recover_conn(conn)
+             return {
+                 "unknown_actions": len(unknown),
+                 "paused_runs": len(paused),
+--- a/v3/src/mgar_v3/api.py
++++ b/v3/src/mgar_v3/api.py
+@@ -56,6 +56,7 @@
+ from mgar_v3.super_agent.budget_api import register as register_project_budgets
+ from mgar_v3.super_agent.fast_path_api import register as register_source_fast_path
+ from mgar_v3.super_agent.policy_api import register as register_source_policies
++from mgar_v3.super_agent.source_async_api import register as register_source_async
+ from mgar_v3.super_agent.source_coding_api import register as register_source_coding
+ from mgar_v3.super_agent.source_correlation_api import register as register_source_correlations
+ from mgar_v3.super_agent.source_eval_api import register as register_source_eval
+@@ -1289,6 +1290,7 @@
+     register_source_subscriptions(app, authority, browser_user)
+     register_source_scheduler(app, authority, browser_user)
+     register_source_coding(app, authority, browser_user)
++    register_source_async(app, authority, browser_user)
+     register(app, authority, authenticated)
+     register_commerce(app, authority, authenticated)
+     register_recovery(app, configuration, authority, authenticated)
+--- a/v3/src/mgar_v3/sources/ingress.py
++++ b/v3/src/mgar_v3/sources/ingress.py
+@@ -1219,6 +1219,9 @@
+                 source_subscriptions = getattr(self.engine, "source_subscriptions", None)
+                 if source_subscriptions is not None and source_subscriptions._ready(conn):
+                     source_subscriptions.accepted_conn(conn, identifier, receipt_id=receipt_id)
++                source_async = getattr(self.engine, "source_async", None)
++                if source_async is not None and source_async._ready(conn):
++                    source_async.accepted_conn(conn, identifier, receipt_id=receipt_id)
+                 fast_path = getattr(self.engine, "fast_path", None)
+                 if fast_path is not None and fast_path._ready(conn):
+                     canonical = conn.execute(

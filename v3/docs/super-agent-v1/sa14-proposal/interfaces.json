@@ -1,0 +1,34 @@
+{
+  "schema_version": "source-async-v1",
+  "status": "PROPOSED_PENDING_NEW_HARNESS_OWNERSHIP_CONFIRMATION",
+  "prefix": "/api/v3/source-async",
+  "all_responses": "bounded metadata only; Cache-Control: no-store",
+  "owner_auth": "current server cookie, Origin-CSRF and owner recheck inside original Engine transaction",
+  "worker_auth": "independent current bearer plus exact original run/assignment/session/epoch; no Owner cookie",
+  "routes": [
+    {"method": "GET", "path": "/capabilities", "auth": "owner", "body": null},
+    {"method": "POST", "path": "/admissions", "auth": "owner", "body": "AsyncAdmitRequest"},
+    {"method": "GET", "path": "/bindings/{coding_id}", "auth": "owner", "body": null},
+    {"method": "POST", "path": "/bindings/{coding_id}/restrictions", "auth": "owner", "body": "AsyncRestrictRequest"},
+    {"method": "GET", "path": "/bindings/{coding_id}/inputs", "auth": "owner", "body": null},
+    {"method": "GET", "path": "/bindings/{coding_id}/jobs", "auth": "owner", "body": null},
+    {"method": "GET", "path": "/bindings/{coding_id}/events", "auth": "owner", "body": null},
+    {"method": "POST", "path": "/bindings/{coding_id}/jobs/{job_id}/cancel", "auth": "owner", "body": "AsyncJobCancelRequest"},
+    {"method": "POST", "path": "/worker/{coding_id}/start", "auth": "worker", "body": "AsyncWorkerRequest"},
+    {"method": "GET", "path": "/worker/{coding_id}/state", "auth": "worker", "body": null},
+    {"method": "GET", "path": "/worker/{coding_id}/jobs/{job_id}", "auth": "worker", "body": null},
+    {"method": "POST", "path": "/worker/{coding_id}/jobs/{job_id}/cancel", "auth": "worker", "body": "AsyncWorkerJobCancelRequest"}
+  ],
+  "worker_read_query": ["run_id", "assignment_id", "session_id", "epoch"],
+  "pagination": {"inputs": "after_sequence; limit 1..64", "jobs": "after_job_id; limit 1..64", "events": "after_event_id; limit 1..64"},
+  "private_engine_hooks": [
+    {"name": "SourceAsync._ready(conn)", "effect": "check exact held original transaction and formal schema presence"},
+    {"name": "SourceAsync.accepted_conn(conn,input_id,receipt_id=...)", "effect": "append only uniquely matched existing target metadata before original ACK; no IO/model"},
+    {"name": "SourceAsync.recover_conn(conn)", "effect": "persist original epoch invalidation and conservative Job facts; no IO or resend"}
+  ],
+  "forbidden_public_fields": ["body", "argv", "provider", "token", "host_path", "paid", "trusted", "task_succeeded", "grant", "read_paths"],
+  "construction_starts_background_work": false,
+  "h12_live_agent": "FAIL",
+  "real_source_paid_outbound_publication_long_term": "NOT_RUN",
+  "SA15": "NOT_STARTED"
+}

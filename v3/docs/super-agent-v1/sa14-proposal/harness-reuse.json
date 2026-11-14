@@ -1,0 +1,58 @@
+{
+  "status": "FIXED_COMMITTED_DEPENDENCY_REVIEWED_PORT_ONLY_NO_NEW_IMPORT",
+  "fixed_h09": "7d8f0ab5df1d4b98ff3140af553c11bc1ca74a1c",
+  "fixed_h09_followup": "096300eed8946086f99e331ae4c8c9c733108ff9",
+  "Harness_metadata_observation_commit": "617e14a",
+  "local_h11_coding_loop_commit": "d3f3457b3d9dfab68bc73a40add299e4e633fbeb",
+  "safe_point_AST_equal": true,
+  "local_loop_exact_fixed_h11": true,
+  "imported_new_Harness_blobs": [],
+  "reuse": "Already integrated SafePoint before_model/after_model, original H03/SA12/H06 bound operations; SourceAsync PG metadata adapter is SA-private",
+  "not_imported": [
+    "harness/inbox.py",
+    "file inbox.json",
+    "InboxStore/Service",
+    "parallel ledger",
+    "SSE server",
+    "H12 active/uncommitted working tree"
+  ],
+  "audit": "evidence/super-agent-v1/SAV1-14/start-20261114T072614Z-2e0801ca/fixed-h09-audit/audit.json",
+  "audit_sha256": "4df77101a437f038c4365af5bafd81eeb473188f61735d8483de9ac22a138cab",
+  "artifacts": [
+    {
+      "commit": "617e14a52d65c5276bcd3ef87dbd0f05b4a3c08d",
+      "path": "v3/docs/harness-v4/accept/HV4-H09/accept.json",
+      "sha256": "ecdbe2316c7031ea9fb7a3b371edc810dc6e715e3202143b59079e816da90668",
+      "saved": "evidence/super-agent-v1/SAV1-14/start-20261114T072614Z-2e0801ca/fixed-h09-audit/617e14a-accept.json"
+    },
+    {
+      "commit": "617e14a52d65c5276bcd3ef87dbd0f05b4a3c08d",
+      "path": "v3/docs/harness-v4/accept/HV4-H09/workspace-hash-recheck-20261111.json",
+      "sha256": "df6b96d0cdba657f3c36f4256115b003f8b5b25e4ff6dc9794910b7e9e7a9786",
+      "saved": "evidence/super-agent-v1/SAV1-14/start-20261114T072614Z-2e0801ca/fixed-h09-audit/617e14a-workspace-hash-recheck-20261111.json"
+    },
+    {
+      "commit": "7d8f0ab5df1d4b98ff3140af553c11bc1ca74a1c",
+      "path": "v3/src/mgar_v3/harness/inbox.py",
+      "sha256": "1324e80870660055e6c6710ac9b2de36943d380b908d03edddaf5fbf316d925f",
+      "saved": "evidence/super-agent-v1/SAV1-14/start-20261114T072614Z-2e0801ca/fixed-h09-audit/7d8f0ab-inbox.py"
+    },
+    {
+      "commit": "7d8f0ab5df1d4b98ff3140af553c11bc1ca74a1c",
+      "path": "v3/src/mgar_v3/harness/coding_loop.py",
+      "sha256": "9c2112bde1532bb890b72a1be672aac6425fb04850c9f7e5f6e9b1ac3baeec78",
+      "saved": "evidence/super-agent-v1/SAV1-14/start-20261114T072614Z-2e0801ca/fixed-h09-audit/7d8f0ab-coding_loop.py"
+    },
+    {
+      "commit": "d3f3457b3d9dfab68bc73a40add299e4e633fbeb",
+      "path": "v3/src/mgar_v3/harness/coding_loop.py",
+      "sha256": "9bd10946398a8744a5ba5654bb6e81870650f16091983854d0f0123f2536ac3a",
+      "saved": "evidence/super-agent-v1/SAV1-14/start-20261114T072614Z-2e0801ca/fixed-h09-audit/d3f3457-coding_loop.py"
+    }
+  ],
+  "residuals": [
+    "Old H09/H10 product findings not closed by this audit",
+    "Single-owner file inbox not authoritative for Source identity/roles/TTL",
+    "No H12 live_agent/MVP promotion"
+  ]
+}

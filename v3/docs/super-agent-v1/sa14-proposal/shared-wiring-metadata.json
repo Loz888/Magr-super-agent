@@ -1,0 +1,42 @@
+{
+  "status": "DRAFT_THREE_FILE_PATCH_NOT_APPLIED_PENDING_NEW_CONFIRMATION",
+  "recorded_utc": "2026-11-14T07:58:35.312615+00:00",
+  "base_commit": "41f62c187125252f4123154fc1640ea3675b61a2",
+  "patch_sha256": "c43e05c0d8aabe1bccf3484cbb7922c5f6f1897f6d2cd5ac0840b4454ff85b5e",
+  "files": {
+    "v3/src/mgar_v3/coordination/engine.py": {
+      "before_sha256": "d1e5b16681f9d6f5f8fa0a5a60ee34d01e4c50b4a7afcc754e9db268a9f2313d",
+      "proposed_after_sha256": "6b126ee6ac10bd2591220f20bc6b208c880ab6c73c658cff037a3a9448f39f67"
+    },
+    "v3/src/mgar_v3/api.py": {
+      "before_sha256": "d8714f22c357ac400abc4441b25fb4fe6637ab0e56af954c602b5e982bf4c09d",
+      "proposed_after_sha256": "f0e7d02ee25918ffa79a69c2d21ac097736faff551309c8c49c823652f289dd0"
+    },
+    "v3/src/mgar_v3/sources/ingress.py": {
+      "before_sha256": "ca7c47e67c1f7dc1f82fc0613074eac87a96327e991c16cd8b9778e0d7353587",
+      "proposed_after_sha256": "ac6f4acc3e09bf96d7ef32a98db359e1f57bdfd60c6261901c2058aed9ff1e07"
+    }
+  },
+  "new_service_ABI": [
+    {
+      "name": "SourceAsync._ready(conn)",
+      "effect": "check exact held original transaction and formal schema presence"
+    },
+    {
+      "name": "SourceAsync.accepted_conn(conn,input_id,receipt_id=...)",
+      "effect": "append only uniquely matched existing target metadata before original ACK; no IO/model"
+    },
+    {
+      "name": "SourceAsync.recover_conn(conn)",
+      "effect": "persist original epoch invalidation and conservative Job facts; no IO or resend"
+    }
+  ],
+  "constructor": "SourceAsync(engine); no IO, threads, provider, listeners or dispatch",
+  "api": "source_async_api.register(app,authority,browser_user); 12 metadata routes; original Owner/Worker separation",
+  "old_financial_algorithms": "unchanged; original SA07 and usage settlement only",
+  "Harness_fixed_files": "unchanged; no H09 file inbox/Store/Service/Ledger imports",
+  "default_activation": false,
+  "h12_live_agent_MVP": "FAIL",
+  "real_source_paid_outbound_publication_long_term": "NOT_RUN",
+  "SA15": "NOT_STARTED"
+}
