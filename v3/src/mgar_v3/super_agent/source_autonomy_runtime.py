@@ -97,6 +97,11 @@ def view(core: AutonomyStore, conn: Connection, attempt: Row) -> Row:
         "report_hash": run["report_hash"],
         "terminal_success": plan.terminal_success,
         "known_verified_result": f.original_result_known,
+        "review_state": (
+            "verification_available_awaiting_review"
+            if (attempt["original_kind"] == "coding" and f.original_result_known)
+            else "not_available"
+        ),
         "unknown_usage": f.unknown_usage,
         "resource_unconfirmed": f.resource_unconfirmed,
         "current_authority": f.authority_current,
@@ -182,6 +187,32 @@ def maintain(
     for attempt in attempts[:limit]:
         rule_row = core._rule(conn, attempt["rule_id"])
         f = facts(core, conn, attempt)
+        # A frozen original verifier/journal receipt can move the original Run
+        # to review wait. It does not approve/publish a bundle or finish a Task.
+        if (
+            attempt["original_kind"] == "coding"
+            and f.original_run_state == "running"
+            and f.authority_current
+            and f.original_result_passed
+            and not f.unknown_usage
+            and not f.resource_unconfirmed
+        ):
+            run = core.engine._run(conn, attempt["run_id"])
+            receipt = conn.execute(
+                "SELECT 1 FROM app.sa_coding_attempts a JOIN app.sa_coding_verifications v "
+                "USING(attempt_id,coding_id,project_id) WHERE a.run_id=%s "
+                "AND a.execution_epoch=%s AND a.state='result_recorded' "
+                "AND v.mandate_sha256=%s AND v.result='passed' LIMIT 1",
+                (attempt["run_id"], run["execution_epoch"], attempt["mandate_sha256"]),
+            ).fetchone()
+            if receipt is not None:
+                conn.execute(
+                    "UPDATE app.runs SET status='waiting_approval',"
+                    "reason_code='SOURCE_AUTONOMY_REVIEW_REQUIRED' WHERE run_id=%s",
+                    (attempt["run_id"],),
+                )
+                core.engine._event(conn, attempt["run_id"], "source_autonomy_review_wait")
+                f = facts(core, conn, attempt)
         plan = plan_maintenance(decode_rule(rule_row), f, at=core.now(conn))
         if plan.control == "stop":
             stop(core, conn, attempt, plan.reason_code)

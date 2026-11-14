@@ -1793,7 +1793,10 @@
   "SAV1-16": {
     "tests": [
       "tests/test_super_agent_sa16_pg.py",
-      "tests/test_super_agent_sa16_api.py"
+      "tests/test_super_agent_sa16_api.py",
+      "tests/test_super_agent_sa16_boundaries.py",
+      "tests/test_super_agent_sa16_recovery.py",
+      "tests/test_super_agent_sa16_runtime.py"
     ],
     "timeout_seconds": 1200,
     "components": {
@@ -1803,6 +1806,21 @@
       "models": "controlled SourceEval saved suggestions, no paid calls or listeners",
       "SA17": "NOT_STARTED",
       "real_platform_paid_outbound_publication_longterm": "NOT_RUN"
+    }
+  },
+  "SAV1-16-NEW-BOUNDARIES": {
+    "tests": [
+      "tests/test_super_agent_sa16_boundaries.py",
+      "tests/test_super_agent_sa16_recovery.py",
+      "tests/test_super_agent_sa16_runtime.py"
+    ],
+    "timeout_seconds": 1200,
+    "components": {
+      "scope": "Only first new lifecycle/schedule/reopen, realSIGKILL and actualCodingWorker checks; original64/private87 excluded",
+      "models": "Controlled fixture only, real PG/Git/Docker/Verifier; no network/paid/publication",
+      "recovery": "Three real SIGKILL; original claim rollback, committed dedup and disabled fence",
+      "H12": "fixed FAIL retained, other CLI owns H12 acceptance",
+      "SA17": "NOT_STARTED"
     }
   }
 }
