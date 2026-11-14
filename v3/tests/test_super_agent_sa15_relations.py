@@ -180,6 +180,7 @@ def test_owner_sees_minimal_tombstone_when_body_ttl_expires_before_metadata(engi
 def test_original_sa10_correlation_indexes_source_to_real_task_without_duplication(engine):
     from sa10_support import link
     from sa10_support import setup as correlation_setup
+
     from mgar_v3.super_agent.source_recall_access import RecallCaller
 
     env = correlation_setup(engine)
@@ -262,7 +263,8 @@ def test_original_knowledge_acl_is_not_replaced_by_source_or_cas_relation(
     with engine.transaction() as conn:
         conn.execute(
             "INSERT INTO knowledge.documents(document_id,project_id,repository,owner,"
-            "source_uri,title) VALUES(%s,%s,%s,'owner','fixture://sa15/report','private knowledge')",
+            "source_uri,title) VALUES(%s,%s,%s,'owner','fixture://sa15/report',"
+            "'private knowledge')",
             (document, engine.settings.project_id, engine.settings.repository.lower()),
         )
         conn.execute(

@@ -1720,7 +1720,8 @@
       "tests/test_super_agent_sa15_api.py",
       "tests/test_super_agent_sa15_tools.py",
       "tests/test_super_agent_sa15_quality.py",
-      "tests/test_super_agent_sa15_relations.py"
+      "tests/test_super_agent_sa15_relations.py",
+      "tests/test_super_agent_sa15_predecrypt.py"
     ],
     "timeout_seconds": 1200,
     "components": {
@@ -1759,6 +1760,24 @@
     "components": {
       "scope": "First checks for remaining original Memory/Context/SA10 relation/Action/Outbox/Job/Knowledge ACL/retention/integrity coverage; no old target repeated",
       "real_gates": "NOT_RUN"
+    }
+  },
+  "SAV1-15-REPAIR-02": {
+    "tests": [
+      "tests/test_super_agent_sa15_relations.py::test_all_formal_migration_checksums_and_current_artifact_references"
+    ],
+    "timeout_seconds": 120,
+    "components": {
+      "scope": "Only the original remaining failed artifact-reference guard; prior3repair and9relations passing checks excluded"
+    }
+  },
+  "SAV1-15-PREDECRYPT": {
+    "tests": [
+      "tests/test_super_agent_sa15_predecrypt.py"
+    ],
+    "timeout_seconds": 120,
+    "components": {
+      "scope": "First additional actual PG/cipher boundary: filter caller scope before decrypting a private candidate"
     }
   }
 }

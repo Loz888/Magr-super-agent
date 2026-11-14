@@ -130,20 +130,26 @@ class RecallAccess:
 
     def source(self, input_id: UUID) -> _Input:
         self.check()
-        value = self.engine.source_correlations._input(self.conn, input_id)
         if self.caller.kind == "worker":
-            event = value.item.event
-            if (
-                value.ref.source_instance_id != self.scope.source_instance_id
-                or event.source_thread.conversation_key != self.scope.conversation_key
-            ):
+            # Filter the caller's installation/conversation before decrypting any
+            # candidate body. The original _input subsequently rechecks version,
+            # retention, Source and policy again on this same held connection.
+            row = self.conn.execute(
+                "SELECT * FROM app.source_ingress_inputs WHERE input_id=%s AND project_id=%s",
+                (input_id, self.engine.settings.project_id),
+            ).fetchone()
+            if row is None or row["source_instance_id"] != self.scope.source_instance_id:
+                raise denied()
+            item, grant = self.engine.source_ingress._readable(self.conn, row)
+            event = item.event
+            if event.source_thread.conversation_key != self.scope.conversation_key:
                 raise denied()
             roles, _ = self.engine.source_policies._roles(
                 self.conn, event.sender, event.source_thread, None
             )
-            _, grant = self.engine.source_ingress._readable(self.conn, value.row)
             if "context_provider" not in roles or not grant["model_input"]:
                 raise denied()
+        value = self.engine.source_correlations._input(self.conn, input_id)
         # Native GitHub references must belong to the sole configured repository.
         if any(
             r.resource.repository.lower() != self.engine.settings.repository.lower()
