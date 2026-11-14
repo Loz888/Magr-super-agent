@@ -1,6 +1,6 @@
 # SA16 静默自主任务生命周期
 
-状态：IN_PROGRESS，首次工程检查和后续新增场景进行中。此文不代表独立验收或真实能力通过。
+状态：IN_PROGRESS，工程实现及分版本检查见 SA16_ACCEPTANCE_20261114.md。独立验收NOT_RUN，真实能力未放行。
 
 SA15 I01 独立闭环已核对，见 accept/SAV1-15/independent-closure-20261114.json。
 SA16共享确认91c0b75693037bb0d90cb2eccd35356cd2e96135，第41节；正式0048与五文件

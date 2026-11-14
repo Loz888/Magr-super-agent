@@ -25,7 +25,7 @@
   "artifacts": [
     {
       "path": "docs/super-agent-v1/SA16_AUTONOMY.md",
-      "sha256": "c66c60891d597da0bcca1aa9db2706b7bf2ae6fc7bd453025a48a15995208058"
+      "sha256": "10074c64e3420463d8cca5321d9a2da3ba55219bfc5db7444b85a3d724aa309a"
     },
     {
       "path": "docs/super-agent-v1/sa16-proposal/0048_source_autonomy.sql",
@@ -89,7 +89,7 @@
     },
     {
       "path": "src/mgar_v3/super_agent/source_autonomy.py",
-      "sha256": "ff4b68ba292cb904f4765ea81f1c681d574eaf5f94dfbd40e076a3a80aa8dada"
+      "sha256": "175849d1d0621e04cb338a55792db712274c8d932ac3320cd78a7ff747894ce0"
     },
     {
       "path": "src/mgar_v3/super_agent/source_autonomy_api.py",
@@ -113,7 +113,7 @@
     },
     {
       "path": "src/mgar_v3/super_agent/source_autonomy_runtime.py",
-      "sha256": "583f729dd95cdd07f2c020830317dfbf354f49d83b9bff3c7002466ed12a152f"
+      "sha256": "adfc7e709289aeb236900752181a9181a9044e8a71021cd6d768910e4e442b3b"
     },
     {
       "path": "src/mgar_v3/super_agent/source_autonomy_schedule.py",

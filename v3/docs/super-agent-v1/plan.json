@@ -517,11 +517,13 @@
       "optional": false,
       "card": "TASKS.md#sa16",
       "verification_target_on_implementation": "SAV1-16",
-      "work_state": "REQUIREMENTS_ORIGINAL_AUTHORITY_AND_SHARED_SCOPE_AUDIT",
-      "engineering_gate": "NOT_RUN",
+      "work_state": "IMPLEMENTED_PREPARING_INDEPENDENT_REVIEW",
+      "engineering_gate": "SEE_VERSIONED_ACCEPTANCE",
       "independent_review": "NOT_RUN",
-      "shared_scope": "NOT_YET_PROPOSED",
-      "next_card": "SA17_NOT_STARTED"
+      "shared_scope": "CONFIRMED_91c0b75_SECTION41_0048_FIVE_FILES_13_ROUTES",
+      "next_card": "SA17_NOT_STARTED",
+      "acceptance": "accept/SAV1-16/accept.json",
+      "ownership": "sa16-proposal/ownership-confirmed.json"
     },
     {
       "id": "SAV1-17",

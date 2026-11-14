@@ -98,11 +98,13 @@ def view(core: AutonomyStore, conn: Connection, attempt: Row) -> Row:
     ).fetchone()
     coding_status = conn.execute(
         "SELECT a.state AS attempt_state,a.reason_code AS attempt_reason,v.verification_id,"
-        "v.result AS verification_result,v.tests_run,v.tests_failed,o.result_code AS latest_result_code "
+        "v.result AS verification_result,v.tests_run,v.tests_failed,"
+        "o.result_code AS latest_result_code "
         "FROM app.sa_coding_attempts a LEFT JOIN LATERAL(SELECT * FROM app.sa_coding_verifications "
         "WHERE attempt_id=a.attempt_id ORDER BY observed_at DESC LIMIT 1) v ON true "
         "LEFT JOIN LATERAL(SELECT result_code FROM app.sa_coding_operations "
-        "WHERE attempt_id=a.attempt_id AND state='known' ORDER BY observed_at DESC LIMIT 1) o ON true "
+        "WHERE attempt_id=a.attempt_id AND state='known' "
+        "ORDER BY observed_at DESC LIMIT 1) o ON true "
         "WHERE a.run_id=%s ORDER BY a.created_at DESC LIMIT 1",
         (attempt["run_id"],),
     ).fetchone()

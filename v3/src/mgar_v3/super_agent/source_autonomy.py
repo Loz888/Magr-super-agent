@@ -610,8 +610,10 @@ class SourceAutonomy(AutonomyStore):
         with self.engine.transaction() as conn:
             self._console(conn, cookie)
             rows = conn.execute(
-                "SELECT c.*,a.attempt_id,a.run_id,e.kind AS latest_kind,e.reason_code AS latest_reason "
-                "FROM app.sa_autonomy_claims c LEFT JOIN app.sa_autonomy_attempts a USING(claim_id) "
+                "SELECT c.*,a.attempt_id,a.run_id,e.kind AS latest_kind,"
+                "e.reason_code AS latest_reason "
+                "FROM app.sa_autonomy_claims c "
+                "LEFT JOIN app.sa_autonomy_attempts a USING(claim_id) "
                 "LEFT JOIN LATERAL(SELECT kind,reason_code FROM app.sa_autonomy_events "
                 "WHERE claim_id=c.claim_id ORDER BY event_id DESC LIMIT 1) e ON true "
                 "WHERE c.project_id=%s "
