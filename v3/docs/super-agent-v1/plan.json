@@ -416,7 +416,7 @@
       "id": "SAV1-14",
       "short_id": "SA14",
       "title": "异步 Job、持续输入与安全点",
-      "status": "IN_PROGRESS",
+      "status": "DONE",
       "priority": "P0",
       "phase": "S2",
       "depends_on": [
@@ -432,9 +432,9 @@
       "optional": false,
       "card": "TASKS.md#sa14",
       "verification_target_on_implementation": "SAV1-14",
-      "work_state": "SA14_I01_LOCAL_FIX_VERIFIED_PENDING_INDEPENDENT_RECHECK",
+      "work_state": "CLOSED_USER_ACCEPTED_INDEPENDENT_LOCAL_CONTROLLED_SCOPE",
       "engineering_gate": "PASS_VERSIONED_LOCAL_CONTROLLED_SCOPE",
-      "independent_review": "FAIL_SA14_I01_RECHECK_PENDING",
+      "independent_review": "PASS_USER_ACCEPTED",
       "dependency_closure": "accept/SAV1-13/independent-closure-20261114.json",
       "preparation": "accept/SAV1-14/preparation-20261114.json",
       "ownership_request": "sa14-proposal/ownership-request.txt",
@@ -448,13 +448,14 @@
       "SA15": "NOT_STARTED",
       "acceptance": "accept/SAV1-14/accept.json",
       "local_repair": "2_ORIGINAL_FAILURES_PASS_E88FF0C",
-      "repair_record": "accept/SAV1-14/i01-repair.json"
+      "repair_record": "accept/SAV1-14/i01-repair.json",
+      "independent_closure": "accept/SAV1-14/independent-closure-20261114.json"
     },
     {
       "id": "SAV1-15",
       "short_id": "SA15",
       "title": "可鉴权 Chain of Recall",
-      "status": "PLANNED",
+      "status": "IN_PROGRESS",
       "priority": "P1",
       "phase": "S2",
       "depends_on": [
@@ -470,7 +471,12 @@
       },
       "optional": false,
       "card": "TASKS.md#sa15",
-      "verification_target_on_implementation": "SAV1-15"
+      "verification_target_on_implementation": "SAV1-15",
+      "work_state": "REQUIREMENTS_FIXED_H10_AND_REUSE_AUDIT",
+      "engineering_gate": "NOT_RUN",
+      "independent_review": "NOT_RUN",
+      "shared_scope": "NOT_YET_PROPOSED",
+      "next_card": "SA16_NOT_STARTED"
     },
     {
       "id": "SAV1-16",

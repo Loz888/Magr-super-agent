@@ -1,6 +1,6 @@
 {
   "contract_version": "source-async-v1",
-  "status": "SA14_I01_LOCAL_FIX_VERIFIED_PENDING_INDEPENDENT_RECHECK",
+  "status": "CLOSED_USER_ACCEPTED_INDEPENDENT_LOCAL_CONTROLLED_SCOPE",
   "scope": "Only original accepted public fixture_git / existing pure-function Python; no actual DB writes, arbitrary command, host execution, network or payment",
   "ownership_commit": "c711d54504c4945625505f47e9df56e22bc1bdac",
   "ownership_section": 39,
@@ -134,7 +134,7 @@
   "SA15": "NOT_STARTED",
   "installed_migration_count": 44,
   "scope_gate": "PASS_VERSIONED_LOCAL_CONTROLLED_FIXTURE_ONLY",
-  "independent_review": "FAIL_SA14_I01_RECHECK_PENDING",
+  "independent_review": "PASS_LOCAL_CONTROLLED_SCOPE_USER_ACCEPTED",
   "functional_candidate": "e88ff0c5b4ca586e3bc9c0b4d9cf42769a61042f",
   "distinct_formal_cases_with_PASS": 62,
   "single_final_full_suite_PASS_claimed": false,
@@ -383,7 +383,8 @@
     "source_commit": "e88ff0c5b4ca586e3bc9c0b4d9cf42769a61042f",
     "source_sha256": "2bd117ebf19bb038dacedc0b965cda7873ea782ff4cfbcf6cc3758f84c516cb8",
     "record": "docs/super-agent-v1/accept/SAV1-14/i01-repair.json",
-    "independent_reacceptance": "NOT_RUN",
+    "independent_reacceptance": "PASS_USER_ACCEPTED",
     "old35_and_other_PASS_repeated": false
-  }
+  },
+  "independent_closure": "docs/super-agent-v1/accept/SAV1-14/independent-closure-20261114.json"
 }

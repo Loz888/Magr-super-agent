@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-14T10:44:09.917713+00:00",
+  "updated_at": "2026-11-14T11:03:15.705894+00:00",
   "user_instruction": "Codex owns Super-Agent; local Trae owns Harness; coordination is authorized.",
   "owners": {
     "super_agent": {
@@ -13,9 +13,9 @@
       "cards": "HV4-H00..HV4-H18"
     }
   },
-  "active_super_agent_card": "SAV1-14",
+  "active_super_agent_card": "SAV1-15",
   "card_status": "IN_PROGRESS",
-  "work_state": "SA14_I01_LOCAL_FIX_VERIFIED_PENDING_INDEPENDENT_RECHECK",
+  "work_state": "SA15_REQUIREMENTS_FIXED_H10_AND_REUSE_AUDIT",
   "harness_observation": {
     "head": "de4775e22e96718e880fde287b2e0928db2945e3",
     "h00_owner_reported_status": "PASS",
@@ -425,7 +425,7 @@
     "acceptance": "docs/super-agent-v1/accept/SAV1-13/accept.json"
   },
   "SA14_shared_scope": {
-    "status": "SA14_I01_LOCAL_FIX_VERIFIED_PENDING_INDEPENDENT_RECHECK",
+    "status": "CLOSED_USER_ACCEPTED_INDEPENDENT_LOCAL_CONTROLLED_SCOPE",
     "commit": "c711d54504c4945625505f47e9df56e22bc1bdac",
     "section": 39,
     "migration": "0047_source_async.sql",
@@ -437,10 +437,10 @@
     "new_Harness_imports": [],
     "H12_acceptance_owner": "other CLI",
     "engineering_gate": "PASS_VERSIONED_LOCAL_CONTROLLED_SCOPE",
-    "independent_review": "FAIL_SA14_I01_RECHECK_PENDING",
+    "independent_review": "PASS_USER_ACCEPTED",
     "real_capabilities": "NOT_RUN",
-    "SA15": "NOT_STARTED",
-    "I01_local_repair": "2_PASS_E88FF0C",
+    "SA15": "AUTHORIZED_STARTED",
+    "I01_local_repair": "INDEPENDENT_2PASS_USER_ACCEPTED",
     "shared_files_or_numbering_changed": false
   },
   "sa14_preparation": "accept/SAV1-14/preparation-20261114.json",
@@ -450,7 +450,15 @@
   "sa14_harness_observed_head": "617e14a52d65c5276bcd3ef87dbd0f05b4a3c08d",
   "sa14_h12_live_agent_MVP": "FAIL",
   "sa14_real_gates": "NOT_RUN",
-  "sa15": "NOT_STARTED",
+  "sa15": "IN_PROGRESS",
   "sa14_ownership_commit": "c711d54504c4945625505f47e9df56e22bc1bdac",
-  "H12_acceptance_owner": "other CLI per explicit user clarification; no H12 work here"
+  "H12_acceptance_owner": "other CLI per explicit user clarification; no H12 work here",
+  "sa16": "NOT_STARTED",
+  "SA15_shared_scope": {
+    "status": "NOT_YET_PROPOSED_OR_CONFIRMED",
+    "prior_section39": "SA14 only; not SA15",
+    "schema": "Read-only reuse feasibility under audit; no migration number reserved",
+    "H12": "other CLI",
+    "real_capabilities": "NOT_RUN"
+  }
 }

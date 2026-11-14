@@ -1,0 +1,492 @@
+{
+  "schema_version": "super-agent-card-acceptance-v1",
+  "task_id": "SAV1-14",
+  "status": "IN_PROGRESS",
+  "work_state": "SA14_I01_LOCAL_FIX_VERIFIED_PENDING_INDEPENDENT_RECHECK",
+  "recorded_UTC": "2026-11-14T10:46:39.632562+00:00",
+  "source_commit": "598f7600be337a5c8d772baa9b216e0b6b383cf5",
+  "source_sha256": "a25a1c5f4c319b87e9f6b388eb22b45691dd21402f22a936f734585f03dce701",
+  "latest_functional_source_commit": "e88ff0c5b4ca586e3bc9c0b4d9cf42769a61042f",
+  "latest_functional_source_sha256": "2bd117ebf19bb038dacedc0b965cda7873ea782ff4cfbcf6cc3758f84c516cb8",
+  "candidate_equivalence": "SA14-I01 changed only two private modules. Final metadata follows e88ff0c with all production src/tests/migrations/scripts/schemas bytes unchanged. Original outcomes remain bound to their own versions; only two failed independent probes rerun.",
+  "scope": "Only original explicit public fixture_git existing-file Python pure-function SA13/H03/bound H06/fixed H11 slice; reference-only asynchronous inbox, monotone restrictions, operation views, original Jobs/receipts and controlled async model dispatch. No actual SQL/model network/publication capability.",
+  "ownership": {
+    "commit": "c711d54504c4945625505f47e9df56e22bc1bdac",
+    "section": 39,
+    "migration": "0047_source_async.sql",
+    "sql_sha256": "9ce372e6a82cbf747c51624486ef7548faf056cc60912e0287279be8b569f041",
+    "patch_sha256": "c43e05c0d8aabe1bccf3484cbb7922c5f6f1897f6d2cd5ac0840b4454ff85b5e",
+    "shared_after": "EXACT_APPROVED_BYTES",
+    "new_Harness_imports": [],
+    "reserved0045": "NOT_IMPORTED"
+  },
+  "gates": {
+    "engineering_gate": "PASS_VERSIONED_LOCAL_CONTROLLED_I01_LOCAL_REPAIR_PENDING_INDEPENDENT",
+    "policy_security_gate": "NOT_RUN_COMPLETE_SYSTEM",
+    "live_source_channel_gate": "NOT_RUN",
+    "live_coding_gate": "NOT_RUN",
+    "paid_model": "NOT_RUN",
+    "outbound": "NOT_RUN",
+    "live_publication_gate": "NOT_RUN",
+    "continuous_operation_gate": "NOT_RUN"
+  },
+  "harness_h12_live_agent": "FAIL_FIXED_LOCAL_RECORD",
+  "harness_h12_mvp": "FAIL_FIXED_LOCAL_RECORD",
+  "h12_acceptance_owner": "other CLI per user clarification",
+  "independent_review": "FAIL_SA14_I01_RECHECK_PENDING",
+  "SA15": "NOT_STARTED",
+  "distinct_formal_cases_with_pass_evidence": 62,
+  "new_boundary_cases_first_pass": 1,
+  "single_final_full_suite_pass_claimed": false,
+  "rounds": [
+    {
+      "scope": "initial_formal_registry",
+      "source_commit": "d635470740cb810c273cfd6b9940868587ddbe0a",
+      "source_sha256": "40f21ad37b0a5e855ce38a5eed1a8bee10d8a0ca48069f5f498127617a95cfb2",
+      "candidate_and_archive": "evidence/super-agent-v1/SAV1-14/integration-20261114T081658Z-10a31715/formal-initial/candidate.json",
+      "source_stable": true,
+      "tests": 61,
+      "passed": 26,
+      "failures": 35,
+      "errors": 0,
+      "skipped": 0,
+      "new_first_checks": 0,
+      "junit": "evidence/SAV1-14/20261114T090322Z-014b3f56/junit.xml",
+      "log": "evidence/SAV1-14/20261114T090322Z-014b3f56/command.log",
+      "command_record": "evidence/SAV1-14/20261114T090322Z-014b3f56/result.json"
+    },
+    {
+      "scope": "failed_runtime_single_diagnostic",
+      "source_commit": "5758b31cf3e3e6a7038ed07274cc8c0615c3c2bb",
+      "source_sha256": "1a850feb12671275711ee17040e90947166b5fc787a375824b8b8d7feafecb90",
+      "candidate_and_archive": "evidence/super-agent-v1/SAV1-14/integration-20261114T081658Z-10a31715/failed-runtime-diagnostic-1/candidate.json",
+      "source_stable": true,
+      "tests": 1,
+      "passed": 0,
+      "failures": 1,
+      "errors": 0,
+      "skipped": 0,
+      "new_first_checks": 0,
+      "junit": "evidence/super-agent-v1/SAV1-14/integration-20261114T081658Z-10a31715/failed-runtime-diagnostic-1/junit.xml",
+      "log": "evidence/super-agent-v1/SAV1-14/integration-20261114T081658Z-10a31715/failed-runtime-diagnostic-1/registered.log",
+      "command_record": "evidence/super-agent-v1/SAV1-14/integration-20261114T081658Z-10a31715/failed-runtime-diagnostic-1/registered-command.json"
+    },
+    {
+      "scope": "same_failed_runtime_profile",
+      "source_commit": "5758b31cf3e3e6a7038ed07274cc8c0615c3c2bb",
+      "source_sha256": "1a850feb12671275711ee17040e90947166b5fc787a375824b8b8d7feafecb90",
+      "candidate_and_archive": "evidence/super-agent-v1/SAV1-14/integration-20261114T081658Z-10a31715/failed-runtime-profile-2/candidate.json",
+      "source_stable": true,
+      "tests": 1,
+      "passed": 0,
+      "failures": 1,
+      "errors": 0,
+      "skipped": 0,
+      "new_first_checks": 0,
+      "junit": "evidence/super-agent-v1/SAV1-14/integration-20261114T081658Z-10a31715/failed-runtime-profile-2/junit.xml",
+      "log": "evidence/super-agent-v1/SAV1-14/integration-20261114T081658Z-10a31715/failed-runtime-profile-2/registered.log",
+      "command_record": "evidence/super-agent-v1/SAV1-14/integration-20261114T081658Z-10a31715/failed-runtime-profile-2/registered-command.json"
+    },
+    {
+      "scope": "only_original29_metadata_and_recovery_failures",
+      "source_commit": "5758b31cf3e3e6a7038ed07274cc8c0615c3c2bb",
+      "source_sha256": "1a850feb12671275711ee17040e90947166b5fc787a375824b8b8d7feafecb90",
+      "candidate_and_archive": "evidence/super-agent-v1/SAV1-14/integration-20261114T081658Z-10a31715/failed-metadata-recovery-1/candidate.json",
+      "source_stable": true,
+      "tests": 29,
+      "passed": 29,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "new_first_checks": 0,
+      "junit": "evidence/super-agent-v1/SAV1-14/integration-20261114T081658Z-10a31715/failed-metadata-recovery-1/junit.xml",
+      "log": "evidence/super-agent-v1/SAV1-14/integration-20261114T081658Z-10a31715/failed-metadata-recovery-1/registered.log",
+      "command_record": "evidence/super-agent-v1/SAV1-14/integration-20261114T081658Z-10a31715/failed-metadata-recovery-1/registered-command.json"
+    },
+    {
+      "scope": "only_original6_runtime_failures",
+      "source_commit": "f8b864d9d3fd2d3884ecdba850fa879e624373a8",
+      "source_sha256": "7a0a2ab63e3b3a3a8ed7a9080d65dcbe3fd8d81bb7249fea97ca60b804393e94",
+      "candidate_and_archive": "evidence/super-agent-v1/SAV1-14/integration-20261114T081658Z-10a31715/failed-runtime-remaining-3/candidate.json",
+      "source_stable": true,
+      "tests": 6,
+      "passed": 1,
+      "failures": 5,
+      "errors": 0,
+      "skipped": 0,
+      "new_first_checks": 0,
+      "junit": "evidence/super-agent-v1/SAV1-14/integration-20261114T081658Z-10a31715/failed-runtime-remaining-3/junit.xml",
+      "log": "evidence/super-agent-v1/SAV1-14/integration-20261114T081658Z-10a31715/failed-runtime-remaining-3/registered.log",
+      "command_record": "evidence/super-agent-v1/SAV1-14/integration-20261114T081658Z-10a31715/failed-runtime-remaining-3/registered-command.json"
+    },
+    {
+      "scope": "only_remaining5_runtime_failures_plus_new_atomic_boundary",
+      "source_commit": "be489f7a12f1ffe0e263cfac07a5b1c2b83abb91",
+      "source_sha256": "9953c61b234686dfa282297881cb118e44cee7aebce55bb31987838662b74881",
+      "candidate_and_archive": "evidence/super-agent-v1/SAV1-14/integration-20261114T081658Z-10a31715/failed5-plus-atomic-first-4/candidate.json",
+      "source_stable": true,
+      "tests": 6,
+      "passed": 6,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0,
+      "new_first_checks": 1,
+      "junit": "evidence/super-agent-v1/SAV1-14/integration-20261114T081658Z-10a31715/failed5-plus-atomic-first-4/junit.xml",
+      "log": "evidence/super-agent-v1/SAV1-14/integration-20261114T081658Z-10a31715/failed5-plus-atomic-first-4/registered.log",
+      "command_record": "evidence/super-agent-v1/SAV1-14/integration-20261114T081658Z-10a31715/failed5-plus-atomic-first-4/registered-command.json"
+    }
+  ],
+  "remaining_failed_cases": [],
+  "passed_cases_repeated": 0,
+  "case_ledger": "docs/super-agent-v1/accept/SAV1-14/case-ledger.json",
+  "historical_preparation": {
+    "private_contracts": 65,
+    "draft_pg": 29,
+    "rerun": false,
+    "summary": "docs/super-agent-v1/accept/SAV1-14/preparation-20261114.json",
+    "note": "Reproduce frozen draft checks from their pre-integration immutable archive, not against formal44 migration catalogue."
+  },
+  "static_checks_versioned": [
+    {
+      "record": "evidence/super-agent-v1/SAV1-14/integration-20261114T081658Z-10a31715/formal-initial/lint-command.json",
+      "exit_code": 2,
+      "source_commit": "d635470740cb810c273cfd6b9940868587ddbe0a",
+      "source_sha256": "40f21ad37b0a5e855ce38a5eed1a8bee10d8a0ca48069f5f498127617a95cfb2",
+      "log": "evidence/super-agent-v1/SAV1-14/integration-20261114T081658Z-10a31715/formal-initial/lint.log"
+    },
+    {
+      "record": "evidence/super-agent-v1/SAV1-14/integration-20261114T081658Z-10a31715/formal-initial/typecheck-command.json",
+      "exit_code": 2,
+      "source_commit": "d635470740cb810c273cfd6b9940868587ddbe0a",
+      "source_sha256": "40f21ad37b0a5e855ce38a5eed1a8bee10d8a0ca48069f5f498127617a95cfb2",
+      "log": "evidence/super-agent-v1/SAV1-14/integration-20261114T081658Z-10a31715/formal-initial/typecheck.log"
+    },
+    {
+      "record": "evidence/super-agent-v1/SAV1-14/integration-20261114T081658Z-10a31715/failed-runtime-diagnostic-1/lint-command.json",
+      "exit_code": 0,
+      "source_commit": "5758b31cf3e3e6a7038ed07274cc8c0615c3c2bb",
+      "source_sha256": "1a850feb12671275711ee17040e90947166b5fc787a375824b8b8d7feafecb90",
+      "log": "evidence/super-agent-v1/SAV1-14/integration-20261114T081658Z-10a31715/failed-runtime-diagnostic-1/lint.log"
+    },
+    {
+      "record": "evidence/super-agent-v1/SAV1-14/integration-20261114T081658Z-10a31715/failed-runtime-diagnostic-1/typecheck-command.json",
+      "exit_code": 0,
+      "source_commit": "5758b31cf3e3e6a7038ed07274cc8c0615c3c2bb",
+      "source_sha256": "1a850feb12671275711ee17040e90947166b5fc787a375824b8b8d7feafecb90",
+      "log": "evidence/super-agent-v1/SAV1-14/integration-20261114T081658Z-10a31715/failed-runtime-diagnostic-1/typecheck.log"
+    },
+    {
+      "record": "evidence/super-agent-v1/SAV1-14/integration-20261114T081658Z-10a31715/failed5-plus-atomic-first-4/new-boundary-lint-first-command.json",
+      "exit_code": 0,
+      "source_commit": "be489f7a12f1ffe0e263cfac07a5b1c2b83abb91",
+      "source_sha256": "9953c61b234686dfa282297881cb118e44cee7aebce55bb31987838662b74881",
+      "log": "evidence/super-agent-v1/SAV1-14/integration-20261114T081658Z-10a31715/failed5-plus-atomic-first-4/new-boundary-lint-first.log"
+    }
+  ],
+  "static_note": "Lint and mypy278 passed at5758b31 before later runtime repair; those passing targets were not repeated. New atomic-boundary file lint first passed atbe489f7. No final-version full static rerun claimed.",
+  "migration": {
+    "UTC": "2026-11-14T09:49:49.365799+00:00",
+    "source_candidate": "be489f7",
+    "ownership_commit": "c711d54504c4945625505f47e9df56e22bc1bdac",
+    "only_this_checkout_main_PG": true,
+    "installed": [
+      "0047_source_async.sql"
+    ],
+    "before_count": 43,
+    "after_count": 44,
+    "old43_unchanged": true,
+    "all_checksums_match": true,
+    "table_counts": {
+      "sa_async_bindings": 0,
+      "sa_async_checkpoints": 0,
+      "sa_async_events": 0,
+      "sa_async_inputs": 0,
+      "sa_async_jobs": 0,
+      "sa_async_operation_views": 0
+    },
+    "current_checksums": {
+      "0001_coordination.sql": "826ea7f33b25231fd0c0eb17929484f43dbef74de358acf1579de71832b95345",
+      "0002_input_snapshots.sql": "028b429de04f5e1c20c75e0f485b6676dd304bf8a4ea57cadd9768fab61feb2a",
+      "0003_usage_budgets.sql": "bcd1f44e06492423ba30594f51025ffc65ed0939f2dd99874469e84963857f03",
+      "0004_model_results.sql": "54f9c02779f4dbdb6f94dd880c21c920fccf7f26af05f951012b7f23319c9f3a",
+      "0005_profile_call_limits.sql": "68be24c34c4586b805aab18a7bf2281fb6ea3b2f9435a50de597d2d833b8338b",
+      "0006_r2_mailbox.sql": "8ba7f84a7c224d6a50fe1acce4e29c71ef432d15b1286afd4a39b3edc4abf90b",
+      "0007_r3_router.sql": "0f86bf1f027d8b09c5aba04f692d41bba6263e425d169203aeda3bf0fe803524",
+      "0008_r4_knowledge.sql": "6bb0f4c86824cc3acd7701685cee9f2954d958cdfe8065beedb68863228d3d58",
+      "0009_r4_trials.sql": "6e84d39db5a45d69f57d54710945d53042982368db7e3dfc0b5fcbfcc0a18775",
+      "0010_r5_repairs.sql": "b5ac211eb285b06334da94d61498ef8e932ca02c383e4c43034295c83ae03384",
+      "0011_r5_live.sql": "8a944cae32692dcff929521dac6b1b8db1056304a510620bf5504f2b5bc684d4",
+      "0012_review_renewals.sql": "b16153edd8427829d59e5c41ba5393fdc10dc5b6d721b592d983ea315787d790",
+      "0013_recovery_requests.sql": "05c5ee2238ee825a5f9e678f02111579d041afa57ebccd59c127db064494ab86",
+      "0014_runtime_monitoring.sql": "a35cc0928beb8e3ea3e5fc3a176ad81513ebe259ac7bf2715ea8b86523dfa85d",
+      "0015_proactive_readonly.sql": "3c49d625661c5592d9f90d34a381cdc62c979ce4658fbc840bbde981ccba6957",
+      "0016_final_benchmark.sql": "49760e15dca50343482c33615af9788ceddb567ab67401e666cf321dfe290d76",
+      "0017_isolated_benchmark_budgets.sql": "fac0349ac788f52e22031dabc9e4a5d0301fe45a63d4e6e1a37d74b424c2482c",
+      "0018_commerce_results.sql": "a61fa2de136ee93c6c124590126dd1c7ac0d2fc216594e834fb33a9ae3f1f52f",
+      "0019_commerce_review_checks.sql": "2145b9fd7579b1d612d3e03e833d7321cd5c7f76d378d2b9b0048f2633433d94",
+      "0020_repository_analysis.sql": "5560bf846c3c53254b68d4ade49bd71fe00cd5bed333595c8fbdf856e880cd54",
+      "0021_memory_schema.sql": "99ebb5a1f491c42fc04a268d223e6d4788ad41bf66d1d4242e7341d8e6f70fa2",
+      "0022_workbench.sql": "023700b2eadc2a23e65158baa5effafc93a892c66ab8cd721cb6c73533989836",
+      "0023_workbench_ledger.sql": "2644f8de7a77c5dfc1176abd6d49dd1cc1066c2c7a86c689bdf624ff91fdfbcf",
+      "0024_workbench_handoffs.sql": "deb9576bd62aec9ef9a73bbb2c5c611763047834fc7775e5edb1f5eaed0f21fe",
+      "0025_workbench_publications.sql": "f0d1c35807033509d82666d49377db8c5a2d2ddd248ebf0f4250cc37d75b13bb",
+      "0026_memory_write_attempts.sql": "243d6b5023bbb7dd04c49aa5551eeece9a7feb0059b47a3f9fdcaf68e39f51c9",
+      "0027_web_accounts.sql": "4b2c94608d57de51b5b14da3223a9e5921f76a48785c4ad64e7b888475e83cca",
+      "0028_analysis_streaming.sql": "faae84fc631029fa5d6b8867c4790c66dffad6876ac369e90faee9751712089e",
+      "0029_analysis_token_reservations.sql": "396ecb9cfd555a00396ab2a9ef4c20ee182edb88812d9bc0d45cf69a848c966e",
+      "0030_source_contracts.sql": "7109952590c256bf2b69008db7b9806f9378c71148374b7fca964c194ef79dc7",
+      "0031_source_identities.sql": "7e9ba092ed46d3cf52a645e19ae0757b98996090e759192871ef2f06e1224f56",
+      "0032_source_policies.sql": "a88e31cd786b74fabcec197108be113b186dda51b56529e10e035043b6eb2f30",
+      "0033_source_ingress.sql": "3857e7dee48ccec855c2e4d7e207d7e50f084b6d12344c9df9c02181dc29c484",
+      "0034_github_app.sql": "327ab8d0892410527892bd588e504f548e8898630b8207a388b36bc357b21c96",
+      "0035_feishu_source.sql": "4153ec29eae99136cd3103f4b17903411fb19f7b44f90d951c3f18199aed94b1",
+      "0036_super_agent_budgets.sql": "eb1ccb9bbfd3131bfa98740d6eb31832f56085bc61e300bb97553ef8062cf168",
+      "0038_super_agent_fast_path.sql": "7f03acdf8e428a0cb621ab555d3b04d44f7dc76127f4e5eedf0c23a698466eb6",
+      "0039_super_agent_source_eval.sql": "8b18840590c7841022d7985d66904cd580aee916777cadc9f8baca3cb1837669",
+      "0041_source_correlations.sql": "d6aead811237e532664adf62b15521a16369fd29b8dfe9d26156f0d74fec1ee3",
+      "0042_source_subscriptions.sql": "3e29900f22472c4d8b0c5b2bc60a64a798134532b2e47ab09427cc5006d4c8d0",
+      "0043_source_subscription_canonical_guard.sql": "55f7e50886149eca9ae78db2bc5e72d186b41679fc403c8c318aa6fb8e10a008",
+      "0044_source_scheduler.sql": "7199a8020bd17ec069e0b18efc8c48fa3a63827cb83dafbde47fbad7bba07eb6",
+      "0046_source_coding.sql": "379e9de4a018c7f38cc3615eae31b9c9d9e44ebdf16cbcf3c101c81d9874f212",
+      "0047_source_async.sql": "9ce372e6a82cbf747c51624486ef7548faf056cc60912e0287279be8b569f041"
+    },
+    "real_calls_or_workers_activated": false
+  },
+  "cleanup": {
+    "UTC": "2026-11-14T09:49:49.584836+00:00",
+    "defaults": {
+      "async_runtime_none": true,
+      "async_profiles_empty": true,
+      "coding_runtime_none": true,
+      "coding_cipher_none": true,
+      "coding_profiles_empty": true,
+      "scheduler_driver_none": true
+    },
+    "new_threads": 0,
+    "new_tables": {
+      "sa_async_bindings": 0,
+      "sa_async_checkpoints": 0,
+      "sa_async_events": 0,
+      "sa_async_inputs": 0,
+      "sa_async_jobs": 0,
+      "sa_async_operation_views": 0
+    },
+    "temporary_test_databases": [],
+    "temporary_test_sessions": [],
+    "owned_probe_containers": [],
+    "sa14_crash_actor_processes": [],
+    "protected_user_sha256": "f4adf9605c87d6256bd2ec17b8436da8a7bced763a8e03b185a8cfe19d34a29f",
+    "user_env_sha256_preserved": true,
+    "existing_user_flags": {
+      "allow_paid": true,
+      "allow_external_write": true
+    },
+    "flags_not_authorization": true,
+    "independent_review": "NOT_RUN",
+    "H12": "fixed historical FAIL; acceptance by other CLI",
+    "real_source_paid_outbound_publication_longterm": "NOT_RUN",
+    "SA15": "NOT_STARTED"
+  },
+  "evidence_root": "evidence/super-agent-v1/SAV1-14/integration-20261114T081658Z-10a31715",
+  "historical_wrapper_issue": "First make verify completed and wrote authoritative result/JUnit; outer runner JSON decoder failed on trailing Make error text. Raw logs, manual summary and cleanup retained; no result changed.",
+  "resource_cleanup_after_original_crash_probe": "evidence/super-agent-v1/SAV1-14/integration-20261114T081658Z-10a31715/formal-initial/crash-resource-cleanup-after-failed-probe.json",
+  "I01_repair_record": "docs/super-agent-v1/accept/SAV1-14/i01-repair.json",
+  "I01_independent_failure": "evidence/super-agent-v1/SAV1-14/independent-review-20261114T095855Z-5b9c5226/review-result.json",
+  "I01_local_repair": {
+    "passed": 2,
+    "failed": 0,
+    "source_commit": "e88ff0c5b4ca586e3bc9c0b4d9cf42769a61042f",
+    "source_sha256": "2bd117ebf19bb038dacedc0b965cda7873ea782ff4cfbcf6cc3758f84c516cb8",
+    "junit": "evidence/super-agent-v1/SAV1-14/I01-repair-20261114T103446Z-1af3907a/failed2-recheck-2/junit.xml",
+    "original_probe_sha256": "53b2de9f9a177ff4b8f3ce4eead7ee4bd84cd846d7eab653f90f5b0bd619ee68",
+    "original35_and_other_PASS_or_static_repeated": false
+  },
+  "historical_initial_delivery_integrity": {
+    "UTC": "2026-11-14T09:55:21.679216+00:00",
+    "source_candidate": "4c2d6241c0aff44aa89432585ecf9005299abd26",
+    "source_sha256": "9ec110209a2d683036e1798f0925a3f299e230f37177119d0fa45908d25b5b20",
+    "functional_candidate": "be489f7",
+    "production_SA14_tests_migrations_scripts_unchanged_after_functional_candidate": true,
+    "final_source_archive": "evidence/super-agent-v1/SAV1-14/integration-20261114T081658Z-10a31715/source-4c2d6241c0af.tar.gz",
+    "final_source_archive_sha256": "749007eec310688b54ec76c1ee6820943ee122cbf3b96b7e8041d9be769d0f6d",
+    "archive_source_sha256": "9ec110209a2d683036e1798f0925a3f299e230f37177119d0fa45908d25b5b20",
+    "source_file_count": 728,
+    "round_archives": [
+      {
+        "record": "evidence/super-agent-v1/SAV1-14/integration-20261114T081658Z-10a31715/formal-initial/candidate.json",
+        "source_commit": "d635470740cb810c273cfd6b9940868587ddbe0a",
+        "archive_sha256": "14d331ee949d4b46629885100f8dfb053a50d3762251399f4a588b21ec55e766"
+      },
+      {
+        "record": "evidence/super-agent-v1/SAV1-14/integration-20261114T081658Z-10a31715/failed-runtime-diagnostic-1/candidate.json",
+        "source_commit": "5758b31cf3e3e6a7038ed07274cc8c0615c3c2bb",
+        "archive_sha256": "16f368cba35e293b1df4a22454771ae4a9e88440d0e7ff282179b53672114072"
+      },
+      {
+        "record": "evidence/super-agent-v1/SAV1-14/integration-20261114T081658Z-10a31715/failed-runtime-profile-2/candidate.json",
+        "source_commit": "5758b31cf3e3e6a7038ed07274cc8c0615c3c2bb",
+        "archive_sha256": "16f368cba35e293b1df4a22454771ae4a9e88440d0e7ff282179b53672114072"
+      },
+      {
+        "record": "evidence/super-agent-v1/SAV1-14/integration-20261114T081658Z-10a31715/failed-metadata-recovery-1/candidate.json",
+        "source_commit": "5758b31cf3e3e6a7038ed07274cc8c0615c3c2bb",
+        "archive_sha256": "16f368cba35e293b1df4a22454771ae4a9e88440d0e7ff282179b53672114072"
+      },
+      {
+        "record": "evidence/super-agent-v1/SAV1-14/integration-20261114T081658Z-10a31715/failed-runtime-remaining-3/candidate.json",
+        "source_commit": "f8b864d9d3fd2d3884ecdba850fa879e624373a8",
+        "archive_sha256": "902a21de187cf5d8f3dde7625661b6877e295b1d4b80341a3328470abaa40444"
+      },
+      {
+        "record": "evidence/super-agent-v1/SAV1-14/integration-20261114T081658Z-10a31715/failed5-plus-atomic-first-4/candidate.json",
+        "source_commit": "be489f7a12f1ffe0e263cfac07a5b1c2b83abb91",
+        "archive_sha256": "240997d29e37f42245c76127ef074820b4f07766451926e3ddc862ef32bc3a57"
+      }
+    ],
+    "exact_shared_files": [
+      {
+        "path": "v3/src/mgar_v3/coordination/engine.py",
+        "sha256": "6b126ee6ac10bd2591220f20bc6b208c880ab6c73c658cff037a3a9448f39f67",
+        "exact_approved": true
+      },
+      {
+        "path": "v3/src/mgar_v3/api.py",
+        "sha256": "f0e7d02ee25918ffa79a69c2d21ac097736faff551309c8c49c823652f289dd0",
+        "exact_approved": true
+      },
+      {
+        "path": "v3/src/mgar_v3/sources/ingress.py",
+        "sha256": "ac6f4acc3e09bf96d7ef32a98db359e1f57bdfd60c6261901c2058aed9ff1e07",
+        "exact_approved": true
+      }
+    ],
+    "exact_approved0047": true,
+    "old43_SQL_unchanged": true,
+    "migration_count": 44,
+    "fixed_Harness_unchanged": true,
+    "previous_accept_records_unchanged": 97,
+    "artifact_manifests": 14,
+    "artifact_references": 371,
+    "artifact_missing_or_mismatch": 0,
+    "artifact_manifests_detail": [
+      {
+        "manifest": "config/harness-model-import-v1.json",
+        "references": 6
+      },
+      {
+        "manifest": "config/source-async-v1.json",
+        "references": 58
+      },
+      {
+        "manifest": "config/source-coding-v1.json",
+        "references": 65
+      },
+      {
+        "manifest": "config/source-contract-v1.json",
+        "references": 6
+      },
+      {
+        "manifest": "config/source-correlation-v1.json",
+        "references": 25
+      },
+      {
+        "manifest": "config/source-eval-v1.json",
+        "references": 39
+      },
+      {
+        "manifest": "config/source-fast-path-v1.json",
+        "references": 18
+      },
+      {
+        "manifest": "config/source-feishu-v1.json",
+        "references": 33
+      },
+      {
+        "manifest": "config/source-github-v1.json",
+        "references": 13
+      },
+      {
+        "manifest": "config/source-identity-v1.json",
+        "references": 3
+      },
+      {
+        "manifest": "config/source-ingress-v1.json",
+        "references": 22
+      },
+      {
+        "manifest": "config/source-policy-v1.json",
+        "references": 4
+      },
+      {
+        "manifest": "config/source-scheduler-v1.json",
+        "references": 44
+      },
+      {
+        "manifest": "config/source-subscriptions-v1.json",
+        "references": 35
+      }
+    ],
+    "distinct_formal_cases_PASS": 62,
+    "passed_cases_repeated": 0,
+    "protected_user_file_preserved": true,
+    "bound_resource_inventory": "evidence/super-agent-v1/SAV1-14/integration-20261114T081658Z-10a31715/bound-resource-inventory.json",
+    "independent_review": "NOT_RUN",
+    "H12": "other CLI; this fixed scope retains historical FAIL",
+    "real_gates": "NOT_RUN",
+    "SA15": "NOT_STARTED"
+  },
+  "historical_initial_delivery_integrity_record": "evidence/super-agent-v1/SAV1-14/integration-20261114T081658Z-10a31715/final-integrity.json",
+  "final_integrity_record": "evidence/super-agent-v1/SAV1-14/I01-repair-20261114T103446Z-1af3907a/final-integrity-and-cleanup.json",
+  "final_integrity": {
+    "UTC": "2026-11-14T10:46:39.632562+00:00",
+    "source_candidate": "598f7600be337a5c8d772baa9b216e0b6b383cf5",
+    "source_sha256": "a25a1c5f4c319b87e9f6b388eb22b45691dd21402f22a936f734585f03dce701",
+    "checked_functional_candidate": "e88ff0c5b4ca586e3bc9c0b4d9cf42769a61042f",
+    "checked_functional_source_sha256": "2bd117ebf19bb038dacedc0b965cda7873ea782ff4cfbcf6cc3758f84c516cb8",
+    "production_tests_fixtures_schemas_SQL_scripts_unchanged_after_checked_candidate": true,
+    "production_files_changed_from_reviewed_candidate": [
+      "v3/src/mgar_v3/super_agent/source_async.py",
+      "v3/src/mgar_v3/super_agent/source_coding_runtime.py"
+    ],
+    "source_archive": "evidence/super-agent-v1/SAV1-14/I01-repair-20261114T103446Z-1af3907a/source-598f7600be33.tar.gz",
+    "source_archive_sha256": "f5caf1e8da88dce54d7761cf7f74dc0a881667533991741bdb7722a8b366d1b0",
+    "archive_source_sha256": "a25a1c5f4c319b87e9f6b388eb22b45691dd21402f22a936f734585f03dce701",
+    "source_files": 728,
+    "all44_migrations_unchanged_and_installed": true,
+    "all_six_async_tables_zero": {
+      "sa_async_bindings": 0,
+      "sa_async_checkpoints": 0,
+      "sa_async_events": 0,
+      "sa_async_inputs": 0,
+      "sa_async_jobs": 0,
+      "sa_async_operation_views": 0
+    },
+    "exact_shared_three_hooks": true,
+    "fixed_Harness_unchanged": true,
+    "proposal_manifest_unchanged": true,
+    "artifact_manifests": 14,
+    "artifact_references": 371,
+    "artifact_mismatch_or_missing": 0,
+    "original_independent_files_unchanged": 23,
+    "probe_original_sha256": "53b2de9f9a177ff4b8f3ce4eead7ee4bd84cd846d7eab653f90f5b0bd619ee68",
+    "user_file_and_env_unchanged": true,
+    "original_case_ledger_unchanged": true,
+    "temporary_test_databases_in_main_PG": [],
+    "temporary_test_sessions_in_main_PG": [],
+    "own_isolated_PG_containers": [],
+    "exact_owned_assignments_checked": [
+      "0bfd31d2-8c67-4239-9a10-39c5288a2853",
+      "7054a50d-5e1d-4a22-a44a-eaac83656d64",
+      "afe7a7b4-efa6-4fe1-8826-747e69683174",
+      "bf13067b-a1da-40e8-9533-17942214db01"
+    ],
+    "owned_containers_remaining": [],
+    "recheck_only_original_two_failed": true,
+    "two_case_result": "2PASS",
+    "static_and_other_PASS_repeated": false,
+    "SA15": "NOT_STARTED",
+    "independent_reacceptance": "NOT_RUN",
+    "H12": "Other CLI; no participation in H12 acceptance",
+    "real_gates": "NOT_RUN"
+  }
+}

@@ -1,8 +1,8 @@
 {
   "schema_version": "super-agent-card-acceptance-v1",
   "task_id": "SAV1-14",
-  "status": "IN_PROGRESS",
-  "work_state": "SA14_I01_LOCAL_FIX_VERIFIED_PENDING_INDEPENDENT_RECHECK",
+  "status": "DONE",
+  "work_state": "CLOSED_USER_ACCEPTED_INDEPENDENT_LOCAL_CONTROLLED_SCOPE",
   "recorded_UTC": "2026-11-14T10:46:39.632562+00:00",
   "source_commit": "598f7600be337a5c8d772baa9b216e0b6b383cf5",
   "source_sha256": "a25a1c5f4c319b87e9f6b388eb22b45691dd21402f22a936f734585f03dce701",
@@ -21,7 +21,7 @@
     "reserved0045": "NOT_IMPORTED"
   },
   "gates": {
-    "engineering_gate": "PASS_VERSIONED_LOCAL_CONTROLLED_I01_LOCAL_REPAIR_PENDING_INDEPENDENT",
+    "engineering_gate": "PASS_LOCAL_CONTROLLED_AND_USER_ACCEPTED_INDEPENDENT",
     "policy_security_gate": "NOT_RUN_COMPLETE_SYSTEM",
     "live_source_channel_gate": "NOT_RUN",
     "live_coding_gate": "NOT_RUN",
@@ -33,7 +33,7 @@
   "harness_h12_live_agent": "FAIL_FIXED_LOCAL_RECORD",
   "harness_h12_mvp": "FAIL_FIXED_LOCAL_RECORD",
   "h12_acceptance_owner": "other CLI per user clarification",
-  "independent_review": "FAIL_SA14_I01_RECHECK_PENDING",
+  "independent_review": "PASS_LOCAL_CONTROLLED_SCOPE_USER_ACCEPTED",
   "SA15": "NOT_STARTED",
   "distinct_formal_cases_with_pass_evidence": 62,
   "new_boundary_cases_first_pass": 1,
@@ -488,5 +488,6 @@
     "independent_reacceptance": "NOT_RUN",
     "H12": "Other CLI; no participation in H12 acceptance",
     "real_gates": "NOT_RUN"
-  }
+  },
+  "independent_closure": "docs/super-agent-v1/accept/SAV1-14/independent-closure-20261114.json"
 }

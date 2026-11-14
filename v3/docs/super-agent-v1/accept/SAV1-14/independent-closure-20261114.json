@@ -1,0 +1,20 @@
+{
+  "UTC": "2026-11-14T11:03:15.705894+00:00",
+  "status": "CLOSED_USER_ACCEPTED_INDEPENDENT_LOCAL_CONTROLLED_SCOPE",
+  "task_id": "SAV1-14",
+  "source_commit": "598f7600be337a5c8d772baa9b216e0b6b383cf5",
+  "source_sha256": "a25a1c5f4c319b87e9f6b388eb22b45691dd21402f22a936f734585f03dce701",
+  "delivery_commit": "cfc217ec43ecf108fbfad148173a595b6372d91f",
+  "independent_review": "evidence/super-agent-v1/SAV1-14/independent-I01-recheck-20261114T105048Z-326a73b7/review-result.json",
+  "independent_report": "evidence/super-agent-v1/SAV1-14/independent-I01-recheck-20261114T105048Z-326a73b7/REPORT.md",
+  "read_only_closure_audit": "evidence/super-agent-v1/SAV1-15/start-20261114T110315Z-223d6c86/sa14-closure-audit.json",
+  "historical_acceptance": "docs/super-agent-v1/accept/SAV1-14/history/before-user-accepted-independent-20261114/accept.json",
+  "I01": "CLOSED_FOR_ORIGINAL_TWO_REPRODUCTIONS",
+  "independent_tests": 2,
+  "passed": 2,
+  "full_suite_repeated": false,
+  "gate_scope": "Public local fixture_git existing pure-function Python/H03/bound H06/fixed H11 only; versioned historical evidence preserved",
+  "user_authorized_next_card": "SAV1-15",
+  "H12": "other CLI",
+  "real_gates": "NOT_RUN"
+}
