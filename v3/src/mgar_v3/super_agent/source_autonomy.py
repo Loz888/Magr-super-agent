@@ -78,7 +78,8 @@ class SourceAutonomy(AutonomyStore):
             self._console(conn, cookie)
             rows = conn.execute(
                 "SELECT v.*,h.last_local_date FROM app.sa_autonomy_rules h JOIN "
-                "app.sa_autonomy_rule_versions v USING(rule_id,project_id,source_instance_id,revision) "
+                "app.sa_autonomy_rule_versions v "
+                "USING(rule_id,project_id,source_instance_id,revision) "
                 "WHERE h.project_id=%s ORDER BY h.created_at,h.rule_id LIMIT %s",
                 (self.project, limit + 1),
             ).fetchall()
@@ -181,7 +182,8 @@ class SourceAutonomy(AutonomyStore):
                 "SELECT 1 FROM app.usage_calls u JOIN app.runs r USING(run_id) "
                 "JOIN app.tickets t USING(ticket_id) JOIN app.threads h USING(thread_id) "
                 "WHERE h.project_id=%s AND u.status IN ('reserved','unknown') "
-                "UNION ALL SELECT 1 FROM app.router_calls c JOIN app.router_batches b USING(batch_id) "
+                "UNION ALL SELECT 1 FROM app.router_calls c JOIN "
+                "app.router_batches b USING(batch_id) "
                 "WHERE b.project_id=%s AND c.status IN ('reserved','unknown') LIMIT 1",
                 (self.project, self.project),
             ).fetchone()
@@ -379,7 +381,8 @@ class SourceAutonomy(AutonomyStore):
             old = conn.execute(
                 "INSERT INTO app.sa_autonomy_claims(claim_id,rule_id,rule_revision,project_id,"
                 "source_instance_id,signal_key,subject_key,decision_key,tick_id,signal,signal_sha256,"
-                "disposition,reason_code,expires_at) VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s) "
+                "disposition,reason_code,expires_at) "
+                "VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s) "
                 "RETURNING *",
                 (
                     uuid4(),
@@ -442,7 +445,8 @@ class SourceAutonomy(AutonomyStore):
     def _cycle(self, conn: Connection, limit: int) -> Row:
         outcomes: list[Row] = []
         rules = conn.execute(
-            "SELECT rule_id FROM app.sa_autonomy_rules WHERE project_id=%s ORDER BY created_at,rule_id LIMIT 65",
+            "SELECT rule_id FROM app.sa_autonomy_rules WHERE project_id=%s "
+            "ORDER BY created_at,rule_id LIMIT 65",
             (self.project,),
         ).fetchall()
         for h in rules[:64]:
@@ -450,13 +454,15 @@ class SourceAutonomy(AutonomyStore):
             if decode_rule(row).mode == "disabled":
                 continue
             keys = conn.execute(
-                "SELECT d.decision_key FROM app.sa_source_eval_decisions d JOIN app.sa_source_eval_snapshots s "
+                "SELECT d.decision_key FROM app.sa_source_eval_decisions d JOIN "
+                "app.sa_source_eval_snapshots s "
                 "USING(batch_id) LEFT JOIN app.sa_autonomy_claims c ON c.project_id=s.project_id "
                 "AND c.signal_key=d.decision_key WHERE s.project_id=%s AND s.source_instance_id=%s "
                 "AND s.snapshot->>'policy_id'=%s AND s.snapshot->>'policy_revision'=%s "
                 "AND (d.payload->>'expires_at')::timestamptz>clock_timestamp() "
                 "AND (c.claim_id IS NULL OR (c.disposition IN ('held','admit') AND c.rule_id=%s "
-                "AND NOT EXISTS(SELECT 1 FROM app.sa_autonomy_attempts a WHERE a.claim_id=c.claim_id))) "
+                "AND NOT EXISTS(SELECT 1 FROM app.sa_autonomy_attempts a WHERE "
+                "a.claim_id=c.claim_id))) "
                 "ORDER BY d.created_at,d.decision_key LIMIT %s",
                 (
                     self.project,
@@ -543,7 +549,8 @@ class SourceAutonomy(AutonomyStore):
                     ),
                 )
                 conn.execute(
-                    "UPDATE app.sa_autonomy_rules SET last_local_date=%s,updated_at=clock_timestamp() "
+                    "UPDATE app.sa_autonomy_rules SET "
+                    "last_local_date=%s,updated_at=clock_timestamp() "
                     "WHERE rule_id=%s",
                     (due.local_date, row["rule_id"]),
                 )

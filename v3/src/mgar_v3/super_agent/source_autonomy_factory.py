@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 from datetime import timedelta
-from typing import TYPE_CHECKING, Any, cast
+from typing import TYPE_CHECKING
 from uuid import uuid4
 
 from psycopg.types.json import Jsonb
@@ -189,7 +189,8 @@ def create_original(
             }:
                 raise error("REOPEN_NOT_QUIESCENT")
         conn.execute(
-            "INSERT INTO app.mandates(mandate_id,project_id,actor,scope,policy_version,execution_mode) "
+            "INSERT INTO "
+            "app.mandates(mandate_id,project_id,actor,scope,policy_version,execution_mode) "
             "VALUES(%s,%s,%s,%s,%s,'fixture')",
             (
                 mandate_id,
@@ -279,7 +280,7 @@ def create_original(
     target_hash = engine.source_scheduler._target_hash(conn, original)
     if coding is not None:
         # The helper is introduced only by the precisely agreed five-file patch.
-        getattr(engine.source_coding, "_admit_authorized")(
+        engine.source_coding._admit_authorized(
             conn,
             rule_row["signed_by"],
             CodingAdmitRequest(
@@ -295,7 +296,7 @@ def create_original(
             ),
         )
     else:
-        getattr(engine.source_scheduler, "_enqueue_authorized")(
+        engine.source_scheduler._enqueue_authorized(
             conn,
             rule_row["signed_by"],
             SchedulerEnqueueRequest(
@@ -331,4 +332,4 @@ def create_original(
         claim_id=claim["claim_id"],
         attempt_id=attempt_id,
     )
-    return cast(dict[str, Any], row)
+    return row

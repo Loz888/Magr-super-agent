@@ -488,7 +488,9 @@ class SourceScheduler:
             user = self._console(conn, cookie)
             return self._enqueue_authorized(conn, user, request)
 
-    def _enqueue_authorized(self, conn: Connection, user: UUID, request: SchedulerEnqueueRequest) -> Row:
+    def _enqueue_authorized(
+        self, conn: Connection, user: UUID, request: SchedulerEnqueueRequest
+    ) -> Row:
         """Trusted original-connection primitive; the public Owner check is retained."""
         self._conn(conn)
         config = self._configuration(conn, active=True)

@@ -1,0 +1,8 @@
+{
+  "base_commit": "eec5b5307746249e1c074b24608854fdd482fc40",
+  "scope": "line break of agreed private method signature only; AST identical; no extra file/interface/migration/budget change",
+  "file": "src/mgar_v3/super_agent/source_scheduler.py",
+  "before_sha256": "ab9cb2feac7968f7b076832b538f3a0520a8cf9cffcb3d298ce92d245706f840",
+  "after_sha256": "cb5f5b643ff40b8bf606480568ed51e1011ecec5095418b2dffa90f61b8d42b6",
+  "patch_sha256": "48b3bc7491f93cf0cdbe74fdb87dc267a1a25490aaff57f1599a0573b05c4d5e"
+}

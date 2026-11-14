@@ -220,12 +220,14 @@ class AutonomyStore:
         self._conn(conn)
         row = self._rule(conn, attempt["rule_id"])
         definition = decode_rule(row)
+        current = conn.execute(
+            "SELECT app.sa_autonomy_run_current(%s) AS ok", (attempt["run_id"],)
+        ).fetchone()
         if (
             row["revision"] != attempt["rule_revision"]
             or attempt["project_id"] != self.project
-            or not conn.execute(
-                "SELECT app.sa_autonomy_run_current(%s) AS ok", (attempt["run_id"],)
-            ).fetchone()["ok"]
+            or current is None
+            or not current["ok"]
         ):
             raise error("AUTHORITY_REVOKED")
         self._rule_policy(conn, definition)
@@ -256,7 +258,8 @@ class AutonomyStore:
         if (
             attempt["reopened_from"] is not None
             and not conn.execute(
-                "SELECT 1 FROM app.run_events e JOIN app.sa_autonomy_attempts a ON a.run_id=e.run_id "
+                "SELECT 1 FROM app.run_events e JOIN app.sa_autonomy_attempts a "
+                "ON a.run_id=e.run_id "
                 "WHERE a.attempt_id=%s AND e.kind='source_autonomy_reopen_reviewed' "
                 "AND e.safe_payload->>'review_sha256'=%s AND e.safe_payload->>'signed_by'=%s",
                 (attempt["reopened_from"], mandate.review_sha256, str(mandate.signed_by)),

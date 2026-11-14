@@ -35,8 +35,12 @@ def test_formal0048_original_engine_exact_shared_patch_and45_checksums(engine):
     assert (a / "migrations/0048_source_autonomy.sql").read_bytes() == (
         d / "0048_source_autonomy.sql"
     ).read_bytes()
+    formatting = json.loads((d / "post-integration-format.json").read_text())
     for name, hashes in metadata["files"].items():
-        assert hashlib.sha256((a / name).read_bytes()).hexdigest() == hashes["after_sha256"]
+        expected_hash = (
+            formatting["after_sha256"] if name == formatting["file"] else hashes["after_sha256"]
+        )
+        assert hashlib.sha256((a / name).read_bytes()).hexdigest() == expected_hash
     assert isinstance(engine.source_autonomy, SourceAutonomy)
     assert engine.source_autonomy.engine is engine
     assert engine.source_autonomy._profiles == {}
@@ -148,10 +152,12 @@ def test_rule_cas_and_owner_cookie_cannot_be_substituted_by_local_token(engine, 
     env = setup(engine, tmp_path)
     request = AutonomyRuleSave(expected_revision=0, definition=env.rule, review_ref="stale")
     for cookie in ("", engine.settings.local_token.get_secret_value()):
-        with pytest.raises(DomainError, match="AUTH_REQUIRED"):
+        with pytest.raises(DomainError) as caught:
             env.autonomy.save_rule(cookie, env.rule_id, request)
-    with pytest.raises(DomainError, match="AUTONOMY_REVISION_CONFLICT"):
+        assert caught.value.code == "AUTH_REQUIRED"
+    with pytest.raises(DomainError) as caught:
         env.autonomy.save_rule(env.cookie, env.rule_id, request)
+    assert caught.value.code == "AUTONOMY_REVISION_CONFLICT"
 
 
 @pytest.mark.parametrize("table", ["rule_versions", "claims", "events"])
@@ -259,18 +265,21 @@ def test_trusted_profile_immutable_and_original_connection_enforced(engine, tmp_
     env = setup(engine, tmp_path)
     with pytest.raises(DomainError):
         env.autonomy.register_profile({"profile_sha256": "0" * 64})
-    with pytest.raises(DomainError, match="PROFILE_IMMUTABLE"):
+    with pytest.raises(DomainError) as caught:
         env.autonomy.register_profile(replace(env.profile, objective="different objective"))
+    assert caught.value.code == "AUTONOMY_PROFILE_IMMUTABLE"
     with psycopg.connect(
         engine.settings.database_url.get_secret_value(), autocommit=True
     ) as foreign:
         with (
             foreign.transaction(),
-            pytest.raises(DomainError, match="ORIGINAL_CONNECTION_REQUIRED"),
+            pytest.raises(DomainError) as caught,
         ):
             env.autonomy._conn(foreign)
-    with pytest.raises(DomainError, match="ORIGINAL_TRANSACTION_REQUIRED"):
+        assert caught.value.code == "AUTONOMY_ORIGINAL_CONNECTION_REQUIRED"
+    with pytest.raises(DomainError) as caught:
         env.autonomy._conn(engine.connection)
+    assert caught.value.code == "AUTONOMY_ORIGINAL_TRANSACTION_REQUIRED"
 
 
 def test_no_rule_or_schedule_has_no_original_business_or_model_side_effect(engine):

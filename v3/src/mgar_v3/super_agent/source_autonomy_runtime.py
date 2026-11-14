@@ -206,7 +206,8 @@ def maintain(
         if (
             kind is not None
             and not conn.execute(
-                "SELECT 1 FROM app.sa_autonomy_events WHERE attempt_id=%s AND kind=%s AND reason_code=%s",
+                "SELECT 1 FROM app.sa_autonomy_events WHERE attempt_id=%s AND "
+                "kind=%s AND reason_code=%s",
                 (attempt["attempt_id"], kind, plan.reason_code),
             ).fetchone()
         ):

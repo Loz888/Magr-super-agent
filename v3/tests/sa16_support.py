@@ -135,7 +135,7 @@ def decision(
 ):
     entity = entity or uuid4().hex
     receipt = ingest_case(
-        env, delivery=uuid4().hex, entity=entity, body=body, addressed="none", topic=topic
+        env, delivery=uuid4().hex, entity=entity, body=body, addressed="ambient", topic=topic
     )
     _, decisions = apply(env, prepared(env, receipt), action=action)
     return receipt, decisions[0]
