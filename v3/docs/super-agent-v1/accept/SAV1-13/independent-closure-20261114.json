@@ -1,0 +1,111 @@
+{
+  "schema_version": "super-agent-user-accepted-independent-closure-v1",
+  "task": "SAV1-13",
+  "recorded_utc": "2026-11-14T07:26:14.470191+00:00",
+  "status": "USER_ACCEPTED_PASS_LOCAL_CONTROLLED_SCOPE",
+  "source_commit": "f53f4233721b095844c8376695f774195754ab40",
+  "source_sha256": "e7f8dd7b37357dff2163834a034c3b6722565d097ea052a0b7b65d5d940ef956",
+  "delivery_commit": "c49cf1f9aa9f6a599b1fecfa5866816b8b05ec70",
+  "independent_review_record": "evidence/super-agent-v1/SAV1-13/independent-user-accepted-20261114T072614Z-2e0801ca/review-result.json",
+  "independent_report": "evidence/super-agent-v1/SAV1-13/independent-user-accepted-20261114T072614Z-2e0801ca/REPORT.md",
+  "original_external_report": "/mnt/c/Users/imini/Documents/Codex/2026-11-10/https-github-com-loz888-magr-v3/SA13-independent-20261114T065828Z-11ee716e/REPORT.md",
+  "review_files": [
+    {
+      "path": "REPORT.md",
+      "sha256": "30402ee69b764cabd0bd060a37735cb9edbf0fdfe851a252e31a0d172a16dde5"
+    },
+    {
+      "path": "additional-reading.json",
+      "sha256": "5082af460a3bf83c9b53838f140f21b048639e33e5b47f089aecef9645fb5f0f"
+    },
+    {
+      "path": "baseline.json",
+      "sha256": "6fbd1da3b5e2a428683da4473c84245cae403a73075457c853219a2d22177d0e"
+    },
+    {
+      "path": "boundary-command.json",
+      "sha256": "25b84595bab0e4e756784002cdf986afcfc30cf65a13b872ae11f929bc935a0a"
+    },
+    {
+      "path": "boundary-junit.xml",
+      "sha256": "644ccde2a94cbaf6e88988ed16525e11509fec47e75e2d2313c924687aa64d78"
+    },
+    {
+      "path": "boundary-plan.json",
+      "sha256": "dc596e21900405d56b766f480ef8581ace31b11eb309f45ae076dc95cd09a868"
+    },
+    {
+      "path": "boundary.log",
+      "sha256": "c23dbcfff94ee0ccba289efd643bf9463283c0eec750ab1bd2c18195ef3fa662"
+    },
+    {
+      "path": "final-integrity-and-cleanup.json",
+      "sha256": "6022b3fee01ea8a7733da01299c4f6a49eb2130ad4319e54637b02c75d29eb89"
+    },
+    {
+      "path": "historical-case-partition.json",
+      "sha256": "50fab0af145624a804d3fcb47fb2508962ca4c776960f211c0fc6998a9ee11b5"
+    },
+    {
+      "path": "junit-case-ledger-audit.json",
+      "sha256": "1791fa10a0392526d4c2605e45e74a897a19aa19dc5ab4cbc4465be3746d41ff"
+    },
+    {
+      "path": "material-audit.json",
+      "sha256": "d4f0631e54329eb7995c042bd82b1ff8a906bca6087bb6e8e69655914bfad442"
+    },
+    {
+      "path": "original29-command.json",
+      "sha256": "42d2c0d70b1c89295d75346b16861b9351d22f52737efa22425c638a0bf3c263"
+    },
+    {
+      "path": "original29-junit.xml",
+      "sha256": "5f822900149493c9aae72d5de6eb398023dcd64349b3fe9866f94dc23037f3c6"
+    },
+    {
+      "path": "original29.log",
+      "sha256": "ea311035d07c0b81dde8df992a74e16e9e9e40c6c7bd196c7454647b73fb5687"
+    },
+    {
+      "path": "ownership-fixed-section38.md",
+      "sha256": "78649ab7cf4469e9457ae8d6efe2c2215e432a3ada805f92f219b1c167062e25"
+    },
+    {
+      "path": "review-result.json",
+      "sha256": "0c547e4a2ae9ea5410181bfca8adc1fd41165503e7ac47962a3fd5d10dc1ef7a"
+    },
+    {
+      "path": "run.py",
+      "sha256": "074c2287019bc6f2f5bbe8e4068355fec508942d164d67bba373ad89119b52cc"
+    },
+    {
+      "path": "source-archive-audit.json",
+      "sha256": "58e25c6a5bef660155ba7427fdca3bb2e01d0cfb139abc54a2bf2794bf9f1355"
+    },
+    {
+      "path": "test_independent_sa13.py",
+      "sha256": "f0a3c07406902f761c279263675d03ed53dd6c1a6763be815f53114e70ad85d8"
+    }
+  ],
+  "previous_accept": "docs/super-agent-v1/accept/SAV1-13/history/accept-before-independent-closure-20261114T072614Z-2e0801ca.json",
+  "previous_accept_sha256": "0cff60a83236d2ef3035517fff561a317bb6f4e064d6cf3ae2efc22eaa836084",
+  "independent_actual_checks": {
+    "original_failures": 29,
+    "new_boundaries": 3,
+    "total_pass": 32,
+    "historical_full_suite_rerun": false
+  },
+  "accepted_scope": "Only public local fixture_git, existing pure-function Python bugfix, original Engine/PG authority, fixed H11 kernel, actual H03/SA12 bound execution and controlled model. No general or live Coding readiness.",
+  "limitations": [
+    "The first two formal rounds are bound to frozen dirty-working-tree fingerprints and raw logs/JUnit, not clean immutable source commits; no matching source archive for those two fingerprints was found. Their HEADs are not represented as source candidates.",
+    "This review executed only the original29 failed formal cases and3 new boundaries. Historical156 initial passes and27 added first-pass cases were read and byte/audit checked, not rerun. It does not assert a single final212PASS run.",
+    "Versioned lint/typecheck failure closure was reviewed, not independently rerun. The last small recovery change did not receive another mypy run, in accordance with failed-target-only retesting.",
+    "Saved user environment flags allow_paid and allow_external_write remain true; they do not grant Coding authority. Test subprocesses set both false; no live model/platform/paid/outbound/publication operations were run.",
+    "Private repositories, live GitHub snapshots, new files, general Python/feature/refactor/run_app, production safety and long-term operation are not accepted by this review."
+  ],
+  "historical_early_source_limit_retained": true,
+  "h12_live_agent": "FAIL",
+  "h12_mvp": "FAIL",
+  "real_source_paid_outbound_publication_long_term": "NOT_RUN",
+  "next_authorization": "User explicitly authorizes SAV1-14 only after this verification; SA15 is not started"
+}

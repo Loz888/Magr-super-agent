@@ -382,7 +382,7 @@
       "id": "SAV1-13",
       "short_id": "SA13",
       "title": "Coding Worker 与 Mandate 接线",
-      "status": "IN_PROGRESS",
+      "status": "DONE",
       "priority": "P0",
       "phase": "S2",
       "depends_on": [
@@ -399,9 +399,9 @@
       "optional": false,
       "card": "TASKS.md#sa13",
       "verification_target_on_implementation": "SAV1-13",
-      "work_state": "LOCAL_ENGINEERING_READY_PENDING_INDEPENDENT_REVIEW",
+      "work_state": "CLOSED_USER_ACCEPTED_INDEPENDENT_LOCAL_CONTROLLED_SCOPE",
       "engineering_gate": "PASS_VERSIONED_LOCAL_SCOPE",
-      "independent_review": "NOT_RUN",
+      "independent_review": "PASS_LOCAL_CONTROLLED_SCOPE",
       "dependency_closure": "accept/SAV1-12/independent-closure-20261113.json",
       "preparation": "accept/SAV1-13/preparation-20261113.json",
       "ownership_request": "sa13-proposal/ownership-request.txt",
@@ -409,13 +409,14 @@
       "ownership_confirmation": "617e14a52d65c5276bcd3ef87dbd0f05b4a3c08d section38",
       "distinct_formal_cases": 212,
       "source_commit": "f53f4233721b095844c8376695f774195754ab40",
-      "source_sha256": "e7f8dd7b37357dff2163834a034c3b6722565d097ea052a0b7b65d5d940ef956"
+      "source_sha256": "e7f8dd7b37357dff2163834a034c3b6722565d097ea052a0b7b65d5d940ef956",
+      "independent_closure": "accept/SAV1-13/independent-closure-20261114.json"
     },
     {
       "id": "SAV1-14",
       "short_id": "SA14",
       "title": "异步 Job、持续输入与安全点",
-      "status": "PLANNED",
+      "status": "IN_PROGRESS",
       "priority": "P0",
       "phase": "S2",
       "depends_on": [
@@ -430,7 +431,11 @@
       },
       "optional": false,
       "card": "TASKS.md#sa14",
-      "verification_target_on_implementation": "SAV1-14"
+      "verification_target_on_implementation": "SAV1-14",
+      "work_state": "READING_DEPENDENCY_AND_SHARED_SCOPE_PREPARATION",
+      "engineering_gate": "NOT_RUN",
+      "independent_review": "NOT_RUN",
+      "dependency_closure": "accept/SAV1-13/independent-closure-20261114.json"
     },
     {
       "id": "SAV1-15",

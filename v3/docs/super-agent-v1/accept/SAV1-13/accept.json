@@ -1,8 +1,8 @@
 {
   "schema_version": "super-agent-card-acceptance-v1",
   "task_id": "SAV1-13",
-  "status": "IN_PROGRESS",
-  "work_state": "LOCAL_ENGINEERING_READY_PENDING_INDEPENDENT_REVIEW",
+  "status": "DONE",
+  "work_state": "CLOSED_USER_ACCEPTED_INDEPENDENT_LOCAL_CONTROLLED_SCOPE",
   "recorded_at_utc": "2026-11-13T12:17:54.678131+00:00",
   "source_commit": "f53f4233721b095844c8376695f774195754ab40",
   "source_sha256": "e7f8dd7b37357dff2163834a034c3b6722565d097ea052a0b7b65d5d940ef956",
@@ -20,7 +20,7 @@
     "followups": "Only API import order and Scheduler typing.cast; exact approved originals retained"
   },
   "gates": {
-    "engineering_gate": "PASS_VERSIONED_LOCAL_SCOPE",
+    "engineering_gate": "PASS_LOCAL_CONTROLLED_AND_USER_ACCEPTED_INDEPENDENT",
     "policy_security_gate": "NOT_RUN_COMPLETE_SYSTEM",
     "live_source_channel_gate": "NOT_RUN",
     "live_coding_gate": "NOT_RUN",
@@ -31,7 +31,7 @@
   },
   "harness_h12_live_agent": "FAIL",
   "harness_h12_mvp": "FAIL",
-  "independent_review": "NOT_RUN",
+  "independent_review": "PASS_LOCAL_CONTROLLED_SCOPE",
   "SA14": "PLANNED_NOT_STARTED",
   "distinct_formal_cases_with_pass_evidence": 212,
   "new_boundary_cases_first_pass": 27,
@@ -373,5 +373,6 @@
     "passed_case_repeated": 0
   },
   "final_integrity_record": "evidence/super-agent-v1/SAV1-13/start-20261113T092527Z-3fe7966b/final-integrity.json",
-  "static_retest_note": "All initial static failures resolved with failed-target-only reruns; added lifecycle/H03 code received its own first static checks. The final two-case runtime recovery fix did not rerun already-passing mypy."
+  "static_retest_note": "All initial static failures resolved with failed-target-only reruns; added lifecycle/H03 code received its own first static checks. The final two-case runtime recovery fix did not rerun already-passing mypy.",
+  "independent_closure": "docs/super-agent-v1/accept/SAV1-13/independent-closure-20261114.json"
 }
