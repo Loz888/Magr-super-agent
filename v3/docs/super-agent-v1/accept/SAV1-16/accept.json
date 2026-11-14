@@ -1,0 +1,2603 @@
+{
+  "card": "SAV1-16",
+  "status": "IN_PROGRESS_LOCAL_CONTROLLED_ENGINEERING_PASS_AWAITING_INDEPENDENT",
+  "work_state": "LOCAL_ENGINEERING_DELIVERED_INDEPENDENT_NOT_RUN",
+  "source_commit": "becef2bacb423c69cf850317ce64b34ed4c7ccb8",
+  "source_sha256": "cd31d5ad147fb4432f0f1ffcd5db851207100d441462e55687d84886a13db9c8",
+  "candidate_archive": {
+    "UTC": "2026-11-14T14:10:36.712934+00:00",
+    "source_commit": "becef2bacb423c69cf850317ce64b34ed4c7ccb8",
+    "source_sha256": "cd31d5ad147fb4432f0f1ffcd5db851207100d441462e55687d84886a13db9c8",
+    "archive": "evidence/super-agent-v1/SAV1-16/start-20261114T125101Z-8e48a364/final-boundaries-repair-01/source-becef2bacb42.tar.gz",
+    "archive_sha256": "38b9cec38716fb8702940626b3c4214cae3a6e5450319829c0900b31c1a130a5",
+    "archive_source_sha256": "cd31d5ad147fb4432f0f1ffcd5db851207100d441462e55687d84886a13db9c8",
+    "scope": "Only final failed artifact-catalogue test and failed lint files; previous10final+82formal+87private PASS/type PASS excluded",
+    "scope_targets": {
+      "round": "final-boundaries-repair-01",
+      "scope": "Only final failed artifact-catalogue test and failed lint files; previous10final+82formal+87private PASS/type PASS excluded",
+      "commands": {
+        "retest": [
+          "{APP}/.venv/bin/python",
+          "-m",
+          "pytest",
+          "-q",
+          "tests/test_super_agent_sa16_catalogue.py::test_source_catalogues_have_exact_current_artifact_bytes",
+          "--junitxml={E}/junit.xml"
+        ],
+        "lint": [
+          "{APP}/.venv/bin/ruff",
+          "check",
+          "src/mgar_v3/super_agent/source_autonomy.py",
+          "src/mgar_v3/super_agent/source_autonomy_runtime.py"
+        ]
+      }
+    }
+  },
+  "ownership_commit": "91c0b75693037bb0d90cb2eccd35356cd2e96135",
+  "ownership_section": 41,
+  "sql_sha256": "20d376a1d96087e0b42e2f4c4eda2a32b48c955a0c8216fb6767595a21afa3b3",
+  "patch_sha256": "139bb8deb62d7514c4b1eef50e3d5e3657ee4da9ec392164a741561e811f509d",
+  "migration_count": 45,
+  "new_migration": "0048_source_autonomy.sql",
+  "api_interfaces": 13,
+  "new_tables": 6,
+  "formal_unique_PASS": 93,
+  "preparation_unique_PASS": 87,
+  "total_unique_preparation_and_formal": 180,
+  "remaining_failed_cases": 0,
+  "repeated_previously_passing_cases": 0,
+  "single_final_full_suite_PASS_claimed": false,
+  "history_failed_unique_cases": 24,
+  "scope": "Single-project controlled Source rules/delegations on original Engine/Task/Run/shared budget/Scheduler, original readonly graph/Verifier and fixture_git Coding/Broker; 3 real SIGKILL",
+  "rounds": [
+    {
+      "round": "private-initial",
+      "source_commit": "be88c957eb4768ebdc0ea294ae01d6f5aea34c5e",
+      "source_sha256": "aa4d47f22002c93c6b970d70c2d6b33ebcefea3a2213b5d600d5d9a003e1d7e4",
+      "counts": {
+        "tests": 77,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "junit": "evidence/super-agent-v1/SAV1-16/start-20261114T125101Z-8e48a364/private-initial/junit.xml",
+      "evidence": "evidence/super-agent-v1/SAV1-16/start-20261114T125101Z-8e48a364/private-initial",
+      "commands": {
+        "contracts": {
+          "command": [
+            "/home/imini/magr-super-agent/v3/.venv/bin/python",
+            "-m",
+            "pytest",
+            "-q",
+            "tests/test_super_agent_sa16_contracts.py",
+            "--junitxml=/home/imini/magr-super-agent/v3/evidence/super-agent-v1/SAV1-16/start-20261114T125101Z-8e48a364/private-initial/junit.xml"
+          ],
+          "exit_code": 0,
+          "source_commit": "be88c957eb4768ebdc0ea294ae01d6f5aea34c5e",
+          "source_sha256": "aa4d47f22002c93c6b970d70c2d6b33ebcefea3a2213b5d600d5d9a003e1d7e4"
+        },
+        "lint": {
+          "command": [
+            "/home/imini/magr-super-agent/v3/.venv/bin/ruff",
+            "check",
+            "src/mgar_v3/super_agent/source_autonomy_domain.py",
+            "src/mgar_v3/super_agent/source_autonomy_rules.py",
+            "src/mgar_v3/super_agent/source_autonomy_schedule.py",
+            "tests/test_super_agent_sa16_contracts.py"
+          ],
+          "exit_code": 0,
+          "source_commit": "be88c957eb4768ebdc0ea294ae01d6f5aea34c5e",
+          "source_sha256": "aa4d47f22002c93c6b970d70c2d6b33ebcefea3a2213b5d600d5d9a003e1d7e4"
+        },
+        "typecheck": {
+          "command": [
+            "/home/imini/magr-super-agent/v3/.venv/bin/python",
+            "-m",
+            "mypy",
+            "--config-file",
+            "pyproject.toml",
+            "--follow-imports=silent",
+            "src/mgar_v3/super_agent/source_autonomy_domain.py",
+            "src/mgar_v3/super_agent/source_autonomy_rules.py",
+            "src/mgar_v3/super_agent/source_autonomy_schedule.py"
+          ],
+          "exit_code": 0,
+          "source_commit": "be88c957eb4768ebdc0ea294ae01d6f5aea34c5e",
+          "source_sha256": "aa4d47f22002c93c6b970d70c2d6b33ebcefea3a2213b5d600d5d9a003e1d7e4"
+        }
+      },
+      "candidate_archive": {
+        "UTC": "2026-11-14T12:57:40.564383+00:00",
+        "source_commit": "be88c957eb4768ebdc0ea294ae01d6f5aea34c5e",
+        "source_sha256": "aa4d47f22002c93c6b970d70c2d6b33ebcefea3a2213b5d600d5d9a003e1d7e4",
+        "archive": "evidence/super-agent-v1/SAV1-16/start-20261114T125101Z-8e48a364/private-initial/source-be88c957eb47.tar.gz",
+        "archive_sha256": "f3f43d430833f2fff25b310aae82f50b62211708a3d37dd82912bb7099118d31",
+        "archive_source_sha256": "aa4d47f22002c93c6b970d70c2d6b33ebcefea3a2213b5d600d5d9a003e1d7e4",
+        "scope": "Private contracts/cursors/planner first checks only; not formal Engine/API/PG Recall acceptance"
+      },
+      "cases": [
+        {
+          "case": "tests.test_super_agent_sa16_contracts::test_modes_never_expand_profile_or_send_messages[disabled-coding-ignored]",
+          "status": "PASS"
+        },
+        {
+          "case": "tests.test_super_agent_sa16_contracts::test_modes_never_expand_profile_or_send_messages[shadow-coding-shadow]",
+          "status": "PASS"
+        },
+        {
+          "case": "tests.test_super_agent_sa16_contracts::test_modes_never_expand_profile_or_send_messages[auto_repair-coding-admit]",
+          "status": "PASS"
+        },
+        {
+          "case": "tests.test_super_agent_sa16_contracts::test_modes_never_expand_profile_or_send_messages[auto_investigate-readonly-admit]",
+          "status": "PASS"
+        },
+        {
+          "case": "tests.test_super_agent_sa16_contracts::test_modes_never_expand_profile_or_send_messages[auto_investigate-coding-held]",
+          "status": "PASS"
+        },
+        {
+          "case": "tests.test_super_agent_sa16_contracts::test_modes_never_expand_profile_or_send_messages[auto_repair-readonly-held]",
+          "status": "PASS"
+        },
+        {
+          "case": "tests.test_super_agent_sa16_contracts::test_each_current_authority_fact_is_required[source_current]",
+          "status": "PASS"
+        },
+        {
+          "case": "tests.test_super_agent_sa16_contracts::test_each_current_authority_fact_is_required[identity_current]",
+          "status": "PASS"
+        },
+        {
+          "case": "tests.test_super_agent_sa16_contracts::test_each_current_authority_fact_is_required[policy_current]",
+          "status": "PASS"
+        },
+        {
+          "case": "tests.test_super_agent_sa16_contracts::test_each_current_authority_fact_is_required[receive_allowed]",
+          "status": "PASS"
+        },
+        {
+          "case": "tests.test_super_agent_sa16_contracts::test_each_current_authority_fact_is_required[model_input_allowed]",
+          "status": "PASS"
+        },
+        {
+          "case": "tests.test_super_agent_sa16_contracts::test_each_current_authority_fact_is_required[admission_allowed]",
+          "status": "PASS"
+        },
+        {
+          "case": "tests.test_super_agent_sa16_contracts::test_each_current_authority_fact_is_required[execution_allowed]",
+          "status": "PASS"
+        },
+        {
+          "case": "tests.test_super_agent_sa16_contracts::test_each_current_authority_fact_is_required[rule_basis_current]",
+          "status": "PASS"
+        },
+        {
+          "case": "tests.test_super_agent_sa16_contracts::test_each_current_authority_fact_is_required[canonical_current]",
+          "status": "PASS"
+        },
+        {
+          "case": "tests.test_super_agent_sa16_contracts::test_each_current_authority_fact_is_required[resource_claim_current]",
+          "status": "PASS"
+        },
+        {
+          "case": "tests.test_super_agent_sa16_contracts::test_each_current_authority_fact_is_required[profile_current]",
+          "status": "PASS"
+        },
+        {
+          "case": "tests.test_super_agent_sa16_contracts::test_facts_cannot_switch_signed_rule[rule_id-value0]",
+          "status": "PASS"
+        },
+        {
+          "case": "tests.test_super_agent_sa16_contracts::test_facts_cannot_switch_signed_rule[rule_revision-2]",
+          "status": "PASS"
+        },
+        {
+          "case": "tests.test_super_agent_sa16_contracts::test_facts_cannot_switch_signed_rule[definition_sha256-1111111111111111111111111111111111111111111111111111111111111111]",
+          "status": "PASS"
+        },
+        {
+          "case": "tests.test_super_agent_sa16_contracts::test_signal_scope_must_match_rule[source_instance_id-value0]",
+          "status": "PASS"
+        },
+        {
+          "case": "tests.test_super_agent_sa16_contracts::test_signal_scope_must_match_rule[policy_id-value1]",
+          "status": "PASS"
+        },
+        {
+          "case": "tests.test_super_agent_sa16_contracts::test_signal_scope_must_match_rule[policy_revision-2]",
+          "status": "PASS"
+        },
+        {
+          "case": "tests.test_super_agent_sa16_contracts::test_signal_scope_must_match_rule[policy_sha256-1111111111111111111111111111111111111111111111111111111111111111]",
+          "status": "PASS"
+        },
+        {
+          "case": "tests.test_super_agent_sa16_contracts::test_signal_scope_must_match_rule[repository-other/private]",
+          "status": "PASS"
+        },
+        {
+          "case": "tests.test_super_agent_sa16_contracts::test_non_create_decisions_never_allocate_a_worker[would_ignore]",
+          "status": "PASS"
+        },
+        {
+          "case": "tests.test_super_agent_sa16_contracts::test_non_create_decisions_never_allocate_a_worker[would_observe]",
+          "status": "PASS"
+        },
+        {
+          "case": "tests.test_super_agent_sa16_contracts::test_non_create_decisions_never_allocate_a_worker[would_attach]",
+          "status": "PASS"
+        },
+        {
+          "case": "tests.test_super_agent_sa16_contracts::test_non_create_decisions_never_allocate_a_worker[would_ask]",
+          "status": "PASS"
+        },
+        {
+          "case": "tests.test_super_agent_sa16_contracts::test_bounded_retries_cooldown_unknown_budget_and_executor_wait[updates0-ALREADY_CLAIMED]",
+          "status": "PASS"
+        },
+        {
+          "case": "tests.test_super_agent_sa16_contracts::test_bounded_retries_cooldown_unknown_budget_and_executor_wait[updates1-EXPLICIT_REOPEN_REQUIRED]",
+          "status": "PASS"
+        },
+        {
+          "case": "tests.test_super_agent_sa16_contracts::test_bounded_retries_cooldown_unknown_budget_and_executor_wait[updates2-ATTEMPT_LIMIT]",
+          "status": "PASS"
+        },
+        {
+          "case": "tests.test_super_agent_sa16_contracts::test_bounded_retries_cooldown_unknown_budget_and_executor_wait[updates3-COOLDOWN]",
+          "status": "PASS"
+        },
+        {
+          "case": "tests.test_super_agent_sa16_contracts::test_bounded_retries_cooldown_unknown_budget_and_executor_wait[updates4-ACTIVE_LIMIT]",
+          "status": "PASS"
+        },
+        {
+          "case": "tests.test_super_agent_sa16_contracts::test_bounded_retries_cooldown_unknown_budget_and_executor_wait[updates5-USAGE_UNKNOWN]",
+          "status": "PASS"
+        },
+        {
+          "case": "tests.test_super_agent_sa16_contracts::test_bounded_retries_cooldown_unknown_budget_and_executor_wait[updates6-BUDGET_WAIT]",
+          "status": "PASS"
+        },
+        {
+          "case": "tests.test_super_agent_sa16_contracts::test_bounded_retries_cooldown_unknown_budget_and_executor_wait[updates7-EXECUTOR_NOT_CONFIGURED]",
+          "status": "PASS"
+        },
+        {
+          "case": "tests.test_super_agent_sa16_contracts::test_bounded_retries_cooldown_unknown_budget_and_executor_wait[updates8-REAL_QUALITY_GATE_CLOSED]",
+          "status": "PASS"
+        },
+        {
+          "case": "tests.test_super_agent_sa16_contracts::test_exact_ttl_and_cooldown_boundaries",
+          "status": "PASS"
+        },
+        {
+          "case": "tests.test_super_agent_sa16_contracts::test_rule_json_rejects_runtime_or_authority_fields[actor]",
+          "status": "PASS"
+        },
+        {
+          "case": "tests.test_super_agent_sa16_contracts::test_rule_json_rejects_runtime_or_authority_fields[provider]",
+          "status": "PASS"
+        },
+        {
+          "case": "tests.test_super_agent_sa16_contracts::test_rule_json_rejects_runtime_or_authority_fields[token]",
+          "status": "PASS"
+        },
+        {
+          "case": "tests.test_super_agent_sa16_contracts::test_rule_json_rejects_runtime_or_authority_fields[trusted]",
+          "status": "PASS"
+        },
+        {
+          "case": "tests.test_super_agent_sa16_contracts::test_rule_json_rejects_runtime_or_authority_fields[budget_reset]",
+          "status": "PASS"
+        },
+        {
+          "case": "tests.test_super_agent_sa16_contracts::test_rule_json_rejects_runtime_or_authority_fields[notification]",
+          "status": "PASS"
+        },
+        {
+          "case": "tests.test_super_agent_sa16_contracts::test_rule_json_rejects_runtime_or_authority_fields[paid]",
+          "status": "PASS"
+        },
+        {
+          "case": "tests.test_super_agent_sa16_contracts::test_rule_json_rejects_runtime_or_authority_fields[execution_mode]",
+          "status": "PASS"
+        },
+        {
+          "case": "tests.test_super_agent_sa16_contracts::test_rule_json_rejects_runtime_or_authority_fields[task_succeeded]",
+          "status": "PASS"
+        },
+        {
+          "case": "tests.test_super_agent_sa16_contracts::test_rule_json_rejects_runtime_or_authority_fields[factory]",
+          "status": "PASS"
+        },
+        {
+          "case": "tests.test_super_agent_sa16_contracts::test_rule_json_rejects_runtime_or_authority_fields[mandate]",
+          "status": "PASS"
+        },
+        {
+          "case": "tests.test_super_agent_sa16_contracts::test_rule_limits_and_aware_expiry_are_strict[cooldown_seconds-0]",
+          "status": "PASS"
+        },
+        {
+          "case": "tests.test_super_agent_sa16_contracts::test_rule_limits_and_aware_expiry_are_strict[cooldown_seconds-True]",
+          "status": "PASS"
+        },
+        {
+          "case": "tests.test_super_agent_sa16_contracts::test_rule_limits_and_aware_expiry_are_strict[task_ttl_seconds-29]",
+          "status": "PASS"
+        },
+        {
+          "case": "tests.test_super_agent_sa16_contracts::test_rule_limits_and_aware_expiry_are_strict[task_ttl_seconds-86401]",
+          "status": "PASS"
+        },
+        {
+          "case": "tests.test_super_agent_sa16_contracts::test_rule_limits_and_aware_expiry_are_strict[idle_ttl_seconds-0]",
+          "status": "PASS"
+        },
+        {
+          "case": "tests.test_super_agent_sa16_contracts::test_rule_limits_and_aware_expiry_are_strict[max_active-0]",
+          "status": "PASS"
+        },
+        {
+          "case": "tests.test_super_agent_sa16_contracts::test_rule_limits_and_aware_expiry_are_strict[max_active-17]",
+          "status": "PASS"
+        },
+        {
+          "case": "tests.test_super_agent_sa16_contracts::test_rule_limits_and_aware_expiry_are_strict[max_attempts-4]",
+          "status": "PASS"
+        },
+        {
+          "case": "tests.test_super_agent_sa16_contracts::test_rule_limits_and_aware_expiry_are_strict[repository-Other/Private]",
+          "status": "PASS"
+        },
+        {
+          "case": "tests.test_super_agent_sa16_contracts::test_rule_limits_and_aware_expiry_are_strict[policy_revision-True]",
+          "status": "PASS"
+        },
+        {
+          "case": "tests.test_super_agent_sa16_contracts::test_rule_limits_and_aware_expiry_are_strict[valid_until-value10]",
+          "status": "PASS"
+        },
+        {
+          "case": "tests.test_super_agent_sa16_contracts::test_invalid_rule_duration_idle_ttl_source_and_schedule",
+          "status": "PASS"
+        },
+        {
+          "case": "tests.test_super_agent_sa16_contracts::test_bodyless_rule_review_is_explicit_and_immutable",
+          "status": "PASS"
+        },
+        {
+          "case": "tests.test_super_agent_sa16_contracts::test_unknown_work_or_usage_never_releases_terminal_resource[succeeded]",
+          "status": "PASS"
+        },
+        {
+          "case": "tests.test_super_agent_sa16_contracts::test_unknown_work_or_usage_never_releases_terminal_resource[failed]",
+          "status": "PASS"
+        },
+        {
+          "case": "tests.test_super_agent_sa16_contracts::test_unknown_work_or_usage_never_releases_terminal_resource[cancelled]",
+          "status": "PASS"
+        },
+        {
+          "case": "tests.test_super_agent_sa16_contracts::test_waiting_releases_only_proven_quiet_resources[waiting_input]",
+          "status": "PASS"
+        },
+        {
+          "case": "tests.test_super_agent_sa16_contracts::test_waiting_releases_only_proven_quiet_resources[waiting_approval]",
+          "status": "PASS"
+        },
+        {
+          "case": "tests.test_super_agent_sa16_contracts::test_waiting_releases_only_proven_quiet_resources[paused]",
+          "status": "PASS"
+        },
+        {
+          "case": "tests.test_super_agent_sa16_contracts::test_success_requires_original_receipt_not_summary[False-False-False]",
+          "status": "PASS"
+        },
+        {
+          "case": "tests.test_super_agent_sa16_contracts::test_success_requires_original_receipt_not_summary[True-False-False]",
+          "status": "PASS"
+        },
+        {
+          "case": "tests.test_super_agent_sa16_contracts::test_success_requires_original_receipt_not_summary[True-True-True]",
+          "status": "PASS"
+        },
+        {
+          "case": "tests.test_super_agent_sa16_contracts::test_rule_disable_expiry_and_semantic_idle_stop_without_resetting_unknown",
+          "status": "PASS"
+        },
+        {
+          "case": "tests.test_super_agent_sa16_contracts::test_timer_defaults_to_signal_without_worker_authority",
+          "status": "PASS"
+        },
+        {
+          "case": "tests.test_super_agent_sa16_contracts::test_due_tick_once_daily_and_bounded_restart_catchup",
+          "status": "PASS"
+        },
+        {
+          "case": "tests.test_super_agent_sa16_contracts::test_fall_back_repeated_hour_is_one_local_day_signal",
+          "status": "PASS"
+        },
+        {
+          "case": "tests.test_super_agent_sa16_contracts::test_spring_forward_nonexistent_local_time_is_not_invented",
+          "status": "PASS"
+        }
+      ]
+    },
+    {
+      "round": "draft-initial",
+      "source_commit": "3d97eb2f4f11c8de5e2b21d2a57d88131f538410",
+      "source_sha256": "33bcc5f1af73dfda0e1ce420ebedfce0c7455ffac9ee7f719675e43e0d17496b",
+      "counts": {
+        "tests": 10,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "junit": "evidence/super-agent-v1/SAV1-16/start-20261114T125101Z-8e48a364/draft-initial/junit.xml",
+      "evidence": "evidence/super-agent-v1/SAV1-16/start-20261114T125101Z-8e48a364/draft-initial",
+      "commands": {
+        "draft": {
+          "command": [
+            "/home/imini/magr-super-agent/v3/.venv/bin/python",
+            "-m",
+            "pytest",
+            "-q",
+            "tests/test_super_agent_sa16_draft.py",
+            "--junitxml=/home/imini/magr-super-agent/v3/evidence/super-agent-v1/SAV1-16/start-20261114T125101Z-8e48a364/draft-initial/junit.xml"
+          ],
+          "exit_code": 0,
+          "source_commit": "3d97eb2f4f11c8de5e2b21d2a57d88131f538410",
+          "source_sha256": "33bcc5f1af73dfda0e1ce420ebedfce0c7455ffac9ee7f719675e43e0d17496b"
+        },
+        "lint": {
+          "command": [
+            "/home/imini/magr-super-agent/v3/.venv/bin/ruff",
+            "check",
+            "tests/test_super_agent_sa16_draft.py"
+          ],
+          "exit_code": 0,
+          "source_commit": "3d97eb2f4f11c8de5e2b21d2a57d88131f538410",
+          "source_sha256": "33bcc5f1af73dfda0e1ce420ebedfce0c7455ffac9ee7f719675e43e0d17496b"
+        }
+      },
+      "candidate_archive": {
+        "UTC": "2026-11-14T13:12:31.906662+00:00",
+        "source_commit": "3d97eb2f4f11c8de5e2b21d2a57d88131f538410",
+        "source_sha256": "33bcc5f1af73dfda0e1ce420ebedfce0c7455ffac9ee7f719675e43e0d17496b",
+        "archive": "evidence/super-agent-v1/SAV1-16/start-20261114T125101Z-8e48a364/draft-initial/source-3d97eb2f4f11.tar.gz",
+        "archive_sha256": "ec56795a4ea7f4b176b84735d014a504b8a0521879f7a52d13803e78b149baaf",
+        "archive_source_sha256": "33bcc5f1af73dfda0e1ce420ebedfce0c7455ffac9ee7f719675e43e0d17496b",
+        "scope": "First draft SQL/patch checks only; private77/history excluded, formal SA16 not run",
+        "scope_targets": {
+          "round": "draft-initial",
+          "scope": "First draft SQL/patch checks only; private77/history excluded, formal SA16 not run",
+          "commands": {
+            "draft": [
+              "{APP}/.venv/bin/python",
+              "-m",
+              "pytest",
+              "-q",
+              "tests/test_super_agent_sa16_draft.py",
+              "--junitxml={E}/junit.xml"
+            ],
+            "lint": [
+              "{APP}/.venv/bin/ruff",
+              "check",
+              "tests/test_super_agent_sa16_draft.py"
+            ]
+          }
+        }
+      },
+      "cases": [
+        {
+          "case": "tests.test_super_agent_sa16_draft::test_draft_preserves_original44_migrations_and_coding_oid",
+          "status": "PASS"
+        },
+        {
+          "case": "tests.test_super_agent_sa16_draft::test_draft_all_six_tables_have_original_pg_guards[rules]",
+          "status": "PASS"
+        },
+        {
+          "case": "tests.test_super_agent_sa16_draft::test_draft_all_six_tables_have_original_pg_guards[rule_versions]",
+          "status": "PASS"
+        },
+        {
+          "case": "tests.test_super_agent_sa16_draft::test_draft_all_six_tables_have_original_pg_guards[ticks]",
+          "status": "PASS"
+        },
+        {
+          "case": "tests.test_super_agent_sa16_draft::test_draft_all_six_tables_have_original_pg_guards[claims]",
+          "status": "PASS"
+        },
+        {
+          "case": "tests.test_super_agent_sa16_draft::test_draft_all_six_tables_have_original_pg_guards[attempts]",
+          "status": "PASS"
+        },
+        {
+          "case": "tests.test_super_agent_sa16_draft::test_draft_all_six_tables_have_original_pg_guards[events]",
+          "status": "PASS"
+        },
+        {
+          "case": "tests.test_super_agent_sa16_draft::test_draft_legacy_coding_predicate_retains_every_original_conjunct",
+          "status": "PASS"
+        },
+        {
+          "case": "tests.test_super_agent_sa16_draft::test_draft_keeps_late_known_receipt_guard_unchanged",
+          "status": "PASS"
+        },
+        {
+          "case": "tests.test_super_agent_sa16_draft::test_shared_proposal_is_exactly_applicable_and_not_applied",
+          "status": "PASS"
+        }
+      ]
+    },
+    {
+      "round": "formal-initial",
+      "source_commit": "eec5b5307746249e1c074b24608854fdd482fc40",
+      "source_sha256": "c3888445126b3036f0e0cd6d9264f3ade2d4fab0a31040d51a6999dfbcb5fa2b",
+      "counts": {
+        "tests": 64,
+        "failures": 20,
+        "errors": 0,
+        "skipped": 0
+      },
+      "junit": "evidence/SAV1-16/20261114T133524Z-39679cbf/junit.xml",
+      "evidence": "evidence/super-agent-v1/SAV1-16/start-20261114T125101Z-8e48a364/formal-initial",
+      "commands": {
+        "registered": {
+          "command": [
+            "make",
+            "verify",
+            "TASK=SAV1-16"
+          ],
+          "exit_code": 2,
+          "source_commit": "eec5b5307746249e1c074b24608854fdd482fc40",
+          "source_sha256": "c3888445126b3036f0e0cd6d9264f3ade2d4fab0a31040d51a6999dfbcb5fa2b"
+        },
+        "lint": {
+          "command": [
+            "/home/imini/magr-super-agent/v3/.venv/bin/ruff",
+            "check",
+            "src/mgar_v3/super_agent/source_autonomy.py",
+            "src/mgar_v3/super_agent/source_autonomy_profiles.py",
+            "src/mgar_v3/super_agent/source_autonomy_store.py",
+            "src/mgar_v3/super_agent/source_autonomy_factory.py",
+            "src/mgar_v3/super_agent/source_autonomy_runtime.py",
+            "src/mgar_v3/super_agent/source_autonomy_api.py",
+            "src/mgar_v3/coordination/engine.py",
+            "src/mgar_v3/api.py",
+            "src/mgar_v3/super_agent/policy.py",
+            "src/mgar_v3/super_agent/source_coding.py",
+            "src/mgar_v3/super_agent/source_scheduler.py",
+            "tests/sa16_support.py",
+            "tests/test_super_agent_sa16_pg.py",
+            "tests/test_super_agent_sa16_api.py"
+          ],
+          "exit_code": 1,
+          "source_commit": "eec5b5307746249e1c074b24608854fdd482fc40",
+          "source_sha256": "c3888445126b3036f0e0cd6d9264f3ade2d4fab0a31040d51a6999dfbcb5fa2b"
+        },
+        "typecheck": {
+          "command": [
+            "/home/imini/magr-super-agent/v3/.venv/bin/python",
+            "-m",
+            "mypy",
+            "--config-file",
+            "pyproject.toml",
+            "--follow-imports=silent",
+            "src/mgar_v3/super_agent/source_autonomy.py",
+            "src/mgar_v3/super_agent/source_autonomy_profiles.py",
+            "src/mgar_v3/super_agent/source_autonomy_store.py",
+            "src/mgar_v3/super_agent/source_autonomy_factory.py",
+            "src/mgar_v3/super_agent/source_autonomy_runtime.py",
+            "src/mgar_v3/super_agent/source_autonomy_api.py",
+            "src/mgar_v3/coordination/engine.py",
+            "src/mgar_v3/api.py",
+            "src/mgar_v3/super_agent/policy.py",
+            "src/mgar_v3/super_agent/source_coding.py",
+            "src/mgar_v3/super_agent/source_scheduler.py"
+          ],
+          "exit_code": 1,
+          "source_commit": "eec5b5307746249e1c074b24608854fdd482fc40",
+          "source_sha256": "c3888445126b3036f0e0cd6d9264f3ade2d4fab0a31040d51a6999dfbcb5fa2b"
+        }
+      },
+      "candidate_archive": {
+        "UTC": "2026-11-14T13:35:22.690016+00:00",
+        "source_commit": "eec5b5307746249e1c074b24608854fdd482fc40",
+        "source_sha256": "c3888445126b3036f0e0cd6d9264f3ade2d4fab0a31040d51a6999dfbcb5fa2b",
+        "archive": "evidence/super-agent-v1/SAV1-16/start-20261114T125101Z-8e48a364/formal-initial/source-eec5b5307746.tar.gz",
+        "archive_sha256": "e0287962ff83329591aec4b080746135d3880fbd2f5ebc9d0b7f84426b992713",
+        "archive_source_sha256": "c3888445126b3036f0e0cd6d9264f3ade2d4fab0a31040d51a6999dfbcb5fa2b",
+        "scope": "First formal SA16 original Engine/PG/API checks only; private77/draft10/history excluded",
+        "scope_targets": {
+          "round": "formal-initial",
+          "scope": "First formal SA16 original Engine/PG/API checks only; private77/draft10/history excluded",
+          "timeout": 1200,
+          "commands": {
+            "registered": [
+              "make",
+              "verify",
+              "TASK=SAV1-16"
+            ],
+            "lint": [
+              "{APP}/.venv/bin/ruff",
+              "check",
+              "src/mgar_v3/super_agent/source_autonomy.py",
+              "src/mgar_v3/super_agent/source_autonomy_profiles.py",
+              "src/mgar_v3/super_agent/source_autonomy_store.py",
+              "src/mgar_v3/super_agent/source_autonomy_factory.py",
+              "src/mgar_v3/super_agent/source_autonomy_runtime.py",
+              "src/mgar_v3/super_agent/source_autonomy_api.py",
+              "src/mgar_v3/coordination/engine.py",
+              "src/mgar_v3/api.py",
+              "src/mgar_v3/super_agent/policy.py",
+              "src/mgar_v3/super_agent/source_coding.py",
+              "src/mgar_v3/super_agent/source_scheduler.py",
+              "tests/sa16_support.py",
+              "tests/test_super_agent_sa16_pg.py",
+              "tests/test_super_agent_sa16_api.py"
+            ],
+            "typecheck": [
+              "{APP}/.venv/bin/python",
+              "-m",
+              "mypy",
+              "--config-file",
+              "pyproject.toml",
+              "--follow-imports=silent",
+              "src/mgar_v3/super_agent/source_autonomy.py",
+              "src/mgar_v3/super_agent/source_autonomy_profiles.py",
+              "src/mgar_v3/super_agent/source_autonomy_store.py",
+              "src/mgar_v3/super_agent/source_autonomy_factory.py",
+              "src/mgar_v3/super_agent/source_autonomy_runtime.py",
+              "src/mgar_v3/super_agent/source_autonomy_api.py",
+              "src/mgar_v3/coordination/engine.py",
+              "src/mgar_v3/api.py",
+              "src/mgar_v3/super_agent/policy.py",
+              "src/mgar_v3/super_agent/source_coding.py",
+              "src/mgar_v3/super_agent/source_scheduler.py"
+            ]
+          }
+        }
+      },
+      "cases": [
+        {
+          "case": "tests.test_super_agent_sa16_pg::test_formal0048_original_engine_exact_shared_patch_and45_checksums",
+          "status": "PASS"
+        },
+        {
+          "case": "tests.test_super_agent_sa16_pg::test_non_create_suggestions_never_create_task_worker_reply_or_money[ignore]",
+          "status": "FAIL"
+        },
+        {
+          "case": "tests.test_super_agent_sa16_pg::test_non_create_suggestions_never_create_task_worker_reply_or_money[observe]",
+          "status": "FAIL"
+        },
+        {
+          "case": "tests.test_super_agent_sa16_pg::test_non_create_suggestions_never_create_task_worker_reply_or_money[ask]",
+          "status": "FAIL"
+        },
+        {
+          "case": "tests.test_super_agent_sa16_pg::test_shadow_would_create_keeps_all_original_business_records_unchanged",
+          "status": "FAIL"
+        },
+        {
+          "case": "tests.test_super_agent_sa16_pg::test_auto_investigate_builds_real_readonly_original_mandate_and_queue",
+          "status": "FAIL"
+        },
+        {
+          "case": "tests.test_super_agent_sa16_pg::test_parallel_cycles_claim_a_signal_once_and_second_pass_is_idle",
+          "status": "FAIL"
+        },
+        {
+          "case": "tests.test_super_agent_sa16_pg::test_owner_rule_cannot_replace_frozen_authority_or_profile[policy_sha256-0000000000000000000000000000000000000000000000000000000000000000]",
+          "status": "PASS"
+        },
+        {
+          "case": "tests.test_super_agent_sa16_pg::test_owner_rule_cannot_replace_frozen_authority_or_profile[rule_sha256-1111111111111111111111111111111111111111111111111111111111111111]",
+          "status": "PASS"
+        },
+        {
+          "case": "tests.test_super_agent_sa16_pg::test_owner_rule_cannot_replace_frozen_authority_or_profile[rule_ref-forged-rule]",
+          "status": "PASS"
+        },
+        {
+          "case": "tests.test_super_agent_sa16_pg::test_owner_rule_cannot_replace_frozen_authority_or_profile[objective_sha256-2222222222222222222222222222222222222222222222222222222222222222]",
+          "status": "PASS"
+        },
+        {
+          "case": "tests.test_super_agent_sa16_pg::test_owner_rule_cannot_replace_frozen_authority_or_profile[profile_sha256-3333333333333333333333333333333333333333333333333333333333333333]",
+          "status": "PASS"
+        },
+        {
+          "case": "tests.test_super_agent_sa16_pg::test_rule_cas_and_owner_cookie_cannot_be_substituted_by_local_token",
+          "status": "FAIL"
+        },
+        {
+          "case": "tests.test_super_agent_sa16_pg::test_signed_history_and_claims_cannot_be_rewritten[UPDATE-rule_versions]",
+          "status": "FAIL"
+        },
+        {
+          "case": "tests.test_super_agent_sa16_pg::test_signed_history_and_claims_cannot_be_rewritten[UPDATE-claims]",
+          "status": "FAIL"
+        },
+        {
+          "case": "tests.test_super_agent_sa16_pg::test_signed_history_and_claims_cannot_be_rewritten[UPDATE-events]",
+          "status": "FAIL"
+        },
+        {
+          "case": "tests.test_super_agent_sa16_pg::test_signed_history_and_claims_cannot_be_rewritten[DELETE-rule_versions]",
+          "status": "FAIL"
+        },
+        {
+          "case": "tests.test_super_agent_sa16_pg::test_signed_history_and_claims_cannot_be_rewritten[DELETE-claims]",
+          "status": "FAIL"
+        },
+        {
+          "case": "tests.test_super_agent_sa16_pg::test_signed_history_and_claims_cannot_be_rewritten[DELETE-events]",
+          "status": "FAIL"
+        },
+        {
+          "case": "tests.test_super_agent_sa16_pg::test_committed_rule_change_cancels_original_task_and_closes_queue_same_transaction[disable]",
+          "status": "FAIL"
+        },
+        {
+          "case": "tests.test_super_agent_sa16_pg::test_committed_rule_change_cancels_original_task_and_closes_queue_same_transaction[revision]",
+          "status": "FAIL"
+        },
+        {
+          "case": "tests.test_super_agent_sa16_pg::test_original_stop_and_new_signal_do_not_automatically_reopen_a_ticket",
+          "status": "FAIL"
+        },
+        {
+          "case": "tests.test_super_agent_sa16_pg::test_heartbeat_does_not_renew_work_and_deadlines_stop_original_run[idle]",
+          "status": "FAIL"
+        },
+        {
+          "case": "tests.test_super_agent_sa16_pg::test_heartbeat_does_not_renew_work_and_deadlines_stop_original_run[ttl]",
+          "status": "FAIL"
+        },
+        {
+          "case": "tests.test_super_agent_sa16_pg::test_unknown_usage_survives_stop_and_blocks_new_run_without_refund",
+          "status": "FAIL"
+        },
+        {
+          "case": "tests.test_super_agent_sa16_pg::test_trusted_profile_immutable_and_original_connection_enforced",
+          "status": "FAIL"
+        },
+        {
+          "case": "tests.test_super_agent_sa16_pg::test_no_rule_or_schedule_has_no_original_business_or_model_side_effect",
+          "status": "PASS"
+        },
+        {
+          "case": "tests.test_super_agent_sa16_api::test_actual_original_app_exact_thirteen_routes",
+          "status": "PASS"
+        },
+        {
+          "case": "tests.test_super_agent_sa16_api::test_operator_or_bearer_never_substitutes_for_current_owner[GET-/capabilities]",
+          "status": "PASS"
+        },
+        {
+          "case": "tests.test_super_agent_sa16_api::test_operator_or_bearer_never_substitutes_for_current_owner[GET-/rules]",
+          "status": "PASS"
+        },
+        {
+          "case": "tests.test_super_agent_sa16_api::test_operator_or_bearer_never_substitutes_for_current_owner[PUT-/rules/{rule_id}]",
+          "status": "PASS"
+        },
+        {
+          "case": "tests.test_super_agent_sa16_api::test_operator_or_bearer_never_substitutes_for_current_owner[GET-/rules/{rule_id}]",
+          "status": "PASS"
+        },
+        {
+          "case": "tests.test_super_agent_sa16_api::test_operator_or_bearer_never_substitutes_for_current_owner[POST-/rules/{rule_id}/disable]",
+          "status": "PASS"
+        },
+        {
+          "case": "tests.test_super_agent_sa16_api::test_operator_or_bearer_never_substitutes_for_current_owner[GET-/claims]",
+          "status": "PASS"
+        },
+        {
+          "case": "tests.test_super_agent_sa16_api::test_operator_or_bearer_never_substitutes_for_current_owner[GET-/attempts]",
+          "status": "PASS"
+        },
+        {
+          "case": "tests.test_super_agent_sa16_api::test_operator_or_bearer_never_substitutes_for_current_owner[GET-/attempts/{attempt_id}]",
+          "status": "PASS"
+        },
+        {
+          "case": "tests.test_super_agent_sa16_api::test_operator_or_bearer_never_substitutes_for_current_owner[POST-/attempts/{attempt_id}/stop]",
+          "status": "PASS"
+        },
+        {
+          "case": "tests.test_super_agent_sa16_api::test_operator_or_bearer_never_substitutes_for_current_owner[POST-/attempts/{attempt_id}/reopen]",
+          "status": "PASS"
+        },
+        {
+          "case": "tests.test_super_agent_sa16_api::test_operator_or_bearer_never_substitutes_for_current_owner[POST-/maintain]",
+          "status": "PASS"
+        },
+        {
+          "case": "tests.test_super_agent_sa16_api::test_operator_or_bearer_never_substitutes_for_current_owner[POST-/tick]",
+          "status": "PASS"
+        },
+        {
+          "case": "tests.test_super_agent_sa16_api::test_operator_or_bearer_never_substitutes_for_current_owner[POST-/cycle]",
+          "status": "PASS"
+        },
+        {
+          "case": "tests.test_super_agent_sa16_api::test_owner_metadata_is_bodyless_current_and_inert[/capabilities]",
+          "status": "PASS"
+        },
+        {
+          "case": "tests.test_super_agent_sa16_api::test_owner_metadata_is_bodyless_current_and_inert[/rules]",
+          "status": "PASS"
+        },
+        {
+          "case": "tests.test_super_agent_sa16_api::test_owner_metadata_is_bodyless_current_and_inert[/claims]",
+          "status": "PASS"
+        },
+        {
+          "case": "tests.test_super_agent_sa16_api::test_owner_metadata_is_bodyless_current_and_inert[/attempts]",
+          "status": "PASS"
+        },
+        {
+          "case": "tests.test_super_agent_sa16_api::test_empty_owner_work_cycles_make_no_model_task_or_reply[/maintain]",
+          "status": "PASS"
+        },
+        {
+          "case": "tests.test_super_agent_sa16_api::test_empty_owner_work_cycles_make_no_model_task_or_reply[/tick]",
+          "status": "PASS"
+        },
+        {
+          "case": "tests.test_super_agent_sa16_api::test_empty_owner_work_cycles_make_no_model_task_or_reply[/cycle]",
+          "status": "PASS"
+        },
+        {
+          "case": "tests.test_super_agent_sa16_api::test_owner_mutation_requires_original_origin_and_csrf[origin]",
+          "status": "PASS"
+        },
+        {
+          "case": "tests.test_super_agent_sa16_api::test_owner_mutation_requires_original_origin_and_csrf[csrf]",
+          "status": "PASS"
+        },
+        {
+          "case": "tests.test_super_agent_sa16_api::test_owner_mutation_requires_original_origin_and_csrf[foreign_origin]",
+          "status": "PASS"
+        },
+        {
+          "case": "tests.test_super_agent_sa16_api::test_http_cannot_inject_authority_executor_success_or_unbounded_work[payload0]",
+          "status": "PASS"
+        },
+        {
+          "case": "tests.test_super_agent_sa16_api::test_http_cannot_inject_authority_executor_success_or_unbounded_work[payload1]",
+          "status": "PASS"
+        },
+        {
+          "case": "tests.test_super_agent_sa16_api::test_http_cannot_inject_authority_executor_success_or_unbounded_work[payload2]",
+          "status": "PASS"
+        },
+        {
+          "case": "tests.test_super_agent_sa16_api::test_http_cannot_inject_authority_executor_success_or_unbounded_work[payload3]",
+          "status": "PASS"
+        },
+        {
+          "case": "tests.test_super_agent_sa16_api::test_http_cannot_inject_authority_executor_success_or_unbounded_work[payload4]",
+          "status": "PASS"
+        },
+        {
+          "case": "tests.test_super_agent_sa16_api::test_http_cannot_inject_authority_executor_success_or_unbounded_work[payload5]",
+          "status": "PASS"
+        },
+        {
+          "case": "tests.test_super_agent_sa16_api::test_http_cannot_inject_authority_executor_success_or_unbounded_work[payload6]",
+          "status": "PASS"
+        },
+        {
+          "case": "tests.test_super_agent_sa16_api::test_http_cannot_inject_authority_executor_success_or_unbounded_work[payload7]",
+          "status": "PASS"
+        },
+        {
+          "case": "tests.test_super_agent_sa16_api::test_http_cannot_inject_authority_executor_success_or_unbounded_work[payload8]",
+          "status": "PASS"
+        },
+        {
+          "case": "tests.test_super_agent_sa16_api::test_http_cannot_inject_authority_executor_success_or_unbounded_work[payload9]",
+          "status": "PASS"
+        },
+        {
+          "case": "tests.test_super_agent_sa16_api::test_bounded_json_rejects_invalid_transport_without_original_side_effect[large]",
+          "status": "PASS"
+        },
+        {
+          "case": "tests.test_super_agent_sa16_api::test_bounded_json_rejects_invalid_transport_without_original_side_effect[media]",
+          "status": "PASS"
+        },
+        {
+          "case": "tests.test_super_agent_sa16_api::test_bounded_json_rejects_invalid_transport_without_original_side_effect[malformed]",
+          "status": "PASS"
+        }
+      ],
+      "registered_result": "evidence/SAV1-16/20261114T133524Z-39679cbf/result.json"
+    },
+    {
+      "round": "formal-repair-01",
+      "source_commit": "62da397a5b6c3c42ee4add6fbda0e0cae98774ff",
+      "source_sha256": "8dda6a2989e65aa4420a7e2ee890294870470090701691fd90d89ff9d09dcd44",
+      "counts": {
+        "tests": 20,
+        "failures": 2,
+        "errors": 0,
+        "skipped": 0
+      },
+      "junit": "evidence/super-agent-v1/SAV1-16/start-20261114T125101Z-8e48a364/formal-repair-01/junit.xml",
+      "evidence": "evidence/super-agent-v1/SAV1-16/start-20261114T125101Z-8e48a364/formal-repair-01",
+      "commands": {
+        "retest": {
+          "command": [
+            "/home/imini/magr-super-agent/v3/.venv/bin/python",
+            "-m",
+            "pytest",
+            "-q",
+            "tests/test_super_agent_sa16_pg.py::test_non_create_suggestions_never_create_task_worker_reply_or_money[ignore]",
+            "tests/test_super_agent_sa16_pg.py::test_non_create_suggestions_never_create_task_worker_reply_or_money[observe]",
+            "tests/test_super_agent_sa16_pg.py::test_non_create_suggestions_never_create_task_worker_reply_or_money[ask]",
+            "tests/test_super_agent_sa16_pg.py::test_shadow_would_create_keeps_all_original_business_records_unchanged",
+            "tests/test_super_agent_sa16_pg.py::test_auto_investigate_builds_real_readonly_original_mandate_and_queue",
+            "tests/test_super_agent_sa16_pg.py::test_parallel_cycles_claim_a_signal_once_and_second_pass_is_idle",
+            "tests/test_super_agent_sa16_pg.py::test_rule_cas_and_owner_cookie_cannot_be_substituted_by_local_token",
+            "tests/test_super_agent_sa16_pg.py::test_signed_history_and_claims_cannot_be_rewritten[UPDATE-rule_versions]",
+            "tests/test_super_agent_sa16_pg.py::test_signed_history_and_claims_cannot_be_rewritten[UPDATE-claims]",
+            "tests/test_super_agent_sa16_pg.py::test_signed_history_and_claims_cannot_be_rewritten[UPDATE-events]",
+            "tests/test_super_agent_sa16_pg.py::test_signed_history_and_claims_cannot_be_rewritten[DELETE-rule_versions]",
+            "tests/test_super_agent_sa16_pg.py::test_signed_history_and_claims_cannot_be_rewritten[DELETE-claims]",
+            "tests/test_super_agent_sa16_pg.py::test_signed_history_and_claims_cannot_be_rewritten[DELETE-events]",
+            "tests/test_super_agent_sa16_pg.py::test_committed_rule_change_cancels_original_task_and_closes_queue_same_transaction[disable]",
+            "tests/test_super_agent_sa16_pg.py::test_committed_rule_change_cancels_original_task_and_closes_queue_same_transaction[revision]",
+            "tests/test_super_agent_sa16_pg.py::test_original_stop_and_new_signal_do_not_automatically_reopen_a_ticket",
+            "tests/test_super_agent_sa16_pg.py::test_heartbeat_does_not_renew_work_and_deadlines_stop_original_run[idle]",
+            "tests/test_super_agent_sa16_pg.py::test_heartbeat_does_not_renew_work_and_deadlines_stop_original_run[ttl]",
+            "tests/test_super_agent_sa16_pg.py::test_unknown_usage_survives_stop_and_blocks_new_run_without_refund",
+            "tests/test_super_agent_sa16_pg.py::test_trusted_profile_immutable_and_original_connection_enforced",
+            "--junitxml=/home/imini/magr-super-agent/v3/evidence/super-agent-v1/SAV1-16/start-20261114T125101Z-8e48a364/formal-repair-01/junit.xml"
+          ],
+          "exit_code": 1,
+          "source_commit": "62da397a5b6c3c42ee4add6fbda0e0cae98774ff",
+          "source_sha256": "8dda6a2989e65aa4420a7e2ee890294870470090701691fd90d89ff9d09dcd44"
+        },
+        "lint": {
+          "command": [
+            "/home/imini/magr-super-agent/v3/.venv/bin/ruff",
+            "check",
+            "src/mgar_v3/super_agent/source_autonomy.py",
+            "src/mgar_v3/super_agent/source_autonomy_factory.py",
+            "src/mgar_v3/super_agent/source_autonomy_runtime.py",
+            "src/mgar_v3/super_agent/source_autonomy_store.py",
+            "src/mgar_v3/super_agent/source_scheduler.py",
+            "tests/sa16_support.py",
+            "tests/test_super_agent_sa16_pg.py"
+          ],
+          "exit_code": 1,
+          "source_commit": "62da397a5b6c3c42ee4add6fbda0e0cae98774ff",
+          "source_sha256": "8dda6a2989e65aa4420a7e2ee890294870470090701691fd90d89ff9d09dcd44"
+        },
+        "typecheck": {
+          "command": [
+            "/home/imini/magr-super-agent/v3/.venv/bin/python",
+            "-m",
+            "mypy",
+            "--config-file",
+            "pyproject.toml",
+            "--follow-imports=silent",
+            "src/mgar_v3/super_agent/source_autonomy_store.py",
+            "src/mgar_v3/super_agent/source_autonomy_factory.py"
+          ],
+          "exit_code": 0,
+          "source_commit": "62da397a5b6c3c42ee4add6fbda0e0cae98774ff",
+          "source_sha256": "8dda6a2989e65aa4420a7e2ee890294870470090701691fd90d89ff9d09dcd44"
+        }
+      },
+      "candidate_archive": {
+        "UTC": "2026-11-14T13:39:53.498623+00:00",
+        "source_commit": "62da397a5b6c3c42ee4add6fbda0e0cae98774ff",
+        "source_sha256": "8dda6a2989e65aa4420a7e2ee890294870470090701691fd90d89ff9d09dcd44",
+        "archive": "evidence/super-agent-v1/SAV1-16/start-20261114T125101Z-8e48a364/formal-repair-01/source-62da397a5b6c.tar.gz",
+        "archive_sha256": "eef869033abf46a3b105a00ef87873027b8d55634d42e1c6b05f44012f0d0962",
+        "archive_source_sha256": "8dda6a2989e65aa4420a7e2ee890294870470090701691fd90d89ff9d09dcd44",
+        "scope": "Only original20 failing formal checks plus failed lint/type targets; original44PASS/private87 excluded",
+        "scope_targets": {
+          "round": "formal-repair-01",
+          "scope": "Only original20 failing formal checks plus failed lint/type targets; original44PASS/private87 excluded",
+          "commands": {
+            "retest": [
+              "{APP}/.venv/bin/python",
+              "-m",
+              "pytest",
+              "-q",
+              "tests/test_super_agent_sa16_pg.py::test_non_create_suggestions_never_create_task_worker_reply_or_money[ignore]",
+              "tests/test_super_agent_sa16_pg.py::test_non_create_suggestions_never_create_task_worker_reply_or_money[observe]",
+              "tests/test_super_agent_sa16_pg.py::test_non_create_suggestions_never_create_task_worker_reply_or_money[ask]",
+              "tests/test_super_agent_sa16_pg.py::test_shadow_would_create_keeps_all_original_business_records_unchanged",
+              "tests/test_super_agent_sa16_pg.py::test_auto_investigate_builds_real_readonly_original_mandate_and_queue",
+              "tests/test_super_agent_sa16_pg.py::test_parallel_cycles_claim_a_signal_once_and_second_pass_is_idle",
+              "tests/test_super_agent_sa16_pg.py::test_rule_cas_and_owner_cookie_cannot_be_substituted_by_local_token",
+              "tests/test_super_agent_sa16_pg.py::test_signed_history_and_claims_cannot_be_rewritten[UPDATE-rule_versions]",
+              "tests/test_super_agent_sa16_pg.py::test_signed_history_and_claims_cannot_be_rewritten[UPDATE-claims]",
+              "tests/test_super_agent_sa16_pg.py::test_signed_history_and_claims_cannot_be_rewritten[UPDATE-events]",
+              "tests/test_super_agent_sa16_pg.py::test_signed_history_and_claims_cannot_be_rewritten[DELETE-rule_versions]",
+              "tests/test_super_agent_sa16_pg.py::test_signed_history_and_claims_cannot_be_rewritten[DELETE-claims]",
+              "tests/test_super_agent_sa16_pg.py::test_signed_history_and_claims_cannot_be_rewritten[DELETE-events]",
+              "tests/test_super_agent_sa16_pg.py::test_committed_rule_change_cancels_original_task_and_closes_queue_same_transaction[disable]",
+              "tests/test_super_agent_sa16_pg.py::test_committed_rule_change_cancels_original_task_and_closes_queue_same_transaction[revision]",
+              "tests/test_super_agent_sa16_pg.py::test_original_stop_and_new_signal_do_not_automatically_reopen_a_ticket",
+              "tests/test_super_agent_sa16_pg.py::test_heartbeat_does_not_renew_work_and_deadlines_stop_original_run[idle]",
+              "tests/test_super_agent_sa16_pg.py::test_heartbeat_does_not_renew_work_and_deadlines_stop_original_run[ttl]",
+              "tests/test_super_agent_sa16_pg.py::test_unknown_usage_survives_stop_and_blocks_new_run_without_refund",
+              "tests/test_super_agent_sa16_pg.py::test_trusted_profile_immutable_and_original_connection_enforced",
+              "--junitxml={E}/junit.xml"
+            ],
+            "lint": [
+              "{APP}/.venv/bin/ruff",
+              "check",
+              "src/mgar_v3/super_agent/source_autonomy.py",
+              "src/mgar_v3/super_agent/source_autonomy_factory.py",
+              "src/mgar_v3/super_agent/source_autonomy_runtime.py",
+              "src/mgar_v3/super_agent/source_autonomy_store.py",
+              "src/mgar_v3/super_agent/source_scheduler.py",
+              "tests/sa16_support.py",
+              "tests/test_super_agent_sa16_pg.py"
+            ],
+            "typecheck": [
+              "{APP}/.venv/bin/python",
+              "-m",
+              "mypy",
+              "--config-file",
+              "pyproject.toml",
+              "--follow-imports=silent",
+              "src/mgar_v3/super_agent/source_autonomy_store.py",
+              "src/mgar_v3/super_agent/source_autonomy_factory.py"
+            ]
+          }
+        }
+      },
+      "cases": [
+        {
+          "case": "tests.test_super_agent_sa16_pg::test_non_create_suggestions_never_create_task_worker_reply_or_money[ignore]",
+          "status": "PASS"
+        },
+        {
+          "case": "tests.test_super_agent_sa16_pg::test_non_create_suggestions_never_create_task_worker_reply_or_money[observe]",
+          "status": "PASS"
+        },
+        {
+          "case": "tests.test_super_agent_sa16_pg::test_non_create_suggestions_never_create_task_worker_reply_or_money[ask]",
+          "status": "PASS"
+        },
+        {
+          "case": "tests.test_super_agent_sa16_pg::test_shadow_would_create_keeps_all_original_business_records_unchanged",
+          "status": "FAIL"
+        },
+        {
+          "case": "tests.test_super_agent_sa16_pg::test_auto_investigate_builds_real_readonly_original_mandate_and_queue",
+          "status": "PASS"
+        },
+        {
+          "case": "tests.test_super_agent_sa16_pg::test_parallel_cycles_claim_a_signal_once_and_second_pass_is_idle",
+          "status": "PASS"
+        },
+        {
+          "case": "tests.test_super_agent_sa16_pg::test_rule_cas_and_owner_cookie_cannot_be_substituted_by_local_token",
+          "status": "PASS"
+        },
+        {
+          "case": "tests.test_super_agent_sa16_pg::test_signed_history_and_claims_cannot_be_rewritten[UPDATE-rule_versions]",
+          "status": "PASS"
+        },
+        {
+          "case": "tests.test_super_agent_sa16_pg::test_signed_history_and_claims_cannot_be_rewritten[UPDATE-claims]",
+          "status": "PASS"
+        },
+        {
+          "case": "tests.test_super_agent_sa16_pg::test_signed_history_and_claims_cannot_be_rewritten[UPDATE-events]",
+          "status": "PASS"
+        },
+        {
+          "case": "tests.test_super_agent_sa16_pg::test_signed_history_and_claims_cannot_be_rewritten[DELETE-rule_versions]",
+          "status": "PASS"
+        },
+        {
+          "case": "tests.test_super_agent_sa16_pg::test_signed_history_and_claims_cannot_be_rewritten[DELETE-claims]",
+          "status": "PASS"
+        },
+        {
+          "case": "tests.test_super_agent_sa16_pg::test_signed_history_and_claims_cannot_be_rewritten[DELETE-events]",
+          "status": "PASS"
+        },
+        {
+          "case": "tests.test_super_agent_sa16_pg::test_committed_rule_change_cancels_original_task_and_closes_queue_same_transaction[disable]",
+          "status": "PASS"
+        },
+        {
+          "case": "tests.test_super_agent_sa16_pg::test_committed_rule_change_cancels_original_task_and_closes_queue_same_transaction[revision]",
+          "status": "PASS"
+        },
+        {
+          "case": "tests.test_super_agent_sa16_pg::test_original_stop_and_new_signal_do_not_automatically_reopen_a_ticket",
+          "status": "FAIL"
+        },
+        {
+          "case": "tests.test_super_agent_sa16_pg::test_heartbeat_does_not_renew_work_and_deadlines_stop_original_run[idle]",
+          "status": "PASS"
+        },
+        {
+          "case": "tests.test_super_agent_sa16_pg::test_heartbeat_does_not_renew_work_and_deadlines_stop_original_run[ttl]",
+          "status": "PASS"
+        },
+        {
+          "case": "tests.test_super_agent_sa16_pg::test_unknown_usage_survives_stop_and_blocks_new_run_without_refund",
+          "status": "PASS"
+        },
+        {
+          "case": "tests.test_super_agent_sa16_pg::test_trusted_profile_immutable_and_original_connection_enforced",
+          "status": "PASS"
+        }
+      ]
+    },
+    {
+      "round": "formal-repair-02",
+      "source_commit": "3ebe2bbfef1f086674e471bbfa2f0d7cd2a524fa",
+      "source_sha256": "874067c18980143a4ff697158cbe1958ced1f036faf6d781b69c1219df3ce18d",
+      "counts": {
+        "tests": 2,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "junit": "evidence/super-agent-v1/SAV1-16/start-20261114T125101Z-8e48a364/formal-repair-02/junit.xml",
+      "evidence": "evidence/super-agent-v1/SAV1-16/start-20261114T125101Z-8e48a364/formal-repair-02",
+      "commands": {
+        "retest": {
+          "command": [
+            "/home/imini/magr-super-agent/v3/.venv/bin/python",
+            "-m",
+            "pytest",
+            "-q",
+            "tests/test_super_agent_sa16_pg.py::test_shadow_would_create_keeps_all_original_business_records_unchanged",
+            "tests/test_super_agent_sa16_pg.py::test_original_stop_and_new_signal_do_not_automatically_reopen_a_ticket",
+            "--junitxml=/home/imini/magr-super-agent/v3/evidence/super-agent-v1/SAV1-16/start-20261114T125101Z-8e48a364/formal-repair-02/junit.xml"
+          ],
+          "exit_code": 0,
+          "source_commit": "3ebe2bbfef1f086674e471bbfa2f0d7cd2a524fa",
+          "source_sha256": "874067c18980143a4ff697158cbe1958ced1f036faf6d781b69c1219df3ce18d"
+        },
+        "lint": {
+          "command": [
+            "/home/imini/magr-super-agent/v3/.venv/bin/ruff",
+            "check",
+            "src/mgar_v3/super_agent/source_autonomy.py",
+            "src/mgar_v3/super_agent/source_autonomy_factory.py"
+          ],
+          "exit_code": 0,
+          "source_commit": "3ebe2bbfef1f086674e471bbfa2f0d7cd2a524fa",
+          "source_sha256": "874067c18980143a4ff697158cbe1958ced1f036faf6d781b69c1219df3ce18d"
+        }
+      },
+      "candidate_archive": {
+        "UTC": "2026-11-14T13:42:12.951920+00:00",
+        "source_commit": "3ebe2bbfef1f086674e471bbfa2f0d7cd2a524fa",
+        "source_sha256": "874067c18980143a4ff697158cbe1958ced1f036faf6d781b69c1219df3ce18d",
+        "archive": "evidence/super-agent-v1/SAV1-16/start-20261114T125101Z-8e48a364/formal-repair-02/source-3ebe2bbfef1f.tar.gz",
+        "archive_sha256": "688cb506142a1cc3a62a32bcf998c155443e670cbb169fe71f1fdb0e9c0d2112",
+        "archive_source_sha256": "874067c18980143a4ff697158cbe1958ced1f036faf6d781b69c1219df3ce18d",
+        "scope": "Only last2 failed formal cases and last2 lint files; prior62 formal PASS and type PASS excluded",
+        "scope_targets": {
+          "round": "formal-repair-02",
+          "scope": "Only last2 failed formal cases and last2 lint files; prior62 formal PASS and type PASS excluded",
+          "commands": {
+            "retest": [
+              "{APP}/.venv/bin/python",
+              "-m",
+              "pytest",
+              "-q",
+              "tests/test_super_agent_sa16_pg.py::test_shadow_would_create_keeps_all_original_business_records_unchanged",
+              "tests/test_super_agent_sa16_pg.py::test_original_stop_and_new_signal_do_not_automatically_reopen_a_ticket",
+              "--junitxml={E}/junit.xml"
+            ],
+            "lint": [
+              "{APP}/.venv/bin/ruff",
+              "check",
+              "src/mgar_v3/super_agent/source_autonomy.py",
+              "src/mgar_v3/super_agent/source_autonomy_factory.py"
+            ]
+          }
+        }
+      },
+      "cases": [
+        {
+          "case": "tests.test_super_agent_sa16_pg::test_shadow_would_create_keeps_all_original_business_records_unchanged",
+          "status": "PASS"
+        },
+        {
+          "case": "tests.test_super_agent_sa16_pg::test_original_stop_and_new_signal_do_not_automatically_reopen_a_ticket",
+          "status": "PASS"
+        }
+      ]
+    },
+    {
+      "round": "new-boundaries-initial",
+      "source_commit": "32c54634cfe6b36722d0756bc5045a065f30f6b0",
+      "source_sha256": "9e7e2ef28ff2aab55171d808759932adf2366699e888ae6e1016afd2763b6c47",
+      "counts": {
+        "tests": 18,
+        "failures": 3,
+        "errors": 0,
+        "skipped": 0
+      },
+      "junit": "evidence/SAV1-16-NEW-BOUNDARIES/20261114T135220Z-0c2112e1/junit.xml",
+      "evidence": "evidence/super-agent-v1/SAV1-16/start-20261114T125101Z-8e48a364/new-boundaries-initial",
+      "commands": {
+        "registered": {
+          "command": [
+            "make",
+            "verify",
+            "TASK=SAV1-16-NEW-BOUNDARIES"
+          ],
+          "exit_code": 2,
+          "source_commit": "32c54634cfe6b36722d0756bc5045a065f30f6b0",
+          "source_sha256": "9e7e2ef28ff2aab55171d808759932adf2366699e888ae6e1016afd2763b6c47"
+        },
+        "lint": {
+          "command": [
+            "/home/imini/magr-super-agent/v3/.venv/bin/ruff",
+            "check",
+            "tests/test_super_agent_sa16_boundaries.py",
+            "tests/sa16_crash_actor.py",
+            "tests/test_super_agent_sa16_recovery.py",
+            "tests/test_super_agent_sa16_runtime.py"
+          ],
+          "exit_code": 0,
+          "source_commit": "32c54634cfe6b36722d0756bc5045a065f30f6b0",
+          "source_sha256": "9e7e2ef28ff2aab55171d808759932adf2366699e888ae6e1016afd2763b6c47"
+        }
+      },
+      "candidate_archive": {
+        "UTC": "2026-11-14T13:52:18.803124+00:00",
+        "source_commit": "32c54634cfe6b36722d0756bc5045a065f30f6b0",
+        "source_sha256": "9e7e2ef28ff2aab55171d808759932adf2366699e888ae6e1016afd2763b6c47",
+        "archive": "evidence/super-agent-v1/SAV1-16/start-20261114T125101Z-8e48a364/new-boundaries-initial/source-32c54634cfe6.tar.gz",
+        "archive_sha256": "4dc2c7af7cda4d7cc1306d3cbeba33153387f2c55aa7710d6513bbbaa7fb6e53",
+        "archive_source_sha256": "9e7e2ef28ff2aab55171d808759932adf2366699e888ae6e1016afd2763b6c47",
+        "scope": "Only first16 new lifecycle/schedule/realSIGKILL/actualCoding checks; prior64/private87 excluded",
+        "scope_targets": {
+          "round": "new-boundaries-initial",
+          "scope": "Only first16 new lifecycle/schedule/realSIGKILL/actualCoding checks; prior64/private87 excluded",
+          "timeout": 1200,
+          "commands": {
+            "registered": [
+              "make",
+              "verify",
+              "TASK=SAV1-16-NEW-BOUNDARIES"
+            ],
+            "lint": [
+              "{APP}/.venv/bin/ruff",
+              "check",
+              "tests/test_super_agent_sa16_boundaries.py",
+              "tests/sa16_crash_actor.py",
+              "tests/test_super_agent_sa16_recovery.py",
+              "tests/test_super_agent_sa16_runtime.py"
+            ]
+          }
+        }
+      },
+      "cases": [
+        {
+          "case": "tests.test_super_agent_sa16_boundaries::test_original_readonly_graph_verifier_completes_silently_from_team_rule",
+          "status": "PASS"
+        },
+        {
+          "case": "tests.test_super_agent_sa16_boundaries::test_new_candidates_obey_durable_cooldown_and_active_caps[cooldown]",
+          "status": "PASS"
+        },
+        {
+          "case": "tests.test_super_agent_sa16_boundaries::test_new_candidates_obey_durable_cooldown_and_active_caps[active]",
+          "status": "PASS"
+        },
+        {
+          "case": "tests.test_super_agent_sa16_boundaries::test_explicit_reopen_creates_new_run_under_same_ticket_without_resetting_old_budgets",
+          "status": "PASS"
+        },
+        {
+          "case": "tests.test_super_agent_sa16_boundaries::test_reopen_rejects_stale_authority_without_recreating_task_or_refunding[old_epoch]",
+          "status": "PASS"
+        },
+        {
+          "case": "tests.test_super_agent_sa16_boundaries::test_reopen_rejects_stale_authority_without_recreating_task_or_refunding[same_source]",
+          "status": "PASS"
+        },
+        {
+          "case": "tests.test_super_agent_sa16_boundaries::test_reopen_rejects_stale_authority_without_recreating_task_or_refunding[attempt_limit]",
+          "status": "PASS"
+        },
+        {
+          "case": "tests.test_super_agent_sa16_boundaries::test_reopen_rejects_stale_authority_without_recreating_task_or_refunding[unknown]",
+          "status": "FAIL"
+        },
+        {
+          "case": "tests.test_super_agent_sa16_boundaries::test_waiting_drains_then_releases_only_after_original_resource_absence_receipt",
+          "status": "PASS"
+        },
+        {
+          "case": "tests.test_super_agent_sa16_boundaries::test_persistent_tick_unique_across_repeated_cycles_and_rule_revision[False]",
+          "status": "PASS"
+        },
+        {
+          "case": "tests.test_super_agent_sa16_boundaries::test_persistent_tick_unique_across_repeated_cycles_and_rule_revision[True]",
+          "status": "PASS"
+        },
+        {
+          "case": "tests.test_super_agent_sa16_boundaries::test_expired_or_changed_timer_seed_is_audited_without_original_task",
+          "status": "PASS"
+        },
+        {
+          "case": "tests.test_super_agent_sa16_boundaries::test_format_repair_preserves_agreed_scheduler_ast_and_exact_hash_chain",
+          "status": "PASS"
+        },
+        {
+          "case": "tests.test_super_agent_sa16_recovery::test_real_sigkill_keeps_original_atomicity_claim_and_stop_fence[before_admission_commit]",
+          "status": "PASS"
+        },
+        {
+          "case": "tests.test_super_agent_sa16_recovery::test_real_sigkill_keeps_original_atomicity_claim_and_stop_fence[after_admission_commit]",
+          "status": "PASS"
+        },
+        {
+          "case": "tests.test_super_agent_sa16_recovery::test_real_sigkill_keeps_original_atomicity_claim_and_stop_fence[after_disable_commit]",
+          "status": "PASS"
+        },
+        {
+          "case": "tests.test_super_agent_sa16_runtime::test_autonomous_team_rule_repair_has_actual_diff_tests_usage_and_review_wait",
+          "status": "FAIL"
+        },
+        {
+          "case": "tests.test_super_agent_sa16_runtime::test_committed_rule_disable_after_original_budget_reservation_prevents_model_send",
+          "status": "FAIL"
+        }
+      ],
+      "registered_result": "evidence/SAV1-16-NEW-BOUNDARIES/20261114T135220Z-0c2112e1/result.json"
+    },
+    {
+      "round": "new-boundaries-repair-01",
+      "source_commit": "a8821678d8931b782ae3b21342072c09d64f78cd",
+      "source_sha256": "7d54cca7e94c14e4bea1459e8e806f50e2ef84d060135de8ca9a25548f24e82a",
+      "counts": {
+        "tests": 3,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "junit": "evidence/super-agent-v1/SAV1-16/start-20261114T125101Z-8e48a364/new-boundaries-repair-01/junit.xml",
+      "evidence": "evidence/super-agent-v1/SAV1-16/start-20261114T125101Z-8e48a364/new-boundaries-repair-01",
+      "commands": {
+        "retest": {
+          "command": [
+            "/home/imini/magr-super-agent/v3/.venv/bin/python",
+            "-m",
+            "pytest",
+            "-q",
+            "tests/test_super_agent_sa16_boundaries.py::test_reopen_rejects_stale_authority_without_recreating_task_or_refunding[unknown]",
+            "tests/test_super_agent_sa16_runtime.py::test_autonomous_team_rule_repair_has_actual_diff_tests_usage_and_review_wait",
+            "tests/test_super_agent_sa16_runtime.py::test_committed_rule_disable_after_original_budget_reservation_prevents_model_send",
+            "--junitxml=/home/imini/magr-super-agent/v3/evidence/super-agent-v1/SAV1-16/start-20261114T125101Z-8e48a364/new-boundaries-repair-01/junit.xml"
+          ],
+          "exit_code": 0,
+          "source_commit": "a8821678d8931b782ae3b21342072c09d64f78cd",
+          "source_sha256": "7d54cca7e94c14e4bea1459e8e806f50e2ef84d060135de8ca9a25548f24e82a"
+        }
+      },
+      "candidate_archive": {
+        "UTC": "2026-11-14T13:55:26.931319+00:00",
+        "source_commit": "a8821678d8931b782ae3b21342072c09d64f78cd",
+        "source_sha256": "7d54cca7e94c14e4bea1459e8e806f50e2ef84d060135de8ca9a25548f24e82a",
+        "archive": "evidence/super-agent-v1/SAV1-16/start-20261114T125101Z-8e48a364/new-boundaries-repair-01/source-a8821678d893.tar.gz",
+        "archive_sha256": "c4a76dc6a8b03956906fd3d7382eeb2618507e68af42505c3f4173a33b71ac3b",
+        "archive_source_sha256": "7d54cca7e94c14e4bea1459e8e806f50e2ef84d060135de8ca9a25548f24e82a",
+        "scope": "Only3 original failed new boundaries;15PASS and prior151 checks/static PASS excluded",
+        "scope_targets": {
+          "round": "new-boundaries-repair-01",
+          "scope": "Only3 original failed new boundaries;15PASS and prior151 checks/static PASS excluded",
+          "timeout": 1200,
+          "commands": {
+            "retest": [
+              "{APP}/.venv/bin/python",
+              "-m",
+              "pytest",
+              "-q",
+              "tests/test_super_agent_sa16_boundaries.py::test_reopen_rejects_stale_authority_without_recreating_task_or_refunding[unknown]",
+              "tests/test_super_agent_sa16_runtime.py::test_autonomous_team_rule_repair_has_actual_diff_tests_usage_and_review_wait",
+              "tests/test_super_agent_sa16_runtime.py::test_committed_rule_disable_after_original_budget_reservation_prevents_model_send",
+              "--junitxml={E}/junit.xml"
+            ]
+          }
+        }
+      },
+      "cases": [
+        {
+          "case": "tests.test_super_agent_sa16_boundaries::test_reopen_rejects_stale_authority_without_recreating_task_or_refunding[unknown]",
+          "status": "PASS"
+        },
+        {
+          "case": "tests.test_super_agent_sa16_runtime::test_autonomous_team_rule_repair_has_actual_diff_tests_usage_and_review_wait",
+          "status": "PASS"
+        },
+        {
+          "case": "tests.test_super_agent_sa16_runtime::test_committed_rule_disable_after_original_budget_reservation_prevents_model_send",
+          "status": "PASS"
+        }
+      ]
+    },
+    {
+      "round": "final-boundaries-initial",
+      "source_commit": "9bf8e5c0e8d03e9a0ae7dacbb84fecd6fca815cc",
+      "source_sha256": "430f289d351ffc9b7be31a0f75022b9d2817ed4b6a58e39dbc60e7498a4344d5",
+      "counts": {
+        "tests": 11,
+        "failures": 1,
+        "errors": 0,
+        "skipped": 0
+      },
+      "junit": "evidence/SAV1-16-FINAL-BOUNDARIES/20261114T140616Z-af18671b/junit.xml",
+      "evidence": "evidence/super-agent-v1/SAV1-16/start-20261114T125101Z-8e48a364/final-boundaries-initial",
+      "commands": {
+        "registered": {
+          "command": [
+            "make",
+            "verify",
+            "TASK=SAV1-16-FINAL-BOUNDARIES"
+          ],
+          "exit_code": 2,
+          "source_commit": "9bf8e5c0e8d03e9a0ae7dacbb84fecd6fca815cc",
+          "source_sha256": "430f289d351ffc9b7be31a0f75022b9d2817ed4b6a58e39dbc60e7498a4344d5"
+        },
+        "new-lint": {
+          "command": [
+            "/home/imini/magr-super-agent/v3/.venv/bin/ruff",
+            "check",
+            "src/mgar_v3/super_agent/source_autonomy.py",
+            "src/mgar_v3/super_agent/source_autonomy_runtime.py",
+            "tests/test_super_agent_sa16_deferred.py",
+            "tests/test_super_agent_sa16_catalogue.py"
+          ],
+          "exit_code": 1,
+          "source_commit": "9bf8e5c0e8d03e9a0ae7dacbb84fecd6fca815cc",
+          "source_sha256": "430f289d351ffc9b7be31a0f75022b9d2817ed4b6a58e39dbc60e7498a4344d5"
+        },
+        "new-typecheck": {
+          "command": [
+            "/home/imini/magr-super-agent/v3/.venv/bin/python",
+            "-m",
+            "mypy",
+            "--config-file",
+            "pyproject.toml",
+            "--follow-imports=silent",
+            "src/mgar_v3/super_agent/source_autonomy.py",
+            "src/mgar_v3/super_agent/source_autonomy_runtime.py"
+          ],
+          "exit_code": 0,
+          "source_commit": "9bf8e5c0e8d03e9a0ae7dacbb84fecd6fca815cc",
+          "source_sha256": "430f289d351ffc9b7be31a0f75022b9d2817ed4b6a58e39dbc60e7498a4344d5"
+        }
+      },
+      "candidate_archive": {
+        "UTC": "2026-11-14T14:06:13.862663+00:00",
+        "source_commit": "9bf8e5c0e8d03e9a0ae7dacbb84fecd6fca815cc",
+        "source_sha256": "430f289d351ffc9b7be31a0f75022b9d2817ed4b6a58e39dbc60e7498a4344d5",
+        "archive": "evidence/super-agent-v1/SAV1-16/start-20261114T125101Z-8e48a364/final-boundaries-initial/source-9bf8e5c0e8d0.tar.gz",
+        "archive_sha256": "bbc096b8973374da655d9287415df921aaf23a3fc53c76ac985e58271706892a",
+        "archive_source_sha256": "430f289d351ffc9b7be31a0f75022b9d2817ed4b6a58e39dbc60e7498a4344d5",
+        "scope": "Only first11 deferred admission/version/terminal queue/schema/catalogue checks; prior82formal+87private PASS excluded",
+        "scope_targets": {
+          "round": "final-boundaries-initial",
+          "scope": "Only first11 deferred admission/version/terminal queue/schema/catalogue checks; prior82formal+87private PASS excluded",
+          "timeout": 300,
+          "commands": {
+            "registered": [
+              "make",
+              "verify",
+              "TASK=SAV1-16-FINAL-BOUNDARIES"
+            ],
+            "new-lint": [
+              "{APP}/.venv/bin/ruff",
+              "check",
+              "src/mgar_v3/super_agent/source_autonomy.py",
+              "src/mgar_v3/super_agent/source_autonomy_runtime.py",
+              "tests/test_super_agent_sa16_deferred.py",
+              "tests/test_super_agent_sa16_catalogue.py"
+            ],
+            "new-typecheck": [
+              "{APP}/.venv/bin/python",
+              "-m",
+              "mypy",
+              "--config-file",
+              "pyproject.toml",
+              "--follow-imports=silent",
+              "src/mgar_v3/super_agent/source_autonomy.py",
+              "src/mgar_v3/super_agent/source_autonomy_runtime.py"
+            ]
+          }
+        }
+      },
+      "cases": [
+        {
+          "case": "tests.test_super_agent_sa16_deferred::test_original_admission_wait_is_visible_and_retries_same_claim_without_second_task",
+          "status": "PASS"
+        },
+        {
+          "case": "tests.test_super_agent_sa16_deferred::test_changed_rule_does_not_rewrite_or_upgrade_a_previously_held_claim",
+          "status": "PASS"
+        },
+        {
+          "case": "tests.test_super_agent_sa16_deferred::test_maintenance_prefers_actual_running_work_over_old_terminal_audit_rows",
+          "status": "PASS"
+        },
+        {
+          "case": "tests.test_super_agent_sa16_deferred::test_original_engine_cancellation_releases_only_undispatched_queue_quota",
+          "status": "PASS"
+        },
+        {
+          "case": "tests.test_super_agent_sa16_catalogue::test_frozen_public_and_internal_schemas_match_strict_versioned_contracts[rule-save]",
+          "status": "PASS"
+        },
+        {
+          "case": "tests.test_super_agent_sa16_catalogue::test_frozen_public_and_internal_schemas_match_strict_versioned_contracts[revision]",
+          "status": "PASS"
+        },
+        {
+          "case": "tests.test_super_agent_sa16_catalogue::test_frozen_public_and_internal_schemas_match_strict_versioned_contracts[reopen]",
+          "status": "PASS"
+        },
+        {
+          "case": "tests.test_super_agent_sa16_catalogue::test_frozen_public_and_internal_schemas_match_strict_versioned_contracts[cycle]",
+          "status": "PASS"
+        },
+        {
+          "case": "tests.test_super_agent_sa16_catalogue::test_frozen_public_and_internal_schemas_match_strict_versioned_contracts[signal]",
+          "status": "PASS"
+        },
+        {
+          "case": "tests.test_super_agent_sa16_catalogue::test_source_catalogues_have_exact_current_artifact_bytes",
+          "status": "FAIL"
+        },
+        {
+          "case": "tests.test_super_agent_sa16_catalogue::test_autonomy_catalogue_declares_no_default_runtime_notification_or_real_activation",
+          "status": "PASS"
+        }
+      ],
+      "registered_result": "evidence/SAV1-16-FINAL-BOUNDARIES/20261114T140616Z-af18671b/result.json"
+    },
+    {
+      "round": "final-boundaries-repair-01",
+      "source_commit": "becef2bacb423c69cf850317ce64b34ed4c7ccb8",
+      "source_sha256": "cd31d5ad147fb4432f0f1ffcd5db851207100d441462e55687d84886a13db9c8",
+      "counts": {
+        "tests": 1,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "junit": "evidence/super-agent-v1/SAV1-16/start-20261114T125101Z-8e48a364/final-boundaries-repair-01/junit.xml",
+      "evidence": "evidence/super-agent-v1/SAV1-16/start-20261114T125101Z-8e48a364/final-boundaries-repair-01",
+      "commands": {
+        "retest": {
+          "command": [
+            "/home/imini/magr-super-agent/v3/.venv/bin/python",
+            "-m",
+            "pytest",
+            "-q",
+            "tests/test_super_agent_sa16_catalogue.py::test_source_catalogues_have_exact_current_artifact_bytes",
+            "--junitxml=/home/imini/magr-super-agent/v3/evidence/super-agent-v1/SAV1-16/start-20261114T125101Z-8e48a364/final-boundaries-repair-01/junit.xml"
+          ],
+          "exit_code": 0,
+          "source_commit": "becef2bacb423c69cf850317ce64b34ed4c7ccb8",
+          "source_sha256": "cd31d5ad147fb4432f0f1ffcd5db851207100d441462e55687d84886a13db9c8"
+        },
+        "lint": {
+          "command": [
+            "/home/imini/magr-super-agent/v3/.venv/bin/ruff",
+            "check",
+            "src/mgar_v3/super_agent/source_autonomy.py",
+            "src/mgar_v3/super_agent/source_autonomy_runtime.py"
+          ],
+          "exit_code": 0,
+          "source_commit": "becef2bacb423c69cf850317ce64b34ed4c7ccb8",
+          "source_sha256": "cd31d5ad147fb4432f0f1ffcd5db851207100d441462e55687d84886a13db9c8"
+        }
+      },
+      "candidate_archive": {
+        "UTC": "2026-11-14T14:10:36.712934+00:00",
+        "source_commit": "becef2bacb423c69cf850317ce64b34ed4c7ccb8",
+        "source_sha256": "cd31d5ad147fb4432f0f1ffcd5db851207100d441462e55687d84886a13db9c8",
+        "archive": "evidence/super-agent-v1/SAV1-16/start-20261114T125101Z-8e48a364/final-boundaries-repair-01/source-becef2bacb42.tar.gz",
+        "archive_sha256": "38b9cec38716fb8702940626b3c4214cae3a6e5450319829c0900b31c1a130a5",
+        "archive_source_sha256": "cd31d5ad147fb4432f0f1ffcd5db851207100d441462e55687d84886a13db9c8",
+        "scope": "Only final failed artifact-catalogue test and failed lint files; previous10final+82formal+87private PASS/type PASS excluded",
+        "scope_targets": {
+          "round": "final-boundaries-repair-01",
+          "scope": "Only final failed artifact-catalogue test and failed lint files; previous10final+82formal+87private PASS/type PASS excluded",
+          "commands": {
+            "retest": [
+              "{APP}/.venv/bin/python",
+              "-m",
+              "pytest",
+              "-q",
+              "tests/test_super_agent_sa16_catalogue.py::test_source_catalogues_have_exact_current_artifact_bytes",
+              "--junitxml={E}/junit.xml"
+            ],
+            "lint": [
+              "{APP}/.venv/bin/ruff",
+              "check",
+              "src/mgar_v3/super_agent/source_autonomy.py",
+              "src/mgar_v3/super_agent/source_autonomy_runtime.py"
+            ]
+          }
+        }
+      },
+      "cases": [
+        {
+          "case": "tests.test_super_agent_sa16_catalogue::test_source_catalogues_have_exact_current_artifact_bytes",
+          "status": "PASS"
+        }
+      ]
+    }
+  ],
+  "latest_case_index": {
+    "tests.test_super_agent_sa16_contracts::test_modes_never_expand_profile_or_send_messages[disabled-coding-ignored]": {
+      "latest": "PASS",
+      "last_round": "private-initial",
+      "source_commit": "be88c957eb4768ebdc0ea294ae01d6f5aea34c5e"
+    },
+    "tests.test_super_agent_sa16_contracts::test_modes_never_expand_profile_or_send_messages[shadow-coding-shadow]": {
+      "latest": "PASS",
+      "last_round": "private-initial",
+      "source_commit": "be88c957eb4768ebdc0ea294ae01d6f5aea34c5e"
+    },
+    "tests.test_super_agent_sa16_contracts::test_modes_never_expand_profile_or_send_messages[auto_repair-coding-admit]": {
+      "latest": "PASS",
+      "last_round": "private-initial",
+      "source_commit": "be88c957eb4768ebdc0ea294ae01d6f5aea34c5e"
+    },
+    "tests.test_super_agent_sa16_contracts::test_modes_never_expand_profile_or_send_messages[auto_investigate-readonly-admit]": {
+      "latest": "PASS",
+      "last_round": "private-initial",
+      "source_commit": "be88c957eb4768ebdc0ea294ae01d6f5aea34c5e"
+    },
+    "tests.test_super_agent_sa16_contracts::test_modes_never_expand_profile_or_send_messages[auto_investigate-coding-held]": {
+      "latest": "PASS",
+      "last_round": "private-initial",
+      "source_commit": "be88c957eb4768ebdc0ea294ae01d6f5aea34c5e"
+    },
+    "tests.test_super_agent_sa16_contracts::test_modes_never_expand_profile_or_send_messages[auto_repair-readonly-held]": {
+      "latest": "PASS",
+      "last_round": "private-initial",
+      "source_commit": "be88c957eb4768ebdc0ea294ae01d6f5aea34c5e"
+    },
+    "tests.test_super_agent_sa16_contracts::test_each_current_authority_fact_is_required[source_current]": {
+      "latest": "PASS",
+      "last_round": "private-initial",
+      "source_commit": "be88c957eb4768ebdc0ea294ae01d6f5aea34c5e"
+    },
+    "tests.test_super_agent_sa16_contracts::test_each_current_authority_fact_is_required[identity_current]": {
+      "latest": "PASS",
+      "last_round": "private-initial",
+      "source_commit": "be88c957eb4768ebdc0ea294ae01d6f5aea34c5e"
+    },
+    "tests.test_super_agent_sa16_contracts::test_each_current_authority_fact_is_required[policy_current]": {
+      "latest": "PASS",
+      "last_round": "private-initial",
+      "source_commit": "be88c957eb4768ebdc0ea294ae01d6f5aea34c5e"
+    },
+    "tests.test_super_agent_sa16_contracts::test_each_current_authority_fact_is_required[receive_allowed]": {
+      "latest": "PASS",
+      "last_round": "private-initial",
+      "source_commit": "be88c957eb4768ebdc0ea294ae01d6f5aea34c5e"
+    },
+    "tests.test_super_agent_sa16_contracts::test_each_current_authority_fact_is_required[model_input_allowed]": {
+      "latest": "PASS",
+      "last_round": "private-initial",
+      "source_commit": "be88c957eb4768ebdc0ea294ae01d6f5aea34c5e"
+    },
+    "tests.test_super_agent_sa16_contracts::test_each_current_authority_fact_is_required[admission_allowed]": {
+      "latest": "PASS",
+      "last_round": "private-initial",
+      "source_commit": "be88c957eb4768ebdc0ea294ae01d6f5aea34c5e"
+    },
+    "tests.test_super_agent_sa16_contracts::test_each_current_authority_fact_is_required[execution_allowed]": {
+      "latest": "PASS",
+      "last_round": "private-initial",
+      "source_commit": "be88c957eb4768ebdc0ea294ae01d6f5aea34c5e"
+    },
+    "tests.test_super_agent_sa16_contracts::test_each_current_authority_fact_is_required[rule_basis_current]": {
+      "latest": "PASS",
+      "last_round": "private-initial",
+      "source_commit": "be88c957eb4768ebdc0ea294ae01d6f5aea34c5e"
+    },
+    "tests.test_super_agent_sa16_contracts::test_each_current_authority_fact_is_required[canonical_current]": {
+      "latest": "PASS",
+      "last_round": "private-initial",
+      "source_commit": "be88c957eb4768ebdc0ea294ae01d6f5aea34c5e"
+    },
+    "tests.test_super_agent_sa16_contracts::test_each_current_authority_fact_is_required[resource_claim_current]": {
+      "latest": "PASS",
+      "last_round": "private-initial",
+      "source_commit": "be88c957eb4768ebdc0ea294ae01d6f5aea34c5e"
+    },
+    "tests.test_super_agent_sa16_contracts::test_each_current_authority_fact_is_required[profile_current]": {
+      "latest": "PASS",
+      "last_round": "private-initial",
+      "source_commit": "be88c957eb4768ebdc0ea294ae01d6f5aea34c5e"
+    },
+    "tests.test_super_agent_sa16_contracts::test_facts_cannot_switch_signed_rule[rule_id-value0]": {
+      "latest": "PASS",
+      "last_round": "private-initial",
+      "source_commit": "be88c957eb4768ebdc0ea294ae01d6f5aea34c5e"
+    },
+    "tests.test_super_agent_sa16_contracts::test_facts_cannot_switch_signed_rule[rule_revision-2]": {
+      "latest": "PASS",
+      "last_round": "private-initial",
+      "source_commit": "be88c957eb4768ebdc0ea294ae01d6f5aea34c5e"
+    },
+    "tests.test_super_agent_sa16_contracts::test_facts_cannot_switch_signed_rule[definition_sha256-1111111111111111111111111111111111111111111111111111111111111111]": {
+      "latest": "PASS",
+      "last_round": "private-initial",
+      "source_commit": "be88c957eb4768ebdc0ea294ae01d6f5aea34c5e"
+    },
+    "tests.test_super_agent_sa16_contracts::test_signal_scope_must_match_rule[source_instance_id-value0]": {
+      "latest": "PASS",
+      "last_round": "private-initial",
+      "source_commit": "be88c957eb4768ebdc0ea294ae01d6f5aea34c5e"
+    },
+    "tests.test_super_agent_sa16_contracts::test_signal_scope_must_match_rule[policy_id-value1]": {
+      "latest": "PASS",
+      "last_round": "private-initial",
+      "source_commit": "be88c957eb4768ebdc0ea294ae01d6f5aea34c5e"
+    },
+    "tests.test_super_agent_sa16_contracts::test_signal_scope_must_match_rule[policy_revision-2]": {
+      "latest": "PASS",
+      "last_round": "private-initial",
+      "source_commit": "be88c957eb4768ebdc0ea294ae01d6f5aea34c5e"
+    },
+    "tests.test_super_agent_sa16_contracts::test_signal_scope_must_match_rule[policy_sha256-1111111111111111111111111111111111111111111111111111111111111111]": {
+      "latest": "PASS",
+      "last_round": "private-initial",
+      "source_commit": "be88c957eb4768ebdc0ea294ae01d6f5aea34c5e"
+    },
+    "tests.test_super_agent_sa16_contracts::test_signal_scope_must_match_rule[repository-other/private]": {
+      "latest": "PASS",
+      "last_round": "private-initial",
+      "source_commit": "be88c957eb4768ebdc0ea294ae01d6f5aea34c5e"
+    },
+    "tests.test_super_agent_sa16_contracts::test_non_create_decisions_never_allocate_a_worker[would_ignore]": {
+      "latest": "PASS",
+      "last_round": "private-initial",
+      "source_commit": "be88c957eb4768ebdc0ea294ae01d6f5aea34c5e"
+    },
+    "tests.test_super_agent_sa16_contracts::test_non_create_decisions_never_allocate_a_worker[would_observe]": {
+      "latest": "PASS",
+      "last_round": "private-initial",
+      "source_commit": "be88c957eb4768ebdc0ea294ae01d6f5aea34c5e"
+    },
+    "tests.test_super_agent_sa16_contracts::test_non_create_decisions_never_allocate_a_worker[would_attach]": {
+      "latest": "PASS",
+      "last_round": "private-initial",
+      "source_commit": "be88c957eb4768ebdc0ea294ae01d6f5aea34c5e"
+    },
+    "tests.test_super_agent_sa16_contracts::test_non_create_decisions_never_allocate_a_worker[would_ask]": {
+      "latest": "PASS",
+      "last_round": "private-initial",
+      "source_commit": "be88c957eb4768ebdc0ea294ae01d6f5aea34c5e"
+    },
+    "tests.test_super_agent_sa16_contracts::test_bounded_retries_cooldown_unknown_budget_and_executor_wait[updates0-ALREADY_CLAIMED]": {
+      "latest": "PASS",
+      "last_round": "private-initial",
+      "source_commit": "be88c957eb4768ebdc0ea294ae01d6f5aea34c5e"
+    },
+    "tests.test_super_agent_sa16_contracts::test_bounded_retries_cooldown_unknown_budget_and_executor_wait[updates1-EXPLICIT_REOPEN_REQUIRED]": {
+      "latest": "PASS",
+      "last_round": "private-initial",
+      "source_commit": "be88c957eb4768ebdc0ea294ae01d6f5aea34c5e"
+    },
+    "tests.test_super_agent_sa16_contracts::test_bounded_retries_cooldown_unknown_budget_and_executor_wait[updates2-ATTEMPT_LIMIT]": {
+      "latest": "PASS",
+      "last_round": "private-initial",
+      "source_commit": "be88c957eb4768ebdc0ea294ae01d6f5aea34c5e"
+    },
+    "tests.test_super_agent_sa16_contracts::test_bounded_retries_cooldown_unknown_budget_and_executor_wait[updates3-COOLDOWN]": {
+      "latest": "PASS",
+      "last_round": "private-initial",
+      "source_commit": "be88c957eb4768ebdc0ea294ae01d6f5aea34c5e"
+    },
+    "tests.test_super_agent_sa16_contracts::test_bounded_retries_cooldown_unknown_budget_and_executor_wait[updates4-ACTIVE_LIMIT]": {
+      "latest": "PASS",
+      "last_round": "private-initial",
+      "source_commit": "be88c957eb4768ebdc0ea294ae01d6f5aea34c5e"
+    },
+    "tests.test_super_agent_sa16_contracts::test_bounded_retries_cooldown_unknown_budget_and_executor_wait[updates5-USAGE_UNKNOWN]": {
+      "latest": "PASS",
+      "last_round": "private-initial",
+      "source_commit": "be88c957eb4768ebdc0ea294ae01d6f5aea34c5e"
+    },
+    "tests.test_super_agent_sa16_contracts::test_bounded_retries_cooldown_unknown_budget_and_executor_wait[updates6-BUDGET_WAIT]": {
+      "latest": "PASS",
+      "last_round": "private-initial",
+      "source_commit": "be88c957eb4768ebdc0ea294ae01d6f5aea34c5e"
+    },
+    "tests.test_super_agent_sa16_contracts::test_bounded_retries_cooldown_unknown_budget_and_executor_wait[updates7-EXECUTOR_NOT_CONFIGURED]": {
+      "latest": "PASS",
+      "last_round": "private-initial",
+      "source_commit": "be88c957eb4768ebdc0ea294ae01d6f5aea34c5e"
+    },
+    "tests.test_super_agent_sa16_contracts::test_bounded_retries_cooldown_unknown_budget_and_executor_wait[updates8-REAL_QUALITY_GATE_CLOSED]": {
+      "latest": "PASS",
+      "last_round": "private-initial",
+      "source_commit": "be88c957eb4768ebdc0ea294ae01d6f5aea34c5e"
+    },
+    "tests.test_super_agent_sa16_contracts::test_exact_ttl_and_cooldown_boundaries": {
+      "latest": "PASS",
+      "last_round": "private-initial",
+      "source_commit": "be88c957eb4768ebdc0ea294ae01d6f5aea34c5e"
+    },
+    "tests.test_super_agent_sa16_contracts::test_rule_json_rejects_runtime_or_authority_fields[actor]": {
+      "latest": "PASS",
+      "last_round": "private-initial",
+      "source_commit": "be88c957eb4768ebdc0ea294ae01d6f5aea34c5e"
+    },
+    "tests.test_super_agent_sa16_contracts::test_rule_json_rejects_runtime_or_authority_fields[provider]": {
+      "latest": "PASS",
+      "last_round": "private-initial",
+      "source_commit": "be88c957eb4768ebdc0ea294ae01d6f5aea34c5e"
+    },
+    "tests.test_super_agent_sa16_contracts::test_rule_json_rejects_runtime_or_authority_fields[token]": {
+      "latest": "PASS",
+      "last_round": "private-initial",
+      "source_commit": "be88c957eb4768ebdc0ea294ae01d6f5aea34c5e"
+    },
+    "tests.test_super_agent_sa16_contracts::test_rule_json_rejects_runtime_or_authority_fields[trusted]": {
+      "latest": "PASS",
+      "last_round": "private-initial",
+      "source_commit": "be88c957eb4768ebdc0ea294ae01d6f5aea34c5e"
+    },
+    "tests.test_super_agent_sa16_contracts::test_rule_json_rejects_runtime_or_authority_fields[budget_reset]": {
+      "latest": "PASS",
+      "last_round": "private-initial",
+      "source_commit": "be88c957eb4768ebdc0ea294ae01d6f5aea34c5e"
+    },
+    "tests.test_super_agent_sa16_contracts::test_rule_json_rejects_runtime_or_authority_fields[notification]": {
+      "latest": "PASS",
+      "last_round": "private-initial",
+      "source_commit": "be88c957eb4768ebdc0ea294ae01d6f5aea34c5e"
+    },
+    "tests.test_super_agent_sa16_contracts::test_rule_json_rejects_runtime_or_authority_fields[paid]": {
+      "latest": "PASS",
+      "last_round": "private-initial",
+      "source_commit": "be88c957eb4768ebdc0ea294ae01d6f5aea34c5e"
+    },
+    "tests.test_super_agent_sa16_contracts::test_rule_json_rejects_runtime_or_authority_fields[execution_mode]": {
+      "latest": "PASS",
+      "last_round": "private-initial",
+      "source_commit": "be88c957eb4768ebdc0ea294ae01d6f5aea34c5e"
+    },
+    "tests.test_super_agent_sa16_contracts::test_rule_json_rejects_runtime_or_authority_fields[task_succeeded]": {
+      "latest": "PASS",
+      "last_round": "private-initial",
+      "source_commit": "be88c957eb4768ebdc0ea294ae01d6f5aea34c5e"
+    },
+    "tests.test_super_agent_sa16_contracts::test_rule_json_rejects_runtime_or_authority_fields[factory]": {
+      "latest": "PASS",
+      "last_round": "private-initial",
+      "source_commit": "be88c957eb4768ebdc0ea294ae01d6f5aea34c5e"
+    },
+    "tests.test_super_agent_sa16_contracts::test_rule_json_rejects_runtime_or_authority_fields[mandate]": {
+      "latest": "PASS",
+      "last_round": "private-initial",
+      "source_commit": "be88c957eb4768ebdc0ea294ae01d6f5aea34c5e"
+    },
+    "tests.test_super_agent_sa16_contracts::test_rule_limits_and_aware_expiry_are_strict[cooldown_seconds-0]": {
+      "latest": "PASS",
+      "last_round": "private-initial",
+      "source_commit": "be88c957eb4768ebdc0ea294ae01d6f5aea34c5e"
+    },
+    "tests.test_super_agent_sa16_contracts::test_rule_limits_and_aware_expiry_are_strict[cooldown_seconds-True]": {
+      "latest": "PASS",
+      "last_round": "private-initial",
+      "source_commit": "be88c957eb4768ebdc0ea294ae01d6f5aea34c5e"
+    },
+    "tests.test_super_agent_sa16_contracts::test_rule_limits_and_aware_expiry_are_strict[task_ttl_seconds-29]": {
+      "latest": "PASS",
+      "last_round": "private-initial",
+      "source_commit": "be88c957eb4768ebdc0ea294ae01d6f5aea34c5e"
+    },
+    "tests.test_super_agent_sa16_contracts::test_rule_limits_and_aware_expiry_are_strict[task_ttl_seconds-86401]": {
+      "latest": "PASS",
+      "last_round": "private-initial",
+      "source_commit": "be88c957eb4768ebdc0ea294ae01d6f5aea34c5e"
+    },
+    "tests.test_super_agent_sa16_contracts::test_rule_limits_and_aware_expiry_are_strict[idle_ttl_seconds-0]": {
+      "latest": "PASS",
+      "last_round": "private-initial",
+      "source_commit": "be88c957eb4768ebdc0ea294ae01d6f5aea34c5e"
+    },
+    "tests.test_super_agent_sa16_contracts::test_rule_limits_and_aware_expiry_are_strict[max_active-0]": {
+      "latest": "PASS",
+      "last_round": "private-initial",
+      "source_commit": "be88c957eb4768ebdc0ea294ae01d6f5aea34c5e"
+    },
+    "tests.test_super_agent_sa16_contracts::test_rule_limits_and_aware_expiry_are_strict[max_active-17]": {
+      "latest": "PASS",
+      "last_round": "private-initial",
+      "source_commit": "be88c957eb4768ebdc0ea294ae01d6f5aea34c5e"
+    },
+    "tests.test_super_agent_sa16_contracts::test_rule_limits_and_aware_expiry_are_strict[max_attempts-4]": {
+      "latest": "PASS",
+      "last_round": "private-initial",
+      "source_commit": "be88c957eb4768ebdc0ea294ae01d6f5aea34c5e"
+    },
+    "tests.test_super_agent_sa16_contracts::test_rule_limits_and_aware_expiry_are_strict[repository-Other/Private]": {
+      "latest": "PASS",
+      "last_round": "private-initial",
+      "source_commit": "be88c957eb4768ebdc0ea294ae01d6f5aea34c5e"
+    },
+    "tests.test_super_agent_sa16_contracts::test_rule_limits_and_aware_expiry_are_strict[policy_revision-True]": {
+      "latest": "PASS",
+      "last_round": "private-initial",
+      "source_commit": "be88c957eb4768ebdc0ea294ae01d6f5aea34c5e"
+    },
+    "tests.test_super_agent_sa16_contracts::test_rule_limits_and_aware_expiry_are_strict[valid_until-value10]": {
+      "latest": "PASS",
+      "last_round": "private-initial",
+      "source_commit": "be88c957eb4768ebdc0ea294ae01d6f5aea34c5e"
+    },
+    "tests.test_super_agent_sa16_contracts::test_invalid_rule_duration_idle_ttl_source_and_schedule": {
+      "latest": "PASS",
+      "last_round": "private-initial",
+      "source_commit": "be88c957eb4768ebdc0ea294ae01d6f5aea34c5e"
+    },
+    "tests.test_super_agent_sa16_contracts::test_bodyless_rule_review_is_explicit_and_immutable": {
+      "latest": "PASS",
+      "last_round": "private-initial",
+      "source_commit": "be88c957eb4768ebdc0ea294ae01d6f5aea34c5e"
+    },
+    "tests.test_super_agent_sa16_contracts::test_unknown_work_or_usage_never_releases_terminal_resource[succeeded]": {
+      "latest": "PASS",
+      "last_round": "private-initial",
+      "source_commit": "be88c957eb4768ebdc0ea294ae01d6f5aea34c5e"
+    },
+    "tests.test_super_agent_sa16_contracts::test_unknown_work_or_usage_never_releases_terminal_resource[failed]": {
+      "latest": "PASS",
+      "last_round": "private-initial",
+      "source_commit": "be88c957eb4768ebdc0ea294ae01d6f5aea34c5e"
+    },
+    "tests.test_super_agent_sa16_contracts::test_unknown_work_or_usage_never_releases_terminal_resource[cancelled]": {
+      "latest": "PASS",
+      "last_round": "private-initial",
+      "source_commit": "be88c957eb4768ebdc0ea294ae01d6f5aea34c5e"
+    },
+    "tests.test_super_agent_sa16_contracts::test_waiting_releases_only_proven_quiet_resources[waiting_input]": {
+      "latest": "PASS",
+      "last_round": "private-initial",
+      "source_commit": "be88c957eb4768ebdc0ea294ae01d6f5aea34c5e"
+    },
+    "tests.test_super_agent_sa16_contracts::test_waiting_releases_only_proven_quiet_resources[waiting_approval]": {
+      "latest": "PASS",
+      "last_round": "private-initial",
+      "source_commit": "be88c957eb4768ebdc0ea294ae01d6f5aea34c5e"
+    },
+    "tests.test_super_agent_sa16_contracts::test_waiting_releases_only_proven_quiet_resources[paused]": {
+      "latest": "PASS",
+      "last_round": "private-initial",
+      "source_commit": "be88c957eb4768ebdc0ea294ae01d6f5aea34c5e"
+    },
+    "tests.test_super_agent_sa16_contracts::test_success_requires_original_receipt_not_summary[False-False-False]": {
+      "latest": "PASS",
+      "last_round": "private-initial",
+      "source_commit": "be88c957eb4768ebdc0ea294ae01d6f5aea34c5e"
+    },
+    "tests.test_super_agent_sa16_contracts::test_success_requires_original_receipt_not_summary[True-False-False]": {
+      "latest": "PASS",
+      "last_round": "private-initial",
+      "source_commit": "be88c957eb4768ebdc0ea294ae01d6f5aea34c5e"
+    },
+    "tests.test_super_agent_sa16_contracts::test_success_requires_original_receipt_not_summary[True-True-True]": {
+      "latest": "PASS",
+      "last_round": "private-initial",
+      "source_commit": "be88c957eb4768ebdc0ea294ae01d6f5aea34c5e"
+    },
+    "tests.test_super_agent_sa16_contracts::test_rule_disable_expiry_and_semantic_idle_stop_without_resetting_unknown": {
+      "latest": "PASS",
+      "last_round": "private-initial",
+      "source_commit": "be88c957eb4768ebdc0ea294ae01d6f5aea34c5e"
+    },
+    "tests.test_super_agent_sa16_contracts::test_timer_defaults_to_signal_without_worker_authority": {
+      "latest": "PASS",
+      "last_round": "private-initial",
+      "source_commit": "be88c957eb4768ebdc0ea294ae01d6f5aea34c5e"
+    },
+    "tests.test_super_agent_sa16_contracts::test_due_tick_once_daily_and_bounded_restart_catchup": {
+      "latest": "PASS",
+      "last_round": "private-initial",
+      "source_commit": "be88c957eb4768ebdc0ea294ae01d6f5aea34c5e"
+    },
+    "tests.test_super_agent_sa16_contracts::test_fall_back_repeated_hour_is_one_local_day_signal": {
+      "latest": "PASS",
+      "last_round": "private-initial",
+      "source_commit": "be88c957eb4768ebdc0ea294ae01d6f5aea34c5e"
+    },
+    "tests.test_super_agent_sa16_contracts::test_spring_forward_nonexistent_local_time_is_not_invented": {
+      "latest": "PASS",
+      "last_round": "private-initial",
+      "source_commit": "be88c957eb4768ebdc0ea294ae01d6f5aea34c5e"
+    },
+    "tests.test_super_agent_sa16_draft::test_draft_preserves_original44_migrations_and_coding_oid": {
+      "latest": "PASS",
+      "last_round": "draft-initial",
+      "source_commit": "3d97eb2f4f11c8de5e2b21d2a57d88131f538410"
+    },
+    "tests.test_super_agent_sa16_draft::test_draft_all_six_tables_have_original_pg_guards[rules]": {
+      "latest": "PASS",
+      "last_round": "draft-initial",
+      "source_commit": "3d97eb2f4f11c8de5e2b21d2a57d88131f538410"
+    },
+    "tests.test_super_agent_sa16_draft::test_draft_all_six_tables_have_original_pg_guards[rule_versions]": {
+      "latest": "PASS",
+      "last_round": "draft-initial",
+      "source_commit": "3d97eb2f4f11c8de5e2b21d2a57d88131f538410"
+    },
+    "tests.test_super_agent_sa16_draft::test_draft_all_six_tables_have_original_pg_guards[ticks]": {
+      "latest": "PASS",
+      "last_round": "draft-initial",
+      "source_commit": "3d97eb2f4f11c8de5e2b21d2a57d88131f538410"
+    },
+    "tests.test_super_agent_sa16_draft::test_draft_all_six_tables_have_original_pg_guards[claims]": {
+      "latest": "PASS",
+      "last_round": "draft-initial",
+      "source_commit": "3d97eb2f4f11c8de5e2b21d2a57d88131f538410"
+    },
+    "tests.test_super_agent_sa16_draft::test_draft_all_six_tables_have_original_pg_guards[attempts]": {
+      "latest": "PASS",
+      "last_round": "draft-initial",
+      "source_commit": "3d97eb2f4f11c8de5e2b21d2a57d88131f538410"
+    },
+    "tests.test_super_agent_sa16_draft::test_draft_all_six_tables_have_original_pg_guards[events]": {
+      "latest": "PASS",
+      "last_round": "draft-initial",
+      "source_commit": "3d97eb2f4f11c8de5e2b21d2a57d88131f538410"
+    },
+    "tests.test_super_agent_sa16_draft::test_draft_legacy_coding_predicate_retains_every_original_conjunct": {
+      "latest": "PASS",
+      "last_round": "draft-initial",
+      "source_commit": "3d97eb2f4f11c8de5e2b21d2a57d88131f538410"
+    },
+    "tests.test_super_agent_sa16_draft::test_draft_keeps_late_known_receipt_guard_unchanged": {
+      "latest": "PASS",
+      "last_round": "draft-initial",
+      "source_commit": "3d97eb2f4f11c8de5e2b21d2a57d88131f538410"
+    },
+    "tests.test_super_agent_sa16_draft::test_shared_proposal_is_exactly_applicable_and_not_applied": {
+      "latest": "PASS",
+      "last_round": "draft-initial",
+      "source_commit": "3d97eb2f4f11c8de5e2b21d2a57d88131f538410"
+    },
+    "tests.test_super_agent_sa16_pg::test_formal0048_original_engine_exact_shared_patch_and45_checksums": {
+      "latest": "PASS",
+      "last_round": "formal-initial",
+      "source_commit": "eec5b5307746249e1c074b24608854fdd482fc40"
+    },
+    "tests.test_super_agent_sa16_pg::test_non_create_suggestions_never_create_task_worker_reply_or_money[ignore]": {
+      "latest": "PASS",
+      "last_round": "formal-repair-01",
+      "source_commit": "62da397a5b6c3c42ee4add6fbda0e0cae98774ff"
+    },
+    "tests.test_super_agent_sa16_pg::test_non_create_suggestions_never_create_task_worker_reply_or_money[observe]": {
+      "latest": "PASS",
+      "last_round": "formal-repair-01",
+      "source_commit": "62da397a5b6c3c42ee4add6fbda0e0cae98774ff"
+    },
+    "tests.test_super_agent_sa16_pg::test_non_create_suggestions_never_create_task_worker_reply_or_money[ask]": {
+      "latest": "PASS",
+      "last_round": "formal-repair-01",
+      "source_commit": "62da397a5b6c3c42ee4add6fbda0e0cae98774ff"
+    },
+    "tests.test_super_agent_sa16_pg::test_shadow_would_create_keeps_all_original_business_records_unchanged": {
+      "latest": "PASS",
+      "last_round": "formal-repair-02",
+      "source_commit": "3ebe2bbfef1f086674e471bbfa2f0d7cd2a524fa"
+    },
+    "tests.test_super_agent_sa16_pg::test_auto_investigate_builds_real_readonly_original_mandate_and_queue": {
+      "latest": "PASS",
+      "last_round": "formal-repair-01",
+      "source_commit": "62da397a5b6c3c42ee4add6fbda0e0cae98774ff"
+    },
+    "tests.test_super_agent_sa16_pg::test_parallel_cycles_claim_a_signal_once_and_second_pass_is_idle": {
+      "latest": "PASS",
+      "last_round": "formal-repair-01",
+      "source_commit": "62da397a5b6c3c42ee4add6fbda0e0cae98774ff"
+    },
+    "tests.test_super_agent_sa16_pg::test_owner_rule_cannot_replace_frozen_authority_or_profile[policy_sha256-0000000000000000000000000000000000000000000000000000000000000000]": {
+      "latest": "PASS",
+      "last_round": "formal-initial",
+      "source_commit": "eec5b5307746249e1c074b24608854fdd482fc40"
+    },
+    "tests.test_super_agent_sa16_pg::test_owner_rule_cannot_replace_frozen_authority_or_profile[rule_sha256-1111111111111111111111111111111111111111111111111111111111111111]": {
+      "latest": "PASS",
+      "last_round": "formal-initial",
+      "source_commit": "eec5b5307746249e1c074b24608854fdd482fc40"
+    },
+    "tests.test_super_agent_sa16_pg::test_owner_rule_cannot_replace_frozen_authority_or_profile[rule_ref-forged-rule]": {
+      "latest": "PASS",
+      "last_round": "formal-initial",
+      "source_commit": "eec5b5307746249e1c074b24608854fdd482fc40"
+    },
+    "tests.test_super_agent_sa16_pg::test_owner_rule_cannot_replace_frozen_authority_or_profile[objective_sha256-2222222222222222222222222222222222222222222222222222222222222222]": {
+      "latest": "PASS",
+      "last_round": "formal-initial",
+      "source_commit": "eec5b5307746249e1c074b24608854fdd482fc40"
+    },
+    "tests.test_super_agent_sa16_pg::test_owner_rule_cannot_replace_frozen_authority_or_profile[profile_sha256-3333333333333333333333333333333333333333333333333333333333333333]": {
+      "latest": "PASS",
+      "last_round": "formal-initial",
+      "source_commit": "eec5b5307746249e1c074b24608854fdd482fc40"
+    },
+    "tests.test_super_agent_sa16_pg::test_rule_cas_and_owner_cookie_cannot_be_substituted_by_local_token": {
+      "latest": "PASS",
+      "last_round": "formal-repair-01",
+      "source_commit": "62da397a5b6c3c42ee4add6fbda0e0cae98774ff"
+    },
+    "tests.test_super_agent_sa16_pg::test_signed_history_and_claims_cannot_be_rewritten[UPDATE-rule_versions]": {
+      "latest": "PASS",
+      "last_round": "formal-repair-01",
+      "source_commit": "62da397a5b6c3c42ee4add6fbda0e0cae98774ff"
+    },
+    "tests.test_super_agent_sa16_pg::test_signed_history_and_claims_cannot_be_rewritten[UPDATE-claims]": {
+      "latest": "PASS",
+      "last_round": "formal-repair-01",
+      "source_commit": "62da397a5b6c3c42ee4add6fbda0e0cae98774ff"
+    },
+    "tests.test_super_agent_sa16_pg::test_signed_history_and_claims_cannot_be_rewritten[UPDATE-events]": {
+      "latest": "PASS",
+      "last_round": "formal-repair-01",
+      "source_commit": "62da397a5b6c3c42ee4add6fbda0e0cae98774ff"
+    },
+    "tests.test_super_agent_sa16_pg::test_signed_history_and_claims_cannot_be_rewritten[DELETE-rule_versions]": {
+      "latest": "PASS",
+      "last_round": "formal-repair-01",
+      "source_commit": "62da397a5b6c3c42ee4add6fbda0e0cae98774ff"
+    },
+    "tests.test_super_agent_sa16_pg::test_signed_history_and_claims_cannot_be_rewritten[DELETE-claims]": {
+      "latest": "PASS",
+      "last_round": "formal-repair-01",
+      "source_commit": "62da397a5b6c3c42ee4add6fbda0e0cae98774ff"
+    },
+    "tests.test_super_agent_sa16_pg::test_signed_history_and_claims_cannot_be_rewritten[DELETE-events]": {
+      "latest": "PASS",
+      "last_round": "formal-repair-01",
+      "source_commit": "62da397a5b6c3c42ee4add6fbda0e0cae98774ff"
+    },
+    "tests.test_super_agent_sa16_pg::test_committed_rule_change_cancels_original_task_and_closes_queue_same_transaction[disable]": {
+      "latest": "PASS",
+      "last_round": "formal-repair-01",
+      "source_commit": "62da397a5b6c3c42ee4add6fbda0e0cae98774ff"
+    },
+    "tests.test_super_agent_sa16_pg::test_committed_rule_change_cancels_original_task_and_closes_queue_same_transaction[revision]": {
+      "latest": "PASS",
+      "last_round": "formal-repair-01",
+      "source_commit": "62da397a5b6c3c42ee4add6fbda0e0cae98774ff"
+    },
+    "tests.test_super_agent_sa16_pg::test_original_stop_and_new_signal_do_not_automatically_reopen_a_ticket": {
+      "latest": "PASS",
+      "last_round": "formal-repair-02",
+      "source_commit": "3ebe2bbfef1f086674e471bbfa2f0d7cd2a524fa"
+    },
+    "tests.test_super_agent_sa16_pg::test_heartbeat_does_not_renew_work_and_deadlines_stop_original_run[idle]": {
+      "latest": "PASS",
+      "last_round": "formal-repair-01",
+      "source_commit": "62da397a5b6c3c42ee4add6fbda0e0cae98774ff"
+    },
+    "tests.test_super_agent_sa16_pg::test_heartbeat_does_not_renew_work_and_deadlines_stop_original_run[ttl]": {
+      "latest": "PASS",
+      "last_round": "formal-repair-01",
+      "source_commit": "62da397a5b6c3c42ee4add6fbda0e0cae98774ff"
+    },
+    "tests.test_super_agent_sa16_pg::test_unknown_usage_survives_stop_and_blocks_new_run_without_refund": {
+      "latest": "PASS",
+      "last_round": "formal-repair-01",
+      "source_commit": "62da397a5b6c3c42ee4add6fbda0e0cae98774ff"
+    },
+    "tests.test_super_agent_sa16_pg::test_trusted_profile_immutable_and_original_connection_enforced": {
+      "latest": "PASS",
+      "last_round": "formal-repair-01",
+      "source_commit": "62da397a5b6c3c42ee4add6fbda0e0cae98774ff"
+    },
+    "tests.test_super_agent_sa16_pg::test_no_rule_or_schedule_has_no_original_business_or_model_side_effect": {
+      "latest": "PASS",
+      "last_round": "formal-initial",
+      "source_commit": "eec5b5307746249e1c074b24608854fdd482fc40"
+    },
+    "tests.test_super_agent_sa16_api::test_actual_original_app_exact_thirteen_routes": {
+      "latest": "PASS",
+      "last_round": "formal-initial",
+      "source_commit": "eec5b5307746249e1c074b24608854fdd482fc40"
+    },
+    "tests.test_super_agent_sa16_api::test_operator_or_bearer_never_substitutes_for_current_owner[GET-/capabilities]": {
+      "latest": "PASS",
+      "last_round": "formal-initial",
+      "source_commit": "eec5b5307746249e1c074b24608854fdd482fc40"
+    },
+    "tests.test_super_agent_sa16_api::test_operator_or_bearer_never_substitutes_for_current_owner[GET-/rules]": {
+      "latest": "PASS",
+      "last_round": "formal-initial",
+      "source_commit": "eec5b5307746249e1c074b24608854fdd482fc40"
+    },
+    "tests.test_super_agent_sa16_api::test_operator_or_bearer_never_substitutes_for_current_owner[PUT-/rules/{rule_id}]": {
+      "latest": "PASS",
+      "last_round": "formal-initial",
+      "source_commit": "eec5b5307746249e1c074b24608854fdd482fc40"
+    },
+    "tests.test_super_agent_sa16_api::test_operator_or_bearer_never_substitutes_for_current_owner[GET-/rules/{rule_id}]": {
+      "latest": "PASS",
+      "last_round": "formal-initial",
+      "source_commit": "eec5b5307746249e1c074b24608854fdd482fc40"
+    },
+    "tests.test_super_agent_sa16_api::test_operator_or_bearer_never_substitutes_for_current_owner[POST-/rules/{rule_id}/disable]": {
+      "latest": "PASS",
+      "last_round": "formal-initial",
+      "source_commit": "eec5b5307746249e1c074b24608854fdd482fc40"
+    },
+    "tests.test_super_agent_sa16_api::test_operator_or_bearer_never_substitutes_for_current_owner[GET-/claims]": {
+      "latest": "PASS",
+      "last_round": "formal-initial",
+      "source_commit": "eec5b5307746249e1c074b24608854fdd482fc40"
+    },
+    "tests.test_super_agent_sa16_api::test_operator_or_bearer_never_substitutes_for_current_owner[GET-/attempts]": {
+      "latest": "PASS",
+      "last_round": "formal-initial",
+      "source_commit": "eec5b5307746249e1c074b24608854fdd482fc40"
+    },
+    "tests.test_super_agent_sa16_api::test_operator_or_bearer_never_substitutes_for_current_owner[GET-/attempts/{attempt_id}]": {
+      "latest": "PASS",
+      "last_round": "formal-initial",
+      "source_commit": "eec5b5307746249e1c074b24608854fdd482fc40"
+    },
+    "tests.test_super_agent_sa16_api::test_operator_or_bearer_never_substitutes_for_current_owner[POST-/attempts/{attempt_id}/stop]": {
+      "latest": "PASS",
+      "last_round": "formal-initial",
+      "source_commit": "eec5b5307746249e1c074b24608854fdd482fc40"
+    },
+    "tests.test_super_agent_sa16_api::test_operator_or_bearer_never_substitutes_for_current_owner[POST-/attempts/{attempt_id}/reopen]": {
+      "latest": "PASS",
+      "last_round": "formal-initial",
+      "source_commit": "eec5b5307746249e1c074b24608854fdd482fc40"
+    },
+    "tests.test_super_agent_sa16_api::test_operator_or_bearer_never_substitutes_for_current_owner[POST-/maintain]": {
+      "latest": "PASS",
+      "last_round": "formal-initial",
+      "source_commit": "eec5b5307746249e1c074b24608854fdd482fc40"
+    },
+    "tests.test_super_agent_sa16_api::test_operator_or_bearer_never_substitutes_for_current_owner[POST-/tick]": {
+      "latest": "PASS",
+      "last_round": "formal-initial",
+      "source_commit": "eec5b5307746249e1c074b24608854fdd482fc40"
+    },
+    "tests.test_super_agent_sa16_api::test_operator_or_bearer_never_substitutes_for_current_owner[POST-/cycle]": {
+      "latest": "PASS",
+      "last_round": "formal-initial",
+      "source_commit": "eec5b5307746249e1c074b24608854fdd482fc40"
+    },
+    "tests.test_super_agent_sa16_api::test_owner_metadata_is_bodyless_current_and_inert[/capabilities]": {
+      "latest": "PASS",
+      "last_round": "formal-initial",
+      "source_commit": "eec5b5307746249e1c074b24608854fdd482fc40"
+    },
+    "tests.test_super_agent_sa16_api::test_owner_metadata_is_bodyless_current_and_inert[/rules]": {
+      "latest": "PASS",
+      "last_round": "formal-initial",
+      "source_commit": "eec5b5307746249e1c074b24608854fdd482fc40"
+    },
+    "tests.test_super_agent_sa16_api::test_owner_metadata_is_bodyless_current_and_inert[/claims]": {
+      "latest": "PASS",
+      "last_round": "formal-initial",
+      "source_commit": "eec5b5307746249e1c074b24608854fdd482fc40"
+    },
+    "tests.test_super_agent_sa16_api::test_owner_metadata_is_bodyless_current_and_inert[/attempts]": {
+      "latest": "PASS",
+      "last_round": "formal-initial",
+      "source_commit": "eec5b5307746249e1c074b24608854fdd482fc40"
+    },
+    "tests.test_super_agent_sa16_api::test_empty_owner_work_cycles_make_no_model_task_or_reply[/maintain]": {
+      "latest": "PASS",
+      "last_round": "formal-initial",
+      "source_commit": "eec5b5307746249e1c074b24608854fdd482fc40"
+    },
+    "tests.test_super_agent_sa16_api::test_empty_owner_work_cycles_make_no_model_task_or_reply[/tick]": {
+      "latest": "PASS",
+      "last_round": "formal-initial",
+      "source_commit": "eec5b5307746249e1c074b24608854fdd482fc40"
+    },
+    "tests.test_super_agent_sa16_api::test_empty_owner_work_cycles_make_no_model_task_or_reply[/cycle]": {
+      "latest": "PASS",
+      "last_round": "formal-initial",
+      "source_commit": "eec5b5307746249e1c074b24608854fdd482fc40"
+    },
+    "tests.test_super_agent_sa16_api::test_owner_mutation_requires_original_origin_and_csrf[origin]": {
+      "latest": "PASS",
+      "last_round": "formal-initial",
+      "source_commit": "eec5b5307746249e1c074b24608854fdd482fc40"
+    },
+    "tests.test_super_agent_sa16_api::test_owner_mutation_requires_original_origin_and_csrf[csrf]": {
+      "latest": "PASS",
+      "last_round": "formal-initial",
+      "source_commit": "eec5b5307746249e1c074b24608854fdd482fc40"
+    },
+    "tests.test_super_agent_sa16_api::test_owner_mutation_requires_original_origin_and_csrf[foreign_origin]": {
+      "latest": "PASS",
+      "last_round": "formal-initial",
+      "source_commit": "eec5b5307746249e1c074b24608854fdd482fc40"
+    },
+    "tests.test_super_agent_sa16_api::test_http_cannot_inject_authority_executor_success_or_unbounded_work[payload0]": {
+      "latest": "PASS",
+      "last_round": "formal-initial",
+      "source_commit": "eec5b5307746249e1c074b24608854fdd482fc40"
+    },
+    "tests.test_super_agent_sa16_api::test_http_cannot_inject_authority_executor_success_or_unbounded_work[payload1]": {
+      "latest": "PASS",
+      "last_round": "formal-initial",
+      "source_commit": "eec5b5307746249e1c074b24608854fdd482fc40"
+    },
+    "tests.test_super_agent_sa16_api::test_http_cannot_inject_authority_executor_success_or_unbounded_work[payload2]": {
+      "latest": "PASS",
+      "last_round": "formal-initial",
+      "source_commit": "eec5b5307746249e1c074b24608854fdd482fc40"
+    },
+    "tests.test_super_agent_sa16_api::test_http_cannot_inject_authority_executor_success_or_unbounded_work[payload3]": {
+      "latest": "PASS",
+      "last_round": "formal-initial",
+      "source_commit": "eec5b5307746249e1c074b24608854fdd482fc40"
+    },
+    "tests.test_super_agent_sa16_api::test_http_cannot_inject_authority_executor_success_or_unbounded_work[payload4]": {
+      "latest": "PASS",
+      "last_round": "formal-initial",
+      "source_commit": "eec5b5307746249e1c074b24608854fdd482fc40"
+    },
+    "tests.test_super_agent_sa16_api::test_http_cannot_inject_authority_executor_success_or_unbounded_work[payload5]": {
+      "latest": "PASS",
+      "last_round": "formal-initial",
+      "source_commit": "eec5b5307746249e1c074b24608854fdd482fc40"
+    },
+    "tests.test_super_agent_sa16_api::test_http_cannot_inject_authority_executor_success_or_unbounded_work[payload6]": {
+      "latest": "PASS",
+      "last_round": "formal-initial",
+      "source_commit": "eec5b5307746249e1c074b24608854fdd482fc40"
+    },
+    "tests.test_super_agent_sa16_api::test_http_cannot_inject_authority_executor_success_or_unbounded_work[payload7]": {
+      "latest": "PASS",
+      "last_round": "formal-initial",
+      "source_commit": "eec5b5307746249e1c074b24608854fdd482fc40"
+    },
+    "tests.test_super_agent_sa16_api::test_http_cannot_inject_authority_executor_success_or_unbounded_work[payload8]": {
+      "latest": "PASS",
+      "last_round": "formal-initial",
+      "source_commit": "eec5b5307746249e1c074b24608854fdd482fc40"
+    },
+    "tests.test_super_agent_sa16_api::test_http_cannot_inject_authority_executor_success_or_unbounded_work[payload9]": {
+      "latest": "PASS",
+      "last_round": "formal-initial",
+      "source_commit": "eec5b5307746249e1c074b24608854fdd482fc40"
+    },
+    "tests.test_super_agent_sa16_api::test_bounded_json_rejects_invalid_transport_without_original_side_effect[large]": {
+      "latest": "PASS",
+      "last_round": "formal-initial",
+      "source_commit": "eec5b5307746249e1c074b24608854fdd482fc40"
+    },
+    "tests.test_super_agent_sa16_api::test_bounded_json_rejects_invalid_transport_without_original_side_effect[media]": {
+      "latest": "PASS",
+      "last_round": "formal-initial",
+      "source_commit": "eec5b5307746249e1c074b24608854fdd482fc40"
+    },
+    "tests.test_super_agent_sa16_api::test_bounded_json_rejects_invalid_transport_without_original_side_effect[malformed]": {
+      "latest": "PASS",
+      "last_round": "formal-initial",
+      "source_commit": "eec5b5307746249e1c074b24608854fdd482fc40"
+    },
+    "tests.test_super_agent_sa16_boundaries::test_original_readonly_graph_verifier_completes_silently_from_team_rule": {
+      "latest": "PASS",
+      "last_round": "new-boundaries-initial",
+      "source_commit": "32c54634cfe6b36722d0756bc5045a065f30f6b0"
+    },
+    "tests.test_super_agent_sa16_boundaries::test_new_candidates_obey_durable_cooldown_and_active_caps[cooldown]": {
+      "latest": "PASS",
+      "last_round": "new-boundaries-initial",
+      "source_commit": "32c54634cfe6b36722d0756bc5045a065f30f6b0"
+    },
+    "tests.test_super_agent_sa16_boundaries::test_new_candidates_obey_durable_cooldown_and_active_caps[active]": {
+      "latest": "PASS",
+      "last_round": "new-boundaries-initial",
+      "source_commit": "32c54634cfe6b36722d0756bc5045a065f30f6b0"
+    },
+    "tests.test_super_agent_sa16_boundaries::test_explicit_reopen_creates_new_run_under_same_ticket_without_resetting_old_budgets": {
+      "latest": "PASS",
+      "last_round": "new-boundaries-initial",
+      "source_commit": "32c54634cfe6b36722d0756bc5045a065f30f6b0"
+    },
+    "tests.test_super_agent_sa16_boundaries::test_reopen_rejects_stale_authority_without_recreating_task_or_refunding[old_epoch]": {
+      "latest": "PASS",
+      "last_round": "new-boundaries-initial",
+      "source_commit": "32c54634cfe6b36722d0756bc5045a065f30f6b0"
+    },
+    "tests.test_super_agent_sa16_boundaries::test_reopen_rejects_stale_authority_without_recreating_task_or_refunding[same_source]": {
+      "latest": "PASS",
+      "last_round": "new-boundaries-initial",
+      "source_commit": "32c54634cfe6b36722d0756bc5045a065f30f6b0"
+    },
+    "tests.test_super_agent_sa16_boundaries::test_reopen_rejects_stale_authority_without_recreating_task_or_refunding[attempt_limit]": {
+      "latest": "PASS",
+      "last_round": "new-boundaries-initial",
+      "source_commit": "32c54634cfe6b36722d0756bc5045a065f30f6b0"
+    },
+    "tests.test_super_agent_sa16_boundaries::test_reopen_rejects_stale_authority_without_recreating_task_or_refunding[unknown]": {
+      "latest": "PASS",
+      "last_round": "new-boundaries-repair-01",
+      "source_commit": "a8821678d8931b782ae3b21342072c09d64f78cd"
+    },
+    "tests.test_super_agent_sa16_boundaries::test_waiting_drains_then_releases_only_after_original_resource_absence_receipt": {
+      "latest": "PASS",
+      "last_round": "new-boundaries-initial",
+      "source_commit": "32c54634cfe6b36722d0756bc5045a065f30f6b0"
+    },
+    "tests.test_super_agent_sa16_boundaries::test_persistent_tick_unique_across_repeated_cycles_and_rule_revision[False]": {
+      "latest": "PASS",
+      "last_round": "new-boundaries-initial",
+      "source_commit": "32c54634cfe6b36722d0756bc5045a065f30f6b0"
+    },
+    "tests.test_super_agent_sa16_boundaries::test_persistent_tick_unique_across_repeated_cycles_and_rule_revision[True]": {
+      "latest": "PASS",
+      "last_round": "new-boundaries-initial",
+      "source_commit": "32c54634cfe6b36722d0756bc5045a065f30f6b0"
+    },
+    "tests.test_super_agent_sa16_boundaries::test_expired_or_changed_timer_seed_is_audited_without_original_task": {
+      "latest": "PASS",
+      "last_round": "new-boundaries-initial",
+      "source_commit": "32c54634cfe6b36722d0756bc5045a065f30f6b0"
+    },
+    "tests.test_super_agent_sa16_boundaries::test_format_repair_preserves_agreed_scheduler_ast_and_exact_hash_chain": {
+      "latest": "PASS",
+      "last_round": "new-boundaries-initial",
+      "source_commit": "32c54634cfe6b36722d0756bc5045a065f30f6b0"
+    },
+    "tests.test_super_agent_sa16_recovery::test_real_sigkill_keeps_original_atomicity_claim_and_stop_fence[before_admission_commit]": {
+      "latest": "PASS",
+      "last_round": "new-boundaries-initial",
+      "source_commit": "32c54634cfe6b36722d0756bc5045a065f30f6b0"
+    },
+    "tests.test_super_agent_sa16_recovery::test_real_sigkill_keeps_original_atomicity_claim_and_stop_fence[after_admission_commit]": {
+      "latest": "PASS",
+      "last_round": "new-boundaries-initial",
+      "source_commit": "32c54634cfe6b36722d0756bc5045a065f30f6b0"
+    },
+    "tests.test_super_agent_sa16_recovery::test_real_sigkill_keeps_original_atomicity_claim_and_stop_fence[after_disable_commit]": {
+      "latest": "PASS",
+      "last_round": "new-boundaries-initial",
+      "source_commit": "32c54634cfe6b36722d0756bc5045a065f30f6b0"
+    },
+    "tests.test_super_agent_sa16_runtime::test_autonomous_team_rule_repair_has_actual_diff_tests_usage_and_review_wait": {
+      "latest": "PASS",
+      "last_round": "new-boundaries-repair-01",
+      "source_commit": "a8821678d8931b782ae3b21342072c09d64f78cd"
+    },
+    "tests.test_super_agent_sa16_runtime::test_committed_rule_disable_after_original_budget_reservation_prevents_model_send": {
+      "latest": "PASS",
+      "last_round": "new-boundaries-repair-01",
+      "source_commit": "a8821678d8931b782ae3b21342072c09d64f78cd"
+    },
+    "tests.test_super_agent_sa16_deferred::test_original_admission_wait_is_visible_and_retries_same_claim_without_second_task": {
+      "latest": "PASS",
+      "last_round": "final-boundaries-initial",
+      "source_commit": "9bf8e5c0e8d03e9a0ae7dacbb84fecd6fca815cc"
+    },
+    "tests.test_super_agent_sa16_deferred::test_changed_rule_does_not_rewrite_or_upgrade_a_previously_held_claim": {
+      "latest": "PASS",
+      "last_round": "final-boundaries-initial",
+      "source_commit": "9bf8e5c0e8d03e9a0ae7dacbb84fecd6fca815cc"
+    },
+    "tests.test_super_agent_sa16_deferred::test_maintenance_prefers_actual_running_work_over_old_terminal_audit_rows": {
+      "latest": "PASS",
+      "last_round": "final-boundaries-initial",
+      "source_commit": "9bf8e5c0e8d03e9a0ae7dacbb84fecd6fca815cc"
+    },
+    "tests.test_super_agent_sa16_deferred::test_original_engine_cancellation_releases_only_undispatched_queue_quota": {
+      "latest": "PASS",
+      "last_round": "final-boundaries-initial",
+      "source_commit": "9bf8e5c0e8d03e9a0ae7dacbb84fecd6fca815cc"
+    },
+    "tests.test_super_agent_sa16_catalogue::test_frozen_public_and_internal_schemas_match_strict_versioned_contracts[rule-save]": {
+      "latest": "PASS",
+      "last_round": "final-boundaries-initial",
+      "source_commit": "9bf8e5c0e8d03e9a0ae7dacbb84fecd6fca815cc"
+    },
+    "tests.test_super_agent_sa16_catalogue::test_frozen_public_and_internal_schemas_match_strict_versioned_contracts[revision]": {
+      "latest": "PASS",
+      "last_round": "final-boundaries-initial",
+      "source_commit": "9bf8e5c0e8d03e9a0ae7dacbb84fecd6fca815cc"
+    },
+    "tests.test_super_agent_sa16_catalogue::test_frozen_public_and_internal_schemas_match_strict_versioned_contracts[reopen]": {
+      "latest": "PASS",
+      "last_round": "final-boundaries-initial",
+      "source_commit": "9bf8e5c0e8d03e9a0ae7dacbb84fecd6fca815cc"
+    },
+    "tests.test_super_agent_sa16_catalogue::test_frozen_public_and_internal_schemas_match_strict_versioned_contracts[cycle]": {
+      "latest": "PASS",
+      "last_round": "final-boundaries-initial",
+      "source_commit": "9bf8e5c0e8d03e9a0ae7dacbb84fecd6fca815cc"
+    },
+    "tests.test_super_agent_sa16_catalogue::test_frozen_public_and_internal_schemas_match_strict_versioned_contracts[signal]": {
+      "latest": "PASS",
+      "last_round": "final-boundaries-initial",
+      "source_commit": "9bf8e5c0e8d03e9a0ae7dacbb84fecd6fca815cc"
+    },
+    "tests.test_super_agent_sa16_catalogue::test_source_catalogues_have_exact_current_artifact_bytes": {
+      "latest": "PASS",
+      "last_round": "final-boundaries-repair-01",
+      "source_commit": "becef2bacb423c69cf850317ce64b34ed4c7ccb8"
+    },
+    "tests.test_super_agent_sa16_catalogue::test_autonomy_catalogue_declares_no_default_runtime_notification_or_real_activation": {
+      "latest": "PASS",
+      "last_round": "final-boundaries-initial",
+      "source_commit": "9bf8e5c0e8d03e9a0ae7dacbb84fecd6fca815cc"
+    }
+  },
+  "artifact_audit": "artifact-audit.json",
+  "source_ref_count": 479,
+  "independent_review": "NOT_RUN",
+  "SA17": "NOT_STARTED",
+  "H12": "Other CLI owns acceptance; no H12 commit imported, fixed local live_agent/MVP FAIL retained",
+  "gates": {
+    "engineering_gate": "PASS_LOCAL_CONTROLLED_ENGINEERING",
+    "policy_security_gate": "NOT_RUN_FULL_SYSTEM; local critical negative scope PASS",
+    "live_source_channel_gate": "NOT_RUN",
+    "live_coding_gate": "NOT_RUN; fixed H12 quality/MVP FAIL retained",
+    "live_publication_gate": "NOT_RUN",
+    "continuous_operation_gate": "NOT_RUN"
+  },
+  "real_platform_paid_outbound_publication": "NOT_RUN",
+  "limits": [
+    "Evidence is versioned, not a single final93/180-case pass; only failed cases or new initial targets run after changes.",
+    "No final whole-repository lint/typecheck repeated; targeted results bind exact versions. Final Python AST equals9bf8e5c after formatting-only repair.",
+    "Initial controlled fixture errors and all original product/test/static failures remain archived. No independent probes existed or were rewritten for this card.",
+    "Only one current Source origin per admitted task; native GitHub resources wait for original winner factory.",
+    "No default background/listener/model/scheduler activation; SA20 owns always-on deployment.",
+    "Coding bootstrap fixture target is explicitly cancelled and receives no Worker; the SA16-created target alone executes.",
+    "Real platform/paid/send/publication/72h/team trial not performed."
+  ],
+  "costs": {
+    "real_paid_model_calls": 0,
+    "real_cost_micros": 0,
+    "controlled_model_fixture": "3 known fake model receipts at200micros each in actual Coding test; separate pre-send retained reservation has0 provider sends",
+    "unknown_fixture_reservations": "Deliberately retained in isolated PG before DB cleanup, never refunded/retried; not real supplier usage"
+  },
+  "default_activation": {
+    "rules": 0,
+    "profiles": 0,
+    "timer_work": false,
+    "model_calls_per_cycle": 0,
+    "notifications": false,
+    "publication": false
+  },
+  "delivery_report": {
+    "path": "docs/super-agent-v1/SA16_ACCEPTANCE_20261114.md",
+    "sha256": "62e74a3d5e45468df928b4ee05863eb37e28e416b9a9cefba1369dfd85b7f2ec"
+  },
+  "independent_request": {
+    "path": "docs/super-agent-v1/accept/SAV1-16/independent-request.txt",
+    "sha256": "d906537b5576307bb5d03cf3dbf175de10ec1c3d583deaf7a1cf79652d73ecf9"
+  },
+  "artifact_audit_sha256": "cdb247d523e573eec2a6433597b778150d50b64cc03e2c795d268676b1257484"
+}

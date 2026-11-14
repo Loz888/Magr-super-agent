@@ -1,0 +1,21 @@
+SA16已完成本地受控工程，申请独立核验；尚无独立PASS，SA17不启动。
+源码候选：becef2bacb423c69cf850317ce64b34ed4c7ccb8
+交付后的Git HEAD可能只追加报告；源码指纹必须为：
+cd31d5ad147fb4432f0f1ffcd5db851207100d441462e55687d84886a13db9c8
+
+入口：/home/imini/magr-super-agent/v3/docs/super-agent-v1/SA16_ACCEPTANCE_20261114.md
+逐例/候选/归档/命令/JUnit：同目录accept/SAV1-16/accept.json
+所有原始证据：/home/imini/magr-super-agent/v3/evidence/super-agent-v1/SAV1-16/start-20261114T125101Z-8e48a364/
+
+用户要求保留并核对分版本成绩，不重复已通过项；修复只复验失败范围。
+准备87项和正式93项有分版本PASS，当前未闭环失败0，历史失败全部保留。
+每轮归档在测试前验证；不能称最终源码单轮180全量PASS。旧静态目标不重跑，版本限制见报告。
+独立新增边界可优先检查：精确Rule版本/Owner签署、晚到/撤权/unknown、同Topic跨Rule重复、
+新Run与旧共享余额、定时seed/时区/游标、原进程在途与最后派发、任务完成/待审的真实来源。
+
+共享确认：Harness91c0b75第41节；0048/六表/五文件/13路由均按绑定字节先落地。
+之后Scheduler签名仅换行，AST/哈希链见sa16-proposal/post-integration-format.json。
+45迁移/479引用、原连接、三真实SIGKILL、实际fixture_git编码与原Verifier有证据。
+原生GitHub winner factory/多输入/常驻部署/完整Review Bundle是显式范围限制，未假造可用。
+没有真实模型/平台/发布；固定H12真实质量/MVP FAIL保留，H12仍由另一CLI负责。
+临时资源只按本卡身份核对，不操作Harness/H12或其他CLI资源；原用户文件必须保留。
