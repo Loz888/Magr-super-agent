@@ -1,0 +1,27 @@
+SA15 只读 Recall 最小共享接线确认请求
+
+请只读核对 /home/imini/magr-super-agent/v3/docs/super-agent-v1/sa15-proposal/ 并在SUPER_AGENT_HANDOFF.md新节单独本地提交确认。
+不要应用补丁、SQL、运行SA测试或操作SA活动文件/推送。请回传确认commit、节号及范围冲突情况。
+
+SA14已获用户接受：598f760／cfc217e，独立I01原两项2PASS，44迁移/371refs匹配，闭环记录accept/SAV1-14/independent-closure-20261114.json。
+用户已明确授权SA15，H12由另一CLI验收。现有c711d545第39节只覆盖SA14。
+
+请求在SA副本由SA独占：
+1. coordination/engine.py仅import并组合SourceRecall；api.py仅import/register共9条只读Recall路径。
+   精确before/after SHA见shared-wiring-metadata.json。无recover/预算/财务/旧API/Source清理行为变更。
+2. SA私有source_recall domain/rules/cursor/service/api/tools及测试、配置/schema；不修改Harness或SA13/14执行器。
+3. 本片不新增数据库迁移，不预占0048，不改既有44SQL；利用原对象/FK/ContextEdge/Memory/CAS按需有界读取。
+4. H10固定c140dad，F01/F02独立PASS范围已核对，其余OPEN及真实门保留；已有long_context字节一致。
+   不导入新Harness blob、文件Registry或第二Graph/Store；不读写Harness活动/未提交源码，不接入H12。
+5. /api/v3/source-recall：Owner GET /capabilities，POST /resolve /walk /page /search；
+   Worker POST /worker/resolve /worker/walk /worker/page /worker/search。
+   Owner原cookie/Origin-CSRF；Worker独立bearer+原当前目标/Assignment/Session/epoch。
+   默认metadata/no-store，正文仅显式带真实provenance路径的有界/page；不接受actor/trusted/provider/token/付款或成功自证。
+
+逐跳Source/目标ACL、最短保留期、Source编辑删除与页间撤权重新检查；CAS IO在事务外，释放前再验。
+禁止摘要授予权限、任意CAS hash读取、跨私密群/仓库泄露。Worker首片仅同安装/会话内有权目标。
+无监听、模型、线程、执行或外发默认激活。SA16未启动，真实平台/付费/外发/发布/长期门NOT_RUN。
+
+精确共享补丁SHA256：152b61e72bca0e9e0546c8e8295002f131cfe3a8c94c5ba8e452111f5d33cad9
+两文件before/after、9接口及完整范围均已备齐；无需导入任何H12提交。
+私有契约/游标/有界规划已首次89PASS，lint和3文件mypy通过，未把组件成绩记为整卡通过。

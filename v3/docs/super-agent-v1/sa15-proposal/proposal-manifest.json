@@ -1,0 +1,15 @@
+{
+  "UTC": "2026-11-14T11:13:54.271570+00:00",
+  "files": {
+    "shared-wiring-metadata.json": "998d3d74c1b15de2f15083a07240b8c59b0976e0e5ddf361b0692d9a1bc649d6",
+    "ownership-request.txt": "6b2ccb334ac612a80648134a6c1ec8936069ae714f68251d88fe296fa4265657",
+    "interfaces.json": "d2cca75d47d154683c92ea2202d6651fd7240449801ec5adaba7011ed564dbb9",
+    "shared-wiring.patch": "152b61e72bca0e9e0546c8e8295002f131cfe3a8c94c5ba8e452111f5d33cad9",
+    "harness-reuse.json": "7cfb870f5148c92f940a2d9caba155e064ada504444ed1cf0c151d4d4e7f0d7d",
+    "SA15_SCOPE.md": "d34fd12af9d38d655462d099480c545924f5456a057c89e437be60730649102c",
+    "shared-risk-review.json": "79229c56725bc763b8e13e1fc0904d6d8c150acb37bc7eaa855bffeafbcc85af"
+  },
+  "shared_applied": false,
+  "migration_reserved": false,
+  "formal_SA15": "NOT_RUN"
+}

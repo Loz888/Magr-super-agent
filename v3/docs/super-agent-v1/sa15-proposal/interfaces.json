@@ -1,0 +1,72 @@
+{
+  "version": "source-recall-v1",
+  "prefix": "/api/v3/source-recall",
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/capabilities",
+      "auth": "owner",
+      "model": null
+    },
+    {
+      "method": "POST",
+      "path": "/resolve",
+      "auth": "owner_origin_csrf",
+      "model": "RecallResolveRequest"
+    },
+    {
+      "method": "POST",
+      "path": "/walk",
+      "auth": "owner_origin_csrf",
+      "model": "RecallWalkRequest"
+    },
+    {
+      "method": "POST",
+      "path": "/page",
+      "auth": "owner_origin_csrf",
+      "model": "RecallPageRequest"
+    },
+    {
+      "method": "POST",
+      "path": "/search",
+      "auth": "owner_origin_csrf",
+      "model": "RecallSearchRequest"
+    },
+    {
+      "method": "POST",
+      "path": "/worker/resolve",
+      "auth": "current_assignment_worker_bearer",
+      "model": "WorkerRecallResolve"
+    },
+    {
+      "method": "POST",
+      "path": "/worker/walk",
+      "auth": "current_assignment_worker_bearer",
+      "model": "WorkerRecallWalk"
+    },
+    {
+      "method": "POST",
+      "path": "/worker/page",
+      "auth": "current_assignment_worker_bearer",
+      "model": "WorkerRecallPage"
+    },
+    {
+      "method": "POST",
+      "path": "/worker/search",
+      "auth": "current_assignment_worker_bearer",
+      "model": "WorkerRecallSearch"
+    }
+  ],
+  "mutates_business_or_starts_jobs": false,
+  "bodyless_metadata_default": true,
+  "raw_content": "Only explicit bounded page with verified original provenance path; never arbitrary CAS hash/path/URL",
+  "worker_scope": "Current original Coding/SA12 Run+Assignment+Session+epoch and Source identity/policy; same authorized installation/conversation for other Task recall; private cross-source/group requests denied",
+  "owner_scope": "Current original Owner cookie and Origin/CSRF for POST; project/repository and current Source Receive on every hop; no Source model-input reuse by workers without current model_input/context_provider",
+  "tool_names": [
+    "source_recall",
+    "source_recall_walk",
+    "source_recall_page",
+    "source_recall_search"
+  ],
+  "tool_activation": "Server-only read adapter implementing current Harness ToolContext; construction/default Engine starts no models, threads or platform listeners"
+}

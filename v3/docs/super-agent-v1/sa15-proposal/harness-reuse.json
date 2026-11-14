@@ -1,0 +1,50 @@
+{
+  "UTC": "2026-11-14T11:13:54.271570+00:00",
+  "dependency": "HV4-H10",
+  "fixed_implementation": "c140dadf5aff517527c3c5e107843e215cc76556",
+  "independent_record": "repair-c140dad-independent-recheck-20261111T120756Z.json",
+  "fixed_peer_commit": "c711d54504c4945625505f47e9df56e22bc1bdac",
+  "independent_scope": "F01/F02 plus listed regressions PASS only; unrelated OPEN findings and live NOT_RUN retained",
+  "already_integrated_long_context_exact": true,
+  "files": [
+    {
+      "committed_path": "v3/docs/harness-v4/TASKS.md",
+      "commit": "c711d545",
+      "sha256": "a631b4d726662340a343405b6d05ba033fbfff0faa9599cd91e8dc37d9f7ec2d",
+      "audit_copy": "evidence/super-agent-v1/SAV1-15/start-20261114T110315Z-223d6c86/fixed-h10-audit/docs/harness-v4/TASKS.md"
+    },
+    {
+      "committed_path": "v3/docs/harness-v4/ACCEPTANCE.md",
+      "commit": "c711d545",
+      "sha256": "1a81a4ebfbcd4e792de7e337e8d7ad944af78c38027c7e5dc3d1506f686e4145",
+      "audit_copy": "evidence/super-agent-v1/SAV1-15/start-20261114T110315Z-223d6c86/fixed-h10-audit/docs/harness-v4/ACCEPTANCE.md"
+    },
+    {
+      "committed_path": "v3/docs/harness-v4/LONG_CONTEXT.md",
+      "commit": "c711d545",
+      "sha256": "61fe0629bda50c4dd9f07c72ef247f1562ffbd8597163ec223bc2e8e4a68a22c",
+      "audit_copy": "evidence/super-agent-v1/SAV1-15/start-20261114T110315Z-223d6c86/fixed-h10-audit/docs/harness-v4/LONG_CONTEXT.md"
+    },
+    {
+      "committed_path": "v3/docs/harness-v4/accept/HV4-H10/repair-c140dad-independent-recheck-20261111T120756Z.json",
+      "commit": "c711d545",
+      "sha256": "f37760d82669b13a4c4b119af4fb55bf86da0ffa91ac7d80ba8b97c0bf124bd2",
+      "audit_copy": "evidence/super-agent-v1/SAV1-15/start-20261114T110315Z-223d6c86/fixed-h10-audit/docs/harness-v4/accept/HV4-H10/repair-c140dad-independent-recheck-20261111T120756Z.json"
+    },
+    {
+      "committed_path": "v3/src/mgar_v3/harness/long_context.py",
+      "commit": "c140dad",
+      "sha256": "449149cbbcf702c10caf3b7e3770cf78e96a7a07d435150c56a0efa493c5d720",
+      "audit_copy": "evidence/super-agent-v1/SAV1-15/start-20261114T110315Z-223d6c86/fixed-h10-audit/src/mgar_v3/harness/long_context.py"
+    },
+    {
+      "committed_path": "v3/src/mgar_v3/harness/context_tools.py",
+      "commit": "c140dad",
+      "sha256": "f820ebbeaa891391994a80f54a5ad011ad26e4ae05b151b772b611f6a6406751",
+      "audit_copy": "evidence/super-agent-v1/SAV1-15/start-20261114T110315Z-223d6c86/fixed-h10-audit/src/mgar_v3/harness/context_tools.py"
+    }
+  ],
+  "new_Harness_imports": [],
+  "active_or_uncommitted_Harness_files_read_or_written": false,
+  "scope": "Reuse existing bounded context/summary contracts and original Context/Memory/CAS. Source ACL/cursor adapters stay SA private; H10 filesystem registry never becomes Source authorization or body store."
+}

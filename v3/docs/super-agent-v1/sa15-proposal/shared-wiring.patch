@@ -1,0 +1,36 @@
+--- a/v3/src/mgar_v3/coordination/engine.py
++++ b/v3/src/mgar_v3/coordination/engine.py
+@@ -40,6 +40,7 @@
+ from mgar_v3.super_agent.source_coding import SourceCoding
+ from mgar_v3.super_agent.source_correlation import SourceCorrelations
+ from mgar_v3.super_agent.source_eval import SourceEval
++from mgar_v3.super_agent.source_recall import SourceRecall
+ from mgar_v3.super_agent.source_scheduler import SourceScheduler
+ from mgar_v3.super_agent.source_subscription import SourceSubscriptions
+ 
+@@ -91,6 +92,7 @@
+         self.source_scheduler = SourceScheduler(self)
+         self.source_coding = SourceCoding(self)
+         self.source_async = SourceAsync(self)
++        self.source_recall = SourceRecall(self)
+ 
+     def close(self) -> None:
+         with self._mutex:
+--- a/v3/src/mgar_v3/api.py
++++ b/v3/src/mgar_v3/api.py
+@@ -60,6 +60,7 @@
+ from mgar_v3.super_agent.source_coding_api import register as register_source_coding
+ from mgar_v3.super_agent.source_correlation_api import register as register_source_correlations
+ from mgar_v3.super_agent.source_eval_api import register as register_source_eval
++from mgar_v3.super_agent.source_recall_api import register as register_source_recall
+ from mgar_v3.super_agent.source_scheduler_api import register as register_source_scheduler
+ from mgar_v3.super_agent.source_subscription_api import register as register_source_subscriptions
+ from mgar_v3.web_access import (
+@@ -1291,6 +1292,7 @@
+     register_source_scheduler(app, authority, browser_user)
+     register_source_coding(app, authority, browser_user)
+     register_source_async(app, authority, browser_user)
++    register_source_recall(app, authority, browser_user)
+     register(app, authority, authenticated)
+     register_commerce(app, authority, authenticated)
+     register_recovery(app, configuration, authority, authenticated)

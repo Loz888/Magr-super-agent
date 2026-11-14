@@ -1,0 +1,20 @@
+{
+  "UTC": "2026-11-14T11:13:54.271570+00:00",
+  "shared_patch_sha256": "152b61e72bca0e9e0546c8e8295002f131cfe3a8c94c5ba8e452111f5d33cad9",
+  "migration": null,
+  "existing44_SQL_unchanged": true,
+  "new_Harness_imports": [],
+  "shared_files": [
+    "v3/src/mgar_v3/coordination/engine.py",
+    "v3/src/mgar_v3/api.py"
+  ],
+  "private_files": "source_recall domain/rules/cursor/service/API/tools/tests/config/schema",
+  "original_single_writer": "Same original Engine held PG connection; read-only operations, no extra writer, no CAS/body IO in SQL",
+  "source_lifecycle": "Reuse canonical Source invalidation; final auth/version recheck after external CAS read, no plaintext copies/cache",
+  "cursor_privacy": "Encrypted bounded continuations; identity/permissions/time remain current, cursor never grants access",
+  "activation": "No default Worker/model/thread/listener; server-only readonly tool composition",
+  "ownership": "NEW_FIXED_CONFIRMATION_REQUIRED; prior c711d545 §39 covers SA14 only",
+  "H12": "other CLI",
+  "SA16": "NOT_STARTED",
+  "real_gates": "NOT_RUN"
+}
