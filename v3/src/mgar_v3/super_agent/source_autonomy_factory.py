@@ -260,7 +260,8 @@ def create_original(
             )
             conn.execute(
                 "INSERT INTO app.source_run_policies(run_id,ticket_id,thread_id,policy_id,"
-                "policy_revision,project_id,identity_id,identity_revision,binding_id,evidence_id,facts) "
+                "policy_revision,project_id,identity_id,identity_revision,"
+                "binding_id,evidence_id,facts) "
                 "VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)",
                 (
                     run_id,

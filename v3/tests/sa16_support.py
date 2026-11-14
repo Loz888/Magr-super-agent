@@ -4,7 +4,7 @@ from datetime import UTC, datetime, timedelta
 from types import SimpleNamespace
 from uuid import uuid4
 
-from sa08_support import policy
+from sa08_support import configure_fast_path, policy
 from sa09_support import apply, ingest_case, prepared
 from sa09_support import setup as eval_setup
 from sa12_support import FilesystemOnlyDriver
@@ -91,6 +91,7 @@ def setup(engine, tmp_path, *, mode="auto_investigate", rule_changes=None, sched
             "network_hosts": [],
         },
     )
+    configure_fast_path(env, env.fast_settings.model_copy(update={"merge_window_seconds": 1}))
     if scheduler:
         env.scheduler = configure_scheduler(engine, env.cookie, tmp_path)
     with engine.transaction() as conn:
@@ -133,11 +134,19 @@ def setup(engine, tmp_path, *, mode="auto_investigate", rule_changes=None, sched
 def decision(
     env, *, entity=None, topic="same-topic", action="create", body="Unaddressed synthetic signal"
 ):
+    import time
+
+    # A new routing evaluation must use a new bounded batch rather than replay
+    # an already evaluated member of the previous merge window.
+    last = getattr(env, "last_decision_monotonic", None)
+    if last is not None:
+        time.sleep(max(0, last + env.fast_settings.merge_window_seconds + 0.05 - time.monotonic()))
     entity = entity or uuid4().hex
     receipt = ingest_case(
         env, delivery=uuid4().hex, entity=entity, body=body, addressed="ambient", topic=topic
     )
     _, decisions = apply(env, prepared(env, receipt), action=action)
+    env.last_decision_monotonic = time.monotonic()
     return receipt, decisions[0]
 
 

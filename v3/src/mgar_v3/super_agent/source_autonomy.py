@@ -225,7 +225,9 @@ class SourceAutonomy(AutonomyStore):
         try:
             self._rule_policy(conn, rule)
             source = self.engine.source_correlations._input(conn, signal.inputs[0].input_id)
-            if source.ref != signal.inputs[0] or source.row["context_only"]:
+            if source.ref != signal.inputs[0] or (
+                source.row["context_only"] and rule.mode != "shadow"
+            ):
                 return held("SOURCE_CHANGED")
             if source.native:
                 return held("RESOURCE_WINNER_FACTORY_REQUIRED")
@@ -532,7 +534,8 @@ class SourceAutonomy(AutonomyStore):
                 tick_id = uuid4()
                 conn.execute(
                     "INSERT INTO app.sa_autonomy_ticks(tick_id,rule_id,rule_revision,project_id,"
-                    "source_instance_id,timezone,local_date,scheduled_at,signal_sha256,missed_coalesced,observed_at) "
+                    "source_instance_id,timezone,local_date,scheduled_at,signal_sha256,"
+                    "missed_coalesced,observed_at) "
                     "VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)",
                     (
                         tick_id,
