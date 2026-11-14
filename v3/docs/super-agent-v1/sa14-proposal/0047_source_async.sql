@@ -128,7 +128,7 @@ CREATE TABLE app.sa_async_inputs (
     role_revision bigint CHECK (role_revision>0),
     owner_id uuid REFERENCES app.web_accounts(user_id),
     resource_operation_id uuid REFERENCES app.sa_scheduler_operations(operation_id),
-    restriction jsonb CHECK (app.sa_async_restriction_valid(restriction)),
+    restriction jsonb CHECK (restriction IS NULL OR app.sa_async_restriction_valid(restriction)),
     applied_checkpoint_id uuid,
     reason_code text CHECK (reason_code ~ '^[A-Z0-9_]{1,100}$'),
     received_at timestamptz NOT NULL DEFAULT clock_timestamp(),
