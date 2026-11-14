@@ -1,0 +1,82 @@
+{
+  "dataset": "fixtures/super-agent-v1/sa15/retrieval-quality.json",
+  "dataset_sha256": "40f43fb8edc14f02678e0bfea1f9551b1dfcd47856d2b12017bf5fbb8678f033",
+  "data": "explicitly synthetic; deterministic lexical/time/ACL engineering, not LLM or live semantic quality",
+  "cases": [
+    {
+      "case": "login-short",
+      "status": "PASS",
+      "source_commit": "1f4c332740b55a115ff20459fa2cbb54499a538a",
+      "junit": "evidence/SAV1-15/20261114T113929Z-4fdb8619/junit.xml"
+    },
+    {
+      "case": "login-status",
+      "status": "PASS",
+      "source_commit": "1f4c332740b55a115ff20459fa2cbb54499a538a",
+      "junit": "evidence/SAV1-15/20261114T113929Z-4fdb8619/junit.xml"
+    },
+    {
+      "case": "yesterday-login",
+      "status": "PASS",
+      "source_commit": "1f4c332740b55a115ff20459fa2cbb54499a538a",
+      "junit": "evidence/SAV1-15/20261114T113929Z-4fdb8619/junit.xml"
+    },
+    {
+      "case": "login-diagnosis",
+      "status": "PASS",
+      "source_commit": "1f4c332740b55a115ff20459fa2cbb54499a538a",
+      "junit": "evidence/SAV1-15/20261114T113929Z-4fdb8619/junit.xml"
+    },
+    {
+      "case": "login-waiting",
+      "status": "PASS",
+      "source_commit": "1f4c332740b55a115ff20459fa2cbb54499a538a",
+      "junit": "evidence/SAV1-15/20261114T113929Z-4fdb8619/junit.xml"
+    },
+    {
+      "case": "different-login",
+      "status": "PASS",
+      "source_commit": "1f4c332740b55a115ff20459fa2cbb54499a538a",
+      "junit": "evidence/SAV1-15/20261114T113929Z-4fdb8619/junit.xml"
+    },
+    {
+      "case": "unknown-task",
+      "status": "PASS",
+      "source_commit": "1f4c332740b55a115ff20459fa2cbb54499a538a",
+      "junit": "evidence/SAV1-15/20261114T113929Z-4fdb8619/junit.xml"
+    },
+    {
+      "case": "sql-other",
+      "status": "PASS",
+      "source_commit": "1f4c332740b55a115ff20459fa2cbb54499a538a",
+      "junit": "evidence/SAV1-15/20261114T113929Z-4fdb8619/junit.xml"
+    },
+    {
+      "case": "english-other",
+      "status": "PASS",
+      "source_commit": "1f4c332740b55a115ff20459fa2cbb54499a538a",
+      "junit": "evidence/SAV1-15/20261114T113929Z-4fdb8619/junit.xml"
+    },
+    {
+      "case": "no-query-intent",
+      "status": "PASS",
+      "source_commit": "1f4c332740b55a115ff20459fa2cbb54499a538a",
+      "junit": "evidence/SAV1-15/20261114T113929Z-4fdb8619/junit.xml"
+    },
+    {
+      "case": "ambiguous-login",
+      "status": "PASS",
+      "source_commit": "1f4c332740b55a115ff20459fa2cbb54499a538a",
+      "junit": "evidence/SAV1-15/20261114T113929Z-4fdb8619/junit.xml"
+    },
+    {
+      "case": "time-exclusion",
+      "status": "PASS",
+      "source_commit": "1f4c332740b55a115ff20459fa2cbb54499a538a",
+      "junit": "evidence/SAV1-15/20261114T113929Z-4fdb8619/junit.xml"
+    }
+  ],
+  "passed": 12,
+  "total": 12,
+  "live_semantic_quality": "NOT_RUN"
+}

@@ -1,17 +1,17 @@
 {
   "card": "SAV1-15",
-  "status": "IN_PROGRESS_PENDING_INDEPENDENT_REVIEW",
-  "work_state": "LOCAL_CONTROLLED_ENGINEERING_COMPLETE",
-  "source_commit": "bc1f91c8f5fc8acaf3bb80e1649c4718c0d36a79",
-  "source_sha256": "13680b9009f8e33fd57c4e414c71bfcd73c8f337c804127ce6e7e546d1f8acbc",
+  "status": "IN_PROGRESS_PENDING_INDEPENDENT_I01_RECHECK",
+  "work_state": "SA15_I01_IMPLEMENTER_TARGETED_PASS",
+  "source_commit": "45a79cf21cbf9fb9456d89a32a2332a718c277a7",
+  "source_sha256": "5dfdb4073b6ae452d7d7728d8867dc5377664e28f103d91c1f81ffb3cd1a0cd9",
   "candidate_archive": {
-    "UTC": "2026-11-14T11:57:43.629366+00:00",
-    "source_commit": "bc1f91c8f5fc8acaf3bb80e1649c4718c0d36a79",
-    "source_sha256": "13680b9009f8e33fd57c4e414c71bfcd73c8f337c804127ce6e7e546d1f8acbc",
-    "archive": "evidence/super-agent-v1/SAV1-15/start-20261114T110315Z-223d6c86/status-retention-first/source-bc1f91c8f5fc.tar.gz",
-    "archive_sha256": "acb19f13e3fa7f95f5209d06d2c4088a2193dc92b26a32a7205a271dd05c6445",
-    "archive_source_sha256": "13680b9009f8e33fd57c4e414c71bfcd73c8f337c804127ce6e7e546d1f8acbc",
-    "scope": "Only2 first status-retention cases plus first lint of their new module; no previously passed target repeated"
+    "UTC": "2026-11-14T12:30:34.364669+00:00",
+    "source_commit": "45a79cf21cbf9fb9456d89a32a2332a718c277a7",
+    "source_sha256": "5dfdb4073b6ae452d7d7728d8867dc5377664e28f103d91c1f81ffb3cd1a0cd9",
+    "archive": "evidence/super-agent-v1/SAV1-15/i01-repair-20261114T122848Z-bf8c3ddb/source-45a79cf21cbf.tar.gz",
+    "archive_sha256": "1d008a8bbcd197cb821aacc322e6e62a0f9f469975ab8dfccd27a21f2611adf0",
+    "archive_source_sha256": "5dfdb4073b6ae452d7d7728d8867dc5377664e28f103d91c1f81ffb3cd1a0cd9",
+    "scope": "Only original SA15-I01 failed search pagination function; byte-identical independent probe; no other tests or static target reruns"
   },
   "ownership_commit": "e0432f0e289de868a5956339aeec76db71bd0efe",
   "ownership_section": 40,
@@ -144,7 +144,7 @@
     "live_semantic": "NOT_RUN"
   },
   "gates": {
-    "engineering_gate": "PASS_VERSIONED_LOCAL_CONTROLLED_SCOPE",
+    "engineering_gate": "LOCAL_I01_TARGETED_PASS_PENDING_INDEPENDENT_RECHECK",
     "policy_security_gate": "PASS_CARD_NEGATIVE_SCOPE_ONLY",
     "full_system_security": "NOT_RUN",
     "live_source_channel_gate": "NOT_RUN",
@@ -154,12 +154,25 @@
     "paid": "NOT_RUN",
     "external_business_write": "NOT_RUN"
   },
-  "independent_review": "NOT_RUN",
+  "independent_review": "FAIL_SA15_I01_PENDING_INDEPENDENT_RECHECK",
   "SA16": "NOT_STARTED",
   "H12": "Other CLI; fixed live_agent/MVP FAIL retained, no active work imported",
-  "artifact_audit": "artifact-audit.json",
+  "artifact_audit": "artifact-audit-i01.json",
   "case_map": "cases.json",
-  "evidence_root": "evidence/super-agent-v1/SAV1-15/start-20261114T110315Z-223d6c86",
+  "evidence_root": "evidence/super-agent-v1/SAV1-15/i01-repair-20261114T122848Z-bf8c3ddb",
   "historical_failures_preserved": true,
-  "completion_handoff": "PREPARED_LOCALLY_NOT_SENT_OR_ACKNOWLEDGED"
+  "completion_handoff": "PREPARED_LOCALLY_NOT_SENT_OR_ACKNOWLEDGED",
+  "previous_delivery": "history/pre-I01-20261114/accept.json",
+  "engineering_gate_before_repair": "FAIL_INDEPENDENT_SA15_I01",
+  "i01_repair": "i01-repair.json",
+  "current_artifact_audit": "artifact-audit-i01.json",
+  "current_evidence_manifest": "i01-evidence-manifest.json",
+  "independent_passes_preserved": {
+    "original4": 4,
+    "new_permission_boundaries": 3
+  },
+  "independent_new_failure_targeted_local_PASS": 1,
+  "remaining_independent_blockers": "Independent recheck of SA15-I01 still required",
+  "previous_artifact_audit": "history/pre-I01-20261114/artifact-audit.json",
+  "previous_evidence_root": "evidence/super-agent-v1/SAV1-15/start-20261114T110315Z-223d6c86"
 }

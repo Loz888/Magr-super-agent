@@ -1,13 +1,16 @@
 {
-  "UTC": "2026-11-14T12:04:59.580209+00:00",
-  "functional_source_commit": "bc1f91c8f5fc8acaf3bb80e1649c4718c0d36a79",
-  "source_sha256": "13680b9009f8e33fd57c4e414c71bfcd73c8f337c804127ce6e7e546d1f8acbc",
+  "UTC": "2026-11-14T12:34:47.766562+00:00",
+  "functional_source_commit": "45a79cf21cbf9fb9456d89a32a2332a718c277a7",
+  "source_sha256": "5dfdb4073b6ae452d7d7728d8867dc5377664e28f103d91c1f81ffb3cd1a0cd9",
   "source_unchanged_by_document_delivery": true,
   "source_worktree_clean": true,
   "protected_user_file_sha256": "f4adf9605c87d6256bd2ec17b8436da8a7bced763a8e03b185a8cfe19d34a29f",
   "protected_file_remains_untracked": true,
-  "evidence_manifest_sha256": "80994568cf518e43a6d7d848571eb0843980459417843048f57c9b78b6367910",
+  "user_env_unchanged": true,
+  "evidence_manifest_sha256": "1b0175898790e7ee7a8b4b969ce86f4592115fc311810625d664e51c72503b4e",
   "tests_rerun_for_finalization": 0,
+  "retested_failed_cases": 1,
+  "static_targets_rerun": 0,
   "SA16": "NOT_STARTED",
-  "independent": "NOT_RUN"
+  "independent": "FAIL_SA15_I01_PENDING_INDEPENDENT_RECHECK"
 }

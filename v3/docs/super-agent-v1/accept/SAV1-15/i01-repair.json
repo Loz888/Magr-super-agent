@@ -1,0 +1,52 @@
+{
+  "finding": "SA15-I01",
+  "priority": "P2",
+  "status": "IMPLEMENTER_TARGETED_PASS_PENDING_INDEPENDENT_RECHECK",
+  "source_commit": "45a79cf21cbf9fb9456d89a32a2332a718c277a7",
+  "source_sha256": "5dfdb4073b6ae452d7d7728d8867dc5377664e28f103d91c1f81ffb3cd1a0cd9",
+  "candidate_archive": {
+    "UTC": "2026-11-14T12:30:34.364669+00:00",
+    "source_commit": "45a79cf21cbf9fb9456d89a32a2332a718c277a7",
+    "source_sha256": "5dfdb4073b6ae452d7d7728d8867dc5377664e28f103d91c1f81ffb3cd1a0cd9",
+    "archive": "evidence/super-agent-v1/SAV1-15/i01-repair-20261114T122848Z-bf8c3ddb/source-45a79cf21cbf.tar.gz",
+    "archive_sha256": "1d008a8bbcd197cb821aacc322e6e62a0f9f469975ab8dfccd27a21f2611adf0",
+    "archive_source_sha256": "5dfdb4073b6ae452d7d7728d8867dc5377664e28f103d91c1f81ffb3cd1a0cd9",
+    "scope": "Only original SA15-I01 failed search pagination function; byte-identical independent probe; no other tests or static target reruns"
+  },
+  "original_independent_status": "FAIL_SA15_I01",
+  "original_report": "evidence/super-agent-v1/SAV1-15/independent-review-20261114T120803Z-877c25cc/REPORT.md",
+  "original_finding": "evidence/super-agent-v1/SAV1-15/independent-review-20261114T120803Z-877c25cc/finding-SA15-I01.json",
+  "original_observation": "evidence/super-agent-v1/SAV1-15/independent-review-20261114T120803Z-877c25cc/search-window-observation.json",
+  "original_failed_junit": "evidence/super-agent-v1/SAV1-15/independent-review-20261114T120803Z-877c25cc/search_recheck-junit.xml",
+  "original_probe_sha256": "afbf7415869bdf19f8b7fd4bef486fe162c15a8ef5ba4a4b0dc60ff15d77dc30",
+  "repair": "Resolve UTC search bounds once, authenticate them in the opaque cursor and restore on continuation; version hashes actual bounds; old search continuations without bounds rejected. Every page still performs current Caller/Source/ACL/expiry checks.",
+  "private_only_changed_sources": [
+    "src/mgar_v3/super_agent/source_recall.py",
+    "src/mgar_v3/super_agent/source_recall_domain.py"
+  ],
+  "shared_engine_api_changed": false,
+  "new_migration": null,
+  "new_or_broader_tests_executed": false,
+  "target": "/home/imini/magr-super-agent/v3/evidence/super-agent-v1/SAV1-15/i01-repair-20261114T122848Z-bf8c3ddb/test_independent_sa15.py::test_search_cursor_keeps_original_resolved_default_time_window",
+  "counts": {
+    "tests": 1,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "exit_code": 0,
+  "result": "evidence/super-agent-v1/SAV1-15/i01-repair-20261114T122848Z-bf8c3ddb/result.json",
+  "junit": "evidence/super-agent-v1/SAV1-15/i01-repair-20261114T122848Z-bf8c3ddb/junit.xml",
+  "log": "evidence/super-agent-v1/SAV1-15/i01-repair-20261114T122848Z-bf8c3ddb/command.log",
+  "new_observation": "evidence/super-agent-v1/SAV1-15/i01-repair-20261114T122848Z-bf8c3ddb/search-window-observation.json",
+  "assertions_or_fixture_changed": false,
+  "old110_formal_and89_preparation_rerun": false,
+  "independent_original4_and_new3_PASS_rerun": false,
+  "static_targets_rerun": false,
+  "single_final_full_suite_PASS_claimed": false,
+  "source_stable": true,
+  "historical_failures_preserved": true,
+  "SA16": "NOT_STARTED",
+  "real_gates": "NOT_RUN",
+  "evidence_root": "evidence/super-agent-v1/SAV1-15/i01-repair-20261114T122848Z-bf8c3ddb"
+}

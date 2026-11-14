@@ -15,7 +15,7 @@
   },
   "active_super_agent_card": "SAV1-15",
   "card_status": "IN_PROGRESS",
-  "work_state": "LOCAL_CONTROLLED_ENGINEERING_COMPLETE_PENDING_INDEPENDENT_REVIEW",
+  "work_state": "SA15_I01_TARGETED_REPAIR_PASS_PENDING_INDEPENDENT_RECHECK",
   "harness_observation": {
     "head": "de4775e22e96718e880fde287b2e0928db2945e3",
     "h00_owner_reported_status": "PASS",
@@ -450,7 +450,7 @@
   "sa14_harness_observed_head": "617e14a52d65c5276bcd3ef87dbd0f05b4a3c08d",
   "sa14_h12_live_agent_MVP": "FAIL",
   "sa14_real_gates": "NOT_RUN",
-  "sa15": "PENDING_INDEPENDENT_REVIEW",
+  "sa15": "I01_PENDING_INDEPENDENT_RECHECK",
   "sa14_ownership_commit": "c711d54504c4945625505f47e9df56e22bc1bdac",
   "H12_acceptance_owner": "other CLI per explicit user clarification; no H12 work here",
   "sa16": "NOT_STARTED",
@@ -466,8 +466,9 @@
     "H12": "other CLI, no import",
     "real_capabilities": "NOT_RUN"
   },
-  "sa15_source_commit": "bc1f91c8f5fc8acaf3bb80e1649c4718c0d36a79",
-  "sa15_source_sha256": "13680b9009f8e33fd57c4e414c71bfcd73c8f337c804127ce6e7e546d1f8acbc",
+  "sa15_source_commit": "45a79cf21cbf9fb9456d89a32a2332a718c277a7",
+  "sa15_source_sha256": "5dfdb4073b6ae452d7d7728d8867dc5377664e28f103d91c1f81ffb3cd1a0cd9",
   "sa15_acceptance": "accept/SAV1-15/accept.json",
-  "sa15_completion_handoff": "PREPARED_LOCALLY_NOT_SENT_OR_ACKNOWLEDGED"
+  "sa15_completion_handoff": "PREPARED_LOCALLY_NOT_SENT_OR_ACKNOWLEDGED",
+  "sa15_i01_repair": "accept/SAV1-15/i01-repair.json"
 }
