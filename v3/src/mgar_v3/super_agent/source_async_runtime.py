@@ -109,7 +109,7 @@ class AsyncAttempt:
         changed = cp.input_revision != self._announced_revision
         if stage == "before_model":
             self.reply_revision = cp.input_revision
-        instructions = ()
+        instructions: tuple[str, ...] = ()
         if stale_reply or changed:
             # Source text is not a control instruction. The current typed deny
             # sets are enforced independently at each operation boundary.
@@ -226,7 +226,7 @@ class AsyncAttempt:
         tree = session.tree()
         with self.service.engine.transaction() as conn:
             row, _ = self.service.current(conn, self.bearer, self.request, tree)
-            return self.reply_revision == row["input_revision"]
+            return bool(self.reply_revision == row["input_revision"])
 
     def operation_payload_usable(self, operation: dict[str, Any]) -> bool:
         with self.service.engine.transaction() as conn:
@@ -292,8 +292,10 @@ class SourceAsyncRuntime:
             if failure:
                 with self.service.engine.transaction() as conn:
                     conn.execute(
-                        "UPDATE app.sa_coding_attempts SET state='stopped',fenced_at=clock_timestamp(),"
-                        "reason_code='SOURCE_ASYNC_WORKER_STOPPED',revision=revision+1,updated_at=clock_timestamp() "
+                        "UPDATE app.sa_coding_attempts SET "
+                        "state='stopped',fenced_at=clock_timestamp(),"
+                        "reason_code='SOURCE_ASYNC_WORKER_STOPPED',revision=revision+1,"
+                        "updated_at=clock_timestamp() "
                         "WHERE coding_id=%s AND assignment_id=%s AND state IN ('ready','running')",
                         (request.coding_id, request.assignment_id),
                     )

@@ -65,12 +65,15 @@ class SignedReplyIngress(SignedIngress):
         )
 
 
-def new_source(engine):
+def new_source(engine, *, cookie=None):
     accounts = WebAccounts(engine)
-    owner = accounts.create_owner(
-        LoginInput(username="sa14-owner", password=SecretStr("synthetic-sa14-owner-password"))
-    )
-    cookie = accounts.issue_session(owner)
+    if cookie is None:
+        owner = accounts.create_owner(
+            LoginInput(username="sa14-owner", password=SecretStr("synthetic-sa14-owner-password"))
+        )
+        cookie = accounts.issue_session(owner)
+    else:
+        assert accounts.session(cookie) is not None
     installation = SourceInstance(
         scope=SourceScope(
             source_kind="feishu",
@@ -160,7 +163,7 @@ def attach(env, *, database_paths=("src/calc.py",)):
         env.cookie,
         env.source.installation,
         actor="Bob-Control",
-        roles=("context_provider", "task_controller"),
+        roles=("context_provider", "requester", "task_controller"),
     )
     env.source.robot, _ = bind(
         env.source.identities,
@@ -204,8 +207,8 @@ def attach(env, *, database_paths=("src/calc.py",)):
     return env
 
 
-def setup(engine, tmp_path):
-    return attach(coding_setup(engine, tmp_path, source_env=new_source(engine)))
+def setup(engine, tmp_path, *, cookie=None):
+    return attach(coding_setup(engine, tmp_path, source_env=new_source(engine, cookie=cookie)))
 
 
 def worker_request(env):

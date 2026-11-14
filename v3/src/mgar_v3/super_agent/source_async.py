@@ -13,7 +13,7 @@ from contextlib import contextmanager
 from contextvars import ContextVar
 from dataclasses import dataclass
 from datetime import datetime, timedelta
-from typing import TYPE_CHECKING, Any, Literal, Protocol
+from typing import TYPE_CHECKING, Any, Literal, Protocol, cast
 from uuid import UUID, uuid4
 
 from psycopg.pq import TransactionStatus
@@ -42,7 +42,6 @@ from mgar_v3.super_agent.source_correlation_domain import CorrelationInputRef
 
 if TYPE_CHECKING:
     from mgar_v3.coordination.engine import Connection, Engine
-    from mgar_v3.super_agent.source_coding_domain import CodingMandate
     from mgar_v3.super_agent.source_correlation import _Input
 
 Row = dict[str, Any]
@@ -107,7 +106,7 @@ class SourceAsync:
         self._conn(conn)
         row = conn.execute("SELECT clock_timestamp() AS at").fetchone()
         assert row is not None
-        return row["at"]
+        return cast(datetime, row["at"])
 
     def _owner(self, conn: Connection, cookie: str) -> UUID:
         self._conn(conn)
@@ -199,6 +198,11 @@ class SourceAsync:
         ).fetchone()
         if row is None:
             raise _deny("SOURCE_ASYNC_BINDING_NOT_FOUND", 404)
+        # The original authority guard joins many small scoped tables. Repeated
+        # JIT compilation is counterproductive for this bounded control path
+        # and can consume its short lease/TTL. This is transaction-local and
+        # changes neither the predicates nor other Engine transactions.
+        conn.execute("SET LOCAL jit = off")
         return row
 
     def _coding_request(self, row: Row, *, request_id: UUID | None = None) -> CodingRunRequest:
@@ -280,7 +284,8 @@ class SourceAsync:
         reason: str | None = None,
     ) -> None:
         conn.execute(
-            "INSERT INTO app.sa_async_events(async_id,project_id,kind,input_id,job_id,checkpoint_id,"
+            "INSERT INTO "
+            "app.sa_async_events(async_id,project_id,kind,input_id,job_id,checkpoint_id,"
             "input_revision,reason_code) VALUES(%s,%s,%s,%s,%s,%s,%s,%s)",
             (
                 row["async_id"],
@@ -311,7 +316,8 @@ class SourceAsync:
                 }
             )
             previous = conn.execute(
-                "SELECT * FROM app.sa_async_bindings WHERE coding_id=%s AND project_id=%s FOR UPDATE",
+                "SELECT * FROM app.sa_async_bindings WHERE coding_id=%s AND project_id=%s FOR "
+                "UPDATE",
                 (request.coding_id, self.project),
             ).fetchone()
             if previous is not None:
@@ -351,8 +357,10 @@ class SourceAsync:
                 control_profile_sha256=profile.profile_sha256,
             )
             row = conn.execute(
-                "INSERT INTO app.sa_async_bindings(async_id,coding_id,project_id,run_id,coding_revision,"
-                "assignment_id,session_id,workspace_id,execution_epoch,mandate_sha256,profile_sha256,initial_context_sha256,"
+                "INSERT INTO "
+                "app.sa_async_bindings(async_id,coding_id,project_id,run_id,coding_revision,"
+                "assignment_id,session_id,workspace_id,execution_epoch,mandate_sha256,"
+                "profile_sha256,initial_context_sha256,"
                 "scope_sha256,request_id,request_sha256,signed_by,review_sha256,expires_at) "
                 "VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s) RETURNING *",
                 (
@@ -427,12 +435,14 @@ class SourceAsync:
         )
         state = "received" if valid else "blocked"
         reason = None if valid else "SOURCE_ASYNC_INPUT_DENIED"
-        row = conn.execute(
+        updated = conn.execute(
             "UPDATE app.sa_async_bindings SET received_sequence=received_sequence+1,"
-            "input_revision=input_revision+%s,revision=revision+1,updated_at=clock_timestamp() WHERE async_id=%s RETURNING *",
+            "input_revision=input_revision+%s,revision=revision+1,updated_at=clock_timestamp() "
+            "WHERE async_id=%s RETURNING *",
             (int(facts.kind != "job_progress"), row["async_id"]),
         ).fetchone()
-        assert row is not None
+        assert updated is not None
+        row = updated
         role = None
         if source is not None:
             role = conn.execute(
@@ -447,10 +457,13 @@ class SourceAsync:
         identifier = uuid4()
         input_row = conn.execute(
             "INSERT INTO app.sa_async_inputs(input_id,async_id,project_id,scope_sha256,sequence,"
-            "input_revision,request_id,request_sha256,kind,origin,state,source_input_id,source_instance_id,version_fingerprint,"
-            "source_state_sha256,identity_id,identity_revision,policy_id,policy_revision,role_binding_id,role_revision,owner_id,"
+            "input_revision,request_id,request_sha256,kind,origin,state,source_input_id,"
+            "source_instance_id,version_fingerprint,"
+            "source_state_sha256,identity_id,identity_revision,policy_id,policy_revision,"
+            "role_binding_id,role_revision,owner_id,"
             "resource_operation_id,restriction,reason_code,received_at,expires_at) "
-            "VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s) RETURNING *",
+            "VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,"
+            "%s,%s) RETURNING *",
             (
                 identifier,
                 row["async_id"],
@@ -589,14 +602,16 @@ class SourceAsync:
     def accepted_conn(self, conn: Connection, input_id: UUID, *, receipt_id: UUID) -> None:
         self._conn(conn)
         incoming = conn.execute(
-            "SELECT source_instance_id FROM app.source_ingress_inputs WHERE input_id=%s AND project_id=%s",
+            "SELECT source_instance_id FROM app.source_ingress_inputs WHERE input_id=%s AND "
+            "project_id=%s",
             (input_id, self.project),
         ).fetchone()
         if incoming is None:
             return
         # Scope by canonical installation first; an entire chat is never a Task.
         candidates = conn.execute(
-            "SELECT a.* FROM app.sa_async_bindings a JOIN app.sa_coding_bindings c USING(coding_id) "
+            "SELECT a.* FROM app.sa_async_bindings a JOIN app.sa_coding_bindings c "
+            "USING(coding_id) "
             "WHERE a.project_id=%s AND a.state='active' AND a.expires_at>clock_timestamp() "
             "AND c.source_instance_id=%s ORDER BY a.created_at LIMIT 129",
             (self.project, incoming["source_instance_id"]),
@@ -633,7 +648,8 @@ class SourceAsync:
             )
             delivered = (
                 conn.execute(
-                    "SELECT 1 FROM app.sa_source_subscription_deliveries WHERE input_id=%s AND run_id=%s LIMIT 1",
+                    "SELECT 1 FROM app.sa_source_subscription_deliveries WHERE input_id=%s AND "
+                    "run_id=%s LIMIT 1",
                     (input_id, row["run_id"]),
                 ).fetchone()
                 if self.engine.source_subscriptions._ready(conn)
@@ -644,6 +660,7 @@ class SourceAsync:
         if len(targets) != 1:
             return
         row = targets[0]
+        row = self.binding(conn, row["coding_id"])
         if conn.execute(
             "SELECT 1 FROM app.sa_async_inputs WHERE async_id=%s AND source_input_id=%s",
             (row["async_id"], input_id),
@@ -685,8 +702,8 @@ class SourceAsync:
             return True
         raw = json.loads(source.clear)
         if raw.get("schema_version") == "github-content-v1":
-            return raw.get("text", "").strip() == "不要改数据库"
-        return (
+            return bool(raw.get("text", "").strip() == "不要改数据库")
+        return bool(
             raw.get("schema_version") == "feishu-content-v1" and raw.get("message_type") == "text"
         )
 
@@ -745,7 +762,8 @@ class SourceAsync:
         if cp is None:
             raise _deny("SOURCE_ASYNC_CHECKPOINT_REQUIRED")
         refs = conn.execute(
-            "SELECT * FROM app.sa_async_inputs WHERE async_id=%s AND origin='source' AND state='applied' "
+            "SELECT * FROM app.sa_async_inputs WHERE async_id=%s AND origin='source' AND "
+            "state='applied' "
             "AND sequence<=%s ORDER BY source_input_id",
             (row["async_id"], cp["through_sequence"]),
         ).fetchall()
@@ -813,7 +831,8 @@ class SourceAsync:
                 validate_view(previous, current, at=self.now(conn))
                 return previous
             raw = conn.execute(
-                "SELECT * FROM app.sa_async_inputs WHERE async_id=%s AND sequence>%s ORDER BY sequence LIMIT 257",
+                "SELECT * FROM app.sa_async_inputs WHERE async_id=%s AND sequence>%s ORDER BY "
+                "sequence LIMIT 257",
                 (row["async_id"], previous.through_sequence if previous else 0),
             ).fetchall()
             # Terminal blocked inputs are acknowledged as blocked in the same new view.
@@ -902,8 +921,11 @@ class SourceAsync:
             )
             cp = plan.checkpoint
             conn.execute(
-                "INSERT INTO app.sa_async_checkpoints(checkpoint_id,async_id,project_id,scope_sha256,request_id,stage,"
-                "input_revision,through_sequence,restriction,context_sha256,tree_sha256,environment_sha256,created_at,expires_at) "
+                "INSERT INTO "
+                "app.sa_async_checkpoints(checkpoint_id,async_id,project_id,scope_sha256,"
+                "request_id,stage,"
+                "input_revision,through_sequence,restriction,context_sha256,tree_sha256,"
+                "environment_sha256,created_at,expires_at) "
                 "VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)",
                 (
                     cp.checkpoint_id,
@@ -927,7 +949,8 @@ class SourceAsync:
                     continue
                 applied = item["input_id"] in plan.applied_ids
                 conn.execute(
-                    "UPDATE app.sa_async_inputs SET state=%s,applied_checkpoint_id=%s,reason_code=%s,"
+                    "UPDATE app.sa_async_inputs SET "
+                    "state=%s,applied_checkpoint_id=%s,reason_code=%s,"
                     "updated_at=clock_timestamp() WHERE input_id=%s",
                     (
                         "applied" if applied else "blocked",
@@ -945,7 +968,8 @@ class SourceAsync:
                     reason=None if applied else "SOURCE_ASYNC_INPUT_DENIED",
                 )
             conn.execute(
-                "UPDATE app.sa_async_bindings SET current_checkpoint_id=%s,applied_sequence=%s,restriction=%s,"
+                "UPDATE app.sa_async_bindings SET "
+                "current_checkpoint_id=%s,applied_sequence=%s,restriction=%s,"
                 "revision=revision+1,updated_at=clock_timestamp() WHERE async_id=%s",
                 (
                     cp.checkpoint_id,
@@ -972,7 +996,12 @@ class SourceAsync:
         self._dependencies(conn, row, cp)
         if capability in {"write", "execute"}:
             validate_mutation(
-                cp, facts, at=self.now(conn), capability=capability, paths=paths, command=command
+                cp,
+                facts,
+                at=self.now(conn),
+                capability=cast(Literal["write", "execute"], capability),
+                paths=paths,
+                command=command,
             )
         else:
             validate_view(cp, facts, at=self.now(conn))
@@ -1031,7 +1060,7 @@ class SourceAsync:
             raise _deny("SOURCE_ASYNC_OPERATION_VIEW_REQUIRED")
         cp = self._checkpoint(conn, row, view["checkpoint_id"])
         self.validate(conn, bearer, request, cp, tree=operation["tree_sha256"])
-        return view["expires_at"]
+        return cast(datetime, view["expires_at"])
 
     def maintain(self, coding_id: UUID) -> None:
         with self.engine.transaction() as conn:
@@ -1048,11 +1077,16 @@ class SourceAsync:
                         (row["async_id"], "SOURCE_ASYNC_CONTEXT_REVOKED"),
                     )
             conn.execute(
-                "UPDATE app.sa_coding_payloads p SET ciphertext=NULL,unavailable_at=clock_timestamp(),"
-                "reason_code='SOURCE_ASYNC_VIEW_UNAVAILABLE',revision=p.revision+1,updated_at=clock_timestamp() "
-                "FROM app.sa_async_operation_views v JOIN app.sa_async_bindings b ON b.async_id=v.async_id "
-                "WHERE p.operation_id=v.operation_id AND b.coding_id=%s AND p.unavailable_at IS NULL "
-                "AND (b.state<>'active' OR v.expires_at<=clock_timestamp() OR v.input_revision<>b.input_revision)",
+                "UPDATE app.sa_coding_payloads p SET "
+                "ciphertext=NULL,unavailable_at=clock_timestamp(),"
+                "reason_code='SOURCE_ASYNC_VIEW_UNAVAILABLE',revision=p.revision+1,"
+                "updated_at=clock_timestamp() "
+                "FROM app.sa_async_operation_views v JOIN app.sa_async_bindings b ON "
+                "b.async_id=v.async_id "
+                "WHERE p.operation_id=v.operation_id AND b.coding_id=%s AND p.unavailable_at IS "
+                "NULL "
+                "AND (b.state<>'active' OR v.expires_at<=clock_timestamp() OR "
+                "v.input_revision<>b.input_revision)",
                 (coding_id,),
             )
 
@@ -1062,7 +1096,8 @@ class SourceAsync:
             row = self.binding(conn, coding_id)
             self._page(after, limit)
             items = conn.execute(
-                "SELECT * FROM app.sa_async_inputs WHERE async_id=%s AND sequence>%s ORDER BY sequence LIMIT %s",
+                "SELECT * FROM app.sa_async_inputs WHERE async_id=%s AND sequence>%s ORDER BY "
+                "sequence LIMIT %s",
                 (row["async_id"], after, limit),
             ).fetchall()
             return {"coding_id": coding_id, "inputs": [self._input_view(item) for item in items]}
@@ -1078,8 +1113,10 @@ class SourceAsync:
             row = self.binding(conn, coding_id)
             self._page(after, limit)
             events = conn.execute(
-                "SELECT event_id,kind,input_id,job_id,checkpoint_id,input_revision,reason_code,created_at "
-                "FROM app.sa_async_events WHERE async_id=%s AND event_id>%s ORDER BY event_id LIMIT %s",
+                "SELECT "
+                "event_id,kind,input_id,job_id,checkpoint_id,input_revision,reason_code,created_at "
+                "FROM app.sa_async_events WHERE async_id=%s AND event_id>%s ORDER BY event_id "
+                "LIMIT %s",
                 (row["async_id"], after, limit),
             ).fetchall()
             return {"coding_id": coding_id, "events": events}
@@ -1113,7 +1150,8 @@ class SourceAsync:
             row = self.binding(conn, coding_id)
             self._page(0, limit)
             items = conn.execute(
-                "SELECT * FROM app.sa_async_jobs WHERE async_id=%s AND (%s::uuid IS NULL OR job_id>%s) "
+                "SELECT * FROM app.sa_async_jobs WHERE async_id=%s AND (%s::uuid IS NULL OR "
+                "job_id>%s) "
                 "ORDER BY job_id LIMIT %s",
                 (row["async_id"], after, after, limit),
             ).fetchall()
@@ -1133,12 +1171,14 @@ class SourceAsync:
         if job["state"] in {"stop_requested", "unknown", "known"}:
             return self._job_view(job)
         self._cas(job, revision)
-        job = conn.execute(
-            "UPDATE app.sa_async_jobs SET state='stop_requested',revision=revision+1,updated_at=clock_timestamp() "
+        updated = conn.execute(
+            "UPDATE app.sa_async_jobs SET "
+            "state='stop_requested',revision=revision+1,updated_at=clock_timestamp() "
             "WHERE job_id=%s RETURNING *",
             (job_id,),
         ).fetchone()
-        assert job is not None
+        assert updated is not None
+        job = updated
         self._event(conn, row, "job_stop_requested", job_id=job_id)
         return self._job_view(job)
 
@@ -1210,8 +1250,11 @@ class SourceAsync:
                 raise _deny("SOURCE_ASYNC_OPERATION_VIEW_REQUIRED")
             identifier = uuid4()
             conn.execute(
-                "INSERT INTO app.sa_async_jobs(job_id,async_id,coding_id,project_id,run_id,assignment_id,session_id,execution_epoch,"
-                "checkpoint_id,coding_operation_id,resource_operation_id,scope_sha256,input_revision,request_sha256,tree_sha256,environment_sha256) "
+                "INSERT INTO "
+                "app.sa_async_jobs(job_id,async_id,coding_id,project_id,run_id,assignment_id,"
+                "session_id,execution_epoch,"
+                "checkpoint_id,coding_operation_id,resource_operation_id,scope_sha256,"
+                "input_revision,request_sha256,tree_sha256,environment_sha256) "
                 "VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)",
                 (
                     identifier,
@@ -1242,7 +1285,8 @@ class SourceAsync:
             if job["state"] != "prepared":
                 raise _deny("SOURCE_ASYNC_JOB_STOPPED")
             conn.execute(
-                "UPDATE app.sa_async_jobs SET state='running',revision=revision+1,updated_at=clock_timestamp() WHERE job_id=%s",
+                "UPDATE app.sa_async_jobs SET state='running',revision=revision+1,"
+                "updated_at=clock_timestamp() WHERE job_id=%s",
                 (identifier,),
             )
             self._event(conn, row, "job_running", job_id=identifier)
@@ -1257,8 +1301,9 @@ class SourceAsync:
             ).fetchone()
             assert original is not None
             if job["state"] != "known" and original["state"] == "known_terminal":
-                job = conn.execute(
-                    "UPDATE app.sa_async_jobs SET state='known',result_code=%s,receipt_sha256=%s,observed_at=%s,"
+                updated = conn.execute(
+                    "UPDATE app.sa_async_jobs SET "
+                    "state='known',result_code=%s,receipt_sha256=%s,observed_at=%s,"
                     "revision=revision+1,updated_at=clock_timestamp() WHERE job_id=%s RETURNING *",
                     (
                         original["result_code"],
@@ -1267,7 +1312,8 @@ class SourceAsync:
                         identifier,
                     ),
                 ).fetchone()
-                assert job is not None
+                assert updated is not None
+                job = updated
                 self._event(conn, row, "job_known", job_id=identifier)
                 facts = AsyncInputFacts(
                     kind="job_progress",
@@ -1294,7 +1340,8 @@ class SourceAsync:
             job = self._job(conn, row, identifier)
             if job["state"] not in {"unknown", "known"}:
                 conn.execute(
-                    "UPDATE app.sa_async_jobs SET state='unknown',revision=revision+1,updated_at=clock_timestamp() WHERE job_id=%s",
+                    "UPDATE app.sa_async_jobs SET state='unknown',revision=revision+1,"
+                    "updated_at=clock_timestamp() WHERE job_id=%s",
                     (identifier,),
                 )
                 self._event(conn, row, "job_unknown", job_id=identifier)
@@ -1312,7 +1359,8 @@ class SourceAsync:
         if not self._ready(conn):
             return
         rows = conn.execute(
-            "SELECT * FROM app.sa_async_bindings WHERE project_id=%s AND state='active' ORDER BY async_id FOR UPDATE",
+            "SELECT * FROM app.sa_async_bindings WHERE project_id=%s AND state='active' ORDER BY "
+            "async_id FOR UPDATE",
             (self.project,),
         ).fetchall()
         for row in rows:
@@ -1321,14 +1369,17 @@ class SourceAsync:
                 (row["async_id"], "SOURCE_ASYNC_ENGINE_RECOVERY"),
             )
         observed = conn.execute(
-            "SELECT j.coding_id,j.job_id FROM app.sa_async_jobs j JOIN app.sa_scheduler_operations r "
-            "ON r.operation_id=j.resource_operation_id WHERE j.project_id=%s AND j.state<>'known' AND r.state='known_terminal'",
+            "SELECT j.coding_id,j.job_id FROM app.sa_async_jobs j JOIN "
+            "app.sa_scheduler_operations r "
+            "ON r.operation_id=j.resource_operation_id WHERE j.project_id=%s AND "
+            "j.state<>'known' AND r.state='known_terminal'",
             (self.project,),
         ).fetchall()
         for job in observed:
             self.job_observed(job["coding_id"], job["job_id"])
         conn.execute(
-            "UPDATE app.sa_async_jobs SET state='unknown',revision=revision+1,updated_at=clock_timestamp() "
+            "UPDATE app.sa_async_jobs SET "
+            "state='unknown',revision=revision+1,updated_at=clock_timestamp() "
             "WHERE project_id=%s AND state IN ('prepared','running','stop_requested')",
             (self.project,),
         )
@@ -1338,7 +1389,8 @@ class SourceAsync:
             row = self.binding(conn, coding_id)
             jobs = conn.execute(
                 "SELECT j.job_id FROM app.sa_async_jobs j JOIN app.sa_scheduler_operations r "
-                "ON r.operation_id=j.resource_operation_id WHERE j.async_id=%s AND j.state<>'known' "
+                "ON r.operation_id=j.resource_operation_id WHERE j.async_id=%s AND "
+                "j.state<>'known' "
                 "AND r.state='known_terminal' ORDER BY j.job_id LIMIT 128",
                 (row["async_id"],),
             ).fetchall()

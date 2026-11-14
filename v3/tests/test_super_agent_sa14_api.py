@@ -9,8 +9,8 @@ from test_super_agent_sa13_api import browser as browser
 
 from mgar_v3.super_agent.source_async_domain import (
     AsyncJobCancelRequest,
-    AsyncRestrictRequest,
     AsyncRestriction,
+    AsyncRestrictRequest,
 )
 
 PREFIX = "/api/v3/source-async"
@@ -77,7 +77,7 @@ def test_original_app_registers_exact_twelve_agreed_async_routes(browser):
 
 @pytest.mark.parametrize("method,route", ROUTES[:8])
 def test_owner_routes_never_accept_worker_or_operator_as_owner(browser, method, route, tmp_path):
-    env = setup(browser.engine, tmp_path)
+    env = setup(browser.engine, tmp_path, cookie=browser.cookie)
     browser.client.headers.update(
         {
             "Authorization": "Bearer " + env.worker["bearer"],
@@ -95,7 +95,7 @@ def test_owner_routes_never_accept_worker_or_operator_as_owner(browser, method, 
 
 @pytest.mark.parametrize("fault", ["origin", "csrf", "cross_origin"])
 def test_owner_mutations_require_current_origin_and_csrf(browser, tmp_path, fault):
-    env = setup(browser.engine, tmp_path)
+    env = setup(browser.engine, tmp_path, cookie=browser.cookie)
     authenticate(browser)
     if fault == "origin":
         del browser.client.headers["Origin"]
@@ -128,7 +128,7 @@ def test_owner_mutations_require_current_origin_and_csrf(browser, tmp_path, faul
 def test_authenticated_owner_cannot_submit_runtime_or_authority_assertions(
     browser, tmp_path, field
 ):
-    env = setup(browser.engine, tmp_path)
+    env = setup(browser.engine, tmp_path, cookie=browser.cookie)
     authenticate(browser)
     body = request_payload("/bindings/{coding_id}/restrictions", env)
     body[field] = None
@@ -144,7 +144,7 @@ def test_owner_receives_received_applied_blocked_metadata_without_source_body_or
 ):
     from sa14_support import followup, point
 
-    env = setup(browser.engine, tmp_path)
+    env = setup(browser.engine, tmp_path, cookie=browser.cookie)
     authenticate(browser)
     response = browser.client.post(
         path("/bindings/{coding_id}/restrictions", env.mandate.coding_id),
@@ -173,7 +173,7 @@ def test_owner_receives_received_applied_blocked_metadata_without_source_body_or
 def test_worker_uses_own_bearer_and_exact_original_assignment_after_owner_signout(
     browser, tmp_path
 ):
-    env = setup(browser.engine, tmp_path)
+    env = setup(browser.engine, tmp_path, cookie=browser.cookie)
     query = {
         key: str(getattr(env.run_request, key))
         for key in ["run_id", "assignment_id", "session_id", "epoch"]
@@ -193,7 +193,7 @@ def test_worker_uses_own_bearer_and_exact_original_assignment_after_owner_signou
 
 @pytest.mark.parametrize("query", [{"limit": 65}, {"after_sequence": -1}])
 def test_metadata_pagination_is_bounded(browser, tmp_path, query):
-    env = setup(browser.engine, tmp_path)
+    env = setup(browser.engine, tmp_path, cookie=browser.cookie)
     authenticate(browser)
     response = browser.client.get(
         path("/bindings/{coding_id}/inputs", env.mandate.coding_id), params=query
