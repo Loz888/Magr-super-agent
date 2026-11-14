@@ -1690,7 +1690,8 @@
       "tests/test_super_agent_sa14_inbox.py",
       "tests/test_super_agent_sa14_api.py",
       "tests/test_super_agent_sa14_runtime.py",
-      "tests/test_super_agent_sa14_recovery.py"
+      "tests/test_super_agent_sa14_recovery.py",
+      "tests/test_super_agent_sa14_boundaries.py"
     ],
     "timeout_seconds": 2400,
     "components": {

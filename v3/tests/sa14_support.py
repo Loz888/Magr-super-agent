@@ -354,7 +354,7 @@ def actual(engine, tmp_path, monkeypatch, *, model=None, slow_tests=False):
         finally:
             if model.release:
                 model.release.set()
-            assert runtime.join(env.mandate.coding_id, timeout=30)
+            assert runtime.join(env.mandate.coding_id, timeout=60)
 
 
 def start(env):

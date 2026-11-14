@@ -38,10 +38,13 @@ from mgar_v3.super_agent.source_async_domain import (
 from mgar_v3.super_agent.source_async_plan import PendingInput, plan_safe_point
 from mgar_v3.super_agent.source_async_rules import classify_input, validate_mutation, validate_view
 from mgar_v3.super_agent.source_coding_domain import CodingRunRequest, within
+from mgar_v3.super_agent.source_coding_rules import validate_coding_tool
 from mgar_v3.super_agent.source_correlation_domain import CorrelationInputRef
 
 if TYPE_CHECKING:
     from mgar_v3.coordination.engine import Connection, Engine
+    from mgar_v3.super_agent.source_coding_domain import CodingCurrentFacts, CodingMandate
+    from mgar_v3.super_agent.source_coding_workspace import WorkspaceAccess
     from mgar_v3.super_agent.source_correlation import _Input
 
 Row = dict[str, Any]
@@ -710,6 +713,16 @@ class SourceAsync:
     def current(
         self, conn: Connection, bearer: str, request: CodingRunRequest, tree: str
     ) -> tuple[Row, AsyncCurrentFacts]:
+        row, facts, _, _ = self._current(conn, bearer, request, tree)
+        return row, facts
+
+    def _current(
+        self,
+        conn: Connection,
+        bearer: str,
+        request: CodingRunRequest,
+        tree: str,
+    ) -> tuple[Row, AsyncCurrentFacts, CodingMandate, CodingCurrentFacts]:
         row = self.binding(conn, request.coding_id)
         if any(
             (
@@ -752,7 +765,7 @@ class SourceAsync:
         )
         if not facts.active or self.now(conn) >= facts.expires_at:
             raise _deny("SOURCE_ASYNC_AUTHORITY_FENCED", 403)
-        return row, facts
+        return row, facts, mandate, original
 
     def _checkpoint(self, conn: Connection, row: Row, identifier: UUID) -> AsyncCheckpoint:
         cp = conn.execute(
@@ -1056,13 +1069,14 @@ class SourceAsync:
         paths: tuple[str, ...] = (),
         command: str | None = None,
         reply_revision: int | None = None,
+        workspace_access: WorkspaceAccess | None = None,
     ) -> Iterator[AsyncCheckpoint]:
         # One current original authority snapshot per operation. The mutex is
         # held continuously through its actual IO, but the SQL transaction ends
         # before IO starts. No authority snapshot is reused across operations.
         with self.engine._mutex:
             with self.engine.transaction() as conn:
-                row, facts = self.current(conn, bearer, request, tree)
+                row, facts, mandate, original = self._current(conn, bearer, request, tree)
                 if reply_revision is not None and reply_revision != row["input_revision"]:
                     raise _deny("SOURCE_ASYNC_MODEL_REPLY_STALE")
                 cp = self._plan_checkpoint(
@@ -1086,7 +1100,27 @@ class SourceAsync:
                     )
                 else:
                     validate_view(cp, applied, at=self.now(conn))
+                if workspace_access is not None:
+                    if capability not in {"read", "write"}:
+                        raise _deny("SOURCE_ASYNC_OPERATION_SCOPE")
+                    for path in workspace_access.paths:
+                        validate_coding_tool(
+                            mandate,
+                            original,
+                            request,
+                            at=self.now(conn),
+                            capability=cast(Literal["read", "write"], capability),
+                            path=path,
+                            expected_tree_sha256=(
+                                workspace_access.expected_tree if capability == "write" else None
+                            ),
+                        )
             yield cp
+            if workspace_access is not None:
+                # Preserve the original workspace post-IO authority check.
+                # The batch's actual journal/receipts have already been kept.
+                with self.engine.transaction() as conn, self.execution_scope(cp.async_id):
+                    self.engine.source_coding.current(conn, bearer, request, tree_sha256=tree)
 
     def materialize(
         self, bearer: str, request: CodingRunRequest, cp: AsyncCheckpoint, *, tree: str

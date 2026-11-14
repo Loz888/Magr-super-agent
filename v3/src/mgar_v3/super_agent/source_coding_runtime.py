@@ -1294,10 +1294,20 @@ class _Attempt:
     @contextmanager
     def workspace_guard(self, access: WorkspaceAccess) -> Iterator[None]:
         tree = self.tree()
+        capability: Literal["read", "write"] = "write" if access.operation == "apply" else "read"
+        if self.bridge is not None:
+            # Internal snapshots let the kernel discard/replan an obsolete
+            # response. Actual model-selected reads/writes still require the
+            # response's input revision, as well as current original authority.
+            with self.bridge.guard(
+                capability,
+                paths=access.paths if capability == "write" else (),
+                model_reply=access.operation != "snapshot",
+                workspace_access=access,
+            ):
+                yield
+            return
         with self.core.guard(self.bearer, self.request, tree_sha256=tree) as (mandate, facts):
-            capability: Literal["read", "write"] = (
-                "write" if access.operation == "apply" else "read"
-            )
             for path in access.paths:
                 validate_coding_tool(
                     mandate,
@@ -1308,13 +1318,7 @@ class _Attempt:
                     path=path,
                     expected_tree_sha256=access.expected_tree if capability == "write" else None,
                 )
-            if self.bridge is None:
-                yield
-            else:
-                with self.bridge.guard(
-                    capability, paths=access.paths if capability == "write" else ()
-                ):
-                    yield
+            yield
 
     def lease(self) -> CapabilityLease:
         with self.core.guard(self.bearer, self.request, tree_sha256=self.tree()) as (

@@ -25,6 +25,7 @@ if TYPE_CHECKING:
     from mgar_v3.super_agent.source_async import SourceAsync
     from mgar_v3.super_agent.source_coding_domain import CodingRunRequest
     from mgar_v3.super_agent.source_coding_runtime import _Attempt
+    from mgar_v3.super_agent.source_coding_workspace import WorkspaceAccess
 
 
 def _deny(code: str) -> DomainError:
@@ -138,6 +139,7 @@ class AsyncAttempt:
         paths: tuple[str, ...] = (),
         command: str | None = None,
         model_reply: bool = True,
+        workspace_access: WorkspaceAccess | None = None,
     ) -> Iterator[None]:
         session = self._session()
         tree = session.tree()
@@ -149,6 +151,7 @@ class AsyncAttempt:
             paths=paths,
             command=command,
             reply_revision=self.reply_revision if model_reply else None,
+            workspace_access=workspace_access,
         ) as cp:
             if cp.async_id != self.async_id:
                 raise _deny("SOURCE_ASYNC_SCOPE_FENCED")
