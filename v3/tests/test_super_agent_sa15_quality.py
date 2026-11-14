@@ -6,7 +6,7 @@ from pathlib import Path
 from uuid import uuid4
 
 import pytest
-from sa04_support import envelope, signed
+from sa04_support import envelope
 from sa14_support import new_source
 from sa15_support import TEXT, path, ref, setup
 from test_super_agent_sa02 import bind
@@ -97,6 +97,7 @@ def test_same_installation_other_authorized_conversation_is_not_worker_scope(eng
 
 def setup_from_source(engine, tmp_path, source):
     from sa13_support import setup as coding_setup
+
     from mgar_v3.super_agent.source_recall_access import RecallCaller
 
     env = coding_setup(engine, tmp_path, source_env=source)
@@ -106,9 +107,19 @@ def setup_from_source(engine, tmp_path, source):
 
 
 def test_different_installation_same_names_and_private_candidate_ids_hidden(engine, tmp_path):
+    from unittest.mock import patch
+
+    from mgar_v3.sources.domain import SourceScope
+
     env = setup(engine, tmp_path)
     cipher = engine.source_ingress.cipher
-    other = new_source(engine, cookie=env.cookie)
+
+    def other_scope(**kwargs):
+        kwargs["installation_id"] = "Install-B"
+        return SourceScope(**kwargs)
+
+    with patch("sa14_support.SourceScope", side_effect=other_scope):
+        other = new_source(engine, cookie=env.cookie)
     engine.source_ingress.cipher = cipher
     other.gateway.receive(
         envelope(other, delivery="other-installation", body="登录 PRIVATE_INSTALLATION")

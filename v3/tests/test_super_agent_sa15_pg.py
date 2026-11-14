@@ -1,9 +1,7 @@
 """First formal SA15 tests: original Engine, real isolated PG, actual local CAS."""
 
-import hashlib
 import json
 from datetime import UTC, datetime, timedelta
-from pathlib import Path
 from uuid import UUID, uuid4
 
 import pytest
@@ -16,10 +14,8 @@ from mgar_v3.domain import DomainError
 from mgar_v3.sources.identity_domain import RevisionCommand, RoleChange
 from mgar_v3.super_agent.source_recall_access import RecallAccess, RecallCaller
 from mgar_v3.super_agent.source_recall_domain import (
-    RecallCursor,
     RecallPageRequest,
     RecallResolveRequest,
-    RecallSearchRequest,
     RecallWalkRequest,
 )
 from mgar_v3.super_agent.source_recall_store import RecallStore
@@ -108,7 +104,7 @@ def test_commit_during_cas_io_blocks_release(engine, tmp_path, monkeypatch, faul
                 env.source.binding["binding_id"],
                 RoleChange(
                     expected_revision=env.source.binding["revision"],
-                    roles=(),
+                    roles=("requester",),
                     review_ref="SA15-revoke",
                 ),
             )

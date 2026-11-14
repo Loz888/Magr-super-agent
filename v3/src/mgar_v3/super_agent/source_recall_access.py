@@ -79,13 +79,17 @@ class RecallAccess:
         request = caller.worker
         managed = conn.execute(
             "SELECT b.*,c.tree_sha256 FROM app.sa_async_bindings b "
-            "JOIN app.sa_async_checkpoints c ON c.checkpoint_id=b.current_checkpoint_id "
+            "LEFT JOIN app.sa_async_checkpoints c ON c.checkpoint_id=b.current_checkpoint_id "
             "WHERE b.coding_id=%s AND b.project_id=%s",
             (request.coding_id, settings.project_id),
         ).fetchone()
         if managed:
+            tree = managed["tree_sha256"]
+            if tree is None:
+                _, original = engine.source_coding._mandate(conn, request.run_id)
+                tree = original.repository.materialized_tree_sha256
             _, async_facts, mandate, facts = engine.source_async._current(
-                conn, caller.credential, request, managed["tree_sha256"]
+                conn, caller.credential, request, tree
             )
             expiry = async_facts.expires_at
             context = [

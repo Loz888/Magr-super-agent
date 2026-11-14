@@ -1,6 +1,6 @@
 {
   "version": "source-recall-v1",
-  "status": "FORMAL_IMPLEMENTATION_PENDING_FIRST_CHECKS",
+  "status": "FORMAL_IMPLEMENTATION",
   "read_only": true,
   "migration": null,
   "max_hops": 4,
@@ -271,11 +271,11 @@
     },
     {
       "path": "src/mgar_v3/super_agent/source_recall.py",
-      "sha256": "56dc5d26c017134629cc9fbe53f5444d939251de3ac5ddc11216502be3250d5d"
+      "sha256": "8c3bddee3ae7399dc5315cd3d2061de8aec37bdd2cf72064f3447190960f00ab"
     },
     {
       "path": "src/mgar_v3/super_agent/source_recall_access.py",
-      "sha256": "acd3513450b8aa972877397009bb967426e9b8d8cec1c640087091771c39ffe8"
+      "sha256": "c0805c67ca81210e6e95f8854da48384c944cb991d16fdd1695c96dc5579f465"
     },
     {
       "path": "src/mgar_v3/super_agent/source_recall_api.py",
@@ -295,11 +295,11 @@
     },
     {
       "path": "src/mgar_v3/super_agent/source_recall_store.py",
-      "sha256": "56c47e4c783c9aaa617315e02c145abd55278f44f77b34e5287bcef2381bd6a1"
+      "sha256": "add83a2a3263aa05c07c2a8f2e51258f9b8a1d5bff12d286d50d6b3924d25dc5"
     },
     {
       "path": "src/mgar_v3/super_agent/source_recall_tools.py",
-      "sha256": "77ba0954c1d36fb14444edb6c6f1fe75d00111318db28793fc14d6da062516b8"
+      "sha256": "332c2b81e70992b932f89b870dad4fcad5a02401d19ce969e5a9bd991e8ae59f"
     },
     {
       "path": "tests/sa15_support.py",
@@ -315,15 +315,19 @@
     },
     {
       "path": "tests/test_super_agent_sa15_pg.py",
-      "sha256": "c0c2460e363708b3b3885394e7099fe4c208869c7cf5365b47a654e343ca5446"
+      "sha256": "212de100cc871bb01031fcf1692357cb3faf582f03bd77db6ee4302890cb1ab7"
     },
     {
       "path": "tests/test_super_agent_sa15_quality.py",
-      "sha256": "d93cae86603e40c9848000365e001dc9d616ee672a457cd5ce25123f0518c685"
+      "sha256": "7baf8be9fd53ce5e66d1049c38ce17717579d54b2a7d2db5132209bee2ca1d9b"
     },
     {
       "path": "tests/test_super_agent_sa15_tools.py",
       "sha256": "9a9eecf09002a571ac7b6964038a520622ced342cfa30611c4aa088be6a4280d"
+    },
+    {
+      "path": "tests/test_super_agent_sa15_relations.py",
+      "sha256": "b79c45f266613cd5a6d3247db13349225923a0684e7a156b0f6ff55eb43e3606"
     }
   ]
 }

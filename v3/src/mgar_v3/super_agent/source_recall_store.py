@@ -61,14 +61,14 @@ class RecallStore:
         row = self.conn.execute(sql, parameters).fetchone()
         if row is None:
             raise denied()
-        return cast(Row, row)
+        return row
 
     def _rows(self, sql: str, parameters: tuple[Any, ...]) -> list[Row]:
         self.access.check()
         rows = self.conn.execute(sql, parameters).fetchmany(MAX_SCAN + 1)
         if len(rows) > MAX_SCAN:
             raise DomainError("SOURCE_RECALL_LIMIT", "Relation scan exceeds bounded scope", 429)
-        return cast(list[Row], rows)
+        return rows
 
     def _entry(
         self,
@@ -120,7 +120,21 @@ class RecallStore:
                 facts={"reason": row["reason_code"]},
                 availability="unavailable",
             )
-        value = self.access.source(UUID(ref.id))
+        try:
+            value = self.access.source(UUID(ref.id))
+        except DomainError as exc:
+            if self.access.caller.kind != "owner" or exc.code not in {
+                "SOURCE_CORRELATION_CONTENT_UNAVAILABLE",
+                "SOURCE_CORRELATION_INPUT_EXPIRED",
+            }:
+                raise
+            return self._entry(
+                ref,
+                "unavailable",
+                [ref.id, row["body_sha256"], row["metadata_expires_at"], "body_retention_expired"],
+                facts={"reason": "BODY_RETENTION_EXPIRED"},
+                availability="unavailable",
+            )
         return self._entry(
             ref,
             "current",
@@ -151,7 +165,8 @@ class RecallStore:
                 "WHERE run_id=%s AND project_id=%s AND input_id IS NOT NULL "
                 "UNION SELECT i.source_input_id AS input_id FROM app.sa_async_inputs i "
                 "JOIN app.sa_async_bindings b USING(async_id,project_id) WHERE b.run_id=%s "
-                "AND b.project_id=%s AND i.source_input_id IS NOT NULL AND i.state='applied' LIMIT 65",
+                "AND b.project_id=%s AND i.source_input_id IS NOT NULL "
+                "AND i.state='applied' LIMIT 65",
                 (run_id, self.project) * 4,
             )
         }
@@ -446,7 +461,7 @@ class RecallStore:
                     "end_line": row["end_line"],
                 },
             )
-        state = row.get("state", row.get("status", "unknown"))
+        state = str(row.get("state") or row.get("status") or "unknown")
         return self._entry(
             ref,
             state,
@@ -566,11 +581,38 @@ class RecallStore:
             if memory.cas_hash:
                 candidates.append((reference("artifact", memory.cas_hash), "artifact"))
         if ref.kind in {"ticket", "run", "evidence", "memory"}:
+            edge_actor = self.access.scope.actor
+            if ref.kind == "run":
+                parent_run, _ = self._run(UUID(ref.id))
+                edge_actor = parent_run["actor"]
+            elif ref.kind == "evidence":
+                original = self._one(
+                    "SELECT run_id FROM app.evidence WHERE evidence_id=%s", (UUID(ref.id),)
+                )
+                parent_run, _ = self._run(original["run_id"])
+                edge_actor = parent_run["actor"]
+            elif ref.kind == "ticket":
+                self._task(ref)
+                original = self._one(
+                    "SELECT m.actor FROM app.tickets t JOIN app.mandates m "
+                    "USING(mandate_id) WHERE t.ticket_id=%s",
+                    (UUID(ref.id),),
+                )
+                edge_actor = original["actor"]
+            else:
+                self._memory(ref)
+                original = self._one(
+                    "SELECT actor FROM knowledge.memory_records "
+                    "WHERE memory_id=%s UNION ALL SELECT actor FROM "
+                    "knowledge.memories WHERE memory_id=%s LIMIT 1",
+                    (UUID(ref.id), UUID(ref.id)),
+                )
+                edge_actor = original["actor"]
             for row in self._rows(
                 "SELECT target_kind,target_id FROM knowledge.context_edges WHERE project_id=%s "
                 "AND lower(repository)=%s AND actor=%s AND source_kind=%s AND source_id=%s "
                 "ORDER BY edge_id LIMIT 65",
-                (self.project, self.repository, self.access.scope.actor, ref.kind, UUID(ref.id)),
+                (self.project, self.repository, edge_actor, ref.kind, UUID(ref.id)),
             ):
                 if row["target_kind"] in {"ticket", "run", "evidence", "memory"}:
                     candidates.append((reference(row["target_kind"], row["target_id"]), "context"))

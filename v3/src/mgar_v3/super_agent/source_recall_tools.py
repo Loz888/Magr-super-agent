@@ -34,7 +34,7 @@ from mgar_v3.super_agent.source_recall_rules import denied
 if TYPE_CHECKING:
     from mgar_v3.coordination.engine import Engine
 
-MODELS = {
+MODELS: dict[str, type[RecallResolveRequest] | type[RecallSearchRequest]] = {
     "source_recall": RecallResolveRequest,
     "source_recall_walk": RecallWalkRequest,
     "source_recall_page": RecallPageRequest,

@@ -1719,7 +1719,8 @@
       "tests/test_super_agent_sa15_pg.py",
       "tests/test_super_agent_sa15_api.py",
       "tests/test_super_agent_sa15_tools.py",
-      "tests/test_super_agent_sa15_quality.py"
+      "tests/test_super_agent_sa15_quality.py",
+      "tests/test_super_agent_sa15_relations.py"
     ],
     "timeout_seconds": 1200,
     "components": {
@@ -1733,7 +1734,31 @@
       "SA16": "NOT_STARTED",
       "engineering_gate": "NOT_RUN",
       "independent_review": "NOT_RUN",
-      "live_source_paid_outbound_publication_longterm": "NOT_RUN"
+      "live_source_paid_outbound_publication_longterm": "NOT_RUN",
+      "initial_core_result": "1f4c332:97 cases,94PASS3FAIL, no repeated historical/private89"
+    }
+  },
+  "SAV1-15-REPAIR-01": {
+    "tests": [
+      "tests/test_super_agent_sa15_pg.py::test_commit_during_cas_io_blocks_release[role_revoke]",
+      "tests/test_super_agent_sa15_pg.py::test_managed_async_reader_reuses_current_original_authority_without_start",
+      "tests/test_super_agent_sa15_quality.py::test_different_installation_same_names_and_private_candidate_ids_hidden"
+    ],
+    "timeout_seconds": 240,
+    "components": {
+      "scope": "Only the original3failed cases;94passing cases excluded",
+      "original_candidate": "1f4c332",
+      "real_gates": "NOT_RUN"
+    }
+  },
+  "SAV1-15-RELATIONS": {
+    "tests": [
+      "tests/test_super_agent_sa15_relations.py"
+    ],
+    "timeout_seconds": 600,
+    "components": {
+      "scope": "First checks for remaining original Memory/Context/SA10 relation/Action/Outbox/Job/Knowledge ACL/retention/integrity coverage; no old target repeated",
+      "real_gates": "NOT_RUN"
     }
   }
 }

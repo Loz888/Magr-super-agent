@@ -288,7 +288,9 @@ class SourceRecall:
                         expires_at=expiry,
                     )
                 )
-            clarification = len(results) != 1 or more or not results[0]["tasks"]
+            clarification = (
+                len(results) != 1 or more or sum(len(row["tasks"]) for row in results) != 1
+            )
             return {
                 "version": RECALL_VERSION,
                 "results": results,
