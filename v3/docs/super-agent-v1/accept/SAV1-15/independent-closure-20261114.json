@@ -1,0 +1,23 @@
+{
+  "UTC": "2026-11-14T12:51:02.006314+00:00",
+  "status": "CLOSED_USER_ACCEPTED_INDEPENDENT_LOCAL_CONTROLLED_SCOPE",
+  "source_commit": "45a79cf21cbf9fb9456d89a32a2332a718c277a7",
+  "source_sha256": "5dfdb4073b6ae452d7d7728d8867dc5377664e28f103d91c1f81ffb3cd1a0cd9",
+  "delivery_commit": "e940b27a710762fde57fb2bc6a8433465d4cb867",
+  "independent_status": "PASS_INDEPENDENT_LOCAL_CONTROLLED_ENGINEERING_I01_CLOSED",
+  "independent_report": "evidence/super-agent-v1/SAV1-15/independent-I01-recheck-20261114T123729Z-dad45a8b/REPORT.md",
+  "independent_result": "evidence/super-agent-v1/SAV1-15/independent-I01-recheck-20261114T123729Z-dad45a8b/review-result.json",
+  "verified_independent_files": 13,
+  "original_failed_retest": {
+    "tests": 1,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "probe_or_assertions_modified": false,
+  "historical_passes_rerun": false,
+  "page_count_not_a_frozen_oracle": true,
+  "next_card": "SAV1-16_AUTHORIZED",
+  "real_gates": "NOT_RUN",
+  "H12": "other CLI"
+}

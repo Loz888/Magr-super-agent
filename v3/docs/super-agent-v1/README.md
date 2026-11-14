@@ -1,6 +1,6 @@
 # MAGR Super-Agent 落地任务书
 
-状态：**SAV1-00–SAV1-14 DONE（受控本地工程及用户接受的独立闭环）；SA15 IN_PROGRESS（I01本地定向修复通过，待独立复验）；SA16–SA24 PLANNED**。更新：2026-11-14。
+状态：**SAV1-00–SAV1-15 DONE（受控本地工程及用户接受的独立闭环）；SA16 IN_PROGRESS（原准入/生命周期复用与共享范围审计）；SA17–SA24 PLANNED**。更新：2026-11-14。
 SA10已由用户接受[独立原2项PASS及199历史证据核对](accept/SAV1-10/i01-independent-closure-20261113.json)，旧FAIL和分版本成绩保留；SA11动态订阅、Mailbox与交回也已独立闭环，首轮失败按失败范围定向修复并留存各版本证据。原任务状态/写者和Source撤权/TTL约束保持；全部真实/付费/外发/发布/长期门NOT_RUN。
 SA11第35/36节固定确认已核对，0042/0043及七表、11接口和四文件接线正式落地，SA11交付时41checksum一致。首轮309PASS/42FAIL保留，修复仅复验失败范围42→40→26→1，各新增2/14/25/1PASS，剩余0；未重复已通过项，不称最终351全量PASS。候选ca49b76，见[工程交付](SA11_ACCEPTANCE_20261113.md)与[分版本摘要](accept/SAV1-11/accept.json)。SA11已获用户接受独立放行，见[关闭记录](accept/SAV1-11/independent-closure-20261113.json)；SA12当前工程交付见下述记录。
 仓库基线：`973994c0e6c087c2968b3d91a3a6b9220e2c0892`；该提交新增 Harness 规划，
@@ -171,3 +171,8 @@ SA15-I01独立P2：默认搜索续页时窗漂移。私有服务/内部加密游
 候选45a79cf仅原失败函数1PASS/exit0，A/B返回而首屏后C排除；原探针字节/断言未改。
 原独立4PASS/新权限3PASS、110正式/89准备及静态通过目标均未重跑，历史FAIL保留。
 见[修复交付](SA15_I01_REPAIR_20261114.md)。整卡保持IN_PROGRESS，等待独立复验，SA16不启动，真实门NOT_RUN。
+
+SA15 45a79cf/e940b27的I01独立原失败1PASS已核对并获用户接受，原110／89及独立原4／新3通过不重跑。
+[独立关闭](accept/SAV1-15/independent-closure-20261114.json)。按用户指令启动SA16静默自主生命周期，
+不将SourceDecision或正文当授权，继续复用原Engine/Mandate/共享预算/Assignment；共享范围另行精确协调。
+SA17未启动，H12由另一CLI负责，全部真实能力门仍NOT_RUN。

@@ -1,7 +1,7 @@
 {
   "card": "SAV1-15",
-  "status": "IN_PROGRESS_PENDING_INDEPENDENT_I01_RECHECK",
-  "work_state": "SA15_I01_IMPLEMENTER_TARGETED_PASS",
+  "status": "DONE_USER_ACCEPTED_INDEPENDENT_LOCAL_CONTROLLED_SCOPE",
+  "work_state": "CLOSED_USER_ACCEPTED_INDEPENDENT",
   "source_commit": "45a79cf21cbf9fb9456d89a32a2332a718c277a7",
   "source_sha256": "5dfdb4073b6ae452d7d7728d8867dc5377664e28f103d91c1f81ffb3cd1a0cd9",
   "candidate_archive": {
@@ -144,7 +144,7 @@
     "live_semantic": "NOT_RUN"
   },
   "gates": {
-    "engineering_gate": "LOCAL_I01_TARGETED_PASS_PENDING_INDEPENDENT_RECHECK",
+    "engineering_gate": "PASS_INDEPENDENT_LOCAL_CONTROLLED_SCOPE_VERSIONED_EVIDENCE",
     "policy_security_gate": "PASS_CARD_NEGATIVE_SCOPE_ONLY",
     "full_system_security": "NOT_RUN",
     "live_source_channel_gate": "NOT_RUN",
@@ -154,7 +154,7 @@
     "paid": "NOT_RUN",
     "external_business_write": "NOT_RUN"
   },
-  "independent_review": "FAIL_SA15_I01_PENDING_INDEPENDENT_RECHECK",
+  "independent_review": "PASS_USER_ACCEPTED",
   "SA16": "NOT_STARTED",
   "H12": "Other CLI; fixed live_agent/MVP FAIL retained, no active work imported",
   "artifact_audit": "artifact-audit-i01.json",
@@ -174,5 +174,6 @@
   "independent_new_failure_targeted_local_PASS": 1,
   "remaining_independent_blockers": "Independent recheck of SA15-I01 still required",
   "previous_artifact_audit": "history/pre-I01-20261114/artifact-audit.json",
-  "previous_evidence_root": "evidence/super-agent-v1/SAV1-15/start-20261114T110315Z-223d6c86"
+  "previous_evidence_root": "evidence/super-agent-v1/SAV1-15/start-20261114T110315Z-223d6c86",
+  "independent_closure": "independent-closure-20261114.json"
 }

@@ -455,7 +455,7 @@
       "id": "SAV1-15",
       "short_id": "SA15",
       "title": "可鉴权 Chain of Recall",
-      "status": "IN_PROGRESS",
+      "status": "DONE",
       "priority": "P1",
       "phase": "S2",
       "depends_on": [
@@ -472,11 +472,11 @@
       "optional": false,
       "card": "TASKS.md#sa15",
       "verification_target_on_implementation": "SAV1-15",
-      "work_state": "SA15_I01_TARGETED_REPAIR_PASS_PENDING_INDEPENDENT_RECHECK",
-      "engineering_gate": "LOCAL_I01_TARGETED_PASS_PENDING_INDEPENDENT_RECHECK",
-      "independent_review": "FAIL_SA15_I01_PENDING_RECHECK",
+      "work_state": "CLOSED_USER_ACCEPTED_INDEPENDENT",
+      "engineering_gate": "PASS_INDEPENDENT_LOCAL_CONTROLLED_SCOPE_VERSIONED_EVIDENCE",
+      "independent_review": "PASS_USER_ACCEPTED",
       "shared_scope": "FIXED_SECTION40_CONFIRMED_AND_EXACTLY_APPLIED",
-      "next_card": "SA16_NOT_STARTED",
+      "next_card": "SAV1-16_AUTHORIZED",
       "ownership_commit": "e0432f0e289de868a5956339aeec76db71bd0efe",
       "migration": null,
       "migration_count": 44,
@@ -495,13 +495,14 @@
         "failures": 0,
         "errors": 0,
         "skipped": 0
-      }
+      },
+      "independent_closure": "accept/SAV1-15/independent-closure-20261114.json"
     },
     {
       "id": "SAV1-16",
       "short_id": "SA16",
       "title": "静默自主任务生命周期",
-      "status": "PLANNED",
+      "status": "IN_PROGRESS",
       "priority": "P0",
       "phase": "S3",
       "depends_on": [
@@ -515,7 +516,12 @@
       },
       "optional": false,
       "card": "TASKS.md#sa16",
-      "verification_target_on_implementation": "SAV1-16"
+      "verification_target_on_implementation": "SAV1-16",
+      "work_state": "REQUIREMENTS_ORIGINAL_AUTHORITY_AND_SHARED_SCOPE_AUDIT",
+      "engineering_gate": "NOT_RUN",
+      "independent_review": "NOT_RUN",
+      "shared_scope": "NOT_YET_PROPOSED",
+      "next_card": "SA17_NOT_STARTED"
     },
     {
       "id": "SAV1-17",
