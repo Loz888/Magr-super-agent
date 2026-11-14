@@ -1,0 +1,100 @@
+{
+  "schema": "sa16-preparation-v1",
+  "status": "PRIVATE_PREPARATION_PASS_FORMAL_NOT_RUN",
+  "private": {
+    "source_commit": "be88c957eb4768ebdc0ea294ae01d6f5aea34c5e",
+    "source_sha256": "aa4d47f22002c93c6b970d70c2d6b33ebcefea3a2213b5d600d5d9a003e1d7e4",
+    "counts": {
+      "tests": 77,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "checks": {
+      "contracts": {
+        "command": [
+          "/home/imini/magr-super-agent/v3/.venv/bin/python",
+          "-m",
+          "pytest",
+          "-q",
+          "tests/test_super_agent_sa16_contracts.py",
+          "--junitxml=/home/imini/magr-super-agent/v3/evidence/super-agent-v1/SAV1-16/start-20261114T125101Z-8e48a364/private-initial/junit.xml"
+        ],
+        "exit_code": 0,
+        "source_commit": "be88c957eb4768ebdc0ea294ae01d6f5aea34c5e",
+        "source_sha256": "aa4d47f22002c93c6b970d70c2d6b33ebcefea3a2213b5d600d5d9a003e1d7e4"
+      },
+      "lint": {
+        "command": [
+          "/home/imini/magr-super-agent/v3/.venv/bin/ruff",
+          "check",
+          "src/mgar_v3/super_agent/source_autonomy_domain.py",
+          "src/mgar_v3/super_agent/source_autonomy_rules.py",
+          "src/mgar_v3/super_agent/source_autonomy_schedule.py",
+          "tests/test_super_agent_sa16_contracts.py"
+        ],
+        "exit_code": 0,
+        "source_commit": "be88c957eb4768ebdc0ea294ae01d6f5aea34c5e",
+        "source_sha256": "aa4d47f22002c93c6b970d70c2d6b33ebcefea3a2213b5d600d5d9a003e1d7e4"
+      },
+      "typecheck": {
+        "command": [
+          "/home/imini/magr-super-agent/v3/.venv/bin/python",
+          "-m",
+          "mypy",
+          "--config-file",
+          "pyproject.toml",
+          "--follow-imports=silent",
+          "src/mgar_v3/super_agent/source_autonomy_domain.py",
+          "src/mgar_v3/super_agent/source_autonomy_rules.py",
+          "src/mgar_v3/super_agent/source_autonomy_schedule.py"
+        ],
+        "exit_code": 0,
+        "source_commit": "be88c957eb4768ebdc0ea294ae01d6f5aea34c5e",
+        "source_sha256": "aa4d47f22002c93c6b970d70c2d6b33ebcefea3a2213b5d600d5d9a003e1d7e4"
+      }
+    },
+    "evidence": "evidence/super-agent-v1/SAV1-16/start-20261114T125101Z-8e48a364/private-initial"
+  },
+  "draft": {
+    "source_commit": "3d97eb2f4f11c8de5e2b21d2a57d88131f538410",
+    "source_sha256": "33bcc5f1af73dfda0e1ce420ebedfce0c7455ffac9ee7f719675e43e0d17496b",
+    "counts": {
+      "tests": 10,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "checks": {
+      "draft": {
+        "command": [
+          "/home/imini/magr-super-agent/v3/.venv/bin/python",
+          "-m",
+          "pytest",
+          "-q",
+          "tests/test_super_agent_sa16_draft.py",
+          "--junitxml=/home/imini/magr-super-agent/v3/evidence/super-agent-v1/SAV1-16/start-20261114T125101Z-8e48a364/draft-initial/junit.xml"
+        ],
+        "exit_code": 0,
+        "source_commit": "3d97eb2f4f11c8de5e2b21d2a57d88131f538410",
+        "source_sha256": "33bcc5f1af73dfda0e1ce420ebedfce0c7455ffac9ee7f719675e43e0d17496b"
+      },
+      "lint": {
+        "command": [
+          "/home/imini/magr-super-agent/v3/.venv/bin/ruff",
+          "check",
+          "tests/test_super_agent_sa16_draft.py"
+        ],
+        "exit_code": 0,
+        "source_commit": "3d97eb2f4f11c8de5e2b21d2a57d88131f538410",
+        "source_sha256": "33bcc5f1af73dfda0e1ce420ebedfce0c7455ffac9ee7f719675e43e0d17496b"
+      }
+    },
+    "evidence": "evidence/super-agent-v1/SAV1-16/start-20261114T125101Z-8e48a364/draft-initial"
+  },
+  "formal_migration": "NOT_APPLIED_PENDING_NEW_OWNERSHIP",
+  "formal_integration": "NOT_APPLIED_PENDING_NEW_OWNERSHIP",
+  "SA17": "NOT_STARTED",
+  "H12": "other CLI; fixed live_agent/MVP FAIL retained",
+  "real_gates": "NOT_RUN"
+}

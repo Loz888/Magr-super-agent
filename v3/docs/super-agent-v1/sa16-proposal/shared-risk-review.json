@@ -1,0 +1,44 @@
+{
+  "schema": "sa16-shared-risk-review-v1",
+  "status": "PROPOSED_NOT_CONFIRMED_NOT_APPLIED",
+  "migration": "0048_source_autonomy.sql",
+  "sql_sha256": "20d376a1d96087e0b42e2f4c4eda2a32b48c955a0c8216fb6767595a21afa3b3",
+  "patch_sha256": "139bb8deb62d7514c4b1eef50e3d5e3657ee4da9ec392164a741561e811f509d",
+  "files": {
+    "src/mgar_v3/coordination/engine.py": {
+      "before_sha256": "ac0b20ae5d63ea840d17b52268277ea38dae7cf15ad6f7d07ac8bf2ed3a0caeb",
+      "after_sha256": "1c0c6321e1092f99ddb8460dc02d2602fa6a654693dd52bfefc08f0a8e06c652"
+    },
+    "src/mgar_v3/api.py": {
+      "before_sha256": "ed86a57f8a0c9eea515ef14e47fdf7eedc958de1424fe409968ad0861c2014d0",
+      "after_sha256": "6d6f21282f7c11ce718ba084bf6da1093acb225a27b40808c2b0084301e7eb2c"
+    },
+    "src/mgar_v3/super_agent/policy.py": {
+      "before_sha256": "14e74af7f703a19e91ad581c0ce46bb3e009c5e62c354793f36f7fcc518a70e0",
+      "after_sha256": "bd182d87eb5d92e93b0d69b3de1ee09e451ff2d7456c3bc966c3ef9767017093"
+    },
+    "src/mgar_v3/super_agent/source_coding.py": {
+      "before_sha256": "8f99a673cf8e8821b98bc47c1bc8d4d033071acc449903d02e4e571647af7e33",
+      "after_sha256": "64a267a8665039e287a6b4cced7d76360af5d975193cc7599fc313d61f5acffa"
+    },
+    "src/mgar_v3/super_agent/source_scheduler.py": {
+      "before_sha256": "a663a49c99cea566c04a3bb2487772984b5ea04aad4e6fcdd7f2b5c5c48bc2c9",
+      "after_sha256": "ab9cb2feac7968f7b076832b538f3a0520a8cf9cffcb3d298ce92d245706f840"
+    }
+  },
+  "tables": [
+    "sa_autonomy_rules",
+    "sa_autonomy_rule_versions",
+    "sa_autonomy_ticks",
+    "sa_autonomy_claims",
+    "sa_autonomy_attempts",
+    "sa_autonomy_events"
+  ],
+  "api_routes": 13,
+  "source_engine_writer": "original held connection and INTRANS only",
+  "no_parallel_task_or_balance": true,
+  "unknown_settlement": "preserve original receipts, reservations, drain and unknown; no retry/refund",
+  "H12": "other CLI; no commit imported",
+  "SA17": "NOT_STARTED",
+  "real_gates": "NOT_RUN"
+}

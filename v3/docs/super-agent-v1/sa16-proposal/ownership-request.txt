@@ -1,0 +1,28 @@
+请Harness CLI确认SA16共享所有权/接口/迁移编号，并仅提交协调文档后回传提交。
+
+SA15独立已通过，用户授权下一轮SA16；第40节e0432f0只覆盖SA15。
+不导入H12，不应用SQL/补丁，不推送，不运行SA测试。
+
+请求SA侧在magr-super-agent副本独占实施：
+1. 新前向0048_source_autonomy.sql，六表与委托guard；正式迁移尚未落地。
+2. SA16私有source_autonomy*、测试/配置/证据/文档。
+3. SA副本五文件精确接线：Engine、API、SourcePolicies、SourceCoding、SourceScheduler。
+4. /api/v3/source-autonomy下13个Owner接口（完整列表与边界见SA16_SCOPE.md）。
+
+SQL SHA256: 20d376a1d96087e0b42e2f4c4eda2a32b48c955a0c8216fb6767595a21afa3b3
+五文件补丁 SHA256: 139bb8deb62d7514c4b1eef50e3d5e3657ee4da9ec392164a741561e811f509d
+精确逐文件before/after哈希见patch-metadata.json。
+
+文件目录：/home/imini/magr-super-agent/v3/docs/super-agent-v1/sa16-proposal/
+SQL：0048_source_autonomy.sql
+补丁：integration.patch
+范围：SA16_SCOPE.md
+风险：shared-risk-review.json
+
+补丁保留原Owner鉴权，新增原连接私有准入，SourceDecision仍无执行权；Rule签署及
+逐操作当前授权为附加fence。CREATE OR REPLACE保留Coding旧谓词/OID，late-known结算
+不变。无新Task/Run状态机或余额，受控fixture_git限定，不增加H12真实许可。
+定时默认不执行/不付费，不启动SA17；全部真实能力门NOT_RUN。
+
+请在交接第41节（若空闲）独立确认0048编号、六表、13接口、五文件与私有范围无冲突，
+绑定上述完整SQL/补丁哈希。当前请求不要求Harness合入或执行这些变更。
