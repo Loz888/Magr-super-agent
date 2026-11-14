@@ -1,0 +1,24 @@
+{
+  "UTC": "2026-11-14T11:23:16.711244+00:00",
+  "commit": "e0432f0e289de868a5956339aeec76db71bd0efe",
+  "changed_files": [
+    "v3/docs/harness-v4/SUPER_AGENT_HANDOFF.md"
+  ],
+  "section": 40,
+  "handoff_blob_sha256": "e361c51fa1b135445f7842b387e717b8c6f1b6494a82396e89c19c93de2361ad",
+  "patch_sha256": "152b61e72bca0e9e0546c8e8295002f131cfe3a8c94c5ba8e452111f5d33cad9",
+  "shared_files": {
+    "v3/src/mgar_v3/coordination/engine.py": {
+      "before_sha256": "6b126ee6ac10bd2591220f20bc6b208c880ab6c73c658cff037a3a9448f39f67",
+      "proposed_after_sha256": "ac0b20ae5d63ea840d17b52268277ea38dae7cf15ad6f7d07ac8bf2ed3a0caeb"
+    },
+    "v3/src/mgar_v3/api.py": {
+      "before_sha256": "f0e7d02ee25918ffa79a69c2d21ac097736faff551309c8c49c823652f289dd0",
+      "proposed_after_sha256": "ed86a57f8a0c9eea515ef14e47fdf7eedc958de1424fe409968ad0861c2014d0"
+    }
+  },
+  "no_migration": true,
+  "no_0048_reserved": true,
+  "no_H12_import": true,
+  "confirmed_then_applied_exact_patch": true
+}

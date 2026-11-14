@@ -60,6 +60,7 @@ from mgar_v3.super_agent.source_async_api import register as register_source_asy
 from mgar_v3.super_agent.source_coding_api import register as register_source_coding
 from mgar_v3.super_agent.source_correlation_api import register as register_source_correlations
 from mgar_v3.super_agent.source_eval_api import register as register_source_eval
+from mgar_v3.super_agent.source_recall_api import register as register_source_recall
 from mgar_v3.super_agent.source_scheduler_api import register as register_source_scheduler
 from mgar_v3.super_agent.source_subscription_api import register as register_source_subscriptions
 from mgar_v3.web_access import (
@@ -1291,6 +1292,7 @@ def create_app(
     register_source_scheduler(app, authority, browser_user)
     register_source_coding(app, authority, browser_user)
     register_source_async(app, authority, browser_user)
+    register_source_recall(app, authority, browser_user)
     register(app, authority, authenticated)
     register_commerce(app, authority, authenticated)
     register_recovery(app, configuration, authority, authenticated)

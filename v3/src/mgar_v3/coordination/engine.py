@@ -40,6 +40,7 @@ from mgar_v3.super_agent.source_async import SourceAsync
 from mgar_v3.super_agent.source_coding import SourceCoding
 from mgar_v3.super_agent.source_correlation import SourceCorrelations
 from mgar_v3.super_agent.source_eval import SourceEval
+from mgar_v3.super_agent.source_recall import SourceRecall
 from mgar_v3.super_agent.source_scheduler import SourceScheduler
 from mgar_v3.super_agent.source_subscription import SourceSubscriptions
 
@@ -91,6 +92,7 @@ class Engine:
         self.source_scheduler = SourceScheduler(self)
         self.source_coding = SourceCoding(self)
         self.source_async = SourceAsync(self)
+        self.source_recall = SourceRecall(self)
 
     def close(self) -> None:
         with self._mutex:

@@ -1,0 +1,78 @@
+{
+  "version": "sa15-quality-v1",
+  "data": "explicitly synthetic; exact lexical/time retrieval only, no live or LLM semantic score",
+  "cases": [
+    {
+      "id": "login-short",
+      "query": "登录",
+      "expected_task": true,
+      "mode": "normal"
+    },
+    {
+      "id": "login-status",
+      "query": "登录 status",
+      "expected_task": true,
+      "mode": "normal"
+    },
+    {
+      "id": "yesterday-login",
+      "query": "昨天的登录问题怎样了",
+      "expected_task": true,
+      "mode": "normal"
+    },
+    {
+      "id": "login-diagnosis",
+      "query": "已定位",
+      "expected_task": true,
+      "mode": "normal"
+    },
+    {
+      "id": "login-waiting",
+      "query": "等待 独立验证",
+      "expected_task": true,
+      "mode": "normal"
+    },
+    {
+      "id": "different-login",
+      "query": "登出",
+      "expected_task": false,
+      "mode": "normal"
+    },
+    {
+      "id": "unknown-task",
+      "query": "不存在的工单",
+      "expected_task": false,
+      "mode": "normal"
+    },
+    {
+      "id": "sql-other",
+      "query": "数据库迁移",
+      "expected_task": false,
+      "mode": "normal"
+    },
+    {
+      "id": "english-other",
+      "query": "payment",
+      "expected_task": false,
+      "mode": "normal"
+    },
+    {
+      "id": "no-query-intent",
+      "query": "昨天",
+      "expected_task": false,
+      "mode": "normal"
+    },
+    {
+      "id": "ambiguous-login",
+      "query": "登录",
+      "expected_task": true,
+      "mode": "ambiguous"
+    },
+    {
+      "id": "time-exclusion",
+      "query": "登录",
+      "expected_task": false,
+      "mode": "outside_window"
+    }
+  ]
+}

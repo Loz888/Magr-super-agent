@@ -1713,5 +1713,27 @@
       "single_final_full_suite_PASS_claimed": false,
       "atomic_boundary": "New first check: Owner restriction commits after first physical file replace; remaining original batch finishes and original receipt becomes known; next incompatible write blocked."
     }
+  },
+  "SAV1-15": {
+    "tests": [
+      "tests/test_super_agent_sa15_pg.py",
+      "tests/test_super_agent_sa15_api.py",
+      "tests/test_super_agent_sa15_tools.py",
+      "tests/test_super_agent_sa15_quality.py"
+    ],
+    "timeout_seconds": 1200,
+    "components": {
+      "scope": "First formal SA15 current original Engine/API realPG/CAS integration; previous89 private contract checks excluded",
+      "ownership": "e0432f0e289de868a5956339aeec76db71bd0efe §40, exact two-file patch152b61e7; no migration/0048 reserved",
+      "index": "ExistingSource/Task/FK/ContextEdge/Memory/CAS bounded virtual graph, no business writes",
+      "authority": "CurrentOwnercookie+OriginCSRF or exactWorkerbearer/Run/Assignment/Session/epoch/Mandate; sameinstallation+conversationWorker",
+      "content": "Explicit provenance page, CASIO outsidePG then final current ACL/contentversion recheck; opaque cursor current caller everypage",
+      "quality": "Frozen12synthetic lexical/time cases; live semantic quality NOT_RUN",
+      "no_repeats": "Do not rerun89preparation or historical cards; repair only failures",
+      "SA16": "NOT_STARTED",
+      "engineering_gate": "NOT_RUN",
+      "independent_review": "NOT_RUN",
+      "live_source_paid_outbound_publication_longterm": "NOT_RUN"
+    }
   }
 }

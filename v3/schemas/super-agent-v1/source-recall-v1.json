@@ -1,0 +1,1241 @@
+{
+  "version": "source-recall-v1",
+  "models": {
+    "RecallResolveRequest": {
+      "$defs": {
+        "RecallPath": {
+          "additionalProperties": false,
+          "properties": {
+            "refs": {
+              "items": {
+                "$ref": "#/$defs/RecallRef"
+              },
+              "maxItems": 5,
+              "minItems": 1,
+              "title": "Refs",
+              "type": "array"
+            }
+          },
+          "required": [
+            "refs"
+          ],
+          "title": "RecallPath",
+          "type": "object"
+        },
+        "RecallRef": {
+          "additionalProperties": false,
+          "properties": {
+            "kind": {
+              "enum": [
+                "source",
+                "thread",
+                "ticket",
+                "run",
+                "job",
+                "evidence",
+                "artifact",
+                "memory",
+                "review",
+                "delivery",
+                "gap"
+              ],
+              "title": "Kind",
+              "type": "string"
+            },
+            "id": {
+              "maxLength": 64,
+              "minLength": 1,
+              "title": "Id",
+              "type": "string"
+            }
+          },
+          "required": [
+            "kind",
+            "id"
+          ],
+          "title": "RecallRef",
+          "type": "object"
+        }
+      },
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "$ref": "#/$defs/RecallPath"
+        }
+      },
+      "required": [
+        "path"
+      ],
+      "title": "RecallResolveRequest",
+      "type": "object"
+    },
+    "RecallWalkRequest": {
+      "$defs": {
+        "RecallPath": {
+          "additionalProperties": false,
+          "properties": {
+            "refs": {
+              "items": {
+                "$ref": "#/$defs/RecallRef"
+              },
+              "maxItems": 5,
+              "minItems": 1,
+              "title": "Refs",
+              "type": "array"
+            }
+          },
+          "required": [
+            "refs"
+          ],
+          "title": "RecallPath",
+          "type": "object"
+        },
+        "RecallRef": {
+          "additionalProperties": false,
+          "properties": {
+            "kind": {
+              "enum": [
+                "source",
+                "thread",
+                "ticket",
+                "run",
+                "job",
+                "evidence",
+                "artifact",
+                "memory",
+                "review",
+                "delivery",
+                "gap"
+              ],
+              "title": "Kind",
+              "type": "string"
+            },
+            "id": {
+              "maxLength": 64,
+              "minLength": 1,
+              "title": "Id",
+              "type": "string"
+            }
+          },
+          "required": [
+            "kind",
+            "id"
+          ],
+          "title": "RecallRef",
+          "type": "object"
+        }
+      },
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "$ref": "#/$defs/RecallPath"
+        },
+        "max_hops": {
+          "default": 2,
+          "maximum": 4,
+          "minimum": 0,
+          "title": "Max Hops",
+          "type": "integer"
+        },
+        "max_nodes": {
+          "default": 16,
+          "maximum": 32,
+          "minimum": 1,
+          "title": "Max Nodes",
+          "type": "integer"
+        },
+        "max_edges": {
+          "default": 64,
+          "maximum": 128,
+          "minimum": 1,
+          "title": "Max Edges",
+          "type": "integer"
+        },
+        "max_bytes": {
+          "default": 8192,
+          "maximum": 16384,
+          "minimum": 1024,
+          "title": "Max Bytes",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "path"
+      ],
+      "title": "RecallWalkRequest",
+      "type": "object"
+    },
+    "RecallPageRequest": {
+      "$defs": {
+        "RecallPath": {
+          "additionalProperties": false,
+          "properties": {
+            "refs": {
+              "items": {
+                "$ref": "#/$defs/RecallRef"
+              },
+              "maxItems": 5,
+              "minItems": 1,
+              "title": "Refs",
+              "type": "array"
+            }
+          },
+          "required": [
+            "refs"
+          ],
+          "title": "RecallPath",
+          "type": "object"
+        },
+        "RecallRef": {
+          "additionalProperties": false,
+          "properties": {
+            "kind": {
+              "enum": [
+                "source",
+                "thread",
+                "ticket",
+                "run",
+                "job",
+                "evidence",
+                "artifact",
+                "memory",
+                "review",
+                "delivery",
+                "gap"
+              ],
+              "title": "Kind",
+              "type": "string"
+            },
+            "id": {
+              "maxLength": 64,
+              "minLength": 1,
+              "title": "Id",
+              "type": "string"
+            }
+          },
+          "required": [
+            "kind",
+            "id"
+          ],
+          "title": "RecallRef",
+          "type": "object"
+        }
+      },
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "$ref": "#/$defs/RecallPath"
+        },
+        "max_bytes": {
+          "default": 2048,
+          "maximum": 4096,
+          "minimum": 128,
+          "title": "Max Bytes",
+          "type": "integer"
+        },
+        "cursor": {
+          "anyOf": [
+            {
+              "maxLength": 4096,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Cursor"
+        }
+      },
+      "required": [
+        "path"
+      ],
+      "title": "RecallPageRequest",
+      "type": "object"
+    },
+    "RecallSearchRequest": {
+      "additionalProperties": false,
+      "properties": {
+        "query": {
+          "maxLength": 256,
+          "minLength": 1,
+          "title": "Query",
+          "type": "string"
+        },
+        "source_instance_id": {
+          "anyOf": [
+            {
+              "format": "uuid",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Source Instance Id"
+        },
+        "conversation_key": {
+          "anyOf": [
+            {
+              "pattern": "^[a-f0-9]{64}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Conversation Key"
+        },
+        "after": {
+          "anyOf": [
+            {
+              "format": "date-time",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "After"
+        },
+        "before": {
+          "anyOf": [
+            {
+              "format": "date-time",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Before"
+        },
+        "limit": {
+          "default": 8,
+          "maximum": 16,
+          "minimum": 1,
+          "title": "Limit",
+          "type": "integer"
+        },
+        "cursor": {
+          "anyOf": [
+            {
+              "maxLength": 4096,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Cursor"
+        }
+      },
+      "required": [
+        "query"
+      ],
+      "title": "RecallSearchRequest",
+      "type": "object"
+    },
+    "WorkerRecallResolve": {
+      "$defs": {
+        "CodingRunRequest": {
+          "additionalProperties": false,
+          "properties": {
+            "request_id": {
+              "format": "uuid",
+              "title": "Request Id",
+              "type": "string"
+            },
+            "coding_id": {
+              "format": "uuid",
+              "title": "Coding Id",
+              "type": "string"
+            },
+            "run_id": {
+              "format": "uuid",
+              "title": "Run Id",
+              "type": "string"
+            },
+            "assignment_id": {
+              "format": "uuid",
+              "title": "Assignment Id",
+              "type": "string"
+            },
+            "session_id": {
+              "format": "uuid",
+              "title": "Session Id",
+              "type": "string"
+            },
+            "epoch": {
+              "maximum": 9223372036854775807,
+              "minimum": 1,
+              "title": "Epoch",
+              "type": "integer"
+            },
+            "expected_revision": {
+              "maximum": 9223372036854775807,
+              "minimum": 1,
+              "title": "Expected Revision",
+              "type": "integer"
+            }
+          },
+          "required": [
+            "request_id",
+            "coding_id",
+            "run_id",
+            "assignment_id",
+            "session_id",
+            "epoch",
+            "expected_revision"
+          ],
+          "title": "CodingRunRequest",
+          "type": "object"
+        },
+        "RecallPath": {
+          "additionalProperties": false,
+          "properties": {
+            "refs": {
+              "items": {
+                "$ref": "#/$defs/RecallRef"
+              },
+              "maxItems": 5,
+              "minItems": 1,
+              "title": "Refs",
+              "type": "array"
+            }
+          },
+          "required": [
+            "refs"
+          ],
+          "title": "RecallPath",
+          "type": "object"
+        },
+        "RecallRef": {
+          "additionalProperties": false,
+          "properties": {
+            "kind": {
+              "enum": [
+                "source",
+                "thread",
+                "ticket",
+                "run",
+                "job",
+                "evidence",
+                "artifact",
+                "memory",
+                "review",
+                "delivery",
+                "gap"
+              ],
+              "title": "Kind",
+              "type": "string"
+            },
+            "id": {
+              "maxLength": 64,
+              "minLength": 1,
+              "title": "Id",
+              "type": "string"
+            }
+          },
+          "required": [
+            "kind",
+            "id"
+          ],
+          "title": "RecallRef",
+          "type": "object"
+        }
+      },
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "$ref": "#/$defs/RecallPath"
+        },
+        "worker": {
+          "$ref": "#/$defs/CodingRunRequest"
+        }
+      },
+      "required": [
+        "path",
+        "worker"
+      ],
+      "title": "WorkerRecallResolve",
+      "type": "object"
+    },
+    "WorkerRecallWalk": {
+      "$defs": {
+        "CodingRunRequest": {
+          "additionalProperties": false,
+          "properties": {
+            "request_id": {
+              "format": "uuid",
+              "title": "Request Id",
+              "type": "string"
+            },
+            "coding_id": {
+              "format": "uuid",
+              "title": "Coding Id",
+              "type": "string"
+            },
+            "run_id": {
+              "format": "uuid",
+              "title": "Run Id",
+              "type": "string"
+            },
+            "assignment_id": {
+              "format": "uuid",
+              "title": "Assignment Id",
+              "type": "string"
+            },
+            "session_id": {
+              "format": "uuid",
+              "title": "Session Id",
+              "type": "string"
+            },
+            "epoch": {
+              "maximum": 9223372036854775807,
+              "minimum": 1,
+              "title": "Epoch",
+              "type": "integer"
+            },
+            "expected_revision": {
+              "maximum": 9223372036854775807,
+              "minimum": 1,
+              "title": "Expected Revision",
+              "type": "integer"
+            }
+          },
+          "required": [
+            "request_id",
+            "coding_id",
+            "run_id",
+            "assignment_id",
+            "session_id",
+            "epoch",
+            "expected_revision"
+          ],
+          "title": "CodingRunRequest",
+          "type": "object"
+        },
+        "RecallPath": {
+          "additionalProperties": false,
+          "properties": {
+            "refs": {
+              "items": {
+                "$ref": "#/$defs/RecallRef"
+              },
+              "maxItems": 5,
+              "minItems": 1,
+              "title": "Refs",
+              "type": "array"
+            }
+          },
+          "required": [
+            "refs"
+          ],
+          "title": "RecallPath",
+          "type": "object"
+        },
+        "RecallRef": {
+          "additionalProperties": false,
+          "properties": {
+            "kind": {
+              "enum": [
+                "source",
+                "thread",
+                "ticket",
+                "run",
+                "job",
+                "evidence",
+                "artifact",
+                "memory",
+                "review",
+                "delivery",
+                "gap"
+              ],
+              "title": "Kind",
+              "type": "string"
+            },
+            "id": {
+              "maxLength": 64,
+              "minLength": 1,
+              "title": "Id",
+              "type": "string"
+            }
+          },
+          "required": [
+            "kind",
+            "id"
+          ],
+          "title": "RecallRef",
+          "type": "object"
+        }
+      },
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "$ref": "#/$defs/RecallPath"
+        },
+        "max_hops": {
+          "default": 2,
+          "maximum": 4,
+          "minimum": 0,
+          "title": "Max Hops",
+          "type": "integer"
+        },
+        "max_nodes": {
+          "default": 16,
+          "maximum": 32,
+          "minimum": 1,
+          "title": "Max Nodes",
+          "type": "integer"
+        },
+        "max_edges": {
+          "default": 64,
+          "maximum": 128,
+          "minimum": 1,
+          "title": "Max Edges",
+          "type": "integer"
+        },
+        "max_bytes": {
+          "default": 8192,
+          "maximum": 16384,
+          "minimum": 1024,
+          "title": "Max Bytes",
+          "type": "integer"
+        },
+        "worker": {
+          "$ref": "#/$defs/CodingRunRequest"
+        }
+      },
+      "required": [
+        "path",
+        "worker"
+      ],
+      "title": "WorkerRecallWalk",
+      "type": "object"
+    },
+    "WorkerRecallPage": {
+      "$defs": {
+        "CodingRunRequest": {
+          "additionalProperties": false,
+          "properties": {
+            "request_id": {
+              "format": "uuid",
+              "title": "Request Id",
+              "type": "string"
+            },
+            "coding_id": {
+              "format": "uuid",
+              "title": "Coding Id",
+              "type": "string"
+            },
+            "run_id": {
+              "format": "uuid",
+              "title": "Run Id",
+              "type": "string"
+            },
+            "assignment_id": {
+              "format": "uuid",
+              "title": "Assignment Id",
+              "type": "string"
+            },
+            "session_id": {
+              "format": "uuid",
+              "title": "Session Id",
+              "type": "string"
+            },
+            "epoch": {
+              "maximum": 9223372036854775807,
+              "minimum": 1,
+              "title": "Epoch",
+              "type": "integer"
+            },
+            "expected_revision": {
+              "maximum": 9223372036854775807,
+              "minimum": 1,
+              "title": "Expected Revision",
+              "type": "integer"
+            }
+          },
+          "required": [
+            "request_id",
+            "coding_id",
+            "run_id",
+            "assignment_id",
+            "session_id",
+            "epoch",
+            "expected_revision"
+          ],
+          "title": "CodingRunRequest",
+          "type": "object"
+        },
+        "RecallPath": {
+          "additionalProperties": false,
+          "properties": {
+            "refs": {
+              "items": {
+                "$ref": "#/$defs/RecallRef"
+              },
+              "maxItems": 5,
+              "minItems": 1,
+              "title": "Refs",
+              "type": "array"
+            }
+          },
+          "required": [
+            "refs"
+          ],
+          "title": "RecallPath",
+          "type": "object"
+        },
+        "RecallRef": {
+          "additionalProperties": false,
+          "properties": {
+            "kind": {
+              "enum": [
+                "source",
+                "thread",
+                "ticket",
+                "run",
+                "job",
+                "evidence",
+                "artifact",
+                "memory",
+                "review",
+                "delivery",
+                "gap"
+              ],
+              "title": "Kind",
+              "type": "string"
+            },
+            "id": {
+              "maxLength": 64,
+              "minLength": 1,
+              "title": "Id",
+              "type": "string"
+            }
+          },
+          "required": [
+            "kind",
+            "id"
+          ],
+          "title": "RecallRef",
+          "type": "object"
+        }
+      },
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "$ref": "#/$defs/RecallPath"
+        },
+        "max_bytes": {
+          "default": 2048,
+          "maximum": 4096,
+          "minimum": 128,
+          "title": "Max Bytes",
+          "type": "integer"
+        },
+        "cursor": {
+          "anyOf": [
+            {
+              "maxLength": 4096,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Cursor"
+        },
+        "worker": {
+          "$ref": "#/$defs/CodingRunRequest"
+        }
+      },
+      "required": [
+        "path",
+        "worker"
+      ],
+      "title": "WorkerRecallPage",
+      "type": "object"
+    },
+    "WorkerRecallSearch": {
+      "$defs": {
+        "CodingRunRequest": {
+          "additionalProperties": false,
+          "properties": {
+            "request_id": {
+              "format": "uuid",
+              "title": "Request Id",
+              "type": "string"
+            },
+            "coding_id": {
+              "format": "uuid",
+              "title": "Coding Id",
+              "type": "string"
+            },
+            "run_id": {
+              "format": "uuid",
+              "title": "Run Id",
+              "type": "string"
+            },
+            "assignment_id": {
+              "format": "uuid",
+              "title": "Assignment Id",
+              "type": "string"
+            },
+            "session_id": {
+              "format": "uuid",
+              "title": "Session Id",
+              "type": "string"
+            },
+            "epoch": {
+              "maximum": 9223372036854775807,
+              "minimum": 1,
+              "title": "Epoch",
+              "type": "integer"
+            },
+            "expected_revision": {
+              "maximum": 9223372036854775807,
+              "minimum": 1,
+              "title": "Expected Revision",
+              "type": "integer"
+            }
+          },
+          "required": [
+            "request_id",
+            "coding_id",
+            "run_id",
+            "assignment_id",
+            "session_id",
+            "epoch",
+            "expected_revision"
+          ],
+          "title": "CodingRunRequest",
+          "type": "object"
+        }
+      },
+      "additionalProperties": false,
+      "properties": {
+        "query": {
+          "maxLength": 256,
+          "minLength": 1,
+          "title": "Query",
+          "type": "string"
+        },
+        "source_instance_id": {
+          "anyOf": [
+            {
+              "format": "uuid",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Source Instance Id"
+        },
+        "conversation_key": {
+          "anyOf": [
+            {
+              "pattern": "^[a-f0-9]{64}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Conversation Key"
+        },
+        "after": {
+          "anyOf": [
+            {
+              "format": "date-time",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "After"
+        },
+        "before": {
+          "anyOf": [
+            {
+              "format": "date-time",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Before"
+        },
+        "limit": {
+          "default": 8,
+          "maximum": 16,
+          "minimum": 1,
+          "title": "Limit",
+          "type": "integer"
+        },
+        "cursor": {
+          "anyOf": [
+            {
+              "maxLength": 4096,
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Cursor"
+        },
+        "worker": {
+          "$ref": "#/$defs/CodingRunRequest"
+        }
+      },
+      "required": [
+        "query",
+        "worker"
+      ],
+      "title": "WorkerRecallSearch",
+      "type": "object"
+    },
+    "RecallNode": {
+      "$defs": {
+        "RecallFact": {
+          "additionalProperties": false,
+          "properties": {
+            "name": {
+              "pattern": "^[a-z][a-z0-9_]{0,47}$",
+              "title": "Name",
+              "type": "string"
+            },
+            "value": {
+              "maxLength": 256,
+              "title": "Value",
+              "type": "string"
+            }
+          },
+          "required": [
+            "name",
+            "value"
+          ],
+          "title": "RecallFact",
+          "type": "object"
+        },
+        "RecallRef": {
+          "additionalProperties": false,
+          "properties": {
+            "kind": {
+              "enum": [
+                "source",
+                "thread",
+                "ticket",
+                "run",
+                "job",
+                "evidence",
+                "artifact",
+                "memory",
+                "review",
+                "delivery",
+                "gap"
+              ],
+              "title": "Kind",
+              "type": "string"
+            },
+            "id": {
+              "maxLength": 64,
+              "minLength": 1,
+              "title": "Id",
+              "type": "string"
+            }
+          },
+          "required": [
+            "kind",
+            "id"
+          ],
+          "title": "RecallRef",
+          "type": "object"
+        }
+      },
+      "additionalProperties": false,
+      "properties": {
+        "ref": {
+          "$ref": "#/$defs/RecallRef"
+        },
+        "version_sha256": {
+          "pattern": "^[a-f0-9]{64}$",
+          "title": "Version Sha256",
+          "type": "string"
+        },
+        "state": {
+          "maxLength": 64,
+          "title": "State",
+          "type": "string"
+        },
+        "availability": {
+          "enum": [
+            "available",
+            "unavailable",
+            "historical",
+            "unknown"
+          ],
+          "title": "Availability",
+          "type": "string"
+        },
+        "content_available": {
+          "default": false,
+          "title": "Content Available",
+          "type": "boolean"
+        },
+        "facts": {
+          "default": [],
+          "items": {
+            "$ref": "#/$defs/RecallFact"
+          },
+          "maxItems": 24,
+          "title": "Facts",
+          "type": "array"
+        },
+        "read_only": {
+          "const": true,
+          "default": true,
+          "title": "Read Only",
+          "type": "boolean"
+        },
+        "grants_authority": {
+          "const": false,
+          "default": false,
+          "title": "Grants Authority",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "ref",
+        "version_sha256",
+        "state",
+        "availability"
+      ],
+      "title": "RecallNode",
+      "type": "object"
+    },
+    "RecallWalkResult": {
+      "$defs": {
+        "RecallEdge": {
+          "additionalProperties": false,
+          "properties": {
+            "source": {
+              "$ref": "#/$defs/RecallRef"
+            },
+            "target": {
+              "$ref": "#/$defs/RecallRef"
+            },
+            "relation": {
+              "enum": [
+                "origin",
+                "contains",
+                "attempt",
+                "resource",
+                "evidence",
+                "artifact",
+                "review",
+                "delivery",
+                "memory",
+                "context",
+                "gap"
+              ],
+              "title": "Relation",
+              "type": "string"
+            },
+            "grants_authority": {
+              "const": false,
+              "default": false,
+              "title": "Grants Authority",
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "source",
+            "target",
+            "relation"
+          ],
+          "title": "RecallEdge",
+          "type": "object"
+        },
+        "RecallFact": {
+          "additionalProperties": false,
+          "properties": {
+            "name": {
+              "pattern": "^[a-z][a-z0-9_]{0,47}$",
+              "title": "Name",
+              "type": "string"
+            },
+            "value": {
+              "maxLength": 256,
+              "title": "Value",
+              "type": "string"
+            }
+          },
+          "required": [
+            "name",
+            "value"
+          ],
+          "title": "RecallFact",
+          "type": "object"
+        },
+        "RecallNode": {
+          "additionalProperties": false,
+          "properties": {
+            "ref": {
+              "$ref": "#/$defs/RecallRef"
+            },
+            "version_sha256": {
+              "pattern": "^[a-f0-9]{64}$",
+              "title": "Version Sha256",
+              "type": "string"
+            },
+            "state": {
+              "maxLength": 64,
+              "title": "State",
+              "type": "string"
+            },
+            "availability": {
+              "enum": [
+                "available",
+                "unavailable",
+                "historical",
+                "unknown"
+              ],
+              "title": "Availability",
+              "type": "string"
+            },
+            "content_available": {
+              "default": false,
+              "title": "Content Available",
+              "type": "boolean"
+            },
+            "facts": {
+              "default": [],
+              "items": {
+                "$ref": "#/$defs/RecallFact"
+              },
+              "maxItems": 24,
+              "title": "Facts",
+              "type": "array"
+            },
+            "read_only": {
+              "const": true,
+              "default": true,
+              "title": "Read Only",
+              "type": "boolean"
+            },
+            "grants_authority": {
+              "const": false,
+              "default": false,
+              "title": "Grants Authority",
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "ref",
+            "version_sha256",
+            "state",
+            "availability"
+          ],
+          "title": "RecallNode",
+          "type": "object"
+        },
+        "RecallRef": {
+          "additionalProperties": false,
+          "properties": {
+            "kind": {
+              "enum": [
+                "source",
+                "thread",
+                "ticket",
+                "run",
+                "job",
+                "evidence",
+                "artifact",
+                "memory",
+                "review",
+                "delivery",
+                "gap"
+              ],
+              "title": "Kind",
+              "type": "string"
+            },
+            "id": {
+              "maxLength": 64,
+              "minLength": 1,
+              "title": "Id",
+              "type": "string"
+            }
+          },
+          "required": [
+            "kind",
+            "id"
+          ],
+          "title": "RecallRef",
+          "type": "object"
+        }
+      },
+      "additionalProperties": false,
+      "properties": {
+        "version": {
+          "const": "source-recall-v1",
+          "default": "source-recall-v1",
+          "title": "Version",
+          "type": "string"
+        },
+        "nodes": {
+          "items": {
+            "$ref": "#/$defs/RecallNode"
+          },
+          "title": "Nodes",
+          "type": "array"
+        },
+        "edges": {
+          "items": {
+            "$ref": "#/$defs/RecallEdge"
+          },
+          "title": "Edges",
+          "type": "array"
+        },
+        "truncated": {
+          "title": "Truncated",
+          "type": "boolean"
+        },
+        "clarification_required": {
+          "default": false,
+          "title": "Clarification Required",
+          "type": "boolean"
+        },
+        "read_only": {
+          "const": true,
+          "default": true,
+          "title": "Read Only",
+          "type": "boolean"
+        }
+      },
+      "required": [
+        "nodes",
+        "edges",
+        "truncated"
+      ],
+      "title": "RecallWalkResult",
+      "type": "object"
+    }
+  }
+}

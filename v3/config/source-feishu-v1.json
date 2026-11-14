@@ -62,7 +62,7 @@
     },
     {
       "path": "src/mgar_v3/api.py",
-      "sha256": "f0e7d02ee25918ffa79a69c2d21ac097736faff551309c8c49c823652f289dd0"
+      "sha256": "ed86a57f8a0c9eea515ef14e47fdf7eedc958de1424fe409968ad0861c2014d0"
     },
     {
       "path": "migrations/0035_feishu_source.sql",
@@ -142,7 +142,7 @@
     },
     {
       "path": "config/verification.json",
-      "sha256": "c4522ba4cbb3fba079a560882557290e67e268cef085a023cdf7a4ffb146a9d8"
+      "sha256": "80cb2bb3fa42b0dd7a7c1f3f4995cee263502fb3a25ab085c6a26a5826f59ec1"
     },
     {
       "path": "config/source-ingress-v1.json",
@@ -153,7 +153,7 @@
       "sha256": "ea8ed4c8078962ee5d4808355c8d9739aba8ac53582a52bf8f90c724ba9a693d"
     }
   ],
-  "artifact_snapshot_utc": "2026-11-14T09:50:12.753339+00:00",
-  "artifact_snapshot_scope": "Current SA14 composition/catalogue hashes only; pre-SA14 bytes preserved in accept/SAV1-14/history/pre-sa14. Historical PASS/FAIL and independent closure records unchanged; no rerun implied.",
+  "artifact_snapshot_utc": "2026-11-14T11:38:35.581071+00:00",
+  "artifact_snapshot_scope": "SA15 current composition/catalogue hashes only; prior bytes in accept/SAV1-15/history/pre-sa15. Historical passing/failing evidence unchanged; no rerun implied.",
   "artifact_status": "CURRENT_FORMAL_HASHES"
 }
