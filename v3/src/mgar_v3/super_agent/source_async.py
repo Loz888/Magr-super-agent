@@ -46,6 +46,7 @@ if TYPE_CHECKING:
     from mgar_v3.super_agent.source_coding_domain import CodingCurrentFacts, CodingMandate
     from mgar_v3.super_agent.source_coding_workspace import WorkspaceAccess
     from mgar_v3.super_agent.source_correlation import _Input
+    from mgar_v3.super_agent.source_scheduler import ResourceContext
 
 Row = dict[str, Any]
 
@@ -1379,6 +1380,44 @@ class SourceAsync:
                 (identifier,),
             )
             self._event(conn, row, "job_running", job_id=identifier)
+
+    def validate_job_dispatch(
+        self,
+        conn: Connection,
+        bearer: str,
+        request: CodingRunRequest,
+        identifier: UUID,
+        context: ResourceContext,
+        *,
+        tree: str,
+        command: str,
+    ) -> None:
+        """Final noncharging check against the Job's frozen operation view."""
+        row = self.binding(conn, request.coding_id)
+        job = self._job(conn, row, identifier)
+        if job["state"] != "running":
+            raise _deny("SOURCE_ASYNC_JOB_STOPPED")
+        if (
+            context.kind != "job"
+            or context.project_id != row["project_id"]
+            or context.operation_id != job["resource_operation_id"]
+            or context.request_sha256 != job["request_sha256"]
+            or context.run_id != job["run_id"]
+            or context.assignment_id != job["assignment_id"]
+            or context.session_id != job["session_id"]
+            or context.workspace_id != row["workspace_id"]
+            or context.epoch != job["execution_epoch"]
+            or job["scope_sha256"] != row["scope_sha256"]
+            or job["tree_sha256"] != tree
+        ):
+            raise _deny("SOURCE_ASYNC_SCOPE_FENCED")
+        cp = self._checkpoint(conn, row, job["checkpoint_id"])
+        if job["input_revision"] != cp.input_revision:
+            raise _deny("SOURCE_ASYNC_INPUT_STALE")
+        # Do not advance to a newer checkpoint: it cannot authorize this
+        # already-prepared operation. validate rejects any newly received
+        # revision, effective command deny, expired/revoked Source or scope.
+        self.validate(conn, bearer, request, cp, tree=tree, capability="execute", command=command)
 
     def job_observed(self, coding_id: UUID, identifier: UUID) -> Row:
         with self.engine.transaction() as conn:

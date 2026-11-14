@@ -1208,7 +1208,10 @@ class _Attempt:
             max_seconds=self.mandate.grant.max_seconds,
         )
         self._lease: CapabilityLease | None = None
-        self.authority = CapabilityAuthority(lease_source=self.lease, budget_check=lambda: True)
+        self._command_dispatch: tuple[ResourceContext, UUID, str] | None = None
+        self.authority = CapabilityAuthority(
+            lease_source=self._current_lease, budget_check=lambda: True
+        )
         self.budgets = CodingBudgetLedger(
             self.journal,
             price=profile.price,
@@ -1353,6 +1356,31 @@ class _Attempt:
                 )
             return self._lease
 
+    def _current_lease(self) -> CapabilityLease:
+        lease = self.lease()
+        dispatch = self._command_dispatch
+        if dispatch is not None:
+            if self.bridge is None:
+                raise _deny("SOURCE_ASYNC_JOB_REQUIRED")
+            context, identifier, expected_tree = dispatch
+            tree = self.tree()
+            if tree != expected_tree:
+                raise _deny("SOURCE_CODING_TREE_STALE")
+            # Broker.peek invokes this after created-container inspection and
+            # directly before start. The enclosing command guard still holds
+            # the Engine mutex; this short transaction ends before Docker IO.
+            with self.core.engine.transaction() as conn:
+                self.bridge.service.validate_job_dispatch(
+                    conn,
+                    self.bearer,
+                    self.request,
+                    identifier,
+                    context,
+                    tree=tree,
+                    command=self.profile.baseline_command[0].rsplit("/", 1)[-1],
+                )
+        return lease
+
     @contextmanager
     def command_guard(
         self, context: ResourceContext, tree: str, *, async_job: UUID | None = None
@@ -1381,9 +1409,16 @@ class _Attempt:
                     else nullcontext()
                 )
                 with asynchronous:
-                    if self.bridge is not None and async_job is not None:
+                    previous = self._command_dispatch
+                    if self.bridge is not None:
+                        if async_job is None:
+                            raise _deny("SOURCE_ASYNC_JOB_REQUIRED")
                         self.bridge.service.job_running(self.request.coding_id, async_job)
-                    yield
+                        self._command_dispatch = context, async_job, tree
+                    try:
+                        yield
+                    finally:
+                        self._command_dispatch = previous
 
     def _write_boundary(self, operation: dict[str, Any], path: str) -> None:
         # Private deterministic crash-test hook. Production construction does
