@@ -811,6 +811,8 @@ class _BoundExecution:
             if not driver._begin_dispatch(context):
                 raise _deny("SOURCE_CODING_EXECUTION_UNKNOWN")
             broker = driver._broker(context, resource_facts)
+            if session.bridge is not None:
+                broker.authority = session.command_authority(broker.authority)
             actual_request = request.model_copy(update={"operation_id": str(context.operation_id)})
             command = broker.launch(
                 actual_request,
@@ -1209,9 +1211,7 @@ class _Attempt:
         )
         self._lease: CapabilityLease | None = None
         self._command_dispatch: tuple[ResourceContext, UUID, str] | None = None
-        self.authority = CapabilityAuthority(
-            lease_source=self._current_lease, budget_check=lambda: True
-        )
+        self.authority = CapabilityAuthority(lease_source=self.lease, budget_check=lambda: True)
         self.budgets = CodingBudgetLedger(
             self.journal,
             price=profile.price,
@@ -1356,8 +1356,19 @@ class _Attempt:
                 )
             return self._lease
 
-    def _current_lease(self) -> CapabilityLease:
-        lease = self.lease()
+    def command_authority(self, original: CapabilityAuthority) -> CapabilityAuthority:
+        def budget_current() -> bool:
+            # Preserve the original budget check for current(); peek() never
+            # invokes it. Both original revocation and lease checks remain.
+            original.current()
+            return True
+
+        return CapabilityAuthority(
+            lease_source=lambda: self._command_lease(original), budget_check=budget_current
+        )
+
+    def _command_lease(self, original: CapabilityAuthority) -> CapabilityLease:
+        lease = original.peek()
         dispatch = self._command_dispatch
         if dispatch is not None:
             if self.bridge is None:
