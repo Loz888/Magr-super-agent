@@ -1,0 +1,1465 @@
+{
+  "formal_unique_cases": 110,
+  "all_latest_PASS": true,
+  "repeated_previously_passing_cases": [],
+  "cases": [
+    {
+      "nodeid": "tests/test_super_agent_sa15_pg.py::test_metadata_is_bodyless_current_and_readonly[owner]",
+      "history": [
+        {
+          "status": "PASS",
+          "source_commit": "1f4c332740b55a115ff20459fa2cbb54499a538a",
+          "source_sha256": "512e6a0d241144e1444620972714282291cee92d3dcc32af09f2651455a00dfb",
+          "result": "evidence/SAV1-15/20261114T113929Z-4fdb8619/result.json",
+          "junit": "evidence/SAV1-15/20261114T113929Z-4fdb8619/junit.xml"
+        }
+      ],
+      "latest": "PASS"
+    },
+    {
+      "nodeid": "tests/test_super_agent_sa15_pg.py::test_metadata_is_bodyless_current_and_readonly[worker_caller]",
+      "history": [
+        {
+          "status": "PASS",
+          "source_commit": "1f4c332740b55a115ff20459fa2cbb54499a538a",
+          "source_sha256": "512e6a0d241144e1444620972714282291cee92d3dcc32af09f2651455a00dfb",
+          "result": "evidence/SAV1-15/20261114T113929Z-4fdb8619/result.json",
+          "junit": "evidence/SAV1-15/20261114T113929Z-4fdb8619/junit.xml"
+        }
+      ],
+      "latest": "PASS"
+    },
+    {
+      "nodeid": "tests/test_super_agent_sa15_pg.py::test_original_relation_chain_and_actual_current_status",
+      "history": [
+        {
+          "status": "PASS",
+          "source_commit": "1f4c332740b55a115ff20459fa2cbb54499a538a",
+          "source_sha256": "512e6a0d241144e1444620972714282291cee92d3dcc32af09f2651455a00dfb",
+          "result": "evidence/SAV1-15/20261114T113929Z-4fdb8619/result.json",
+          "junit": "evidence/SAV1-15/20261114T113929Z-4fdb8619/junit.xml"
+        }
+      ],
+      "latest": "PASS"
+    },
+    {
+      "nodeid": "tests/test_super_agent_sa15_pg.py::test_source_raw_utf8_pages_reconstruct_without_copying_plaintext[128]",
+      "history": [
+        {
+          "status": "PASS",
+          "source_commit": "1f4c332740b55a115ff20459fa2cbb54499a538a",
+          "source_sha256": "512e6a0d241144e1444620972714282291cee92d3dcc32af09f2651455a00dfb",
+          "result": "evidence/SAV1-15/20261114T113929Z-4fdb8619/result.json",
+          "junit": "evidence/SAV1-15/20261114T113929Z-4fdb8619/junit.xml"
+        }
+      ],
+      "latest": "PASS"
+    },
+    {
+      "nodeid": "tests/test_super_agent_sa15_pg.py::test_source_raw_utf8_pages_reconstruct_without_copying_plaintext[4096]",
+      "history": [
+        {
+          "status": "PASS",
+          "source_commit": "1f4c332740b55a115ff20459fa2cbb54499a538a",
+          "source_sha256": "512e6a0d241144e1444620972714282291cee92d3dcc32af09f2651455a00dfb",
+          "result": "evidence/SAV1-15/20261114T113929Z-4fdb8619/result.json",
+          "junit": "evidence/SAV1-15/20261114T113929Z-4fdb8619/junit.xml"
+        }
+      ],
+      "latest": "PASS"
+    },
+    {
+      "nodeid": "tests/test_super_agent_sa15_pg.py::test_worker_reads_only_explicit_provenance_pages[source]",
+      "history": [
+        {
+          "status": "PASS",
+          "source_commit": "1f4c332740b55a115ff20459fa2cbb54499a538a",
+          "source_sha256": "512e6a0d241144e1444620972714282291cee92d3dcc32af09f2651455a00dfb",
+          "result": "evidence/SAV1-15/20261114T113929Z-4fdb8619/result.json",
+          "junit": "evidence/SAV1-15/20261114T113929Z-4fdb8619/junit.xml"
+        }
+      ],
+      "latest": "PASS"
+    },
+    {
+      "nodeid": "tests/test_super_agent_sa15_pg.py::test_worker_reads_only_explicit_provenance_pages[evidence]",
+      "history": [
+        {
+          "status": "PASS",
+          "source_commit": "1f4c332740b55a115ff20459fa2cbb54499a538a",
+          "source_sha256": "512e6a0d241144e1444620972714282291cee92d3dcc32af09f2651455a00dfb",
+          "result": "evidence/SAV1-15/20261114T113929Z-4fdb8619/result.json",
+          "junit": "evidence/SAV1-15/20261114T113929Z-4fdb8619/junit.xml"
+        }
+      ],
+      "latest": "PASS"
+    },
+    {
+      "nodeid": "tests/test_super_agent_sa15_pg.py::test_commit_during_cas_io_blocks_release[source_expire]",
+      "history": [
+        {
+          "status": "PASS",
+          "source_commit": "1f4c332740b55a115ff20459fa2cbb54499a538a",
+          "source_sha256": "512e6a0d241144e1444620972714282291cee92d3dcc32af09f2651455a00dfb",
+          "result": "evidence/SAV1-15/20261114T113929Z-4fdb8619/result.json",
+          "junit": "evidence/SAV1-15/20261114T113929Z-4fdb8619/junit.xml"
+        }
+      ],
+      "latest": "PASS"
+    },
+    {
+      "nodeid": "tests/test_super_agent_sa15_pg.py::test_commit_during_cas_io_blocks_release[role_revoke]",
+      "history": [
+        {
+          "status": "FAIL",
+          "source_commit": "1f4c332740b55a115ff20459fa2cbb54499a538a",
+          "source_sha256": "512e6a0d241144e1444620972714282291cee92d3dcc32af09f2651455a00dfb",
+          "result": "evidence/SAV1-15/20261114T113929Z-4fdb8619/result.json",
+          "junit": "evidence/SAV1-15/20261114T113929Z-4fdb8619/junit.xml"
+        },
+        {
+          "status": "PASS",
+          "source_commit": "0fc4ce14769a72a7f34856debdd8a4eff62fd834",
+          "source_sha256": "783aa1c24e060cf54ecaa2d54ffdc02f264d2105cf0936d8337f281806e70145",
+          "result": "evidence/SAV1-15-REPAIR-01/20261114T115045Z-71ff4141/result.json",
+          "junit": "evidence/SAV1-15-REPAIR-01/20261114T115045Z-71ff4141/junit.xml"
+        }
+      ],
+      "latest": "PASS"
+    },
+    {
+      "nodeid": "tests/test_super_agent_sa15_pg.py::test_commit_during_cas_io_blocks_release[logout]",
+      "history": [
+        {
+          "status": "PASS",
+          "source_commit": "1f4c332740b55a115ff20459fa2cbb54499a538a",
+          "source_sha256": "512e6a0d241144e1444620972714282291cee92d3dcc32af09f2651455a00dfb",
+          "result": "evidence/SAV1-15/20261114T113929Z-4fdb8619/result.json",
+          "junit": "evidence/SAV1-15/20261114T113929Z-4fdb8619/junit.xml"
+        }
+      ],
+      "latest": "PASS"
+    },
+    {
+      "nodeid": "tests/test_super_agent_sa15_pg.py::test_commit_during_cas_io_blocks_release[run_version]",
+      "history": [
+        {
+          "status": "PASS",
+          "source_commit": "1f4c332740b55a115ff20459fa2cbb54499a538a",
+          "source_sha256": "512e6a0d241144e1444620972714282291cee92d3dcc32af09f2651455a00dfb",
+          "result": "evidence/SAV1-15/20261114T113929Z-4fdb8619/result.json",
+          "junit": "evidence/SAV1-15/20261114T113929Z-4fdb8619/junit.xml"
+        }
+      ],
+      "latest": "PASS"
+    },
+    {
+      "nodeid": "tests/test_super_agent_sa15_pg.py::test_source_page_invalidated_between_pages[edit]",
+      "history": [
+        {
+          "status": "PASS",
+          "source_commit": "1f4c332740b55a115ff20459fa2cbb54499a538a",
+          "source_sha256": "512e6a0d241144e1444620972714282291cee92d3dcc32af09f2651455a00dfb",
+          "result": "evidence/SAV1-15/20261114T113929Z-4fdb8619/result.json",
+          "junit": "evidence/SAV1-15/20261114T113929Z-4fdb8619/junit.xml"
+        }
+      ],
+      "latest": "PASS"
+    },
+    {
+      "nodeid": "tests/test_super_agent_sa15_pg.py::test_source_page_invalidated_between_pages[delete]",
+      "history": [
+        {
+          "status": "PASS",
+          "source_commit": "1f4c332740b55a115ff20459fa2cbb54499a538a",
+          "source_sha256": "512e6a0d241144e1444620972714282291cee92d3dcc32af09f2651455a00dfb",
+          "result": "evidence/SAV1-15/20261114T113929Z-4fdb8619/result.json",
+          "junit": "evidence/SAV1-15/20261114T113929Z-4fdb8619/junit.xml"
+        }
+      ],
+      "latest": "PASS"
+    },
+    {
+      "nodeid": "tests/test_super_agent_sa15_pg.py::test_source_page_invalidated_between_pages[expire]",
+      "history": [
+        {
+          "status": "PASS",
+          "source_commit": "1f4c332740b55a115ff20459fa2cbb54499a538a",
+          "source_sha256": "512e6a0d241144e1444620972714282291cee92d3dcc32af09f2651455a00dfb",
+          "result": "evidence/SAV1-15/20261114T113929Z-4fdb8619/result.json",
+          "junit": "evidence/SAV1-15/20261114T113929Z-4fdb8619/junit.xml"
+        }
+      ],
+      "latest": "PASS"
+    },
+    {
+      "nodeid": "tests/test_super_agent_sa15_pg.py::test_source_page_invalidated_between_pages[revoke_identity]",
+      "history": [
+        {
+          "status": "PASS",
+          "source_commit": "1f4c332740b55a115ff20459fa2cbb54499a538a",
+          "source_sha256": "512e6a0d241144e1444620972714282291cee92d3dcc32af09f2651455a00dfb",
+          "result": "evidence/SAV1-15/20261114T113929Z-4fdb8619/result.json",
+          "junit": "evidence/SAV1-15/20261114T113929Z-4fdb8619/junit.xml"
+        }
+      ],
+      "latest": "PASS"
+    },
+    {
+      "nodeid": "tests/test_super_agent_sa15_pg.py::test_real_page_cursor_cannot_expand_authority[tamper]",
+      "history": [
+        {
+          "status": "PASS",
+          "source_commit": "1f4c332740b55a115ff20459fa2cbb54499a538a",
+          "source_sha256": "512e6a0d241144e1444620972714282291cee92d3dcc32af09f2651455a00dfb",
+          "result": "evidence/SAV1-15/20261114T113929Z-4fdb8619/result.json",
+          "junit": "evidence/SAV1-15/20261114T113929Z-4fdb8619/junit.xml"
+        }
+      ],
+      "latest": "PASS"
+    },
+    {
+      "nodeid": "tests/test_super_agent_sa15_pg.py::test_real_page_cursor_cannot_expand_authority[wrong_path]",
+      "history": [
+        {
+          "status": "PASS",
+          "source_commit": "1f4c332740b55a115ff20459fa2cbb54499a538a",
+          "source_sha256": "512e6a0d241144e1444620972714282291cee92d3dcc32af09f2651455a00dfb",
+          "result": "evidence/SAV1-15/20261114T113929Z-4fdb8619/result.json",
+          "junit": "evidence/SAV1-15/20261114T113929Z-4fdb8619/junit.xml"
+        }
+      ],
+      "latest": "PASS"
+    },
+    {
+      "nodeid": "tests/test_super_agent_sa15_pg.py::test_real_page_cursor_cannot_expand_authority[wrong_size]",
+      "history": [
+        {
+          "status": "PASS",
+          "source_commit": "1f4c332740b55a115ff20459fa2cbb54499a538a",
+          "source_sha256": "512e6a0d241144e1444620972714282291cee92d3dcc32af09f2651455a00dfb",
+          "result": "evidence/SAV1-15/20261114T113929Z-4fdb8619/result.json",
+          "junit": "evidence/SAV1-15/20261114T113929Z-4fdb8619/junit.xml"
+        }
+      ],
+      "latest": "PASS"
+    },
+    {
+      "nodeid": "tests/test_super_agent_sa15_pg.py::test_real_page_cursor_cannot_expand_authority[expired]",
+      "history": [
+        {
+          "status": "PASS",
+          "source_commit": "1f4c332740b55a115ff20459fa2cbb54499a538a",
+          "source_sha256": "512e6a0d241144e1444620972714282291cee92d3dcc32af09f2651455a00dfb",
+          "result": "evidence/SAV1-15/20261114T113929Z-4fdb8619/result.json",
+          "junit": "evidence/SAV1-15/20261114T113929Z-4fdb8619/junit.xml"
+        }
+      ],
+      "latest": "PASS"
+    },
+    {
+      "nodeid": "tests/test_super_agent_sa15_pg.py::test_real_page_cursor_cannot_expand_authority[other_cookie]",
+      "history": [
+        {
+          "status": "PASS",
+          "source_commit": "1f4c332740b55a115ff20459fa2cbb54499a538a",
+          "source_sha256": "512e6a0d241144e1444620972714282291cee92d3dcc32af09f2651455a00dfb",
+          "result": "evidence/SAV1-15/20261114T113929Z-4fdb8619/result.json",
+          "junit": "evidence/SAV1-15/20261114T113929Z-4fdb8619/junit.xml"
+        }
+      ],
+      "latest": "PASS"
+    },
+    {
+      "nodeid": "tests/test_super_agent_sa15_pg.py::test_unknown_private_reference_and_hash_shortcut_not_readable[artifact]",
+      "history": [
+        {
+          "status": "PASS",
+          "source_commit": "1f4c332740b55a115ff20459fa2cbb54499a538a",
+          "source_sha256": "512e6a0d241144e1444620972714282291cee92d3dcc32af09f2651455a00dfb",
+          "result": "evidence/SAV1-15/20261114T113929Z-4fdb8619/result.json",
+          "junit": "evidence/SAV1-15/20261114T113929Z-4fdb8619/junit.xml"
+        }
+      ],
+      "latest": "PASS"
+    },
+    {
+      "nodeid": "tests/test_super_agent_sa15_pg.py::test_unknown_private_reference_and_hash_shortcut_not_readable[evidence]",
+      "history": [
+        {
+          "status": "PASS",
+          "source_commit": "1f4c332740b55a115ff20459fa2cbb54499a538a",
+          "source_sha256": "512e6a0d241144e1444620972714282291cee92d3dcc32af09f2651455a00dfb",
+          "result": "evidence/SAV1-15/20261114T113929Z-4fdb8619/result.json",
+          "junit": "evidence/SAV1-15/20261114T113929Z-4fdb8619/junit.xml"
+        }
+      ],
+      "latest": "PASS"
+    },
+    {
+      "nodeid": "tests/test_super_agent_sa15_pg.py::test_unknown_private_reference_and_hash_shortcut_not_readable[run]",
+      "history": [
+        {
+          "status": "PASS",
+          "source_commit": "1f4c332740b55a115ff20459fa2cbb54499a538a",
+          "source_sha256": "512e6a0d241144e1444620972714282291cee92d3dcc32af09f2651455a00dfb",
+          "result": "evidence/SAV1-15/20261114T113929Z-4fdb8619/result.json",
+          "junit": "evidence/SAV1-15/20261114T113929Z-4fdb8619/junit.xml"
+        }
+      ],
+      "latest": "PASS"
+    },
+    {
+      "nodeid": "tests/test_super_agent_sa15_pg.py::test_cross_project_repository_and_context_edges_do_not_grant",
+      "history": [
+        {
+          "status": "PASS",
+          "source_commit": "1f4c332740b55a115ff20459fa2cbb54499a538a",
+          "source_sha256": "512e6a0d241144e1444620972714282291cee92d3dcc32af09f2651455a00dfb",
+          "result": "evidence/SAV1-15/20261114T113929Z-4fdb8619/result.json",
+          "junit": "evidence/SAV1-15/20261114T113929Z-4fdb8619/junit.xml"
+        }
+      ],
+      "latest": "PASS"
+    },
+    {
+      "nodeid": "tests/test_super_agent_sa15_pg.py::test_worker_current_exact_epoch_and_bearer_not_owner_cookie",
+      "history": [
+        {
+          "status": "PASS",
+          "source_commit": "1f4c332740b55a115ff20459fa2cbb54499a538a",
+          "source_sha256": "512e6a0d241144e1444620972714282291cee92d3dcc32af09f2651455a00dfb",
+          "result": "evidence/SAV1-15/20261114T113929Z-4fdb8619/result.json",
+          "junit": "evidence/SAV1-15/20261114T113929Z-4fdb8619/junit.xml"
+        }
+      ],
+      "latest": "PASS"
+    },
+    {
+      "nodeid": "tests/test_super_agent_sa15_pg.py::test_managed_async_reader_reuses_current_original_authority_without_start",
+      "history": [
+        {
+          "status": "FAIL",
+          "source_commit": "1f4c332740b55a115ff20459fa2cbb54499a538a",
+          "source_sha256": "512e6a0d241144e1444620972714282291cee92d3dcc32af09f2651455a00dfb",
+          "result": "evidence/SAV1-15/20261114T113929Z-4fdb8619/result.json",
+          "junit": "evidence/SAV1-15/20261114T113929Z-4fdb8619/junit.xml"
+        },
+        {
+          "status": "PASS",
+          "source_commit": "0fc4ce14769a72a7f34856debdd8a4eff62fd834",
+          "source_sha256": "783aa1c24e060cf54ecaa2d54ffdc02f264d2105cf0936d8337f281806e70145",
+          "result": "evidence/SAV1-15-REPAIR-01/20261114T115045Z-71ff4141/result.json",
+          "junit": "evidence/SAV1-15-REPAIR-01/20261114T115045Z-71ff4141/junit.xml"
+        }
+      ],
+      "latest": "PASS"
+    },
+    {
+      "nodeid": "tests/test_super_agent_sa15_pg.py::test_memory_untrusted_summary_cannot_change_task_or_permissions",
+      "history": [
+        {
+          "status": "PASS",
+          "source_commit": "1f4c332740b55a115ff20459fa2cbb54499a538a",
+          "source_sha256": "512e6a0d241144e1444620972714282291cee92d3dcc32af09f2651455a00dfb",
+          "result": "evidence/SAV1-15/20261114T113929Z-4fdb8619/result.json",
+          "junit": "evidence/SAV1-15/20261114T113929Z-4fdb8619/junit.xml"
+        }
+      ],
+      "latest": "PASS"
+    },
+    {
+      "nodeid": "tests/test_super_agent_sa15_pg.py::test_memory_cas_final_check_detects_memory_revocation",
+      "history": [
+        {
+          "status": "PASS",
+          "source_commit": "1f4c332740b55a115ff20459fa2cbb54499a538a",
+          "source_sha256": "512e6a0d241144e1444620972714282291cee92d3dcc32af09f2651455a00dfb",
+          "result": "evidence/SAV1-15/20261114T113929Z-4fdb8619/result.json",
+          "junit": "evidence/SAV1-15/20261114T113929Z-4fdb8619/junit.xml"
+        }
+      ],
+      "latest": "PASS"
+    },
+    {
+      "nodeid": "tests/test_super_agent_sa15_pg.py::test_origin_added_after_precheck_cannot_launder_derived_bytes",
+      "history": [
+        {
+          "status": "PASS",
+          "source_commit": "1f4c332740b55a115ff20459fa2cbb54499a538a",
+          "source_sha256": "512e6a0d241144e1444620972714282291cee92d3dcc32af09f2651455a00dfb",
+          "result": "evidence/SAV1-15/20261114T113929Z-4fdb8619/result.json",
+          "junit": "evidence/SAV1-15/20261114T113929Z-4fdb8619/junit.xml"
+        }
+      ],
+      "latest": "PASS"
+    },
+    {
+      "nodeid": "tests/test_super_agent_sa15_pg.py::test_actual_walk_bounds_and_every_emitted_target_is_authorized",
+      "history": [
+        {
+          "status": "PASS",
+          "source_commit": "1f4c332740b55a115ff20459fa2cbb54499a538a",
+          "source_sha256": "512e6a0d241144e1444620972714282291cee92d3dcc32af09f2651455a00dfb",
+          "result": "evidence/SAV1-15/20261114T113929Z-4fdb8619/result.json",
+          "junit": "evidence/SAV1-15/20261114T113929Z-4fdb8619/junit.xml"
+        }
+      ],
+      "latest": "PASS"
+    },
+    {
+      "nodeid": "tests/test_super_agent_sa15_pg.py::test_cas_corruption_is_not_returned",
+      "history": [
+        {
+          "status": "PASS",
+          "source_commit": "1f4c332740b55a115ff20459fa2cbb54499a538a",
+          "source_sha256": "512e6a0d241144e1444620972714282291cee92d3dcc32af09f2651455a00dfb",
+          "result": "evidence/SAV1-15/20261114T113929Z-4fdb8619/result.json",
+          "junit": "evidence/SAV1-15/20261114T113929Z-4fdb8619/junit.xml"
+        }
+      ],
+      "latest": "PASS"
+    },
+    {
+      "nodeid": "tests/test_super_agent_sa15_pg.py::test_deadline_and_original_connection_are_enforced",
+      "history": [
+        {
+          "status": "PASS",
+          "source_commit": "1f4c332740b55a115ff20459fa2cbb54499a538a",
+          "source_sha256": "512e6a0d241144e1444620972714282291cee92d3dcc32af09f2651455a00dfb",
+          "result": "evidence/SAV1-15/20261114T113929Z-4fdb8619/result.json",
+          "junit": "evidence/SAV1-15/20261114T113929Z-4fdb8619/junit.xml"
+        }
+      ],
+      "latest": "PASS"
+    },
+    {
+      "nodeid": "tests/test_super_agent_sa15_api.py::test_original_engine_and_exact_nine_routes_with_no_new_migration",
+      "history": [
+        {
+          "status": "PASS",
+          "source_commit": "1f4c332740b55a115ff20459fa2cbb54499a538a",
+          "source_sha256": "512e6a0d241144e1444620972714282291cee92d3dcc32af09f2651455a00dfb",
+          "result": "evidence/SAV1-15/20261114T113929Z-4fdb8619/result.json",
+          "junit": "evidence/SAV1-15/20261114T113929Z-4fdb8619/junit.xml"
+        }
+      ],
+      "latest": "PASS"
+    },
+    {
+      "nodeid": "tests/test_super_agent_sa15_api.py::test_owner_requires_cookie_and_cannot_use_worker_or_operator[GET-/capabilities]",
+      "history": [
+        {
+          "status": "PASS",
+          "source_commit": "1f4c332740b55a115ff20459fa2cbb54499a538a",
+          "source_sha256": "512e6a0d241144e1444620972714282291cee92d3dcc32af09f2651455a00dfb",
+          "result": "evidence/SAV1-15/20261114T113929Z-4fdb8619/result.json",
+          "junit": "evidence/SAV1-15/20261114T113929Z-4fdb8619/junit.xml"
+        }
+      ],
+      "latest": "PASS"
+    },
+    {
+      "nodeid": "tests/test_super_agent_sa15_api.py::test_owner_requires_cookie_and_cannot_use_worker_or_operator[POST-/resolve]",
+      "history": [
+        {
+          "status": "PASS",
+          "source_commit": "1f4c332740b55a115ff20459fa2cbb54499a538a",
+          "source_sha256": "512e6a0d241144e1444620972714282291cee92d3dcc32af09f2651455a00dfb",
+          "result": "evidence/SAV1-15/20261114T113929Z-4fdb8619/result.json",
+          "junit": "evidence/SAV1-15/20261114T113929Z-4fdb8619/junit.xml"
+        }
+      ],
+      "latest": "PASS"
+    },
+    {
+      "nodeid": "tests/test_super_agent_sa15_api.py::test_owner_requires_cookie_and_cannot_use_worker_or_operator[POST-/walk]",
+      "history": [
+        {
+          "status": "PASS",
+          "source_commit": "1f4c332740b55a115ff20459fa2cbb54499a538a",
+          "source_sha256": "512e6a0d241144e1444620972714282291cee92d3dcc32af09f2651455a00dfb",
+          "result": "evidence/SAV1-15/20261114T113929Z-4fdb8619/result.json",
+          "junit": "evidence/SAV1-15/20261114T113929Z-4fdb8619/junit.xml"
+        }
+      ],
+      "latest": "PASS"
+    },
+    {
+      "nodeid": "tests/test_super_agent_sa15_api.py::test_owner_requires_cookie_and_cannot_use_worker_or_operator[POST-/page]",
+      "history": [
+        {
+          "status": "PASS",
+          "source_commit": "1f4c332740b55a115ff20459fa2cbb54499a538a",
+          "source_sha256": "512e6a0d241144e1444620972714282291cee92d3dcc32af09f2651455a00dfb",
+          "result": "evidence/SAV1-15/20261114T113929Z-4fdb8619/result.json",
+          "junit": "evidence/SAV1-15/20261114T113929Z-4fdb8619/junit.xml"
+        }
+      ],
+      "latest": "PASS"
+    },
+    {
+      "nodeid": "tests/test_super_agent_sa15_api.py::test_owner_requires_cookie_and_cannot_use_worker_or_operator[POST-/search]",
+      "history": [
+        {
+          "status": "PASS",
+          "source_commit": "1f4c332740b55a115ff20459fa2cbb54499a538a",
+          "source_sha256": "512e6a0d241144e1444620972714282291cee92d3dcc32af09f2651455a00dfb",
+          "result": "evidence/SAV1-15/20261114T113929Z-4fdb8619/result.json",
+          "junit": "evidence/SAV1-15/20261114T113929Z-4fdb8619/junit.xml"
+        }
+      ],
+      "latest": "PASS"
+    },
+    {
+      "nodeid": "tests/test_super_agent_sa15_api.py::test_owner_post_reads_require_original_origin_csrf[origin]",
+      "history": [
+        {
+          "status": "PASS",
+          "source_commit": "1f4c332740b55a115ff20459fa2cbb54499a538a",
+          "source_sha256": "512e6a0d241144e1444620972714282291cee92d3dcc32af09f2651455a00dfb",
+          "result": "evidence/SAV1-15/20261114T113929Z-4fdb8619/result.json",
+          "junit": "evidence/SAV1-15/20261114T113929Z-4fdb8619/junit.xml"
+        }
+      ],
+      "latest": "PASS"
+    },
+    {
+      "nodeid": "tests/test_super_agent_sa15_api.py::test_owner_post_reads_require_original_origin_csrf[csrf]",
+      "history": [
+        {
+          "status": "PASS",
+          "source_commit": "1f4c332740b55a115ff20459fa2cbb54499a538a",
+          "source_sha256": "512e6a0d241144e1444620972714282291cee92d3dcc32af09f2651455a00dfb",
+          "result": "evidence/SAV1-15/20261114T113929Z-4fdb8619/result.json",
+          "junit": "evidence/SAV1-15/20261114T113929Z-4fdb8619/junit.xml"
+        }
+      ],
+      "latest": "PASS"
+    },
+    {
+      "nodeid": "tests/test_super_agent_sa15_api.py::test_owner_post_reads_require_original_origin_csrf[foreign_origin]",
+      "history": [
+        {
+          "status": "PASS",
+          "source_commit": "1f4c332740b55a115ff20459fa2cbb54499a538a",
+          "source_sha256": "512e6a0d241144e1444620972714282291cee92d3dcc32af09f2651455a00dfb",
+          "result": "evidence/SAV1-15/20261114T113929Z-4fdb8619/result.json",
+          "junit": "evidence/SAV1-15/20261114T113929Z-4fdb8619/junit.xml"
+        }
+      ],
+      "latest": "PASS"
+    },
+    {
+      "nodeid": "tests/test_super_agent_sa15_api.py::test_authenticated_original_owner_read_routes[GET-/capabilities]",
+      "history": [
+        {
+          "status": "PASS",
+          "source_commit": "1f4c332740b55a115ff20459fa2cbb54499a538a",
+          "source_sha256": "512e6a0d241144e1444620972714282291cee92d3dcc32af09f2651455a00dfb",
+          "result": "evidence/SAV1-15/20261114T113929Z-4fdb8619/result.json",
+          "junit": "evidence/SAV1-15/20261114T113929Z-4fdb8619/junit.xml"
+        }
+      ],
+      "latest": "PASS"
+    },
+    {
+      "nodeid": "tests/test_super_agent_sa15_api.py::test_authenticated_original_owner_read_routes[POST-/resolve]",
+      "history": [
+        {
+          "status": "PASS",
+          "source_commit": "1f4c332740b55a115ff20459fa2cbb54499a538a",
+          "source_sha256": "512e6a0d241144e1444620972714282291cee92d3dcc32af09f2651455a00dfb",
+          "result": "evidence/SAV1-15/20261114T113929Z-4fdb8619/result.json",
+          "junit": "evidence/SAV1-15/20261114T113929Z-4fdb8619/junit.xml"
+        }
+      ],
+      "latest": "PASS"
+    },
+    {
+      "nodeid": "tests/test_super_agent_sa15_api.py::test_authenticated_original_owner_read_routes[POST-/walk]",
+      "history": [
+        {
+          "status": "PASS",
+          "source_commit": "1f4c332740b55a115ff20459fa2cbb54499a538a",
+          "source_sha256": "512e6a0d241144e1444620972714282291cee92d3dcc32af09f2651455a00dfb",
+          "result": "evidence/SAV1-15/20261114T113929Z-4fdb8619/result.json",
+          "junit": "evidence/SAV1-15/20261114T113929Z-4fdb8619/junit.xml"
+        }
+      ],
+      "latest": "PASS"
+    },
+    {
+      "nodeid": "tests/test_super_agent_sa15_api.py::test_authenticated_original_owner_read_routes[POST-/page]",
+      "history": [
+        {
+          "status": "PASS",
+          "source_commit": "1f4c332740b55a115ff20459fa2cbb54499a538a",
+          "source_sha256": "512e6a0d241144e1444620972714282291cee92d3dcc32af09f2651455a00dfb",
+          "result": "evidence/SAV1-15/20261114T113929Z-4fdb8619/result.json",
+          "junit": "evidence/SAV1-15/20261114T113929Z-4fdb8619/junit.xml"
+        }
+      ],
+      "latest": "PASS"
+    },
+    {
+      "nodeid": "tests/test_super_agent_sa15_api.py::test_authenticated_original_owner_read_routes[POST-/search]",
+      "history": [
+        {
+          "status": "PASS",
+          "source_commit": "1f4c332740b55a115ff20459fa2cbb54499a538a",
+          "source_sha256": "512e6a0d241144e1444620972714282291cee92d3dcc32af09f2651455a00dfb",
+          "result": "evidence/SAV1-15/20261114T113929Z-4fdb8619/result.json",
+          "junit": "evidence/SAV1-15/20261114T113929Z-4fdb8619/junit.xml"
+        }
+      ],
+      "latest": "PASS"
+    },
+    {
+      "nodeid": "tests/test_super_agent_sa15_api.py::test_worker_cookie_does_not_substitute_for_independent_bearer[POST-/worker/resolve]",
+      "history": [
+        {
+          "status": "PASS",
+          "source_commit": "1f4c332740b55a115ff20459fa2cbb54499a538a",
+          "source_sha256": "512e6a0d241144e1444620972714282291cee92d3dcc32af09f2651455a00dfb",
+          "result": "evidence/SAV1-15/20261114T113929Z-4fdb8619/result.json",
+          "junit": "evidence/SAV1-15/20261114T113929Z-4fdb8619/junit.xml"
+        }
+      ],
+      "latest": "PASS"
+    },
+    {
+      "nodeid": "tests/test_super_agent_sa15_api.py::test_worker_cookie_does_not_substitute_for_independent_bearer[POST-/worker/walk]",
+      "history": [
+        {
+          "status": "PASS",
+          "source_commit": "1f4c332740b55a115ff20459fa2cbb54499a538a",
+          "source_sha256": "512e6a0d241144e1444620972714282291cee92d3dcc32af09f2651455a00dfb",
+          "result": "evidence/SAV1-15/20261114T113929Z-4fdb8619/result.json",
+          "junit": "evidence/SAV1-15/20261114T113929Z-4fdb8619/junit.xml"
+        }
+      ],
+      "latest": "PASS"
+    },
+    {
+      "nodeid": "tests/test_super_agent_sa15_api.py::test_worker_cookie_does_not_substitute_for_independent_bearer[POST-/worker/page]",
+      "history": [
+        {
+          "status": "PASS",
+          "source_commit": "1f4c332740b55a115ff20459fa2cbb54499a538a",
+          "source_sha256": "512e6a0d241144e1444620972714282291cee92d3dcc32af09f2651455a00dfb",
+          "result": "evidence/SAV1-15/20261114T113929Z-4fdb8619/result.json",
+          "junit": "evidence/SAV1-15/20261114T113929Z-4fdb8619/junit.xml"
+        }
+      ],
+      "latest": "PASS"
+    },
+    {
+      "nodeid": "tests/test_super_agent_sa15_api.py::test_worker_cookie_does_not_substitute_for_independent_bearer[POST-/worker/search]",
+      "history": [
+        {
+          "status": "PASS",
+          "source_commit": "1f4c332740b55a115ff20459fa2cbb54499a538a",
+          "source_sha256": "512e6a0d241144e1444620972714282291cee92d3dcc32af09f2651455a00dfb",
+          "result": "evidence/SAV1-15/20261114T113929Z-4fdb8619/result.json",
+          "junit": "evidence/SAV1-15/20261114T113929Z-4fdb8619/junit.xml"
+        }
+      ],
+      "latest": "PASS"
+    },
+    {
+      "nodeid": "tests/test_super_agent_sa15_api.py::test_current_worker_can_read_original_paths_without_owner_cookie[POST-/worker/resolve]",
+      "history": [
+        {
+          "status": "PASS",
+          "source_commit": "1f4c332740b55a115ff20459fa2cbb54499a538a",
+          "source_sha256": "512e6a0d241144e1444620972714282291cee92d3dcc32af09f2651455a00dfb",
+          "result": "evidence/SAV1-15/20261114T113929Z-4fdb8619/result.json",
+          "junit": "evidence/SAV1-15/20261114T113929Z-4fdb8619/junit.xml"
+        }
+      ],
+      "latest": "PASS"
+    },
+    {
+      "nodeid": "tests/test_super_agent_sa15_api.py::test_current_worker_can_read_original_paths_without_owner_cookie[POST-/worker/walk]",
+      "history": [
+        {
+          "status": "PASS",
+          "source_commit": "1f4c332740b55a115ff20459fa2cbb54499a538a",
+          "source_sha256": "512e6a0d241144e1444620972714282291cee92d3dcc32af09f2651455a00dfb",
+          "result": "evidence/SAV1-15/20261114T113929Z-4fdb8619/result.json",
+          "junit": "evidence/SAV1-15/20261114T113929Z-4fdb8619/junit.xml"
+        }
+      ],
+      "latest": "PASS"
+    },
+    {
+      "nodeid": "tests/test_super_agent_sa15_api.py::test_current_worker_can_read_original_paths_without_owner_cookie[POST-/worker/page]",
+      "history": [
+        {
+          "status": "PASS",
+          "source_commit": "1f4c332740b55a115ff20459fa2cbb54499a538a",
+          "source_sha256": "512e6a0d241144e1444620972714282291cee92d3dcc32af09f2651455a00dfb",
+          "result": "evidence/SAV1-15/20261114T113929Z-4fdb8619/result.json",
+          "junit": "evidence/SAV1-15/20261114T113929Z-4fdb8619/junit.xml"
+        }
+      ],
+      "latest": "PASS"
+    },
+    {
+      "nodeid": "tests/test_super_agent_sa15_api.py::test_current_worker_can_read_original_paths_without_owner_cookie[POST-/worker/search]",
+      "history": [
+        {
+          "status": "PASS",
+          "source_commit": "1f4c332740b55a115ff20459fa2cbb54499a538a",
+          "source_sha256": "512e6a0d241144e1444620972714282291cee92d3dcc32af09f2651455a00dfb",
+          "result": "evidence/SAV1-15/20261114T113929Z-4fdb8619/result.json",
+          "junit": "evidence/SAV1-15/20261114T113929Z-4fdb8619/junit.xml"
+        }
+      ],
+      "latest": "PASS"
+    },
+    {
+      "nodeid": "tests/test_super_agent_sa15_api.py::test_caller_authority_and_runtime_fields_are_rejected[actor]",
+      "history": [
+        {
+          "status": "PASS",
+          "source_commit": "1f4c332740b55a115ff20459fa2cbb54499a538a",
+          "source_sha256": "512e6a0d241144e1444620972714282291cee92d3dcc32af09f2651455a00dfb",
+          "result": "evidence/SAV1-15/20261114T113929Z-4fdb8619/result.json",
+          "junit": "evidence/SAV1-15/20261114T113929Z-4fdb8619/junit.xml"
+        }
+      ],
+      "latest": "PASS"
+    },
+    {
+      "nodeid": "tests/test_super_agent_sa15_api.py::test_caller_authority_and_runtime_fields_are_rejected[trusted]",
+      "history": [
+        {
+          "status": "PASS",
+          "source_commit": "1f4c332740b55a115ff20459fa2cbb54499a538a",
+          "source_sha256": "512e6a0d241144e1444620972714282291cee92d3dcc32af09f2651455a00dfb",
+          "result": "evidence/SAV1-15/20261114T113929Z-4fdb8619/result.json",
+          "junit": "evidence/SAV1-15/20261114T113929Z-4fdb8619/junit.xml"
+        }
+      ],
+      "latest": "PASS"
+    },
+    {
+      "nodeid": "tests/test_super_agent_sa15_api.py::test_caller_authority_and_runtime_fields_are_rejected[provider]",
+      "history": [
+        {
+          "status": "PASS",
+          "source_commit": "1f4c332740b55a115ff20459fa2cbb54499a538a",
+          "source_sha256": "512e6a0d241144e1444620972714282291cee92d3dcc32af09f2651455a00dfb",
+          "result": "evidence/SAV1-15/20261114T113929Z-4fdb8619/result.json",
+          "junit": "evidence/SAV1-15/20261114T113929Z-4fdb8619/junit.xml"
+        }
+      ],
+      "latest": "PASS"
+    },
+    {
+      "nodeid": "tests/test_super_agent_sa15_api.py::test_caller_authority_and_runtime_fields_are_rejected[token]",
+      "history": [
+        {
+          "status": "PASS",
+          "source_commit": "1f4c332740b55a115ff20459fa2cbb54499a538a",
+          "source_sha256": "512e6a0d241144e1444620972714282291cee92d3dcc32af09f2651455a00dfb",
+          "result": "evidence/SAV1-15/20261114T113929Z-4fdb8619/result.json",
+          "junit": "evidence/SAV1-15/20261114T113929Z-4fdb8619/junit.xml"
+        }
+      ],
+      "latest": "PASS"
+    },
+    {
+      "nodeid": "tests/test_super_agent_sa15_api.py::test_caller_authority_and_runtime_fields_are_rejected[grant]",
+      "history": [
+        {
+          "status": "PASS",
+          "source_commit": "1f4c332740b55a115ff20459fa2cbb54499a538a",
+          "source_sha256": "512e6a0d241144e1444620972714282291cee92d3dcc32af09f2651455a00dfb",
+          "result": "evidence/SAV1-15/20261114T113929Z-4fdb8619/result.json",
+          "junit": "evidence/SAV1-15/20261114T113929Z-4fdb8619/junit.xml"
+        }
+      ],
+      "latest": "PASS"
+    },
+    {
+      "nodeid": "tests/test_super_agent_sa15_api.py::test_caller_authority_and_runtime_fields_are_rejected[paid]",
+      "history": [
+        {
+          "status": "PASS",
+          "source_commit": "1f4c332740b55a115ff20459fa2cbb54499a538a",
+          "source_sha256": "512e6a0d241144e1444620972714282291cee92d3dcc32af09f2651455a00dfb",
+          "result": "evidence/SAV1-15/20261114T113929Z-4fdb8619/result.json",
+          "junit": "evidence/SAV1-15/20261114T113929Z-4fdb8619/junit.xml"
+        }
+      ],
+      "latest": "PASS"
+    },
+    {
+      "nodeid": "tests/test_super_agent_sa15_api.py::test_caller_authority_and_runtime_fields_are_rejected[host_path]",
+      "history": [
+        {
+          "status": "PASS",
+          "source_commit": "1f4c332740b55a115ff20459fa2cbb54499a538a",
+          "source_sha256": "512e6a0d241144e1444620972714282291cee92d3dcc32af09f2651455a00dfb",
+          "result": "evidence/SAV1-15/20261114T113929Z-4fdb8619/result.json",
+          "junit": "evidence/SAV1-15/20261114T113929Z-4fdb8619/junit.xml"
+        }
+      ],
+      "latest": "PASS"
+    },
+    {
+      "nodeid": "tests/test_super_agent_sa15_api.py::test_caller_authority_and_runtime_fields_are_rejected[url]",
+      "history": [
+        {
+          "status": "PASS",
+          "source_commit": "1f4c332740b55a115ff20459fa2cbb54499a538a",
+          "source_sha256": "512e6a0d241144e1444620972714282291cee92d3dcc32af09f2651455a00dfb",
+          "result": "evidence/SAV1-15/20261114T113929Z-4fdb8619/result.json",
+          "junit": "evidence/SAV1-15/20261114T113929Z-4fdb8619/junit.xml"
+        }
+      ],
+      "latest": "PASS"
+    },
+    {
+      "nodeid": "tests/test_super_agent_sa15_api.py::test_caller_authority_and_runtime_fields_are_rejected[body]",
+      "history": [
+        {
+          "status": "PASS",
+          "source_commit": "1f4c332740b55a115ff20459fa2cbb54499a538a",
+          "source_sha256": "512e6a0d241144e1444620972714282291cee92d3dcc32af09f2651455a00dfb",
+          "result": "evidence/SAV1-15/20261114T113929Z-4fdb8619/result.json",
+          "junit": "evidence/SAV1-15/20261114T113929Z-4fdb8619/junit.xml"
+        }
+      ],
+      "latest": "PASS"
+    },
+    {
+      "nodeid": "tests/test_super_agent_sa15_api.py::test_caller_authority_and_runtime_fields_are_rejected[task_succeeded]",
+      "history": [
+        {
+          "status": "PASS",
+          "source_commit": "1f4c332740b55a115ff20459fa2cbb54499a538a",
+          "source_sha256": "512e6a0d241144e1444620972714282291cee92d3dcc32af09f2651455a00dfb",
+          "result": "evidence/SAV1-15/20261114T113929Z-4fdb8619/result.json",
+          "junit": "evidence/SAV1-15/20261114T113929Z-4fdb8619/junit.xml"
+        }
+      ],
+      "latest": "PASS"
+    },
+    {
+      "nodeid": "tests/test_super_agent_sa15_api.py::test_malformed_and_oversize_transport_closed[null-application/json]",
+      "history": [
+        {
+          "status": "PASS",
+          "source_commit": "1f4c332740b55a115ff20459fa2cbb54499a538a",
+          "source_sha256": "512e6a0d241144e1444620972714282291cee92d3dcc32af09f2651455a00dfb",
+          "result": "evidence/SAV1-15/20261114T113929Z-4fdb8619/result.json",
+          "junit": "evidence/SAV1-15/20261114T113929Z-4fdb8619/junit.xml"
+        }
+      ],
+      "latest": "PASS"
+    },
+    {
+      "nodeid": "tests/test_super_agent_sa15_api.py::test_malformed_and_oversize_transport_closed[[1]-application/json]",
+      "history": [
+        {
+          "status": "PASS",
+          "source_commit": "1f4c332740b55a115ff20459fa2cbb54499a538a",
+          "source_sha256": "512e6a0d241144e1444620972714282291cee92d3dcc32af09f2651455a00dfb",
+          "result": "evidence/SAV1-15/20261114T113929Z-4fdb8619/result.json",
+          "junit": "evidence/SAV1-15/20261114T113929Z-4fdb8619/junit.xml"
+        }
+      ],
+      "latest": "PASS"
+    },
+    {
+      "nodeid": "tests/test_super_agent_sa15_api.py::test_malformed_and_oversize_transport_closed[{}-text/plain]",
+      "history": [
+        {
+          "status": "PASS",
+          "source_commit": "1f4c332740b55a115ff20459fa2cbb54499a538a",
+          "source_sha256": "512e6a0d241144e1444620972714282291cee92d3dcc32af09f2651455a00dfb",
+          "result": "evidence/SAV1-15/20261114T113929Z-4fdb8619/result.json",
+          "junit": "evidence/SAV1-15/20261114T113929Z-4fdb8619/junit.xml"
+        }
+      ],
+      "latest": "PASS"
+    },
+    {
+      "nodeid": "tests/test_super_agent_sa15_api.py::test_malformed_and_oversize_transport_closed[payload3-application/json]",
+      "history": [
+        {
+          "status": "PASS",
+          "source_commit": "1f4c332740b55a115ff20459fa2cbb54499a538a",
+          "source_sha256": "512e6a0d241144e1444620972714282291cee92d3dcc32af09f2651455a00dfb",
+          "result": "evidence/SAV1-15/20261114T113929Z-4fdb8619/result.json",
+          "junit": "evidence/SAV1-15/20261114T113929Z-4fdb8619/junit.xml"
+        }
+      ],
+      "latest": "PASS"
+    },
+    {
+      "nodeid": "tests/test_super_agent_sa15_api.py::test_logout_between_owner_pages_does_not_restore_grant",
+      "history": [
+        {
+          "status": "PASS",
+          "source_commit": "1f4c332740b55a115ff20459fa2cbb54499a538a",
+          "source_sha256": "512e6a0d241144e1444620972714282291cee92d3dcc32af09f2651455a00dfb",
+          "result": "evidence/SAV1-15/20261114T113929Z-4fdb8619/result.json",
+          "junit": "evidence/SAV1-15/20261114T113929Z-4fdb8619/junit.xml"
+        }
+      ],
+      "latest": "PASS"
+    },
+    {
+      "nodeid": "tests/test_super_agent_sa15_tools.py::test_injected_read_tools_use_current_authority_and_no_side_effects[source_recall]",
+      "history": [
+        {
+          "status": "PASS",
+          "source_commit": "1f4c332740b55a115ff20459fa2cbb54499a538a",
+          "source_sha256": "512e6a0d241144e1444620972714282291cee92d3dcc32af09f2651455a00dfb",
+          "result": "evidence/SAV1-15/20261114T113929Z-4fdb8619/result.json",
+          "junit": "evidence/SAV1-15/20261114T113929Z-4fdb8619/junit.xml"
+        }
+      ],
+      "latest": "PASS"
+    },
+    {
+      "nodeid": "tests/test_super_agent_sa15_tools.py::test_injected_read_tools_use_current_authority_and_no_side_effects[source_recall_walk]",
+      "history": [
+        {
+          "status": "PASS",
+          "source_commit": "1f4c332740b55a115ff20459fa2cbb54499a538a",
+          "source_sha256": "512e6a0d241144e1444620972714282291cee92d3dcc32af09f2651455a00dfb",
+          "result": "evidence/SAV1-15/20261114T113929Z-4fdb8619/result.json",
+          "junit": "evidence/SAV1-15/20261114T113929Z-4fdb8619/junit.xml"
+        }
+      ],
+      "latest": "PASS"
+    },
+    {
+      "nodeid": "tests/test_super_agent_sa15_tools.py::test_injected_read_tools_use_current_authority_and_no_side_effects[source_recall_page]",
+      "history": [
+        {
+          "status": "PASS",
+          "source_commit": "1f4c332740b55a115ff20459fa2cbb54499a538a",
+          "source_sha256": "512e6a0d241144e1444620972714282291cee92d3dcc32af09f2651455a00dfb",
+          "result": "evidence/SAV1-15/20261114T113929Z-4fdb8619/result.json",
+          "junit": "evidence/SAV1-15/20261114T113929Z-4fdb8619/junit.xml"
+        }
+      ],
+      "latest": "PASS"
+    },
+    {
+      "nodeid": "tests/test_super_agent_sa15_tools.py::test_injected_read_tools_use_current_authority_and_no_side_effects[source_recall_search]",
+      "history": [
+        {
+          "status": "PASS",
+          "source_commit": "1f4c332740b55a115ff20459fa2cbb54499a538a",
+          "source_sha256": "512e6a0d241144e1444620972714282291cee92d3dcc32af09f2651455a00dfb",
+          "result": "evidence/SAV1-15/20261114T113929Z-4fdb8619/result.json",
+          "junit": "evidence/SAV1-15/20261114T113929Z-4fdb8619/junit.xml"
+        }
+      ],
+      "latest": "PASS"
+    },
+    {
+      "nodeid": "tests/test_super_agent_sa15_tools.py::test_model_context_or_arguments_cannot_supply_authority[actor]",
+      "history": [
+        {
+          "status": "PASS",
+          "source_commit": "1f4c332740b55a115ff20459fa2cbb54499a538a",
+          "source_sha256": "512e6a0d241144e1444620972714282291cee92d3dcc32af09f2651455a00dfb",
+          "result": "evidence/SAV1-15/20261114T113929Z-4fdb8619/result.json",
+          "junit": "evidence/SAV1-15/20261114T113929Z-4fdb8619/junit.xml"
+        }
+      ],
+      "latest": "PASS"
+    },
+    {
+      "nodeid": "tests/test_super_agent_sa15_tools.py::test_model_context_or_arguments_cannot_supply_authority[epoch]",
+      "history": [
+        {
+          "status": "PASS",
+          "source_commit": "1f4c332740b55a115ff20459fa2cbb54499a538a",
+          "source_sha256": "512e6a0d241144e1444620972714282291cee92d3dcc32af09f2651455a00dfb",
+          "result": "evidence/SAV1-15/20261114T113929Z-4fdb8619/result.json",
+          "junit": "evidence/SAV1-15/20261114T113929Z-4fdb8619/junit.xml"
+        }
+      ],
+      "latest": "PASS"
+    },
+    {
+      "nodeid": "tests/test_super_agent_sa15_tools.py::test_model_context_or_arguments_cannot_supply_authority[run]",
+      "history": [
+        {
+          "status": "PASS",
+          "source_commit": "1f4c332740b55a115ff20459fa2cbb54499a538a",
+          "source_sha256": "512e6a0d241144e1444620972714282291cee92d3dcc32af09f2651455a00dfb",
+          "result": "evidence/SAV1-15/20261114T113929Z-4fdb8619/result.json",
+          "junit": "evidence/SAV1-15/20261114T113929Z-4fdb8619/junit.xml"
+        }
+      ],
+      "latest": "PASS"
+    },
+    {
+      "nodeid": "tests/test_super_agent_sa15_tools.py::test_model_context_or_arguments_cannot_supply_authority[workspace]",
+      "history": [
+        {
+          "status": "PASS",
+          "source_commit": "1f4c332740b55a115ff20459fa2cbb54499a538a",
+          "source_sha256": "512e6a0d241144e1444620972714282291cee92d3dcc32af09f2651455a00dfb",
+          "result": "evidence/SAV1-15/20261114T113929Z-4fdb8619/result.json",
+          "junit": "evidence/SAV1-15/20261114T113929Z-4fdb8619/junit.xml"
+        }
+      ],
+      "latest": "PASS"
+    },
+    {
+      "nodeid": "tests/test_super_agent_sa15_tools.py::test_model_context_or_arguments_cannot_supply_authority[grant]",
+      "history": [
+        {
+          "status": "PASS",
+          "source_commit": "1f4c332740b55a115ff20459fa2cbb54499a538a",
+          "source_sha256": "512e6a0d241144e1444620972714282291cee92d3dcc32af09f2651455a00dfb",
+          "result": "evidence/SAV1-15/20261114T113929Z-4fdb8619/result.json",
+          "junit": "evidence/SAV1-15/20261114T113929Z-4fdb8619/junit.xml"
+        }
+      ],
+      "latest": "PASS"
+    },
+    {
+      "nodeid": "tests/test_super_agent_sa15_tools.py::test_model_context_or_arguments_cannot_supply_authority[authority_arg]",
+      "history": [
+        {
+          "status": "PASS",
+          "source_commit": "1f4c332740b55a115ff20459fa2cbb54499a538a",
+          "source_sha256": "512e6a0d241144e1444620972714282291cee92d3dcc32af09f2651455a00dfb",
+          "result": "evidence/SAV1-15/20261114T113929Z-4fdb8619/result.json",
+          "junit": "evidence/SAV1-15/20261114T113929Z-4fdb8619/junit.xml"
+        }
+      ],
+      "latest": "PASS"
+    },
+    {
+      "nodeid": "tests/test_super_agent_sa15_tools.py::test_model_context_or_arguments_cannot_supply_authority[unknown_tool]",
+      "history": [
+        {
+          "status": "PASS",
+          "source_commit": "1f4c332740b55a115ff20459fa2cbb54499a538a",
+          "source_sha256": "512e6a0d241144e1444620972714282291cee92d3dcc32af09f2651455a00dfb",
+          "result": "evidence/SAV1-15/20261114T113929Z-4fdb8619/result.json",
+          "junit": "evidence/SAV1-15/20261114T113929Z-4fdb8619/junit.xml"
+        }
+      ],
+      "latest": "PASS"
+    },
+    {
+      "nodeid": "tests/test_super_agent_sa15_tools.py::test_model_context_or_arguments_cannot_supply_authority[cancelled]",
+      "history": [
+        {
+          "status": "PASS",
+          "source_commit": "1f4c332740b55a115ff20459fa2cbb54499a538a",
+          "source_sha256": "512e6a0d241144e1444620972714282291cee92d3dcc32af09f2651455a00dfb",
+          "result": "evidence/SAV1-15/20261114T113929Z-4fdb8619/result.json",
+          "junit": "evidence/SAV1-15/20261114T113929Z-4fdb8619/junit.xml"
+        }
+      ],
+      "latest": "PASS"
+    },
+    {
+      "nodeid": "tests/test_super_agent_sa15_quality.py::test_frozen_synthetic_query_returns_authorized_task_and_real_status[login-short]",
+      "history": [
+        {
+          "status": "PASS",
+          "source_commit": "1f4c332740b55a115ff20459fa2cbb54499a538a",
+          "source_sha256": "512e6a0d241144e1444620972714282291cee92d3dcc32af09f2651455a00dfb",
+          "result": "evidence/SAV1-15/20261114T113929Z-4fdb8619/result.json",
+          "junit": "evidence/SAV1-15/20261114T113929Z-4fdb8619/junit.xml"
+        }
+      ],
+      "latest": "PASS"
+    },
+    {
+      "nodeid": "tests/test_super_agent_sa15_quality.py::test_frozen_synthetic_query_returns_authorized_task_and_real_status[login-status]",
+      "history": [
+        {
+          "status": "PASS",
+          "source_commit": "1f4c332740b55a115ff20459fa2cbb54499a538a",
+          "source_sha256": "512e6a0d241144e1444620972714282291cee92d3dcc32af09f2651455a00dfb",
+          "result": "evidence/SAV1-15/20261114T113929Z-4fdb8619/result.json",
+          "junit": "evidence/SAV1-15/20261114T113929Z-4fdb8619/junit.xml"
+        }
+      ],
+      "latest": "PASS"
+    },
+    {
+      "nodeid": "tests/test_super_agent_sa15_quality.py::test_frozen_synthetic_query_returns_authorized_task_and_real_status[yesterday-login]",
+      "history": [
+        {
+          "status": "PASS",
+          "source_commit": "1f4c332740b55a115ff20459fa2cbb54499a538a",
+          "source_sha256": "512e6a0d241144e1444620972714282291cee92d3dcc32af09f2651455a00dfb",
+          "result": "evidence/SAV1-15/20261114T113929Z-4fdb8619/result.json",
+          "junit": "evidence/SAV1-15/20261114T113929Z-4fdb8619/junit.xml"
+        }
+      ],
+      "latest": "PASS"
+    },
+    {
+      "nodeid": "tests/test_super_agent_sa15_quality.py::test_frozen_synthetic_query_returns_authorized_task_and_real_status[login-diagnosis]",
+      "history": [
+        {
+          "status": "PASS",
+          "source_commit": "1f4c332740b55a115ff20459fa2cbb54499a538a",
+          "source_sha256": "512e6a0d241144e1444620972714282291cee92d3dcc32af09f2651455a00dfb",
+          "result": "evidence/SAV1-15/20261114T113929Z-4fdb8619/result.json",
+          "junit": "evidence/SAV1-15/20261114T113929Z-4fdb8619/junit.xml"
+        }
+      ],
+      "latest": "PASS"
+    },
+    {
+      "nodeid": "tests/test_super_agent_sa15_quality.py::test_frozen_synthetic_query_returns_authorized_task_and_real_status[login-waiting]",
+      "history": [
+        {
+          "status": "PASS",
+          "source_commit": "1f4c332740b55a115ff20459fa2cbb54499a538a",
+          "source_sha256": "512e6a0d241144e1444620972714282291cee92d3dcc32af09f2651455a00dfb",
+          "result": "evidence/SAV1-15/20261114T113929Z-4fdb8619/result.json",
+          "junit": "evidence/SAV1-15/20261114T113929Z-4fdb8619/junit.xml"
+        }
+      ],
+      "latest": "PASS"
+    },
+    {
+      "nodeid": "tests/test_super_agent_sa15_quality.py::test_frozen_synthetic_query_returns_authorized_task_and_real_status[different-login]",
+      "history": [
+        {
+          "status": "PASS",
+          "source_commit": "1f4c332740b55a115ff20459fa2cbb54499a538a",
+          "source_sha256": "512e6a0d241144e1444620972714282291cee92d3dcc32af09f2651455a00dfb",
+          "result": "evidence/SAV1-15/20261114T113929Z-4fdb8619/result.json",
+          "junit": "evidence/SAV1-15/20261114T113929Z-4fdb8619/junit.xml"
+        }
+      ],
+      "latest": "PASS"
+    },
+    {
+      "nodeid": "tests/test_super_agent_sa15_quality.py::test_frozen_synthetic_query_returns_authorized_task_and_real_status[unknown-task]",
+      "history": [
+        {
+          "status": "PASS",
+          "source_commit": "1f4c332740b55a115ff20459fa2cbb54499a538a",
+          "source_sha256": "512e6a0d241144e1444620972714282291cee92d3dcc32af09f2651455a00dfb",
+          "result": "evidence/SAV1-15/20261114T113929Z-4fdb8619/result.json",
+          "junit": "evidence/SAV1-15/20261114T113929Z-4fdb8619/junit.xml"
+        }
+      ],
+      "latest": "PASS"
+    },
+    {
+      "nodeid": "tests/test_super_agent_sa15_quality.py::test_frozen_synthetic_query_returns_authorized_task_and_real_status[sql-other]",
+      "history": [
+        {
+          "status": "PASS",
+          "source_commit": "1f4c332740b55a115ff20459fa2cbb54499a538a",
+          "source_sha256": "512e6a0d241144e1444620972714282291cee92d3dcc32af09f2651455a00dfb",
+          "result": "evidence/SAV1-15/20261114T113929Z-4fdb8619/result.json",
+          "junit": "evidence/SAV1-15/20261114T113929Z-4fdb8619/junit.xml"
+        }
+      ],
+      "latest": "PASS"
+    },
+    {
+      "nodeid": "tests/test_super_agent_sa15_quality.py::test_frozen_synthetic_query_returns_authorized_task_and_real_status[english-other]",
+      "history": [
+        {
+          "status": "PASS",
+          "source_commit": "1f4c332740b55a115ff20459fa2cbb54499a538a",
+          "source_sha256": "512e6a0d241144e1444620972714282291cee92d3dcc32af09f2651455a00dfb",
+          "result": "evidence/SAV1-15/20261114T113929Z-4fdb8619/result.json",
+          "junit": "evidence/SAV1-15/20261114T113929Z-4fdb8619/junit.xml"
+        }
+      ],
+      "latest": "PASS"
+    },
+    {
+      "nodeid": "tests/test_super_agent_sa15_quality.py::test_frozen_synthetic_query_returns_authorized_task_and_real_status[no-query-intent]",
+      "history": [
+        {
+          "status": "PASS",
+          "source_commit": "1f4c332740b55a115ff20459fa2cbb54499a538a",
+          "source_sha256": "512e6a0d241144e1444620972714282291cee92d3dcc32af09f2651455a00dfb",
+          "result": "evidence/SAV1-15/20261114T113929Z-4fdb8619/result.json",
+          "junit": "evidence/SAV1-15/20261114T113929Z-4fdb8619/junit.xml"
+        }
+      ],
+      "latest": "PASS"
+    },
+    {
+      "nodeid": "tests/test_super_agent_sa15_quality.py::test_frozen_synthetic_query_returns_authorized_task_and_real_status[ambiguous-login]",
+      "history": [
+        {
+          "status": "PASS",
+          "source_commit": "1f4c332740b55a115ff20459fa2cbb54499a538a",
+          "source_sha256": "512e6a0d241144e1444620972714282291cee92d3dcc32af09f2651455a00dfb",
+          "result": "evidence/SAV1-15/20261114T113929Z-4fdb8619/result.json",
+          "junit": "evidence/SAV1-15/20261114T113929Z-4fdb8619/junit.xml"
+        }
+      ],
+      "latest": "PASS"
+    },
+    {
+      "nodeid": "tests/test_super_agent_sa15_quality.py::test_frozen_synthetic_query_returns_authorized_task_and_real_status[time-exclusion]",
+      "history": [
+        {
+          "status": "PASS",
+          "source_commit": "1f4c332740b55a115ff20459fa2cbb54499a538a",
+          "source_sha256": "512e6a0d241144e1444620972714282291cee92d3dcc32af09f2651455a00dfb",
+          "result": "evidence/SAV1-15/20261114T113929Z-4fdb8619/result.json",
+          "junit": "evidence/SAV1-15/20261114T113929Z-4fdb8619/junit.xml"
+        }
+      ],
+      "latest": "PASS"
+    },
+    {
+      "nodeid": "tests/test_super_agent_sa15_quality.py::test_same_installation_other_authorized_conversation_is_not_worker_scope",
+      "history": [
+        {
+          "status": "PASS",
+          "source_commit": "1f4c332740b55a115ff20459fa2cbb54499a538a",
+          "source_sha256": "512e6a0d241144e1444620972714282291cee92d3dcc32af09f2651455a00dfb",
+          "result": "evidence/SAV1-15/20261114T113929Z-4fdb8619/result.json",
+          "junit": "evidence/SAV1-15/20261114T113929Z-4fdb8619/junit.xml"
+        }
+      ],
+      "latest": "PASS"
+    },
+    {
+      "nodeid": "tests/test_super_agent_sa15_quality.py::test_different_installation_same_names_and_private_candidate_ids_hidden",
+      "history": [
+        {
+          "status": "FAIL",
+          "source_commit": "1f4c332740b55a115ff20459fa2cbb54499a538a",
+          "source_sha256": "512e6a0d241144e1444620972714282291cee92d3dcc32af09f2651455a00dfb",
+          "result": "evidence/SAV1-15/20261114T113929Z-4fdb8619/result.json",
+          "junit": "evidence/SAV1-15/20261114T113929Z-4fdb8619/junit.xml"
+        },
+        {
+          "status": "PASS",
+          "source_commit": "0fc4ce14769a72a7f34856debdd8a4eff62fd834",
+          "source_sha256": "783aa1c24e060cf54ecaa2d54ffdc02f264d2105cf0936d8337f281806e70145",
+          "result": "evidence/SAV1-15-REPAIR-01/20261114T115045Z-71ff4141/result.json",
+          "junit": "evidence/SAV1-15-REPAIR-01/20261114T115045Z-71ff4141/junit.xml"
+        }
+      ],
+      "latest": "PASS"
+    },
+    {
+      "nodeid": "tests/test_super_agent_sa15_quality.py::test_gap_is_explicit_bodyless_uncertainty_and_not_false_recovery",
+      "history": [
+        {
+          "status": "PASS",
+          "source_commit": "1f4c332740b55a115ff20459fa2cbb54499a538a",
+          "source_sha256": "512e6a0d241144e1444620972714282291cee92d3dcc32af09f2651455a00dfb",
+          "result": "evidence/SAV1-15/20261114T113929Z-4fdb8619/result.json",
+          "junit": "evidence/SAV1-15/20261114T113929Z-4fdb8619/junit.xml"
+        }
+      ],
+      "latest": "PASS"
+    },
+    {
+      "nodeid": "tests/test_super_agent_sa15_quality.py::test_new_task_dependency_must_be_readable_before_derived_content",
+      "history": [
+        {
+          "status": "PASS",
+          "source_commit": "1f4c332740b55a115ff20459fa2cbb54499a538a",
+          "source_sha256": "512e6a0d241144e1444620972714282291cee92d3dcc32af09f2651455a00dfb",
+          "result": "evidence/SAV1-15/20261114T113929Z-4fdb8619/result.json",
+          "junit": "evidence/SAV1-15/20261114T113929Z-4fdb8619/junit.xml"
+        }
+      ],
+      "latest": "PASS"
+    },
+    {
+      "nodeid": "tests/test_super_agent_sa15_relations.py::test_worker_recalls_other_task_same_current_authorized_conversation",
+      "history": [
+        {
+          "status": "PASS",
+          "source_commit": "0fc4ce14769a72a7f34856debdd8a4eff62fd834",
+          "source_sha256": "783aa1c24e060cf54ecaa2d54ffdc02f264d2105cf0936d8337f281806e70145",
+          "result": "evidence/SAV1-15-RELATIONS/20261114T115045Z-ba1ce5d0/result.json",
+          "junit": "evidence/SAV1-15-RELATIONS/20261114T115045Z-ba1ce5d0/junit.xml"
+        }
+      ],
+      "latest": "PASS"
+    },
+    {
+      "nodeid": "tests/test_super_agent_sa15_relations.py::test_existing_v33_working_memory_context_relation_and_lifecycle[owner]",
+      "history": [
+        {
+          "status": "PASS",
+          "source_commit": "0fc4ce14769a72a7f34856debdd8a4eff62fd834",
+          "source_sha256": "783aa1c24e060cf54ecaa2d54ffdc02f264d2105cf0936d8337f281806e70145",
+          "result": "evidence/SAV1-15-RELATIONS/20261114T115045Z-ba1ce5d0/result.json",
+          "junit": "evidence/SAV1-15-RELATIONS/20261114T115045Z-ba1ce5d0/junit.xml"
+        }
+      ],
+      "latest": "PASS"
+    },
+    {
+      "nodeid": "tests/test_super_agent_sa15_relations.py::test_existing_v33_working_memory_context_relation_and_lifecycle[worker_caller]",
+      "history": [
+        {
+          "status": "PASS",
+          "source_commit": "0fc4ce14769a72a7f34856debdd8a4eff62fd834",
+          "source_sha256": "783aa1c24e060cf54ecaa2d54ffdc02f264d2105cf0936d8337f281806e70145",
+          "result": "evidence/SAV1-15-RELATIONS/20261114T115045Z-ba1ce5d0/result.json",
+          "junit": "evidence/SAV1-15-RELATIONS/20261114T115045Z-ba1ce5d0/junit.xml"
+        }
+      ],
+      "latest": "PASS"
+    },
+    {
+      "nodeid": "tests/test_super_agent_sa15_relations.py::test_original_action_review_outbox_unknown_are_readonly_real_status",
+      "history": [
+        {
+          "status": "PASS",
+          "source_commit": "0fc4ce14769a72a7f34856debdd8a4eff62fd834",
+          "source_sha256": "783aa1c24e060cf54ecaa2d54ffdc02f264d2105cf0936d8337f281806e70145",
+          "result": "evidence/SAV1-15-RELATIONS/20261114T115045Z-ba1ce5d0/result.json",
+          "junit": "evidence/SAV1-15-RELATIONS/20261114T115045Z-ba1ce5d0/junit.xml"
+        }
+      ],
+      "latest": "PASS"
+    },
+    {
+      "nodeid": "tests/test_super_agent_sa15_relations.py::test_owner_sees_minimal_tombstone_when_body_ttl_expires_before_metadata",
+      "history": [
+        {
+          "status": "PASS",
+          "source_commit": "0fc4ce14769a72a7f34856debdd8a4eff62fd834",
+          "source_sha256": "783aa1c24e060cf54ecaa2d54ffdc02f264d2105cf0936d8337f281806e70145",
+          "result": "evidence/SAV1-15-RELATIONS/20261114T115045Z-ba1ce5d0/result.json",
+          "junit": "evidence/SAV1-15-RELATIONS/20261114T115045Z-ba1ce5d0/junit.xml"
+        }
+      ],
+      "latest": "PASS"
+    },
+    {
+      "nodeid": "tests/test_super_agent_sa15_relations.py::test_original_sa10_correlation_indexes_source_to_real_task_without_duplication",
+      "history": [
+        {
+          "status": "PASS",
+          "source_commit": "0fc4ce14769a72a7f34856debdd8a4eff62fd834",
+          "source_sha256": "783aa1c24e060cf54ecaa2d54ffdc02f264d2105cf0936d8337f281806e70145",
+          "result": "evidence/SAV1-15-RELATIONS/20261114T115045Z-ba1ce5d0/result.json",
+          "junit": "evidence/SAV1-15-RELATIONS/20261114T115045Z-ba1ce5d0/junit.xml"
+        }
+      ],
+      "latest": "PASS"
+    },
+    {
+      "nodeid": "tests/test_super_agent_sa15_relations.py::test_all_formal_migration_checksums_and_current_artifact_references",
+      "history": [
+        {
+          "status": "FAIL",
+          "source_commit": "0fc4ce14769a72a7f34856debdd8a4eff62fd834",
+          "source_sha256": "783aa1c24e060cf54ecaa2d54ffdc02f264d2105cf0936d8337f281806e70145",
+          "result": "evidence/SAV1-15-RELATIONS/20261114T115045Z-ba1ce5d0/result.json",
+          "junit": "evidence/SAV1-15-RELATIONS/20261114T115045Z-ba1ce5d0/junit.xml"
+        },
+        {
+          "status": "PASS",
+          "source_commit": "69ad502c6f5cde72d5ee9e85e06646bd846f3768",
+          "source_sha256": "9e054958f63d3099019c8e0e26713191a4af2c476f430fcd519e5418d9969175",
+          "result": "evidence/SAV1-15-REPAIR-02/20261114T115431Z-fed0faea/result.json",
+          "junit": "evidence/SAV1-15-REPAIR-02/20261114T115431Z-fed0faea/junit.xml"
+        }
+      ],
+      "latest": "PASS"
+    },
+    {
+      "nodeid": "tests/test_super_agent_sa15_relations.py::test_recall_original_async_job_reports_actual_status_without_dispatching_another",
+      "history": [
+        {
+          "status": "PASS",
+          "source_commit": "0fc4ce14769a72a7f34856debdd8a4eff62fd834",
+          "source_sha256": "783aa1c24e060cf54ecaa2d54ffdc02f264d2105cf0936d8337f281806e70145",
+          "result": "evidence/SAV1-15-RELATIONS/20261114T115045Z-ba1ce5d0/result.json",
+          "junit": "evidence/SAV1-15-RELATIONS/20261114T115045Z-ba1ce5d0/junit.xml"
+        }
+      ],
+      "latest": "PASS"
+    },
+    {
+      "nodeid": "tests/test_super_agent_sa15_relations.py::test_original_knowledge_acl_is_not_replaced_by_source_or_cas_relation[revoke_during_io]",
+      "history": [
+        {
+          "status": "PASS",
+          "source_commit": "0fc4ce14769a72a7f34856debdd8a4eff62fd834",
+          "source_sha256": "783aa1c24e060cf54ecaa2d54ffdc02f264d2105cf0936d8337f281806e70145",
+          "result": "evidence/SAV1-15-RELATIONS/20261114T115045Z-ba1ce5d0/result.json",
+          "junit": "evidence/SAV1-15-RELATIONS/20261114T115045Z-ba1ce5d0/junit.xml"
+        }
+      ],
+      "latest": "PASS"
+    },
+    {
+      "nodeid": "tests/test_super_agent_sa15_relations.py::test_original_knowledge_acl_is_not_replaced_by_source_or_cas_relation[worker_cannot_inherit_owner_acl]",
+      "history": [
+        {
+          "status": "PASS",
+          "source_commit": "0fc4ce14769a72a7f34856debdd8a4eff62fd834",
+          "source_sha256": "783aa1c24e060cf54ecaa2d54ffdc02f264d2105cf0936d8337f281806e70145",
+          "result": "evidence/SAV1-15-RELATIONS/20261114T115045Z-ba1ce5d0/result.json",
+          "junit": "evidence/SAV1-15-RELATIONS/20261114T115045Z-ba1ce5d0/junit.xml"
+        }
+      ],
+      "latest": "PASS"
+    },
+    {
+      "nodeid": "tests/test_super_agent_sa15_predecrypt.py::test_worker_cross_group_reference_never_decrypts_private_candidate",
+      "history": [
+        {
+          "status": "PASS",
+          "source_commit": "69ad502c6f5cde72d5ee9e85e06646bd846f3768",
+          "source_sha256": "9e054958f63d3099019c8e0e26713191a4af2c476f430fcd519e5418d9969175",
+          "result": "evidence/SAV1-15-PREDECRYPT/20261114T115431Z-5067c038/result.json",
+          "junit": "evidence/SAV1-15-PREDECRYPT/20261114T115431Z-5067c038/junit.xml"
+        }
+      ],
+      "latest": "PASS"
+    },
+    {
+      "nodeid": "tests/test_super_agent_sa15_status_retention.py::test_owner_still_reads_truthful_task_status_after_source_body_ttl",
+      "history": [
+        {
+          "status": "PASS",
+          "source_commit": "bc1f91c8f5fc8acaf3bb80e1649c4718c0d36a79",
+          "source_sha256": "13680b9009f8e33fd57c4e414c71bfcd73c8f337c804127ce6e7e546d1f8acbc",
+          "result": "evidence/SAV1-15-STATUS-RETENTION/20261114T115746Z-093deb93/result.json",
+          "junit": "evidence/SAV1-15-STATUS-RETENTION/20261114T115746Z-093deb93/junit.xml"
+        }
+      ],
+      "latest": "PASS"
+    },
+    {
+      "nodeid": "tests/test_super_agent_sa15_status_retention.py::test_worker_other_task_metadata_does_not_grant_expired_content",
+      "history": [
+        {
+          "status": "PASS",
+          "source_commit": "bc1f91c8f5fc8acaf3bb80e1649c4718c0d36a79",
+          "source_sha256": "13680b9009f8e33fd57c4e414c71bfcd73c8f337c804127ce6e7e546d1f8acbc",
+          "result": "evidence/SAV1-15-STATUS-RETENTION/20261114T115746Z-093deb93/result.json",
+          "junit": "evidence/SAV1-15-STATUS-RETENTION/20261114T115746Z-093deb93/junit.xml"
+        }
+      ],
+      "latest": "PASS"
+    }
+  ]
+}

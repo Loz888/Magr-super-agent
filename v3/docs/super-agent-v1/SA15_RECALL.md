@@ -1,6 +1,7 @@
 # SA15 可鉴权 Chain of Recall
 
-状态：正式实现、首次本地工程检查进行中；整卡 IN_PROGRESS，独立验收 NOT_RUN。
+状态：本地受控工程已完成，分版本110正式／89准备PASS；整卡IN_PROGRESS，独立验收NOT_RUN。
+源码与静态结果绑定限制见 [工程交付](SA15_ACCEPTANCE_20261114.md)。
 共享所有权是 Harness `e0432f0e289de868a5956339aeec76db71bd0efe` 第40节。
 Engine/API 两文件按已确认补丁落地，补丁 SHA256
 `152b61e72bca0e9e0546c8e8295002f131cfe3a8c94c5ba8e452111f5d33cad9`。

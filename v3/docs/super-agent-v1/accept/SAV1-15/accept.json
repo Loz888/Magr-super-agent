@@ -1,0 +1,165 @@
+{
+  "card": "SAV1-15",
+  "status": "IN_PROGRESS_PENDING_INDEPENDENT_REVIEW",
+  "work_state": "LOCAL_CONTROLLED_ENGINEERING_COMPLETE",
+  "source_commit": "bc1f91c8f5fc8acaf3bb80e1649c4718c0d36a79",
+  "source_sha256": "13680b9009f8e33fd57c4e414c71bfcd73c8f337c804127ce6e7e546d1f8acbc",
+  "candidate_archive": {
+    "UTC": "2026-11-14T11:57:43.629366+00:00",
+    "source_commit": "bc1f91c8f5fc8acaf3bb80e1649c4718c0d36a79",
+    "source_sha256": "13680b9009f8e33fd57c4e414c71bfcd73c8f337c804127ce6e7e546d1f8acbc",
+    "archive": "evidence/super-agent-v1/SAV1-15/start-20261114T110315Z-223d6c86/status-retention-first/source-bc1f91c8f5fc.tar.gz",
+    "archive_sha256": "acb19f13e3fa7f95f5209d06d2c4088a2193dc92b26a32a7205a271dd05c6445",
+    "archive_source_sha256": "13680b9009f8e33fd57c4e414c71bfcd73c8f337c804127ce6e7e546d1f8acbc",
+    "scope": "Only2 first status-retention cases plus first lint of their new module; no previously passed target repeated"
+  },
+  "ownership_commit": "e0432f0e289de868a5956339aeec76db71bd0efe",
+  "ownership_section": 40,
+  "patch_sha256": "152b61e72bca0e9e0546c8e8295002f131cfe3a8c94c5ba8e452111f5d33cad9",
+  "migration_count": 44,
+  "new_migration": null,
+  "0048_reserved": false,
+  "scope": "Original Engine/API read-only virtual Source/Thread/Ticket/Run/Job/Evidence/Artifact/Memory/Action/Outbox relations; no parallel DB/body store; bounded current ACL and two-phase content release",
+  "formal_unique_PASS": 110,
+  "preparation_unique_PASS": 89,
+  "total_unique_preparation_and_formal": 199,
+  "remaining_failed_cases": 0,
+  "repeated_previously_passing_cases": 0,
+  "single_final_full_suite_PASS_claimed": false,
+  "rounds": [
+    {
+      "round": "initial-core",
+      "source_commit": "1f4c332740b55a115ff20459fa2cbb54499a538a",
+      "source_sha256": "512e6a0d241144e1444620972714282291cee92d3dcc32af09f2651455a00dfb",
+      "counts": {
+        "tests": 97,
+        "failures": 3,
+        "errors": 0,
+        "skipped": 0
+      },
+      "pytest_exit": 1,
+      "result": "evidence/SAV1-15/20261114T113929Z-4fdb8619/result.json",
+      "junit": "evidence/SAV1-15/20261114T113929Z-4fdb8619/junit.xml",
+      "log": "evidence/SAV1-15/20261114T113929Z-4fdb8619/command.log"
+    },
+    {
+      "round": "repair-original3",
+      "source_commit": "0fc4ce14769a72a7f34856debdd8a4eff62fd834",
+      "source_sha256": "783aa1c24e060cf54ecaa2d54ffdc02f264d2105cf0936d8337f281806e70145",
+      "counts": {
+        "tests": 3,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "pytest_exit": 0,
+      "result": "evidence/SAV1-15-REPAIR-01/20261114T115045Z-71ff4141/result.json",
+      "junit": "evidence/SAV1-15-REPAIR-01/20261114T115045Z-71ff4141/junit.xml",
+      "log": "evidence/SAV1-15-REPAIR-01/20261114T115045Z-71ff4141/command.log"
+    },
+    {
+      "round": "remaining-relations-first",
+      "source_commit": "0fc4ce14769a72a7f34856debdd8a4eff62fd834",
+      "source_sha256": "783aa1c24e060cf54ecaa2d54ffdc02f264d2105cf0936d8337f281806e70145",
+      "counts": {
+        "tests": 10,
+        "failures": 1,
+        "errors": 0,
+        "skipped": 0
+      },
+      "pytest_exit": 1,
+      "result": "evidence/SAV1-15-RELATIONS/20261114T115045Z-ba1ce5d0/result.json",
+      "junit": "evidence/SAV1-15-RELATIONS/20261114T115045Z-ba1ce5d0/junit.xml",
+      "log": "evidence/SAV1-15-RELATIONS/20261114T115045Z-ba1ce5d0/command.log"
+    },
+    {
+      "round": "repair-catalogue1",
+      "source_commit": "69ad502c6f5cde72d5ee9e85e06646bd846f3768",
+      "source_sha256": "9e054958f63d3099019c8e0e26713191a4af2c476f430fcd519e5418d9969175",
+      "counts": {
+        "tests": 1,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "pytest_exit": 0,
+      "result": "evidence/SAV1-15-REPAIR-02/20261114T115431Z-fed0faea/result.json",
+      "junit": "evidence/SAV1-15-REPAIR-02/20261114T115431Z-fed0faea/junit.xml",
+      "log": "evidence/SAV1-15-REPAIR-02/20261114T115431Z-fed0faea/command.log"
+    },
+    {
+      "round": "predecrypt-first",
+      "source_commit": "69ad502c6f5cde72d5ee9e85e06646bd846f3768",
+      "source_sha256": "9e054958f63d3099019c8e0e26713191a4af2c476f430fcd519e5418d9969175",
+      "counts": {
+        "tests": 1,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "pytest_exit": 0,
+      "result": "evidence/SAV1-15-PREDECRYPT/20261114T115431Z-5067c038/result.json",
+      "junit": "evidence/SAV1-15-PREDECRYPT/20261114T115431Z-5067c038/junit.xml",
+      "log": "evidence/SAV1-15-PREDECRYPT/20261114T115431Z-5067c038/command.log"
+    },
+    {
+      "round": "status-retention-first",
+      "source_commit": "bc1f91c8f5fc8acaf3bb80e1649c4718c0d36a79",
+      "source_sha256": "13680b9009f8e33fd57c4e414c71bfcd73c8f337c804127ce6e7e546d1f8acbc",
+      "counts": {
+        "tests": 2,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "pytest_exit": 0,
+      "result": "evidence/SAV1-15-STATUS-RETENTION/20261114T115746Z-093deb93/result.json",
+      "junit": "evidence/SAV1-15-STATUS-RETENTION/20261114T115746Z-093deb93/junit.xml",
+      "log": "evidence/SAV1-15-STATUS-RETENTION/20261114T115746Z-093deb93/command.log"
+    }
+  ],
+  "private_preparation": "evidence/super-agent-v1/SAV1-15/start-20261114T110315Z-223d6c86/private-initial/result.json",
+  "static": {
+    "preparation": "evidence/super-agent-v1/SAV1-15/start-20261114T110315Z-223d6c86/private-initial/result.json",
+    "new_source_and_core_test_lint": {
+      "source_commit": "0fc4ce14769a72a7f34856debdd8a4eff62fd834",
+      "status": "PASS",
+      "result": "evidence/super-agent-v1/SAV1-15/start-20261114T110315Z-223d6c86/formal-repair-01/lint-failed-command.json"
+    },
+    "new_source_typecheck": {
+      "source_commit": "0fc4ce14769a72a7f34856debdd8a4eff62fd834",
+      "status": "PASS",
+      "result": "evidence/super-agent-v1/SAV1-15/start-20261114T110315Z-223d6c86/formal-repair-01/typecheck-failed-command.json"
+    },
+    "relations_lint": "evidence/super-agent-v1/SAV1-15/start-20261114T110315Z-223d6c86/formal-repair-02/lint-failed-relations-command.json",
+    "predecrypt_lint": "evidence/super-agent-v1/SAV1-15/start-20261114T110315Z-223d6c86/formal-repair-02/lint-first-predecrypt-command.json",
+    "status_retention_lint": "evidence/super-agent-v1/SAV1-15/start-20261114T110315Z-223d6c86/status-retention-first/lint-first-status-command.json",
+    "latest_source_full_lint_typecheck_repeated": false,
+    "limitation": "Static PASS remains bound to the listed revisions. Subsequent private scope/metadata improvements have new focused functional evidence; previously passed static targets were not repeated, per user instruction."
+  },
+  "retrieval_quality": {
+    "synthetic_PASS": 12,
+    "total": 12,
+    "record": "quality.json",
+    "live_semantic": "NOT_RUN"
+  },
+  "gates": {
+    "engineering_gate": "PASS_VERSIONED_LOCAL_CONTROLLED_SCOPE",
+    "policy_security_gate": "PASS_CARD_NEGATIVE_SCOPE_ONLY",
+    "full_system_security": "NOT_RUN",
+    "live_source_channel_gate": "NOT_RUN",
+    "live_coding_gate": "NOT_RUN_THIS_CARD_BLOCKED_BY_FIXED_H12_FAIL",
+    "live_publication_gate": "NOT_RUN",
+    "continuous_operation_gate": "NOT_RUN",
+    "paid": "NOT_RUN",
+    "external_business_write": "NOT_RUN"
+  },
+  "independent_review": "NOT_RUN",
+  "SA16": "NOT_STARTED",
+  "H12": "Other CLI; fixed live_agent/MVP FAIL retained, no active work imported",
+  "artifact_audit": "artifact-audit.json",
+  "case_map": "cases.json",
+  "evidence_root": "evidence/super-agent-v1/SAV1-15/start-20261114T110315Z-223d6c86",
+  "historical_failures_preserved": true,
+  "completion_handoff": "PREPARED_LOCALLY_NOT_SENT_OR_ACKNOWLEDGED"
+}

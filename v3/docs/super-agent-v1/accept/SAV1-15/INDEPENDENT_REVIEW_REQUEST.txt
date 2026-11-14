@@ -1,0 +1,17 @@
+SA15 本地受控工程独立验收材料
+源码候选：bc1f91c8f5fc8acaf3bb80e1649c4718c0d36a79
+源码SHA256：13680b9009f8e33fd57c4e414c71bfcd73c8f337c804127ce6e7e546d1f8acbc
+所有权：Harness e0432f0e289de868a5956339aeec76db71bd0efe，第40节。
+
+先读 ../../SA15_ACCEPTANCE_20261114.md、accept.json、cases.json、artifact-audit.json。
+source archive及归档SHA位于accept.json.candidate_archive；各轮source、command、JUnit、失败日志按rounds定位。
+110个正式与89准备目标有分版本PASS；没有声称最后源码单轮全量PASS。
+首轮97=94PASS3FAIL，原3定向3PASS；关系首次10=9PASS1FAIL，仅剩余原守卫1PASS；
+解密前过滤新1PASS，状态/正文保留分离新2PASS。历史失败、用户文件、未运行门保留。
+静态PASS绑定0fc4ce1及各新文件记录；其后按用户规则未重复已经通过的静态目标，限制在报告中明确。
+
+实现方未执行独立验收。独立检查请据固定源码与分版本证据判断，勿把历史成绩改称最终全量重跑成绩。
+若发现失败，保留原断言/日志，后续修复只复验失败项；已通过项不自动重跑。
+重点边界：最终正文释放前当前ACL/来源/版本，Worker跨私密会话解密前过滤，派生内容全部来源依赖，
+Source body TTL与当前Task元数据分离，Memory/Context/CAS不授新事实/授权，unknown Job/Delivery真实状态。
+SA16不启动；不参与H12验收，不调用真实平台、付费模型、外发、发布或长期运行。
