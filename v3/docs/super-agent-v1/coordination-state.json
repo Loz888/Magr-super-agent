@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-14T09:50:12.753339+00:00",
+  "updated_at": "2026-11-14T10:44:09.917713+00:00",
   "user_instruction": "Codex owns Super-Agent; local Trae owns Harness; coordination is authorized.",
   "owners": {
     "super_agent": {
@@ -15,7 +15,7 @@
   },
   "active_super_agent_card": "SAV1-14",
   "card_status": "IN_PROGRESS",
-  "work_state": "SA14_LOCAL_ENGINEERING_READY_PENDING_INDEPENDENT_REVIEW",
+  "work_state": "SA14_I01_LOCAL_FIX_VERIFIED_PENDING_INDEPENDENT_RECHECK",
   "harness_observation": {
     "head": "de4775e22e96718e880fde287b2e0928db2945e3",
     "h00_owner_reported_status": "PASS",
@@ -425,7 +425,7 @@
     "acceptance": "docs/super-agent-v1/accept/SAV1-13/accept.json"
   },
   "SA14_shared_scope": {
-    "status": "LOCAL_ENGINEERING_READY_PENDING_INDEPENDENT_REVIEW",
+    "status": "SA14_I01_LOCAL_FIX_VERIFIED_PENDING_INDEPENDENT_RECHECK",
     "commit": "c711d54504c4945625505f47e9df56e22bc1bdac",
     "section": 39,
     "migration": "0047_source_async.sql",
@@ -437,9 +437,11 @@
     "new_Harness_imports": [],
     "H12_acceptance_owner": "other CLI",
     "engineering_gate": "PASS_VERSIONED_LOCAL_CONTROLLED_SCOPE",
-    "independent_review": "NOT_RUN",
+    "independent_review": "FAIL_SA14_I01_RECHECK_PENDING",
     "real_capabilities": "NOT_RUN",
-    "SA15": "NOT_STARTED"
+    "SA15": "NOT_STARTED",
+    "I01_local_repair": "2_PASS_E88FF0C",
+    "shared_files_or_numbering_changed": false
   },
   "sa14_preparation": "accept/SAV1-14/preparation-20261114.json",
   "sa14_ownership_request": "sa14-proposal/ownership-request.txt",

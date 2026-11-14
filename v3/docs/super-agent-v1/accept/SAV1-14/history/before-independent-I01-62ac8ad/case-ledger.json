@@ -1,0 +1,1208 @@
+{
+  "schema": "sa14-versioned-case-ledger-v1",
+  "distinct_formal_cases": 62,
+  "original_formal_cases": 61,
+  "initial_failed_nodes": [
+    "tests/test_super_agent_sa14_inbox.py::test_database_phrase_requires_current_human_exact_ticket_controller[Bob-Control-human-applied]",
+    "tests/test_super_agent_sa14_inbox.py::test_extra_source_ttl_caps_original_ciphertext_and_expiry_erasure_commits",
+    "tests/test_super_agent_sa14_api.py::test_owner_routes_never_accept_worker_or_operator_as_owner[GET-/capabilities]",
+    "tests/test_super_agent_sa14_api.py::test_owner_routes_never_accept_worker_or_operator_as_owner[POST-/admissions]",
+    "tests/test_super_agent_sa14_api.py::test_owner_routes_never_accept_worker_or_operator_as_owner[GET-/bindings/{coding_id}]",
+    "tests/test_super_agent_sa14_api.py::test_owner_routes_never_accept_worker_or_operator_as_owner[POST-/bindings/{coding_id}/restrictions]",
+    "tests/test_super_agent_sa14_api.py::test_owner_routes_never_accept_worker_or_operator_as_owner[GET-/bindings/{coding_id}/inputs]",
+    "tests/test_super_agent_sa14_api.py::test_owner_routes_never_accept_worker_or_operator_as_owner[GET-/bindings/{coding_id}/jobs]",
+    "tests/test_super_agent_sa14_api.py::test_owner_routes_never_accept_worker_or_operator_as_owner[GET-/bindings/{coding_id}/events]",
+    "tests/test_super_agent_sa14_api.py::test_owner_routes_never_accept_worker_or_operator_as_owner[POST-/bindings/{coding_id}/jobs/{job_id}/cancel]",
+    "tests/test_super_agent_sa14_api.py::test_owner_mutations_require_current_origin_and_csrf[origin]",
+    "tests/test_super_agent_sa14_api.py::test_owner_mutations_require_current_origin_and_csrf[csrf]",
+    "tests/test_super_agent_sa14_api.py::test_owner_mutations_require_current_origin_and_csrf[cross_origin]",
+    "tests/test_super_agent_sa14_api.py::test_authenticated_owner_cannot_submit_runtime_or_authority_assertions[body]",
+    "tests/test_super_agent_sa14_api.py::test_authenticated_owner_cannot_submit_runtime_or_authority_assertions[argv]",
+    "tests/test_super_agent_sa14_api.py::test_authenticated_owner_cannot_submit_runtime_or_authority_assertions[provider]",
+    "tests/test_super_agent_sa14_api.py::test_authenticated_owner_cannot_submit_runtime_or_authority_assertions[token]",
+    "tests/test_super_agent_sa14_api.py::test_authenticated_owner_cannot_submit_runtime_or_authority_assertions[paid]",
+    "tests/test_super_agent_sa14_api.py::test_authenticated_owner_cannot_submit_runtime_or_authority_assertions[trusted]",
+    "tests/test_super_agent_sa14_api.py::test_authenticated_owner_cannot_submit_runtime_or_authority_assertions[task_succeeded]",
+    "tests/test_super_agent_sa14_api.py::test_authenticated_owner_cannot_submit_runtime_or_authority_assertions[host_path]",
+    "tests/test_super_agent_sa14_api.py::test_authenticated_owner_cannot_submit_runtime_or_authority_assertions[grant]",
+    "tests/test_super_agent_sa14_api.py::test_owner_receives_received_applied_blocked_metadata_without_source_body_or_worker_secret",
+    "tests/test_super_agent_sa14_api.py::test_worker_uses_own_bearer_and_exact_original_assignment_after_owner_signout",
+    "tests/test_super_agent_sa14_api.py::test_metadata_pagination_is_bounded[query0]",
+    "tests/test_super_agent_sa14_api.py::test_metadata_pagination_is_bounded[query1]",
+    "tests/test_super_agent_sa14_runtime.py::test_actual_async_loop_uses_same_original_target_jobs_receipts_and_budget",
+    "tests/test_super_agent_sa14_runtime.py::test_control_can_commit_while_actual_tests_run_and_blocks_next_database_edit",
+    "tests/test_super_agent_sa14_runtime.py::test_model_wait_does_not_hold_engine_mutex_and_entire_old_reply_is_discarded",
+    "tests/test_super_agent_sa14_runtime.py::test_late_model_response_settles_original_fees_after_revocation_without_reusing_body[policy]",
+    "tests/test_super_agent_sa14_runtime.py::test_late_model_response_settles_original_fees_after_revocation_without_reusing_body[roles]",
+    "tests/test_super_agent_sa14_runtime.py::test_received_context_is_attached_fresh_to_next_actual_model_request_as_data",
+    "tests/test_super_agent_sa14_recovery.py::test_actual_sigkill_preserves_input_job_unknown_and_original_budget_without_resend[input_committed]",
+    "tests/test_super_agent_sa14_recovery.py::test_actual_sigkill_preserves_input_job_unknown_and_original_budget_without_resend[model_dispatched]",
+    "tests/test_super_agent_sa14_recovery.py::test_actual_sigkill_preserves_input_job_unknown_and_original_budget_without_resend[job_running]"
+  ],
+  "new_first_boundary_cases": 1,
+  "passed_cases_repeated": 0,
+  "cases": [
+    {
+      "node": "tests/test_super_agent_sa14_inbox.py::test_formal0047_original_engine_connection_and_checksum_catalogue",
+      "initial_formal": true,
+      "attempts": [
+        {
+          "scope": "initial_formal_registry",
+          "outcome": "PASS",
+          "source_commit": "d635470740cb810c273cfd6b9940868587ddbe0a",
+          "source_sha256": "40f21ad37b0a5e855ce38a5eed1a8bee10d8a0ca48069f5f498127617a95cfb2",
+          "junit": "evidence/SAV1-14/20261114T090322Z-014b3f56/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa14_inbox.py::test_original_target_and_assignment_are_frozen_once_on_owner_admission",
+      "initial_formal": true,
+      "attempts": [
+        {
+          "scope": "initial_formal_registry",
+          "outcome": "PASS",
+          "source_commit": "d635470740cb810c273cfd6b9940868587ddbe0a",
+          "source_sha256": "40f21ad37b0a5e855ce38a5eed1a8bee10d8a0ca48069f5f498127617a95cfb2",
+          "junit": "evidence/SAV1-14/20261114T090322Z-014b3f56/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa14_inbox.py::test_duplicate_restriction_is_received_once_then_applied_once_and_only_narrows",
+      "initial_formal": true,
+      "attempts": [
+        {
+          "scope": "initial_formal_registry",
+          "outcome": "PASS",
+          "source_commit": "d635470740cb810c273cfd6b9940868587ddbe0a",
+          "source_sha256": "40f21ad37b0a5e855ce38a5eed1a8bee10d8a0ca48069f5f498127617a95cfb2",
+          "junit": "evidence/SAV1-14/20261114T090322Z-014b3f56/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa14_inbox.py::test_revision_conflict_and_outer_rollback_do_not_consume_inputs",
+      "initial_formal": true,
+      "attempts": [
+        {
+          "scope": "initial_formal_registry",
+          "outcome": "PASS",
+          "source_commit": "d635470740cb810c273cfd6b9940868587ddbe0a",
+          "source_sha256": "40f21ad37b0a5e855ce38a5eed1a8bee10d8a0ca48069f5f498127617a95cfb2",
+          "junit": "evidence/SAV1-14/20261114T090322Z-014b3f56/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa14_inbox.py::test_signed_followup_uses_original_target_and_duplicate_canonical_input_once",
+      "initial_formal": true,
+      "attempts": [
+        {
+          "scope": "initial_formal_registry",
+          "outcome": "PASS",
+          "source_commit": "d635470740cb810c273cfd6b9940868587ddbe0a",
+          "source_sha256": "40f21ad37b0a5e855ce38a5eed1a8bee10d8a0ca48069f5f498127617a95cfb2",
+          "junit": "evidence/SAV1-14/20261114T090322Z-014b3f56/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa14_inbox.py::test_same_chat_without_exact_reply_or_topic_is_not_the_existing_task",
+      "initial_formal": true,
+      "attempts": [
+        {
+          "scope": "initial_formal_registry",
+          "outcome": "PASS",
+          "source_commit": "d635470740cb810c273cfd6b9940868587ddbe0a",
+          "source_sha256": "40f21ad37b0a5e855ce38a5eed1a8bee10d8a0ca48069f5f498127617a95cfb2",
+          "junit": "evidence/SAV1-14/20261114T090322Z-014b3f56/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa14_inbox.py::test_database_phrase_requires_current_human_exact_ticket_controller[Bob-Control-human-applied]",
+      "initial_formal": true,
+      "attempts": [
+        {
+          "scope": "initial_formal_registry",
+          "outcome": "FAIL",
+          "source_commit": "d635470740cb810c273cfd6b9940868587ddbe0a",
+          "source_sha256": "40f21ad37b0a5e855ce38a5eed1a8bee10d8a0ca48069f5f498127617a95cfb2",
+          "junit": "evidence/SAV1-14/20261114T090322Z-014b3f56/junit.xml"
+        },
+        {
+          "scope": "only_original29_metadata_and_recovery_failures",
+          "outcome": "PASS",
+          "source_commit": "5758b31cf3e3e6a7038ed07274cc8c0615c3c2bb",
+          "source_sha256": "1a850feb12671275711ee17040e90947166b5fc787a375824b8b8d7feafecb90",
+          "junit": "evidence/super-agent-v1/SAV1-14/integration-20261114T081658Z-10a31715/failed-metadata-recovery-1/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa14_inbox.py::test_database_phrase_requires_current_human_exact_ticket_controller[Alice-AbC-human-blocked]",
+      "initial_formal": true,
+      "attempts": [
+        {
+          "scope": "initial_formal_registry",
+          "outcome": "PASS",
+          "source_commit": "d635470740cb810c273cfd6b9940868587ddbe0a",
+          "source_sha256": "40f21ad37b0a5e855ce38a5eed1a8bee10d8a0ca48069f5f498127617a95cfb2",
+          "junit": "evidence/SAV1-14/20261114T090322Z-014b3f56/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa14_inbox.py::test_database_phrase_requires_current_human_exact_ticket_controller[CI-Only-bot-blocked]",
+      "initial_formal": true,
+      "attempts": [
+        {
+          "scope": "initial_formal_registry",
+          "outcome": "PASS",
+          "source_commit": "d635470740cb810c273cfd6b9940868587ddbe0a",
+          "source_sha256": "40f21ad37b0a5e855ce38a5eed1a8bee10d8a0ca48069f5f498127617a95cfb2",
+          "junit": "evidence/SAV1-14/20261114T090322Z-014b3f56/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa14_inbox.py::test_committed_source_change_fences_view_and_cannot_revive_after_restore[roles]",
+      "initial_formal": true,
+      "attempts": [
+        {
+          "scope": "initial_formal_registry",
+          "outcome": "PASS",
+          "source_commit": "d635470740cb810c273cfd6b9940868587ddbe0a",
+          "source_sha256": "40f21ad37b0a5e855ce38a5eed1a8bee10d8a0ca48069f5f498127617a95cfb2",
+          "junit": "evidence/SAV1-14/20261114T090322Z-014b3f56/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa14_inbox.py::test_committed_source_change_fences_view_and_cannot_revive_after_restore[edit]",
+      "initial_formal": true,
+      "attempts": [
+        {
+          "scope": "initial_formal_registry",
+          "outcome": "PASS",
+          "source_commit": "d635470740cb810c273cfd6b9940868587ddbe0a",
+          "source_sha256": "40f21ad37b0a5e855ce38a5eed1a8bee10d8a0ca48069f5f498127617a95cfb2",
+          "junit": "evidence/SAV1-14/20261114T090322Z-014b3f56/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa14_inbox.py::test_committed_source_change_fences_view_and_cannot_revive_after_restore[delete]",
+      "initial_formal": true,
+      "attempts": [
+        {
+          "scope": "initial_formal_registry",
+          "outcome": "PASS",
+          "source_commit": "d635470740cb810c273cfd6b9940868587ddbe0a",
+          "source_sha256": "40f21ad37b0a5e855ce38a5eed1a8bee10d8a0ca48069f5f498127617a95cfb2",
+          "junit": "evidence/SAV1-14/20261114T090322Z-014b3f56/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa14_inbox.py::test_new_revision_rejects_entire_old_view_before_any_mutation",
+      "initial_formal": true,
+      "attempts": [
+        {
+          "scope": "initial_formal_registry",
+          "outcome": "PASS",
+          "source_commit": "d635470740cb810c273cfd6b9940868587ddbe0a",
+          "source_sha256": "40f21ad37b0a5e855ce38a5eed1a8bee10d8a0ca48069f5f498127617a95cfb2",
+          "junit": "evidence/SAV1-14/20261114T090322Z-014b3f56/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa14_inbox.py::test_old_coding_and_generic_scheduler_worker_cannot_bypass_async_management",
+      "initial_formal": true,
+      "attempts": [
+        {
+          "scope": "initial_formal_registry",
+          "outcome": "PASS",
+          "source_commit": "d635470740cb810c273cfd6b9940868587ddbe0a",
+          "source_sha256": "40f21ad37b0a5e855ce38a5eed1a8bee10d8a0ca48069f5f498127617a95cfb2",
+          "junit": "evidence/SAV1-14/20261114T090322Z-014b3f56/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa14_inbox.py::test_current_worker_bearer_cannot_be_reused_for_another_scope[run_id]",
+      "initial_formal": true,
+      "attempts": [
+        {
+          "scope": "initial_formal_registry",
+          "outcome": "PASS",
+          "source_commit": "d635470740cb810c273cfd6b9940868587ddbe0a",
+          "source_sha256": "40f21ad37b0a5e855ce38a5eed1a8bee10d8a0ca48069f5f498127617a95cfb2",
+          "junit": "evidence/SAV1-14/20261114T090322Z-014b3f56/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa14_inbox.py::test_current_worker_bearer_cannot_be_reused_for_another_scope[assignment_id]",
+      "initial_formal": true,
+      "attempts": [
+        {
+          "scope": "initial_formal_registry",
+          "outcome": "PASS",
+          "source_commit": "d635470740cb810c273cfd6b9940868587ddbe0a",
+          "source_sha256": "40f21ad37b0a5e855ce38a5eed1a8bee10d8a0ca48069f5f498127617a95cfb2",
+          "junit": "evidence/SAV1-14/20261114T090322Z-014b3f56/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa14_inbox.py::test_current_worker_bearer_cannot_be_reused_for_another_scope[session_id]",
+      "initial_formal": true,
+      "attempts": [
+        {
+          "scope": "initial_formal_registry",
+          "outcome": "PASS",
+          "source_commit": "d635470740cb810c273cfd6b9940868587ddbe0a",
+          "source_sha256": "40f21ad37b0a5e855ce38a5eed1a8bee10d8a0ca48069f5f498127617a95cfb2",
+          "junit": "evidence/SAV1-14/20261114T090322Z-014b3f56/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa14_inbox.py::test_current_worker_bearer_cannot_be_reused_for_another_scope[epoch]",
+      "initial_formal": true,
+      "attempts": [
+        {
+          "scope": "initial_formal_registry",
+          "outcome": "PASS",
+          "source_commit": "d635470740cb810c273cfd6b9940868587ddbe0a",
+          "source_sha256": "40f21ad37b0a5e855ce38a5eed1a8bee10d8a0ca48069f5f498127617a95cfb2",
+          "junit": "evidence/SAV1-14/20261114T090322Z-014b3f56/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa14_inbox.py::test_input_tables_and_events_do_not_store_source_body_tokens_or_success_claims",
+      "initial_formal": true,
+      "attempts": [
+        {
+          "scope": "initial_formal_registry",
+          "outcome": "PASS",
+          "source_commit": "d635470740cb810c273cfd6b9940868587ddbe0a",
+          "source_sha256": "40f21ad37b0a5e855ce38a5eed1a8bee10d8a0ca48069f5f498127617a95cfb2",
+          "junit": "evidence/SAV1-14/20261114T090322Z-014b3f56/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa14_inbox.py::test_quoted_code_or_link_label_is_data_without_control_authority[> \\u4e0d\\u8981\\u6539\\u6570\\u636e\\u5e93]",
+      "initial_formal": true,
+      "attempts": [
+        {
+          "scope": "initial_formal_registry",
+          "outcome": "PASS",
+          "source_commit": "d635470740cb810c273cfd6b9940868587ddbe0a",
+          "source_sha256": "40f21ad37b0a5e855ce38a5eed1a8bee10d8a0ca48069f5f498127617a95cfb2",
+          "junit": "evidence/SAV1-14/20261114T090322Z-014b3f56/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa14_inbox.py::test_quoted_code_or_link_label_is_data_without_control_authority[```\\n\\u4e0d\\u8981\\u6539\\u6570\\u636e\\u5e93\\n```]",
+      "initial_formal": true,
+      "attempts": [
+        {
+          "scope": "initial_formal_registry",
+          "outcome": "PASS",
+          "source_commit": "d635470740cb810c273cfd6b9940868587ddbe0a",
+          "source_sha256": "40f21ad37b0a5e855ce38a5eed1a8bee10d8a0ca48069f5f498127617a95cfb2",
+          "junit": "evidence/SAV1-14/20261114T090322Z-014b3f56/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa14_inbox.py::test_quoted_code_or_link_label_is_data_without_control_authority[body2]",
+      "initial_formal": true,
+      "attempts": [
+        {
+          "scope": "initial_formal_registry",
+          "outcome": "PASS",
+          "source_commit": "d635470740cb810c273cfd6b9940868587ddbe0a",
+          "source_sha256": "40f21ad37b0a5e855ce38a5eed1a8bee10d8a0ca48069f5f498127617a95cfb2",
+          "junit": "evidence/SAV1-14/20261114T090322Z-014b3f56/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa14_inbox.py::test_original_encrypted_payload_is_erased_when_extra_source_dependency_is_withdrawn",
+      "initial_formal": true,
+      "attempts": [
+        {
+          "scope": "initial_formal_registry",
+          "outcome": "PASS",
+          "source_commit": "d635470740cb810c273cfd6b9940868587ddbe0a",
+          "source_sha256": "40f21ad37b0a5e855ce38a5eed1a8bee10d8a0ca48069f5f498127617a95cfb2",
+          "junit": "evidence/SAV1-14/20261114T090322Z-014b3f56/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa14_inbox.py::test_extra_source_ttl_caps_original_ciphertext_and_expiry_erasure_commits",
+      "initial_formal": true,
+      "attempts": [
+        {
+          "scope": "initial_formal_registry",
+          "outcome": "FAIL",
+          "source_commit": "d635470740cb810c273cfd6b9940868587ddbe0a",
+          "source_sha256": "40f21ad37b0a5e855ce38a5eed1a8bee10d8a0ca48069f5f498127617a95cfb2",
+          "junit": "evidence/SAV1-14/20261114T090322Z-014b3f56/junit.xml"
+        },
+        {
+          "scope": "only_original29_metadata_and_recovery_failures",
+          "outcome": "PASS",
+          "source_commit": "5758b31cf3e3e6a7038ed07274cc8c0615c3c2bb",
+          "source_sha256": "1a850feb12671275711ee17040e90947166b5fc787a375824b8b8d7feafecb90",
+          "junit": "evidence/super-agent-v1/SAV1-14/integration-20261114T081658Z-10a31715/failed-metadata-recovery-1/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa14_api.py::test_original_app_registers_exact_twelve_agreed_async_routes",
+      "initial_formal": true,
+      "attempts": [
+        {
+          "scope": "initial_formal_registry",
+          "outcome": "PASS",
+          "source_commit": "d635470740cb810c273cfd6b9940868587ddbe0a",
+          "source_sha256": "40f21ad37b0a5e855ce38a5eed1a8bee10d8a0ca48069f5f498127617a95cfb2",
+          "junit": "evidence/SAV1-14/20261114T090322Z-014b3f56/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa14_api.py::test_owner_routes_never_accept_worker_or_operator_as_owner[GET-/capabilities]",
+      "initial_formal": true,
+      "attempts": [
+        {
+          "scope": "initial_formal_registry",
+          "outcome": "FAIL",
+          "source_commit": "d635470740cb810c273cfd6b9940868587ddbe0a",
+          "source_sha256": "40f21ad37b0a5e855ce38a5eed1a8bee10d8a0ca48069f5f498127617a95cfb2",
+          "junit": "evidence/SAV1-14/20261114T090322Z-014b3f56/junit.xml"
+        },
+        {
+          "scope": "only_original29_metadata_and_recovery_failures",
+          "outcome": "PASS",
+          "source_commit": "5758b31cf3e3e6a7038ed07274cc8c0615c3c2bb",
+          "source_sha256": "1a850feb12671275711ee17040e90947166b5fc787a375824b8b8d7feafecb90",
+          "junit": "evidence/super-agent-v1/SAV1-14/integration-20261114T081658Z-10a31715/failed-metadata-recovery-1/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa14_api.py::test_owner_routes_never_accept_worker_or_operator_as_owner[POST-/admissions]",
+      "initial_formal": true,
+      "attempts": [
+        {
+          "scope": "initial_formal_registry",
+          "outcome": "FAIL",
+          "source_commit": "d635470740cb810c273cfd6b9940868587ddbe0a",
+          "source_sha256": "40f21ad37b0a5e855ce38a5eed1a8bee10d8a0ca48069f5f498127617a95cfb2",
+          "junit": "evidence/SAV1-14/20261114T090322Z-014b3f56/junit.xml"
+        },
+        {
+          "scope": "only_original29_metadata_and_recovery_failures",
+          "outcome": "PASS",
+          "source_commit": "5758b31cf3e3e6a7038ed07274cc8c0615c3c2bb",
+          "source_sha256": "1a850feb12671275711ee17040e90947166b5fc787a375824b8b8d7feafecb90",
+          "junit": "evidence/super-agent-v1/SAV1-14/integration-20261114T081658Z-10a31715/failed-metadata-recovery-1/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa14_api.py::test_owner_routes_never_accept_worker_or_operator_as_owner[GET-/bindings/{coding_id}]",
+      "initial_formal": true,
+      "attempts": [
+        {
+          "scope": "initial_formal_registry",
+          "outcome": "FAIL",
+          "source_commit": "d635470740cb810c273cfd6b9940868587ddbe0a",
+          "source_sha256": "40f21ad37b0a5e855ce38a5eed1a8bee10d8a0ca48069f5f498127617a95cfb2",
+          "junit": "evidence/SAV1-14/20261114T090322Z-014b3f56/junit.xml"
+        },
+        {
+          "scope": "only_original29_metadata_and_recovery_failures",
+          "outcome": "PASS",
+          "source_commit": "5758b31cf3e3e6a7038ed07274cc8c0615c3c2bb",
+          "source_sha256": "1a850feb12671275711ee17040e90947166b5fc787a375824b8b8d7feafecb90",
+          "junit": "evidence/super-agent-v1/SAV1-14/integration-20261114T081658Z-10a31715/failed-metadata-recovery-1/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa14_api.py::test_owner_routes_never_accept_worker_or_operator_as_owner[POST-/bindings/{coding_id}/restrictions]",
+      "initial_formal": true,
+      "attempts": [
+        {
+          "scope": "initial_formal_registry",
+          "outcome": "FAIL",
+          "source_commit": "d635470740cb810c273cfd6b9940868587ddbe0a",
+          "source_sha256": "40f21ad37b0a5e855ce38a5eed1a8bee10d8a0ca48069f5f498127617a95cfb2",
+          "junit": "evidence/SAV1-14/20261114T090322Z-014b3f56/junit.xml"
+        },
+        {
+          "scope": "only_original29_metadata_and_recovery_failures",
+          "outcome": "PASS",
+          "source_commit": "5758b31cf3e3e6a7038ed07274cc8c0615c3c2bb",
+          "source_sha256": "1a850feb12671275711ee17040e90947166b5fc787a375824b8b8d7feafecb90",
+          "junit": "evidence/super-agent-v1/SAV1-14/integration-20261114T081658Z-10a31715/failed-metadata-recovery-1/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa14_api.py::test_owner_routes_never_accept_worker_or_operator_as_owner[GET-/bindings/{coding_id}/inputs]",
+      "initial_formal": true,
+      "attempts": [
+        {
+          "scope": "initial_formal_registry",
+          "outcome": "FAIL",
+          "source_commit": "d635470740cb810c273cfd6b9940868587ddbe0a",
+          "source_sha256": "40f21ad37b0a5e855ce38a5eed1a8bee10d8a0ca48069f5f498127617a95cfb2",
+          "junit": "evidence/SAV1-14/20261114T090322Z-014b3f56/junit.xml"
+        },
+        {
+          "scope": "only_original29_metadata_and_recovery_failures",
+          "outcome": "PASS",
+          "source_commit": "5758b31cf3e3e6a7038ed07274cc8c0615c3c2bb",
+          "source_sha256": "1a850feb12671275711ee17040e90947166b5fc787a375824b8b8d7feafecb90",
+          "junit": "evidence/super-agent-v1/SAV1-14/integration-20261114T081658Z-10a31715/failed-metadata-recovery-1/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa14_api.py::test_owner_routes_never_accept_worker_or_operator_as_owner[GET-/bindings/{coding_id}/jobs]",
+      "initial_formal": true,
+      "attempts": [
+        {
+          "scope": "initial_formal_registry",
+          "outcome": "FAIL",
+          "source_commit": "d635470740cb810c273cfd6b9940868587ddbe0a",
+          "source_sha256": "40f21ad37b0a5e855ce38a5eed1a8bee10d8a0ca48069f5f498127617a95cfb2",
+          "junit": "evidence/SAV1-14/20261114T090322Z-014b3f56/junit.xml"
+        },
+        {
+          "scope": "only_original29_metadata_and_recovery_failures",
+          "outcome": "PASS",
+          "source_commit": "5758b31cf3e3e6a7038ed07274cc8c0615c3c2bb",
+          "source_sha256": "1a850feb12671275711ee17040e90947166b5fc787a375824b8b8d7feafecb90",
+          "junit": "evidence/super-agent-v1/SAV1-14/integration-20261114T081658Z-10a31715/failed-metadata-recovery-1/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa14_api.py::test_owner_routes_never_accept_worker_or_operator_as_owner[GET-/bindings/{coding_id}/events]",
+      "initial_formal": true,
+      "attempts": [
+        {
+          "scope": "initial_formal_registry",
+          "outcome": "FAIL",
+          "source_commit": "d635470740cb810c273cfd6b9940868587ddbe0a",
+          "source_sha256": "40f21ad37b0a5e855ce38a5eed1a8bee10d8a0ca48069f5f498127617a95cfb2",
+          "junit": "evidence/SAV1-14/20261114T090322Z-014b3f56/junit.xml"
+        },
+        {
+          "scope": "only_original29_metadata_and_recovery_failures",
+          "outcome": "PASS",
+          "source_commit": "5758b31cf3e3e6a7038ed07274cc8c0615c3c2bb",
+          "source_sha256": "1a850feb12671275711ee17040e90947166b5fc787a375824b8b8d7feafecb90",
+          "junit": "evidence/super-agent-v1/SAV1-14/integration-20261114T081658Z-10a31715/failed-metadata-recovery-1/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa14_api.py::test_owner_routes_never_accept_worker_or_operator_as_owner[POST-/bindings/{coding_id}/jobs/{job_id}/cancel]",
+      "initial_formal": true,
+      "attempts": [
+        {
+          "scope": "initial_formal_registry",
+          "outcome": "FAIL",
+          "source_commit": "d635470740cb810c273cfd6b9940868587ddbe0a",
+          "source_sha256": "40f21ad37b0a5e855ce38a5eed1a8bee10d8a0ca48069f5f498127617a95cfb2",
+          "junit": "evidence/SAV1-14/20261114T090322Z-014b3f56/junit.xml"
+        },
+        {
+          "scope": "only_original29_metadata_and_recovery_failures",
+          "outcome": "PASS",
+          "source_commit": "5758b31cf3e3e6a7038ed07274cc8c0615c3c2bb",
+          "source_sha256": "1a850feb12671275711ee17040e90947166b5fc787a375824b8b8d7feafecb90",
+          "junit": "evidence/super-agent-v1/SAV1-14/integration-20261114T081658Z-10a31715/failed-metadata-recovery-1/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa14_api.py::test_owner_mutations_require_current_origin_and_csrf[origin]",
+      "initial_formal": true,
+      "attempts": [
+        {
+          "scope": "initial_formal_registry",
+          "outcome": "FAIL",
+          "source_commit": "d635470740cb810c273cfd6b9940868587ddbe0a",
+          "source_sha256": "40f21ad37b0a5e855ce38a5eed1a8bee10d8a0ca48069f5f498127617a95cfb2",
+          "junit": "evidence/SAV1-14/20261114T090322Z-014b3f56/junit.xml"
+        },
+        {
+          "scope": "only_original29_metadata_and_recovery_failures",
+          "outcome": "PASS",
+          "source_commit": "5758b31cf3e3e6a7038ed07274cc8c0615c3c2bb",
+          "source_sha256": "1a850feb12671275711ee17040e90947166b5fc787a375824b8b8d7feafecb90",
+          "junit": "evidence/super-agent-v1/SAV1-14/integration-20261114T081658Z-10a31715/failed-metadata-recovery-1/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa14_api.py::test_owner_mutations_require_current_origin_and_csrf[csrf]",
+      "initial_formal": true,
+      "attempts": [
+        {
+          "scope": "initial_formal_registry",
+          "outcome": "FAIL",
+          "source_commit": "d635470740cb810c273cfd6b9940868587ddbe0a",
+          "source_sha256": "40f21ad37b0a5e855ce38a5eed1a8bee10d8a0ca48069f5f498127617a95cfb2",
+          "junit": "evidence/SAV1-14/20261114T090322Z-014b3f56/junit.xml"
+        },
+        {
+          "scope": "only_original29_metadata_and_recovery_failures",
+          "outcome": "PASS",
+          "source_commit": "5758b31cf3e3e6a7038ed07274cc8c0615c3c2bb",
+          "source_sha256": "1a850feb12671275711ee17040e90947166b5fc787a375824b8b8d7feafecb90",
+          "junit": "evidence/super-agent-v1/SAV1-14/integration-20261114T081658Z-10a31715/failed-metadata-recovery-1/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa14_api.py::test_owner_mutations_require_current_origin_and_csrf[cross_origin]",
+      "initial_formal": true,
+      "attempts": [
+        {
+          "scope": "initial_formal_registry",
+          "outcome": "FAIL",
+          "source_commit": "d635470740cb810c273cfd6b9940868587ddbe0a",
+          "source_sha256": "40f21ad37b0a5e855ce38a5eed1a8bee10d8a0ca48069f5f498127617a95cfb2",
+          "junit": "evidence/SAV1-14/20261114T090322Z-014b3f56/junit.xml"
+        },
+        {
+          "scope": "only_original29_metadata_and_recovery_failures",
+          "outcome": "PASS",
+          "source_commit": "5758b31cf3e3e6a7038ed07274cc8c0615c3c2bb",
+          "source_sha256": "1a850feb12671275711ee17040e90947166b5fc787a375824b8b8d7feafecb90",
+          "junit": "evidence/super-agent-v1/SAV1-14/integration-20261114T081658Z-10a31715/failed-metadata-recovery-1/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa14_api.py::test_authenticated_owner_cannot_submit_runtime_or_authority_assertions[body]",
+      "initial_formal": true,
+      "attempts": [
+        {
+          "scope": "initial_formal_registry",
+          "outcome": "FAIL",
+          "source_commit": "d635470740cb810c273cfd6b9940868587ddbe0a",
+          "source_sha256": "40f21ad37b0a5e855ce38a5eed1a8bee10d8a0ca48069f5f498127617a95cfb2",
+          "junit": "evidence/SAV1-14/20261114T090322Z-014b3f56/junit.xml"
+        },
+        {
+          "scope": "only_original29_metadata_and_recovery_failures",
+          "outcome": "PASS",
+          "source_commit": "5758b31cf3e3e6a7038ed07274cc8c0615c3c2bb",
+          "source_sha256": "1a850feb12671275711ee17040e90947166b5fc787a375824b8b8d7feafecb90",
+          "junit": "evidence/super-agent-v1/SAV1-14/integration-20261114T081658Z-10a31715/failed-metadata-recovery-1/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa14_api.py::test_authenticated_owner_cannot_submit_runtime_or_authority_assertions[argv]",
+      "initial_formal": true,
+      "attempts": [
+        {
+          "scope": "initial_formal_registry",
+          "outcome": "FAIL",
+          "source_commit": "d635470740cb810c273cfd6b9940868587ddbe0a",
+          "source_sha256": "40f21ad37b0a5e855ce38a5eed1a8bee10d8a0ca48069f5f498127617a95cfb2",
+          "junit": "evidence/SAV1-14/20261114T090322Z-014b3f56/junit.xml"
+        },
+        {
+          "scope": "only_original29_metadata_and_recovery_failures",
+          "outcome": "PASS",
+          "source_commit": "5758b31cf3e3e6a7038ed07274cc8c0615c3c2bb",
+          "source_sha256": "1a850feb12671275711ee17040e90947166b5fc787a375824b8b8d7feafecb90",
+          "junit": "evidence/super-agent-v1/SAV1-14/integration-20261114T081658Z-10a31715/failed-metadata-recovery-1/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa14_api.py::test_authenticated_owner_cannot_submit_runtime_or_authority_assertions[provider]",
+      "initial_formal": true,
+      "attempts": [
+        {
+          "scope": "initial_formal_registry",
+          "outcome": "FAIL",
+          "source_commit": "d635470740cb810c273cfd6b9940868587ddbe0a",
+          "source_sha256": "40f21ad37b0a5e855ce38a5eed1a8bee10d8a0ca48069f5f498127617a95cfb2",
+          "junit": "evidence/SAV1-14/20261114T090322Z-014b3f56/junit.xml"
+        },
+        {
+          "scope": "only_original29_metadata_and_recovery_failures",
+          "outcome": "PASS",
+          "source_commit": "5758b31cf3e3e6a7038ed07274cc8c0615c3c2bb",
+          "source_sha256": "1a850feb12671275711ee17040e90947166b5fc787a375824b8b8d7feafecb90",
+          "junit": "evidence/super-agent-v1/SAV1-14/integration-20261114T081658Z-10a31715/failed-metadata-recovery-1/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa14_api.py::test_authenticated_owner_cannot_submit_runtime_or_authority_assertions[token]",
+      "initial_formal": true,
+      "attempts": [
+        {
+          "scope": "initial_formal_registry",
+          "outcome": "FAIL",
+          "source_commit": "d635470740cb810c273cfd6b9940868587ddbe0a",
+          "source_sha256": "40f21ad37b0a5e855ce38a5eed1a8bee10d8a0ca48069f5f498127617a95cfb2",
+          "junit": "evidence/SAV1-14/20261114T090322Z-014b3f56/junit.xml"
+        },
+        {
+          "scope": "only_original29_metadata_and_recovery_failures",
+          "outcome": "PASS",
+          "source_commit": "5758b31cf3e3e6a7038ed07274cc8c0615c3c2bb",
+          "source_sha256": "1a850feb12671275711ee17040e90947166b5fc787a375824b8b8d7feafecb90",
+          "junit": "evidence/super-agent-v1/SAV1-14/integration-20261114T081658Z-10a31715/failed-metadata-recovery-1/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa14_api.py::test_authenticated_owner_cannot_submit_runtime_or_authority_assertions[paid]",
+      "initial_formal": true,
+      "attempts": [
+        {
+          "scope": "initial_formal_registry",
+          "outcome": "FAIL",
+          "source_commit": "d635470740cb810c273cfd6b9940868587ddbe0a",
+          "source_sha256": "40f21ad37b0a5e855ce38a5eed1a8bee10d8a0ca48069f5f498127617a95cfb2",
+          "junit": "evidence/SAV1-14/20261114T090322Z-014b3f56/junit.xml"
+        },
+        {
+          "scope": "only_original29_metadata_and_recovery_failures",
+          "outcome": "PASS",
+          "source_commit": "5758b31cf3e3e6a7038ed07274cc8c0615c3c2bb",
+          "source_sha256": "1a850feb12671275711ee17040e90947166b5fc787a375824b8b8d7feafecb90",
+          "junit": "evidence/super-agent-v1/SAV1-14/integration-20261114T081658Z-10a31715/failed-metadata-recovery-1/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa14_api.py::test_authenticated_owner_cannot_submit_runtime_or_authority_assertions[trusted]",
+      "initial_formal": true,
+      "attempts": [
+        {
+          "scope": "initial_formal_registry",
+          "outcome": "FAIL",
+          "source_commit": "d635470740cb810c273cfd6b9940868587ddbe0a",
+          "source_sha256": "40f21ad37b0a5e855ce38a5eed1a8bee10d8a0ca48069f5f498127617a95cfb2",
+          "junit": "evidence/SAV1-14/20261114T090322Z-014b3f56/junit.xml"
+        },
+        {
+          "scope": "only_original29_metadata_and_recovery_failures",
+          "outcome": "PASS",
+          "source_commit": "5758b31cf3e3e6a7038ed07274cc8c0615c3c2bb",
+          "source_sha256": "1a850feb12671275711ee17040e90947166b5fc787a375824b8b8d7feafecb90",
+          "junit": "evidence/super-agent-v1/SAV1-14/integration-20261114T081658Z-10a31715/failed-metadata-recovery-1/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa14_api.py::test_authenticated_owner_cannot_submit_runtime_or_authority_assertions[task_succeeded]",
+      "initial_formal": true,
+      "attempts": [
+        {
+          "scope": "initial_formal_registry",
+          "outcome": "FAIL",
+          "source_commit": "d635470740cb810c273cfd6b9940868587ddbe0a",
+          "source_sha256": "40f21ad37b0a5e855ce38a5eed1a8bee10d8a0ca48069f5f498127617a95cfb2",
+          "junit": "evidence/SAV1-14/20261114T090322Z-014b3f56/junit.xml"
+        },
+        {
+          "scope": "only_original29_metadata_and_recovery_failures",
+          "outcome": "PASS",
+          "source_commit": "5758b31cf3e3e6a7038ed07274cc8c0615c3c2bb",
+          "source_sha256": "1a850feb12671275711ee17040e90947166b5fc787a375824b8b8d7feafecb90",
+          "junit": "evidence/super-agent-v1/SAV1-14/integration-20261114T081658Z-10a31715/failed-metadata-recovery-1/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa14_api.py::test_authenticated_owner_cannot_submit_runtime_or_authority_assertions[host_path]",
+      "initial_formal": true,
+      "attempts": [
+        {
+          "scope": "initial_formal_registry",
+          "outcome": "FAIL",
+          "source_commit": "d635470740cb810c273cfd6b9940868587ddbe0a",
+          "source_sha256": "40f21ad37b0a5e855ce38a5eed1a8bee10d8a0ca48069f5f498127617a95cfb2",
+          "junit": "evidence/SAV1-14/20261114T090322Z-014b3f56/junit.xml"
+        },
+        {
+          "scope": "only_original29_metadata_and_recovery_failures",
+          "outcome": "PASS",
+          "source_commit": "5758b31cf3e3e6a7038ed07274cc8c0615c3c2bb",
+          "source_sha256": "1a850feb12671275711ee17040e90947166b5fc787a375824b8b8d7feafecb90",
+          "junit": "evidence/super-agent-v1/SAV1-14/integration-20261114T081658Z-10a31715/failed-metadata-recovery-1/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa14_api.py::test_authenticated_owner_cannot_submit_runtime_or_authority_assertions[grant]",
+      "initial_formal": true,
+      "attempts": [
+        {
+          "scope": "initial_formal_registry",
+          "outcome": "FAIL",
+          "source_commit": "d635470740cb810c273cfd6b9940868587ddbe0a",
+          "source_sha256": "40f21ad37b0a5e855ce38a5eed1a8bee10d8a0ca48069f5f498127617a95cfb2",
+          "junit": "evidence/SAV1-14/20261114T090322Z-014b3f56/junit.xml"
+        },
+        {
+          "scope": "only_original29_metadata_and_recovery_failures",
+          "outcome": "PASS",
+          "source_commit": "5758b31cf3e3e6a7038ed07274cc8c0615c3c2bb",
+          "source_sha256": "1a850feb12671275711ee17040e90947166b5fc787a375824b8b8d7feafecb90",
+          "junit": "evidence/super-agent-v1/SAV1-14/integration-20261114T081658Z-10a31715/failed-metadata-recovery-1/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa14_api.py::test_owner_receives_received_applied_blocked_metadata_without_source_body_or_worker_secret",
+      "initial_formal": true,
+      "attempts": [
+        {
+          "scope": "initial_formal_registry",
+          "outcome": "FAIL",
+          "source_commit": "d635470740cb810c273cfd6b9940868587ddbe0a",
+          "source_sha256": "40f21ad37b0a5e855ce38a5eed1a8bee10d8a0ca48069f5f498127617a95cfb2",
+          "junit": "evidence/SAV1-14/20261114T090322Z-014b3f56/junit.xml"
+        },
+        {
+          "scope": "only_original29_metadata_and_recovery_failures",
+          "outcome": "PASS",
+          "source_commit": "5758b31cf3e3e6a7038ed07274cc8c0615c3c2bb",
+          "source_sha256": "1a850feb12671275711ee17040e90947166b5fc787a375824b8b8d7feafecb90",
+          "junit": "evidence/super-agent-v1/SAV1-14/integration-20261114T081658Z-10a31715/failed-metadata-recovery-1/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa14_api.py::test_worker_uses_own_bearer_and_exact_original_assignment_after_owner_signout",
+      "initial_formal": true,
+      "attempts": [
+        {
+          "scope": "initial_formal_registry",
+          "outcome": "FAIL",
+          "source_commit": "d635470740cb810c273cfd6b9940868587ddbe0a",
+          "source_sha256": "40f21ad37b0a5e855ce38a5eed1a8bee10d8a0ca48069f5f498127617a95cfb2",
+          "junit": "evidence/SAV1-14/20261114T090322Z-014b3f56/junit.xml"
+        },
+        {
+          "scope": "only_original29_metadata_and_recovery_failures",
+          "outcome": "PASS",
+          "source_commit": "5758b31cf3e3e6a7038ed07274cc8c0615c3c2bb",
+          "source_sha256": "1a850feb12671275711ee17040e90947166b5fc787a375824b8b8d7feafecb90",
+          "junit": "evidence/super-agent-v1/SAV1-14/integration-20261114T081658Z-10a31715/failed-metadata-recovery-1/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa14_api.py::test_metadata_pagination_is_bounded[query0]",
+      "initial_formal": true,
+      "attempts": [
+        {
+          "scope": "initial_formal_registry",
+          "outcome": "FAIL",
+          "source_commit": "d635470740cb810c273cfd6b9940868587ddbe0a",
+          "source_sha256": "40f21ad37b0a5e855ce38a5eed1a8bee10d8a0ca48069f5f498127617a95cfb2",
+          "junit": "evidence/SAV1-14/20261114T090322Z-014b3f56/junit.xml"
+        },
+        {
+          "scope": "only_original29_metadata_and_recovery_failures",
+          "outcome": "PASS",
+          "source_commit": "5758b31cf3e3e6a7038ed07274cc8c0615c3c2bb",
+          "source_sha256": "1a850feb12671275711ee17040e90947166b5fc787a375824b8b8d7feafecb90",
+          "junit": "evidence/super-agent-v1/SAV1-14/integration-20261114T081658Z-10a31715/failed-metadata-recovery-1/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa14_api.py::test_metadata_pagination_is_bounded[query1]",
+      "initial_formal": true,
+      "attempts": [
+        {
+          "scope": "initial_formal_registry",
+          "outcome": "FAIL",
+          "source_commit": "d635470740cb810c273cfd6b9940868587ddbe0a",
+          "source_sha256": "40f21ad37b0a5e855ce38a5eed1a8bee10d8a0ca48069f5f498127617a95cfb2",
+          "junit": "evidence/SAV1-14/20261114T090322Z-014b3f56/junit.xml"
+        },
+        {
+          "scope": "only_original29_metadata_and_recovery_failures",
+          "outcome": "PASS",
+          "source_commit": "5758b31cf3e3e6a7038ed07274cc8c0615c3c2bb",
+          "source_sha256": "1a850feb12671275711ee17040e90947166b5fc787a375824b8b8d7feafecb90",
+          "junit": "evidence/super-agent-v1/SAV1-14/integration-20261114T081658Z-10a31715/failed-metadata-recovery-1/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa14_runtime.py::test_actual_async_loop_uses_same_original_target_jobs_receipts_and_budget",
+      "initial_formal": true,
+      "attempts": [
+        {
+          "scope": "initial_formal_registry",
+          "outcome": "FAIL",
+          "source_commit": "d635470740cb810c273cfd6b9940868587ddbe0a",
+          "source_sha256": "40f21ad37b0a5e855ce38a5eed1a8bee10d8a0ca48069f5f498127617a95cfb2",
+          "junit": "evidence/SAV1-14/20261114T090322Z-014b3f56/junit.xml"
+        },
+        {
+          "scope": "failed_runtime_single_diagnostic",
+          "outcome": "FAIL",
+          "source_commit": "5758b31cf3e3e6a7038ed07274cc8c0615c3c2bb",
+          "source_sha256": "1a850feb12671275711ee17040e90947166b5fc787a375824b8b8d7feafecb90",
+          "junit": "evidence/super-agent-v1/SAV1-14/integration-20261114T081658Z-10a31715/failed-runtime-diagnostic-1/junit.xml"
+        },
+        {
+          "scope": "same_failed_runtime_profile",
+          "outcome": "FAIL",
+          "source_commit": "5758b31cf3e3e6a7038ed07274cc8c0615c3c2bb",
+          "source_sha256": "1a850feb12671275711ee17040e90947166b5fc787a375824b8b8d7feafecb90",
+          "junit": "evidence/super-agent-v1/SAV1-14/integration-20261114T081658Z-10a31715/failed-runtime-profile-2/junit.xml"
+        },
+        {
+          "scope": "only_original6_runtime_failures",
+          "outcome": "FAIL",
+          "source_commit": "f8b864d9d3fd2d3884ecdba850fa879e624373a8",
+          "source_sha256": "7a0a2ab63e3b3a3a8ed7a9080d65dcbe3fd8d81bb7249fea97ca60b804393e94",
+          "junit": "evidence/super-agent-v1/SAV1-14/integration-20261114T081658Z-10a31715/failed-runtime-remaining-3/junit.xml"
+        },
+        {
+          "scope": "only_remaining5_runtime_failures_plus_new_atomic_boundary",
+          "outcome": "PASS",
+          "source_commit": "be489f7a12f1ffe0e263cfac07a5b1c2b83abb91",
+          "source_sha256": "9953c61b234686dfa282297881cb118e44cee7aebce55bb31987838662b74881",
+          "junit": "evidence/super-agent-v1/SAV1-14/integration-20261114T081658Z-10a31715/failed5-plus-atomic-first-4/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa14_runtime.py::test_control_can_commit_while_actual_tests_run_and_blocks_next_database_edit",
+      "initial_formal": true,
+      "attempts": [
+        {
+          "scope": "initial_formal_registry",
+          "outcome": "FAIL",
+          "source_commit": "d635470740cb810c273cfd6b9940868587ddbe0a",
+          "source_sha256": "40f21ad37b0a5e855ce38a5eed1a8bee10d8a0ca48069f5f498127617a95cfb2",
+          "junit": "evidence/SAV1-14/20261114T090322Z-014b3f56/junit.xml"
+        },
+        {
+          "scope": "only_original6_runtime_failures",
+          "outcome": "PASS",
+          "source_commit": "f8b864d9d3fd2d3884ecdba850fa879e624373a8",
+          "source_sha256": "7a0a2ab63e3b3a3a8ed7a9080d65dcbe3fd8d81bb7249fea97ca60b804393e94",
+          "junit": "evidence/super-agent-v1/SAV1-14/integration-20261114T081658Z-10a31715/failed-runtime-remaining-3/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa14_runtime.py::test_model_wait_does_not_hold_engine_mutex_and_entire_old_reply_is_discarded",
+      "initial_formal": true,
+      "attempts": [
+        {
+          "scope": "initial_formal_registry",
+          "outcome": "FAIL",
+          "source_commit": "d635470740cb810c273cfd6b9940868587ddbe0a",
+          "source_sha256": "40f21ad37b0a5e855ce38a5eed1a8bee10d8a0ca48069f5f498127617a95cfb2",
+          "junit": "evidence/SAV1-14/20261114T090322Z-014b3f56/junit.xml"
+        },
+        {
+          "scope": "only_original6_runtime_failures",
+          "outcome": "FAIL",
+          "source_commit": "f8b864d9d3fd2d3884ecdba850fa879e624373a8",
+          "source_sha256": "7a0a2ab63e3b3a3a8ed7a9080d65dcbe3fd8d81bb7249fea97ca60b804393e94",
+          "junit": "evidence/super-agent-v1/SAV1-14/integration-20261114T081658Z-10a31715/failed-runtime-remaining-3/junit.xml"
+        },
+        {
+          "scope": "only_remaining5_runtime_failures_plus_new_atomic_boundary",
+          "outcome": "PASS",
+          "source_commit": "be489f7a12f1ffe0e263cfac07a5b1c2b83abb91",
+          "source_sha256": "9953c61b234686dfa282297881cb118e44cee7aebce55bb31987838662b74881",
+          "junit": "evidence/super-agent-v1/SAV1-14/integration-20261114T081658Z-10a31715/failed5-plus-atomic-first-4/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa14_runtime.py::test_revocation_committed_during_model_preparation_prevents_actual_dispatch[policy]",
+      "initial_formal": true,
+      "attempts": [
+        {
+          "scope": "initial_formal_registry",
+          "outcome": "PASS",
+          "source_commit": "d635470740cb810c273cfd6b9940868587ddbe0a",
+          "source_sha256": "40f21ad37b0a5e855ce38a5eed1a8bee10d8a0ca48069f5f498127617a95cfb2",
+          "junit": "evidence/SAV1-14/20261114T090322Z-014b3f56/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa14_runtime.py::test_revocation_committed_during_model_preparation_prevents_actual_dispatch[roles]",
+      "initial_formal": true,
+      "attempts": [
+        {
+          "scope": "initial_formal_registry",
+          "outcome": "PASS",
+          "source_commit": "d635470740cb810c273cfd6b9940868587ddbe0a",
+          "source_sha256": "40f21ad37b0a5e855ce38a5eed1a8bee10d8a0ca48069f5f498127617a95cfb2",
+          "junit": "evidence/SAV1-14/20261114T090322Z-014b3f56/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa14_runtime.py::test_late_model_response_settles_original_fees_after_revocation_without_reusing_body[policy]",
+      "initial_formal": true,
+      "attempts": [
+        {
+          "scope": "initial_formal_registry",
+          "outcome": "FAIL",
+          "source_commit": "d635470740cb810c273cfd6b9940868587ddbe0a",
+          "source_sha256": "40f21ad37b0a5e855ce38a5eed1a8bee10d8a0ca48069f5f498127617a95cfb2",
+          "junit": "evidence/SAV1-14/20261114T090322Z-014b3f56/junit.xml"
+        },
+        {
+          "scope": "only_original6_runtime_failures",
+          "outcome": "FAIL",
+          "source_commit": "f8b864d9d3fd2d3884ecdba850fa879e624373a8",
+          "source_sha256": "7a0a2ab63e3b3a3a8ed7a9080d65dcbe3fd8d81bb7249fea97ca60b804393e94",
+          "junit": "evidence/super-agent-v1/SAV1-14/integration-20261114T081658Z-10a31715/failed-runtime-remaining-3/junit.xml"
+        },
+        {
+          "scope": "only_remaining5_runtime_failures_plus_new_atomic_boundary",
+          "outcome": "PASS",
+          "source_commit": "be489f7a12f1ffe0e263cfac07a5b1c2b83abb91",
+          "source_sha256": "9953c61b234686dfa282297881cb118e44cee7aebce55bb31987838662b74881",
+          "junit": "evidence/super-agent-v1/SAV1-14/integration-20261114T081658Z-10a31715/failed5-plus-atomic-first-4/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa14_runtime.py::test_late_model_response_settles_original_fees_after_revocation_without_reusing_body[roles]",
+      "initial_formal": true,
+      "attempts": [
+        {
+          "scope": "initial_formal_registry",
+          "outcome": "FAIL",
+          "source_commit": "d635470740cb810c273cfd6b9940868587ddbe0a",
+          "source_sha256": "40f21ad37b0a5e855ce38a5eed1a8bee10d8a0ca48069f5f498127617a95cfb2",
+          "junit": "evidence/SAV1-14/20261114T090322Z-014b3f56/junit.xml"
+        },
+        {
+          "scope": "only_original6_runtime_failures",
+          "outcome": "FAIL",
+          "source_commit": "f8b864d9d3fd2d3884ecdba850fa879e624373a8",
+          "source_sha256": "7a0a2ab63e3b3a3a8ed7a9080d65dcbe3fd8d81bb7249fea97ca60b804393e94",
+          "junit": "evidence/super-agent-v1/SAV1-14/integration-20261114T081658Z-10a31715/failed-runtime-remaining-3/junit.xml"
+        },
+        {
+          "scope": "only_remaining5_runtime_failures_plus_new_atomic_boundary",
+          "outcome": "PASS",
+          "source_commit": "be489f7a12f1ffe0e263cfac07a5b1c2b83abb91",
+          "source_sha256": "9953c61b234686dfa282297881cb118e44cee7aebce55bb31987838662b74881",
+          "junit": "evidence/super-agent-v1/SAV1-14/integration-20261114T081658Z-10a31715/failed5-plus-atomic-first-4/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa14_runtime.py::test_job_cancel_is_a_persistent_request_until_actual_owned_stop_receipt",
+      "initial_formal": true,
+      "attempts": [
+        {
+          "scope": "initial_formal_registry",
+          "outcome": "PASS",
+          "source_commit": "d635470740cb810c273cfd6b9940868587ddbe0a",
+          "source_sha256": "40f21ad37b0a5e855ce38a5eed1a8bee10d8a0ca48069f5f498127617a95cfb2",
+          "junit": "evidence/SAV1-14/20261114T090322Z-014b3f56/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa14_runtime.py::test_received_context_is_attached_fresh_to_next_actual_model_request_as_data",
+      "initial_formal": true,
+      "attempts": [
+        {
+          "scope": "initial_formal_registry",
+          "outcome": "FAIL",
+          "source_commit": "d635470740cb810c273cfd6b9940868587ddbe0a",
+          "source_sha256": "40f21ad37b0a5e855ce38a5eed1a8bee10d8a0ca48069f5f498127617a95cfb2",
+          "junit": "evidence/SAV1-14/20261114T090322Z-014b3f56/junit.xml"
+        },
+        {
+          "scope": "only_original6_runtime_failures",
+          "outcome": "FAIL",
+          "source_commit": "f8b864d9d3fd2d3884ecdba850fa879e624373a8",
+          "source_sha256": "7a0a2ab63e3b3a3a8ed7a9080d65dcbe3fd8d81bb7249fea97ca60b804393e94",
+          "junit": "evidence/super-agent-v1/SAV1-14/integration-20261114T081658Z-10a31715/failed-runtime-remaining-3/junit.xml"
+        },
+        {
+          "scope": "only_remaining5_runtime_failures_plus_new_atomic_boundary",
+          "outcome": "PASS",
+          "source_commit": "be489f7a12f1ffe0e263cfac07a5b1c2b83abb91",
+          "source_sha256": "9953c61b234686dfa282297881cb118e44cee7aebce55bb31987838662b74881",
+          "junit": "evidence/super-agent-v1/SAV1-14/integration-20261114T081658Z-10a31715/failed5-plus-atomic-first-4/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa14_recovery.py::test_actual_sigkill_preserves_input_job_unknown_and_original_budget_without_resend[input_committed]",
+      "initial_formal": true,
+      "attempts": [
+        {
+          "scope": "initial_formal_registry",
+          "outcome": "FAIL",
+          "source_commit": "d635470740cb810c273cfd6b9940868587ddbe0a",
+          "source_sha256": "40f21ad37b0a5e855ce38a5eed1a8bee10d8a0ca48069f5f498127617a95cfb2",
+          "junit": "evidence/SAV1-14/20261114T090322Z-014b3f56/junit.xml"
+        },
+        {
+          "scope": "only_original29_metadata_and_recovery_failures",
+          "outcome": "PASS",
+          "source_commit": "5758b31cf3e3e6a7038ed07274cc8c0615c3c2bb",
+          "source_sha256": "1a850feb12671275711ee17040e90947166b5fc787a375824b8b8d7feafecb90",
+          "junit": "evidence/super-agent-v1/SAV1-14/integration-20261114T081658Z-10a31715/failed-metadata-recovery-1/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa14_recovery.py::test_actual_sigkill_preserves_input_job_unknown_and_original_budget_without_resend[model_dispatched]",
+      "initial_formal": true,
+      "attempts": [
+        {
+          "scope": "initial_formal_registry",
+          "outcome": "FAIL",
+          "source_commit": "d635470740cb810c273cfd6b9940868587ddbe0a",
+          "source_sha256": "40f21ad37b0a5e855ce38a5eed1a8bee10d8a0ca48069f5f498127617a95cfb2",
+          "junit": "evidence/SAV1-14/20261114T090322Z-014b3f56/junit.xml"
+        },
+        {
+          "scope": "only_original29_metadata_and_recovery_failures",
+          "outcome": "PASS",
+          "source_commit": "5758b31cf3e3e6a7038ed07274cc8c0615c3c2bb",
+          "source_sha256": "1a850feb12671275711ee17040e90947166b5fc787a375824b8b8d7feafecb90",
+          "junit": "evidence/super-agent-v1/SAV1-14/integration-20261114T081658Z-10a31715/failed-metadata-recovery-1/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa14_recovery.py::test_actual_sigkill_preserves_input_job_unknown_and_original_budget_without_resend[job_running]",
+      "initial_formal": true,
+      "attempts": [
+        {
+          "scope": "initial_formal_registry",
+          "outcome": "FAIL",
+          "source_commit": "d635470740cb810c273cfd6b9940868587ddbe0a",
+          "source_sha256": "40f21ad37b0a5e855ce38a5eed1a8bee10d8a0ca48069f5f498127617a95cfb2",
+          "junit": "evidence/SAV1-14/20261114T090322Z-014b3f56/junit.xml"
+        },
+        {
+          "scope": "only_original29_metadata_and_recovery_failures",
+          "outcome": "PASS",
+          "source_commit": "5758b31cf3e3e6a7038ed07274cc8c0615c3c2bb",
+          "source_sha256": "1a850feb12671275711ee17040e90947166b5fc787a375824b8b8d7feafecb90",
+          "junit": "evidence/super-agent-v1/SAV1-14/integration-20261114T081658Z-10a31715/failed-metadata-recovery-1/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    },
+    {
+      "node": "tests/test_super_agent_sa14_boundaries.py::test_committed_mid_batch_restriction_preserves_all_actual_postimages_and_receipt",
+      "initial_formal": false,
+      "attempts": [
+        {
+          "scope": "only_remaining5_runtime_failures_plus_new_atomic_boundary",
+          "outcome": "PASS",
+          "source_commit": "be489f7a12f1ffe0e263cfac07a5b1c2b83abb91",
+          "source_sha256": "9953c61b234686dfa282297881cb118e44cee7aebce55bb31987838662b74881",
+          "junit": "evidence/super-agent-v1/SAV1-14/integration-20261114T081658Z-10a31715/failed5-plus-atomic-first-4/junit.xml"
+        }
+      ],
+      "latest_outcome": "PASS"
+    }
+  ]
+}

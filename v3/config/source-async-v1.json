@@ -1,6 +1,6 @@
 {
   "contract_version": "source-async-v1",
-  "status": "LOCAL_ENGINEERING_READY_PENDING_INDEPENDENT_REVIEW",
+  "status": "SA14_I01_LOCAL_FIX_VERIFIED_PENDING_INDEPENDENT_RECHECK",
   "scope": "Only original accepted public fixture_git / existing pure-function Python; no actual DB writes, arbitrary command, host execution, network or payment",
   "ownership_commit": "c711d54504c4945625505f47e9df56e22bc1bdac",
   "ownership_section": 39,
@@ -134,8 +134,8 @@
   "SA15": "NOT_STARTED",
   "installed_migration_count": 44,
   "scope_gate": "PASS_VERSIONED_LOCAL_CONTROLLED_FIXTURE_ONLY",
-  "independent_review": "NOT_RUN",
-  "functional_candidate": "be489f7a12f1ffe0e263cfac07a5b1c2b83abb91",
+  "independent_review": "FAIL_SA14_I01_RECHECK_PENDING",
+  "functional_candidate": "e88ff0c5b4ca586e3bc9c0b4d9cf42769a61042f",
   "distinct_formal_cases_with_PASS": 62,
   "single_final_full_suite_PASS_claimed": false,
   "passed_cases_repeated": 0,
@@ -145,7 +145,7 @@
   "artifacts": [
     {
       "path": "config/source-coding-v1.json",
-      "sha256": "0798ed19c087d155c6c024971dab86bca0f1a7bec00268362a177968acd7e807"
+      "sha256": "a749e90ea2d74acd42610bc8702b1f8b53418fd36e2f4d376c055e7a5d837703"
     },
     {
       "path": "config/source-scheduler-v1.json",
@@ -249,7 +249,7 @@
     },
     {
       "path": "src/mgar_v3/super_agent/source_async.py",
-      "sha256": "4e821c75271179ee29fdad77b5ea573a5dd9adf6d4d7b795ee85dc6e9047b562"
+      "sha256": "9fb9cdc556271ba4553a696d434129333965d040dd39c020f4e20f43680ced0f"
     },
     {
       "path": "src/mgar_v3/super_agent/source_async_api.py",
@@ -297,7 +297,7 @@
     },
     {
       "path": "src/mgar_v3/super_agent/source_coding_runtime.py",
-      "sha256": "362e02f21cf822b871bfc13aacd3369e757a7951ef4b807001130ba21c493e83"
+      "sha256": "ad84ee8acb3a71f47f620f15a58a9c695f017ef7d7e1746b3a53f5514db81f74"
     },
     {
       "path": "src/mgar_v3/super_agent/source_coding_workspace.py",
@@ -376,6 +376,14 @@
       "sha256": "a9baa75612e334a2dcb1677ef237dac46721ca7a4c9537d40201c3b820fbe672"
     }
   ],
-  "artifact_snapshot_utc": "2026-11-14T09:50:12.753339+00:00",
-  "artifact_snapshot_scope": "Current source/contract/test/approved shared hashes; not a historical outcome rewrite or new capability gate."
+  "artifact_snapshot_utc": "2026-11-14T10:44:09.917713+00:00",
+  "artifact_snapshot_scope": "Current SA14-I01 private source hashes; preserves original c711d545 shared scope, SQL, prior versioned PASS/FAIL and independent review.",
+  "I01": {
+    "local_repair": "PASS_ORIGINAL_TWO_FAILED_CASES_ONLY",
+    "source_commit": "e88ff0c5b4ca586e3bc9c0b4d9cf42769a61042f",
+    "source_sha256": "2bd117ebf19bb038dacedc0b965cda7873ea782ff4cfbcf6cc3758f84c516cb8",
+    "record": "docs/super-agent-v1/accept/SAV1-14/i01-repair.json",
+    "independent_reacceptance": "NOT_RUN",
+    "old35_and_other_PASS_repeated": false
+  }
 }

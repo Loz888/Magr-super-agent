@@ -48,8 +48,8 @@
     "rerun": false,
     "formal_integration_inferred": false
   },
-  "artifact_snapshot_utc": "2026-11-14T09:50:12.753339+00:00",
-  "artifact_snapshot_scope": "Current SA14 composition/catalogue hashes only; pre-SA14 bytes preserved in accept/SAV1-14/history/pre-sa14. Historical PASS/FAIL and independent closure records unchanged; no rerun implied.",
+  "artifact_snapshot_utc": "2026-11-14T10:44:09.917713+00:00",
+  "artifact_snapshot_scope": "Current SA14-I01 private adapter repair; original metadata archived before-independent-I01-62ac8ad. Historical SA13/SA14 outcomes and independent FAIL unchanged; no checks repeated.",
   "artifacts": [
     {
       "path": "config/source-scheduler-v1.json",
@@ -205,7 +205,7 @@
     },
     {
       "path": "src/mgar_v3/super_agent/source_coding_runtime.py",
-      "sha256": "362e02f21cf822b871bfc13aacd3369e757a7951ef4b807001130ba21c493e83"
+      "sha256": "ad84ee8acb3a71f47f620f15a58a9c695f017ef7d7e1746b3a53f5514db81f74"
     },
     {
       "path": "src/mgar_v3/super_agent/source_coding_workspace.py",

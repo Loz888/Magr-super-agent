@@ -1,31 +1,19 @@
-请独立验收本副本SA14，H12由另一CLI负责。工作目录 /home/imini/magr-super-agent/v3。
+请只独立复验SA14-I01原两个失败参数，不重跑原35PASS、其他历史通过或静态目标；SA15不启动，H12由另一CLI负责。
 
-最终不可变源码候选／完整SHA见 docs/super-agent-v1/accept/SAV1-14/accept.json；
-功能检查候选be489f7，SHA9953c61b234686dfa282297881cb118e44cee7aebce55bb31987838662b74881。
-后续仅元数据、八份契约schema导出与九份旧目录数量43→44的机械期望调整，无生产源码/SA14测试/SQL变化。
-Harness第39节确认c711d545，0047 SQL9ce372e6…9f041，三文件patchc43e05c0…85b5e；正式共享后字节全部精确匹配。
+最终交付候选／SHA见 docs/super-agent-v1/accept/SAV1-14/accept.json。
+功能修复候选：e88ff0c5b4ca586e3bc9c0b4d9cf42769a61042f
+功能源码SHA256：2bd117ebf19bb038dacedc0b965cda7873ea782ff4cfbcf6cc3758f84c516cb8
+原探针SHA256：53b2de9f9a177ff4b8f3ce4eead7ee4bd84cd846d7eab653f90f5b0bd619ee68
+本地两项2PASS，最后原始日志/JUnit见 docs/super-agent-v1/accept/SAV1-14/i01-repair.json；934ddec两项仍FAIL的中间轮保留。
 
-本地初轮61=26PASS35FAIL；仅失败修复29PASS、6→1PASS5FAIL、5PASS；两个单失败诊断FAIL保留；
-新增原子编辑边界首次1PASS。62个独特目标有分版本证据，已通过项重复数0；原准备65+29未重跑。
-原始证据及每个目标的版本/命令/JUnit在accept.json与case-ledger.json，不称最终一次全量PASS。
+原探针字节复制保存在 docs/super-agent-v1/accept/SAV1-14/SA14-I01/test_independent_sa14.py，与独立原文件完全一致；请复制到自己的新证据目录，
+在同目录创建evidence-path文件，内容为自己新证据目录的绝对路径，防止覆盖历史观测。
+使用自己隔离真实PG，设置MGAR_V3_DATABASE_URL；在v3目录：
 
-依用户节约复验时间的要求：独立复验原35项首次失败；核对原26项及准备94项历史证据，
-不要运行整卡make verify重跑原通过项。可补充必要的新独立边界。
-在自己启动的隔离真实PG中设置MGAR_V3_DATABASE_URL后，可用以下命令精确选择原失败35项：
+UV_OFFLINE=1 MGAR_V3_ALLOW_PAID=0 MGAR_V3_ALLOW_EXTERNAL_WRITE=0 PYTHONPATH="$PWD/src:$PWD/tests" .venv/bin/python -m pytest -q -s --tb=short <新目录>/test_independent_sa14.py --junitxml=<新目录>/junit.xml
 
-MGAR_V3_ALLOW_PAID=0 MGAR_V3_ALLOW_EXTERNAL_WRITE=0 .venv/bin/python - <<'PY'
-import json,subprocess,sys
-from pathlib import Path
-ledger=json.loads(Path('docs/super-agent-v1/accept/SAV1-14/case-ledger.json').read_text())
-nodes=ledger['initial_failed_nodes']
-assert len(nodes)==35
-raise SystemExit(subprocess.call([sys.executable,'-m','pytest','-q',*nodes,'--junitxml=独立证据目录/junit.xml']))
-PY
-
-请核对实际Source控制权限、旧回复完整丢弃、最终派发提交边界、费用真实结算、最短TTL密文擦除、
-Job stop_requested/unknown/known原回执、三处真实SIGKILL与无重发、原Engine唯一连接、44迁移及产物哈希。
-新原子批次测试已有首检通过证据，可只读核对；若新增独立探针，请使用新的目标与证据，不覆盖原失败。
-核对默认未激活、无临时资源残留，保留用户文件与所有历史失败，不修改源码。
-
-通过范围仅受控fixture_git纯函数Python、原H03/SA12 bound H06/固定H11；本副本固定H12真实门FAIL保留。
-真实来源、付费、模型外发、通知、发布及长期运行仍NOT_RUN。独立通过前SA14保持IN_PROGRESS，不启动SA15。
+须核对inspect后已提交deny_commands/input_revision或Job stop_requested时actual_docker_starts仍为空，
+原Broker非扣费peek和原Engine唯一PG连接保留，unknown/费用/原子编辑收尾不伪造或重发。
+仅SourceAsync和SourceCoding私有适配器改变；固定Harness Broker、Engine/API、SQL、测试/fixture均未改。
+当前独立结果仍FAIL_SA14_I01，等待新独立复验；历史35PASS/2FAIL、两次修复轮和原文件全部保留。
+真实平台／付费／外发／发布／长期门NOT_RUN，不参与H12验收。
