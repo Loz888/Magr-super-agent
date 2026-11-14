@@ -1,0 +1,150 @@
+{
+  "schema_version": "sav1-preparation-v1",
+  "task": "SAV1-14",
+  "status": "IN_PROGRESS_PRIVATE_COMPONENTS_VERIFIED_SHARED_CONFIRMATION_PENDING",
+  "recorded_utc": "2026-11-14T08:10:13.773423+00:00",
+  "source_commit": "f17a382a1e7b5f3ebed68d9a5f9795ed7f833b16",
+  "source_sha256": "36509b3da752242bcae2bee7b45cc65e9c696d05494d55f0fcb894509f6be663",
+  "scope": "Private metadata contracts/planner and isolated 0047 DRAFT only; no formal Engine/API/Ingress/runtime integration",
+  "SA13_dependency_closure": "accept/SAV1-13/independent-closure-20261114.json",
+  "fixed_h09_audit": "evidence/super-agent-v1/SAV1-14/start-20261114T072614Z-2e0801ca/fixed-h09-audit/audit.json",
+  "versioned_checks": [
+    {
+      "attempt": "initial-preparation-checks-run3",
+      "source_commit": "ff20778d267675d5a813cab244d91cface330f61",
+      "source_sha256": "497e5c35b378e206ce829e2d5bb0730dce725cc5d3c6f06a383a2cf7230ea4e3",
+      "SQL_sha256": "a1bfc441ba57d46c9a10a18ab9c2029a41ac836dd592f409c539c14520949c14",
+      "source_archive": "evidence/super-agent-v1/SAV1-14/start-20261114T072614Z-2e0801ca/initial-preparation-checks-run3/candidate-ff20778d2676.tar.gz",
+      "source_archive_sha256": "92efb7c4a000e7d8cf0fc78cc2b45e17f9b53fef4b2a682fa502f61a7eedbda4",
+      "results": {
+        "contracts": {
+          "exit_code": 0,
+          "counts": {
+            "tests": 65,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0
+          }
+        },
+        "lint": {
+          "exit_code": 2
+        },
+        "typecheck": {
+          "exit_code": 0
+        },
+        "sql-draft": {
+          "exit_code": 1,
+          "counts": {
+            "tests": 29,
+            "failures": 0,
+            "errors": 2,
+            "skipped": 0
+          }
+        },
+        "shared-patch-check": {
+          "exit_code": 0,
+          "applied": false
+        }
+      },
+      "raw_summary": "evidence/super-agent-v1/SAV1-14/start-20261114T072614Z-2e0801ca/initial-preparation-checks-run3/summary.json",
+      "cleanup": "evidence/super-agent-v1/SAV1-14/start-20261114T072614Z-2e0801ca/initial-preparation-checks-run3/cleanup.json"
+    },
+    {
+      "attempt": "failed-only-recheck-1",
+      "source_commit": "5a2481a330caeb7cdb710f61d53f94ab369386a4",
+      "source_sha256": "36509b3da752242bcae2bee7b45cc65e9c696d05494d55f0fcb894509f6be663",
+      "SQL_sha256": "a1bfc441ba57d46c9a10a18ab9c2029a41ac836dd592f409c539c14520949c14",
+      "source_archive": "evidence/super-agent-v1/SAV1-14/start-20261114T072614Z-2e0801ca/failed-only-recheck-1/candidate-5a2481a330ca.tar.gz",
+      "source_archive_sha256": "6c7a973bf6bd887743295ac5f97c3bfd9f759c960b5515401ad01f1912480149",
+      "results": {
+        "lint": {
+          "exit_code": 0
+        },
+        "sql-draft": {
+          "exit_code": 1,
+          "counts": {
+            "tests": 2,
+            "failures": 1,
+            "errors": 0,
+            "skipped": 0
+          }
+        }
+      },
+      "raw_summary": "evidence/super-agent-v1/SAV1-14/start-20261114T072614Z-2e0801ca/failed-only-recheck-1/summary.json",
+      "cleanup": "evidence/super-agent-v1/SAV1-14/start-20261114T072614Z-2e0801ca/failed-only-recheck-1/cleanup.json"
+    },
+    {
+      "attempt": "failed-only-recheck-2",
+      "source_commit": "f17a382a1e7b5f3ebed68d9a5f9795ed7f833b16",
+      "source_sha256": "36509b3da752242bcae2bee7b45cc65e9c696d05494d55f0fcb894509f6be663",
+      "SQL_sha256": "9ce372e6a82cbf747c51624486ef7548faf056cc60912e0287279be8b569f041",
+      "source_archive": "evidence/super-agent-v1/SAV1-14/start-20261114T072614Z-2e0801ca/failed-only-recheck-2/candidate-f17a382a1e7b.tar.gz",
+      "source_archive_sha256": "f1e58fd0468144b125a5b3f764cabc2c278930f7a10d8cea871918696865a606",
+      "results": {
+        "sql-draft": {
+          "exit_code": 0,
+          "counts": {
+            "tests": 1,
+            "failures": 0,
+            "errors": 0,
+            "skipped": 0
+          }
+        }
+      },
+      "raw_summary": "evidence/super-agent-v1/SAV1-14/start-20261114T072614Z-2e0801ca/failed-only-recheck-2/summary.json",
+      "cleanup": "evidence/super-agent-v1/SAV1-14/start-20261114T072614Z-2e0801ca/failed-only-recheck-2/cleanup.json"
+    }
+  ],
+  "unique_component_test_passes": {
+    "private_contracts_and_planner": 65,
+    "draft_PG": 29,
+    "total_across_versions": 94,
+    "single_final_94_pass_run_claimed": false
+  },
+  "static_checks": {
+    "typecheck": "PASS 275 source files at ff20778; not rerun",
+    "lint": "initial3 line errors; PASS at 5a2481a; not rerun after SQL-only change"
+  },
+  "repairs": [
+    "Two initial SQL fixture setup errors: existing safety rule required mgar_v3_test_ prefix; fixture corrected, no safety rule weakened",
+    "One actual SQL draft failure: NULL restriction rejected bodyless system invalidation; nullable restriction check corrected before any ownership approval/formal install"
+  ],
+  "precheck_aborts": [
+    "evidence/super-agent-v1/SAV1-14/start-20261114T072614Z-2e0801ca/initial-preparation-checks/precheck-archive-mismatch.json",
+    "evidence/super-agent-v1/SAV1-14/start-20261114T072614Z-2e0801ca/initial-preparation-checks-run2/precheck-aborted.json"
+  ],
+  "precheck_note": "Two archive-checker implementation errors aborted before tests; all708 archive source contents matched, final exact fingerprint algorithm verified before any checks. All raw attempts retained.",
+  "check_source_policy": "Each executed round used a committed candidate and verified immutable full Git archive before checks. Source fingerprint excludes docs SQL proposal, so exact SQL SHA and archive are bound separately.",
+  "passed_components_unchanged_after_initial": [
+    "src/mgar_v3/super_agent/source_async_domain.py",
+    "src/mgar_v3/super_agent/source_async_rules.py",
+    "src/mgar_v3/super_agent/source_async_plan.py"
+  ],
+  "formal_migration_0047": "NOT_INSTALLED",
+  "formal_shared_patch": "NOT_APPLIED",
+  "formal_SAV1_14_registry": "NOT_REGISTERED_PENDING_REAL_IMPLEMENTATION",
+  "missing_formal_work": [
+    "SourceAsync original connection service and current Source routing/control verification",
+    "12 actual API routes with current Owner/Worker separation",
+    "SA13 managed-run and payload/current Source dependency hooks",
+    "actual asynchronous bound command/model runtime, last-dispatch guards, cancellation and receipt mapping",
+    "registered real PG/Docker/concurrency/SIGKILL and integration acceptance"
+  ],
+  "main_migration_count": 43,
+  "main_async_table_count": 0,
+  "temporary_resources": "All three probe PG containers removed; no own residual session or process; pre-existing user/other-card containers preserved",
+  "user_file_preserved_sha256": "f4adf9605c87d6256bd2ec17b8436da8a7bced763a8e03b185a8cfe19d34a29f",
+  "six_gates": {
+    "engineering_gate": "NOT_RUN",
+    "policy_security_gate": "NOT_RUN",
+    "live_source_channel_gate": "NOT_RUN",
+    "live_coding_gate": "NOT_RUN",
+    "live_publication_gate": "NOT_RUN",
+    "continuous_operation_gate": "NOT_RUN"
+  },
+  "h12_live_agent": "FAIL",
+  "h12_mvp": "FAIL",
+  "real_paid_model_outbound": "NOT_RUN",
+  "independent_review": "NOT_RUN",
+  "SA15": "NOT_STARTED"
+}

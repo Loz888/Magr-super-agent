@@ -300,3 +300,21 @@ fe8ecac首轮351项309PASS/42FAIL已完整保留。36项直接PG错误及6项同
 提案提交b6079db已备齐：拟0046六表379e9de4、四文件patch01c7ec61、固定H11最小模块与兼容补丁、六个metadata接口；完整SHA见[提案清单](sa13-proposal/proposal-manifest.json)。已请求用户代转[具体文件](sa13-proposal/ownership-request.txt)，尚无新固定确认。第37节只覆盖SA12；正式迁移/Engine/API/Scheduler/contracts和固定内核导入均未应用。
 
 私有139项、lint/typecheck262首次通过；隔离草案43迁移/六表安装与临时kernel预览另列，不把这些记整卡运行通过。H12真实Agent/MVP FAIL保留，只继续受控工程准备。主库仍42、0045仍归Harness，真实/付费/外发/发布/长期及SA14不启动，见[阶段摘要](accept/SAV1-13/preparation-20261113.json)。
+
+
+## SA13独立关闭与SA14具体准备（2026-11-14）
+
+SA13 f53f423／c49cf1f用户接受独立32PASS已核对关闭，19份证据复制核验；原212分版本及
+早期两轮只有工作树指纹的限制保留，未重跑旧通过项。按用户明确指令启动SA14。
+H09固定7d8f0ab／096300e复核及本副本H11 SafePoint一致，只复用既有端口，不导入文件inbox／第二Store。
+
+SA14私有65首次PASS；隔离SQL草案29项分版本通过（原27通过不重跑，2setup错误定向2→1闭环），
+lint定向修复PASS，首次typecheck275PASS未重跑。每轮先不可变提交并归档；原失败／两次归档checker
+测试前中止记录保留。见[准备摘要](accept/SAV1-14/preparation-20261114.json)，不称最终单轮94PASS。
+
+[具体请求](sa14-proposal/ownership-request.txt)／[完整提案hash](sa14-proposal/proposal-manifest.json)：
+拟0047六表、Engine／API／Ingress三文件最小hook及12metadata接口，仅本SA副本归SA。
+§38只覆盖SA13，等待新固定确认；不应用正式SQL／patch，不写Harness活动文件。
+主库仍43、无新六表；临时本卡PG／会话清理，旧用户容器不动。实际服务／路由／异步Runtime／
+PG-Docker并发恢复及正式注册未实施／验收，SA14保持IN_PROGRESS。H12真实Agent/MVP仍FAIL，
+真实／付费／外发／发布／长期门NOT_RUN，SA15不启动。

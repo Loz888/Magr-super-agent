@@ -1,0 +1,22 @@
+{
+  "status": "PREPARED_PENDING_NEW_HARNESS_CONFIRMATION",
+  "recorded_utc": "2026-11-14T08:10:13.773423+00:00",
+  "source_candidate": "f17a382a1e7b5f3ebed68d9a5f9795ed7f833b16",
+  "source_sha256": "36509b3da752242bcae2bee7b45cc65e9c696d05494d55f0fcb894509f6be663",
+  "files": {
+    "0047_source_async.sql": "9ce372e6a82cbf747c51624486ef7548faf056cc60912e0287279be8b569f041",
+    "shared-wiring.patch": "c43e05c0d8aabe1bccf3484cbb7922c5f6f1897f6d2cd5ac0840b4454ff85b5e",
+    "shared-wiring-metadata.json": "184d6b9d4d8888ae4b925cbf299aeca87d0d74cd6289732d9222c0324ffaa1e0",
+    "interfaces.json": "82a4fcacf5533a2e7aa954b183bc886b4d3c64dffef1fd0c61319d5552146f89",
+    "harness-reuse.json": "e8ad44ea8a8b2c7e9c0af4d7e4be4ded72b50b44a640dce2b03be3dfb01eeb9e",
+    "SA14_SCOPE.md": "96063b58454bc45b500bfdc884b4431623edb63a8e9108161821bd0ae81eaec2",
+    "shared-risk-review.json": "4844c107b710dfb15449ec0b4e4740a65f4571fa4c213d869de3afeb09319523",
+    "ownership-request.txt": "40f2ed9e8fbb51a85931f38d487307386bdcead347a16000da31374cadd8e588"
+  },
+  "preparation_summary": "docs/super-agent-v1/accept/SAV1-14/preparation-20261114.json",
+  "preparation_summary_sha256": "811b0e2d76be5409632e4253eeddad5e084302e11772cda161a6a6f75d58173a",
+  "shared_patch_applied": false,
+  "formal_sql_installed": false,
+  "formal_runtime_verified": false,
+  "SA15": "NOT_STARTED"
+}

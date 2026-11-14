@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-14T07:26:14.470191+00:00",
+  "updated_at": "2026-11-14T08:10:13.773423+00:00",
   "user_instruction": "Codex owns Super-Agent; local Trae owns Harness; coordination is authorized.",
   "owners": {
     "super_agent": {
@@ -15,7 +15,7 @@
   },
   "active_super_agent_card": "SAV1-14",
   "card_status": "IN_PROGRESS",
-  "work_state": "SA14_READING_DEPENDENCY_AND_SHARED_SCOPE_PREPARATION",
+  "work_state": "SA14_PRIVATE_COMPONENTS_VERIFIED_PENDING_SHARED_CONFIRMATION",
   "harness_observation": {
     "head": "de4775e22e96718e880fde287b2e0928db2945e3",
     "h00_owner_reported_status": "PASS",
@@ -430,5 +430,13 @@
     "reserved_harness_migration": "0045_harness_github_delivery.sql",
     "proposed_next_number": "0047 subject to fixed coordination",
     "real_capabilities": "NOT_RUN"
-  }
+  },
+  "sa14_preparation": "accept/SAV1-14/preparation-20261114.json",
+  "sa14_ownership_request": "sa14-proposal/ownership-request.txt",
+  "sa14_shared_confirmation": "PENDING_NEW_FIXED_COMMIT",
+  "sa14_fixed_h09": "7d8f0ab5df1d4b98ff3140af553c11bc1ca74a1c",
+  "sa14_harness_observed_head": "617e14a52d65c5276bcd3ef87dbd0f05b4a3c08d",
+  "sa14_h12_live_agent_MVP": "FAIL",
+  "sa14_real_gates": "NOT_RUN",
+  "sa15": "NOT_STARTED"
 }

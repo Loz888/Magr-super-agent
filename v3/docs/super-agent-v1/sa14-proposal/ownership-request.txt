@@ -1,0 +1,66 @@
+SA14 具体共享所有权／接口／迁移编号确认请求
+
+请 Harness CLI 只读核对 /home/imini/magr-super-agent/v3/docs/super-agent-v1/sa14-proposal/，
+在 SUPER_AGENT_HANDOFF.md 新节单独本地提交确认；不要应用 SQL／patch、运行 SA 测试、
+操作 SA 活动文件或推送。请回传确认提交 hash、节号、编号／接口／文件范围是否有冲突。
+
+前提：SA13 f53f423／c49cf1f 已获用户接受独立32PASS；关闭文档41f62c1。
+用户明确授权启动SA14。Harness固定HEAD 617e14a52d65c5276bcd3ef87dbd0f05b4a3c08d
+第38节仅确认SA13，未覆盖本次0047及新Ingress hook。
+AGENTS.md要求：For shared Engine/API/schema/budget changes, agree ownership,
+interfaces and migration numbering with Trae before overlapping implementation.
+
+请求仅在本SA副本由SA独占下列范围：
+1. 拟0047_source_async.sql，六表：sa_async_bindings／inputs／checkpoints／jobs／
+   operation_views／events，及当前草案的函数、guard和原Source/Coding表前向触发器。
+   原43SQL不改；0045仍归Harness；不导入Harness0037／0040／0045。
+   触发器涉及sa_coding_operations、sa_coding_payloads、source_ingress_inputs／bodies、
+   source_role_bindings、source_task_controllers、source_identities、source_policies、
+   source_ingress_controls；同原Engine事务记录sticky fencing和无正文失效，不做IO或财务退款。
+2. 最小三个共享Python文件：coordination/engine.py组合SourceAsync并在原SA13之后recover；
+   api.py注册；sources/ingress.py仅在原canonical提交／ACK事务新增accepted_conn钩子。
+   精确before／after SHA见shared-wiring-metadata.json，补丁尚未应用。
+3. SA私有source_async domain／rules／plan／service／api／runtime及测试；原SA13私有
+   source_coding.py／source_coding_runtime.py／source_coding_journal.py只增加异步管理拒绝绕过、
+   输入revision／最后实际派发guard／最短Source TTL和原回执对接。原Engine、SA07费用算法
+   与SourceEval-I01栅栏不改，无第二Task／Run／Mandate／钱包／进程权威。
+4. H09固定7d8f0ab5df1d4b98ff3140af553c11bc1ca74a1c及复核096300eed8946086f99e331ae4c8c9c733108ff9
+   只复用已集成H11 d3f3457里的SafePoint(before_model／after_model)，AST已核对一致。
+   本次不导入新Harness blob，不改固定kernel／contracts／Workspace／Broker／Verifier，
+   不读／导入Harness活动或未提交文件，不接入H09明文文件inbox、Store、Service、Ledger或SSE。
+5. /api/v3/source-async下12个无正文metadata接口，准确清单与类型在interfaces.json：
+   Owner8：GET /capabilities，POST /admissions，GET /bindings/{coding_id}，
+   POST /bindings/{coding_id}/restrictions，GET同绑定下/inputs、/jobs、/events，
+   POST /bindings/{coding_id}/jobs/{job_id}/cancel。
+   Worker4：POST /worker/{coding_id}/start，GET同Worker下/state、/jobs/{job_id}，
+   POST /worker/{coding_id}/jobs/{job_id}/cancel。
+   Owner当前cookie／Origin-CSRF；Worker独立bearer+精确Assignment／Session／epoch。
+   不接收正文、argv、provider、host_path、token、付款／权限／Task成功自证；全部no-store。
+
+完整范围见SA14_SCOPE.md：仅原SA13已接受公开fixture_git／已有纯函数Python受控工程。
+输入received／applied／blocked可查；控制只收紧，context_only／机器人／日志不授控制；
+新revision使完整旧模型回复不能派发；原命令Job沿SA12 bound资源查询／取消／对账。
+原子编辑和在途费用保留真实事实；unknown不盲重发，撤权后恢复也不复活旧正文。
+长等待不占原Engine全局mutex，实际派发仍有最终当前守卫。没有默认监听／线程／模型启动。
+H12真实Agent／MVP仍FAIL；真实平台、付费、外发、通知、发布、长期门仍NOT_RUN；SA15不启动。
+
+准备证据（不冒充整卡验收）：私有契约／planner首次65PASS；SQL草案首轮27PASS／2setup错误；
+仅原2复验1PASS／1FAIL，修正可空restriction后仅剩余1复验1PASS，共29份SQL分版本通过。
+初轮lint三行长错误后仅lint目标复验PASS；typecheck275首次PASS未重跑。
+每轮先提交不可变源码并归档，失败和两次测试前归档checker中止记录完整保留。
+主库仍43迁移、无新六表；隔离PG草案安装44迁移，每轮容器／会话清理完成。
+正式迁移／共享接线／实际12路由／异步Runtime／正式注册／PG-Docker并发恢复均未落地或验收。
+
+精确SHA256（以下均在本提案目录）：
+- 0047_source_async.sql: 9ce372e6a82cbf747c51624486ef7548faf056cc60912e0287279be8b569f041
+- shared-wiring.patch: c43e05c0d8aabe1bccf3484cbb7922c5f6f1897f6d2cd5ac0840b4454ff85b5e
+- shared-wiring-metadata.json: 184d6b9d4d8888ae4b925cbf299aeca87d0d74cd6289732d9222c0324ffaa1e0
+- interfaces.json: 82a4fcacf5533a2e7aa954b183bc886b4d3c64dffef1fd0c61319d5552146f89
+- harness-reuse.json: e8ad44ea8a8b2c7e9c0af4d7e4be4ded72b50b44a640dce2b03be3dfb01eeb9e
+- SA14_SCOPE.md: 96063b58454bc45b500bfdc884b4431623edb63a8e9108161821bd0ae81eaec2
+- shared-risk-review.json: 4844c107b710dfb15449ec0b4e4740a65f4571fa4c213d869de3afeb09319523
+
+私有／草案受检候选：f17a382a1e7b5f3ebed68d9a5f9795ed7f833b16，源码指纹：36509b3da752242bcae2bee7b45cc65e9c696d05494d55f0fcb894509f6be663。
+分版本证据摘要：/home/imini/magr-super-agent/v3/docs/super-agent-v1/accept/SAV1-14/preparation-20261114.json
+
+确认只需独立协调文档提交，不需要导入H12修复提交或修改任何业务源码。
