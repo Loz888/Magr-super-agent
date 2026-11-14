@@ -357,6 +357,13 @@ class SourceAutonomy(AutonomyStore):
             (self.project, signal.key),
         ).fetchone()
         if old is not None:
+            if old["rule_revision"] != row["revision"]:
+                return {
+                    "claim_id": old["claim_id"],
+                    "disposition": "held",
+                    "created": False,
+                    "reason_code": "AUTONOMY_CLAIM_RULE_CHANGED",
+                }
             attempt = conn.execute(
                 "SELECT attempt_id FROM app.sa_autonomy_attempts WHERE claim_id=%s",
                 (old["claim_id"],),
@@ -603,13 +610,26 @@ class SourceAutonomy(AutonomyStore):
         with self.engine.transaction() as conn:
             self._console(conn, cookie)
             rows = conn.execute(
-                "SELECT c.*,a.attempt_id,a.run_id FROM app.sa_autonomy_claims c "
-                "LEFT JOIN app.sa_autonomy_attempts a USING(claim_id) WHERE c.project_id=%s "
+                "SELECT c.*,a.attempt_id,a.run_id,e.kind AS latest_kind,e.reason_code AS latest_reason "
+                "FROM app.sa_autonomy_claims c LEFT JOIN app.sa_autonomy_attempts a USING(claim_id) "
+                "LEFT JOIN LATERAL(SELECT kind,reason_code FROM app.sa_autonomy_events "
+                "WHERE claim_id=c.claim_id ORDER BY event_id DESC LIMIT 1) e ON true "
+                "WHERE c.project_id=%s "
                 "ORDER BY c.created_at DESC,c.claim_id LIMIT %s",
                 (self.project, limit + 1),
             ).fetchall()
             return {
-                "claims": [{k: v for k, v in r.items() if k != "signal"} for r in rows[:limit]],
+                "claims": [
+                    {
+                        **{k: v for k, v in r.items() if k != "signal"},
+                        "initial_disposition": r["disposition"],
+                        "disposition": "held"
+                        if r["attempt_id"] is None and r["latest_kind"] == "held"
+                        else r["disposition"],
+                        "reason_code": r["latest_reason"] or r["reason_code"],
+                    }
+                    for r in rows[:limit]
+                ],
                 "partial": len(rows) > limit,
             }
 

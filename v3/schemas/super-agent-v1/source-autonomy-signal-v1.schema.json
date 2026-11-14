@@ -1,0 +1,143 @@
+{
+  "$defs": {
+    "CorrelationInputRef": {
+      "additionalProperties": false,
+      "properties": {
+        "input_id": {
+          "format": "uuid",
+          "title": "Input Id",
+          "type": "string"
+        },
+        "source_instance_id": {
+          "format": "uuid",
+          "title": "Source Instance Id",
+          "type": "string"
+        },
+        "project_id": {
+          "maxLength": 100,
+          "minLength": 1,
+          "title": "Project Id",
+          "type": "string"
+        },
+        "version_fingerprint": {
+          "pattern": "^[a-f0-9]{64}$",
+          "title": "Version Fingerprint",
+          "type": "string"
+        },
+        "state_sha256": {
+          "pattern": "^[a-f0-9]{64}$",
+          "title": "State Sha256",
+          "type": "string"
+        }
+      },
+      "required": [
+        "input_id",
+        "source_instance_id",
+        "project_id",
+        "version_fingerprint",
+        "state_sha256"
+      ],
+      "title": "CorrelationInputRef",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "description": "Loaded and verified by the original Engine, never from arbitrary HTTP JSON.",
+  "properties": {
+    "key": {
+      "pattern": "^[a-f0-9]{64}$",
+      "title": "Key",
+      "type": "string"
+    },
+    "subject_key": {
+      "pattern": "^[a-f0-9]{64}$",
+      "title": "Subject Key",
+      "type": "string"
+    },
+    "rule_id": {
+      "format": "uuid",
+      "title": "Rule Id",
+      "type": "string"
+    },
+    "rule_revision": {
+      "minimum": 1,
+      "title": "Rule Revision",
+      "type": "integer"
+    },
+    "source_instance_id": {
+      "format": "uuid",
+      "title": "Source Instance Id",
+      "type": "string"
+    },
+    "policy_id": {
+      "format": "uuid",
+      "title": "Policy Id",
+      "type": "string"
+    },
+    "policy_revision": {
+      "minimum": 1,
+      "title": "Policy Revision",
+      "type": "integer"
+    },
+    "policy_sha256": {
+      "pattern": "^[a-f0-9]{64}$",
+      "title": "Policy Sha256",
+      "type": "string"
+    },
+    "repository": {
+      "pattern": "^[a-z0-9_.-]+/[a-z0-9_.-]+$",
+      "title": "Repository",
+      "type": "string"
+    },
+    "intended_action": {
+      "enum": [
+        "would_ignore",
+        "would_observe",
+        "would_attach",
+        "would_create",
+        "would_ask"
+      ],
+      "title": "Intended Action",
+      "type": "string"
+    },
+    "origin": {
+      "default": "decision",
+      "enum": [
+        "decision",
+        "timer"
+      ],
+      "title": "Origin",
+      "type": "string"
+    },
+    "inputs": {
+      "items": {
+        "$ref": "#/$defs/CorrelationInputRef"
+      },
+      "maxItems": 16,
+      "minItems": 1,
+      "title": "Inputs",
+      "type": "array"
+    },
+    "expires_at": {
+      "format": "date-time",
+      "title": "Expires At",
+      "type": "string"
+    }
+  },
+  "required": [
+    "key",
+    "subject_key",
+    "rule_id",
+    "rule_revision",
+    "source_instance_id",
+    "policy_id",
+    "policy_revision",
+    "policy_sha256",
+    "repository",
+    "intended_action",
+    "inputs",
+    "expires_at"
+  ],
+  "title": "AutonomySignal",
+  "type": "object"
+}

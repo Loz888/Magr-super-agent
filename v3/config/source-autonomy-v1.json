@@ -1,0 +1,171 @@
+{
+  "version": "source-autonomy-v1",
+  "status": "FORMAL_IMPLEMENTATION",
+  "ownership_commit": "91c0b75693037bb0d90cb2eccd35356cd2e96135",
+  "migration": "0048_source_autonomy.sql",
+  "defaults": {
+    "rules": 0,
+    "profiles": 0,
+    "mode": "disabled",
+    "timer_work": false,
+    "model_calls_per_cycle": 0,
+    "notifications": false,
+    "publication": false
+  },
+  "writer": "original Engine held connection/mutex/short transactions",
+  "task_state": "original Thread/Ticket/Mandate/Run/Scheduler; no parallel Task or balance",
+  "api_routes": 13,
+  "execution": "controlled fixture only; readonly original graph or existing isolated Coding/Broker",
+  "real_source_paid_outbound_publication_longterm": "NOT_RUN",
+  "H12_fixed_live_agent_mvp": "FAIL; other CLI owns H12 acceptance",
+  "independent_review": "NOT_RUN",
+  "SA17": "NOT_STARTED",
+  "registration": "make verify TASK=SAV1-16",
+  "repair_policy": "Only failed cases/check targets; first private77/draft10 and formal passing evidence are not repeated",
+  "artifacts": [
+    {
+      "path": "docs/super-agent-v1/SA16_AUTONOMY.md",
+      "sha256": "c66c60891d597da0bcca1aa9db2706b7bf2ae6fc7bd453025a48a15995208058"
+    },
+    {
+      "path": "docs/super-agent-v1/sa16-proposal/0048_source_autonomy.sql",
+      "sha256": "20d376a1d96087e0b42e2f4c4eda2a32b48c955a0c8216fb6767595a21afa3b3"
+    },
+    {
+      "path": "docs/super-agent-v1/sa16-proposal/SA16_SCOPE.md",
+      "sha256": "47ddfe861a31265f1f20b319c7ba937e28fac3350998c2ce006e93c93d967da7"
+    },
+    {
+      "path": "docs/super-agent-v1/sa16-proposal/integration.patch",
+      "sha256": "139bb8deb62d7514c4b1eef50e3d5e3657ee4da9ec392164a741561e811f509d"
+    },
+    {
+      "path": "docs/super-agent-v1/sa16-proposal/ownership-confirmed.json",
+      "sha256": "33671b64442dc618e5ea42f962d6700b6329cde1b7bcc92bcfb2f22c0f58c4c1"
+    },
+    {
+      "path": "docs/super-agent-v1/sa16-proposal/ownership-request.txt",
+      "sha256": "78f67538eb92be78bf0f242d41959f6a049b640879ee4b350269ec99a02361d3"
+    },
+    {
+      "path": "docs/super-agent-v1/sa16-proposal/patch-metadata.json",
+      "sha256": "e055e29eb9cb4bf09b2e210b7274b784ba6a73fe8b34fffc425b318285ca5c13"
+    },
+    {
+      "path": "docs/super-agent-v1/sa16-proposal/post-integration-format.json",
+      "sha256": "87efbe5ec759467963c39e87eb352643c761860c4b418052d18bdc433224e961"
+    },
+    {
+      "path": "docs/super-agent-v1/sa16-proposal/post-integration-format.patch",
+      "sha256": "48b3bc7491f93cf0cdbe74fdb87dc267a1a25490aaff57f1599a0573b05c4d5e"
+    },
+    {
+      "path": "docs/super-agent-v1/sa16-proposal/shared-risk-review.json",
+      "sha256": "4f33027f78f4426669d44f8f1c99838908ac8843e69fa8b46f593fbf9998645c"
+    },
+    {
+      "path": "migrations/0048_source_autonomy.sql",
+      "sha256": "20d376a1d96087e0b42e2f4c4eda2a32b48c955a0c8216fb6767595a21afa3b3"
+    },
+    {
+      "path": "schemas/super-agent-v1/source-autonomy-cycle-v1.schema.json",
+      "sha256": "e773c0cf597cc25a634c13df6bd607bef27c39229556df77ef4e6b4ec3181c39"
+    },
+    {
+      "path": "schemas/super-agent-v1/source-autonomy-reopen-v1.schema.json",
+      "sha256": "755327b7dd4e8e767bddaedd2b3fe78c097ea924d6551f5daab1806a48370bb9"
+    },
+    {
+      "path": "schemas/super-agent-v1/source-autonomy-revision-v1.schema.json",
+      "sha256": "bcb4f970f3aee397f8b20cb249de96e81e4c9500978988da6e8e8cce77fdc978"
+    },
+    {
+      "path": "schemas/super-agent-v1/source-autonomy-rule-save-v1.schema.json",
+      "sha256": "e8ee7692d173849e8849c663e08e4b13ba0c42cc5003efe9aef7fb4fd8a3db0e"
+    },
+    {
+      "path": "schemas/super-agent-v1/source-autonomy-signal-v1.schema.json",
+      "sha256": "de9f6c9dd61c5acacd477c518a0f2869e5659d91ce46b855fa3a89081a25ad25"
+    },
+    {
+      "path": "src/mgar_v3/super_agent/source_autonomy.py",
+      "sha256": "ff4b68ba292cb904f4765ea81f1c681d574eaf5f94dfbd40e076a3a80aa8dada"
+    },
+    {
+      "path": "src/mgar_v3/super_agent/source_autonomy_api.py",
+      "sha256": "6301c639531a0af2e025123c4bdaf05e6c4f984b121272cbde97456c85a8b966"
+    },
+    {
+      "path": "src/mgar_v3/super_agent/source_autonomy_domain.py",
+      "sha256": "423093954b505952396964bb53bab013d7ec0e6a3e1eefcc018188e429bad8f9"
+    },
+    {
+      "path": "src/mgar_v3/super_agent/source_autonomy_factory.py",
+      "sha256": "39f9cae52bfee07e9a188cd1cfc78b2940974390ac80e2ff0e83aa37c8ac4702"
+    },
+    {
+      "path": "src/mgar_v3/super_agent/source_autonomy_profiles.py",
+      "sha256": "8d60c72bb9c7c9d02e7d8e4c9ff4e07856728b3862a80f7e352a6857a746f272"
+    },
+    {
+      "path": "src/mgar_v3/super_agent/source_autonomy_rules.py",
+      "sha256": "6dbf95d078816da5b775715e378edf2d7da456e7479d58772e0395e83005d73b"
+    },
+    {
+      "path": "src/mgar_v3/super_agent/source_autonomy_runtime.py",
+      "sha256": "583f729dd95cdd07f2c020830317dfbf354f49d83b9bff3c7002466ed12a152f"
+    },
+    {
+      "path": "src/mgar_v3/super_agent/source_autonomy_schedule.py",
+      "sha256": "b33649fd57ff270e5876e9b3f48ab80cba210319cec9f900dc20a43f0206c19e"
+    },
+    {
+      "path": "src/mgar_v3/super_agent/source_autonomy_store.py",
+      "sha256": "97cbd0932fcf29ad8309cf9114bf35eb493677c49814351e887acbd83ab155f7"
+    },
+    {
+      "path": "tests/sa16_crash_actor.py",
+      "sha256": "fbaf3de8556f92ec879b85b12aba2a82888482b020fe09b17c76e6ca76a0f8ed"
+    },
+    {
+      "path": "tests/sa16_support.py",
+      "sha256": "0e9f8796bacc286be9444b327605ed79027f2aced5d8aafcebdbcc8c0230b287"
+    },
+    {
+      "path": "tests/test_super_agent_sa16_api.py",
+      "sha256": "8d3dd8fed1d467171b19b81c47d8a66601a5f2a1e09fef55ff09bb4acfbdf1f3"
+    },
+    {
+      "path": "tests/test_super_agent_sa16_boundaries.py",
+      "sha256": "eb1f71e2dae0fe94c4a3e3b08dccdfde849b831381f3910a8c1ea930ed50954c"
+    },
+    {
+      "path": "tests/test_super_agent_sa16_catalogue.py",
+      "sha256": "cd456fba3383df8e20acae1fdcb78dc73427531bb4cc8ef699c6c353e170f69c"
+    },
+    {
+      "path": "tests/test_super_agent_sa16_contracts.py",
+      "sha256": "acc04a1b2e72034e2b71d6d3f56df4459171941869a6f0b52c64db3839a03d86"
+    },
+    {
+      "path": "tests/test_super_agent_sa16_deferred.py",
+      "sha256": "21243ff3c303a91a20cfef1862736708c5f9aebd3d4f2d33adde16874b78b4cb"
+    },
+    {
+      "path": "tests/test_super_agent_sa16_draft.py",
+      "sha256": "02739769ac4ae039d5ba0cc12fdfa3e5e4aaa62b38438a46e129db6cf9a4348b"
+    },
+    {
+      "path": "tests/test_super_agent_sa16_pg.py",
+      "sha256": "90366291320fb20490fd686fbe03765a0c183658c1784e290c462d64d1c1756a"
+    },
+    {
+      "path": "tests/test_super_agent_sa16_recovery.py",
+      "sha256": "ac302cec5a76d3b5d12a9dea1015afaf69fa485d7d84d91a5af1724f94a61912"
+    },
+    {
+      "path": "tests/test_super_agent_sa16_runtime.py",
+      "sha256": "461a9a4c8d5582e06fc237decd29d9f2a3b839f371e4324f7c5bfecb2a071c41"
+    }
+  ]
+}

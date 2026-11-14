@@ -1,0 +1,80 @@
+{
+  "$defs": {
+    "CorrelationInputRef": {
+      "additionalProperties": false,
+      "properties": {
+        "input_id": {
+          "format": "uuid",
+          "title": "Input Id",
+          "type": "string"
+        },
+        "source_instance_id": {
+          "format": "uuid",
+          "title": "Source Instance Id",
+          "type": "string"
+        },
+        "project_id": {
+          "maxLength": 100,
+          "minLength": 1,
+          "title": "Project Id",
+          "type": "string"
+        },
+        "version_fingerprint": {
+          "pattern": "^[a-f0-9]{64}$",
+          "title": "Version Fingerprint",
+          "type": "string"
+        },
+        "state_sha256": {
+          "pattern": "^[a-f0-9]{64}$",
+          "title": "State Sha256",
+          "type": "string"
+        }
+      },
+      "required": [
+        "input_id",
+        "source_instance_id",
+        "project_id",
+        "version_fingerprint",
+        "state_sha256"
+      ],
+      "title": "CorrelationInputRef",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "expected_revision": {
+      "minimum": 1,
+      "title": "Expected Revision",
+      "type": "integer"
+    },
+    "review_ref": {
+      "maxLength": 200,
+      "minLength": 1,
+      "title": "Review Ref",
+      "type": "string"
+    },
+    "decision_key": {
+      "pattern": "^[a-f0-9]{64}$",
+      "title": "Decision Key",
+      "type": "string"
+    },
+    "source_input": {
+      "$ref": "#/$defs/CorrelationInputRef"
+    },
+    "expected_epoch": {
+      "minimum": 0,
+      "title": "Expected Epoch",
+      "type": "integer"
+    }
+  },
+  "required": [
+    "expected_revision",
+    "review_ref",
+    "decision_key",
+    "source_input",
+    "expected_epoch"
+  ],
+  "title": "AutonomyReopenRequest",
+  "type": "object"
+}

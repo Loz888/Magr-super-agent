@@ -89,6 +89,23 @@ def view(core: AutonomyStore, conn: Connection, attempt: Row) -> Row:
         "WHERE run_id=%s ORDER BY created_at DESC LIMIT 16",
         (attempt["run_id"],),
     ).fetchall()
+    usage = conn.execute(
+        "SELECT count(*) AS calls,coalesce(sum(reserved_micros) FILTER "
+        "(WHERE status IN ('reserved','unknown')),0) AS reserved_micros,"
+        "coalesce(sum(settled_micros) FILTER (WHERE status='known'),0) AS settled_micros "
+        "FROM app.usage_calls WHERE run_id=%s",
+        (attempt["run_id"],),
+    ).fetchone()
+    coding_status = conn.execute(
+        "SELECT a.state AS attempt_state,a.reason_code AS attempt_reason,v.verification_id,"
+        "v.result AS verification_result,v.tests_run,v.tests_failed,o.result_code AS latest_result_code "
+        "FROM app.sa_coding_attempts a LEFT JOIN LATERAL(SELECT * FROM app.sa_coding_verifications "
+        "WHERE attempt_id=a.attempt_id ORDER BY observed_at DESC LIMIT 1) v ON true "
+        "LEFT JOIN LATERAL(SELECT result_code FROM app.sa_coding_operations "
+        "WHERE attempt_id=a.attempt_id AND state='known' ORDER BY observed_at DESC LIMIT 1) o ON true "
+        "WHERE a.run_id=%s ORDER BY a.created_at DESC LIMIT 1",
+        (attempt["run_id"],),
+    ).fetchone()
     return {
         **{k: v for k, v in attempt.items() if k not in {"identity_id", "role_binding_id"}},
         "original_run_state": run["status"],
@@ -107,9 +124,29 @@ def view(core: AutonomyStore, conn: Connection, attempt: Row) -> Row:
         "current_authority": f.authority_current,
         "maintenance": plan.model_dump(mode="json"),
         "assignments": slots,
+        "original_coding_status": coding_status,
+        "original_model_usage": usage,
+        "project_budget_available": core.engine.project_budgets.model_available(conn),
         "notification_sent": False,
         "published": False,
     }
+
+
+def close_queued(core: AutonomyStore, conn: Connection, attempt: Row, reason: str) -> None:
+    core._conn(conn)
+    engine = core.engine
+    for queue in conn.execute(
+        "SELECT * FROM app.sa_scheduler_queue WHERE run_id=%s AND state='queued'",
+        (attempt["run_id"],),
+    ).fetchall():
+        updated = conn.execute(
+            "UPDATE app.sa_scheduler_queue SET state='closed',revision=revision+1,"
+            "closed_at=clock_timestamp(),reason_code=%s WHERE queue_id=%s RETURNING *",
+            (reason, queue["queue_id"]),
+        ).fetchone()
+        assert updated is not None
+        engine.project_budgets.release_quota(conn, "queue", queue["queue_quota_key"])
+        engine.source_scheduler._event(conn, "QUEUE_CANCELLED", updated, state="closed")
 
 
 def stop(core: AutonomyStore, conn: Connection, attempt: Row, reason: str) -> Row:
@@ -148,18 +185,7 @@ def stop(core: AutonomyStore, conn: Connection, attempt: Row, reason: str) -> Ro
                 (coding["coding_id"],),
             ).fetchall():
                 engine.source_async._cancel(conn, binding, job["job_id"], job["revision"])
-    for queue in conn.execute(
-        "SELECT * FROM app.sa_scheduler_queue WHERE run_id=%s AND state='queued'",
-        (attempt["run_id"],),
-    ).fetchall():
-        updated = conn.execute(
-            "UPDATE app.sa_scheduler_queue SET state='closed',revision=revision+1,"
-            "closed_at=clock_timestamp(),reason_code=%s WHERE queue_id=%s RETURNING *",
-            (reason, queue["queue_id"]),
-        ).fetchone()
-        assert updated is not None
-        engine.project_budgets.release_quota(conn, "queue", queue["queue_quota_key"])
-        engine.source_scheduler._event(conn, "QUEUE_CANCELLED", updated, state="closed")
+    close_queued(core, conn, attempt, reason)
     for assignment in engine.source_scheduler._occupied(conn):
         if assignment["run_id"] == attempt["run_id"]:
             engine.source_scheduler._drain(conn, assignment, "RUN_STOPPED")
@@ -179,8 +205,14 @@ def maintain(
 ) -> Row:
     core._conn(conn)
     attempts = conn.execute(
-        "SELECT * FROM app.sa_autonomy_attempts WHERE project_id=%s AND control_state='active' "
-        "AND (%s::uuid IS NULL OR rule_id=%s) ORDER BY created_at,attempt_id LIMIT %s FOR UPDATE",
+        "SELECT a.* FROM app.sa_autonomy_attempts a JOIN app.runs r USING(run_id) "
+        "JOIN app.sa_autonomy_rules h USING(rule_id) "
+        "WHERE a.project_id=%s AND a.control_state='active' "
+        "AND (%s::uuid IS NULL OR a.rule_id=%s) ORDER BY "
+        "CASE WHEN a.rule_revision<>h.revision OR a.authority_until<=clock_timestamp() THEN 0 "
+        "WHEN r.status='running' THEN 1 WHEN r.status='queued' THEN 2 "
+        "WHEN r.status IN ('waiting_input','waiting_approval','paused') THEN 3 ELSE 4 END,"
+        "a.created_at,a.attempt_id LIMIT %s FOR UPDATE OF a",
         (core.project, rule_id, rule_id, limit + 1),
     ).fetchall()
     outcomes: list[dict[str, Any]] = []
@@ -217,6 +249,8 @@ def maintain(
         if plan.control == "stop":
             stop(core, conn, attempt, plan.reason_code)
         elif plan.control == "release" and plan.may_release_resource:
+            if f.original_run_state in {"succeeded", "failed", "cancelled"}:
+                close_queued(core, conn, attempt, "AUTONOMY_ORIGINAL_TERMINAL")
             for assignment in core.engine.source_scheduler._occupied(conn):
                 if assignment["run_id"] == attempt["run_id"]:
                     reason = (

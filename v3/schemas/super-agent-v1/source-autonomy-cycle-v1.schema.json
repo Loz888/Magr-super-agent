@@ -1,0 +1,14 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "limit": {
+      "default": 16,
+      "maximum": 64,
+      "minimum": 1,
+      "title": "Limit",
+      "type": "integer"
+    }
+  },
+  "title": "AutonomyCycleRequest",
+  "type": "object"
+}

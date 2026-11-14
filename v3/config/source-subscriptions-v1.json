@@ -105,11 +105,11 @@
     },
     {
       "path": "src/mgar_v3/coordination/engine.py",
-      "sha256": "ac0b20ae5d63ea840d17b52268277ea38dae7cf15ad6f7d07ac8bf2ed3a0caeb"
+      "sha256": "1c0c6321e1092f99ddb8460dc02d2602fa6a654693dd52bfefc08f0a8e06c652"
     },
     {
       "path": "src/mgar_v3/api.py",
-      "sha256": "ed86a57f8a0c9eea515ef14e47fdf7eedc958de1424fe409968ad0861c2014d0"
+      "sha256": "6d6f21282f7c11ce718ba084bf6da1093acb225a27b40808c2b0084301e7eb2c"
     },
     {
       "path": "src/mgar_v3/sources/ingress.py",
@@ -125,7 +125,7 @@
     },
     {
       "path": "config/verification.json",
-      "sha256": "628d1c14b16bbccc90b853f6f1f787e0bf5bfdee73de1365b50261c5d5457f07"
+      "sha256": "76ec29c2138ea5c5e888071a4d10c9e28d65c80d383d461e0c092cdda0c341c5"
     },
     {
       "path": "schemas/super-agent-v1/source-subscription-v1.schema.json",

@@ -1,0 +1,257 @@
+{
+  "$defs": {
+    "AutonomyRule": {
+      "additionalProperties": false,
+      "properties": {
+        "source_instance_id": {
+          "format": "uuid",
+          "title": "Source Instance Id",
+          "type": "string"
+        },
+        "policy_id": {
+          "format": "uuid",
+          "title": "Policy Id",
+          "type": "string"
+        },
+        "policy_revision": {
+          "minimum": 1,
+          "title": "Policy Revision",
+          "type": "integer"
+        },
+        "policy_sha256": {
+          "pattern": "^[a-f0-9]{64}$",
+          "title": "Policy Sha256",
+          "type": "string"
+        },
+        "rule_ref": {
+          "maxLength": 200,
+          "minLength": 1,
+          "title": "Rule Ref",
+          "type": "string"
+        },
+        "rule_sha256": {
+          "pattern": "^[a-f0-9]{64}$",
+          "title": "Rule Sha256",
+          "type": "string"
+        },
+        "repository": {
+          "pattern": "^[a-z0-9_.-]+/[a-z0-9_.-]+$",
+          "title": "Repository",
+          "type": "string"
+        },
+        "mode": {
+          "default": "disabled",
+          "enum": [
+            "disabled",
+            "shadow",
+            "auto_investigate",
+            "auto_repair"
+          ],
+          "title": "Mode",
+          "type": "string"
+        },
+        "profile_sha256": {
+          "pattern": "^[a-f0-9]{64}$",
+          "title": "Profile Sha256",
+          "type": "string"
+        },
+        "objective_sha256": {
+          "pattern": "^[a-f0-9]{64}$",
+          "title": "Objective Sha256",
+          "type": "string"
+        },
+        "cooldown_seconds": {
+          "default": 300,
+          "maximum": 86400,
+          "minimum": 1,
+          "title": "Cooldown Seconds",
+          "type": "integer"
+        },
+        "task_ttl_seconds": {
+          "default": 1800,
+          "maximum": 86400,
+          "minimum": 30,
+          "title": "Task Ttl Seconds",
+          "type": "integer"
+        },
+        "idle_ttl_seconds": {
+          "default": 300,
+          "maximum": 3600,
+          "minimum": 5,
+          "title": "Idle Ttl Seconds",
+          "type": "integer"
+        },
+        "max_active": {
+          "default": 1,
+          "maximum": 16,
+          "minimum": 1,
+          "title": "Max Active",
+          "type": "integer"
+        },
+        "max_attempts": {
+          "default": 1,
+          "maximum": 3,
+          "minimum": 1,
+          "title": "Max Attempts",
+          "type": "integer"
+        },
+        "valid_from": {
+          "format": "date-time",
+          "title": "Valid From",
+          "type": "string"
+        },
+        "valid_until": {
+          "format": "date-time",
+          "title": "Valid Until",
+          "type": "string"
+        },
+        "schedule": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/DailySignal"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        }
+      },
+      "required": [
+        "source_instance_id",
+        "policy_id",
+        "policy_revision",
+        "policy_sha256",
+        "rule_ref",
+        "rule_sha256",
+        "repository",
+        "profile_sha256",
+        "objective_sha256",
+        "valid_from",
+        "valid_until"
+      ],
+      "title": "AutonomyRule",
+      "type": "object"
+    },
+    "CorrelationInputRef": {
+      "additionalProperties": false,
+      "properties": {
+        "input_id": {
+          "format": "uuid",
+          "title": "Input Id",
+          "type": "string"
+        },
+        "source_instance_id": {
+          "format": "uuid",
+          "title": "Source Instance Id",
+          "type": "string"
+        },
+        "project_id": {
+          "maxLength": 100,
+          "minLength": 1,
+          "title": "Project Id",
+          "type": "string"
+        },
+        "version_fingerprint": {
+          "pattern": "^[a-f0-9]{64}$",
+          "title": "Version Fingerprint",
+          "type": "string"
+        },
+        "state_sha256": {
+          "pattern": "^[a-f0-9]{64}$",
+          "title": "State Sha256",
+          "type": "string"
+        }
+      },
+      "required": [
+        "input_id",
+        "source_instance_id",
+        "project_id",
+        "version_fingerprint",
+        "state_sha256"
+      ],
+      "title": "CorrelationInputRef",
+      "type": "object"
+    },
+    "DailySignal": {
+      "additionalProperties": false,
+      "properties": {
+        "timezone": {
+          "maxLength": 100,
+          "minLength": 1,
+          "title": "Timezone",
+          "type": "string"
+        },
+        "at": {
+          "pattern": "^(?:[01][0-9]|2[0-3]):[0-5][0-9]$",
+          "title": "At",
+          "type": "string"
+        },
+        "weekdays": {
+          "default": [
+            0,
+            1,
+            2,
+            3,
+            4,
+            5,
+            6
+          ],
+          "items": {
+            "type": "integer"
+          },
+          "maxItems": 7,
+          "minItems": 1,
+          "title": "Weekdays",
+          "type": "array"
+        },
+        "allow_scheduled_work": {
+          "default": false,
+          "title": "Allow Scheduled Work",
+          "type": "boolean"
+        },
+        "seed_input": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/CorrelationInputRef"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null
+        }
+      },
+      "required": [
+        "timezone",
+        "at"
+      ],
+      "title": "DailySignal",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "expected_revision": {
+      "minimum": 0,
+      "title": "Expected Revision",
+      "type": "integer"
+    },
+    "definition": {
+      "$ref": "#/$defs/AutonomyRule"
+    },
+    "review_ref": {
+      "maxLength": 200,
+      "minLength": 1,
+      "title": "Review Ref",
+      "type": "string"
+    }
+  },
+  "required": [
+    "expected_revision",
+    "definition",
+    "review_ref"
+  ],
+  "title": "AutonomyRuleSave",
+  "type": "object"
+}

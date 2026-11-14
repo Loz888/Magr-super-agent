@@ -1796,7 +1796,9 @@
       "tests/test_super_agent_sa16_api.py",
       "tests/test_super_agent_sa16_boundaries.py",
       "tests/test_super_agent_sa16_recovery.py",
-      "tests/test_super_agent_sa16_runtime.py"
+      "tests/test_super_agent_sa16_runtime.py",
+      "tests/test_super_agent_sa16_deferred.py",
+      "tests/test_super_agent_sa16_catalogue.py"
     ],
     "timeout_seconds": 1200,
     "components": {
@@ -1821,6 +1823,18 @@
       "recovery": "Three real SIGKILL; original claim rollback, committed dedup and disabled fence",
       "H12": "fixed FAIL retained, other CLI owns H12 acceptance",
       "SA17": "NOT_STARTED"
+    }
+  },
+  "SAV1-16-FINAL-BOUNDARIES": {
+    "tests": [
+      "tests/test_super_agent_sa16_deferred.py",
+      "tests/test_super_agent_sa16_catalogue.py"
+    ],
+    "timeout_seconds": 300,
+    "components": {
+      "scope": "Only first deferred claim/version/terminal queue and new schema/catalogue integrity checks; prior passing cases excluded",
+      "SA17": "NOT_STARTED",
+      "real_gates": "NOT_RUN"
     }
   }
 }

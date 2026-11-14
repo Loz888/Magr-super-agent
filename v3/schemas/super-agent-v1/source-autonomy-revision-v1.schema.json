@@ -1,0 +1,22 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "expected_revision": {
+      "minimum": 1,
+      "title": "Expected Revision",
+      "type": "integer"
+    },
+    "review_ref": {
+      "maxLength": 200,
+      "minLength": 1,
+      "title": "Review Ref",
+      "type": "string"
+    }
+  },
+  "required": [
+    "expected_revision",
+    "review_ref"
+  ],
+  "title": "AutonomyRevisionRequest",
+  "type": "object"
+}
