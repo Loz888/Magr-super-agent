@@ -1721,7 +1721,8 @@
       "tests/test_super_agent_sa15_tools.py",
       "tests/test_super_agent_sa15_quality.py",
       "tests/test_super_agent_sa15_relations.py",
-      "tests/test_super_agent_sa15_predecrypt.py"
+      "tests/test_super_agent_sa15_predecrypt.py",
+      "tests/test_super_agent_sa15_status_retention.py"
     ],
     "timeout_seconds": 1200,
     "components": {
@@ -1778,6 +1779,15 @@
     "timeout_seconds": 120,
     "components": {
       "scope": "First additional actual PG/cipher boundary: filter caller scope before decrypting a private candidate"
+    }
+  },
+  "SAV1-15-STATUS-RETENTION": {
+    "tests": [
+      "tests/test_super_agent_sa15_status_retention.py"
+    ],
+    "timeout_seconds": 180,
+    "components": {
+      "scope": "First remaining status-retention checks: current metadata survives body TTL, expired derived bytes remain denied; all previous passing checks excluded"
     }
   }
 }

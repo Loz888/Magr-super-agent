@@ -275,7 +275,7 @@
     },
     {
       "path": "src/mgar_v3/super_agent/source_recall_access.py",
-      "sha256": "a8514a7a11a561f5d5093a2150b99e902fe181917f746ccf533440f273d3c014"
+      "sha256": "627c2b5f42f64fff41216a52311e64f1a5b1edcd256193f88d0e4e22236d4902"
     },
     {
       "path": "src/mgar_v3/super_agent/source_recall_api.py",
@@ -295,7 +295,7 @@
     },
     {
       "path": "src/mgar_v3/super_agent/source_recall_store.py",
-      "sha256": "add83a2a3263aa05c07c2a8f2e51258f9b8a1d5bff12d286d50d6b3924d25dc5"
+      "sha256": "538ec69764511a0922ebae4a53f309d0384b28af54b898c1d05de57e554af54c"
     },
     {
       "path": "src/mgar_v3/super_agent/source_recall_tools.py",
@@ -332,6 +332,10 @@
     {
       "path": "tests/test_super_agent_sa15_predecrypt.py",
       "sha256": "6639e37cde1a32e5f17cb3e527c3f3890b8fe1fabdb47d9bdb5b62b3a32e2e74"
+    },
+    {
+      "path": "tests/test_super_agent_sa15_status_retention.py",
+      "sha256": "aa320bd6bcdc2b43e9797e56d6d1a8f93c852008aedf350822b2f9475e1216e5"
     }
   ]
 }

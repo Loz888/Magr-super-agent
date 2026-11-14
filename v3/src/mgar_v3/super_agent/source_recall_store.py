@@ -260,19 +260,23 @@ class RecallStore:
             return row, [*versions, fingerprint([row["actor"], row["mandate_id"]])]
         for source_id in sources:
             try:
-                value = self.access.source(source_id)
+                if content:
+                    value = self.access.source(source_id)
+                    versions.append(value.ref.state_sha256)
+                else:
+                    metadata, _, grant = self.access.metadata(source_id)
+                    versions.append(fingerprint([metadata, grant]))
             except DomainError:
                 if content:
                     raise denied() from None
                 continue
-            versions.append(value.ref.state_sha256)
         if not sources or not any(self._source_visible(sid) for sid in sources):
             raise denied()
         return row, versions
 
     def _source_visible(self, source_id: UUID) -> bool:
         try:
-            self.access.source(source_id)
+            self.access.metadata(source_id)
             return True
         except DomainError:
             return False

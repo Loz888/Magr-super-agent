@@ -6,7 +6,7 @@ import hashlib
 import time
 from dataclasses import dataclass, field
 from datetime import datetime, timedelta
-from typing import TYPE_CHECKING, Literal
+from typing import TYPE_CHECKING, Any, Literal
 from uuid import UUID
 
 from psycopg.pq import TransactionStatus
@@ -17,6 +17,7 @@ from mgar_v3.super_agent.source_recall_rules import denied
 
 if TYPE_CHECKING:
     from mgar_v3.coordination.engine import Connection, Engine
+    from mgar_v3.sources.ingress_domain import ItemMetadata
     from mgar_v3.super_agent.source_correlation import _Input
 
 
@@ -128,20 +129,27 @@ class RecallAccess:
         self.source(mandate.origin.input.input_id)
         return scope
 
-    def source(self, input_id: UUID) -> _Input:
+    def metadata(self, input_id: UUID) -> tuple[dict[str, Any], ItemMetadata, dict[str, Any]]:
+        """Current Receive provenance without requiring retained or decrypted body bytes.
+
+        This allows a known Task's truthful status after body TTL. It cannot grant
+        derived content, which still uses the original canonical _input proof.
+        """
         self.check()
+        row = self.conn.execute(
+            "SELECT * FROM app.source_ingress_inputs WHERE input_id=%s AND project_id=%s",
+            (input_id, self.engine.settings.project_id),
+        ).fetchone()
+        if row is None:
+            raise denied()
+        if (
+            self.caller.kind == "worker"
+            and row["source_instance_id"] != self.scope.source_instance_id
+        ):
+            raise denied()
+        item, grant = self.engine.source_ingress._readable(self.conn, row)
+        event = item.event
         if self.caller.kind == "worker":
-            # Filter the caller's installation/conversation before decrypting any
-            # candidate body. The original _input subsequently rechecks version,
-            # retention, Source and policy again on this same held connection.
-            row = self.conn.execute(
-                "SELECT * FROM app.source_ingress_inputs WHERE input_id=%s AND project_id=%s",
-                (input_id, self.engine.settings.project_id),
-            ).fetchone()
-            if row is None or row["source_instance_id"] != self.scope.source_instance_id:
-                raise denied()
-            item, grant = self.engine.source_ingress._readable(self.conn, row)
-            event = item.event
             if event.source_thread.conversation_key != self.scope.conversation_key:
                 raise denied()
             roles, _ = self.engine.source_policies._roles(
@@ -149,6 +157,17 @@ class RecallAccess:
             )
             if "context_provider" not in roles or not grant["model_input"]:
                 raise denied()
+        if event.scope.source_kind == "github":
+            _, settings = self.engine.source_correlations.github._current(
+                self.conn, event.scope.source_instance_id
+            )
+            if settings.repository.full_name.lower() != self.engine.settings.repository.lower():
+                raise denied()
+        return row, item, grant
+
+    def source(self, input_id: UUID) -> _Input:
+        # Scope filtering happens before candidate decryption, including search.
+        self.metadata(input_id)
         value = self.engine.source_correlations._input(self.conn, input_id)
         # Native GitHub references must belong to the sole configured repository.
         if any(
