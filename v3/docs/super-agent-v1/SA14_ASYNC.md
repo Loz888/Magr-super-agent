@@ -1,23 +1,22 @@
-# SA14 异步输入与 Job 当前状态
+# SA14 异步输入与 Job
 
-SA13 已获用户接受独立本地受控闭环，见[关闭记录](accept/SAV1-13/independent-closure-20261114.json)。
-SA14 IN_PROGRESS：已实现私有元数据契约、权限／旧视图规则和安全点规划；拟0047六表、
-三个共享文件补丁与12接口提案已备齐。正式迁移／接线和异步运行器等待新的共享确认。
+状态：本地受控工程已闭环，等待独立验收；整卡 IN_PROGRESS，SA15未启动。
+[工程交付](SA14_ACCEPTANCE_20261114.md) · [分版本成绩](accept/SAV1-14/accept.json) · [独立核验请求](SA14_INDEPENDENT_REQUEST.txt)。
 
-[完整范围](sa14-proposal/SA14_SCOPE.md) · [转发 Harness 的请求](sa14-proposal/ownership-request.txt) ·
-[精确提案哈希](sa14-proposal/proposal-manifest.json) · [分版本准备证据](accept/SAV1-14/preparation-20261114.json)。
+原 Engine 持锁 PG 连接管理同一 Thread／Ticket／Run／Mandate／Assignment 上的输入和原资源 Job。
+新输入按 revision 持久化为 received／applied／blocked；只保存 Source 引用，不另存正文。
+Owner 的有类型 deny 或可信当前人类精确 Ticket 控制只能收紧原许可；CI、上下文、引用不授控制权。
+安全点形成不可变视图，实际模型／工具／编辑／命令边界再验当前权威，完整丢弃旧模型回复。
+受控模型 prepare／短 dispatch／poll 分开，命令复用原 bound Broker，等待期间不占 Engine 锁或SQL事务。
+原子文件批次收尾保留真实树和原回执，新限制阻止后续不兼容操作；在途费用继续原账本真实结算。
 
-私有65项首次通过；PG草案29项分版本通过（首轮27／2错误，定向2→1）。lint修正后通过，
-首次typecheck275通过，未重跑原通过项，也不声称最终源码一次94PASS或整卡通过。
-每轮受检候选有执行前不可变源码归档；最初两次归档checker错误在测试前中止并留档。
-SQL草案hash另绑，旧43迁移不变，主库无新六表；临时PG容器／会话无本卡残留。
+第39节 c711d545 已确认并按原字节应用0047和三文件hook。正式44份迁移，12个 metadata/no-store 路由；
+当前受控范围仍只支持既有公开fixture_git、纯函数Python及原H03／SA12 bound H06／固定H11。
+没有引入H09文件Store／Inbox、另一Task或钱包，也没有导入H12。默认无Runtime／Worker／监听或后台线程。
 
-尚待实现：SourceAsync服务、真实12路由、精确Source控制路由、SA13管理模式与密文依赖、
-原命令／模型异步端口、正式PG／Docker并发、撤权、费用、实际SIGKILL恢复和独立验收。
-默认无工作线程或监听。H12真实Agent／MVP仍FAIL，真实／付费／外发／发布／长期门NOT_RUN，
-SA15未启动。
+正式首轮61项26PASS35FAIL；后续仅失败项复验，新增原子编辑边界首次通过。62个独特目标跨版本闭环，
+并非最终源码单轮62PASS。私有65／SQL草案29的历史证据与所有失败保留。等待独立验收，不标DONE。
+H12验收由另一CLI负责；本副本固定H12真实门FAIL、其他真实／付费／外发／发布／长期门NOT_RUN。
 
-
-第39节新确认c711d545已核对并落地正式0047／三文件接线。私有服务、12路由、受管旧入口拒绝、
-操作视图与密文TTL、实际原Job进度／取消及受控模型prepare／dispatch／poll端口已实现；
-首次正式注册检查与实际SIGKILL验证尚未运行，不将实现声明为工程PASS。H12由另一CLI继续验收。
+[冻结范围提案](sa14-proposal/SA14_SCOPE.md)和[提案哈希](sa14-proposal/proposal-manifest.json)保留原字节；
+提案中的“等待确认”是当时状态，实际确认见[第39节固定记录](sa14-proposal/ownership-confirmed.json)。

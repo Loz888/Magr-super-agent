@@ -5,8 +5,8 @@
   "ownership_status": "ACTUALLY_CONFIRMED_FIXED_COMMIT",
   "ownership_commit": "d0af0747dd129033cb7bd0abd2af9ca5a57a8d4a",
   "ownership_section": 35,
-  "artifact_snapshot_utc": "2026-11-13T12:01:03.011788+00:00",
-  "artifact_snapshot_scope": "Current formal per-file hashes refreshed for authorized SA13 composition/catalogue. Historical source-bound PASS/FAIL records remain unchanged; pre-SA13 original bytes are preserved in docs/super-agent-v1/accept/SAV1-13/history/pre-sa13/. This refresh is not acceptance evidence.",
+  "artifact_snapshot_utc": "2026-11-14T09:50:12.753339+00:00",
+  "artifact_snapshot_scope": "Current SA14 composition/catalogue hashes only; pre-SA14 bytes preserved in accept/SAV1-14/history/pre-sa14. Historical PASS/FAIL and independent closure records unchanged; no rerun implied.",
   "artifact_status": "CURRENT_FORMAL_HASHES",
   "migration": "0042_source_subscriptions.sql",
   "migration_status": "FORMAL0042_AND0043_INSTALLED",
@@ -81,7 +81,7 @@
     },
     {
       "path": "tests/test_super_agent_sa11_migration.py",
-      "sha256": "f44aa3c7f75a8854d1636229a11a6da4f1efbd16e5b38a5350e8ca908d42df63"
+      "sha256": "1945b9b7633a761f8a074fb86bf620d81c02059d1453f937d6053c60b095e647"
     },
     {
       "path": "tests/test_super_agent_sa11_recovery.py",
@@ -105,15 +105,15 @@
     },
     {
       "path": "src/mgar_v3/coordination/engine.py",
-      "sha256": "d1e5b16681f9d6f5f8fa0a5a60ee34d01e4c50b4a7afcc754e9db268a9f2313d"
+      "sha256": "6b126ee6ac10bd2591220f20bc6b208c880ab6c73c658cff037a3a9448f39f67"
     },
     {
       "path": "src/mgar_v3/api.py",
-      "sha256": "d8714f22c357ac400abc4441b25fb4fe6637ab0e56af954c602b5e982bf4c09d"
+      "sha256": "f0e7d02ee25918ffa79a69c2d21ac097736faff551309c8c49c823652f289dd0"
     },
     {
       "path": "src/mgar_v3/sources/ingress.py",
-      "sha256": "ca7c47e67c1f7dc1f82fc0613074eac87a96327e991c16cd8b9778e0d7353587"
+      "sha256": "ac6f4acc3e09bf96d7ef32a98db359e1f57bdfd60c6261901c2058aed9ff1e07"
     },
     {
       "path": "src/mgar_v3/super_agent/fast_path.py",
@@ -125,7 +125,7 @@
     },
     {
       "path": "config/verification.json",
-      "sha256": "0a2a516271ff1f33627cbb1b413edbc3c81ac39dac5891c99d121d13b14a3c81"
+      "sha256": "c4522ba4cbb3fba079a560882557290e67e268cef085a023cdf7a4ffb146a9d8"
     },
     {
       "path": "schemas/super-agent-v1/source-subscription-v1.schema.json",

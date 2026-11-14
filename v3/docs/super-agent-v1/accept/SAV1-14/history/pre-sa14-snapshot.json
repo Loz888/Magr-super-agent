@@ -1,0 +1,144 @@
+{
+  "UTC": "2026-11-14T09:50:12.753339+00:00",
+  "files": [
+    {
+      "path": "config/harness-model-import-v1.json",
+      "sha256": "e44c227fa058c41a439cd28ade90b7b65ddeb746d3de7e982fa77cf83b2502c9",
+      "preserved_path": "docs/super-agent-v1/accept/SAV1-14/history/pre-sa14/config/harness-model-import-v1.json",
+      "baseline": "c49cf1f"
+    },
+    {
+      "path": "config/source-coding-v1.json",
+      "sha256": "a9f71a0b97121d9203e8c0f32450aebb11a1e325b508b0ca11e10897d915faf1",
+      "preserved_path": "docs/super-agent-v1/accept/SAV1-14/history/pre-sa14/config/source-coding-v1.json",
+      "baseline": "c49cf1f"
+    },
+    {
+      "path": "config/source-contract-v1.json",
+      "sha256": "a9e250da4799d5de353224a9b5c1029b698aa8bbe3ed9a9e8ee5b43228187fa3",
+      "preserved_path": "docs/super-agent-v1/accept/SAV1-14/history/pre-sa14/config/source-contract-v1.json",
+      "baseline": "c49cf1f"
+    },
+    {
+      "path": "config/source-correlation-v1.json",
+      "sha256": "b95e629e14970535b75cb0e839ad1e8a6845e996fae0a2b69bd53bd3748314e8",
+      "preserved_path": "docs/super-agent-v1/accept/SAV1-14/history/pre-sa14/config/source-correlation-v1.json",
+      "baseline": "c49cf1f"
+    },
+    {
+      "path": "config/source-eval-v1.json",
+      "sha256": "76bbe05393b6ccd3d88ba9d12e67b2a6ab03fc1519caeee652876e3ac283f8e7",
+      "preserved_path": "docs/super-agent-v1/accept/SAV1-14/history/pre-sa14/config/source-eval-v1.json",
+      "baseline": "c49cf1f"
+    },
+    {
+      "path": "config/source-fast-path-v1.json",
+      "sha256": "affdfa678604a412583f22d80a42ecbec76fd485225834cd3839c85ce4a18e57",
+      "preserved_path": "docs/super-agent-v1/accept/SAV1-14/history/pre-sa14/config/source-fast-path-v1.json",
+      "baseline": "c49cf1f"
+    },
+    {
+      "path": "config/source-feishu-v1.json",
+      "sha256": "eecf02246cceb5fca65b3595686615136212110e2c215d2f463841deba6fb420",
+      "preserved_path": "docs/super-agent-v1/accept/SAV1-14/history/pre-sa14/config/source-feishu-v1.json",
+      "baseline": "c49cf1f"
+    },
+    {
+      "path": "config/source-github-v1.json",
+      "sha256": "6e9d41fd82319bd44d04a51621fe583ea747f4b7734412465af29c6bb292b677",
+      "preserved_path": "docs/super-agent-v1/accept/SAV1-14/history/pre-sa14/config/source-github-v1.json",
+      "baseline": "c49cf1f"
+    },
+    {
+      "path": "config/source-identity-v1.json",
+      "sha256": "1e2adf660b230d6b5961244d6d8cc549ffd3be1d28406710fd797a276d463b73",
+      "preserved_path": "docs/super-agent-v1/accept/SAV1-14/history/pre-sa14/config/source-identity-v1.json",
+      "baseline": "c49cf1f"
+    },
+    {
+      "path": "config/source-ingress-v1.json",
+      "sha256": "3d7f5cf8de711fcd06f0f9a7f4619bd2671d1347c5185edfe511fc254c2f44f5",
+      "preserved_path": "docs/super-agent-v1/accept/SAV1-14/history/pre-sa14/config/source-ingress-v1.json",
+      "baseline": "c49cf1f"
+    },
+    {
+      "path": "config/source-policy-v1.json",
+      "sha256": "8f870fb989fb96c3b591067279e3f8281cc42d49166d7410c6b7f43e36415c96",
+      "preserved_path": "docs/super-agent-v1/accept/SAV1-14/history/pre-sa14/config/source-policy-v1.json",
+      "baseline": "c49cf1f"
+    },
+    {
+      "path": "config/source-scheduler-v1.json",
+      "sha256": "a56c4ecc3cd3c731f703cfc582314dd1bfccb457b5b10b099aa4c2f8542a0228",
+      "preserved_path": "docs/super-agent-v1/accept/SAV1-14/history/pre-sa14/config/source-scheduler-v1.json",
+      "baseline": "c49cf1f"
+    },
+    {
+      "path": "config/source-subscriptions-v1.json",
+      "sha256": "fd76b8e30bce0c83d3031370c4569d838837c34d33572413fee80e2433c082aa",
+      "preserved_path": "docs/super-agent-v1/accept/SAV1-14/history/pre-sa14/config/source-subscriptions-v1.json",
+      "baseline": "c49cf1f"
+    },
+    {
+      "path": "config/verification.json",
+      "sha256": "0a2a516271ff1f33627cbb1b413edbc3c81ac39dac5891c99d121d13b14a3c81",
+      "preserved_path": "docs/super-agent-v1/accept/SAV1-14/history/pre-sa14/config/verification.json",
+      "baseline": "c49cf1f"
+    },
+    {
+      "path": "tests/test_super_agent_sa05.py",
+      "sha256": "364a86237475e1311cdf526f0c69d238273468b1ab5875b80250c430615e5ce8",
+      "preserved_path": "docs/super-agent-v1/accept/SAV1-14/history/pre-sa14/tests/test_super_agent_sa05.py",
+      "baseline": "c49cf1f"
+    },
+    {
+      "path": "tests/test_super_agent_sa06_migration.py",
+      "sha256": "ebf92f03da43566b99eb064c252b4835111cfb0c47609f9951220e360fb44b69",
+      "preserved_path": "docs/super-agent-v1/accept/SAV1-14/history/pre-sa14/tests/test_super_agent_sa06_migration.py",
+      "baseline": "c49cf1f"
+    },
+    {
+      "path": "tests/test_super_agent_sa07_migration.py",
+      "sha256": "c8d443034b3f5143cfb1e92bee9f42ba26db2b88ca5a6f067da754eef94cc5af",
+      "preserved_path": "docs/super-agent-v1/accept/SAV1-14/history/pre-sa14/tests/test_super_agent_sa07_migration.py",
+      "baseline": "c49cf1f"
+    },
+    {
+      "path": "tests/test_super_agent_sa08_migration.py",
+      "sha256": "23d888627d6079b8df8974979de9dfd7016950822fbba5cdcbaa3262348cae72",
+      "preserved_path": "docs/super-agent-v1/accept/SAV1-14/history/pre-sa14/tests/test_super_agent_sa08_migration.py",
+      "baseline": "c49cf1f"
+    },
+    {
+      "path": "tests/test_super_agent_sa09_migration.py",
+      "sha256": "58947c8e489575bca4dc34bb04f35503b43ce2f8e33ae5aa1ac4eceaffff4e6a",
+      "preserved_path": "docs/super-agent-v1/accept/SAV1-14/history/pre-sa14/tests/test_super_agent_sa09_migration.py",
+      "baseline": "c49cf1f"
+    },
+    {
+      "path": "tests/test_super_agent_sa10_migration.py",
+      "sha256": "911f89a869543d4a6ffcb182923afd22964500c8c24ebe0d46d02b0a44a91113",
+      "preserved_path": "docs/super-agent-v1/accept/SAV1-14/history/pre-sa14/tests/test_super_agent_sa10_migration.py",
+      "baseline": "c49cf1f"
+    },
+    {
+      "path": "tests/test_super_agent_sa11_migration.py",
+      "sha256": "f44aa3c7f75a8854d1636229a11a6da4f1efbd16e5b38a5350e8ca908d42df63",
+      "preserved_path": "docs/super-agent-v1/accept/SAV1-14/history/pre-sa14/tests/test_super_agent_sa11_migration.py",
+      "baseline": "c49cf1f"
+    },
+    {
+      "path": "tests/test_super_agent_sa12_migration.py",
+      "sha256": "8a0937909a32362cfca9b9135a43ef09a35b16196165626652af6f32c32041ec",
+      "preserved_path": "docs/super-agent-v1/accept/SAV1-14/history/pre-sa14/tests/test_super_agent_sa12_migration.py",
+      "baseline": "c49cf1f"
+    },
+    {
+      "path": "tests/test_super_agent_sa13_migration.py",
+      "sha256": "197ecbd09e4531a301209f0836e6d945538c063199dd2f7eacfa9ca0ed465edc",
+      "preserved_path": "docs/super-agent-v1/accept/SAV1-14/history/pre-sa14/tests/test_super_agent_sa13_migration.py",
+      "baseline": "c49cf1f"
+    }
+  ],
+  "scope": "Original pre-SA14 metadata and current-catalogue assertions; not historical outcome changes"
+}

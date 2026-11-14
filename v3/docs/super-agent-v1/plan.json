@@ -432,8 +432,8 @@
       "optional": false,
       "card": "TASKS.md#sa14",
       "verification_target_on_implementation": "SAV1-14",
-      "work_state": "FORMAL_IMPLEMENTATION_AND_FIRST_REGISTERED_CHECKS",
-      "engineering_gate": "NOT_RUN",
+      "work_state": "LOCAL_ENGINEERING_READY_PENDING_INDEPENDENT_REVIEW",
+      "engineering_gate": "PASS_VERSIONED_LOCAL_CONTROLLED_SCOPE",
       "independent_review": "NOT_RUN",
       "dependency_closure": "accept/SAV1-13/independent-closure-20261114.json",
       "preparation": "accept/SAV1-14/preparation-20261114.json",
@@ -441,8 +441,12 @@
       "proposal_manifest": "sa14-proposal/proposal-manifest.json",
       "unique_preparation_checks_passed_across_versions": 94,
       "single_final_full_pass_claimed": false,
-      "formal_integration": "IMPLEMENTED_AWAITING_FIRST_REGISTERED_CHECKS",
-      "ownership_commit": "c711d54504c4945625505f47e9df56e22bc1bdac"
+      "formal_integration": "COMPLETE_LOCAL_CONTROLLED_VERSIONED",
+      "ownership_commit": "c711d54504c4945625505f47e9df56e22bc1bdac",
+      "formal_distinct_cases_PASS": 62,
+      "remaining_failed_cases": 0,
+      "SA15": "NOT_STARTED",
+      "acceptance": "accept/SAV1-14/accept.json"
     },
     {
       "id": "SAV1-15",

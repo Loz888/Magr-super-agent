@@ -1,0 +1,255 @@
+{
+  "$defs": {
+    "AsyncScope": {
+      "additionalProperties": false,
+      "properties": {
+        "coding_id": {
+          "format": "uuid",
+          "title": "Coding Id",
+          "type": "string"
+        },
+        "coding_revision": {
+          "maximum": 9223372036854775807,
+          "minimum": 1,
+          "title": "Coding Revision",
+          "type": "integer"
+        },
+        "target": {
+          "$ref": "#/$defs/CodingTarget"
+        },
+        "assignment_id": {
+          "format": "uuid",
+          "title": "Assignment Id",
+          "type": "string"
+        },
+        "session_id": {
+          "format": "uuid",
+          "title": "Session Id",
+          "type": "string"
+        },
+        "workspace_id": {
+          "format": "uuid",
+          "title": "Workspace Id",
+          "type": "string"
+        },
+        "epoch": {
+          "maximum": 9223372036854775807,
+          "minimum": 1,
+          "title": "Epoch",
+          "type": "integer"
+        },
+        "mandate_sha256": {
+          "pattern": "^[a-f0-9]{64}$",
+          "title": "Mandate Sha256",
+          "type": "string"
+        },
+        "profile_sha256": {
+          "pattern": "^[a-f0-9]{64}$",
+          "title": "Profile Sha256",
+          "type": "string"
+        },
+        "initial_context_sha256": {
+          "pattern": "^[a-f0-9]{64}$",
+          "title": "Initial Context Sha256",
+          "type": "string"
+        },
+        "control_profile_sha256": {
+          "anyOf": [
+            {
+              "pattern": "^[a-f0-9]{64}$",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Control Profile Sha256"
+        }
+      },
+      "required": [
+        "coding_id",
+        "coding_revision",
+        "target",
+        "assignment_id",
+        "session_id",
+        "workspace_id",
+        "epoch",
+        "mandate_sha256",
+        "profile_sha256",
+        "initial_context_sha256"
+      ],
+      "title": "AsyncScope",
+      "type": "object"
+    },
+    "CodingTarget": {
+      "additionalProperties": false,
+      "properties": {
+        "project_id": {
+          "maxLength": 100,
+          "minLength": 1,
+          "title": "Project Id",
+          "type": "string"
+        },
+        "thread_id": {
+          "format": "uuid",
+          "title": "Thread Id",
+          "type": "string"
+        },
+        "ticket_id": {
+          "format": "uuid",
+          "title": "Ticket Id",
+          "type": "string"
+        },
+        "run_id": {
+          "format": "uuid",
+          "title": "Run Id",
+          "type": "string"
+        },
+        "mandate_id": {
+          "format": "uuid",
+          "title": "Mandate Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "project_id",
+        "thread_id",
+        "ticket_id",
+        "run_id",
+        "mandate_id"
+      ],
+      "title": "CodingTarget",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "job_id": {
+      "format": "uuid",
+      "title": "Job Id",
+      "type": "string"
+    },
+    "async_id": {
+      "format": "uuid",
+      "title": "Async Id",
+      "type": "string"
+    },
+    "scope": {
+      "$ref": "#/$defs/AsyncScope"
+    },
+    "checkpoint_id": {
+      "format": "uuid",
+      "title": "Checkpoint Id",
+      "type": "string"
+    },
+    "coding_operation_id": {
+      "format": "uuid",
+      "title": "Coding Operation Id",
+      "type": "string"
+    },
+    "resource_operation_id": {
+      "format": "uuid",
+      "title": "Resource Operation Id",
+      "type": "string"
+    },
+    "request_sha256": {
+      "pattern": "^[a-f0-9]{64}$",
+      "title": "Request Sha256",
+      "type": "string"
+    },
+    "tree_sha256": {
+      "pattern": "^[a-f0-9]{64}$",
+      "title": "Tree Sha256",
+      "type": "string"
+    },
+    "environment_sha256": {
+      "pattern": "^[a-f0-9]{64}$",
+      "title": "Environment Sha256",
+      "type": "string"
+    },
+    "input_revision": {
+      "maximum": 9223372036854775807,
+      "minimum": 0,
+      "title": "Input Revision",
+      "type": "integer"
+    },
+    "revision": {
+      "maximum": 9223372036854775807,
+      "minimum": 1,
+      "title": "Revision",
+      "type": "integer"
+    },
+    "state": {
+      "enum": [
+        "prepared",
+        "running",
+        "stop_requested",
+        "unknown",
+        "known"
+      ],
+      "title": "State",
+      "type": "string"
+    },
+    "result_code": {
+      "anyOf": [
+        {
+          "enum": [
+            "succeeded",
+            "failed",
+            "cancelled",
+            "absent"
+          ],
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Result Code"
+    },
+    "receipt_sha256": {
+      "anyOf": [
+        {
+          "pattern": "^[a-f0-9]{64}$",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Receipt Sha256"
+    },
+    "observed_at": {
+      "anyOf": [
+        {
+          "format": "date-time",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Observed At"
+    }
+  },
+  "required": [
+    "job_id",
+    "async_id",
+    "scope",
+    "checkpoint_id",
+    "coding_operation_id",
+    "resource_operation_id",
+    "request_sha256",
+    "tree_sha256",
+    "environment_sha256",
+    "input_revision",
+    "revision",
+    "state"
+  ],
+  "title": "AsyncJob",
+  "type": "object"
+}

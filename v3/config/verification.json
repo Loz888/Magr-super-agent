@@ -1708,7 +1708,10 @@
       "h12_real_agent_MVP": "FAIL",
       "live_source_paid_outbound_publication_longterm": "NOT_RUN",
       "independent_review": "NOT_RUN",
-      "SA15": "NOT_STARTED"
+      "SA15": "NOT_STARTED",
+      "engineering_gate": "PASS_VERSIONED_LOCAL_CONTROLLED_SCOPE",
+      "single_final_full_suite_PASS_claimed": false,
+      "atomic_boundary": "New first check: Owner restriction commits after first physical file replace; remaining original batch finishes and original receipt becomes known; next incompatible write blocked."
     }
   }
 }

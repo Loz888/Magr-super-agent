@@ -4,8 +4,8 @@
   "status": "FORMAL_IMPLEMENTATION",
   "ownership_status": "ACTUALLY_CONFIRMED_FIXED_COMMIT",
   "ownership_commit": "0a335a14d8ce37703b5cfe0eaa7960d4ac571fc7",
-  "artifact_snapshot_utc": "2026-11-13T12:01:03.011788+00:00",
-  "artifact_snapshot_scope": "Current formal per-file hashes refreshed for authorized SA13 composition/catalogue. Historical source-bound PASS/FAIL records remain unchanged; pre-SA13 original bytes are preserved in docs/super-agent-v1/accept/SAV1-13/history/pre-sa13/. This refresh is not acceptance evidence.",
+  "artifact_snapshot_utc": "2026-11-14T09:50:12.753339+00:00",
+  "artifact_snapshot_scope": "Current SA14 composition/catalogue hashes only; pre-SA14 bytes preserved in accept/SAV1-14/history/pre-sa14. Historical PASS/FAIL and independent closure records unchanged; no rerun implied.",
   "artifact_status": "CURRENT_FORMAL_HASHES",
   "proposed_migration": "0041_source_correlations.sql",
   "migration_status": "FORMAL0041_INSTALLED",
@@ -81,7 +81,7 @@
     },
     {
       "path": "tests/test_super_agent_sa10_migration.py",
-      "sha256": "911f89a869543d4a6ffcb182923afd22964500c8c24ebe0d46d02b0a44a91113"
+      "sha256": "39d0fe035421fea5f4b0c0d2b2d644db6df6cd94b28258adc1bab86c6e85b19a"
     },
     {
       "path": "schemas/super-agent-v1/source-correlation-resource-v1.schema.json",
@@ -129,7 +129,7 @@
     },
     {
       "path": "config/verification.json",
-      "sha256": "0a2a516271ff1f33627cbb1b413edbc3c81ac39dac5891c99d121d13b14a3c81"
+      "sha256": "c4522ba4cbb3fba079a560882557290e67e268cef085a023cdf7a4ffb146a9d8"
     },
     {
       "path": "migrations/0041_source_correlations.sql",
@@ -137,11 +137,11 @@
     },
     {
       "path": "src/mgar_v3/coordination/engine.py",
-      "sha256": "d1e5b16681f9d6f5f8fa0a5a60ee34d01e4c50b4a7afcc754e9db268a9f2313d"
+      "sha256": "6b126ee6ac10bd2591220f20bc6b208c880ab6c73c658cff037a3a9448f39f67"
     },
     {
       "path": "src/mgar_v3/api.py",
-      "sha256": "d8714f22c357ac400abc4441b25fb4fe6637ab0e56af954c602b5e982bf4c09d"
+      "sha256": "f0e7d02ee25918ffa79a69c2d21ac097736faff551309c8c49c823652f289dd0"
     }
   ],
   "baseline_before_formal_integration": "e9ee378c1977cdb4feaea29bda2d00e3f6c891ca"

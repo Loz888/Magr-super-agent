@@ -1,0 +1,50 @@
+{
+  "contract_version": "source-contract-v1",
+  "event_version": "source-event-v1",
+  "status": "FROZEN",
+  "implementation": [
+    "src/mgar_v3/sources/domain.py",
+    "src/mgar_v3/sources/ports.py",
+    "src/mgar_v3/sources/registry.py",
+    "src/mgar_v3/sources/legacy.py"
+  ],
+  "migration": "0030_source_contracts.sql",
+  "business_authority": "existing Engine and PostgreSQL; no new primary state machine",
+  "source_instance_identity": [
+    "source_kind",
+    "source_instance_id",
+    "tenant_id",
+    "installation_id"
+  ],
+  "new_ingress_listener_enabled": false,
+  "real_adapters_installed": false,
+  "artifacts": [
+    {
+      "path": "schemas/super-agent-v1/channel-message-v1.schema.json",
+      "sha256": "45f403d6915b9749438f26abdcd5b4385d9650c0822dd504b160f28bee9ff175"
+    },
+    {
+      "path": "schemas/super-agent-v1/source-event-v1.schema.json",
+      "sha256": "cc837b41ca6807184efe57e53ae2e31fa569872c0f08a7d04cb448646c0a873d"
+    },
+    {
+      "path": "schemas/super-agent-v1/source-health-v1.schema.json",
+      "sha256": "c41e778fb90a4877a08854cf33606df3685e41e7ac88adce3dc1f0e659fde3ba"
+    },
+    {
+      "path": "schemas/super-agent-v1/source-instance-v1.schema.json",
+      "sha256": "3147ecab634c24e6d452be1333881c5249671e7efe72163ed03d2373cc5f5cdd"
+    },
+    {
+      "path": "schemas/super-agent-v1/source-metadata-v1.schema.json",
+      "sha256": "6becde195590d4d336f1b2cef9492a972bf981ff4683d29fb4f1e03c41b22442"
+    },
+    {
+      "path": "fixtures/super-agent-v1/source-v1/samples.json",
+      "sha256": "60fed8d2e57864eb479480ae0e1043ddfaa2101be88607b895e0dcf3dbb0f066"
+    }
+  ],
+  "compatibility": "Original TriggerInput, Engine and API unchanged; opt-in legacy wrapper only",
+  "metadata_is_platform_ack": false,
+  "policy_roles_and_complete_ingress": "SA02/SA03/SA04 not implemented by SA01"
+}

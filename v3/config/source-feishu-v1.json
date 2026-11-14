@@ -58,11 +58,11 @@
     },
     {
       "path": "src/mgar_v3/sources/ingress.py",
-      "sha256": "ca7c47e67c1f7dc1f82fc0613074eac87a96327e991c16cd8b9778e0d7353587"
+      "sha256": "ac6f4acc3e09bf96d7ef32a98db359e1f57bdfd60c6261901c2058aed9ff1e07"
     },
     {
       "path": "src/mgar_v3/api.py",
-      "sha256": "d8714f22c357ac400abc4441b25fb4fe6637ab0e56af954c602b5e982bf4c09d"
+      "sha256": "f0e7d02ee25918ffa79a69c2d21ac097736faff551309c8c49c823652f289dd0"
     },
     {
       "path": "migrations/0035_feishu_source.sql",
@@ -102,7 +102,7 @@
     },
     {
       "path": "tests/test_super_agent_sa06_migration.py",
-      "sha256": "ebf92f03da43566b99eb064c252b4835111cfb0c47609f9951220e360fb44b69"
+      "sha256": "56b5300de0def72c8cd0c38cfe43d8425dfaa4907f337b57761bc03ccc47ff49"
     },
     {
       "path": "tests/test_super_agent_sa06_privacy.py",
@@ -130,7 +130,7 @@
     },
     {
       "path": "tests/test_super_agent_sa05.py",
-      "sha256": "364a86237475e1311cdf526f0c69d238273468b1ab5875b80250c430615e5ce8"
+      "sha256": "cb62304ef042b740372bba3ad17bc3222f58b53276e762205f5d3b5cb33207c0"
     },
     {
       "path": "pyproject.toml",
@@ -142,18 +142,18 @@
     },
     {
       "path": "config/verification.json",
-      "sha256": "0a2a516271ff1f33627cbb1b413edbc3c81ac39dac5891c99d121d13b14a3c81"
+      "sha256": "c4522ba4cbb3fba079a560882557290e67e268cef085a023cdf7a4ffb146a9d8"
     },
     {
       "path": "config/source-ingress-v1.json",
-      "sha256": "3d7f5cf8de711fcd06f0f9a7f4619bd2671d1347c5185edfe511fc254c2f44f5"
+      "sha256": "1494133626e6c306816a013828f1886400e1e37b67edbf7fe5ce95aa3b7608f0"
     },
     {
       "path": "config/source-github-v1.json",
-      "sha256": "6e9d41fd82319bd44d04a51621fe583ea747f4b7734412465af29c6bb292b677"
+      "sha256": "ea8ed4c8078962ee5d4808355c8d9739aba8ac53582a52bf8f90c724ba9a693d"
     }
   ],
-  "artifact_snapshot_utc": "2026-11-13T12:01:03.011788+00:00",
-  "artifact_snapshot_scope": "Current formal per-file hashes refreshed for authorized SA13 composition/catalogue. Historical source-bound PASS/FAIL records remain unchanged; pre-SA13 original bytes are preserved in docs/super-agent-v1/accept/SAV1-13/history/pre-sa13/. This refresh is not acceptance evidence.",
+  "artifact_snapshot_utc": "2026-11-14T09:50:12.753339+00:00",
+  "artifact_snapshot_scope": "Current SA14 composition/catalogue hashes only; pre-SA14 bytes preserved in accept/SAV1-14/history/pre-sa14. Historical PASS/FAIL and independent closure records unchanged; no rerun implied.",
   "artifact_status": "CURRENT_FORMAL_HASHES"
 }

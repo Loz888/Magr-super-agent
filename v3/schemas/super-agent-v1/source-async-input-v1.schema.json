@@ -1,0 +1,186 @@
+{
+  "$defs": {
+    "AsyncRestriction": {
+      "additionalProperties": false,
+      "description": "Only deny sets grow; no field can grant paths, commands, network or payment.",
+      "properties": {
+        "deny_write_paths": {
+          "default": [],
+          "items": {
+            "maxLength": 256,
+            "type": "string"
+          },
+          "maxItems": 64,
+          "title": "Deny Write Paths",
+          "type": "array"
+        },
+        "deny_commands": {
+          "default": [],
+          "items": {
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_+.-]{0,63}$",
+            "type": "string"
+          },
+          "maxItems": 32,
+          "title": "Deny Commands",
+          "type": "array"
+        }
+      },
+      "title": "AsyncRestriction",
+      "type": "object"
+    },
+    "CorrelationInputRef": {
+      "additionalProperties": false,
+      "properties": {
+        "input_id": {
+          "format": "uuid",
+          "title": "Input Id",
+          "type": "string"
+        },
+        "source_instance_id": {
+          "format": "uuid",
+          "title": "Source Instance Id",
+          "type": "string"
+        },
+        "project_id": {
+          "maxLength": 100,
+          "minLength": 1,
+          "title": "Project Id",
+          "type": "string"
+        },
+        "version_fingerprint": {
+          "pattern": "^[a-f0-9]{64}$",
+          "title": "Version Fingerprint",
+          "type": "string"
+        },
+        "state_sha256": {
+          "pattern": "^[a-f0-9]{64}$",
+          "title": "State Sha256",
+          "type": "string"
+        }
+      },
+      "required": [
+        "input_id",
+        "source_instance_id",
+        "project_id",
+        "version_fingerprint",
+        "state_sha256"
+      ],
+      "title": "CorrelationInputRef",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "input_id": {
+      "format": "uuid",
+      "title": "Input Id",
+      "type": "string"
+    },
+    "async_id": {
+      "format": "uuid",
+      "title": "Async Id",
+      "type": "string"
+    },
+    "scope_sha256": {
+      "pattern": "^[a-f0-9]{64}$",
+      "title": "Scope Sha256",
+      "type": "string"
+    },
+    "sequence": {
+      "maximum": 9223372036854775807,
+      "minimum": 1,
+      "title": "Sequence",
+      "type": "integer"
+    },
+    "kind": {
+      "enum": [
+        "context",
+        "restriction",
+        "invalidation",
+        "job_progress"
+      ],
+      "title": "Kind",
+      "type": "string"
+    },
+    "state": {
+      "enum": [
+        "received",
+        "applied",
+        "blocked"
+      ],
+      "title": "State",
+      "type": "string"
+    },
+    "input_revision": {
+      "maximum": 9223372036854775807,
+      "minimum": 0,
+      "title": "Input Revision",
+      "type": "integer"
+    },
+    "request_sha256": {
+      "pattern": "^[a-f0-9]{64}$",
+      "title": "Request Sha256",
+      "type": "string"
+    },
+    "source_input": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/CorrelationInputRef"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "restriction": {
+      "anyOf": [
+        {
+          "$ref": "#/$defs/AsyncRestriction"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null
+    },
+    "reason_code": {
+      "anyOf": [
+        {
+          "pattern": "^[A-Z0-9_]{1,100}$",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Reason Code"
+    },
+    "applied_checkpoint_id": {
+      "anyOf": [
+        {
+          "format": "uuid",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Applied Checkpoint Id"
+    }
+  },
+  "required": [
+    "input_id",
+    "async_id",
+    "scope_sha256",
+    "sequence",
+    "kind",
+    "state",
+    "input_revision",
+    "request_sha256"
+  ],
+  "title": "AsyncInputReceipt",
+  "type": "object"
+}

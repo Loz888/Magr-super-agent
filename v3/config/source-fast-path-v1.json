@@ -55,7 +55,7 @@
     },
     {
       "path": "tests/test_super_agent_sa08_migration.py",
-      "sha256": "23d888627d6079b8df8974979de9dfd7016950822fbba5cdcbaa3262348cae72"
+      "sha256": "f04e78011a41cfaf72078eea54aa3760f8adef6ff18b40bbee8c26a0815c5236"
     },
     {
       "path": "tests/sa08_support.py",
@@ -86,7 +86,7 @@
       "sha256": "d0e819f5c27d810d81f42fed273febd9c74571e7d76a1022308e90fb52386911"
     }
   ],
-  "artifact_snapshot_utc": "2026-11-13T11:27:58.804521+00:00",
-  "artifact_snapshot_scope": "Current formal per-file hashes refreshed for authorized SA13 composition/catalogue. Historical source-bound PASS/FAIL records remain unchanged; pre-SA13 original bytes are preserved in docs/super-agent-v1/accept/SAV1-13/history/pre-sa13/. This refresh is not acceptance evidence.",
+  "artifact_snapshot_utc": "2026-11-14T09:50:12.753339+00:00",
+  "artifact_snapshot_scope": "Current SA14 composition/catalogue hashes only; pre-SA14 bytes preserved in accept/SAV1-14/history/pre-sa14. Historical PASS/FAIL and independent closure records unchanged; no rerun implied.",
   "artifact_status": "CURRENT_FORMAL_HASHES"
 }

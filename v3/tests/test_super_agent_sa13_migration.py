@@ -33,7 +33,7 @@ def test_formal0046_exact_approved_sql_and_original_connection(engine):
         path.name: hashlib.sha256(path.read_bytes()).hexdigest()
         for path in (APP / "migrations").glob("*.sql")
     }
-    assert len(expected) == 43
+    assert len(expected) == 44
     assert not any(name.startswith(("0037", "0040", "0045")) for name in expected)
     assert isinstance(engine.source_coding, SourceCoding)
     assert engine.source_coding.engine is engine

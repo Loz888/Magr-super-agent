@@ -1,0 +1,45 @@
+{
+  "contract_version": "source-identity-v1",
+  "status": "FROZEN",
+  "implementation": [
+    "src/mgar_v3/sources/identity_domain.py",
+    "src/mgar_v3/sources/identity.py",
+    "src/mgar_v3/sources/identity_api.py"
+  ],
+  "migration": "0031_source_identities.sql",
+  "management_api_prefix": "/api/v3/source-identities",
+  "management_auth": "current console owner cookie, Origin, CSRF, in-transaction session recheck",
+  "source_proof_issuance_http_enabled": false,
+  "production_verifiers_registered": false,
+  "role_scope": "explicit independent conversation binding; exact existing Ticket membership for control",
+  "nonhuman_roles": [
+    "context_provider"
+  ],
+  "no_implicit_authority": [
+    "display_name",
+    "message_body",
+    "quoted_request",
+    "model_output",
+    "legacy_actor",
+    "shared_principal",
+    "ordinary_IM_approval"
+  ],
+  "business_authority": "existing Engine transaction and PostgreSQL; no second writer/state machine",
+  "artifacts": [
+    {
+      "path": "schemas/super-agent-v1/source-identity-bind-v1.schema.json",
+      "sha256": "c6ff88631e340f8e58884e9fc4e260cef4d2942ffd7b15eec94c5330a27fffb5"
+    },
+    {
+      "path": "schemas/super-agent-v1/source-identity-role-change-v1.schema.json",
+      "sha256": "e2e2774d556e25af9dfceeb49458354cf773bfe2cef6a6155515957a9b803592"
+    },
+    {
+      "path": "schemas/super-agent-v1/source-identity-subject-v1.schema.json",
+      "sha256": "dac005c9b2562aa8787236c28c895dcfb306962fd2bf7c10a4321a2cccee9e8c"
+    }
+  ],
+  "live_source_channel_gate": "NOT_RUN",
+  "live_coding_gate": "NOT_RUN",
+  "live_publication_gate": "NOT_RUN"
+}

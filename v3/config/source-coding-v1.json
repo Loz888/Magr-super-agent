@@ -48,16 +48,16 @@
     "rerun": false,
     "formal_integration_inferred": false
   },
-  "artifact_snapshot_utc": "2026-11-13T12:17:05.918025+00:00",
-  "artifact_snapshot_scope": "Current formal source/schema/test hashes; these hashes neither rerun historical PASS nor establish a new engineering/independent/live gate.",
+  "artifact_snapshot_utc": "2026-11-14T09:50:12.753339+00:00",
+  "artifact_snapshot_scope": "Current SA14 composition/catalogue hashes only; pre-SA14 bytes preserved in accept/SAV1-14/history/pre-sa14. Historical PASS/FAIL and independent closure records unchanged; no rerun implied.",
   "artifacts": [
     {
       "path": "config/source-scheduler-v1.json",
-      "sha256": "a56c4ecc3cd3c731f703cfc582314dd1bfccb457b5b10b099aa4c2f8542a0228"
+      "sha256": "8e8ece2828b16bd27d0de20b3cca59b37a5959bde8cbe975635265aba9587356"
     },
     {
       "path": "config/verification.json",
-      "sha256": "0a2a516271ff1f33627cbb1b413edbc3c81ac39dac5891c99d121d13b14a3c81"
+      "sha256": "c4522ba4cbb3fba079a560882557290e67e268cef085a023cdf7a4ffb146a9d8"
     },
     {
       "path": "docs/super-agent-v1/accept/SAV1-13/history/api-import-order-followup.json",
@@ -153,11 +153,11 @@
     },
     {
       "path": "src/mgar_v3/api.py",
-      "sha256": "d8714f22c357ac400abc4441b25fb4fe6637ab0e56af954c602b5e982bf4c09d"
+      "sha256": "f0e7d02ee25918ffa79a69c2d21ac097736faff551309c8c49c823652f289dd0"
     },
     {
       "path": "src/mgar_v3/coordination/engine.py",
-      "sha256": "d1e5b16681f9d6f5f8fa0a5a60ee34d01e4c50b4a7afcc754e9db268a9f2313d"
+      "sha256": "6b126ee6ac10bd2591220f20bc6b208c880ab6c73c658cff037a3a9448f39f67"
     },
     {
       "path": "src/mgar_v3/harness/coding_loop.py",
@@ -181,7 +181,7 @@
     },
     {
       "path": "src/mgar_v3/super_agent/source_coding.py",
-      "sha256": "e49935865205546be2c5048b42527b9fd1e72f02e8c71290b7122bc7c45745f6"
+      "sha256": "8f99a673cf8e8821b98bc47c1bc8d4d033071acc449903d02e4e571647af7e33"
     },
     {
       "path": "src/mgar_v3/super_agent/source_coding_api.py",
@@ -197,7 +197,7 @@
     },
     {
       "path": "src/mgar_v3/super_agent/source_coding_journal.py",
-      "sha256": "14899f3a018b93c6effec28ee51cfd9e7445b1292f1f09d9371d6dd85c6362b9"
+      "sha256": "065fb20746bec3e054d1401db7bb49b73e986d4e30b6337a5e519453164c3373"
     },
     {
       "path": "src/mgar_v3/super_agent/source_coding_rules.py",
@@ -205,7 +205,7 @@
     },
     {
       "path": "src/mgar_v3/super_agent/source_coding_runtime.py",
-      "sha256": "6a47559d842de98d29cd48a9036798b62211186b11463c6979a5345063508b93"
+      "sha256": "362e02f21cf822b871bfc13aacd3369e757a7951ef4b807001130ba21c493e83"
     },
     {
       "path": "src/mgar_v3/super_agent/source_coding_workspace.py",
@@ -237,35 +237,35 @@
     },
     {
       "path": "tests/test_super_agent_sa05.py",
-      "sha256": "364a86237475e1311cdf526f0c69d238273468b1ab5875b80250c430615e5ce8"
+      "sha256": "cb62304ef042b740372bba3ad17bc3222f58b53276e762205f5d3b5cb33207c0"
     },
     {
       "path": "tests/test_super_agent_sa06_migration.py",
-      "sha256": "ebf92f03da43566b99eb064c252b4835111cfb0c47609f9951220e360fb44b69"
+      "sha256": "56b5300de0def72c8cd0c38cfe43d8425dfaa4907f337b57761bc03ccc47ff49"
     },
     {
       "path": "tests/test_super_agent_sa07_migration.py",
-      "sha256": "c8d443034b3f5143cfb1e92bee9f42ba26db2b88ca5a6f067da754eef94cc5af"
+      "sha256": "7c52a544b2bc81df482597d05c9510d60a381b4a3c7cc1836ec36394ef9013ea"
     },
     {
       "path": "tests/test_super_agent_sa08_migration.py",
-      "sha256": "23d888627d6079b8df8974979de9dfd7016950822fbba5cdcbaa3262348cae72"
+      "sha256": "f04e78011a41cfaf72078eea54aa3760f8adef6ff18b40bbee8c26a0815c5236"
     },
     {
       "path": "tests/test_super_agent_sa09_migration.py",
-      "sha256": "58947c8e489575bca4dc34bb04f35503b43ce2f8e33ae5aa1ac4eceaffff4e6a"
+      "sha256": "58a9c1f526aeed72f723bf319542da28142991aa025bc65f0a1ce81cc5ceb6e8"
     },
     {
       "path": "tests/test_super_agent_sa10_migration.py",
-      "sha256": "911f89a869543d4a6ffcb182923afd22964500c8c24ebe0d46d02b0a44a91113"
+      "sha256": "39d0fe035421fea5f4b0c0d2b2d644db6df6cd94b28258adc1bab86c6e85b19a"
     },
     {
       "path": "tests/test_super_agent_sa11_migration.py",
-      "sha256": "f44aa3c7f75a8854d1636229a11a6da4f1efbd16e5b38a5350e8ca908d42df63"
+      "sha256": "1945b9b7633a761f8a074fb86bf620d81c02059d1453f937d6053c60b095e647"
     },
     {
       "path": "tests/test_super_agent_sa12_migration.py",
-      "sha256": "8a0937909a32362cfca9b9135a43ef09a35b16196165626652af6f32c32041ec"
+      "sha256": "7a2d762045a49f11912482a737548c2e0da357398b056936ce7441c6f5d8f73c"
     },
     {
       "path": "tests/test_super_agent_sa12_runtime.py",
@@ -297,7 +297,7 @@
     },
     {
       "path": "tests/test_super_agent_sa13_migration.py",
-      "sha256": "197ecbd09e4531a301209f0836e6d945538c063199dd2f7eacfa9ca0ed465edc"
+      "sha256": "edf4a2e4abce8965271d85930d631f8a39cc697f243b482a48d21314df5a21c2"
     },
     {
       "path": "tests/test_super_agent_sa13_recovery.py",
@@ -334,5 +334,6 @@
   "latest_functional_source_sha256": "2b32953d1210e97e0bb8584c41f612a681edaed261dfee0e61be17f37977309a",
   "distinct_formal_cases_with_passing_evidence": 212,
   "latest_single_full_suite_pass_claimed": false,
-  "remaining_failed_cases": 0
+  "remaining_failed_cases": 0,
+  "artifact_status": "CURRENT_FORMAL_HASHES"
 }

@@ -1,0 +1,51 @@
+{
+  "UTC": "2026-11-14T09:50:12.753339+00:00",
+  "scope": "Current catalogue43→44 and forward0047 only; historical43 SQL/old outcomes unchanged, no rerun of prior PASS cases",
+  "files": [
+    {
+      "path": "tests/test_super_agent_sa05.py",
+      "before_sha256": "364a86237475e1311cdf526f0c69d238273468b1ab5875b80250c430615e5ce8",
+      "after_sha256": "cb62304ef042b740372bba3ad17bc3222f58b53276e762205f5d3b5cb33207c0"
+    },
+    {
+      "path": "tests/test_super_agent_sa06_migration.py",
+      "before_sha256": "ebf92f03da43566b99eb064c252b4835111cfb0c47609f9951220e360fb44b69",
+      "after_sha256": "56b5300de0def72c8cd0c38cfe43d8425dfaa4907f337b57761bc03ccc47ff49"
+    },
+    {
+      "path": "tests/test_super_agent_sa07_migration.py",
+      "before_sha256": "c8d443034b3f5143cfb1e92bee9f42ba26db2b88ca5a6f067da754eef94cc5af",
+      "after_sha256": "7c52a544b2bc81df482597d05c9510d60a381b4a3c7cc1836ec36394ef9013ea"
+    },
+    {
+      "path": "tests/test_super_agent_sa08_migration.py",
+      "before_sha256": "23d888627d6079b8df8974979de9dfd7016950822fbba5cdcbaa3262348cae72",
+      "after_sha256": "f04e78011a41cfaf72078eea54aa3760f8adef6ff18b40bbee8c26a0815c5236"
+    },
+    {
+      "path": "tests/test_super_agent_sa09_migration.py",
+      "before_sha256": "58947c8e489575bca4dc34bb04f35503b43ce2f8e33ae5aa1ac4eceaffff4e6a",
+      "after_sha256": "58a9c1f526aeed72f723bf319542da28142991aa025bc65f0a1ce81cc5ceb6e8"
+    },
+    {
+      "path": "tests/test_super_agent_sa10_migration.py",
+      "before_sha256": "911f89a869543d4a6ffcb182923afd22964500c8c24ebe0d46d02b0a44a91113",
+      "after_sha256": "39d0fe035421fea5f4b0c0d2b2d644db6df6cd94b28258adc1bab86c6e85b19a"
+    },
+    {
+      "path": "tests/test_super_agent_sa11_migration.py",
+      "before_sha256": "f44aa3c7f75a8854d1636229a11a6da4f1efbd16e5b38a5350e8ca908d42df63",
+      "after_sha256": "1945b9b7633a761f8a074fb86bf620d81c02059d1453f937d6053c60b095e647"
+    },
+    {
+      "path": "tests/test_super_agent_sa12_migration.py",
+      "before_sha256": "8a0937909a32362cfca9b9135a43ef09a35b16196165626652af6f32c32041ec",
+      "after_sha256": "7a2d762045a49f11912482a737548c2e0da357398b056936ce7441c6f5d8f73c"
+    },
+    {
+      "path": "tests/test_super_agent_sa13_migration.py",
+      "before_sha256": "197ecbd09e4531a301209f0836e6d945538c063199dd2f7eacfa9ca0ed465edc",
+      "after_sha256": "edf4a2e4abce8965271d85930d631f8a39cc697f243b482a48d21314df5a21c2"
+    }
+  ]
+}

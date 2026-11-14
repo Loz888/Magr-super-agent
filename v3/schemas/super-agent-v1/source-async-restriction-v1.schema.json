@@ -1,0 +1,82 @@
+{
+  "$defs": {
+    "AsyncRestriction": {
+      "additionalProperties": false,
+      "description": "Only deny sets grow; no field can grant paths, commands, network or payment.",
+      "properties": {
+        "deny_write_paths": {
+          "default": [],
+          "items": {
+            "maxLength": 256,
+            "type": "string"
+          },
+          "maxItems": 64,
+          "title": "Deny Write Paths",
+          "type": "array"
+        },
+        "deny_commands": {
+          "default": [],
+          "items": {
+            "pattern": "^[A-Za-z0-9][A-Za-z0-9_+.-]{0,63}$",
+            "type": "string"
+          },
+          "maxItems": 32,
+          "title": "Deny Commands",
+          "type": "array"
+        }
+      },
+      "title": "AsyncRestriction",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "request_id": {
+      "format": "uuid",
+      "title": "Request Id",
+      "type": "string"
+    },
+    "coding_id": {
+      "format": "uuid",
+      "title": "Coding Id",
+      "type": "string"
+    },
+    "run_id": {
+      "format": "uuid",
+      "title": "Run Id",
+      "type": "string"
+    },
+    "expected_epoch": {
+      "maximum": 9223372036854775807,
+      "minimum": 1,
+      "title": "Expected Epoch",
+      "type": "integer"
+    },
+    "expected_revision": {
+      "maximum": 9223372036854775807,
+      "minimum": 1,
+      "title": "Expected Revision",
+      "type": "integer"
+    },
+    "restriction": {
+      "$ref": "#/$defs/AsyncRestriction"
+    },
+    "review_ref": {
+      "maxLength": 256,
+      "minLength": 1,
+      "title": "Review Ref",
+      "type": "string"
+    }
+  },
+  "required": [
+    "request_id",
+    "coding_id",
+    "run_id",
+    "expected_epoch",
+    "expected_revision",
+    "restriction",
+    "review_ref"
+  ],
+  "title": "AsyncRestrictRequest",
+  "type": "object"
+}

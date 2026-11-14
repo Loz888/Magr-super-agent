@@ -648,6 +648,7 @@ def test_real_33_to_34_upgrade_preserves_every_legacy_checksum_and_row(database,
             "0043_source_subscription_canonical_guard.sql",
             "0044_source_scheduler.sql",
             "0046_source_coding.sql",
+            "0047_source_async.sql",
         ] and migrate(dsn) == []
         with psycopg.connect(dsn) as conn:
             assert conn.execute(

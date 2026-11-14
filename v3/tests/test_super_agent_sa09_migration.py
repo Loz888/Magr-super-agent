@@ -77,6 +77,7 @@ def test_37_to_38_preserves_known_unknown_source_facts_and_rolls_back_failed_ddl
         "0043_source_subscription_canonical_guard.sql",
             "0044_source_scheduler.sql",
             "0046_source_coding.sql",
+            "0047_source_async.sql",
     }
     directory = tmp_path / "before0039"
     directory.mkdir()
@@ -164,12 +165,13 @@ def test_37_to_38_preserves_known_unknown_source_facts_and_rolls_back_failed_ddl
             "0043_source_subscription_canonical_guard.sql",
             "0044_source_scheduler.sql",
             "0046_source_coding.sql",
+            "0047_source_async.sql",
         ]
         assert migrate(dsn) == []
         assert snapshot(dsn, old_tables) == before
         with psycopg.connect(dsn) as conn:
             checksums = dict(conn.execute("SELECT name,sha256 FROM app.schema_migrations"))
-            assert len(checksums) == 43 and checksums == {
+            assert len(checksums) == 44 and checksums == {
                 p.name: hashlib.sha256(p.read_bytes()).hexdigest() for p in paths
             }
             assert {

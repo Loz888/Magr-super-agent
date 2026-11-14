@@ -117,6 +117,7 @@ def test_35_to_36_preserves_known_unknown_original_fees_and_checksums(
             "0043_source_subscription_canonical_guard.sql",
             "0044_source_scheduler.sql",
             "0046_source_coding.sql",
+            "0047_source_async.sql",
         ]
         assert migrate(dsn) == []
         assert financial_snapshot(dsn) == original

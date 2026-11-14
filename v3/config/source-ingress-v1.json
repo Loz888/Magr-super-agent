@@ -63,7 +63,7 @@
     },
     {
       "path": "src/mgar_v3/sources/ingress.py",
-      "sha256": "ca7c47e67c1f7dc1f82fc0613074eac87a96327e991c16cd8b9778e0d7353587"
+      "sha256": "ac6f4acc3e09bf96d7ef32a98db359e1f57bdfd60c6261901c2058aed9ff1e07"
     },
     {
       "path": "src/mgar_v3/sources/ingress_api.py",
@@ -132,5 +132,8 @@
     "change": "Current role/kind context_only grant; no historical flag fabrication, Engine/API DTO/budget changes",
     "baseline": "9fb6593cbd12a511cf089a5ddebcdb98f408f253",
     "historical_acceptance": "Prior frozen commits and accept/evidence untouched"
-  }
+  },
+  "artifact_snapshot_utc": "2026-11-14T09:50:12.753339+00:00",
+  "artifact_snapshot_scope": "Current SA14 composition/catalogue hashes only; pre-SA14 bytes preserved in accept/SAV1-14/history/pre-sa14. Historical PASS/FAIL and independent closure records unchanged; no rerun implied.",
+  "artifact_status": "CURRENT_FORMAL_HASHES"
 }
