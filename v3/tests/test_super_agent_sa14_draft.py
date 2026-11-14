@@ -28,7 +28,7 @@ def draft_database(tmp_path_factory):
     # Never fall back to the configured development or acceptance database.
     assert info.get("host") == "127.0.0.1"
     assert int(info.get("port", 0)) not in {0, 5432, 55435, 55432}
-    assert info.get("dbname") == "sa14_draft"
+    assert info.get("dbname") == "mgar_v3_test_sa14_draft"
     assert info.get("user") == "sa14_draft"
     assert os.environ.get("SA14_DRAFT_CONTAINER", "").startswith("mgar-sa14-draft-")
     with psycopg.connect(dsn) as conn:
@@ -61,7 +61,8 @@ def test_draft_installs_six_tables_and_leaves_original_migrations_intact(draft_d
         tables = {
             row["tablename"]
             for row in conn.execute(
-                "SELECT tablename FROM pg_tables WHERE schemaname='app' AND tablename LIKE 'sa_async_%'"
+                "SELECT tablename FROM pg_tables WHERE schemaname='app' "
+                "AND tablename LIKE 'sa_async_%'"
             )
         }
         assert tables == {
@@ -189,10 +190,12 @@ def draft_scope(draft_database, tmp_path):
                 initial_context_sha256=mandate.context_sha256,
             )
             row = conn.execute(
-                "INSERT INTO app.sa_async_bindings(async_id,coding_id,project_id,run_id,coding_revision,"
+                "INSERT INTO app.sa_async_bindings(async_id,coding_id,project_id,run_id,"
+                "coding_revision,"
                 "assignment_id,session_id,workspace_id,execution_epoch,mandate_sha256,profile_sha256,"
                 "initial_context_sha256,scope_sha256,request_id,request_sha256,signed_by,review_sha256,"
-                "expires_at) VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s) RETURNING *",
+                "expires_at) VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s) "
+                "RETURNING *",
                 (
                     uuid4(),
                     mandate.coding_id,
