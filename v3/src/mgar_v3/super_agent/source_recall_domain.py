@@ -172,3 +172,5 @@ class RecallCursor(RecallModel):
     offset: Annotated[int, Field(strict=True, ge=0, le=2_000_000)]
     after_id: UUID | None = None
     expires_at: AwareDatetime
+    window_after: AwareDatetime | None = None
+    window_before: AwareDatetime | None = None

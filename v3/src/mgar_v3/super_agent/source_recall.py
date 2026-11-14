@@ -8,7 +8,7 @@ from __future__ import annotations
 
 import hashlib
 import re
-from datetime import timedelta
+from datetime import UTC, timedelta
 from typing import TYPE_CHECKING, Any
 from uuid import UUID
 
@@ -189,11 +189,7 @@ class SourceRecall:
         with self.engine.transaction() as conn:
             access = RecallAccess(self.engine, conn, caller)
             store = RecallStore(access)
-            after = request.after or access.now - timedelta(days=7)
-            before = request.before or access.now
             query_hash = fingerprint(request.model_dump(mode="json", exclude={"cursor"}))
-            # Bind a continuation to its original time window, even with default dates.
-            search_version = fingerprint([RECALL_VERSION, request.after, request.before])
             after_id = UUID(int=0)
             expiry = access.scope.expires_at
             if request.cursor:
@@ -203,11 +199,27 @@ class SourceRecall:
                 if (
                     cursor.purpose != "search"
                     or cursor.request_sha256 != query_hash
-                    or cursor.version_sha256 != search_version
                     or cursor.after_id is None
+                    or cursor.window_after is None
+                    or cursor.window_before is None
+                ):
+                    raise denied()
+                # The authenticated continuation carries the actual first-page
+                # UTC bounds. Recomputing defaults from this page's clock would
+                # silently admit messages received after the original upper bound.
+                after = cursor.window_after.astimezone(UTC)
+                before = cursor.window_before.astimezone(UTC)
+                search_version = fingerprint([RECALL_VERSION, after, before])
+                if (
+                    not timedelta(0) < before - after <= timedelta(days=31)
+                    or cursor.version_sha256 != search_version
                 ):
                     raise denied()
                 after_id, expiry = cursor.after_id, min(expiry, cursor.expires_at)
+            else:
+                after = (request.after or access.now - timedelta(days=7)).astimezone(UTC)
+                before = (request.before or access.now).astimezone(UTC)
+                search_version = fingerprint([RECALL_VERSION, after, before])
             installation = request.source_instance_id or access.scope.source_instance_id
             if access.caller.kind == "worker" and installation != access.scope.source_instance_id:
                 raise denied()
@@ -286,6 +298,8 @@ class SourceRecall:
                         after_id=scanned_id,
                         offset=0,
                         expires_at=expiry,
+                        window_after=after,
+                        window_before=before,
                     )
                 )
             clarification = (

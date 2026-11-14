@@ -271,7 +271,7 @@
     },
     {
       "path": "src/mgar_v3/super_agent/source_recall.py",
-      "sha256": "8c3bddee3ae7399dc5315cd3d2061de8aec37bdd2cf72064f3447190960f00ab"
+      "sha256": "7804e124355a96912aaf7732028f407103474c3e4c123caee64b720a8f5c4487"
     },
     {
       "path": "src/mgar_v3/super_agent/source_recall_access.py",
@@ -287,7 +287,7 @@
     },
     {
       "path": "src/mgar_v3/super_agent/source_recall_domain.py",
-      "sha256": "dd77c03d923e1dc2f30cc2981bbb62ac491cd21d110107c7fc1899dd352c15e7"
+      "sha256": "5f2151c615fa5eeb199e7ddbbaba6fb86d70b592190a8bb89164cb22139b3d9e"
     },
     {
       "path": "src/mgar_v3/super_agent/source_recall_rules.py",
