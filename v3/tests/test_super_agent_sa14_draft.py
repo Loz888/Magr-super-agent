@@ -9,8 +9,14 @@ import pytest
 from psycopg.conninfo import conninfo_to_dict
 from psycopg.rows import dict_row
 from psycopg.types.json import Jsonb
+from sa13_support import setup as coding_setup
 
+from mgar_v3.coordination.engine import Engine
+from mgar_v3.domain import digest
+from mgar_v3.evidence.artifacts import ArtifactStore
+from mgar_v3.settings import Settings
 from mgar_v3.store.migrate import migrate
+from mgar_v3.super_agent.source_async_domain import AsyncScope
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -137,3 +143,143 @@ def test_forwards_only_draft_never_adds_formal_0047_or_a_parallel_wallet(draft_d
         original_usage = conn.execute("SELECT count(*) FROM app.usage_calls").fetchone()[0]
         original_runs = conn.execute("SELECT count(*) FROM app.runs").fetchone()[0]
         assert original_usage == original_runs == 0
+
+
+@pytest.fixture
+def draft_scope(draft_database, tmp_path):
+    from psycopg import sql
+
+    # Disposable proposal DB only. No Engine exists during fixture reset.
+    with psycopg.connect(draft_database, autocommit=True) as conn:
+        tables = conn.execute(
+            "SELECT schemaname,tablename FROM pg_tables WHERE schemaname IN ('app','knowledge') "
+            "AND tablename NOT IN ('schema_migrations','workbench_phase_transitions')"
+        ).fetchall()
+        conn.execute(
+            sql.SQL("TRUNCATE {} RESTART IDENTITY CASCADE").format(
+                sql.SQL(",").join(sql.Identifier(*row) for row in tables)
+            )
+        )
+    settings = Settings(
+        database_url=draft_database,
+        artifact_root=tmp_path / "artifacts",
+        repository="example/mgar-test",
+        local_actor="owner",
+        allowed_actors=["owner"],
+        graph_version="r1-quotes-v1",
+        allow_paid=False,
+        allow_external_write=False,
+    )
+    engine = Engine(settings, ArtifactStore(settings.artifact_root))
+    try:
+        env = coding_setup(engine, tmp_path)
+        request, mandate = env.run_request, env.mandate
+        with engine.transaction() as conn:
+            _, facts = engine.source_coding.current(conn, env.worker["bearer"], request)
+            scope = AsyncScope(
+                coding_id=mandate.coding_id,
+                coding_revision=mandate.revision,
+                target=mandate.target,
+                assignment_id=request.assignment_id,
+                session_id=request.session_id,
+                workspace_id=facts.workspace_id,
+                epoch=request.epoch,
+                mandate_sha256=mandate.mandate_sha256,
+                profile_sha256=mandate.worker_profile_sha256,
+                initial_context_sha256=mandate.context_sha256,
+            )
+            row = conn.execute(
+                "INSERT INTO app.sa_async_bindings(async_id,coding_id,project_id,run_id,coding_revision,"
+                "assignment_id,session_id,workspace_id,execution_epoch,mandate_sha256,profile_sha256,"
+                "initial_context_sha256,scope_sha256,request_id,request_sha256,signed_by,review_sha256,"
+                "expires_at) VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s) RETURNING *",
+                (
+                    uuid4(),
+                    mandate.coding_id,
+                    mandate.target.project_id,
+                    mandate.target.run_id,
+                    mandate.revision,
+                    request.assignment_id,
+                    request.session_id,
+                    facts.workspace_id,
+                    request.epoch,
+                    mandate.mandate_sha256,
+                    mandate.worker_profile_sha256,
+                    mandate.context_sha256,
+                    scope.scope_sha256,
+                    uuid4(),
+                    digest("SA14-draft-request"),
+                    mandate.signed_by,
+                    digest("SA14-draft-review"),
+                    mandate.valid_until,
+                ),
+            ).fetchone()
+        yield engine, env, row
+    finally:
+        engine.close()
+
+
+def test_actual_draft_scope_can_only_narrow_restrictions(draft_scope):
+    engine, _, row = draft_scope
+    narrowed = {"deny_write_paths": ["src/db"], "deny_commands": []}
+    with engine.transaction() as conn:
+        conn.execute(
+            "UPDATE app.sa_async_bindings SET restriction=%s,revision=revision+1,"
+            "updated_at=clock_timestamp() WHERE async_id=%s",
+            (Jsonb(narrowed), row["async_id"]),
+        )
+    with pytest.raises(psycopg.errors.RaiseException, match="cannot expand authority"):
+        with engine.transaction() as conn:
+            conn.execute(
+                "UPDATE app.sa_async_bindings SET restriction=%s,revision=revision+1,"
+                "updated_at=clock_timestamp() WHERE async_id=%s",
+                (Jsonb({"deny_write_paths": [], "deny_commands": []}), row["async_id"]),
+            )
+    with engine.transaction() as conn:
+        assert (
+            conn.execute(
+                "SELECT restriction FROM app.sa_async_bindings WHERE async_id=%s",
+                (row["async_id"],),
+            ).fetchone()["restriction"]
+            == narrowed
+        )
+
+
+def test_original_source_erasure_fences_in_same_transaction_and_rolls_back(draft_scope):
+    engine, env, row = draft_scope
+    with pytest.raises(RuntimeError, match="rollback boundary"):
+        with engine.transaction() as conn:
+            conn.execute(
+                "SELECT app.expire_source_input(%s,%s)", (env.input_id, "SA14_DRAFT_ERASURE")
+            )
+            assert (
+                conn.execute(
+                    "SELECT state FROM app.sa_async_bindings WHERE async_id=%s", (row["async_id"],)
+                ).fetchone()["state"]
+                == "fenced"
+            )
+            raise RuntimeError("rollback boundary")
+    with engine.transaction() as conn:
+        before = conn.execute(
+            "SELECT * FROM app.sa_async_bindings WHERE async_id=%s", (row["async_id"],)
+        ).fetchone()
+        assert before["state"] == "active" and before["received_sequence"] == 0
+        assert conn.execute("SELECT count(*) AS n FROM app.sa_async_inputs").fetchone()["n"] == 0
+        conn.execute("SELECT app.expire_source_input(%s,%s)", (env.input_id, "SA14_DRAFT_ERASURE"))
+    with engine.transaction() as conn:
+        after = conn.execute(
+            "SELECT * FROM app.sa_async_bindings WHERE async_id=%s", (row["async_id"],)
+        ).fetchone()
+        inputs = conn.execute("SELECT kind,origin,state FROM app.sa_async_inputs").fetchall()
+        assert (
+            after["state"] == "fenced"
+            and after["input_revision"] == after["received_sequence"] == 1
+        )
+        assert inputs == [{"kind": "invalidation", "origin": "system", "state": "received"}]
+    with pytest.raises(psycopg.errors.RaiseException, match="cannot expand authority"):
+        with engine.transaction() as conn:
+            conn.execute(
+                "UPDATE app.sa_async_bindings SET state='active',reason_code=NULL,"
+                "fenced_at=NULL,revision=revision+1,updated_at=clock_timestamp() WHERE async_id=%s",
+                (row["async_id"],),
+            )

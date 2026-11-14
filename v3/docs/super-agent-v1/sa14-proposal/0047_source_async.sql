@@ -270,8 +270,8 @@ BEGIN
             OR NEW.updated_at<OLD.updated_at OR NEW.received_sequence<OLD.received_sequence
             OR NEW.applied_sequence<OLD.applied_sequence OR NEW.input_revision<OLD.input_revision
             OR (OLD.state<>'active' AND NEW.state='active')
-            OR NOT NEW.restriction->'deny_write_paths' @> OLD.restriction->'deny_write_paths'
-            OR NOT NEW.restriction->'deny_commands' @> OLD.restriction->'deny_commands'
+            OR NOT ((NEW.restriction->'deny_write_paths') @> (OLD.restriction->'deny_write_paths'))
+            OR NOT ((NEW.restriction->'deny_commands') @> (OLD.restriction->'deny_commands'))
             OR (to_jsonb(NEW)-ARRAY['revision','input_revision','received_sequence','applied_sequence',
                 'restriction','current_checkpoint_id','state','reason_code','fenced_at','updated_at'])
                 IS DISTINCT FROM
@@ -293,8 +293,8 @@ BEGIN
     IF NOT FOUND OR NOT app.sa_async_current(NEW.async_id) OR NEW.scope_sha256<>b.scope_sha256
         OR NEW.project_id<>b.project_id OR NEW.input_revision<>b.input_revision
         OR NEW.through_sequence<>b.received_sequence OR NEW.expires_at>b.expires_at
-        OR NOT NEW.restriction->'deny_write_paths' @> b.restriction->'deny_write_paths'
-        OR NOT NEW.restriction->'deny_commands' @> b.restriction->'deny_commands'
+        OR NOT ((NEW.restriction->'deny_write_paths') @> (b.restriction->'deny_write_paths'))
+        OR NOT ((NEW.restriction->'deny_commands') @> (b.restriction->'deny_commands'))
         OR (SELECT count(*) FROM app.sa_async_checkpoints WHERE async_id=NEW.async_id)>=512 THEN
         RAISE EXCEPTION 'safe point requires bounded current exact original authority';
     END IF;
