@@ -1789,5 +1789,20 @@
     "components": {
       "scope": "First remaining status-retention checks: current metadata survives body TTL, expired derived bytes remain denied; all previous passing checks excluded"
     }
+  },
+  "SAV1-16": {
+    "tests": [
+      "tests/test_super_agent_sa16_pg.py",
+      "tests/test_super_agent_sa16_api.py"
+    ],
+    "timeout_seconds": 1200,
+    "components": {
+      "scope": "Initial formal original Engine/PG/API SA16 lifecycle; private77 and draft10 previous PASS excluded",
+      "ownership": "91c0b75693037bb0d90cb2eccd35356cd2e96135 §41; exact0048 and five files",
+      "original_writer": "one held Engine connection, mutex and short transaction; no parallel task/balance",
+      "models": "controlled SourceEval saved suggestions, no paid calls or listeners",
+      "SA17": "NOT_STARTED",
+      "real_platform_paid_outbound_publication_longterm": "NOT_RUN"
+    }
   }
 }

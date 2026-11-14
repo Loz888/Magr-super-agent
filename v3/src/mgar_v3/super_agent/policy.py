@@ -608,6 +608,9 @@ class SourcePolicies:
     def check_run(
         self, conn: Connection, run: Row, capability: str | None = None, *, resume: bool = False
     ) -> None:
+        autonomy = getattr(self.engine, "source_autonomy", None)
+        if autonomy is not None:
+            autonomy.check_run(conn, run, capability, resume=resume)
         binding = self._bound(conn, run["run_id"])
         if binding is None:
             return  # Byte-compatible old authorization semantics, never upgrade an old grant.

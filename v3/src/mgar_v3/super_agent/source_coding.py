@@ -307,12 +307,14 @@ class SourceCoding:
         ):
             raise _error("SOURCE_CODING_IDENTITY_POLICY_FENCED")
         definition = source.definition
+        autonomy = getattr(self.engine, "source_autonomy", None)
+        delegated = autonomy.coding_current(conn, mandate) if autonomy is not None else False
         if (
             definition.mode != "auto_repair"
             or not definition.receive.enabled
             or not definition.receive.model_input
             or not definition.admission.enabled
-            or "explicit_request" not in definition.admission.request_kinds
+            or (not delegated and "explicit_request" not in definition.admission.request_kinds)
             or not definition.execution.enabled
             or not {"read_repository", "edit_files", "run_tests"}.issubset(
                 definition.execution.capabilities
@@ -512,100 +514,106 @@ class SourceCoding:
     def admit(self, cookie: str, request: CodingAdmitRequest) -> Row:
         with self.engine.transaction() as conn:
             user = self._console(conn, cookie)
-            previous = conn.execute(
-                "SELECT * FROM app.sa_coding_bindings WHERE project_id=%s AND request_id=%s",
-                (self.project, request.request_id),
+            return self._admit_authorized(conn, user, request)
+
+    def _admit_authorized(self, conn: Connection, user: UUID, request: CodingAdmitRequest) -> Row:
+        """Trusted original-connection primitive; the public Owner check is retained."""
+        self._conn(conn)
+        previous = conn.execute(
+            "SELECT * FROM app.sa_coding_bindings WHERE project_id=%s AND request_id=%s",
+            (self.project, request.request_id),
+        ).fetchone()
+        request_hash = digest(request.model_dump(mode="json"))
+        if previous:
+            if previous["request_sha256"] != request_hash:
+                raise _error("SOURCE_CODING_IDEMPOTENCY_CONFLICT", 409)
+            return self._view(previous)
+        run, mandate = self._mandate(conn, request.run_id)
+        self._source(conn, mandate)
+        self.fresh_context(conn, mandate)
+        if (
+            mandate.signed_by != user
+            or mandate.origin.input != request.source_input
+            or mandate.origin.policy_revision != request.expected_policy_revision
+            or request.expected_revision != 0
+            or mandate.revision != 1
+            or request.expected_epoch != 0
+            or run["execution_epoch"] != 0
+            or run["status"] != "queued"
+            or run["ticket_status"] != "open"
+            or request.profile_sha256 != mandate.worker_profile_sha256
+            or request.target_sha256 != self.engine.source_scheduler._target_hash(conn, run)
+            or not mandate.valid_from <= self.now(conn) < mandate.valid_until
+        ):
+            raise _error("SOURCE_CODING_ADMISSION_STALE", 409)
+        if (
+            conn.execute(
+                "SELECT 1 FROM app.usage_calls WHERE run_id=%s", (request.run_id,)
             ).fetchone()
-            request_hash = digest(request.model_dump(mode="json"))
-            if previous:
-                if previous["request_sha256"] != request_hash:
-                    raise _error("SOURCE_CODING_IDEMPOTENCY_CONFLICT", 409)
-                return self._view(previous)
-            run, mandate = self._mandate(conn, request.run_id)
-            self._source(conn, mandate)
-            self.fresh_context(conn, mandate)
-            if (
-                mandate.signed_by != user
-                or mandate.origin.input != request.source_input
-                or mandate.origin.policy_revision != request.expected_policy_revision
-                or request.expected_revision != 0
-                or mandate.revision != 1
-                or request.expected_epoch != 0
-                or run["execution_epoch"] != 0
-                or run["status"] != "queued"
-                or run["ticket_status"] != "open"
-                or request.profile_sha256 != mandate.worker_profile_sha256
-                or request.target_sha256 != self.engine.source_scheduler._target_hash(conn, run)
-                or not mandate.valid_from <= self.now(conn) < mandate.valid_until
-            ):
-                raise _error("SOURCE_CODING_ADMISSION_STALE", 409)
-            if (
-                conn.execute(
-                    "SELECT 1 FROM app.usage_calls WHERE run_id=%s", (request.run_id,)
-                ).fetchone()
-                or conn.execute(
-                    "SELECT 1 FROM app.sa_coding_bindings WHERE project_id=%s AND input_id=%s",
-                    (self.project, mandate.origin.input.input_id),
-                ).fetchone()
-            ):
-                raise _error("SOURCE_CODING_DUPLICATE_TARGET", 409)
-            origin, target = mandate.origin, mandate.target
-            values = {
-                "coding_id": mandate.coding_id,
-                "project_id": self.project,
-                "thread_id": target.thread_id,
-                "ticket_id": target.ticket_id,
-                "run_id": target.run_id,
-                "mandate_id": target.mandate_id,
-                "mandate_revision": mandate.revision,
-                "request_id": request.request_id,
-                "request_sha256": request_hash,
-                "execution_mode": "fixture",
-                "source_instance_id": origin.input.source_instance_id,
-                "input_id": origin.input.input_id,
-                "version_fingerprint": origin.input.version_fingerprint,
-                "source_state_sha256": origin.input.state_sha256,
-                "identity_id": origin.identity_id,
-                "identity_revision": origin.identity_revision,
-                "principal_id": origin.principal_id,
-                "engine_actor": origin.engine_actor,
-                "policy_id": origin.policy_id,
-                "policy_revision": origin.policy_revision,
-                "policy_sha256": origin.policy_sha256,
-                "mandate_sha256": mandate.mandate_sha256,
-                "profile_sha256": mandate.worker_profile_sha256,
-                "context_sha256": mandate.context_sha256,
-                "acceptance_sha256": mandate.acceptance_sha256,
-                "review_sha256": mandate.review_sha256,
-                "signed_by": user,
-                "valid_from": mandate.valid_from,
-                "valid_until": mandate.valid_until,
-            }
-            columns = ",".join(values)
-            placeholders = ",".join("%s" for _ in values)
-            row = conn.execute(
-                "INSERT INTO app.sa_coding_bindings("
-                + columns
-                + ") VALUES("
-                + placeholders
-                + ") RETURNING *",
-                tuple(values.values()),
+            or conn.execute(
+                "SELECT 1 FROM app.sa_coding_bindings WHERE project_id=%s AND input_id=%s",
+                (self.project, mandate.origin.input.input_id),
             ).fetchone()
-            assert row is not None
-            self.event(conn, row, "CODING_ADMITTED", state="admitted")
-            self.engine.source_scheduler.enqueue(
-                cookie,
-                SchedulerEnqueueRequest(
-                    request_id=request.request_id,
-                    run_id=request.run_id,
-                    expected_epoch=0,
-                    target_sha256=request.target_sha256,
-                    resources=mandate.grant.resources,
-                    source_input=origin.input,
-                    review_ref=request.review_ref,
-                ),
-            )
-            return self._view(row)
+        ):
+            raise _error("SOURCE_CODING_DUPLICATE_TARGET", 409)
+        origin, target = mandate.origin, mandate.target
+        values = {
+            "coding_id": mandate.coding_id,
+            "project_id": self.project,
+            "thread_id": target.thread_id,
+            "ticket_id": target.ticket_id,
+            "run_id": target.run_id,
+            "mandate_id": target.mandate_id,
+            "mandate_revision": mandate.revision,
+            "request_id": request.request_id,
+            "request_sha256": request_hash,
+            "execution_mode": "fixture",
+            "source_instance_id": origin.input.source_instance_id,
+            "input_id": origin.input.input_id,
+            "version_fingerprint": origin.input.version_fingerprint,
+            "source_state_sha256": origin.input.state_sha256,
+            "identity_id": origin.identity_id,
+            "identity_revision": origin.identity_revision,
+            "principal_id": origin.principal_id,
+            "engine_actor": origin.engine_actor,
+            "policy_id": origin.policy_id,
+            "policy_revision": origin.policy_revision,
+            "policy_sha256": origin.policy_sha256,
+            "mandate_sha256": mandate.mandate_sha256,
+            "profile_sha256": mandate.worker_profile_sha256,
+            "context_sha256": mandate.context_sha256,
+            "acceptance_sha256": mandate.acceptance_sha256,
+            "review_sha256": mandate.review_sha256,
+            "signed_by": user,
+            "valid_from": mandate.valid_from,
+            "valid_until": mandate.valid_until,
+        }
+        columns = ",".join(values)
+        placeholders = ",".join("%s" for _ in values)
+        row = conn.execute(
+            "INSERT INTO app.sa_coding_bindings("
+            + columns
+            + ") VALUES("
+            + placeholders
+            + ") RETURNING *",
+            tuple(values.values()),
+        ).fetchone()
+        assert row is not None
+        self.event(conn, row, "CODING_ADMITTED", state="admitted")
+        self.engine.source_scheduler._enqueue_authorized(
+            conn,
+            user,
+            SchedulerEnqueueRequest(
+                request_id=request.request_id,
+                run_id=request.run_id,
+                expected_epoch=0,
+                target_sha256=request.target_sha256,
+                resources=mandate.grant.resources,
+                source_input=origin.input,
+                review_ref=request.review_ref,
+            ),
+        )
+        return self._view(row)
 
     @staticmethod
     def _view(row: Row) -> Row:

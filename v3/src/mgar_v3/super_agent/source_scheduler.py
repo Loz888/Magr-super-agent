@@ -486,113 +486,118 @@ class SourceScheduler:
     def enqueue(self, cookie: str, request: SchedulerEnqueueRequest) -> Row:
         with self.engine.transaction() as conn:
             user = self._console(conn, cookie)
-            config = self._configuration(conn, active=True)
-            self._budgets(conn)
-            fingerprint = digest(request.model_dump(mode="json"))
-            previous = conn.execute(
-                "SELECT * FROM app.sa_scheduler_queue WHERE project_id=%s AND request_id=%s",
-                (self.project, request.request_id),
-            ).fetchone()
-            if previous:
-                if previous["request_sha256"] != fingerprint:
-                    raise _error("SOURCE_SCHEDULER_IDEMPOTENCY_CONFLICT")
-                return self._view(previous)
-            run = self._run(conn, request.run_id)
-            if (
-                run["status"] != "queued"
-                or run["ticket_status"] != "open"
-                or run["execution_epoch"] != request.expected_epoch
-                or self._target_hash(conn, run) != request.target_sha256
-            ):
-                raise _error("SOURCE_SCHEDULER_TARGET_STALE")
-            pending = conn.execute(
-                "SELECT count(*) AS n FROM app.sa_scheduler_queue WHERE project_id=%s AND "
-                "state='queued'",
-                (self.project,),
-            ).fetchone()
-            assert pending is not None
-            if pending["n"] >= config.configuration.limits.queue:
-                raise _error("SOURCE_SCHEDULER_QUEUE_CAPACITY", 429)
-            source = request.source_input
-            if source is not None and source.project_id != self.project:
-                raise _error("SOURCE_SCHEDULER_SOURCE_SCOPE_DENIED", 403)
-            origin: Row = {
-                "input_id": source.input_id if source else None,
-                "source_instance_id": source.source_instance_id if source else None,
-                "version_fingerprint": source.version_fingerprint if source else None,
-                "source_state_sha256": source.state_sha256 if source else None,
-            }
-            self._source(conn, origin, run)
-            if source:
-                loaded = self.engine.source_correlations._input(conn, source.input_id)
-                classification = (
-                    "human"
-                    if loaded.item.event.sender.actor_kind == "human"
-                    else "automation"
-                )
-                fairness = _hash([self.project, source.source_instance_id])
-            else:
-                mandate = conn.execute(
-                    "SELECT actor FROM app.mandates WHERE mandate_id=%s",
-                    (run["mandate_id"],),
-                ).fetchone()
-                assert mandate is not None
-                classification = "human"
-                fairness = _hash([self.project, "owner", mandate["actor"]])
-            sequence = conn.execute(
-                "SELECT coalesce(max(generation),0)+1 AS generation FROM "
-                "app.sa_scheduler_queue WHERE run_id=%s",
-                (run["run_id"],),
-            ).fetchone()
-            assert sequence is not None
-            queue_id, generation = uuid4(), sequence["generation"]
-            key = queue_quota_key(queue_id, generation)
-            self.engine.project_budgets.quota(
-                conn, "queue", key, source_id=origin["source_instance_id"]
+            return self._enqueue_authorized(conn, user, request)
+
+    def _enqueue_authorized(self, conn: Connection, user: UUID, request: SchedulerEnqueueRequest) -> Row:
+        """Trusted original-connection primitive; the public Owner check is retained."""
+        self._conn(conn)
+        config = self._configuration(conn, active=True)
+        self._budgets(conn)
+        fingerprint = digest(request.model_dump(mode="json"))
+        previous = conn.execute(
+            "SELECT * FROM app.sa_scheduler_queue WHERE project_id=%s AND request_id=%s",
+            (self.project, request.request_id),
+        ).fetchone()
+        if previous:
+            if previous["request_sha256"] != fingerprint:
+                raise _error("SOURCE_SCHEDULER_IDEMPOTENCY_CONFLICT")
+            return self._view(previous)
+        run = self._run(conn, request.run_id)
+        if (
+            run["status"] != "queued"
+            or run["ticket_status"] != "open"
+            or run["execution_epoch"] != request.expected_epoch
+            or self._target_hash(conn, run) != request.target_sha256
+        ):
+            raise _error("SOURCE_SCHEDULER_TARGET_STALE")
+        pending = conn.execute(
+            "SELECT count(*) AS n FROM app.sa_scheduler_queue WHERE project_id=%s AND "
+            "state='queued'",
+            (self.project,),
+        ).fetchone()
+        assert pending is not None
+        if pending["n"] >= config.configuration.limits.queue:
+            raise _error("SOURCE_SCHEDULER_QUEUE_CAPACITY", 429)
+        source = request.source_input
+        if source is not None and source.project_id != self.project:
+            raise _error("SOURCE_SCHEDULER_SOURCE_SCOPE_DENIED", 403)
+        origin: Row = {
+            "input_id": source.input_id if source else None,
+            "source_instance_id": source.source_instance_id if source else None,
+            "version_fingerprint": source.version_fingerprint if source else None,
+            "source_state_sha256": source.state_sha256 if source else None,
+        }
+        self._source(conn, origin, run)
+        if source:
+            loaded = self.engine.source_correlations._input(conn, source.input_id)
+            classification = (
+                "human"
+                if loaded.item.event.sender.actor_kind == "human"
+                else "automation"
             )
-            row = conn.execute(
-                "INSERT INTO app.sa_scheduler_queue(queue_id,project_id,request_id,request_sha256,"
-                "generation,thread_id,ticket_id,run_id,mandate_id,expected_epoch,target_sha256,"
-                "cpu_millis,memory_mib,source_instance_id,input_id,version_fingerprint,"
-                "source_state_sha256,"
-                "classification,fairness_key,queue_quota_key,requested_by,review_sha256) "
-                "VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s) "
-                "RETURNING *",
-                (
-                    queue_id,
-                    self.project,
-                    request.request_id,
-                    fingerprint,
-                    generation,
-                    run["thread_id"],
-                    run["ticket_id"],
-                    run["run_id"],
-                    run["mandate_id"],
-                    request.expected_epoch,
-                    request.target_sha256,
-                    request.resources.cpu_millis,
-                    request.resources.memory_mib,
-                    origin["source_instance_id"],
-                    origin["input_id"],
-                    origin["version_fingerprint"],
-                    origin["source_state_sha256"],
-                    classification,
-                    fairness,
-                    key,
-                    user,
-                    digest(request.review_ref),
-                ),
+            fairness = _hash([self.project, source.source_instance_id])
+        else:
+            mandate = conn.execute(
+                "SELECT actor FROM app.mandates WHERE mandate_id=%s",
+                (run["mandate_id"],),
             ).fetchone()
-            assert row is not None
-            self._event(
-                conn,
-                "QUEUED",
-                row,
-                classification=classification,
-                fairness_key=fairness,
-                queue_generation=generation,
-            )
-            return self._view(row)
+            assert mandate is not None
+            classification = "human"
+            fairness = _hash([self.project, "owner", mandate["actor"]])
+        sequence = conn.execute(
+            "SELECT coalesce(max(generation),0)+1 AS generation FROM "
+            "app.sa_scheduler_queue WHERE run_id=%s",
+            (run["run_id"],),
+        ).fetchone()
+        assert sequence is not None
+        queue_id, generation = uuid4(), sequence["generation"]
+        key = queue_quota_key(queue_id, generation)
+        self.engine.project_budgets.quota(
+            conn, "queue", key, source_id=origin["source_instance_id"]
+        )
+        row = conn.execute(
+            "INSERT INTO app.sa_scheduler_queue(queue_id,project_id,request_id,request_sha256,"
+            "generation,thread_id,ticket_id,run_id,mandate_id,expected_epoch,target_sha256,"
+            "cpu_millis,memory_mib,source_instance_id,input_id,version_fingerprint,"
+            "source_state_sha256,"
+            "classification,fairness_key,queue_quota_key,requested_by,review_sha256) "
+            "VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,%s) "
+            "RETURNING *",
+            (
+                queue_id,
+                self.project,
+                request.request_id,
+                fingerprint,
+                generation,
+                run["thread_id"],
+                run["ticket_id"],
+                run["run_id"],
+                run["mandate_id"],
+                request.expected_epoch,
+                request.target_sha256,
+                request.resources.cpu_millis,
+                request.resources.memory_mib,
+                origin["source_instance_id"],
+                origin["input_id"],
+                origin["version_fingerprint"],
+                origin["source_state_sha256"],
+                classification,
+                fairness,
+                key,
+                user,
+                digest(request.review_ref),
+            ),
+        ).fetchone()
+        assert row is not None
+        self._event(
+            conn,
+            "QUEUED",
+            row,
+            classification=classification,
+            fairness_key=fairness,
+            queue_generation=generation,
+        )
+        return self._view(row)
 
     @staticmethod
     def _view(row: Row) -> Row:

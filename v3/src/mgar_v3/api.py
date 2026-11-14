@@ -57,6 +57,7 @@ from mgar_v3.super_agent.budget_api import register as register_project_budgets
 from mgar_v3.super_agent.fast_path_api import register as register_source_fast_path
 from mgar_v3.super_agent.policy_api import register as register_source_policies
 from mgar_v3.super_agent.source_async_api import register as register_source_async
+from mgar_v3.super_agent.source_autonomy_api import register as register_source_autonomy
 from mgar_v3.super_agent.source_coding_api import register as register_source_coding
 from mgar_v3.super_agent.source_correlation_api import register as register_source_correlations
 from mgar_v3.super_agent.source_eval_api import register as register_source_eval
@@ -1293,6 +1294,7 @@ def create_app(
     register_source_coding(app, authority, browser_user)
     register_source_async(app, authority, browser_user)
     register_source_recall(app, authority, browser_user)
+    register_source_autonomy(app, authority, browser_user)
     register(app, authority, authenticated)
     register_commerce(app, authority, authenticated)
     register_recovery(app, configuration, authority, authenticated)
