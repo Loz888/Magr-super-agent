@@ -27,7 +27,7 @@
   "artifacts": [
     {
       "path": "config/verification.json",
-      "sha256": "d2c7f31ac8c8a570a60e76f75cb5c43f146fcc3cc2dbe2ae0a705731715ce968"
+      "sha256": "6232d23adbe0b4d37e9aea5fde7fab9746a5a86cff6702a7cc1842df73d6528f"
     },
     {
       "path": "docs/super-agent-v1/SA19_CONSOLE.md",
@@ -127,7 +127,7 @@
     },
     {
       "path": "tests/test_source_console_boundaries.py",
-      "sha256": "d34f2dd65263cbc5cea4c15f30185cba1b634920a3fbe6923e7c95a20972ed4c"
+      "sha256": "fadd30cf58e14369306e61dffe60d5a7b5e590d7be86be81d24eb8163c2b2543"
     },
     {
       "path": "tests/test_source_console_browser.py",

@@ -90,6 +90,7 @@ def test_source_revoke_over_authenticated_http_invalidates_cipher_and_current_se
 )
 def test_static_normalized_aliases_cannot_fall_through_to_public_mount(engine, path):
     from fastapi.testclient import TestClient
+
     from mgar_v3.api import create_app
 
     with TestClient(
@@ -103,6 +104,7 @@ def test_static_normalized_aliases_cannot_fall_through_to_public_mount(engine, p
 
 def test_static_head_does_not_fall_through_owner_get_route_to_public_mount(engine):
     from fastapi.testclient import TestClient
+
     from mgar_v3.api import create_app
 
     with TestClient(

@@ -2033,7 +2033,7 @@
     ],
     "timeout_seconds": 240,
     "components": {
-      "scope": "First console decision provenance5, asset aliases/revoked session1, fresh identity proof1, HTTP source revoke1",
+      "scope": "Console decision provenance5, current identity proof1, HTTP revoke1, private assets/revoked session1, normalized static aliases4 and HEAD fallback1; previous-version pass evidence retained.",
       "real_gates": "NOT_RUN",
       "SA20": "NOT_STARTED"
     }
