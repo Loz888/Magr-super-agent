@@ -1,0 +1,79 @@
+{
+  "card": "SAV1-16",
+  "status": "DONE_USER_ACCEPTED_INDEPENDENT_LOCAL_CONTROLLED_SCOPE",
+  "accepted_UTC": "2026-11-15T04:11:17.148722+00:00",
+  "source_commit": "6a8b4675f7f1d6093ef48fbb411189d9ed57d640",
+  "source_sha256": "53a9051fac218f9199a0f9b68e99e1e94277395a1a4f86bf221275c7c4b7290d",
+  "delivery_commit": "3eb08db0a11e860ea0151357237404d1b9076feb",
+  "independent_directory": "evidence/super-agent-v1/SAV1-16/independent-I01-recheck-20261115T040248Z-21b33cb8",
+  "manifest_files_verified": [
+    {
+      "path": "evidence/super-agent-v1/SAV1-16/independent-I01-recheck-20261115T040248Z-21b33cb8/REPORT.md",
+      "sha256": "c5575ef7bb9760ca82e5bce90efa04fbd3511267e99bf53586bf9b4f791106ea"
+    },
+    {
+      "path": "evidence/super-agent-v1/SAV1-16/independent-I01-recheck-20261115T040248Z-21b33cb8/baseline.json",
+      "sha256": "fbe818c2a447655624338da3e701ef574b81096a2a4279224957fa378bce893f"
+    },
+    {
+      "path": "evidence/super-agent-v1/SAV1-16/independent-I01-recheck-20261115T040248Z-21b33cb8/boundary-observations.jsonl",
+      "sha256": "9556bce5d3b50f773ae2dc30565a9dd9ff350002b505d99c741b0508e36c7b5d"
+    },
+    {
+      "path": "evidence/super-agent-v1/SAV1-16/independent-I01-recheck-20261115T040248Z-21b33cb8/candidate-archive-audit.json",
+      "sha256": "d69d1682a854169282f151565150ec66bbcaf2a4d14fe51af159ea58344ba5dc"
+    },
+    {
+      "path": "evidence/super-agent-v1/SAV1-16/independent-I01-recheck-20261115T040248Z-21b33cb8/command.json",
+      "sha256": "2093a22cad67de399ae8d779c09c83218d35b191ab42d7ce7b8b775417db11bc"
+    },
+    {
+      "path": "evidence/super-agent-v1/SAV1-16/independent-I01-recheck-20261115T040248Z-21b33cb8/evidence-path",
+      "sha256": "383917389af1afa01e6b539bb355004b9e0ab25f600530084f58f011382c71c0"
+    },
+    {
+      "path": "evidence/super-agent-v1/SAV1-16/independent-I01-recheck-20261115T040248Z-21b33cb8/integrity-audit.json",
+      "sha256": "93a3c8cc644460330b096b757518a8d82cb5b37669753142e8c16548cc36c023"
+    },
+    {
+      "path": "evidence/super-agent-v1/SAV1-16/independent-I01-recheck-20261115T040248Z-21b33cb8/junit.xml",
+      "sha256": "60e710a36509b6aeffe7a2d3782c3d3b870c4d0b860ab82ed792254009479c7d"
+    },
+    {
+      "path": "evidence/super-agent-v1/SAV1-16/independent-I01-recheck-20261115T040248Z-21b33cb8/persistent-claims-observation.json",
+      "sha256": "37806808b9b10a45c39adc366753638eda64a707ff8fcf9cf4b8638b5137b601"
+    },
+    {
+      "path": "evidence/super-agent-v1/SAV1-16/independent-I01-recheck-20261115T040248Z-21b33cb8/pytest.log",
+      "sha256": "3088db7880206bb9c39abd016b00d9f1fda1714bfe9d31856b8fb111aa0ce04f"
+    },
+    {
+      "path": "evidence/super-agent-v1/SAV1-16/independent-I01-recheck-20261115T040248Z-21b33cb8/review-result.json",
+      "sha256": "c2a9a402c54ed09d4857fa7282709044a7f6501a1175e77a9f69b5feb6186f9f"
+    },
+    {
+      "path": "evidence/super-agent-v1/SAV1-16/independent-I01-recheck-20261115T040248Z-21b33cb8/run.py",
+      "sha256": "446596f5595ddd5080e478f962f4373cb03bea8659c587304b85642b2763907d"
+    },
+    {
+      "path": "evidence/super-agent-v1/SAV1-16/independent-I01-recheck-20261115T040248Z-21b33cb8/sa16_i01_observer.py",
+      "sha256": "8052c36c17b102e1950d831b0c1ed32a28dea6b63eda9e076714493733833c0f"
+    },
+    {
+      "path": "evidence/super-agent-v1/SAV1-16/independent-I01-recheck-20261115T040248Z-21b33cb8/test_independent_sa16.py",
+      "sha256": "c4035cbc40e94fb0f0ecd7e112f65fb2b760e3504f0f87eb305be904a8936d32"
+    }
+  ],
+  "counts": {
+    "tests": 1,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "old25_independent_PASS_not_repeated": true,
+  "old93formal_87private_PASS_not_repeated": true,
+  "static_checks_not_repeated": true,
+  "real_gates": "NOT_RUN",
+  "H12": "fixed local FAIL retained; other CLI owns acceptance",
+  "user_instruction": "Confirm SA16-I01 independent closure and start SA17"
+}

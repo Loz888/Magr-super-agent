@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-15T03:56:53.444296+00:00",
+  "updated_at": "2026-11-15T04:11:17.155104+00:00",
   "user_instruction": "Codex owns Super-Agent; local Trae owns Harness; coordination is authorized.",
   "owners": {
     "super_agent": {
@@ -13,9 +13,9 @@
       "cards": "HV4-H00..HV4-H18"
     }
   },
-  "active_super_agent_card": "SAV1-16",
+  "active_super_agent_card": "SAV1-17",
   "card_status": "IN_PROGRESS",
-  "work_state": "I01_LOCAL_SINGLE_CASE_PASS_PENDING_INDEPENDENT",
+  "work_state": "REQUIREMENTS_ORIGINAL_OUTBOX_AUTHORITY_AND_SHARED_SCOPE_AUDIT",
   "harness_observation": {
     "head": "de4775e22e96718e880fde287b2e0928db2945e3",
     "h00_owner_reported_status": "PASS",
@@ -472,7 +472,7 @@
   "sa15_completion_handoff": "PREPARED_LOCALLY_NOT_SENT_OR_ACKNOWLEDGED",
   "sa15_i01_repair": "accept/SAV1-15/i01-repair.json",
   "sa15_independent_closure": "accept/SAV1-15/independent-closure-20261114.json",
-  "sa17": "NOT_STARTED",
+  "sa17": "IN_PROGRESS",
   "SA16_shared_scope": {
     "status": "CONFIRMED_EXACT_APPLIED",
     "migration": "0048_source_autonomy.sql",
@@ -488,5 +488,14 @@
   },
   "sa16_acceptance": "accept/SAV1-16/accept.json",
   "sa16_i01_repair": "accept/SAV1-16/i01-repair.json",
-  "sa16_independent_review": "FAIL_SA16_I01_AWAITING_RECHECK"
+  "sa16_independent_review": "PASS_USER_ACCEPTED_SCOPED",
+  "sa16_independent_closure": "accept/SAV1-16/independent-closure-20261115.json",
+  "sa18": "NOT_STARTED",
+  "SA17_shared_scope": {
+    "status": "NOT_YET_PROPOSED",
+    "migration": null,
+    "prior_section41": "SA16 only; not SA17",
+    "H12": "other CLI",
+    "real_capabilities": "NOT_RUN"
+  }
 }

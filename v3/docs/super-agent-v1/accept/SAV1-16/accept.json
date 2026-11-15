@@ -1,37 +1,18 @@
 {
   "card": "SAV1-16",
-  "status": "IN_PROGRESS_LOCAL_CONTROLLED_ENGINEERING_PASS_AWAITING_INDEPENDENT",
-  "work_state": "LOCAL_ENGINEERING_DELIVERED_INDEPENDENT_NOT_RUN",
-  "source_commit": "becef2bacb423c69cf850317ce64b34ed4c7ccb8",
-  "source_sha256": "cd31d5ad147fb4432f0f1ffcd5db851207100d441462e55687d84886a13db9c8",
+  "status": "DONE_USER_ACCEPTED_INDEPENDENT_LOCAL_CONTROLLED_SCOPE",
+  "work_state": "CLOSED_USER_ACCEPTED_INDEPENDENT",
+  "source_commit": "6a8b4675f7f1d6093ef48fbb411189d9ed57d640",
+  "source_sha256": "53a9051fac218f9199a0f9b68e99e1e94277395a1a4f86bf221275c7c4b7290d",
   "candidate_archive": {
-    "UTC": "2026-11-14T14:10:36.712934+00:00",
-    "source_commit": "becef2bacb423c69cf850317ce64b34ed4c7ccb8",
-    "source_sha256": "cd31d5ad147fb4432f0f1ffcd5db851207100d441462e55687d84886a13db9c8",
-    "archive": "evidence/super-agent-v1/SAV1-16/start-20261114T125101Z-8e48a364/final-boundaries-repair-01/source-becef2bacb42.tar.gz",
-    "archive_sha256": "38b9cec38716fb8702940626b3c4214cae3a6e5450319829c0900b31c1a130a5",
-    "archive_source_sha256": "cd31d5ad147fb4432f0f1ffcd5db851207100d441462e55687d84886a13db9c8",
-    "scope": "Only final failed artifact-catalogue test and failed lint files; previous10final+82formal+87private PASS/type PASS excluded",
-    "scope_targets": {
-      "round": "final-boundaries-repair-01",
-      "scope": "Only final failed artifact-catalogue test and failed lint files; previous10final+82formal+87private PASS/type PASS excluded",
-      "commands": {
-        "retest": [
-          "{APP}/.venv/bin/python",
-          "-m",
-          "pytest",
-          "-q",
-          "tests/test_super_agent_sa16_catalogue.py::test_source_catalogues_have_exact_current_artifact_bytes",
-          "--junitxml={E}/junit.xml"
-        ],
-        "lint": [
-          "{APP}/.venv/bin/ruff",
-          "check",
-          "src/mgar_v3/super_agent/source_autonomy.py",
-          "src/mgar_v3/super_agent/source_autonomy_runtime.py"
-        ]
-      }
-    }
+    "UTC": "2026-11-15T03:52:15.774314+00:00",
+    "source_commit": "6a8b4675f7f1d6093ef48fbb411189d9ed57d640",
+    "source_sha256": "53a9051fac218f9199a0f9b68e99e1e94277395a1a4f86bf221275c7c4b7290d",
+    "archive_source_sha256": "53a9051fac218f9199a0f9b68e99e1e94277395a1a4f86bf221275c7c4b7290d",
+    "archive": "evidence/super-agent-v1/SAV1-16/i01-repair-20261115T035005Z-0c8165ef/single-case/source-6a8b4675f7f1.tar.gz",
+    "archive_sha256": "d3ede0799a20295a3672165ae1fee8aa1d3f55921087a8e7b8d856f22bad185c",
+    "probe_sha256": "c4035cbc40e94fb0f0ecd7e112f65fb2b760e3504f0f87eb305be904a8936d32",
+    "scope": "Only original SA16-I01 failed same_rule probe; no historical passing tests or static targets repeated"
   },
   "ownership_commit": "91c0b75693037bb0d90cb2eccd35356cd2e96135",
   "ownership_section": 41,
@@ -2556,8 +2537,8 @@
   },
   "artifact_audit": "artifact-audit.json",
   "source_ref_count": 479,
-  "independent_review": "NOT_RUN",
-  "SA17": "NOT_STARTED",
+  "independent_review": "PASS_SCOPED_VERSIONED_INDEPENDENT_USER_ACCEPTED",
+  "SA17": "STARTED_BY_USER_AUTHORIZATION",
   "H12": "Other CLI owns acceptance; no H12 commit imported, fixed local live_agent/MVP FAIL retained",
   "gates": {
     "engineering_gate": "PASS_LOCAL_CONTROLLED_ENGINEERING",
@@ -2599,5 +2580,7 @@
     "path": "docs/super-agent-v1/accept/SAV1-16/independent-request.txt",
     "sha256": "d906537b5576307bb5d03cf3dbf175de10ec1c3d583deaf7a1cf79652d73ecf9"
   },
-  "artifact_audit_sha256": "cdb247d523e573eec2a6433597b778150d50b64cc03e2c795d268676b1257484"
+  "artifact_audit_sha256": "cdb247d523e573eec2a6433597b778150d50b64cc03e2c795d268676b1257484",
+  "independent_closure": "independent-closure-20261115.json",
+  "previous_acceptance": "history/before-user-accepted-independent-20261115/accept.json"
 }

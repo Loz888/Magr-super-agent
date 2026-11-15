@@ -502,7 +502,7 @@
       "id": "SAV1-16",
       "short_id": "SA16",
       "title": "静默自主任务生命周期",
-      "status": "IN_PROGRESS",
+      "status": "DONE",
       "priority": "P0",
       "phase": "S3",
       "depends_on": [
@@ -517,20 +517,21 @@
       "optional": false,
       "card": "TASKS.md#sa16",
       "verification_target_on_implementation": "SAV1-16",
-      "work_state": "I01_LOCAL_SINGLE_CASE_PASS_PENDING_INDEPENDENT",
-      "engineering_gate": "PENDING_INDEPENDENT_I01_RECHECK",
-      "independent_review": "FAIL_SA16_I01_AWAITING_RECHECK",
+      "work_state": "CLOSED_USER_ACCEPTED_INDEPENDENT",
+      "engineering_gate": "PASS_LOCAL_CONTROLLED_VERSIONED_EVIDENCE",
+      "independent_review": "PASS_USER_ACCEPTED_SCOPED",
       "shared_scope": "CONFIRMED_91c0b75_SECTION41_0048_FIVE_FILES_13_ROUTES",
-      "next_card": "SA17_NOT_STARTED",
+      "next_card": "SAV1-17_AUTHORIZED",
       "acceptance": "accept/SAV1-16/accept.json",
       "ownership": "sa16-proposal/ownership-confirmed.json",
-      "i01_repair": "accept/SAV1-16/i01-repair.json"
+      "i01_repair": "accept/SAV1-16/i01-repair.json",
+      "independent_closure": "accept/SAV1-16/independent-closure-20261115.json"
     },
     {
       "id": "SAV1-17",
       "short_id": "SA17",
       "title": "多渠道 Outbox 与节制通知",
-      "status": "PLANNED",
+      "status": "IN_PROGRESS",
       "priority": "P0",
       "phase": "S3",
       "depends_on": [
@@ -544,7 +545,12 @@
       },
       "optional": false,
       "card": "TASKS.md#sa17",
-      "verification_target_on_implementation": "SAV1-17"
+      "verification_target_on_implementation": "SAV1-17",
+      "work_state": "REQUIREMENTS_ORIGINAL_OUTBOX_AUTHORITY_AND_SHARED_SCOPE_AUDIT",
+      "engineering_gate": "NOT_RUN",
+      "independent_review": "NOT_RUN",
+      "shared_scope": "NOT_YET_PROPOSED",
+      "next_card": "SA18_NOT_STARTED"
     },
     {
       "id": "SAV1-18",
