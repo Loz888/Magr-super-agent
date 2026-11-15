@@ -1,8 +1,10 @@
 # MAGR Super-Agent 落地任务书
 
-状态：**SAV1-00–SAV1-17 DONE（用户接受的受控本地独立闭环）；SA18 IN_PROGRESS（受控工程交付，等待独立验收）；SA19–SA24 PLANNED**。更新：2026-11-15。
+状态：**SAV1-00–SAV1-17 DONE（用户接受的受控本地独立闭环）；SA18 IN_PROGRESS（I01本地修复，等待独立复验）；SA19–SA24 PLANNED**。更新：2026-11-15。
 
-SA18 候选 ecb9ede 已完成受控工程交付；第43/44节确认的0050/0051及原Engine/API接线落地。68个正式目标有分版本PASS证据，本轮仅原异步失败1项及首次迁移/注册2项共3PASS，原65通过未重跑，不称最终全量PASS。正式48迁移/550产物引用匹配，主库仍44；见[交付](SA18_DELIVERY_20261115.md)和[机器摘要](accept/SAV1-18/accept.json)。独立验收NOT_RUN，SA19未启动，全部真实门NOT_RUN，固定H12真实Agent/MVP FAIL保留。
+SA18-I01独立P1（最后工作区采集后缺少远端head/base复查）已本地定向修复；候选ed3d24f仅原两个失败参数2PASS/exit0，writer均只有branch，无commit/PR写入，真实Git对象已核对。原探针/断言/失败证据保留，原15独立及历史68/86/静态通过未重跑。见[修复报告](SA18_I01_REPAIR_20261115.md)和[机器记录](accept/SAV1-18/i01-repair.json)。SA18保持IN_PROGRESS等待独立复验，SA19未启动，真实门NOT_RUN，固定H12真实Agent/MVP FAIL保留。
+
+SA18 首轮历史工程候选 ecb9ede 已完成受控工程交付；第43/44节确认的0050/0051及原Engine/API接线落地。68个正式目标有分版本PASS证据，本轮仅原异步失败1项及首次迁移/注册2项共3PASS，原65通过未重跑，不称最终全量PASS。正式48迁移/550产物引用匹配，主库仍44；见[交付](SA18_DELIVERY_20261115.md)和[机器摘要](accept/SAV1-18/accept.json)。独立验收NOT_RUN，SA19未启动，全部真实门NOT_RUN，固定H12真实Agent/MVP FAIL保留。
 
 SA10已由用户接受[独立原2项PASS及199历史证据核对](accept/SAV1-10/i01-independent-closure-20261113.json)，旧FAIL和分版本成绩保留；SA11动态订阅、Mailbox与交回也已独立闭环，首轮失败按失败范围定向修复并留存各版本证据。原任务状态/写者和Source撤权/TTL约束保持；全部真实/付费/外发/发布/长期门NOT_RUN。
 SA11第35/36节固定确认已核对，0042/0043及七表、11接口和四文件接线正式落地，SA11交付时41checksum一致。首轮309PASS/42FAIL保留，修复仅复验失败范围42→40→26→1，各新增2/14/25/1PASS，剩余0；未重复已通过项，不称最终351全量PASS。候选ca49b76，见[工程交付](SA11_ACCEPTANCE_20261113.md)与[分版本摘要](accept/SAV1-11/accept.json)。SA11已获用户接受独立放行，见[关闭记录](accept/SAV1-11/independent-closure-20261113.json)；SA12当前工程交付见下述记录。

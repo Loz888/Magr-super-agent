@@ -1,3 +1,7 @@
+当前更新：SA18-I01独立P1（最后工作区采集后缺少远端head/base复查）已本地定向修复；候选ed3d24f仅原两个失败参数2PASS/exit0，writer均只有branch，无commit/PR写入，真实Git对象已核对。原探针/断言/失败证据保留，原15独立及历史68/86/静态通过未重跑。见[修复报告](SA18_I01_REPAIR_20261115.md)和[机器记录](accept/SAV1-18/i01-repair.json)。SA18保持IN_PROGRESS等待独立复验，SA19未启动，真实门NOT_RUN，固定H12真实Agent/MVP FAIL保留。
+
+以下为历史阶段记录：
+
 当前更新：SA18 本地受控工程已交付，候选 ecb9ede；Harness第43/44节确认的0050/0051及原Engine/API接线已落地。
 68个正式目标有分版本通过证据，本轮仅原异步失败1项及首次48迁移/注册2项3PASS，原65通过未重跑，不称最终单轮全量PASS。
 [工程交付](SA18_DELIVERY_20261115.md)／[机器摘要](accept/SAV1-18/accept.json)。正式48迁移/550引用匹配，主库仍44，用户文件及历史失败保留，本轮临时资源无残留。

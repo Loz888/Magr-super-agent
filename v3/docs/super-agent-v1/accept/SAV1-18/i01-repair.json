@@ -1,0 +1,111 @@
+{
+  "card": "SAV1-18",
+  "finding": "SA18-I01",
+  "priority": "P1",
+  "status": "LOCAL_REPAIR_ORIGINAL2_PASS_AWAITING_INDEPENDENT_RECHECK",
+  "SA18": "IN_PROGRESS_NOT_INDEPENDENTLY_RELEASED",
+  "recorded_UTC": "2026-11-15T08:29:36.465861+00:00",
+  "source_candidate": "ed3d24f9340672698744a9cce61269f9198d0483",
+  "source_sha256": "1a1817ce86a34a0c4d53bf0d51cbf4223d24eb81675c5229ab22f042bc7094ed",
+  "source_archive": "evidence/super-agent-v1/SAV1-18/I01-repair-20261115T082353Z-5e0d03e2/failed2-recheck-01/source-ed3d24f93406.tar.gz",
+  "source_archive_sha256": "5bb3f2b8eefceb3dad5c392b427bdd918bd5a9971d79bfd3a8d65662cb90c74c",
+  "archive_source_sha256": "1a1817ce86a34a0c4d53bf0d51cbf4223d24eb81675c5229ab22f042bc7094ed",
+  "source_before_and_after_match": true,
+  "original_independent_report": "evidence/super-agent-v1/SAV1-18/independent-review-20261115T080306Z-407dcbff/REPORT.md",
+  "original_independent_result": "evidence/super-agent-v1/SAV1-18/independent-review-20261115T080306Z-407dcbff/review-result.json",
+  "original_independent_result_sha256": "5cd111874d5056b11634f8b08cf01713265b6a2048a75ed5f11fcfd8fe7cb6e0",
+  "reviewed_bad_source": "ecb9eded2f05b017d5216531d3c6e4d0e67ea852",
+  "bug_confirmed": "Remote refs read before the last actual H03 capture; real remote advance during capture still reached commit writer, confirmed in independent actual Git evidence.",
+  "repair": "Reserve original step; capture and match actual workspace; check current remote base/head/full proof; finally reread current authority in original Engine SQL transaction; commit SQL and then physically write.",
+  "runtime_changes": [
+    "src/mgar_v3/super_agent/source_review_transport.py",
+    "src/mgar_v3/super_agent/source_reviews.py"
+  ],
+  "scope": "SA-private guard callback only; no shared Engine/API/ports/schema/budget changes; applies branch, commit and Draft steps",
+  "latest_check": {
+    "command": [
+      "uv",
+      "run",
+      "--frozen",
+      "pytest",
+      "-q",
+      "-s",
+      "--tb=short",
+      "/home/imini/magr-super-agent/v3/evidence/super-agent-v1/SAV1-18/I01-repair-20261115T082353Z-5e0d03e2/failed2-recheck-01/test_independent_sa18.py::test_remote_change_during_final_workspace_capture_blocks_next_write[review_branch]",
+      "/home/imini/magr-super-agent/v3/evidence/super-agent-v1/SAV1-18/I01-repair-20261115T082353Z-5e0d03e2/failed2-recheck-01/test_independent_sa18.py::test_remote_change_during_final_workspace_capture_blocks_next_write[base_branch]",
+      "--junitxml=/home/imini/magr-super-agent/v3/evidence/super-agent-v1/SAV1-18/I01-repair-20261115T082353Z-5e0d03e2/failed2-recheck-01/junit.xml"
+    ],
+    "exit_code": 0,
+    "counts": {
+      "tests": 2,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "probe_original": "evidence/super-agent-v1/SAV1-18/independent-review-20261115T080306Z-407dcbff/test_independent_sa18.py",
+    "probe_copy": "evidence/super-agent-v1/SAV1-18/I01-repair-20261115T082353Z-5e0d03e2/failed2-recheck-01/test_independent_sa18.py",
+    "probe_sha256": "4f2f74739f379e2f252bf0a8dcaf0551431df4b3ae6e48b5d6e41fef8d78add1",
+    "probe_and_assertions_unchanged": true,
+    "parameters": [
+      "review_branch",
+      "base_branch"
+    ],
+    "writer_calls_each": [
+      "branch"
+    ],
+    "actual_commit_and_PR_writer_called": false,
+    "Action_final_status_each": "failed: expected stale-target rejection before commit IO",
+    "evidence": "evidence/super-agent-v1/SAV1-18/I01-repair-20261115T082353Z-5e0d03e2/failed2-recheck-01",
+    "result_sha256": "db55c266dd45b0ff604a3772523ac39c6025cceba5c94bb2596b7795638dc25b",
+    "junit_sha256": "50ec60799161b2a6e49062b20d8a3c9a2d70ff02447921bf3bdf704e338138e7",
+    "log_sha256": "fc59f095afaa853fefb833fa449288e66644cf75e25c2f24eef40570c067e121"
+  },
+  "readonly_git_evidence": {
+    "facts": "evidence/super-agent-v1/SAV1-18/I01-repair-20261115T082353Z-5e0d03e2/post-recheck-git-facts.json",
+    "facts_sha256": "ad8e1e2e30f8505448d5945dd1a247c2b7c5bd763a87ad14d86423119850260d",
+    "bundles": "evidence/super-agent-v1/SAV1-18/I01-repair-20261115T082353Z-5e0d03e2/post-recheck-git-bundles.json",
+    "bundles_sha256": "1143f66283b44728ecca9352e73c86606abc7236d7ca9fdf2720c425b43b8517",
+    "actual_git_refs_match_only_injected_advance": true
+  },
+  "retesting": {
+    "only_original_two_failures": true,
+    "independent15_pass_not_rerun": true,
+    "historical_formal68_preparation86_not_rerun": true,
+    "prior_three_SIGKILL_not_rerun": true,
+    "static_pass_targets_not_rerun": true,
+    "no_latest_candidate_full_suite_or_static_claim": true
+  },
+  "history": {
+    "original_failure_probes_logs_bundles_preserved": true,
+    "initial_engineering_record": "docs/super-agent-v1/accept/SAV1-18/accept.json",
+    "independent_review_status": "FAIL_SA18_I01; local repair PASS does not close independent finding"
+  },
+  "integrity_and_cleanup": {
+    "inventory": "evidence/super-agent-v1/SAV1-18/I01-repair-20261115T082353Z-5e0d03e2/final-inventory.json",
+    "inventory_sha256": "2a63f3899261442c2099f04c7eb9daf7161793ea2011a4ebbbee700bcd433d63",
+    "requirements_read": "evidence/super-agent-v1/SAV1-18/I01-repair-20261115T082353Z-5e0d03e2/requirements-read.json",
+    "requirements_read_sha256": "4f694d7e948a6314f20f365a8b519f95c6d2fd5c8f6715143cce38c09e20ef11",
+    "migrations_unchanged": 48,
+    "source_catalogues": 17,
+    "artifact_references": 550,
+    "all_reference_hashes_match": true,
+    "main_migrations": 44,
+    "main_database_migrated": false,
+    "test_databases_sessions_containers_remaining": 0,
+    "old_H06_and_other_resources_preserved": true,
+    "user_file_unchanged_and_untracked": true,
+    "shared_Engine_API_bytes_unchanged": true
+  },
+  "gates": {
+    "local_I01_repair_only": "PASS_2",
+    "independent_I01_recheck": "NOT_RUN",
+    "live_source_channel": "NOT_RUN",
+    "live_coding": "NOT_RUN; fixed H12 FAIL retained",
+    "live_publication": "NOT_RUN",
+    "paid_outbound": "NOT_RUN",
+    "full_policy_security": "NOT_RUN",
+    "continuous_operation": "NOT_RUN"
+  },
+  "H12": "Fixed live Agent/MVP FAIL retained; another CLI owns review",
+  "SA19": "NOT_STARTED"
+}
