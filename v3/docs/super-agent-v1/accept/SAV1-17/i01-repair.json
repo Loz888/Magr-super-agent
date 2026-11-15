@@ -1,0 +1,61 @@
+{
+  "id": "SA17-I01",
+  "priority": "P2",
+  "status": "IMPLEMENTATION_REPAIR_PASS_WAITING_INDEPENDENT_RECHECK",
+  "UTC": "2026-11-15T05:35:37.336344+00:00",
+  "source_commit": "f455c8ed3e23f565990f42392736064a0b54eff4",
+  "source_sha256": "6f862aa6ca89ba2a9136217464f7d1c959960658660b15f2a51459e4b81be74b",
+  "baseline_source_commit": "c478f6f62e1aaadd332592c52e9c99fe76b5c3ce",
+  "baseline_source_sha256": "d3c6bfb907e250db803a1ccd7c61f6e950619f78283339ca1abec7ec57060673",
+  "scope": "Only original independent native-thread destination-alias failure",
+  "test_target": "test_independent_sa17.py::test_destination_label_change_cannot_resend_same_cause_to_same_native_thread",
+  "probe_sha256": "9cc19b43237dd9469b7e5264c6fd8a0ebfe479989eb7a65266dc120e6b43836c",
+  "probe_unchanged": true,
+  "exit_code": 0,
+  "counts": {
+    "tests": 1,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "source_unchanged_during_check": true,
+  "candidate_archive": "evidence/super-agent-v1/SAV1-17/i01-repair-20261115T052821Z/single-case/source-f455c8ed3e23.tar.gz",
+  "candidate_archive_sha256": "0b72e20e7ac3d683d468aaf034b8ea1fc8cc4ec43c1415e6f5801d8928d0aced",
+  "evidence": "evidence/super-agent-v1/SAV1-17/i01-repair-20261115T052821Z",
+  "command": "evidence/super-agent-v1/SAV1-17/i01-repair-20261115T052821Z/single-case/command.json",
+  "junit": "evidence/super-agent-v1/SAV1-17/i01-repair-20261115T052821Z/single-case/junit.xml",
+  "observations": "evidence/super-agent-v1/SAV1-17/i01-repair-20261115T052821Z/single-case/independent-observations.jsonl",
+  "implementation": [
+    "Native SourceThreadRef identity used consistently for new delivery/aggregation keys and existing-record queries",
+    "Duplicate lookup uses saved native thread/run/cause/content class, covering immutable pre-repair alias-bearing keys",
+    "Rate and cooldown compare saved native thread across aliases and visibility metadata",
+    "Exact signed destination/visibility/profile/current Source ACL and actual payload approvals unchanged"
+  ],
+  "shared_changes": {
+    "engine": false,
+    "api": false,
+    "schema_migration": false,
+    "budget_algorithm": false,
+    "new_ownership_confirmation_needed": false,
+    "basis": "Already-owned SA17 private notification modules under a09aef7 section42"
+  },
+  "previous_passes_not_rerun": {
+    "independent_original45_junit": 45,
+    "independent_new_boundaries": 4,
+    "formal_versioned": 100,
+    "preparation_versioned": 29,
+    "static_targets": true
+  },
+  "historical_original45_exit_limitation": "45 JUnit PASS; outer summary wrapper exit1 KeyError; pytest exit code not persisted. Retained without rerunning or claiming full exit0.",
+  "full_suite_on_repaired_revision": "NOT_RUN_PER_USER_SCOPE",
+  "cleanup_pass": true,
+  "pg_port": 55435,
+  "main_migrations_before": 44,
+  "main_migrations_after": 44,
+  "protected_files_unchanged": true,
+  "independent_original_files_unchanged": true,
+  "independent_review": "FAIL_SA17_I01_AWAITING_RECHECK",
+  "SA17": "IN_PROGRESS_NOT_INDEPENDENTLY_PASSED",
+  "SA18": "NOT_STARTED",
+  "real_gates": "NOT_RUN"
+}

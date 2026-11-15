@@ -1,6 +1,6 @@
 # MAGR Super-Agent 落地任务书
 
-状态：**SAV1-00–SAV1-16 DONE（受控本地工程及用户接受的独立闭环）；SA17 IN_PROGRESS（本地受控工程完成，等待独立验收）；SA18–SA24 PLANNED**。更新：2026-11-14。
+状态：**SAV1-00–SAV1-16 DONE（受控本地工程及用户接受的独立闭环）；SA17 IN_PROGRESS（I01修复原1PASS，等待独立复验）；SA18–SA24 PLANNED**。更新：2026-11-14。
 SA10已由用户接受[独立原2项PASS及199历史证据核对](accept/SAV1-10/i01-independent-closure-20261113.json)，旧FAIL和分版本成绩保留；SA11动态订阅、Mailbox与交回也已独立闭环，首轮失败按失败范围定向修复并留存各版本证据。原任务状态/写者和Source撤权/TTL约束保持；全部真实/付费/外发/发布/长期门NOT_RUN。
 SA11第35/36节固定确认已核对，0042/0043及七表、11接口和四文件接线正式落地，SA11交付时41checksum一致。首轮309PASS/42FAIL保留，修复仅复验失败范围42→40→26→1，各新增2/14/25/1PASS，剩余0；未重复已通过项，不称最终351全量PASS。候选ca49b76，见[工程交付](SA11_ACCEPTANCE_20261113.md)与[分版本摘要](accept/SAV1-11/accept.json)。SA11已获用户接受独立放行，见[关闭记录](accept/SAV1-11/independent-closure-20261113.json)；SA12当前工程交付见下述记录。
 仓库基线：`973994c0e6c087c2968b3d91a3a6b9220e2c0892`；该提交新增 Harness 规划，
@@ -198,3 +198,6 @@ SA18未启动，H12另一CLI负责，真实平台／付费／外发／发布／�
 
 SA17本地受控工程见[交付](SA17_ACCEPTANCE_20261115.md)与[通知接口/恢复](SA17_NOTIFICATIONS.md)；
 100正式＋29准备分版本通过，未重跑已通过项。候选c478f6f，等待独立；SA18未启动，全部真实门NOT_RUN。
+
+SA17-I01独立P2后私有修复f455c8e，仅原失败项1PASS，见[修复报告](SA17_I01_REPAIR_20261115.md)。
+原49独立及其他历史通过不重跑，整卡仍待独立复验；SA18未启动，真实门NOT_RUN。

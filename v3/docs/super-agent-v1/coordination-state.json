@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-15T05:07:01.431364+00:00",
+  "updated_at": "2026-11-15T05:35:37.336344+00:00",
   "user_instruction": "Codex owns Super-Agent; local Trae owns Harness; coordination is authorized.",
   "owners": {
     "super_agent": {
@@ -15,7 +15,7 @@
   },
   "active_super_agent_card": "SAV1-17",
   "card_status": "IN_PROGRESS",
-  "work_state": "LOCAL_CONTROLLED_SA17_ENGINEERING_COMPLETE_PENDING_INDEPENDENT",
+  "work_state": "SA17_I01_REPAIR_PASS_PENDING_INDEPENDENT",
   "harness_observation": {
     "head": "de4775e22e96718e880fde287b2e0928db2945e3",
     "h00_owner_reported_status": "PASS",
@@ -472,7 +472,7 @@
   "sa15_completion_handoff": "PREPARED_LOCALLY_NOT_SENT_OR_ACKNOWLEDGED",
   "sa15_i01_repair": "accept/SAV1-15/i01-repair.json",
   "sa15_independent_closure": "accept/SAV1-15/independent-closure-20261114.json",
-  "sa17": "IN_PROGRESS_PENDING_INDEPENDENT",
+  "sa17": "IN_PROGRESS_PENDING_INDEPENDENT_I01_RECHECK",
   "SA16_shared_scope": {
     "status": "CONFIRMED_EXACT_APPLIED",
     "migration": "0048_source_autonomy.sql",
@@ -505,8 +505,10 @@
     "H12": "other CLI, no import",
     "real_capabilities": "NOT_RUN"
   },
-  "sa17_source_commit": "c478f6f62e1aaadd332592c52e9c99fe76b5c3ce",
-  "sa17_source_sha256": "d3c6bfb907e250db803a1ccd7c61f6e950619f78283339ca1abec7ec57060673",
+  "sa17_source_commit": "f455c8ed3e23f565990f42392736064a0b54eff4",
+  "sa17_source_sha256": "6f862aa6ca89ba2a9136217464f7d1c959960658660b15f2a51459e4b81be74b",
   "sa17_acceptance": "accept/SAV1-17/accept.json",
-  "sa17_completion_handoff": "PREPARED_LOCALLY_NOT_SENT_OR_ACKNOWLEDGED"
+  "sa17_completion_handoff": "PREPARED_LOCALLY_NOT_SENT_OR_ACKNOWLEDGED",
+  "sa17_i01_repair": "accept/SAV1-17/i01-repair.json",
+  "sa17_independent_review": "FAIL_SA17_I01_AWAITING_RECHECK"
 }
