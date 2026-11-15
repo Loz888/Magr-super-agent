@@ -11,6 +11,7 @@ from fastapi import APIRouter, Depends, FastAPI, Request
 from fastapi.encoders import jsonable_encoder
 from fastapi.responses import FileResponse, JSONResponse, RedirectResponse
 from fastapi.routing import APIRoute
+from starlette._utils import get_route_path
 
 from mgar_v3.coordination.engine import Engine
 from mgar_v3.domain import DomainError
@@ -270,7 +271,9 @@ def register(
 
     @app.middleware("http")
     async def no_page_static_alias(request: Request, call_next: Callable[..., Any]) -> Any:
-        path = request.url.path
+        # Use the router's segment-aware root_path handling before normalizing
+        # aliases, including when a proxy has already stripped the mount prefix.
+        path = get_route_path(request.scope)
         normalized = posixpath.normpath(path)
         owned = {"/static/source-console.js", "/static/source-console.css"}
         if normalized == "/static/source-console.html" or (

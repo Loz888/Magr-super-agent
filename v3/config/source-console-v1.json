@@ -95,7 +95,7 @@
     },
     {
       "path": "src/mgar_v3/super_agent/source_console_api.py",
-      "sha256": "ac98a1a9484127b723123e1a7c0f7b0b0e824659ac4901f2c8d1471822528150"
+      "sha256": "3cc6398779150eabbe9b7dcdd6d7fdf9eb96327bb270beafa1bb1378a92a21fc"
     },
     {
       "path": "src/mgar_v3/super_agent/source_console_credentials.py",
