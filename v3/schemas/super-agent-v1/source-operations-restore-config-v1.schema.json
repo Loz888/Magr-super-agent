@@ -1,0 +1,44 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "package": {
+      "format": "path",
+      "title": "Package",
+      "type": "string"
+    },
+    "encryption_key": {
+      "format": "path",
+      "title": "Encryption Key",
+      "type": "string"
+    },
+    "database_url": {
+      "format": "password",
+      "title": "Database Url",
+      "type": "string",
+      "writeOnly": true
+    },
+    "target_root": {
+      "format": "path",
+      "title": "Target Root",
+      "type": "string"
+    },
+    "project_id": {
+      "title": "Project Id",
+      "type": "string"
+    },
+    "expected_migration_sha256": {
+      "title": "Expected Migration Sha256",
+      "type": "string"
+    }
+  },
+  "required": [
+    "package",
+    "encryption_key",
+    "database_url",
+    "target_root",
+    "project_id",
+    "expected_migration_sha256"
+  ],
+  "title": "RestoreConfiguration",
+  "type": "object"
+}

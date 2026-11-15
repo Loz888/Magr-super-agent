@@ -1,0 +1,35 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "config_revision": {
+      "maximum": 9223372036854775807,
+      "minimum": 1,
+      "title": "Config Revision",
+      "type": "integer"
+    },
+    "expected_generation": {
+      "maximum": 9223372036854775807,
+      "minimum": 0,
+      "title": "Expected Generation",
+      "type": "integer"
+    },
+    "boot_id": {
+      "format": "uuid",
+      "title": "Boot Id",
+      "type": "string"
+    },
+    "request_id": {
+      "format": "uuid",
+      "title": "Request Id",
+      "type": "string"
+    }
+  },
+  "required": [
+    "config_revision",
+    "expected_generation",
+    "boot_id",
+    "request_id"
+  ],
+  "title": "ComponentOpen",
+  "type": "object"
+}

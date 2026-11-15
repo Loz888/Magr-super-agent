@@ -2138,5 +2138,26 @@
       "real_gates": "NOT_RUN",
       "SA21": "NOT_STARTED"
     }
+  },
+  "SAV1-20": {
+    "tests": [
+      "tests/test_source_operations_store.py",
+      "tests/test_source_operations_api.py",
+      "tests/test_source_operations_backup.py",
+      "tests/test_source_operations_deployment.py",
+      "tests/test_source_operations_processes.py",
+      "tests/test_source_operations_runtime.py",
+      "tests/test_source_operations_boundaries.py",
+      "tests/test_source_operations_restore_layout.py"
+    ],
+    "timeout_seconds": 900,
+    "components": {
+      "scope": "Formal original Engine0053/11routes, leases/unknown, private HTTP/TLS, native asynchronous/notification/Source/Redis composition, real processes/SIGKILL and encrypted held restore. Preparation overlay archived separately.",
+      "functional_unique": 55,
+      "version_bound_pass_evidence": true,
+      "independent_review": "NOT_RUN",
+      "real_gates": "NOT_RUN",
+      "SA21": "NOT_STARTED"
+    }
   }
 }

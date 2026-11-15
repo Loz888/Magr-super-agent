@@ -3,7 +3,6 @@
 import json
 
 from pydantic import SecretStr
-
 from test_source_operations_backup import fresh_database, setup
 
 from mgar_v3.coordination.engine import Engine

@@ -1,0 +1,114 @@
+{
+  "$defs": {
+    "BackupPart": {
+      "additionalProperties": false,
+      "properties": {
+        "path": {
+          "maxLength": 240,
+          "minLength": 1,
+          "title": "Path",
+          "type": "string"
+        },
+        "kind": {
+          "enum": [
+            "database",
+            "cas",
+            "source_key",
+            "console_key"
+          ],
+          "title": "Kind",
+          "type": "string"
+        },
+        "sha256": {
+          "pattern": "^[a-f0-9]{64}$",
+          "title": "Sha256",
+          "type": "string"
+        },
+        "size": {
+          "maximum": 9223372036854775807,
+          "minimum": 0,
+          "title": "Size",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "path",
+        "kind",
+        "sha256",
+        "size"
+      ],
+      "title": "BackupPart",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": "source-operations-backup-v1",
+      "default": "source-operations-backup-v1",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "backup_id": {
+      "format": "uuid",
+      "title": "Backup Id",
+      "type": "string"
+    },
+    "project_id": {
+      "maxLength": 200,
+      "minLength": 1,
+      "title": "Project Id",
+      "type": "string"
+    },
+    "created_at": {
+      "format": "date-time",
+      "title": "Created At",
+      "type": "string"
+    },
+    "migration_sha256": {
+      "pattern": "^[a-f0-9]{64}$",
+      "title": "Migration Sha256",
+      "type": "string"
+    },
+    "parts": {
+      "items": {
+        "$ref": "#/$defs/BackupPart"
+      },
+      "maxItems": 100000,
+      "minItems": 2,
+      "title": "Parts",
+      "type": "array"
+    },
+    "source_body_key_required": {
+      "default": true,
+      "title": "Source Body Key Required",
+      "type": "boolean"
+    },
+    "console_credential_key_required": {
+      "default": true,
+      "title": "Console Credential Key Required",
+      "type": "boolean"
+    },
+    "unknown_writes_preserved": {
+      "const": true,
+      "default": true,
+      "title": "Unknown Writes Preserved",
+      "type": "boolean"
+    },
+    "activation_on_restore": {
+      "const": false,
+      "default": false,
+      "title": "Activation On Restore",
+      "type": "boolean"
+    }
+  },
+  "required": [
+    "backup_id",
+    "project_id",
+    "created_at",
+    "migration_sha256",
+    "parts"
+  ],
+  "title": "BackupManifest",
+  "type": "object"
+}

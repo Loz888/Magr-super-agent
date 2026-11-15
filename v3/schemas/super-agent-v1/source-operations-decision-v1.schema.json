@@ -1,0 +1,32 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "expected_revision": {
+      "maximum": 9223372036854775807,
+      "minimum": 1,
+      "title": "Expected Revision",
+      "type": "integer"
+    },
+    "decision": {
+      "enum": [
+        "wait",
+        "escalate"
+      ],
+      "title": "Decision",
+      "type": "string"
+    },
+    "review_ref": {
+      "maxLength": 256,
+      "minLength": 1,
+      "title": "Review Ref",
+      "type": "string"
+    }
+  },
+  "required": [
+    "expected_revision",
+    "decision",
+    "review_ref"
+  ],
+  "title": "IncidentDecision",
+  "type": "object"
+}

@@ -1,0 +1,58 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "database_url": {
+      "format": "password",
+      "title": "Database Url",
+      "type": "string",
+      "writeOnly": true
+    },
+    "project_id": {
+      "maxLength": 200,
+      "minLength": 1,
+      "title": "Project Id",
+      "type": "string"
+    },
+    "artifact_root": {
+      "format": "path",
+      "title": "Artifact Root",
+      "type": "string"
+    },
+    "source_key": {
+      "format": "path",
+      "title": "Source Key",
+      "type": "string"
+    },
+    "console_key": {
+      "format": "path",
+      "title": "Console Key",
+      "type": "string"
+    },
+    "web_key": {
+      "format": "path",
+      "title": "Web Key",
+      "type": "string"
+    },
+    "encryption_key": {
+      "format": "path",
+      "title": "Encryption Key",
+      "type": "string"
+    },
+    "offline_confirmation": {
+      "title": "Offline Confirmation",
+      "type": "string"
+    }
+  },
+  "required": [
+    "database_url",
+    "project_id",
+    "artifact_root",
+    "source_key",
+    "console_key",
+    "web_key",
+    "encryption_key",
+    "offline_confirmation"
+  ],
+  "title": "BackupConfiguration",
+  "type": "object"
+}

@@ -1,0 +1,107 @@
+{
+  "$defs": {
+    "ComponentGrant": {
+      "additionalProperties": false,
+      "properties": {
+        "component_id": {
+          "format": "uuid",
+          "title": "Component Id",
+          "type": "string"
+        },
+        "role": {
+          "enum": [
+            "source",
+            "scheduler",
+            "worker",
+            "dispatcher",
+            "watchdog"
+          ],
+          "title": "Role",
+          "type": "string"
+        },
+        "enabled": {
+          "default": false,
+          "title": "Enabled",
+          "type": "boolean"
+        },
+        "source_ids": {
+          "default": [],
+          "items": {
+            "format": "uuid",
+            "type": "string"
+          },
+          "maxItems": 16,
+          "title": "Source Ids",
+          "type": "array"
+        }
+      },
+      "required": [
+        "component_id",
+        "role"
+      ],
+      "title": "ComponentGrant",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": "source-operations-v1",
+      "default": "source-operations-v1",
+      "title": "Schema Version",
+      "type": "string"
+    },
+    "enabled": {
+      "default": false,
+      "title": "Enabled",
+      "type": "boolean"
+    },
+    "valid_until": {
+      "format": "date-time",
+      "title": "Valid Until",
+      "type": "string"
+    },
+    "components": {
+      "default": [],
+      "items": {
+        "$ref": "#/$defs/ComponentGrant"
+      },
+      "maxItems": 16,
+      "title": "Components",
+      "type": "array"
+    },
+    "lease_seconds": {
+      "default": 30,
+      "maximum": 300,
+      "minimum": 10,
+      "title": "Lease Seconds",
+      "type": "integer"
+    },
+    "source_stale_seconds": {
+      "default": 120,
+      "maximum": 3600,
+      "minimum": 30,
+      "title": "Source Stale Seconds",
+      "type": "integer"
+    },
+    "backlog_threshold": {
+      "default": 16,
+      "maximum": 10000,
+      "minimum": 1,
+      "title": "Backlog Threshold",
+      "type": "integer"
+    },
+    "progress_stale_seconds": {
+      "default": 120,
+      "maximum": 86400,
+      "minimum": 30,
+      "title": "Progress Stale Seconds",
+      "type": "integer"
+    }
+  },
+  "required": [
+    "valid_until"
+  ],
+  "title": "OperationsDefinition",
+  "type": "object"
+}

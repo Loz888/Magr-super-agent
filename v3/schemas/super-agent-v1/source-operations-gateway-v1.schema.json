@@ -1,0 +1,62 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "public_origin": {
+      "title": "Public Origin",
+      "type": "string"
+    },
+    "api_url": {
+      "default": "http://127.0.0.1:18080",
+      "title": "Api Url",
+      "type": "string"
+    },
+    "source_relay_url": {
+      "anyOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Source Relay Url"
+    },
+    "certificate": {
+      "format": "path",
+      "title": "Certificate",
+      "type": "string"
+    },
+    "private_key": {
+      "format": "path",
+      "title": "Private Key",
+      "type": "string"
+    },
+    "listen_host": {
+      "default": "127.0.0.1",
+      "title": "Listen Host",
+      "type": "string"
+    },
+    "listen_port": {
+      "default": 18443,
+      "maximum": 65535,
+      "minimum": 1,
+      "title": "Listen Port",
+      "type": "integer"
+    },
+    "max_body_bytes": {
+      "default": 1048576,
+      "maximum": 1048576,
+      "minimum": 1024,
+      "title": "Max Body Bytes",
+      "type": "integer"
+    }
+  },
+  "required": [
+    "public_origin",
+    "certificate",
+    "private_key"
+  ],
+  "title": "GatewayConfiguration",
+  "type": "object"
+}

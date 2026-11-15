@@ -1,0 +1,885 @@
+{
+  "card": "SAV1-20",
+  "status": "IN_PROGRESS_LOCAL_ENGINEERING_DELIVERED_PENDING_INDEPENDENT",
+  "scope": "Controlled local operations composition; sole original Engine, private limited role processes, TLS, original SA14/17/Source/Redis, encrypted offline restoration.",
+  "engineering_gate": "PASS_VERSION_BOUND_CONTROLLED_SCOPE",
+  "policy_security_gate": "PASS_CHECKED_OPERATIONAL_BOUNDARIES_ONLY",
+  "whole_system_policy_security_gate": "NOT_RUN",
+  "independent_review": "NOT_RUN",
+  "live_source_channel_gate": "NOT_RUN",
+  "live_coding_gate": "NOT_RUN",
+  "live_publication_gate": "NOT_RUN",
+  "continuous_operation_gate": "NOT_RUN",
+  "paid": "NOT_RUN",
+  "external_send": "NOT_RUN",
+  "H12_fixed_live_agent_mvp": "FAIL_RETAINED_OTHER_CLI",
+  "SA21": "NOT_STARTED",
+  "ownership": {
+    "commit": "1c4f494442d2d5fc8d4c1d35856cc91c922cc70e",
+    "section": 46,
+    "formal_SQL_sha256": "1ae8bd6ee189f8efe7f937a2ccc90e2b49b2012107f751426b9d8a27e10d2c37",
+    "exact_shared_patch_applied_then_import_order_only_style_delta": "docs/super-agent-v1/sa20-proposal/shared-wiring-style-delta.json",
+    "Harness_active_files_touched": false
+  },
+  "formal": {
+    "unique_cases": 55,
+    "version_bound_PASS": 55,
+    "remaining_failed": 0,
+    "historical_passes_repeated": [],
+    "source_PASS_counts": {
+      "e87b82a2153f7044c1ddb66987d6947032651dcc": 11,
+      "e879c06bd06f6550883d04e4e1fd32c676399ce1": 11,
+      "acfbc29f0159ae9850c86e431555b6fc46c973b6": 2,
+      "7b703452340f8523daaf4d88e79929864441a7ea": 18,
+      "e2f0fe5faf0db5a3894d39aa285e39102e6c9258": 9,
+      "72f4e666ebe8fe8dd4ced6c9eb3592cd67146709": 3,
+      "d69dfb26baed518e36f870a18c3a1dcf30ec6648": 1
+    },
+    "rounds": [
+      {
+        "order": "2026-11-15T12:05:43.106611+00:00",
+        "round": "formal-control-first",
+        "task": "SAV1-20-CONTROL",
+        "result": "evidence/SAV1-20-CONTROL/20261115T120543Z-3258a7c5/result.json",
+        "junit": "evidence/SAV1-20-CONTROL/20261115T120543Z-3258a7c5/junit.xml",
+        "source_commit": "e87b82a2153f7044c1ddb66987d6947032651dcc",
+        "source_sha256": "cc372ca4d8d77fe148a4c07158c0d8ef5e8e4499753949500e80fec35eab4f54",
+        "counts": {
+          "tests": 24,
+          "failures": 13,
+          "errors": 0,
+          "skipped": 0
+        },
+        "exit_code": 1,
+        "source_stable": true,
+        "source_archive": "evidence/super-agent-v1/SAV1-20/start-20261115T110801Z-a46682a3/formal-control-first/source-e87b82a2153f.tar.gz",
+        "archive_sha256": "80331545ca1b532870e238b13294b6076957cbc81bdc701fef734f2a5b648dea"
+      },
+      {
+        "order": "2026-11-15T12:08:09.318283+00:00",
+        "round": "formal-control-failed13-recheck",
+        "task": "SAV1-20-CONTROL_FAILED_ONLY",
+        "result": "evidence/super-agent-v1/SAV1-20/start-20261115T110801Z-a46682a3/formal-control-failed13-recheck/result.json",
+        "junit": "evidence/super-agent-v1/SAV1-20/start-20261115T110801Z-a46682a3/formal-control-failed13-recheck/junit.xml",
+        "source_commit": "e879c06bd06f6550883d04e4e1fd32c676399ce1",
+        "source_sha256": "65fe1ba735e0536b74a12bd37f6c4d39bb7f5e33c98e91cf17b40043919ae572",
+        "counts": {
+          "tests": 13,
+          "failures": 2,
+          "errors": 0,
+          "skipped": 0
+        },
+        "exit_code": 1,
+        "source_stable": true,
+        "source_archive": "evidence/super-agent-v1/SAV1-20/start-20261115T110801Z-a46682a3/formal-control-failed13-recheck/source-e879c06bd06f.tar.gz",
+        "archive_sha256": "c8c3672946f15f5db10580ebb5f1f0020e2b31fd9bcd7978afe46adbea39fc31"
+      },
+      {
+        "order": "2026-11-15T12:09:59.245428+00:00",
+        "round": "formal-control-failed2-recheck",
+        "task": "SAV1-20-CONTROL_FAILED_ONLY",
+        "result": "evidence/super-agent-v1/SAV1-20/start-20261115T110801Z-a46682a3/formal-control-failed2-recheck/result.json",
+        "junit": "evidence/super-agent-v1/SAV1-20/start-20261115T110801Z-a46682a3/formal-control-failed2-recheck/junit.xml",
+        "source_commit": "acfbc29f0159ae9850c86e431555b6fc46c973b6",
+        "source_sha256": "514b68613573057a0b6d2d4eba860fdda6ba4d2cea0d0785b0f98eab5999ad25",
+        "counts": {
+          "tests": 2,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        "exit_code": 0,
+        "source_stable": true,
+        "source_archive": "evidence/super-agent-v1/SAV1-20/start-20261115T110801Z-a46682a3/formal-control-failed2-recheck/source-acfbc29f0159.tar.gz",
+        "archive_sha256": "67409f76a7d77e18ff1efdb1f1f41d9ab9a01d8ae5c917d32b93cc2676b2f36c"
+      },
+      {
+        "order": "2026-11-15T12:21:28.548101+00:00",
+        "round": "recovery-deployment-first",
+        "task": "SAV1-20-RECOVERY",
+        "result": "evidence/SAV1-20-RECOVERY/20261115T122128Z-9b5f84c2/result.json",
+        "junit": "evidence/SAV1-20-RECOVERY/20261115T122128Z-9b5f84c2/junit.xml",
+        "source_commit": "7b703452340f8523daaf4d88e79929864441a7ea",
+        "source_sha256": "f4234c96834e1c2ad737ebfda7f1eda0044aa2bca8cb60e165c3312759ac7d5e",
+        "counts": {
+          "tests": 18,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        "exit_code": 0,
+        "source_stable": true,
+        "source_archive": "evidence/super-agent-v1/SAV1-20/start-20261115T110801Z-a46682a3/recovery-deployment-first/source-7b703452340f.tar.gz",
+        "archive_sha256": "5afa1c8a496f3c5d8645c85aee8e3717e155f0f1043b454881fd225a65eefe15"
+      },
+      {
+        "order": "2026-11-15T12:31:22.523554+00:00",
+        "round": "native-process-runtime-first",
+        "task": "SAV1-20-PROCESSES",
+        "result": "evidence/SAV1-20-PROCESSES/20261115T123122Z-174658c4/result.json",
+        "junit": "evidence/SAV1-20-PROCESSES/20261115T123122Z-174658c4/junit.xml",
+        "source_commit": "e2f0fe5faf0db5a3894d39aa285e39102e6c9258",
+        "source_sha256": "395490379589b04956f7378402208fbf501b3e29795a8ff796e21bce62be23e4",
+        "counts": {
+          "tests": 4,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        "exit_code": 0,
+        "source_stable": true,
+        "source_archive": "evidence/super-agent-v1/SAV1-20/start-20261115T110801Z-a46682a3/native-process-runtime-first/source-e2f0fe5faf0d.tar.gz",
+        "archive_sha256": "e1b99aa925d3360efc91747d5365c51c92d26960e744819a53582a3c577fde3a"
+      },
+      {
+        "order": "2026-11-15T12:31:22.528851+00:00",
+        "round": "native-process-runtime-first",
+        "task": "SAV1-20-RUNTIME",
+        "result": "evidence/SAV1-20-RUNTIME/20261115T123122Z-fdb77e50/result.json",
+        "junit": "evidence/SAV1-20-RUNTIME/20261115T123122Z-fdb77e50/junit.xml",
+        "source_commit": "e2f0fe5faf0db5a3894d39aa285e39102e6c9258",
+        "source_sha256": "395490379589b04956f7378402208fbf501b3e29795a8ff796e21bce62be23e4",
+        "counts": {
+          "tests": 5,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        "exit_code": 0,
+        "source_stable": true,
+        "source_archive": "evidence/super-agent-v1/SAV1-20/start-20261115T110801Z-a46682a3/native-process-runtime-first/source-e2f0fe5faf0d.tar.gz",
+        "archive_sha256": "e1b99aa925d3360efc91747d5365c51c92d26960e744819a53582a3c577fde3a"
+      },
+      {
+        "order": "2026-11-15T12:37:06.538102+00:00",
+        "round": "boundaries-and-native-static",
+        "task": "SAV1-20-BOUNDARIES",
+        "result": "evidence/SAV1-20-BOUNDARIES/20261115T123706Z-4937b074/result.json",
+        "junit": "evidence/SAV1-20-BOUNDARIES/20261115T123706Z-4937b074/junit.xml",
+        "source_commit": "72f4e666ebe8fe8dd4ced6c9eb3592cd67146709",
+        "source_sha256": "c6d4f8d210e5d1c450f5b238799b95dddc84515fde481f41c1df543fcbb883a4",
+        "counts": {
+          "tests": 3,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        "exit_code": 0,
+        "source_stable": true,
+        "source_archive": "evidence/super-agent-v1/SAV1-20/start-20261115T110801Z-a46682a3/boundaries-and-native-static/source-72f4e666ebe8.tar.gz",
+        "archive_sha256": "89596b505232b702dab14aaeef00b71d7a9c5e7a68a468ab4b8c2cd83ab0b52f"
+      },
+      {
+        "order": "2026-11-15T12:43:23.127962+00:00",
+        "round": "restore-layout-and-style",
+        "task": "SAV1-20-RESTORE-LAYOUT",
+        "result": "evidence/SAV1-20-RESTORE-LAYOUT/20261115T124323Z-bbd92c98/result.json",
+        "junit": "evidence/SAV1-20-RESTORE-LAYOUT/20261115T124323Z-bbd92c98/junit.xml",
+        "source_commit": "d69dfb26baed518e36f870a18c3a1dcf30ec6648",
+        "source_sha256": "f6c9f0615f3f5b31aafd146b04fc4c55875f368d89b296b6cb49f187b972f0d5",
+        "counts": {
+          "tests": 1,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        "exit_code": 0,
+        "source_stable": true,
+        "source_archive": "evidence/super-agent-v1/SAV1-20/start-20261115T110801Z-a46682a3/restore-layout-and-style/source-d69dfb26baed.tar.gz",
+        "archive_sha256": "8b8cc1b857eef9bcf65c2ebc32f5cc4b93f0f7d8645657a36f9f09f621799ff5"
+      }
+    ],
+    "cases": {
+      "tests.test_source_operations_store::test_formal_0053_and_original_engine_are_not_a_draft_overlay": [
+        {
+          "status": "PASS",
+          "source_commit": "e87b82a2153f7044c1ddb66987d6947032651dcc",
+          "source_sha256": "cc372ca4d8d77fe148a4c07158c0d8ef5e8e4499753949500e80fec35eab4f54",
+          "junit": "evidence/SAV1-20-CONTROL/20261115T120543Z-3258a7c5/junit.xml",
+          "round": "formal-control-first",
+          "source_archive": "evidence/super-agent-v1/SAV1-20/start-20261115T110801Z-a46682a3/formal-control-first/source-e87b82a2153f.tar.gz"
+        }
+      ],
+      "tests.test_source_operations_store::test_owner_save_cas_concurrent_and_outer_rollback": [
+        {
+          "status": "PASS",
+          "source_commit": "e87b82a2153f7044c1ddb66987d6947032651dcc",
+          "source_sha256": "cc372ca4d8d77fe148a4c07158c0d8ef5e8e4499753949500e80fec35eab4f54",
+          "junit": "evidence/SAV1-20-CONTROL/20261115T120543Z-3258a7c5/junit.xml",
+          "round": "formal-control-first",
+          "source_archive": "evidence/super-agent-v1/SAV1-20/start-20261115T110801Z-a46682a3/formal-control-first/source-e87b82a2153f.tar.gz"
+        }
+      ],
+      "tests.test_source_operations_store::test_component_generation_and_heartbeat_do_not_allow_old_process_or_replay": [
+        {
+          "status": "PASS",
+          "source_commit": "e87b82a2153f7044c1ddb66987d6947032651dcc",
+          "source_sha256": "cc372ca4d8d77fe148a4c07158c0d8ef5e8e4499753949500e80fec35eab4f54",
+          "junit": "evidence/SAV1-20-CONTROL/20261115T120543Z-3258a7c5/junit.xml",
+          "round": "formal-control-first",
+          "source_archive": "evidence/super-agent-v1/SAV1-20/start-20261115T110801Z-a46682a3/formal-control-first/source-e87b82a2153f.tar.gz"
+        }
+      ],
+      "tests.test_source_operations_store::test_new_configuration_fences_old_lease_until_new_generation": [
+        {
+          "status": "PASS",
+          "source_commit": "e87b82a2153f7044c1ddb66987d6947032651dcc",
+          "source_sha256": "cc372ca4d8d77fe148a4c07158c0d8ef5e8e4499753949500e80fec35eab4f54",
+          "junit": "evidence/SAV1-20-CONTROL/20261115T120543Z-3258a7c5/junit.xml",
+          "round": "formal-control-first",
+          "source_archive": "evidence/super-agent-v1/SAV1-20/start-20261115T110801Z-a46682a3/formal-control-first/source-e87b82a2153f.tar.gz"
+        }
+      ],
+      "tests.test_source_operations_store::test_known_tick_response_loss_reuses_result_and_no_extra_driver_call": [
+        {
+          "status": "PASS",
+          "source_commit": "e87b82a2153f7044c1ddb66987d6947032651dcc",
+          "source_sha256": "cc372ca4d8d77fe148a4c07158c0d8ef5e8e4499753949500e80fec35eab4f54",
+          "junit": "evidence/SAV1-20-CONTROL/20261115T120543Z-3258a7c5/junit.xml",
+          "round": "formal-control-first",
+          "source_archive": "evidence/super-agent-v1/SAV1-20/start-20261115T110801Z-a46682a3/formal-control-first/source-e87b82a2153f.tar.gz"
+        }
+      ],
+      "tests.test_source_operations_store::test_partial_port_failure_is_unknown_and_cannot_be_reset_or_resent[error0]": [
+        {
+          "status": "PASS",
+          "source_commit": "e87b82a2153f7044c1ddb66987d6947032651dcc",
+          "source_sha256": "cc372ca4d8d77fe148a4c07158c0d8ef5e8e4499753949500e80fec35eab4f54",
+          "junit": "evidence/SAV1-20-CONTROL/20261115T120543Z-3258a7c5/junit.xml",
+          "round": "formal-control-first",
+          "source_archive": "evidence/super-agent-v1/SAV1-20/start-20261115T110801Z-a46682a3/formal-control-first/source-e87b82a2153f.tar.gz"
+        }
+      ],
+      "tests.test_source_operations_store::test_partial_port_failure_is_unknown_and_cannot_be_reset_or_resent[error1]": [
+        {
+          "status": "PASS",
+          "source_commit": "e87b82a2153f7044c1ddb66987d6947032651dcc",
+          "source_sha256": "cc372ca4d8d77fe148a4c07158c0d8ef5e8e4499753949500e80fec35eab4f54",
+          "junit": "evidence/SAV1-20-CONTROL/20261115T120543Z-3258a7c5/junit.xml",
+          "round": "formal-control-first",
+          "source_archive": "evidence/super-agent-v1/SAV1-20/start-20261115T110801Z-a46682a3/formal-control-first/source-e87b82a2153f.tar.gz"
+        }
+      ],
+      "tests.test_source_operations_store::test_committed_disable_between_reservation_and_dispatch_blocks_io": [
+        {
+          "status": "PASS",
+          "source_commit": "e87b82a2153f7044c1ddb66987d6947032651dcc",
+          "source_sha256": "cc372ca4d8d77fe148a4c07158c0d8ef5e8e4499753949500e80fec35eab4f54",
+          "junit": "evidence/SAV1-20-CONTROL/20261115T120543Z-3258a7c5/junit.xml",
+          "round": "formal-control-first",
+          "source_archive": "evidence/super-agent-v1/SAV1-20/start-20261115T110801Z-a46682a3/formal-control-first/source-e87b82a2153f.tar.gz"
+        }
+      ],
+      "tests.test_source_operations_store::test_engine_restart_preserves_reserved_tick_as_unknown": [
+        {
+          "status": "PASS",
+          "source_commit": "e87b82a2153f7044c1ddb66987d6947032651dcc",
+          "source_sha256": "cc372ca4d8d77fe148a4c07158c0d8ef5e8e4499753949500e80fec35eab4f54",
+          "junit": "evidence/SAV1-20-CONTROL/20261115T120543Z-3258a7c5/junit.xml",
+          "round": "formal-control-first",
+          "source_archive": "evidence/super-agent-v1/SAV1-20/start-20261115T110801Z-a46682a3/formal-control-first/source-e87b82a2153f.tar.gz"
+        }
+      ],
+      "tests.test_source_operations_store::test_watchdog_recomputes_fact_dedupes_and_can_only_record_wait_or_escalate": [
+        {
+          "status": "FAIL",
+          "source_commit": "e87b82a2153f7044c1ddb66987d6947032651dcc",
+          "source_sha256": "cc372ca4d8d77fe148a4c07158c0d8ef5e8e4499753949500e80fec35eab4f54",
+          "junit": "evidence/SAV1-20-CONTROL/20261115T120543Z-3258a7c5/junit.xml",
+          "round": "formal-control-first",
+          "source_archive": "evidence/super-agent-v1/SAV1-20/start-20261115T110801Z-a46682a3/formal-control-first/source-e87b82a2153f.tar.gz"
+        },
+        {
+          "status": "PASS",
+          "source_commit": "e879c06bd06f6550883d04e4e1fd32c676399ce1",
+          "source_sha256": "65fe1ba735e0536b74a12bd37f6c4d39bb7f5e33c98e91cf17b40043919ae572",
+          "junit": "evidence/super-agent-v1/SAV1-20/start-20261115T110801Z-a46682a3/formal-control-failed13-recheck/junit.xml",
+          "round": "formal-control-failed13-recheck",
+          "source_archive": "evidence/super-agent-v1/SAV1-20/start-20261115T110801Z-a46682a3/formal-control-failed13-recheck/source-e879c06bd06f.tar.gz"
+        }
+      ],
+      "tests.test_source_operations_store::test_missing_worker_reports_waiting_and_heartbeats_do_not_make_semantic_progress": [
+        {
+          "status": "FAIL",
+          "source_commit": "e87b82a2153f7044c1ddb66987d6947032651dcc",
+          "source_sha256": "cc372ca4d8d77fe148a4c07158c0d8ef5e8e4499753949500e80fec35eab4f54",
+          "junit": "evidence/SAV1-20-CONTROL/20261115T120543Z-3258a7c5/junit.xml",
+          "round": "formal-control-first",
+          "source_archive": "evidence/super-agent-v1/SAV1-20/start-20261115T110801Z-a46682a3/formal-control-first/source-e87b82a2153f.tar.gz"
+        },
+        {
+          "status": "PASS",
+          "source_commit": "e879c06bd06f6550883d04e4e1fd32c676399ce1",
+          "source_sha256": "65fe1ba735e0536b74a12bd37f6c4d39bb7f5e33c98e91cf17b40043919ae572",
+          "junit": "evidence/super-agent-v1/SAV1-20/start-20261115T110801Z-a46682a3/formal-control-failed13-recheck/junit.xml",
+          "round": "formal-control-failed13-recheck",
+          "source_archive": "evidence/super-agent-v1/SAV1-20/start-20261115T110801Z-a46682a3/formal-control-failed13-recheck/source-e879c06bd06f.tar.gz"
+        }
+      ],
+      "tests.test_source_operations_api::test_all_eleven_formal_routes_registered_on_original_app": [
+        {
+          "status": "PASS",
+          "source_commit": "e87b82a2153f7044c1ddb66987d6947032651dcc",
+          "source_sha256": "cc372ca4d8d77fe148a4c07158c0d8ef5e8e4499753949500e80fec35eab4f54",
+          "junit": "evidence/SAV1-20-CONTROL/20261115T120543Z-3258a7c5/junit.xml",
+          "round": "formal-control-first",
+          "source_archive": "evidence/super-agent-v1/SAV1-20/start-20261115T110801Z-a46682a3/formal-control-first/source-e87b82a2153f.tar.gz"
+        }
+      ],
+      "tests.test_source_operations_api::test_owner_cookie_csrf_cannot_be_replaced_by_cli_or_service_token": [
+        {
+          "status": "FAIL",
+          "source_commit": "e87b82a2153f7044c1ddb66987d6947032651dcc",
+          "source_sha256": "cc372ca4d8d77fe148a4c07158c0d8ef5e8e4499753949500e80fec35eab4f54",
+          "junit": "evidence/SAV1-20-CONTROL/20261115T120543Z-3258a7c5/junit.xml",
+          "round": "formal-control-first",
+          "source_archive": "evidence/super-agent-v1/SAV1-20/start-20261115T110801Z-a46682a3/formal-control-first/source-e87b82a2153f.tar.gz"
+        },
+        {
+          "status": "PASS",
+          "source_commit": "e879c06bd06f6550883d04e4e1fd32c676399ce1",
+          "source_sha256": "65fe1ba735e0536b74a12bd37f6c4d39bb7f5e33c98e91cf17b40043919ae572",
+          "junit": "evidence/super-agent-v1/SAV1-20/start-20261115T110801Z-a46682a3/formal-control-failed13-recheck/junit.xml",
+          "round": "formal-control-failed13-recheck",
+          "source_archive": "evidence/super-agent-v1/SAV1-20/start-20261115T110801Z-a46682a3/formal-control-failed13-recheck/source-e879c06bd06f.tar.gz"
+        }
+      ],
+      "tests.test_source_operations_api::test_machine_auth_separates_components_browser_and_actual_peer[missing]": [
+        {
+          "status": "FAIL",
+          "source_commit": "e87b82a2153f7044c1ddb66987d6947032651dcc",
+          "source_sha256": "cc372ca4d8d77fe148a4c07158c0d8ef5e8e4499753949500e80fec35eab4f54",
+          "junit": "evidence/SAV1-20-CONTROL/20261115T120543Z-3258a7c5/junit.xml",
+          "round": "formal-control-first",
+          "source_archive": "evidence/super-agent-v1/SAV1-20/start-20261115T110801Z-a46682a3/formal-control-first/source-e87b82a2153f.tar.gz"
+        },
+        {
+          "status": "PASS",
+          "source_commit": "e879c06bd06f6550883d04e4e1fd32c676399ce1",
+          "source_sha256": "65fe1ba735e0536b74a12bd37f6c4d39bb7f5e33c98e91cf17b40043919ae572",
+          "junit": "evidence/super-agent-v1/SAV1-20/start-20261115T110801Z-a46682a3/formal-control-failed13-recheck/junit.xml",
+          "round": "formal-control-failed13-recheck",
+          "source_archive": "evidence/super-agent-v1/SAV1-20/start-20261115T110801Z-a46682a3/formal-control-failed13-recheck/source-e879c06bd06f.tar.gz"
+        }
+      ],
+      "tests.test_source_operations_api::test_machine_auth_separates_components_browser_and_actual_peer[other_component]": [
+        {
+          "status": "FAIL",
+          "source_commit": "e87b82a2153f7044c1ddb66987d6947032651dcc",
+          "source_sha256": "cc372ca4d8d77fe148a4c07158c0d8ef5e8e4499753949500e80fec35eab4f54",
+          "junit": "evidence/SAV1-20-CONTROL/20261115T120543Z-3258a7c5/junit.xml",
+          "round": "formal-control-first",
+          "source_archive": "evidence/super-agent-v1/SAV1-20/start-20261115T110801Z-a46682a3/formal-control-first/source-e87b82a2153f.tar.gz"
+        },
+        {
+          "status": "PASS",
+          "source_commit": "e879c06bd06f6550883d04e4e1fd32c676399ce1",
+          "source_sha256": "65fe1ba735e0536b74a12bd37f6c4d39bb7f5e33c98e91cf17b40043919ae572",
+          "junit": "evidence/super-agent-v1/SAV1-20/start-20261115T110801Z-a46682a3/formal-control-failed13-recheck/junit.xml",
+          "round": "formal-control-failed13-recheck",
+          "source_archive": "evidence/super-agent-v1/SAV1-20/start-20261115T110801Z-a46682a3/formal-control-failed13-recheck/source-e879c06bd06f.tar.gz"
+        }
+      ],
+      "tests.test_source_operations_api::test_machine_auth_separates_components_browser_and_actual_peer[duplicate]": [
+        {
+          "status": "FAIL",
+          "source_commit": "e87b82a2153f7044c1ddb66987d6947032651dcc",
+          "source_sha256": "cc372ca4d8d77fe148a4c07158c0d8ef5e8e4499753949500e80fec35eab4f54",
+          "junit": "evidence/SAV1-20-CONTROL/20261115T120543Z-3258a7c5/junit.xml",
+          "round": "formal-control-first",
+          "source_archive": "evidence/super-agent-v1/SAV1-20/start-20261115T110801Z-a46682a3/formal-control-first/source-e87b82a2153f.tar.gz"
+        },
+        {
+          "status": "PASS",
+          "source_commit": "e879c06bd06f6550883d04e4e1fd32c676399ce1",
+          "source_sha256": "65fe1ba735e0536b74a12bd37f6c4d39bb7f5e33c98e91cf17b40043919ae572",
+          "junit": "evidence/super-agent-v1/SAV1-20/start-20261115T110801Z-a46682a3/formal-control-failed13-recheck/junit.xml",
+          "round": "formal-control-failed13-recheck",
+          "source_archive": "evidence/super-agent-v1/SAV1-20/start-20261115T110801Z-a46682a3/formal-control-failed13-recheck/source-e879c06bd06f.tar.gz"
+        }
+      ],
+      "tests.test_source_operations_api::test_machine_auth_separates_components_browser_and_actual_peer[cookie]": [
+        {
+          "status": "FAIL",
+          "source_commit": "e87b82a2153f7044c1ddb66987d6947032651dcc",
+          "source_sha256": "cc372ca4d8d77fe148a4c07158c0d8ef5e8e4499753949500e80fec35eab4f54",
+          "junit": "evidence/SAV1-20-CONTROL/20261115T120543Z-3258a7c5/junit.xml",
+          "round": "formal-control-first",
+          "source_archive": "evidence/super-agent-v1/SAV1-20/start-20261115T110801Z-a46682a3/formal-control-first/source-e87b82a2153f.tar.gz"
+        },
+        {
+          "status": "PASS",
+          "source_commit": "e879c06bd06f6550883d04e4e1fd32c676399ce1",
+          "source_sha256": "65fe1ba735e0536b74a12bd37f6c4d39bb7f5e33c98e91cf17b40043919ae572",
+          "junit": "evidence/super-agent-v1/SAV1-20/start-20261115T110801Z-a46682a3/formal-control-failed13-recheck/junit.xml",
+          "round": "formal-control-failed13-recheck",
+          "source_archive": "evidence/super-agent-v1/SAV1-20/start-20261115T110801Z-a46682a3/formal-control-failed13-recheck/source-e879c06bd06f.tar.gz"
+        }
+      ],
+      "tests.test_source_operations_api::test_machine_auth_separates_components_browser_and_actual_peer[origin]": [
+        {
+          "status": "FAIL",
+          "source_commit": "e87b82a2153f7044c1ddb66987d6947032651dcc",
+          "source_sha256": "cc372ca4d8d77fe148a4c07158c0d8ef5e8e4499753949500e80fec35eab4f54",
+          "junit": "evidence/SAV1-20-CONTROL/20261115T120543Z-3258a7c5/junit.xml",
+          "round": "formal-control-first",
+          "source_archive": "evidence/super-agent-v1/SAV1-20/start-20261115T110801Z-a46682a3/formal-control-first/source-e87b82a2153f.tar.gz"
+        },
+        {
+          "status": "PASS",
+          "source_commit": "e879c06bd06f6550883d04e4e1fd32c676399ce1",
+          "source_sha256": "65fe1ba735e0536b74a12bd37f6c4d39bb7f5e33c98e91cf17b40043919ae572",
+          "junit": "evidence/super-agent-v1/SAV1-20/start-20261115T110801Z-a46682a3/formal-control-failed13-recheck/junit.xml",
+          "round": "formal-control-failed13-recheck",
+          "source_archive": "evidence/super-agent-v1/SAV1-20/start-20261115T110801Z-a46682a3/formal-control-failed13-recheck/source-e879c06bd06f.tar.gz"
+        }
+      ],
+      "tests.test_source_operations_api::test_machine_auth_separates_components_browser_and_actual_peer[remote]": [
+        {
+          "status": "FAIL",
+          "source_commit": "e87b82a2153f7044c1ddb66987d6947032651dcc",
+          "source_sha256": "cc372ca4d8d77fe148a4c07158c0d8ef5e8e4499753949500e80fec35eab4f54",
+          "junit": "evidence/SAV1-20-CONTROL/20261115T120543Z-3258a7c5/junit.xml",
+          "round": "formal-control-first",
+          "source_archive": "evidence/super-agent-v1/SAV1-20/start-20261115T110801Z-a46682a3/formal-control-first/source-e87b82a2153f.tar.gz"
+        },
+        {
+          "status": "PASS",
+          "source_commit": "e879c06bd06f6550883d04e4e1fd32c676399ce1",
+          "source_sha256": "65fe1ba735e0536b74a12bd37f6c4d39bb7f5e33c98e91cf17b40043919ae572",
+          "junit": "evidence/super-agent-v1/SAV1-20/start-20261115T110801Z-a46682a3/formal-control-failed13-recheck/junit.xml",
+          "round": "formal-control-failed13-recheck",
+          "source_archive": "evidence/super-agent-v1/SAV1-20/start-20261115T110801Z-a46682a3/formal-control-failed13-recheck/source-e879c06bd06f.tar.gz"
+        }
+      ],
+      "tests.test_source_operations_api::test_machine_activation_heartbeat_tick_and_rotation_do_not_leak_credentials": [
+        {
+          "status": "FAIL",
+          "source_commit": "e87b82a2153f7044c1ddb66987d6947032651dcc",
+          "source_sha256": "cc372ca4d8d77fe148a4c07158c0d8ef5e8e4499753949500e80fec35eab4f54",
+          "junit": "evidence/SAV1-20-CONTROL/20261115T120543Z-3258a7c5/junit.xml",
+          "round": "formal-control-first",
+          "source_archive": "evidence/super-agent-v1/SAV1-20/start-20261115T110801Z-a46682a3/formal-control-first/source-e87b82a2153f.tar.gz"
+        },
+        {
+          "status": "FAIL",
+          "source_commit": "e879c06bd06f6550883d04e4e1fd32c676399ce1",
+          "source_sha256": "65fe1ba735e0536b74a12bd37f6c4d39bb7f5e33c98e91cf17b40043919ae572",
+          "junit": "evidence/super-agent-v1/SAV1-20/start-20261115T110801Z-a46682a3/formal-control-failed13-recheck/junit.xml",
+          "round": "formal-control-failed13-recheck",
+          "source_archive": "evidence/super-agent-v1/SAV1-20/start-20261115T110801Z-a46682a3/formal-control-failed13-recheck/source-e879c06bd06f.tar.gz"
+        },
+        {
+          "status": "PASS",
+          "source_commit": "acfbc29f0159ae9850c86e431555b6fc46c973b6",
+          "source_sha256": "514b68613573057a0b6d2d4eba860fdda6ba4d2cea0d0785b0f98eab5999ad25",
+          "junit": "evidence/super-agent-v1/SAV1-20/start-20261115T110801Z-a46682a3/formal-control-failed2-recheck/junit.xml",
+          "round": "formal-control-failed2-recheck",
+          "source_archive": "evidence/super-agent-v1/SAV1-20/start-20261115T110801Z-a46682a3/formal-control-failed2-recheck/source-acfbc29f0159.tar.gz"
+        }
+      ],
+      "tests.test_source_operations_api::test_nonexecuting_role_cannot_tick_even_with_valid_machine_token": [
+        {
+          "status": "FAIL",
+          "source_commit": "e87b82a2153f7044c1ddb66987d6947032651dcc",
+          "source_sha256": "cc372ca4d8d77fe148a4c07158c0d8ef5e8e4499753949500e80fec35eab4f54",
+          "junit": "evidence/SAV1-20-CONTROL/20261115T120543Z-3258a7c5/junit.xml",
+          "round": "formal-control-first",
+          "source_archive": "evidence/super-agent-v1/SAV1-20/start-20261115T110801Z-a46682a3/formal-control-first/source-e87b82a2153f.tar.gz"
+        },
+        {
+          "status": "FAIL",
+          "source_commit": "e879c06bd06f6550883d04e4e1fd32c676399ce1",
+          "source_sha256": "65fe1ba735e0536b74a12bd37f6c4d39bb7f5e33c98e91cf17b40043919ae572",
+          "junit": "evidence/super-agent-v1/SAV1-20/start-20261115T110801Z-a46682a3/formal-control-failed13-recheck/junit.xml",
+          "round": "formal-control-failed13-recheck",
+          "source_archive": "evidence/super-agent-v1/SAV1-20/start-20261115T110801Z-a46682a3/formal-control-failed13-recheck/source-e879c06bd06f.tar.gz"
+        },
+        {
+          "status": "PASS",
+          "source_commit": "acfbc29f0159ae9850c86e431555b6fc46c973b6",
+          "source_sha256": "514b68613573057a0b6d2d4eba860fdda6ba4d2cea0d0785b0f98eab5999ad25",
+          "junit": "evidence/super-agent-v1/SAV1-20/start-20261115T110801Z-a46682a3/formal-control-failed2-recheck/junit.xml",
+          "round": "formal-control-failed2-recheck",
+          "source_archive": "evidence/super-agent-v1/SAV1-20/start-20261115T110801Z-a46682a3/formal-control-failed2-recheck/source-acfbc29f0159.tar.gz"
+        }
+      ],
+      "tests.test_source_operations_api::test_public_https_login_exact_origin_secure_cookie_and_no_remote_first_owner": [
+        {
+          "status": "FAIL",
+          "source_commit": "e87b82a2153f7044c1ddb66987d6947032651dcc",
+          "source_sha256": "cc372ca4d8d77fe148a4c07158c0d8ef5e8e4499753949500e80fec35eab4f54",
+          "junit": "evidence/SAV1-20-CONTROL/20261115T120543Z-3258a7c5/junit.xml",
+          "round": "formal-control-first",
+          "source_archive": "evidence/super-agent-v1/SAV1-20/start-20261115T110801Z-a46682a3/formal-control-first/source-e87b82a2153f.tar.gz"
+        },
+        {
+          "status": "PASS",
+          "source_commit": "e879c06bd06f6550883d04e4e1fd32c676399ce1",
+          "source_sha256": "65fe1ba735e0536b74a12bd37f6c4d39bb7f5e33c98e91cf17b40043919ae572",
+          "junit": "evidence/super-agent-v1/SAV1-20/start-20261115T110801Z-a46682a3/formal-control-failed13-recheck/junit.xml",
+          "round": "formal-control-failed13-recheck",
+          "source_archive": "evidence/super-agent-v1/SAV1-20/start-20261115T110801Z-a46682a3/formal-control-failed13-recheck/source-e879c06bd06f.tar.gz"
+        }
+      ],
+      "tests.test_source_operations_api::test_mount_prefix_keeps_operations_private_and_no_store": [
+        {
+          "status": "FAIL",
+          "source_commit": "e87b82a2153f7044c1ddb66987d6947032651dcc",
+          "source_sha256": "cc372ca4d8d77fe148a4c07158c0d8ef5e8e4499753949500e80fec35eab4f54",
+          "junit": "evidence/SAV1-20-CONTROL/20261115T120543Z-3258a7c5/junit.xml",
+          "round": "formal-control-first",
+          "source_archive": "evidence/super-agent-v1/SAV1-20/start-20261115T110801Z-a46682a3/formal-control-first/source-e87b82a2153f.tar.gz"
+        },
+        {
+          "status": "PASS",
+          "source_commit": "e879c06bd06f6550883d04e4e1fd32c676399ce1",
+          "source_sha256": "65fe1ba735e0536b74a12bd37f6c4d39bb7f5e33c98e91cf17b40043919ae572",
+          "junit": "evidence/super-agent-v1/SAV1-20/start-20261115T110801Z-a46682a3/formal-control-failed13-recheck/junit.xml",
+          "round": "formal-control-failed13-recheck",
+          "source_archive": "evidence/super-agent-v1/SAV1-20/start-20261115T110801Z-a46682a3/formal-control-failed13-recheck/source-e879c06bd06f.tar.gz"
+        }
+      ],
+      "tests.test_source_operations_api::test_raw_json_duplicates_and_unknown_commands_are_rejected_without_side_effects": [
+        {
+          "status": "PASS",
+          "source_commit": "e87b82a2153f7044c1ddb66987d6947032651dcc",
+          "source_sha256": "cc372ca4d8d77fe148a4c07158c0d8ef5e8e4499753949500e80fec35eab4f54",
+          "junit": "evidence/SAV1-20-CONTROL/20261115T120543Z-3258a7c5/junit.xml",
+          "round": "formal-control-first",
+          "source_archive": "evidence/super-agent-v1/SAV1-20/start-20261115T110801Z-a46682a3/formal-control-first/source-e87b82a2153f.tar.gz"
+        }
+      ],
+      "tests.test_source_operations_backup::test_real_encrypted_pg_cas_three_keys_restore_preserves_unknown_and_never_activates": [
+        {
+          "status": "PASS",
+          "source_commit": "7b703452340f8523daaf4d88e79929864441a7ea",
+          "source_sha256": "f4234c96834e1c2ad737ebfda7f1eda0044aa2bca8cb60e165c3312759ac7d5e",
+          "junit": "evidence/SAV1-20-RECOVERY/20261115T122128Z-9b5f84c2/junit.xml",
+          "round": "recovery-deployment-first",
+          "source_archive": "evidence/super-agent-v1/SAV1-20/start-20261115T110801Z-a46682a3/recovery-deployment-first/source-7b703452340f.tar.gz"
+        }
+      ],
+      "tests.test_source_operations_backup::test_backup_or_unpack_rejects_key_and_integrity_faults_without_a_usable_package[wrong_key]": [
+        {
+          "status": "PASS",
+          "source_commit": "7b703452340f8523daaf4d88e79929864441a7ea",
+          "source_sha256": "f4234c96834e1c2ad737ebfda7f1eda0044aa2bca8cb60e165c3312759ac7d5e",
+          "junit": "evidence/SAV1-20-RECOVERY/20261115T122128Z-9b5f84c2/junit.xml",
+          "round": "recovery-deployment-first",
+          "source_archive": "evidence/super-agent-v1/SAV1-20/start-20261115T110801Z-a46682a3/recovery-deployment-first/source-7b703452340f.tar.gz"
+        }
+      ],
+      "tests.test_source_operations_backup::test_backup_or_unpack_rejects_key_and_integrity_faults_without_a_usable_package[tampered_ciphertext]": [
+        {
+          "status": "PASS",
+          "source_commit": "7b703452340f8523daaf4d88e79929864441a7ea",
+          "source_sha256": "f4234c96834e1c2ad737ebfda7f1eda0044aa2bca8cb60e165c3312759ac7d5e",
+          "junit": "evidence/SAV1-20-RECOVERY/20261115T122128Z-9b5f84c2/junit.xml",
+          "round": "recovery-deployment-first",
+          "source_archive": "evidence/super-agent-v1/SAV1-20/start-20261115T110801Z-a46682a3/recovery-deployment-first/source-7b703452340f.tar.gz"
+        }
+      ],
+      "tests.test_source_operations_backup::test_backup_or_unpack_rejects_key_and_integrity_faults_without_a_usable_package[missing_key]": [
+        {
+          "status": "PASS",
+          "source_commit": "7b703452340f8523daaf4d88e79929864441a7ea",
+          "source_sha256": "f4234c96834e1c2ad737ebfda7f1eda0044aa2bca8cb60e165c3312759ac7d5e",
+          "junit": "evidence/SAV1-20-RECOVERY/20261115T122128Z-9b5f84c2/junit.xml",
+          "round": "recovery-deployment-first",
+          "source_archive": "evidence/super-agent-v1/SAV1-20/start-20261115T110801Z-a46682a3/recovery-deployment-first/source-7b703452340f.tar.gz"
+        }
+      ],
+      "tests.test_source_operations_backup::test_backup_or_unpack_rejects_key_and_integrity_faults_without_a_usable_package[symlink_key]": [
+        {
+          "status": "PASS",
+          "source_commit": "7b703452340f8523daaf4d88e79929864441a7ea",
+          "source_sha256": "f4234c96834e1c2ad737ebfda7f1eda0044aa2bca8cb60e165c3312759ac7d5e",
+          "junit": "evidence/SAV1-20-RECOVERY/20261115T122128Z-9b5f84c2/junit.xml",
+          "round": "recovery-deployment-first",
+          "source_archive": "evidence/super-agent-v1/SAV1-20/start-20261115T110801Z-a46682a3/recovery-deployment-first/source-7b703452340f.tar.gz"
+        }
+      ],
+      "tests.test_source_operations_backup::test_restore_requires_matching_binding_and_new_empty_targets[project]": [
+        {
+          "status": "PASS",
+          "source_commit": "7b703452340f8523daaf4d88e79929864441a7ea",
+          "source_sha256": "f4234c96834e1c2ad737ebfda7f1eda0044aa2bca8cb60e165c3312759ac7d5e",
+          "junit": "evidence/SAV1-20-RECOVERY/20261115T122128Z-9b5f84c2/junit.xml",
+          "round": "recovery-deployment-first",
+          "source_archive": "evidence/super-agent-v1/SAV1-20/start-20261115T110801Z-a46682a3/recovery-deployment-first/source-7b703452340f.tar.gz"
+        }
+      ],
+      "tests.test_source_operations_backup::test_restore_requires_matching_binding_and_new_empty_targets[migration]": [
+        {
+          "status": "PASS",
+          "source_commit": "7b703452340f8523daaf4d88e79929864441a7ea",
+          "source_sha256": "f4234c96834e1c2ad737ebfda7f1eda0044aa2bca8cb60e165c3312759ac7d5e",
+          "junit": "evidence/SAV1-20-RECOVERY/20261115T122128Z-9b5f84c2/junit.xml",
+          "round": "recovery-deployment-first",
+          "source_archive": "evidence/super-agent-v1/SAV1-20/start-20261115T110801Z-a46682a3/recovery-deployment-first/source-7b703452340f.tar.gz"
+        }
+      ],
+      "tests.test_source_operations_backup::test_restore_requires_matching_binding_and_new_empty_targets[nonempty_database]": [
+        {
+          "status": "PASS",
+          "source_commit": "7b703452340f8523daaf4d88e79929864441a7ea",
+          "source_sha256": "f4234c96834e1c2ad737ebfda7f1eda0044aa2bca8cb60e165c3312759ac7d5e",
+          "junit": "evidence/SAV1-20-RECOVERY/20261115T122128Z-9b5f84c2/junit.xml",
+          "round": "recovery-deployment-first",
+          "source_archive": "evidence/super-agent-v1/SAV1-20/start-20261115T110801Z-a46682a3/recovery-deployment-first/source-7b703452340f.tar.gz"
+        }
+      ],
+      "tests.test_source_operations_backup::test_restore_requires_matching_binding_and_new_empty_targets[existing_directory]": [
+        {
+          "status": "PASS",
+          "source_commit": "7b703452340f8523daaf4d88e79929864441a7ea",
+          "source_sha256": "f4234c96834e1c2ad737ebfda7f1eda0044aa2bca8cb60e165c3312759ac7d5e",
+          "junit": "evidence/SAV1-20-RECOVERY/20261115T122128Z-9b5f84c2/junit.xml",
+          "round": "recovery-deployment-first",
+          "source_archive": "evidence/super-agent-v1/SAV1-20/start-20261115T110801Z-a46682a3/recovery-deployment-first/source-7b703452340f.tar.gz"
+        }
+      ],
+      "tests.test_source_operations_backup::test_authenticated_but_noncanonical_tar_is_rejected_before_any_extraction[../../outside]": [
+        {
+          "status": "PASS",
+          "source_commit": "7b703452340f8523daaf4d88e79929864441a7ea",
+          "source_sha256": "f4234c96834e1c2ad737ebfda7f1eda0044aa2bca8cb60e165c3312759ac7d5e",
+          "junit": "evidence/SAV1-20-RECOVERY/20261115T122128Z-9b5f84c2/junit.xml",
+          "round": "recovery-deployment-first",
+          "source_archive": "evidence/super-agent-v1/SAV1-20/start-20261115T110801Z-a46682a3/recovery-deployment-first/source-7b703452340f.tar.gz"
+        }
+      ],
+      "tests.test_source_operations_backup::test_authenticated_but_noncanonical_tar_is_rejected_before_any_extraction[keys/source.key]": [
+        {
+          "status": "PASS",
+          "source_commit": "7b703452340f8523daaf4d88e79929864441a7ea",
+          "source_sha256": "f4234c96834e1c2ad737ebfda7f1eda0044aa2bca8cb60e165c3312759ac7d5e",
+          "junit": "evidence/SAV1-20-RECOVERY/20261115T122128Z-9b5f84c2/junit.xml",
+          "round": "recovery-deployment-first",
+          "source_archive": "evidence/super-agent-v1/SAV1-20/start-20261115T110801Z-a46682a3/recovery-deployment-first/source-7b703452340f.tar.gz"
+        }
+      ],
+      "tests.test_source_operations_backup::test_authenticated_but_noncanonical_tar_is_rejected_before_any_extraction[cas/aa/bogus]": [
+        {
+          "status": "PASS",
+          "source_commit": "7b703452340f8523daaf4d88e79929864441a7ea",
+          "source_sha256": "f4234c96834e1c2ad737ebfda7f1eda0044aa2bca8cb60e165c3312759ac7d5e",
+          "junit": "evidence/SAV1-20-RECOVERY/20261115T122128Z-9b5f84c2/junit.xml",
+          "round": "recovery-deployment-first",
+          "source_archive": "evidence/super-agent-v1/SAV1-20/start-20261115T110801Z-a46682a3/recovery-deployment-first/source-7b703452340f.tar.gz"
+        }
+      ],
+      "tests.test_source_operations_backup::test_default_deployment_refuses_restored_hold_before_opening_engine": [
+        {
+          "status": "PASS",
+          "source_commit": "7b703452340f8523daaf4d88e79929864441a7ea",
+          "source_sha256": "f4234c96834e1c2ad737ebfda7f1eda0044aa2bca8cb60e165c3312759ac7d5e",
+          "junit": "evidence/SAV1-20-RECOVERY/20261115T122128Z-9b5f84c2/junit.xml",
+          "round": "recovery-deployment-first",
+          "source_archive": "evidence/super-agent-v1/SAV1-20/start-20261115T110801Z-a46682a3/recovery-deployment-first/source-7b703452340f.tar.gz"
+        }
+      ],
+      "tests.test_source_operations_deployment::test_compose_renders_private_pinned_dependencies_without_starting_any_service": [
+        {
+          "status": "PASS",
+          "source_commit": "7b703452340f8523daaf4d88e79929864441a7ea",
+          "source_sha256": "f4234c96834e1c2ad737ebfda7f1eda0044aa2bca8cb60e165c3312759ac7d5e",
+          "junit": "evidence/SAV1-20-RECOVERY/20261115T122128Z-9b5f84c2/junit.xml",
+          "round": "recovery-deployment-first",
+          "source_archive": "evidence/super-agent-v1/SAV1-20/start-20261115T110801Z-a46682a3/recovery-deployment-first/source-7b703452340f.tar.gz"
+        }
+      ],
+      "tests.test_source_operations_deployment::test_system_services_are_login_independent_and_role_environment_is_minimal": [
+        {
+          "status": "PASS",
+          "source_commit": "7b703452340f8523daaf4d88e79929864441a7ea",
+          "source_sha256": "f4234c96834e1c2ad737ebfda7f1eda0044aa2bca8cb60e165c3312759ac7d5e",
+          "junit": "evidence/SAV1-20-RECOVERY/20261115T122128Z-9b5f84c2/junit.xml",
+          "round": "recovery-deployment-first",
+          "source_archive": "evidence/super-agent-v1/SAV1-20/start-20261115T110801Z-a46682a3/recovery-deployment-first/source-7b703452340f.tar.gz"
+        }
+      ],
+      "tests.test_source_operations_deployment::test_real_https_login_secure_cookie_origin_and_private_route_blocking": [
+        {
+          "status": "PASS",
+          "source_commit": "7b703452340f8523daaf4d88e79929864441a7ea",
+          "source_sha256": "f4234c96834e1c2ad737ebfda7f1eda0044aa2bca8cb60e165c3312759ac7d5e",
+          "junit": "evidence/SAV1-20-RECOVERY/20261115T122128Z-9b5f84c2/junit.xml",
+          "round": "recovery-deployment-first",
+          "source_archive": "evidence/super-agent-v1/SAV1-20/start-20261115T110801Z-a46682a3/recovery-deployment-first/source-7b703452340f.tar.gz"
+        }
+      ],
+      "tests.test_source_operations_deployment::test_gateway_rejects_plaintext_or_host_mismatch_before_contacting_upstream[http-127.0.0.1:8443]": [
+        {
+          "status": "PASS",
+          "source_commit": "7b703452340f8523daaf4d88e79929864441a7ea",
+          "source_sha256": "f4234c96834e1c2ad737ebfda7f1eda0044aa2bca8cb60e165c3312759ac7d5e",
+          "junit": "evidence/SAV1-20-RECOVERY/20261115T122128Z-9b5f84c2/junit.xml",
+          "round": "recovery-deployment-first",
+          "source_archive": "evidence/super-agent-v1/SAV1-20/start-20261115T110801Z-a46682a3/recovery-deployment-first/source-7b703452340f.tar.gz"
+        }
+      ],
+      "tests.test_source_operations_deployment::test_gateway_rejects_plaintext_or_host_mismatch_before_contacting_upstream[https-evil.test]": [
+        {
+          "status": "PASS",
+          "source_commit": "7b703452340f8523daaf4d88e79929864441a7ea",
+          "source_sha256": "f4234c96834e1c2ad737ebfda7f1eda0044aa2bca8cb60e165c3312759ac7d5e",
+          "junit": "evidence/SAV1-20-RECOVERY/20261115T122128Z-9b5f84c2/junit.xml",
+          "round": "recovery-deployment-first",
+          "source_archive": "evidence/super-agent-v1/SAV1-20/start-20261115T110801Z-a46682a3/recovery-deployment-first/source-7b703452340f.tar.gz"
+        }
+      ],
+      "tests.test_source_operations_processes::test_independent_role_processes_have_no_controller_secrets_and_idle_calls_stay_zero": [
+        {
+          "status": "PASS",
+          "source_commit": "e2f0fe5faf0db5a3894d39aa285e39102e6c9258",
+          "source_sha256": "395490379589b04956f7378402208fbf501b3e29795a8ff796e21bce62be23e4",
+          "junit": "evidence/SAV1-20-PROCESSES/20261115T123122Z-174658c4/junit.xml",
+          "round": "native-process-runtime-first",
+          "source_archive": "evidence/super-agent-v1/SAV1-20/start-20261115T110801Z-a46682a3/native-process-runtime-first/source-e2f0fe5faf0d.tar.gz"
+        }
+      ],
+      "tests.test_source_operations_processes::test_controller_sigkill_and_restart_keep_original_queued_input_without_double_start": [
+        {
+          "status": "PASS",
+          "source_commit": "e2f0fe5faf0db5a3894d39aa285e39102e6c9258",
+          "source_sha256": "395490379589b04956f7378402208fbf501b3e29795a8ff796e21bce62be23e4",
+          "junit": "evidence/SAV1-20-PROCESSES/20261115T123122Z-174658c4/junit.xml",
+          "round": "native-process-runtime-first",
+          "source_archive": "evidence/super-agent-v1/SAV1-20/start-20261115T110801Z-a46682a3/native-process-runtime-first/source-e2f0fe5faf0d.tar.gz"
+        }
+      ],
+      "tests.test_source_operations_processes::test_real_sigkill_after_tick_reservation_recovers_unknown_without_reinvocation": [
+        {
+          "status": "PASS",
+          "source_commit": "e2f0fe5faf0db5a3894d39aa285e39102e6c9258",
+          "source_sha256": "395490379589b04956f7378402208fbf501b3e29795a8ff796e21bce62be23e4",
+          "junit": "evidence/SAV1-20-PROCESSES/20261115T123122Z-174658c4/junit.xml",
+          "round": "native-process-runtime-first",
+          "source_archive": "evidence/super-agent-v1/SAV1-20/start-20261115T110801Z-a46682a3/native-process-runtime-first/source-e2f0fe5faf0d.tar.gz"
+        }
+      ],
+      "tests.test_source_operations_processes::test_actual_worker_control_process_loss_expires_liveness_and_reports_waiting_runner": [
+        {
+          "status": "PASS",
+          "source_commit": "e2f0fe5faf0db5a3894d39aa285e39102e6c9258",
+          "source_sha256": "395490379589b04956f7378402208fbf501b3e29795a8ff796e21bce62be23e4",
+          "junit": "evidence/SAV1-20-PROCESSES/20261115T123122Z-174658c4/junit.xml",
+          "round": "native-process-runtime-first",
+          "source_archive": "evidence/super-agent-v1/SAV1-20/start-20261115T110801Z-a46682a3/native-process-runtime-first/source-e2f0fe5faf0d.tar.gz"
+        }
+      ],
+      "tests.test_source_operations_runtime::test_original_async_cloud_job_finishes_after_http_browser_and_role_client_exit": [
+        {
+          "status": "PASS",
+          "source_commit": "e2f0fe5faf0db5a3894d39aa285e39102e6c9258",
+          "source_sha256": "395490379589b04956f7378402208fbf501b3e29795a8ff796e21bce62be23e4",
+          "junit": "evidence/SAV1-20-RUNTIME/20261115T123122Z-fdb77e50/junit.xml",
+          "round": "native-process-runtime-first",
+          "source_archive": "evidence/super-agent-v1/SAV1-20/start-20261115T110801Z-a46682a3/native-process-runtime-first/source-e2f0fe5faf0d.tar.gz"
+        }
+      ],
+      "tests.test_source_operations_runtime::test_original_notification_unknown_creates_accurate_watchdog_fact_and_is_not_resent": [
+        {
+          "status": "PASS",
+          "source_commit": "e2f0fe5faf0db5a3894d39aa285e39102e6c9258",
+          "source_sha256": "395490379589b04956f7378402208fbf501b3e29795a8ff796e21bce62be23e4",
+          "junit": "evidence/SAV1-20-RUNTIME/20261115T123122Z-fdb77e50/junit.xml",
+          "round": "native-process-runtime-first",
+          "source_archive": "evidence/super-agent-v1/SAV1-20/start-20261115T110801Z-a46682a3/native-process-runtime-first/source-e2f0fe5faf0d.tar.gz"
+        }
+      ],
+      "tests.test_source_operations_runtime::test_separate_signed_source_relay_ack_requires_engine_commit_and_scope_then_loss_is_visible": [
+        {
+          "status": "PASS",
+          "source_commit": "e2f0fe5faf0db5a3894d39aa285e39102e6c9258",
+          "source_sha256": "395490379589b04956f7378402208fbf501b3e29795a8ff796e21bce62be23e4",
+          "junit": "evidence/SAV1-20-RUNTIME/20261115T123122Z-fdb77e50/junit.xml",
+          "round": "native-process-runtime-first",
+          "source_archive": "evidence/super-agent-v1/SAV1-20/start-20261115T110801Z-a46682a3/native-process-runtime-first/source-e2f0fe5faf0d.tar.gz"
+        }
+      ],
+      "tests.test_source_operations_runtime::test_credential_removed_during_reserved_tick_blocks_actual_port_dispatch": [
+        {
+          "status": "PASS",
+          "source_commit": "e2f0fe5faf0db5a3894d39aa285e39102e6c9258",
+          "source_sha256": "395490379589b04956f7378402208fbf501b3e29795a8ff796e21bce62be23e4",
+          "junit": "evidence/SAV1-20-RUNTIME/20261115T123122Z-fdb77e50/junit.xml",
+          "round": "native-process-runtime-first",
+          "source_archive": "evidence/super-agent-v1/SAV1-20/start-20261115T110801Z-a46682a3/native-process-runtime-first/source-e2f0fe5faf0d.tar.gz"
+        }
+      ],
+      "tests.test_source_operations_runtime::test_real_redis_loss_is_observed_without_losing_or_starting_original_queue": [
+        {
+          "status": "PASS",
+          "source_commit": "e2f0fe5faf0db5a3894d39aa285e39102e6c9258",
+          "source_sha256": "395490379589b04956f7378402208fbf501b3e29795a8ff796e21bce62be23e4",
+          "junit": "evidence/SAV1-20-RUNTIME/20261115T123122Z-fdb77e50/junit.xml",
+          "round": "native-process-runtime-first",
+          "source_archive": "evidence/super-agent-v1/SAV1-20/start-20261115T110801Z-a46682a3/native-process-runtime-first/source-e2f0fe5faf0d.tar.gz"
+        }
+      ],
+      "tests.test_source_operations_boundaries::test_current_component_survives_more_than_sixteen_retained_old_generations": [
+        {
+          "status": "PASS",
+          "source_commit": "72f4e666ebe8fe8dd4ced6c9eb3592cd67146709",
+          "source_sha256": "c6d4f8d210e5d1c450f5b238799b95dddc84515fde481f41c1df543fcbb883a4",
+          "junit": "evidence/SAV1-20-BOUNDARIES/20261115T123706Z-4937b074/junit.xml",
+          "round": "boundaries-and-native-static",
+          "source_archive": "evidence/super-agent-v1/SAV1-20/start-20261115T110801Z-a46682a3/boundaries-and-native-static/source-72f4e666ebe8.tar.gz"
+        }
+      ],
+      "tests.test_source_operations_boundaries::test_real_watchdog_observation_requires_current_boot_generation_and_cannot_use_old_lease": [
+        {
+          "status": "PASS",
+          "source_commit": "72f4e666ebe8fe8dd4ced6c9eb3592cd67146709",
+          "source_sha256": "c6d4f8d210e5d1c450f5b238799b95dddc84515fde481f41c1df543fcbb883a4",
+          "junit": "evidence/SAV1-20-BOUNDARIES/20261115T123706Z-4937b074/junit.xml",
+          "round": "boundaries-and-native-static",
+          "source_archive": "evidence/super-agent-v1/SAV1-20/start-20261115T110801Z-a46682a3/boundaries-and-native-static/source-72f4e666ebe8.tar.gz"
+        }
+      ],
+      "tests.test_source_operations_boundaries::test_native_watchdog_client_sends_lease_headers_and_saves_only_recomputed_incidents": [
+        {
+          "status": "PASS",
+          "source_commit": "72f4e666ebe8fe8dd4ced6c9eb3592cd67146709",
+          "source_sha256": "c6d4f8d210e5d1c450f5b238799b95dddc84515fde481f41c1df543fcbb883a4",
+          "junit": "evidence/SAV1-20-BOUNDARIES/20261115T123706Z-4937b074/junit.xml",
+          "round": "boundaries-and-native-static",
+          "source_archive": "evidence/super-agent-v1/SAV1-20/start-20261115T110801Z-a46682a3/boundaries-and-native-static/source-72f4e666ebe8.tar.gz"
+        }
+      ],
+      "tests.test_source_operations_restore_layout::test_restored_console_key_is_usable_at_original_vault_path_while_activation_stays_held": [
+        {
+          "status": "PASS",
+          "source_commit": "d69dfb26baed518e36f870a18c3a1dcf30ec6648",
+          "source_sha256": "f6c9f0615f3f5b31aafd146b04fc4c55875f368d89b296b6cb49f187b972f0d5",
+          "junit": "evidence/SAV1-20-RESTORE-LAYOUT/20261115T124323Z-bbd92c98/junit.xml",
+          "round": "restore-layout-and-style",
+          "source_archive": "evidence/super-agent-v1/SAV1-20/start-20261115T110801Z-a46682a3/restore-layout-and-style/source-d69dfb26baed.tar.gz"
+        }
+      ]
+    },
+    "final_revision_full_suite": "NOT_RUN_PER_USER_FAILED_ONLY_RETEST_RULE"
+  },
+  "preparation": {
+    "version_bound_PASS": 88,
+    "contracts_SQL": 70,
+    "private_client": 18,
+    "not_rerun": true,
+    "records": [
+      "docs/super-agent-v1/accept/SAV1-20/preparation-20261115.json",
+      "docs/super-agent-v1/accept/SAV1-20/client-preparation-20261115.json"
+    ]
+  },
+  "total_distinct_cases_with_version_bound_PASS": 143,
+  "source_archives_and_raw_rounds": "evidence/super-agent-v1/SAV1-20/start-20261115T110801Z-a46682a3",
+  "historical_failures_preserved": true,
+  "test_fixture_adjustments": [
+    "Original watchdog test used R1 pause, corrected to original cancel without changing stale-observation assertions.",
+    "Two positive TestClient fixtures supplied default testclient peer; set explicit loopback to test successful machine transport.",
+    "Restore hold mock accepts new Settings(_env_file=None) signature; assertions unchanged, previous18 cases not rerun."
+  ],
+  "static": "See raw round results and final closeout; each failed target only rerun, newly implemented scopes checked separately."
+}

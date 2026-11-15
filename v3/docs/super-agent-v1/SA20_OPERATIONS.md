@@ -1,24 +1,19 @@
-# SA20 常驻部署与运维：当前实施边界
+# SA20 常驻部署与运维
 
-状态 IN_PROGRESS。SA19 045934c/40bbbcf的I01独立3PASS已核对并获用户接受，见[独立关闭](accept/SAV1-19/independent-closure-20261115.json)。当前只完成SA20阶段准备和私有限权客户端，**尚未完成SA20正式接线、部署或独立验收**；SA21未启动，真实能力门NOT_RUN，固定H12 FAIL保留。
+SA20保持IN_PROGRESS，等待独立验收。Harness第46节确认`1c4f494442d2d5fc8d4c1d35856cc91c922cc70e`已核对，正式0053四表、原Engine/API/Settings接线及11接口已落实。[工程交付](SA20_ACCEPTANCE_20261115.md)和[分版本摘要](accept/SAV1-20/accept.json)记录最终候选与证据；[部署、故障与备份手册](../../deploy/super-agent-v1/README.md)给出具体配置与恢复步骤。
 
-共享提案a9e2a7a／准备记录3f75b60包含0053四张运维事实表、原Engine/API/Settings三文件精确补丁、11个接口：[转交协调请求](sa20-proposal/ownership-request.txt)、[完整边界](sa20-proposal/SA20_SCOPE.md)、[精确哈希](sa20-proposal/proposal-manifest.json)。SQL SHA256 `1ae8bd6ee189f8efe7f937a2ccc90e2b49b2012107f751426b9d8a27e10d2c37`，补丁 SHA256 `ecc71e2f4effe7ccf138fe1b2663e33b22481e2e065828c41dcc28626a86c74a`。
+本地受控实现包括独立Source relay、Scheduler/Worker/Dispatcher/Watchdog控制进程、HTTPS网关、原Engine唯一持锁连接、原SA12/SA14/SA17端口、组件scope/到期/boot/generation/sequence、持久tick与unknown、元数据指标及Owner wait/escalate决定。项目命令继续由既有H03/H06隔离Provider运行；受信业务编排仍由Controller承载。默认Worker/平台Runtime未装配，运维开关不创造业务/付款/通知/发布许可。
 
-正式0053、三文件接线均未应用，当前共享文件仍匹配提案的变更前SHA。尚待Harness单独确认提交与HANDOFF节号；第45节只覆盖SA19。AGENTS.md要求共享Engine/API/schema/budget变更前约定所有权、接口和迁移编号，本提案不导入H12，不预占0054。
+来源在线、权限不足、gap、积压、原语义进展、Job、Assignment、Redis与unknown分开投影；心跳不会生成Run进展。快照最多16当前组件、32来源和32 Run，超限显示partial。保留的旧组件不会挤掉当前配置。Watchdog提交要有当前boot/generation，Engine重新核对scope与事实cursor。告警只保留无正文依据，Owner的wait/escalate不会控制任务、退款或重发。
 
-已实现与验证的阶段范围：
+真实环回HTTP/TLS、独立进程及两个SIGKILL边界已有工程证据；原SA14工作在HTTP客户端退出后完成实际Git工作区修改与Docker测试，原SA17通知丢回执保留unknown，签名来源通过独立relay提交后ACK，实际Redis实例停止后PG队列仍在。平台HTTP与模型内容使用受控fixture；这些成绩不等同真实飞书长连接、真实模型编码或在线服务器整机验收。
 
-- 70项契约、纯观察信号和0053真实隔离PG草案检查有分版本PASS。首轮a9e2a7a为67PASS/3夹具ERROR；原因是同一临时session库重复安装草案。78513a4仅原3错误复验3PASS，原67未重跑；所有测试函数AST/断言保持，SQL草案未改。原Engine未组合SourceOperations，正式迁移账本仍49，草案只在临时库额外创建4表。
-- 角色和Source范围、到期/CAS/boot/generation/sequence、未知tick保留、严格HTTPS origin、本机服务凭据、备份清单中的DB/CAS/密钥绑定，以及heartbeat与语义进展区分均有契约/纯信号检查。此类通过不等于真实运行、TLS反代或实际备份恢复通过。
-- 新私有 `source_operations_client.py` 的18项首次检查在f3e260f通过：真实文件权限/符号链接/硬链接/FIFO/大小/重复字段边界，以及分角色HTTP流程、禁用时仅观察、unknown只读核对和进程对象重建后不重发、拒绝重定向与无界响应。HTTP端使用明确合成MockTransport，不把它称为真实常驻进程或平台成绩。
-- 客户端只从明确选择的私有0600常规文件读取配置，不加载Settings/.env/PG/平台凭据。只向固定本机Engine的限定路径请求，禁用环境代理和重定向，不接受任意命令/URL。Source heartbeat不声明平台连接成功，Watchdog只提议元数据告警，unknown tick不得被重注册清空。原业务许可和费用账本仍由正式接线后的原服务逐操作验证。
+加密备份调用实际PG16 pg_dump/restore，绑定DB、CAS、Source正文/SourceConsole/旧Web三种密钥、项目及全部迁移SHA。只支持显式静默/离线安装，拒绝活跃Engine、无效密钥、链接、非规范CAS、完整性故障与已存在目标。恢复进入新空库/目录，原消费者密钥路径可用，unknown账本保留，默认入口在打开Engine前拒绝`restore-hold.json`。恢复后的撤权/删除、旧远端写和费用仍需操作者核对，工具不会自动重新激活。
 
-静态检查按版本记录：初全量typecheck318文件PASS不重跑；初lint8处SQL长字符串修复后仅失败目标PASS。新客户端lint的UP047在32b9f4b修复PASS；HTTP kwargs类型错误原始失败保留，一次文本替换未命中实际格式化调用，随后精确改为等价的显式json参数。1670ba9仅剩余单文件mypy失败目标PASS；18项和70项通过均未重跑，不宣称最后源码单轮88项或全仓静态通过。
+正式55个独特用例及此前70契约/草案、18客户端检查均有分版本PASS，修复只复验失败项/目标。正式入口为`make verify TASK=SAV1-20`，本轮没有在最后候选重复运行全部55/143项。阶段准备overlay应在其原源码归档复现，正式入口不重复安装草案。静态成绩同样按版本/作用域报告，最后的盘点不替代功能测试。
 
-[70项准备摘要](accept/SAV1-20/preparation-20261115.json)和[18项客户端及阶段摘要](accept/SAV1-20/client-preparation-20261115.json)绑定提交、官方指纹、命令、JUnit与失败。每轮先提交和Git归档，重算归档官方指纹并核对SQL/补丁等额外文档输入哈希，测试前后源码和输入均不变。候选1670ba9的源码指纹为 `eff5a0e9663fad9a386cd7c81e4ff6c74ef1f2db9e939e21da3e9610ecc7b9a7`。
+共享接线先按确认补丁完整应用；随后仅把新增API import排回正确排序，修复首次接线lint的I001。[精确样式增量](sa20-proposal/shared-wiring-style-delta.json)与原补丁均保存，SQL草案/正式副本哈希仍一致。
 
-接下来仍须落实：Owner/机器限权API与原Engine组合、原Runtime接入和服务生命周期，systemd/Compose/TLS与Secret边界，真实独立进程和故障恢复，DB/CAS/密钥的实际加密备份及隔离恢复演练。只有这些正式检查通过才交付SA20本地工程；来源、付费、编码、外发、发布和长期运行各自另验。
+部署材料：[独立Compose与systemd](../../deploy/super-agent-v1/)、[角色样例](../../deploy/super-agent-v1/roles.example.json)、[TLS样例](../../deploy/super-agent-v1/https.example.json)、[备份](../../deploy/super-agent-v1/backup.example.json)、[恢复](../../deploy/super-agent-v1/restore.example.json)。私有配置文件由对应进程账户独占0600，平台/业务秘密不交给角色控制进程。
 
-当前主库55435仍44份迁移、校验和匹配、无运维表；仓库正式迁移49份、Source产物引用584条匹配。本阶段隔离PG/会话均清理，原H06和其他CLI资源保留；原独立报告、用户未跟踪文件和.env字节不变。没有安装宿主服务、修改实际TLS配置或激活平台/模型/发送/发布。
-
-本轮不需要再次执行旧通过范围。可复现的新阶段入口为 `make verify TASK=SAV1-20-PREPARE` 与 `make verify TASK=SAV1-20-CLIENT`，应显式指向隔离测试环境。正式 `SAV1-20` 整卡入口待真正实施并补齐检查后注册，不能用阶段入口冒充整卡验收。
+主库55435维持44份迁移；正式仓库50份。没有安装当前宿主服务、导入H12或开启真实来源/模型/外发/发布。固定H12真实Agent/MVP FAIL保留，全部真实能力、全系统安全及长期运行门NOT_RUN，SA21未启动。

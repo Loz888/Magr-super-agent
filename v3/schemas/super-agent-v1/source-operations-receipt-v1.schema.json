@@ -1,0 +1,90 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "state": {
+      "default": "idle",
+      "enum": [
+        "idle",
+        "reserved",
+        "known",
+        "unknown"
+      ],
+      "title": "State",
+      "type": "string"
+    },
+    "sequence": {
+      "default": 0,
+      "maximum": 9223372036854775807,
+      "minimum": 0,
+      "title": "Sequence",
+      "type": "integer"
+    },
+    "request_id": {
+      "anyOf": [
+        {
+          "format": "uuid",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Request Id"
+    },
+    "processed": {
+      "default": 0,
+      "maximum": 9223372036854775807,
+      "minimum": 0,
+      "title": "Processed",
+      "type": "integer"
+    },
+    "pending": {
+      "default": 0,
+      "maximum": 9223372036854775807,
+      "minimum": 0,
+      "title": "Pending",
+      "type": "integer"
+    },
+    "blocked": {
+      "default": 0,
+      "maximum": 9223372036854775807,
+      "minimum": 0,
+      "title": "Blocked",
+      "type": "integer"
+    },
+    "unknown": {
+      "default": 0,
+      "maximum": 9223372036854775807,
+      "minimum": 0,
+      "title": "Unknown",
+      "type": "integer"
+    },
+    "waiting_runner": {
+      "default": false,
+      "title": "Waiting Runner",
+      "type": "boolean"
+    },
+    "model_calls": {
+      "default": 0,
+      "maximum": 9223372036854775807,
+      "minimum": 0,
+      "title": "Model Calls",
+      "type": "integer"
+    },
+    "external_writes": {
+      "default": 0,
+      "maximum": 9223372036854775807,
+      "minimum": 0,
+      "title": "External Writes",
+      "type": "integer"
+    },
+    "reused": {
+      "default": false,
+      "title": "Reused",
+      "type": "boolean"
+    }
+  },
+  "title": "TickReceipt",
+  "type": "object"
+}

@@ -1,0 +1,53 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "kind": {
+      "enum": [
+        "component_unavailable",
+        "waiting_runner",
+        "source_offline",
+        "source_permissions",
+        "source_gap",
+        "input_backlog",
+        "semantic_stalled",
+        "job_overdue",
+        "lease_expired",
+        "notification_unknown",
+        "usage_unknown",
+        "dependency_unavailable"
+      ],
+      "title": "Kind",
+      "type": "string"
+    },
+    "subject_id": {
+      "anyOf": [
+        {
+          "format": "uuid",
+          "type": "string"
+        },
+        {
+          "type": "null"
+        }
+      ],
+      "default": null,
+      "title": "Subject Id"
+    },
+    "observation_key": {
+      "pattern": "^[a-f0-9]{64}$",
+      "title": "Observation Key",
+      "type": "string"
+    },
+    "snapshot_sha256": {
+      "pattern": "^[a-f0-9]{64}$",
+      "title": "Snapshot Sha256",
+      "type": "string"
+    }
+  },
+  "required": [
+    "kind",
+    "observation_key",
+    "snapshot_sha256"
+  ],
+  "title": "SignalSubmission",
+  "type": "object"
+}

@@ -1,0 +1,75 @@
+{
+  "$defs": {
+    "ServiceClient": {
+      "additionalProperties": false,
+      "properties": {
+        "api_url": {
+          "title": "Api Url",
+          "type": "string"
+        },
+        "component_id": {
+          "format": "uuid",
+          "title": "Component Id",
+          "type": "string"
+        },
+        "role": {
+          "enum": [
+            "source",
+            "scheduler",
+            "worker",
+            "dispatcher",
+            "watchdog"
+          ],
+          "title": "Role",
+          "type": "string"
+        },
+        "token": {
+          "format": "password",
+          "maxLength": 256,
+          "minLength": 32,
+          "title": "Token",
+          "type": "string",
+          "writeOnly": true
+        },
+        "interval_seconds": {
+          "default": 5,
+          "maximum": 60,
+          "minimum": 2,
+          "title": "Interval Seconds",
+          "type": "integer"
+        }
+      },
+      "required": [
+        "api_url",
+        "component_id",
+        "role",
+        "token"
+      ],
+      "title": "ServiceClient",
+      "type": "object"
+    }
+  },
+  "additionalProperties": false,
+  "properties": {
+    "client": {
+      "$ref": "#/$defs/ServiceClient"
+    },
+    "listen_host": {
+      "default": "127.0.0.1",
+      "title": "Listen Host",
+      "type": "string"
+    },
+    "listen_port": {
+      "default": 18082,
+      "maximum": 65535,
+      "minimum": 1,
+      "title": "Listen Port",
+      "type": "integer"
+    }
+  },
+  "required": [
+    "client"
+  ],
+  "title": "RelayConfiguration",
+  "type": "object"
+}

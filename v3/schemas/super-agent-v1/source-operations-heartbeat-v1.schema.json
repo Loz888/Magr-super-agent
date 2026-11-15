@@ -1,0 +1,41 @@
+{
+  "additionalProperties": false,
+  "properties": {
+    "generation": {
+      "maximum": 9223372036854775807,
+      "minimum": 1,
+      "title": "Generation",
+      "type": "integer"
+    },
+    "boot_id": {
+      "format": "uuid",
+      "title": "Boot Id",
+      "type": "string"
+    },
+    "sequence": {
+      "maximum": 9223372036854775807,
+      "minimum": 1,
+      "title": "Sequence",
+      "type": "integer"
+    },
+    "state": {
+      "enum": [
+        "starting",
+        "ready",
+        "degraded",
+        "stopping",
+        "waiting_runner"
+      ],
+      "title": "State",
+      "type": "string"
+    }
+  },
+  "required": [
+    "generation",
+    "boot_id",
+    "sequence",
+    "state"
+  ],
+  "title": "ComponentHeartbeat",
+  "type": "object"
+}
