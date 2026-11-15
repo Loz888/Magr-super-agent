@@ -2022,5 +2022,16 @@
       "real_gates": "NOT_RUN",
       "SA20": "NOT_STARTED"
     }
+  },
+  "SAV1-19-BOUNDARIES": {
+    "tests": [
+      "tests/test_source_console_boundaries.py"
+    ],
+    "timeout_seconds": 240,
+    "components": {
+      "scope": "First console decision provenance5, asset aliases/revoked session1, fresh identity proof1, HTTP source revoke1",
+      "real_gates": "NOT_RUN",
+      "SA20": "NOT_STARTED"
+    }
   }
 }

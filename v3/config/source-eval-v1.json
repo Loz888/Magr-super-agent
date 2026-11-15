@@ -166,7 +166,7 @@
     },
     {
       "path": "config/verification.json",
-      "sha256": "cac4fe783151b4f0fd79164617112474cfbd7c1a525406f12f332df273437271"
+      "sha256": "211fa1217c64fd43b4fa15390c534974924388195e67fa4037568c0dceab539f"
     },
     {
       "path": "tests/test_super_agent_sa09_i01.py",

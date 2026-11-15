@@ -151,7 +151,8 @@ def test_browser_distinguishes_online_insufficient_and_closing_does_not_cancel_o
         text = b.evaluate("document.getElementById('source-list').textContent")
         assert "在线" in text and "消息权限不足" in text
         b.evaluate(
-            "document.querySelector('[data-panel=tasks]').click();document.querySelector('#task-list button').click()"
+            "document.querySelector('[data-panel=tasks]').click();"
+            "document.querySelector('#task-list button').click()"
         )
         b.wait(
             "!document.getElementById('task-detail').hidden && "
@@ -165,7 +166,8 @@ def test_browser_distinguishes_online_insufficient_and_closing_does_not_cancel_o
     )
     with browser(engine, tmp_path, e.cookie) as b:
         b.evaluate(
-            "document.querySelector('[data-panel=tasks]').click();document.querySelector('#task-list button').click()"
+            "document.querySelector('[data-panel=tasks]').click();"
+            "document.querySelector('#task-list button').click()"
         )
         b.wait("document.querySelector('#task-controls button') !== null")
         b.evaluate(

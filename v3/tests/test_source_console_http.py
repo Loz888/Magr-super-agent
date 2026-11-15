@@ -147,7 +147,7 @@ def test_http_source_credentials_page_cache_controls_and_safe_validation(engine)
                 "expected_source_revision": 2,
                 "expected_credential_revision": 1,
                 "credentials": secret_payload("feishu"),
-                "credential_valid_until": (datetime.now(UTC) + timedelta(hours=1)).isoformat(),
+                "valid_until": (datetime.now(UTC) + timedelta(hours=1)).isoformat(),
                 "review_ref": "fixture-rotate-http",
             },
         )
