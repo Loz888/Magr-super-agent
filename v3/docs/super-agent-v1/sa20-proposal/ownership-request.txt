@@ -47,3 +47,6 @@ sa_operations_incidents
 请检查0053编号、四张表、11路由、三文件及TLS/Owner语义是否冲突，并以完整SQL/patch哈希绑定SA副本范围。请回传单独本地确认提交和SUPER_AGENT_HANDOFF节号；不需要导入任何H12提交。
 
 此请求是协调材料，未声称Harness已确认或实施。具体安全/备份/进程边界见同目录SA20_SCOPE.md。准备检查会单独绑定提交和证据，不能替代正式接线或真实能力验收。
+
+准备检查补充（新文档记录，不改SQL/patch范围）：
+初候选a9e2a7a 67PASS/3夹具ERROR；仅原3错误在78513a4复验3PASS，原67不重跑，70独特准备目标均有分版本PASS。初typecheck318文件PASS、补丁可应用性PASS不重跑；仅失败lint目标修复PASS。证据与源码归档见preparation-result.json及accept/SAV1-20/preparation-20261115.json；不宣称最新源码单轮全量PASS。

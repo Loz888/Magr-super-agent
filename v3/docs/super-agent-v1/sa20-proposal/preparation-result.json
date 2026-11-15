@@ -1,0 +1,48 @@
+{
+  "card": "SAV1-20",
+  "status": "IN_PROGRESS_PREPARATION_PASS_FORMAL_WAITING_SHARED_CONFIRMATION",
+  "UTC": "2026-11-15T11:24:55.417363+00:00",
+  "proposal_commit": "a9e2a7ab15ad506567a48676858aed0ececb4236",
+  "preparation_unique_version_bound_PASS": 70,
+  "initial": {
+    "source_commit": "a9e2a7ab15ad506567a48676858aed0ececb4236",
+    "source_sha256": "b43738f9b3fa43d29e13c9f247277f003584b210afd85b30f0271850607c6d15",
+    "tests": 70,
+    "PASS": 67,
+    "fixture_setup_errors": 3,
+    "result": "evidence/SAV1-20-PREPARE/20261115T112015Z-a296aeb8/result.json"
+  },
+  "failed_only_recheck": {
+    "source_commit": "78513a4d032e627b3504a979857173ca970b7ac3",
+    "source_sha256": "a09720997a455f6fa388a96dea04a639d879e2519feb420dc5b4613d2912d70a",
+    "tests": 3,
+    "PASS": 3,
+    "exit_code": 0,
+    "junit": "evidence/super-agent-v1/SAV1-20/start-20261115T110801Z-a46682a3/prepare-failed3-recheck/junit.xml",
+    "all_test_function_ASTs_unchanged": true,
+    "repair": "Install SQL overlay once in the same disposable session DB; wrap SQL literal strings without changing SQL/AST",
+    "old67_not_rerun": true
+  },
+  "first_typecheck": "PASS318source files; not rerun",
+  "first_shared_patch_applicability": "PASS; not rerun",
+  "first_lint": "FAIL8long SQL strings, retained",
+  "failed_lint_target_only_recheck": "PASS",
+  "SQL_sha256": "1ae8bd6ee189f8efe7f937a2ccc90e2b49b2012107f751426b9d8a27e10d2c37",
+  "patch_sha256": "ecc71e2f4effe7ccf138fe1b2663e33b22481e2e065828c41dcc28626a86c74a",
+  "tables": [
+    "sa_operations_versions",
+    "sa_operations_controls",
+    "sa_operations_components",
+    "sa_operations_incidents"
+  ],
+  "shared_files": 3,
+  "interfaces": 11,
+  "formal0053_and_shared_patch": "NOT_APPLIED",
+  "main_migrations": 44,
+  "repository_migrations": 49,
+  "SQL_only_installed_as_overlay_in_disposable_test_DB": true,
+  "SA21": "NOT_STARTED",
+  "real_gates": "NOT_RUN",
+  "H12": "fixed FAIL retained, other CLI",
+  "evidence": "evidence/super-agent-v1/SAV1-20/start-20261115T110801Z-a46682a3"
+}
