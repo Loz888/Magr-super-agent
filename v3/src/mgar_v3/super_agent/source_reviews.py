@@ -598,4 +598,4 @@ class SourceReviews(ReviewStore):
                 raise denied("EXACT_NATIVE_PROOF_REQUIRED")
             from mgar_v3.super_agent.source_review_native import link_proof
 
-            return link_proof(self, conn, review, context, source, links["facts"])
+            return link_proof(self, conn, review, context, source, links["facts"], cookie)

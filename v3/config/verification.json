@@ -1934,5 +1934,16 @@
       "real_gates": "NOT_RUN",
       "SA19": "NOT_STARTED"
     }
+  },
+  "SAV1-18-NATIVE-INDEX": {
+    "tests": [
+      "tests/test_source_review_native_index.py"
+    ],
+    "timeout_seconds": 300,
+    "components": {
+      "scope": "First original SA10 index resolution from reviewed native PR/CI to the original Ticket/Run; previous native proof cases not rerun",
+      "real_gates": "NOT_RUN",
+      "SA19": "NOT_STARTED"
+    }
   }
 }

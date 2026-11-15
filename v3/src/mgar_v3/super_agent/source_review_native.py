@@ -8,7 +8,11 @@ from uuid import uuid4
 from psycopg.types.json import Jsonb
 
 from mgar_v3.domain import DomainError, digest
-from mgar_v3.super_agent.source_correlation_domain import CorrelationInputRef
+from mgar_v3.super_agent.source_correlation_domain import (
+    CorrelationInputRef,
+    CorrelationLinkRequest,
+    snapshot_hash,
+)
 from mgar_v3.super_agent.source_review_bundle import denied
 from mgar_v3.super_agent.source_review_domain import ReviewContext
 from mgar_v3.super_agent.source_review_store import Row, decode
@@ -26,6 +30,7 @@ def link_proof(
     context: ReviewContext,
     source: _Input,
     pull: Row,
+    cookie: str,
 ) -> Row:
     original = service.engine.source_correlations._input(conn, context.origin.input.input_id)
     if original.ref != context.origin.input:
@@ -89,6 +94,20 @@ def link_proof(
             raise denied("CURRENT_NATIVE_PR_ANCHOR_REQUIRED")
     elif code.base_sha != pull["base_sha"]:
         raise denied("NATIVE_BASE_REQUIRED")
+    correlations = service.engine.source_correlations
+    snapshot, _ = correlations._build(conn, (source.ref.input_id,))
+    head = correlations._head(conn, proof.resource.resource_key)
+    linked = correlations.link(
+        cookie,
+        CorrelationLinkRequest(
+            input_ids=(source.ref.input_id,),
+            resource_key=proof.resource.resource_key,
+            snapshot_sha256=snapshot_hash(snapshot),
+            expected_revision=head.revision,
+            target=target,
+            review_ref="SA18:" + str(context.review_id),
+        ),
+    )
     facts = {
         "mode": "fixture",
         "source_kind": "fixture_git",
@@ -117,4 +136,5 @@ def link_proof(
         "receipt_sha256": receipt,
         "kind": kind,
         "mode": "fixture",
+        "correlation_id": linked["correlation_id"],
     }
