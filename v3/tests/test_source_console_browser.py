@@ -154,7 +154,8 @@ def test_browser_distinguishes_online_insufficient_and_closing_does_not_cancel_o
             "document.querySelector('[data-panel=tasks]').click();document.querySelector('#task-list button').click()"
         )
         b.wait(
-            "!document.getElementById('task-detail').hidden && document.getElementById('task-facts').textContent.includes('关闭浏览器')"
+            "!document.getElementById('task-detail').hidden && "
+            "document.getElementById('task-facts').textContent.includes('关闭浏览器')"
         )
         evidence(b, tmp_path, "health-and-task")
     after = engine.source_console.task(e.cookie, run.run_id)["run"]

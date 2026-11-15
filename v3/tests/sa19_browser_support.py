@@ -65,6 +65,7 @@ class CDP:
 def browser(engine, tmp_path, cookie, *, feishu_runtime=None):
     assert CHROME.is_file()
     sock = socket.socket()
+    sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
     # Harness owns 18080. The review app uses a separately bound test socket.
     sock.bind(("127.0.0.1", 18081))
     sock.listen(128)
@@ -122,7 +123,8 @@ def browser(engine, tmp_path, cookie, *, feishu_runtime=None):
         )["success"]
         client.call("Page.navigate", url="http://127.0.0.1:18081/source-console")
         client.wait(
-            "document.getElementById('source-count') && document.getElementById('source-count').textContent !== '—'"
+            "document.getElementById('source-count') && "
+            "document.getElementById('source-count').textContent !== '—'"
         )
         yield client
     finally:

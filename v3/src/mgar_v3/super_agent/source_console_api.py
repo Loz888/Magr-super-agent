@@ -256,3 +256,19 @@ def register(
         user: Annotated[BrowserSession, Depends(browser_user)],
     ) -> FileResponse:
         return file(request, engine, ROOT / "web/source-console.css")
+
+    # The existing /static mount precedes API registration. Put only these owned
+    # resources ahead of that fallback so it cannot bypass their Owner checks.
+    for resource in ("/static/source-console.js", "/static/source-console.css"):
+        owned = next(r for r in app.router.routes if getattr(r, "path", None) == resource)
+        app.router.routes.remove(owned)
+        fallback = next(
+            i for i, r in enumerate(app.router.routes) if getattr(r, "path", None) == "/static"
+        )
+        app.router.routes.insert(fallback, owned)
+
+    @app.middleware("http")
+    async def no_page_static_alias(request: Request, call_next: Callable[..., Any]) -> Any:
+        if request.url.path == "/static/source-console.html":
+            return JSONResponse({"code": "NOT_FOUND"}, status_code=404, headers=HEADERS)
+        return await call_next(request)

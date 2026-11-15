@@ -242,7 +242,8 @@ class ConsoleProjection(ConsoleStore):
             authorities = conn.execute(
                 "SELECT p.source_instance_id AS source_id,b.policy_id,b.policy_revision,"
                 "NULL::uuid AS input_id,'policy' AS kind FROM app.source_run_policies b "
-                "JOIN app.source_policies p USING(policy_id) WHERE b.run_id=%s AND b.project_id=%s UNION "
+                "JOIN app.source_policies p USING(policy_id) WHERE b.run_id=%s "
+                "AND b.project_id=%s UNION "
                 "SELECT source_instance_id,policy_id,policy_revision,input_id,'coding' "
                 "FROM app.sa_coding_bindings WHERE run_id=%s AND project_id=%s UNION "
                 "SELECT source_instance_id,NULL::uuid,NULL::bigint,input_id,'autonomy' "
@@ -270,8 +271,10 @@ class ConsoleProjection(ConsoleStore):
             "e.source_thread,i.actor_ref,i.revision AS identity_revision,i.revoked_at,"
             "(e.auth_revision=i.revision AND i.revoked_at IS NULL "
             "AND e.expires_at>clock_timestamp() AND e.source_revision=(SELECT max(v.revision) "
-            "FROM app.source_instance_versions v WHERE v.source_instance_id=e.source_instance_id)) AS usable "
-            "FROM app.source_identity_evidence e JOIN app.source_identities i USING(identity_id,project_id) "
+            "FROM app.source_instance_versions v WHERE "
+            "v.source_instance_id=e.source_instance_id)) AS usable "
+            "FROM app.source_identity_evidence e JOIN app.source_identities i "
+            "USING(identity_id,project_id) "
             "WHERE e.project_id=%s ORDER BY e.verified_at DESC,e.evidence_id DESC LIMIT 101",
             (self.project,),
         ).fetchall()
@@ -280,7 +283,8 @@ class ConsoleProjection(ConsoleStore):
             "i.actor_ref,i.revision AS identity_revision,i.revoked_at AS identity_revoked_at,"
             "i.principal_id,(SELECT count(*) FROM app.source_task_controllers c "
             "WHERE c.binding_id=b.binding_id AND c.active) AS controlled_ticket_count "
-            "FROM app.source_role_bindings b JOIN app.source_identities i USING(identity_id,project_id) "
+            "FROM app.source_role_bindings b JOIN app.source_identities i "
+            "USING(identity_id,project_id) "
             "WHERE b.project_id=%s ORDER BY b.binding_id LIMIT 101",
             (self.project,),
         ).fetchall()

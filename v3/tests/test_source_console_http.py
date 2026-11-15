@@ -17,25 +17,28 @@ from mgar_v3.super_agent.policy_domain import PolicyPreview
 from mgar_v3.web_access import SESSION_COOKIE
 
 PREFIX = "/api/v3/source-console"
-I = str(uuid4())
+ROUTE_ID = "00000000-0000-4000-8000-000000000019"
 OWNER_ROUTES = [
     ("GET", ""),
-    ("GET", f"/sources/{I}"),
-    ("PUT", f"/sources/{I}"),
-    ("PUT", f"/sources/{I}/credentials"),
-    ("POST", f"/sources/{I}/revoke"),
-    ("PUT", f"/sources/{I}/ingress"),
+    ("GET", f"/sources/{ROUTE_ID}"),
+    ("PUT", f"/sources/{ROUTE_ID}"),
+    ("PUT", f"/sources/{ROUTE_ID}/credentials"),
+    ("POST", f"/sources/{ROUTE_ID}/revoke"),
+    ("PUT", f"/sources/{ROUTE_ID}/ingress"),
     ("POST", "/disable-all"),
-    ("PUT", f"/policies/{I}"),
-    ("POST", f"/policies/{I}/preview"),
-    ("GET", f"/tasks/{I}"),
-    ("POST", f"/tasks/{I}/stop"),
+    ("PUT", f"/policies/{ROUTE_ID}"),
+    ("POST", f"/policies/{ROUTE_ID}/preview"),
+    ("GET", f"/tasks/{ROUTE_ID}"),
+    ("POST", f"/tasks/{ROUTE_ID}/stop"),
     ("GET", "/decisions"),
 ]
 
 
 def client_for(engine, env, **runtimes):
-    client = TestClient(create_app(engine.settings, engine, run_background=False, **runtimes))
+    client = TestClient(
+        create_app(engine.settings, engine, run_background=False, **runtimes),
+        base_url="http://127.0.0.1:18081",
+    )
     client.cookies.set(SESSION_COOKIE, env.cookie)
     client.headers.update(
         {
@@ -48,10 +51,12 @@ def client_for(engine, env, **runtimes):
 
 @pytest.mark.parametrize("method,path", OWNER_ROUTES)
 def test_all_twelve_owner_routes_deny_local_bearer_without_cookie(engine, method, path):
-    client = TestClient(create_app(engine.settings, engine, run_background=False))
-    client.headers["X-MGAR-Token"] = engine.settings.local_token.get_secret_value()
-    r = client.request(method, PREFIX + path, **({"json": {}} if method != "GET" else {}))
-    assert r.status_code == 401, r.text
+    with TestClient(
+        create_app(engine.settings, engine, run_background=False), base_url="http://127.0.0.1:18081"
+    ) as client:
+        client.headers["X-MGAR-Token"] = engine.settings.local_token.get_secret_value()
+        r = client.request(method, PREFIX + path, **({"json": {}} if method != "GET" else {}))
+        assert r.status_code == 401, r.text
     assert not engine.source_console.vault.key_path.exists()
 
 
@@ -64,7 +69,9 @@ def test_all_twelve_owner_routes_deny_local_bearer_without_cookie(engine, method
     ],
 )
 def test_private_page_and_both_assets_require_owner(engine, path, code):
-    with TestClient(create_app(engine.settings, engine, run_background=False)) as client:
+    with TestClient(
+        create_app(engine.settings, engine, run_background=False), base_url="http://127.0.0.1:18081"
+    ) as client:
         assert client.get(path, follow_redirects=False).status_code == code
 
 
@@ -161,7 +168,9 @@ def test_identity_snapshot_uses_auth_revision_and_does_not_write_authenticated_r
     first = engine.source_console.snapshot(e.cookie)
     info = first["identities"]
     assert len(info["bindings"]) == 1 and len(info["evidence"]) == 1
-    assert info["evidence"][0]["usable"]
+    assert not info["evidence"][0][
+        "usable"
+    ]  # Binding itself advanced auth_revision; obtain a new trusted proof.
     assert info["evidence"][0]["identity_revision"] == e.binding["identity_revision"]
     engine.source_console.snapshot(e.cookie)
     with engine.transaction() as conn:
