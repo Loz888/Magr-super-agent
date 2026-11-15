@@ -1,0 +1,25 @@
+[Unit]
+Description=MGAR SA20 sole Engine and private local API
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=mgar-sa20-controller
+Group=mgar-sa20-controller
+WorkingDirectory=/opt/mgar-sa20/v3
+EnvironmentFile=/etc/mgar-sa20/controller/server.env
+Environment=MGAR_V3_ALLOW_PAID=0 MGAR_V3_ALLOW_EXTERNAL_WRITE=0 PYTHONNOUSERSITE=1
+ExecStart=/opt/mgar-sa20/v3/.venv/bin/uvicorn mgar_v3.super_agent.source_operations_runtime:create_application --factory --host 127.0.0.1 --port 18080 --workers 1 --no-proxy-headers --no-access-log
+Restart=on-failure
+RestartSec=5
+TimeoutStopSec=60
+UMask=0077
+NoNewPrivileges=true
+PrivateTmp=true
+ProtectHome=true
+ProtectSystem=strict
+ReadWritePaths=/var/lib/mgar-sa20/controller
+
+[Install]
+WantedBy=multi-user.target

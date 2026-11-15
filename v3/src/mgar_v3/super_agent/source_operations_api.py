@@ -233,9 +233,12 @@ def register(
         with engine._mutex:
             with engine.transaction() as conn:
                 _, _, grant = engine.source_operations._grant(conn, component_id, role="source")
-                lease = engine.source_operations._component(conn, component_id)
-                if lease is None or lease["expires_at"] <= engine.source_operations.now(conn):
-                    raise denied("FENCED")
+                try:
+                    generation = int(request.headers.get("X-MGAR-Operations-Generation", ""))
+                    boot = UUID(request.headers.get("X-MGAR-Operations-Boot", ""))
+                except ValueError:
+                    raise denied("FENCED") from None
+                engine.source_operations._lease(conn, component_id, generation, boot)
                 if source_id not in grant.source_ids:
                     raise denied("SCOPE_DENIED", 403)
                 owner = conn.execute(

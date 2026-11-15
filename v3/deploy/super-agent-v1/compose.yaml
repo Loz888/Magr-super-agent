@@ -1,0 +1,37 @@
+name: mgar-sa20-private
+services:
+  postgres:
+    image: pgvector/pgvector:0.8.1-pg16-bookworm@sha256:33198da2828a14c30348d2ccb4750833d5ed9a44c88d840a0e523d7417120337
+    environment:
+      POSTGRES_USER: mgar_sa20
+      POSTGRES_DB: mgar_sa20
+      POSTGRES_PASSWORD_FILE: /run/secrets/pg_password
+    secrets: [pg_password]
+    ports: ["127.0.0.1:15432:5432"]
+    networks: [private]
+    volumes: ["postgres:/var/lib/postgresql/data"]
+    restart: unless-stopped
+    healthcheck:
+      test: [CMD, pg_isready, -U, mgar_sa20, -d, mgar_sa20]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+  redis:
+    image: redis:7.4.7-bookworm@sha256:976ab0f0939b78c06d802bcd3bea44c5142ea9a756a57b861e08819817f768c8
+    command: [redis-server, --maxmemory, 128mb, --maxmemory-policy, noeviction]
+    ports: ["127.0.0.1:16379:6379"]
+    networks: [private]
+    restart: unless-stopped
+    healthcheck:
+      test: [CMD, redis-cli, ping]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+networks:
+  private:
+    internal: true
+secrets:
+  pg_password:
+    file: /etc/mgar-sa20/controller/pg.password
+volumes:
+  postgres:

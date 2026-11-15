@@ -2082,5 +2082,17 @@
       "real_gates": "NOT_RUN",
       "SA21": "NOT_STARTED"
     }
+  },
+  "SAV1-20-RECOVERY": {
+    "tests": [
+      "tests/test_source_operations_backup.py",
+      "tests/test_source_operations_deployment.py"
+    ],
+    "timeout_seconds": 300,
+    "components": {
+      "scope": "First real pg_dump/restore DB-CAS-three key encryption/held restore, real TLS gateway/login/internal route boundary, Compose and systemd contracts. Prior control24 and preparation88 excluded.",
+      "real_gates": "NOT_RUN",
+      "SA21": "NOT_STARTED"
+    }
   }
 }

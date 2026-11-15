@@ -1,0 +1,8 @@
+{
+  "package": "/srv/mgar-backups/REPLACE.mgar-encrypted",
+  "encryption_key": "/etc/mgar-sa20/backup/offline-encryption.key",
+  "database_url": "postgresql://mgar_restore:REPLACE_IN_PRIVATE_FILE@127.0.0.1:15432/NEW_EMPTY_DB",
+  "target_root": "/var/lib/mgar-sa20/NEW_EMPTY_RESTORE_DIRECTORY",
+  "project_id": "REPLACE_PROJECT",
+  "expected_migration_sha256": "REPLACE_WITH_FROZEN_INSTALLED_MIGRATION_SET_SHA256"
+}

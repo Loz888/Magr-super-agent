@@ -1,0 +1,9 @@
+{
+  "public_origin": "https://magr.example.test",
+  "api_url": "http://127.0.0.1:18080",
+  "source_relay_url": "http://127.0.0.1:18082",
+  "certificate": "/etc/mgar-sa20/https/fullchain.pem",
+  "private_key": "/etc/mgar-sa20/https/private.key",
+  "listen_host": "0.0.0.0",
+  "listen_port": 18443
+}

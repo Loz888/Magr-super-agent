@@ -1,0 +1,16 @@
+{
+  "note": "Template only: generate distinct random component UUIDs and tokens locally; split each client into its own owned0600 file. Never put Owner cookies, PG, model or platform credentials in these files. Source wraps its client in {client: ...} for RelayConfiguration.",
+  "client": {
+    "api_url": "http://127.0.0.1:18080",
+    "component_id": "00000000-0000-4000-8000-000000000001",
+    "role": "watchdog",
+    "token": "REPLACE_WITH_A_UNIQUE_RANDOM_TOKEN_AT_LEAST_32_CHARACTERS",
+    "interval_seconds": 5
+  },
+  "controller_components": {
+    "components": [{
+      "component_id": "00000000-0000-4000-8000-000000000001",
+      "token": "REPLACE_WITH_THE_SAME_COMPONENT_TOKEN"
+    }]
+  }
+}

@@ -124,10 +124,14 @@ class OriginalAsyncWorkerPort(OperationsPort):
             # Scheduler/SA14, never manufacture a session, lease or task here.
             row = conn.execute(
                 "SELECT b.async_id,b.coding_id,b.run_id,a.assignment_id,a.execution_epoch,"
-                "a.revision FROM app.sa_async_bindings b JOIN app.sa_coding_attempts a "
-                "USING(coding_id,project_id,run_id,assignment_id,session_id,execution_epoch) "
+                "c.revision FROM app.sa_async_bindings b JOIN app.sa_scheduler_assignments a "
+                "USING(project_id,run_id,assignment_id,session_id,execution_epoch) "
+                "JOIN app.sa_coding_bindings c USING(coding_id,project_id,run_id) "
                 "WHERE b.project_id=%s AND b.session_id=%s AND b.state='active' "
-                "AND a.state='ready' ORDER BY a.created_at LIMIT 1",
+                "AND a.state='active' AND c.state='admitted' "
+                "AND NOT EXISTS(SELECT 1 FROM app.sa_coding_attempts t WHERE "
+                "t.coding_id=b.coding_id AND t.assignment_id=a.assignment_id) "
+                "ORDER BY a.created_at LIMIT 1",
                 (self.engine.settings.project_id, self.session_id),
             ).fetchone()
         if row is None:
@@ -159,4 +163,9 @@ def create_application() -> Any:
     from mgar_v3.api import create_app
     from mgar_v3.settings import Settings
 
-    return create_app(Settings(), run_background=False)
+    configuration = Settings()
+    if (configuration.artifact_root.parent / "restore-hold.json").exists():
+        raise RuntimeError(
+            "Restored installation is held pending revocation and remote-write review"
+        )
+    return create_app(configuration, run_background=False)

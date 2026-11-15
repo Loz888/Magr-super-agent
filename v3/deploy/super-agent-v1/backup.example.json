@@ -1,0 +1,10 @@
+{
+  "database_url": "postgresql://mgar_sa20:REPLACE_IN_PRIVATE_FILE@127.0.0.1:15432/mgar_sa20",
+  "project_id": "REPLACE_PROJECT",
+  "artifact_root": "/var/lib/mgar-sa20/controller/artifacts",
+  "source_key": "/var/lib/mgar-sa20/controller/keys/source.key",
+  "console_key": "/var/lib/mgar-sa20/controller/source-console-credentials/key.bin",
+  "web_key": "/var/lib/mgar-sa20/controller/web/credentials.key",
+  "encryption_key": "/etc/mgar-sa20/backup/offline-encryption.key",
+  "offline_confirmation": "ALL_SERVICES_AND_JOBS_STOPPED"
+}
