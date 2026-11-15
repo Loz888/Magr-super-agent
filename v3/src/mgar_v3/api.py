@@ -60,6 +60,7 @@ from mgar_v3.super_agent.source_async_api import register as register_source_asy
 from mgar_v3.super_agent.source_autonomy_api import register as register_source_autonomy
 from mgar_v3.super_agent.source_coding_api import register as register_source_coding
 from mgar_v3.super_agent.source_console_api import register as register_source_console
+from mgar_v3.super_agent.source_operations_api import register as register_source_operations
 from mgar_v3.super_agent.source_correlation_api import register as register_source_correlations
 from mgar_v3.super_agent.source_eval_api import register as register_source_eval
 from mgar_v3.super_agent.source_notification_api import register as register_source_notifications
@@ -323,7 +324,7 @@ def create_app(
         app.mount("/mcp/" + role, mcp_server.streamable_http_app())
     app.mount("/static", StaticFiles(directory=ROOT / "web"), name="static")
     app.add_middleware(BodyLimitMiddleware, max_bytes=configuration.max_body_bytes)
-    app.add_middleware(TrustedHostMiddleware, allowed_hosts=["127.0.0.1", "localhost", "[::1]"])
+    app.add_middleware(TrustedHostMiddleware, allowed_hosts=configuration.web_allowed_hosts)
 
     @app.exception_handler(DomainError)
     async def domain_error(request: Request, exc: DomainError) -> JSONResponse:
@@ -373,13 +374,7 @@ def create_app(
             raise DomainError("ORIGIN_DENIED", "Origin is not allowed", 403)
         if (required and not origin) or (
             origin
-            and origin
-            not in {
-                "http://127.0.0.1:18080",
-                "http://localhost:18080",
-                "http://127.0.0.1:18081",
-                "http://localhost:18081",
-            }
+            and origin not in configuration.web_allowed_origins
         ):
             raise DomainError("ORIGIN_DENIED", "Origin is not allowed", 403)
 
@@ -436,13 +431,17 @@ def create_app(
             max_age=SESSION_SECONDS,
             httponly=True,
             samesite="strict",
-            secure=request.url.scheme == "https",
+            secure=configuration.web_public_origin is not None or request.url.scheme == "https",
         )
         return response
 
     @app.post("/api/v3/auth/setup", status_code=201)
     def setup_account(request: Request, body: LoginInput) -> JSONResponse:
         check_origin(request, required=True)
+        if configuration.web_public_origin is not None:
+            raise DomainError(
+                "LOCAL_SETUP_REQUIRED", "Public deployment requires a locally prepared Owner.", 403
+            )
         if request.client is None or request.client.host not in {"127.0.0.1", "::1"}:
             raise DomainError(
                 "LOCAL_SETUP_REQUIRED", "请在运行服务的电脑上创建首个管理员账户。", 403
@@ -1302,6 +1301,10 @@ def create_app(
     register_source_reviews(app, authority, browser_user)
     register_source_console(
         app, authority, browser_user, github_runtime=github_runtime, feishu_runtime=feishu_runtime
+    )
+    register_source_operations(
+        app, configuration, authority, browser_user,
+        github_runtime=github_runtime, feishu_runtime=feishu_runtime,
     )
     register(app, authority, authenticated)
     register_commerce(app, authority, authenticated)

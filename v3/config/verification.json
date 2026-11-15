@@ -2070,5 +2070,17 @@
       "real_gates": "NOT_RUN",
       "SA21": "NOT_STARTED"
     }
+  },
+  "SAV1-20-CONTROL": {
+    "tests": [
+      "tests/test_source_operations_store.py",
+      "tests/test_source_operations_api.py"
+    ],
+    "timeout_seconds": 240,
+    "components": {
+      "scope": "Formal0053/originalEngine/Owner and component API, CAS/fencing/unknown receipts/HTTPS controls. Existing88 preparation passes excluded.",
+      "real_gates": "NOT_RUN",
+      "SA21": "NOT_STARTED"
+    }
   }
 }

@@ -16,6 +16,8 @@ class Settings(BaseSettings):
     redis_url: SecretStr = SecretStr("redis://127.0.0.1:56379/0")
     local_token: SecretStr = Field(min_length=24)
     watchdog_token: SecretStr | None = Field(default=None, min_length=24)
+    web_public_origin: str | None = None
+    operations_service_config: Path | None = None
     github_webhook_secret: SecretStr = SecretStr("")
     artifact_root: Path = ROOT / ".local/artifacts"
     project_id: str = "orders-demo"
@@ -53,6 +55,32 @@ class Settings(BaseSettings):
     r4_tool_base_url: str | None = None
     commerce_directory: Path = ROOT / ".local/commerce"
     r4_sql_ttl_seconds: int = Field(default=300, ge=1, le=3600)
+
+    @field_validator("web_public_origin")
+    @classmethod
+    def exact_https_origin(cls, value: str | None) -> str | None:
+        from mgar_v3.super_agent.source_operations_domain import https_origin
+
+        return https_origin(value) if value is not None else None
+
+    @property
+    def web_allowed_hosts(self) -> list[str]:
+        hosts = ["127.0.0.1", "localhost", "[::1]"]
+        if self.web_public_origin is not None:
+            host = urlsplit(self.web_public_origin).hostname
+            assert host is not None
+            hosts.append(host)
+        return hosts
+
+    @property
+    def web_allowed_origins(self) -> set[str]:
+        origins = {
+            "http://127.0.0.1:18080", "http://localhost:18080",
+            "http://127.0.0.1:18081", "http://localhost:18081",
+        }
+        if self.web_public_origin is not None:
+            origins.add(self.web_public_origin)
+        return origins
 
     @field_validator("r4_tool_base_url")
     @classmethod

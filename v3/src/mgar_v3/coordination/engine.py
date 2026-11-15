@@ -43,6 +43,7 @@ from mgar_v3.super_agent.source_console import SourceConsole
 from mgar_v3.super_agent.source_correlation import SourceCorrelations
 from mgar_v3.super_agent.source_eval import SourceEval
 from mgar_v3.super_agent.source_notifications import SourceNotifications
+from mgar_v3.super_agent.source_operations import SourceOperations
 from mgar_v3.super_agent.source_recall import SourceRecall
 from mgar_v3.super_agent.source_reviews import SourceReviews
 from mgar_v3.super_agent.source_scheduler import SourceScheduler
@@ -101,6 +102,7 @@ class Engine:
         self.source_notifications = SourceNotifications(self)
         self.source_reviews = SourceReviews(self)
         self.source_console = SourceConsole(self)
+        self.source_operations = SourceOperations(self)
 
     def close(self) -> None:
         with self._mutex:

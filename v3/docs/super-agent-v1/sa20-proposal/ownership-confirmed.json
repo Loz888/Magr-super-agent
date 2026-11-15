@@ -1,0 +1,53 @@
+{
+  "card": "SAV1-20",
+  "status": "CONFIRMED_AND_FORMAL_WIRING_APPLIED",
+  "harness_confirmation": "1c4f494442d2d5fc8d4c1d35856cc91c922cc70e",
+  "section": 46,
+  "harness_changed_files": [
+    "v3/docs/harness-v4/SUPER_AGENT_HANDOFF.md"
+  ],
+  "checked_at_utc": "2026-11-15T11:54:43.912972+00:00",
+  "proposal_files_sha256": {
+    "0053_source_operations.sql": "1ae8bd6ee189f8efe7f937a2ccc90e2b49b2012107f751426b9d8a27e10d2c37",
+    "shared-wiring.patch": "ecc71e2f4effe7ccf138fe1b2663e33b22481e2e065828c41dcc28626a86c74a",
+    "proposal-manifest.json": "55bff8b21ab46ebb63c0175d025ff0d94d666b7cf38e2d699f5791beaf1ff160",
+    "interfaces.json": "5f8d6c9b47c6981c2f014b94a1f6fd0c63059d612b9eb8219e3dfb0a66fcb9ed",
+    "ownership-request.txt": "8cb25c01180dc4879b1b52b1ff83272a9045c0793fc6bb52e61808d84c976a30",
+    "SA20_SCOPE.md": "895713740cb4419bc7da8fd5a478068f39139e6e288f29dd3eafc3ea5df26054",
+    "preparation-result.json": "dcf85642ef1b2bb39ce175dbca9cd1616dce8871a137003f8f890cdbe8beac9e"
+  },
+  "shared_files": [
+    {
+      "path": "v3/src/mgar_v3/coordination/engine.py",
+      "before_sha256": "5658065429a9035ed5d60f4d90571a5adb8d5c732a0a1a53b741bca25841c815",
+      "after_sha256": "8d4e0ca17ef3fff7509e82a201bdd9d5bbe2e71560766fac3e9a5ad219869129"
+    },
+    {
+      "path": "v3/src/mgar_v3/settings.py",
+      "before_sha256": "45325d1b10eb8ae3048dd9fd689b8bcf28f7b4741a1c3a793b112aa8a132b68f",
+      "after_sha256": "7fcbf070e4e4db395e2dbaecc30a53c0c26338952d3cd5f9c86bfe8b0361c880"
+    },
+    {
+      "path": "v3/src/mgar_v3/api.py",
+      "before_sha256": "2d0e9dbf78158f425c823ef31f65cb5b37852b156df5b26b3937de55088d2b08",
+      "after_sha256": "524a8ec755e5e00ad66015e209410c90a1f212ca7a13a3f78b1e48b523fa3e99"
+    }
+  ],
+  "interfaces": [
+    "GET /api/v3/source-operations",
+    "PUT /api/v3/source-operations",
+    "GET /api/v3/source-operations/metrics",
+    "GET /api/v3/source-operations/incidents",
+    "POST /api/v3/source-operations/incidents/{incident_key}/decision",
+    "POST /api/v3/source-operations/components/{component_id}/open",
+    "POST /api/v3/source-operations/components/{component_id}/heartbeat",
+    "POST /api/v3/source-operations/components/{component_id}/tick",
+    "GET /api/v3/source-operations/components/{component_id}/snapshot",
+    "POST /api/v3/source-operations/components/{component_id}/observations",
+    "POST /api/v3/source-operations/components/{component_id}/relay/{source_id}"
+  ],
+  "main_database_migrated": false,
+  "SA21": "NOT_STARTED",
+  "real_gates": "NOT_RUN",
+  "H12": "FAIL retained; other CLI"
+}
