@@ -1,0 +1,215 @@
+{
+  "card": "SAV1-18",
+  "status": "IN_PROGRESS_NOT_INDEPENDENT_READY",
+  "recorded_UTC": "2026-11-15T07:45:30.911810+00:00",
+  "latest_source_candidate": "39d0393ffd4be9c3da98e2f9ee11c22cd92699d6",
+  "latest_source_sha256": "f0abdeadf53bd8c2d9021d2109b6ee8f3b1e079e029abbca66a7dcd8190e455b",
+  "formal_scope_before_final_migration_registry_checks": {
+    "unique_targets": 66,
+    "version_bound_pass": 65,
+    "formal_failed": 1,
+    "failure": "Owner async restriction while awaiting Review; proposed0051 passes isolated overlay only"
+  },
+  "preparation_pass": 86,
+  "draft_only": {
+    "schema_guard_pass": 2,
+    "same_failed_node_overlay_pass": 1,
+    "not_formal_closure": true
+  },
+  "scope_notes": [
+    "Previously passing cases/targets not rerun; all results are version-bound, not latest full-suite PASS.",
+    "Raw generic runner SA18=PREPARATION_ONLY is a retained inherited stage label; command scopes and official task/JUnit records identify actual phases and verdicts."
+  ],
+  "rounds": [
+    {
+      "round": "async-draft-lint-recheck",
+      "source_commit": "19a98f7effc2a846af9a3486151992288e26bee7",
+      "source_sha256": "db9baaff3ef40e7cc7babf9cf1ecb7c74640cbc78f64f78f530c9d43157926bc",
+      "scope": "Only previously failed new draft lint target; draft2/overlay1 and all previous PASS not rerun",
+      "archive": "evidence/super-agent-v1/SAV1-18/start-20261115T054718Z-d5764b7b/async-draft-lint-recheck/source-19a98f7effc2.tar.gz",
+      "archive_sha256": "7225abab37dc1eb7b3c27e5acd746ac1a6fa277c883b1515964fa38fc82f6552",
+      "source_stable": true,
+      "command_exit_codes": {
+        "lint-draft-first": 0
+      },
+      "direct_junit_counts": null
+    },
+    {
+      "round": "async-intake-draft-01",
+      "source_commit": "7ab606e2f2e62ca9d5e9db75a5a6e50a10d6ac72",
+      "source_sha256": "a271255af43d305d62c9790ce3d7a18e0a8fd42d87a1561d63a1b341f9edfdf3",
+      "scope": "Only original failed async intake node with explicit docs-only PG overlay; first proposed0051 two guard checks; previous passes not rerun; no formal migration",
+      "archive": "evidence/super-agent-v1/SAV1-18/start-20261115T054718Z-d5764b7b/async-intake-draft-01/source-7ab606e2f2e6.tar.gz",
+      "archive_sha256": "8cdb80073edda0dbd3495d7dc975856a5a345fc788f509be6abb8874c1a21ce1",
+      "source_stable": true,
+      "command_exit_codes": {
+        "failed1-draft-overlay": 0,
+        "draft-guards-first2": 0,
+        "lint-draft-first": 1
+      },
+      "direct_junit_counts": null
+    },
+    {
+      "round": "boundaries-01",
+      "source_commit": "28cc3e6df0d539d7eccd9a13bbd01b25b66dbf5a",
+      "source_sha256": "d6676bb78e89852aafc258a3bf3e84b1610c39b314f009472c717b2a3c9ddfac",
+      "scope": "First Owner HTTP/native CI/remote target/browser/SIGKILL scope only; all14 formal and86 preparation PASS not rerun",
+      "archive": "evidence/super-agent-v1/SAV1-18/start-20261115T054718Z-d5764b7b/boundaries-01/source-28cc3e6df0d5.tar.gz",
+      "archive_sha256": "da14f0266daf7adeabbc2bbdeb53b4721c4587f467498db33ad437f16ffc369e",
+      "source_stable": true,
+      "command_exit_codes": {
+        "verify": 2,
+        "lint-new-boundaries": 1,
+        "typecheck-native-boundary": 0
+      },
+      "direct_junit_counts": null
+    },
+    {
+      "round": "browser-repair-and-async-first",
+      "source_commit": "835cb5f6e914e83396e8df389eb7e47b1b40a0f6",
+      "source_sha256": "e0012297871540daa9fe99b352031f62b8efd4dcba7cbe91912177875f18028d",
+      "scope": "Only failed browser1 and failed boundary lint; first async2 and its new lint scope separately; prior45 boundary/14 formal/86 prep/typecheck PASS excluded",
+      "archive": "evidence/super-agent-v1/SAV1-18/start-20261115T054718Z-d5764b7b/browser-repair-and-async-first/source-835cb5f6e914.tar.gz",
+      "archive_sha256": "10d446481b4aa11bdfbb9138b67c5d34ea8009fdf25288617b9e101b32fb078b",
+      "source_stable": true,
+      "command_exit_codes": {
+        "browser-failed1": 0,
+        "async-first2": 2,
+        "lint-failed-boundaries": 0,
+        "lint-async-first": 0
+      },
+      "direct_junit_counts": null
+    },
+    {
+      "round": "delivery-first3",
+      "source_commit": "0140cab721ed9610b38475fe8b507f05a6953fb1",
+      "source_sha256": "8796277f91301a7f8961158d693e812ffa7e4fa9e0bf9dc45beb2c7d488e68c2",
+      "scope": "First contract/default/current548refs integrity only; remaining migration0051/registry2 await confirmation, no past passes rerun",
+      "archive": "evidence/super-agent-v1/SAV1-18/start-20261115T054718Z-d5764b7b/delivery-first3/source-0140cab721ed.tar.gz",
+      "archive_sha256": "8c09d8a473cea77e8ed2d3fc986c889da9b6ccafbc9679e19ad6167e1fd40f16",
+      "source_stable": true,
+      "command_exit_codes": {
+        "verify": 2,
+        "lint-catalogue-first": 0
+      },
+      "direct_junit_counts": null
+    },
+    {
+      "round": "delivery-integrity-recheck1",
+      "source_commit": "39d0393ffd4be9c3da98e2f9ee11c22cd92699d6",
+      "source_sha256": "f0abdeadf53bd8c2d9021d2109b6ee8f3b1e079e029abbca66a7dcd8190e455b",
+      "scope": "Only failed current-artifact integrity case; schema/default2 and lint already PASS not rerun",
+      "archive": "evidence/super-agent-v1/SAV1-18/start-20261115T054718Z-d5764b7b/delivery-integrity-recheck1/source-39d0393ffd4b.tar.gz",
+      "archive_sha256": "93b60987181d26865acdca6ebff9c0edd74fe7ac6e6b04c29a18e823e76d6ee9",
+      "source_stable": true,
+      "command_exit_codes": {
+        "failed1": 0
+      },
+      "direct_junit_counts": {
+        "tests": 1,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      }
+    },
+    {
+      "round": "formal-01",
+      "source_commit": "5ea1a4f89da02d18a00f9ad8ee087ee1ebc03d93",
+      "source_sha256": "cba656e348ecd77bab954755bab39eee29a094a18f2c6ff65cf70d339198b72a",
+      "scope": "First formal original Engine/0050 and actual Worker-to-Draft integration; preparation86 and historical passes not rerun; new module static targets only",
+      "archive": "evidence/super-agent-v1/SAV1-18/start-20261115T054718Z-d5764b7b/formal-01/source-5ea1a4f89da0.tar.gz",
+      "archive_sha256": "3312d5dee55e2aa09729420b8fc1b5e0c07be542e71238deae5d8a95f047fc06",
+      "source_stable": true,
+      "command_exit_codes": {
+        "verify": 2,
+        "lint-new-integration": 1,
+        "typecheck-new-integration": 1
+      },
+      "direct_junit_counts": null
+    },
+    {
+      "round": "formal-repair-01",
+      "source_commit": "531f4a845233498b586f6bcf3330609ddd450f4a",
+      "source_sha256": "07e8fedc3eaaaeb9429a2f2c0192c06a704e6733edcb56848970749d825694ce",
+      "scope": "Only original12 failed runtime cases and failed new-module lint/typecheck targets; formal2 and preparation86 PASS excluded",
+      "archive": "evidence/super-agent-v1/SAV1-18/start-20261115T054718Z-d5764b7b/formal-repair-01/source-531f4a845233.tar.gz",
+      "archive_sha256": "37233aa3f12fa0dbc86366f1ceb233bb32d6feec16ba127000f08d9e7e2e3757",
+      "source_stable": true,
+      "command_exit_codes": {
+        "lint-new-integration": 0,
+        "typecheck-new-integration": 0,
+        "failed12": 0
+      },
+      "direct_junit_counts": {
+        "tests": 12,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      }
+    },
+    {
+      "round": "native-index-first",
+      "source_commit": "16f0ba84160ab5d5526fc952096310a6ed79e113",
+      "source_sha256": "af8b5a3a4b1c29b193240b1220f2719b51ea8877e4b7c75000d6f341da31493b",
+      "scope": "First original correlation-index integration and current modified module static targets only; historical native/boundary passes not repeated",
+      "archive": "evidence/super-agent-v1/SAV1-18/start-20261115T054718Z-d5764b7b/native-index-first/source-16f0ba84160a.tar.gz",
+      "archive_sha256": "940ea3d6f0523ffda33b55bdf6d93e7e0619b1c99194a59d16a34c2bd4069c94",
+      "source_stable": true,
+      "command_exit_codes": {
+        "verify": 0,
+        "lint-native-index-first": 0,
+        "typecheck-native-index-first": 0
+      },
+      "direct_junit_counts": null
+    },
+    {
+      "round": "prepare-01",
+      "source_commit": "bebbe90740f1acd3b6f1b1025bd68f21a3e9c991",
+      "source_sha256": "3e7f9c7159b15ec46d550d413d4e5b85d586a8e61b5288e91f8f7e83ab3d2d18",
+      "scope": "First SA18 preparation registration and first lint/typecheck only; prior SA00-SA17 targets excluded",
+      "archive": "evidence/super-agent-v1/SAV1-18/start-20261115T054718Z-d5764b7b/prepare-01/source-bebbe90740f1.tar.gz",
+      "archive_sha256": "038399d571e6f3071b560655ea296a05a03d643d64c0e4b61720f707c295e042",
+      "source_stable": true,
+      "command_exit_codes": {
+        "verify": 0,
+        "lint": 2,
+        "typecheck": 2
+      },
+      "direct_junit_counts": null
+    },
+    {
+      "round": "prepare-static-recheck",
+      "source_commit": "7c2de663f62167430c6b6f9f3c5cd3a7270dc0c1",
+      "source_sha256": "20118ffc9a7f1e563814b67fd675271c644a1033d20b250d4a1bf383bdeffe9f",
+      "scope": "Only failed lint and typecheck targets; preparation86PASS not rerun",
+      "archive": "evidence/super-agent-v1/SAV1-18/start-20261115T054718Z-d5764b7b/prepare-static-recheck/source-7c2de663f621.tar.gz",
+      "archive_sha256": "94126cfa24e76b827197bc60de4c11abf872cab93b3264c83410094bca9b8e1d",
+      "source_stable": true,
+      "command_exit_codes": {
+        "lint": 0,
+        "typecheck": 0
+      },
+      "direct_junit_counts": null
+    }
+  ],
+  "pending_confirmation": {
+    "proposal_commit": "6d946df",
+    "request": "docs/super-agent-v1/sa18-proposal/async-intake-repair-request.txt",
+    "SQL_sha256": "2bfcba77da3ad089737e1ae9fcb9db1aef72ca844e27c313c57a9686b55debd5",
+    "formal0051_installed": false
+  },
+  "main_database": {
+    "read_only": true,
+    "migration_count": 44,
+    "all_checksums_match_repository": true,
+    "contains0048_to0051": false
+  },
+  "remaining_sa18_named_pg_containers": [],
+  "protected_user_file_unchanged_and_untracked": true,
+  "source_catalogues": 17,
+  "artifact_references": 548,
+  "independent_review": "NOT_RUN",
+  "real_gates": "NOT_RUN",
+  "H12_fixed_live_agent_mvp": "FAIL; another CLI owns H12 review",
+  "SA19": "NOT_STARTED"
+}
