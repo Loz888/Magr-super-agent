@@ -32,6 +32,7 @@ def test_sigkill_never_resends_unknown_and_recovers_only_exact_receipt(point, en
                 "action_id": str(p["action_id"]),
                 "remote": str(remote),
                 "point": point,
+                "source_body_key": e.source.key.decode(),
             }
         )
     )

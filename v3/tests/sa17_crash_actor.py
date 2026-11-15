@@ -11,6 +11,7 @@ from mgar_v3.effects.dispatcher import Dispatcher
 from mgar_v3.evidence.artifacts import ArtifactStore
 from mgar_v3.settings import Settings
 from mgar_v3.sources.domain import ActorRef
+from mgar_v3.sources.ingress_crypto import BodyCipher
 from mgar_v3.sources.ports import DeliveryReceipt
 from mgar_v3.super_agent.source_notification_ports import NotificationProfile
 from mgar_v3.super_agent.source_notification_transport import NotificationTransport
@@ -65,6 +66,7 @@ def main():
         allow_external_write=False,
     )
     engine = Engine(settings, ArtifactStore(settings.artifact_root))
+    engine.source_ingress.cipher = BodyCipher(config["source_body_key"].encode())
     with engine.transaction() as conn:
         intent = engine.source_notifications._intent(conn, config["action_id"])
         instance = engine.source_correlations.identities.registry._instance(

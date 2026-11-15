@@ -1853,7 +1853,10 @@
       "tests/test_source_notification_private.py",
       "tests/test_source_notification_integration.py",
       "tests/test_source_notification_api.py",
-      "tests/test_source_notification_recovery.py"
+      "tests/test_source_notification_recovery.py",
+      "tests/test_source_notification_boundaries.py",
+      "tests/test_source_notification_github.py",
+      "tests/test_source_notification_review.py"
     ],
     "timeout_seconds": 600,
     "components": {
