@@ -10,7 +10,7 @@ import hmac
 from abc import ABC, abstractmethod
 from collections.abc import Callable
 from datetime import datetime, timedelta
-from typing import TYPE_CHECKING, Any
+from typing import TYPE_CHECKING, Any, cast
 from uuid import UUID
 
 from psycopg.types.json import Jsonb
@@ -89,7 +89,7 @@ class SourceOperations:
     def now(self, conn: Connection) -> datetime:
         row = conn.execute("SELECT clock_timestamp() AS at").fetchone()
         assert row is not None
-        return row["at"]
+        return cast(datetime, row["at"])
 
     def _console(self, conn: Connection, cookie: str) -> UUID:
         return self.identities._console(conn, cookie)
@@ -224,7 +224,8 @@ class SourceOperations:
                 "expires_at) VALUES(%s,%s,%s,%s,%s,%s,%s,'starting',%s,%s,%s) "
                 "ON CONFLICT(project_id,component_id) DO UPDATE SET "
                 "config_revision=excluded.config_revision,generation=excluded.generation,"
-                "boot_id=excluded.boot_id,open_request_id=excluded.open_request_id,state='starting',"
+                "boot_id=excluded.boot_id,open_request_id=excluded.open_request_id"
+                ",state='starting',"
                 "sequence=0,opened_at=excluded.opened_at,heartbeat_at=excluded.heartbeat_at,"
                 "expires_at=excluded.expires_at RETURNING generation",
                 (
@@ -352,7 +353,7 @@ class SourceOperations:
                     port = self._ports.get(role)
                     if port is None:
                         result = TickOutcome(
-                            waiting_runner=role == "worker", blocked=role != "worker"
+                            waiting_runner=role == "worker", blocked=int(role != "worker")
                         )
                     else:
                         result = port.invoke(lambda: self.check_tick(component_id, body))
@@ -387,7 +388,8 @@ class SourceOperations:
         with self.engine.transaction() as conn:
             rows = conn.execute(
                 "UPDATE app.sa_operations_components SET tick_state='unknown',"
-                "tick_result=%s WHERE project_id=%s AND tick_state='reserved' RETURNING component_id",
+                "tick_result=%s WHERE project_id=%s AND tick_state='reserved' RETU"
+                "RNING component_id",
                 (Jsonb(TickOutcome(unknown=1).model_dump(mode="json")), self.project),
             ).fetchall()
         self._recovered = True
@@ -418,7 +420,8 @@ class SourceOperations:
                 raise denied("STALE_OBSERVATION")
             conn.execute(
                 "INSERT INTO app.sa_operations_incidents(incident_key,project_id,config_revision,"
-                "kind,subject_id,basis_sha256,cursor_sha256,severity) VALUES(%s,%s,%s,%s,%s,%s,%s,%s) "
+                "kind,subject_id,basis_sha256,cursor_sha256,severity) VALUES(%s,%s"
+                ",%s,%s,%s,%s,%s,%s) "
                 "ON CONFLICT(incident_key) DO NOTHING",
                 (
                     body.observation_key,

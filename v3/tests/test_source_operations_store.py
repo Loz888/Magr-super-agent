@@ -1,9 +1,7 @@
 """Formal integration: original PG transactions, races, fences and unknown receipts."""
 
 import hashlib
-import json
 from concurrent.futures import ThreadPoolExecutor
-from datetime import timedelta
 from pathlib import Path
 from uuid import uuid4
 
@@ -239,7 +237,7 @@ def test_watchdog_recomputes_fact_dedupes_and_can_only_record_wait_or_escalate(
     forged = request.model_copy(update={"observation_key": "a" * 64})
     with pytest.raises(DomainError):
         env.service.observe(watchdog.id, forged)
-    engine.pause(receipt.run_id)
+    engine.cancel(receipt.run_id)
     with pytest.raises(DomainError):
         env.service.observe(watchdog.id, request)
 

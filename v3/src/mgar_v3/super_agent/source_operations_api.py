@@ -1,9 +1,7 @@
 """Owner administration and local per-component credentials; no admin-token shortcut."""
 
-from __future__ import annotations
-
 import hmac
-from collections.abc import Awaitable, Callable
+from collections.abc import AsyncIterator, Awaitable, Callable
 from contextlib import asynccontextmanager
 from typing import Annotated, Any
 from uuid import UUID
@@ -15,7 +13,9 @@ from pydantic import ValidationError
 from starlette._utils import get_route_path
 from starlette.responses import Response
 
+from mgar_v3.coordination.engine import Engine
 from mgar_v3.domain import Model
+from mgar_v3.settings import Settings
 from mgar_v3.sources.ports import TransportEnvelope
 from mgar_v3.super_agent.source_operations import denied
 from mgar_v3.super_agent.source_operations_client import private_model
@@ -30,8 +30,6 @@ from mgar_v3.super_agent.source_operations_domain import (
 )
 from mgar_v3.web_access import SESSION_COOKIE, BrowserSession
 
-from mgar_v3.coordination.engine import Engine
-from mgar_v3.settings import Settings
 
 PREFIX = "/api/v3/source-operations"
 
@@ -41,8 +39,9 @@ def body_parser[T: Model](model: type[T]) -> Callable[[Request], Awaitable[T]]:
         if request.headers.get("content-type", "").split(";", 1)[0] != "application/json":
             raise denied("REQUEST_INVALID", 422)
         try:
-            from mgar_v3.super_agent.source_operations_client import _unique
             import json
+
+            from mgar_v3.super_agent.source_operations_client import _unique
 
             raw = await request.body()
             json.loads(raw, object_pairs_hook=_unique)
@@ -69,7 +68,7 @@ def register(
     original_lifespan = app.router.lifespan_context
 
     @asynccontextmanager
-    async def lifespan(application: FastAPI):
+    async def lifespan(application: FastAPI) -> AsyncIterator[None]:
         async with original_lifespan(application):
             # Original Engine has already obtained its sole writer lock and
             # performed business recovery. No competing controller is started.
@@ -241,7 +240,8 @@ def register(
                 if source_id not in grant.source_ids:
                     raise denied("SCOPE_DENIED", 403)
                 owner = conn.execute(
-                    "SELECT generation FROM app.source_ingress_controls WHERE source_instance_id=%s "
+                    "SELECT generation FROM app.source_ingress_controls WHERE source_i"
+                    "nstance_id=%s "
                     "AND project_id=%s",
                     (source_id, engine.settings.project_id),
                 ).fetchone()

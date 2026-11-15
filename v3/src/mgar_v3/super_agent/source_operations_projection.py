@@ -46,7 +46,8 @@ def snapshot(core: SourceOperations, conn: Connection) -> OperationsSnapshot:
     sources = conn.execute(
         "SELECT s.source_instance_id AS source_id,v.revision,c.settings,h.connection,h.permissions,"
         "h.observed_at AS health_at FROM app.source_instances s JOIN LATERAL "
-        "(SELECT revision FROM app.source_instance_versions WHERE source_instance_id=s.source_instance_id "
+        "(SELECT revision FROM app.source_instance_versions WHERE source_i"
+        "nstance_id=s.source_instance_id "
         "ORDER BY revision DESC LIMIT 1) v ON true LEFT JOIN app.source_ingress_controls c "
         "USING(source_instance_id) LEFT JOIN app.feishu_source_health h USING(source_instance_id) "
         "WHERE s.project_id=%s ORDER BY s.source_instance_id LIMIT 33",
@@ -84,13 +85,15 @@ def snapshot(core: SourceOperations, conn: Connection) -> OperationsSnapshot:
         )
     runs = conn.execute(
         "SELECT r.run_id,r.execution_epoch,r.status,r.created_at,"
-        "coalesce(e.event_id,0) AS progress_cursor,coalesce(e.created_at,r.created_at) AS progress_at "
+        "coalesce(e.event_id,0) AS progress_cursor,coalesce(e.created_at,r"
+        ".created_at) AS progress_at "
         "FROM app.runs r JOIN app.tickets t USING(ticket_id) JOIN app.threads h USING(thread_id) "
         "LEFT JOIN LATERAL (SELECT event_id,created_at FROM app.run_events WHERE run_id=r.run_id "
         "AND kind NOT IN ('worker_heartbeat','watchdog_observed') ORDER BY event_id DESC LIMIT 1) "
         "e ON true WHERE h.project_id=%s AND (r.status NOT IN ('cancelled','failed','succeeded') "
         "OR EXISTS(SELECT 1 FROM app.actions WHERE run_id=r.run_id AND status='outcome_unknown') "
-        "OR EXISTS(SELECT 1 FROM app.usage_calls WHERE run_id=r.run_id AND status IN ('reserved','unknown'))) "
+        "OR EXISTS(SELECT 1 FROM app.usage_calls WHERE run_id=r.run_id AND"
+        " status IN ('reserved','unknown'))) "
         "ORDER BY r.run_id LIMIT 33",
         (core.project,),
     ).fetchall()
@@ -100,7 +103,8 @@ def snapshot(core: SourceOperations, conn: Connection) -> OperationsSnapshot:
         jobs = conn.execute(
             "SELECT j.job_id,j.revision,j.state,c.expires_at AS deadline FROM app.sa_async_jobs j "
             "JOIN app.sa_async_checkpoints c USING(checkpoint_id) "
-            "WHERE j.run_id=%s AND j.project_id=%s AND j.state<>'known' ORDER BY j.job_id LIMIT 257",
+            "WHERE j.run_id=%s AND j.project_id=%s AND j.state<>'known' ORDER "
+            "BY j.job_id LIMIT 257",
             (run_id, core.project),
         ).fetchall()
         leases = conn.execute(

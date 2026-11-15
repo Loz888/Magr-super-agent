@@ -38,7 +38,8 @@ def delegation(engine: Engine, guard: Callable[[], None]) -> Iterator[str]:
             raise denied("INACTIVE", 403)
         now = engine.source_operations.now(conn)
         conn.execute(
-            "INSERT INTO app.web_sessions(token_hash,user_id,csrf_token,expires_at) VALUES(%s,%s,%s,%s)",
+            "INSERT INTO app.web_sessions(token_hash,user_id,csrf_token,expire"
+            "s_at) VALUES(%s,%s,%s,%s)",
             (
                 hashed,
                 row["signed_by"],
@@ -148,7 +149,7 @@ class OriginalAsyncWorkerPort(OperationsPort):
         return TickOutcome(processed=1)
 
 
-def create_application():
+def create_application() -> Any:
     """Production entrypoint: sole controller; Worker/runtime activation is explicit.
 
     Install a reviewed composition calling create_app(run_background=False) and
