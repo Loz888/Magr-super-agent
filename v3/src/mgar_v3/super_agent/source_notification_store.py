@@ -67,7 +67,7 @@ class NotificationStore:
 
     @staticmethod
     def handles(action: Row) -> bool:
-        return action["action_type"] == ACTION_TYPE
+        return bool(action["action_type"] == ACTION_TYPE)
 
     @staticmethod
     def _limit(limit: int) -> None:
@@ -178,7 +178,8 @@ class NotificationStore:
             bound = (
                 conn.execute(
                     "SELECT 1 FROM app.sa_thread_link_inputs l JOIN app.sa_task_correlations c "
-                    "USING(correlation_id,revision,project_id) JOIN app.sa_task_correlation_versions v "
+                    "USING(correlation_id,revision,project_id) JOIN "
+                    "app.sa_task_correlation_versions v "
                     "USING(correlation_id,revision,project_id) WHERE v.run_id=%s AND l.input_id=%s "
                     "AND l.project_id=%s AND v.payload->>'state'='bound' "
                     "AND l.version_fingerprint=%s LIMIT 1",

@@ -117,7 +117,9 @@ def setup(
     }
     if notification_changes:
         raw.update(notification_changes)
-    policy(env, notification=raw)
+    selector = env.definition.selector.model_dump(mode="json")
+    selector["source_revision"] = env.installation.revision
+    policy(env, notification=raw, selector=selector)
     with engine.transaction() as conn:
         current = engine.source_policies._current(conn, env.policy_id)
     env.rule = env.rule.model_copy(
