@@ -1890,11 +1890,18 @@
   },
   "SAV1-18": {
     "tests": [
-      "tests/test_source_review_integration.py"
+      "tests/test_source_review_integration.py",
+      "tests/test_source_review_api.py",
+      "tests/test_source_review_boundaries.py",
+      "tests/test_source_review_browser.py",
+      "tests/test_source_review_recovery.py",
+      "tests/test_source_review_async.py",
+      "tests/test_source_review_native_index.py",
+      "tests/test_source_review_catalogue.py"
     ],
-    "timeout_seconds": 600,
+    "timeout_seconds": 1800,
     "components": {
-      "scope": "First formal 0050/Engine/16 routes/actual Coding Worker and controlled actual Git Draft steps; preparation86 and prior card passes excluded",
+      "scope": "Complete registered controlled SA18 scope for independent review; implementation evidence version-bound, no passed-case reruns during repair",
       "real_gates": "NOT_RUN",
       "SA19": "NOT_STARTED"
     }
@@ -1955,6 +1962,19 @@
     "timeout_seconds": 120,
     "components": {
       "scope": "First completed contract/inert configuration/current artifact integrity3 only; formal0051 and final registry2 not run",
+      "real_gates": "NOT_RUN",
+      "SA19": "NOT_STARTED"
+    }
+  },
+  "SAV1-18-FINAL-REMAINDER": {
+    "tests": [
+      "tests/test_source_review_async.py::test_owner_async_restriction_commits_while_review_waits_and_invalidates_old_bundle",
+      "tests/test_source_review_catalogue.py::test_exact_shared_bytes_confirmed0050_and_forward0051_are_installed",
+      "tests/test_source_review_catalogue.py::test_final_card_registration_includes_scoped_delivery_targets_without_old_cards"
+    ],
+    "timeout_seconds": 300,
+    "components": {
+      "scope": "Only original failed async intake1 after formal confirmed0051 plus first48-migration and completed-registry2 checks; previous65 unique passes excluded",
       "real_gates": "NOT_RUN",
       "SA19": "NOT_STARTED"
     }

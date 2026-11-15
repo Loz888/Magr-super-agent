@@ -3,7 +3,12 @@
   "scope": "controlled fixture only; real publication NOT_RUN",
   "ownership_commit": "09145fe0939b209c43addb0ae6bbbdcc6a6df9a2",
   "migration": "0050_source_reviews.sql",
-  "async_intake_repair": "0051 proposed; exact request6d946df; formal failed1 pending fixed Harness confirmation",
+  "async_intake_repair": {
+    "migration": "0051_source_review_async_intake.sql",
+    "ownership_commit": "162b6ef890f18c89df07adf62b0ca0375b5da69c",
+    "SQL_sha256": "2bfcba77da3ad089737e1ae9fcb9db1aef72ca844e27c313c57a9686b55debd5",
+    "scope": "metadata receipt while waiting_approval only; original execution guards unchanged"
+  },
   "defaults": {
     "profiles": 0,
     "worker_started": false,
@@ -100,7 +105,7 @@
     },
     {
       "path": "tests/test_source_review_integration.py",
-      "sha256": "aa2470b212d36339f9498da4e0345cd424336bd3673dabc6293954937f2d2700"
+      "sha256": "87f824cd4936310240617838dc08e651feb6aa0eaebbcdf85ceadfca7c550a20"
     },
     {
       "path": "tests/test_source_review_native_index.py",
@@ -152,7 +157,7 @@
     },
     {
       "path": "docs/super-agent-v1/SA18_REVIEWS.md",
-      "sha256": "fbf09a52094fe397f4d5a7276c0e96eea8871f5f67c597e667b76a4aecb4ef28"
+      "sha256": "b868f9101e07c7fc71618fbca93c9a545d4bf47d3a79389f5c8f008ea4be0fe4"
     },
     {
       "path": "docs/super-agent-v1/sa18-proposal/proposal-manifest.json",
@@ -165,7 +170,15 @@
     {
       "path": "tests/test_source_review_catalogue.py",
       "sha256": "92c783a2d037f301261a7ba708d657904b13fce8bccd17a70a50e4de67746886"
+    },
+    {
+      "path": "migrations/0051_source_review_async_intake.sql",
+      "sha256": "2bfcba77da3ad089737e1ae9fcb9db1aef72ca844e27c313c57a9686b55debd5"
+    },
+    {
+      "path": "docs/super-agent-v1/sa18-proposal/async-intake-ownership-confirmed.json",
+      "sha256": "bcbd56aff0db6ac6b1e4526fc28098ba276c597c51051234e6b23bb5fee59d66"
     }
   ],
-  "status": "IN_PROGRESS_WAITING_0051_CONFIRMATION_NOT_INDEPENDENT_READY"
+  "status": "CONTROLLED_IMPLEMENTATION_INDEPENDENT_NOT_RUN_RESULTS_IN_ACCEPTANCE_RECORD"
 }

@@ -25,13 +25,14 @@ def test_formal_0050_is_exact_confirmed_forward_migration_and_not_draft(engine):
         rows = conn.execute(
             "SELECT name,sha256 FROM app.schema_migrations ORDER BY name"
         ).fetchall()
-        assert len(rows) == 47
+        assert len(rows) == 48
         for r in rows:
             assert (
                 hashlib.sha256((A / "migrations" / r["name"]).read_bytes()).hexdigest()
                 == r["sha256"]
             )
-        assert rows[-1]["sha256"] == ack["SQL_sha256"]
+        installed = {row["name"]: row["sha256"] for row in rows}
+        assert installed["0050_source_reviews.sql"] == ack["SQL_sha256"]
         assert conn.execute("SELECT pg_try_advisory_lock(31010002) AS owned").fetchone()["owned"]
         conn.execute("SELECT pg_advisory_unlock(31010002)")
 

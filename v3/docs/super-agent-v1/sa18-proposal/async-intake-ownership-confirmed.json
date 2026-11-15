@@ -1,0 +1,20 @@
+{
+  "commit": "162b6ef890f18c89df07adf62b0ca0375b5da69c",
+  "section": 44,
+  "verified_UTC": "2026-11-15T07:52:32.904739+00:00",
+  "changed_files": [
+    "v3/docs/harness-v4/SUPER_AGENT_HANDOFF.md"
+  ],
+  "proposal_commit": "6d946df521da0946b1d802e7bb820d22d48c310e",
+  "SQL_sha256": "2bfcba77da3ad089737e1ae9fcb9db1aef72ca844e27c313c57a9686b55debd5",
+  "manifest_sha256": "0a01e43bbf5fe5ea7a8942b857136830b380d76a16237d27c560d9ef3fefc189",
+  "request_sha256": "f17d1350f277b223494fc90d63ccf92cfda1efa7d3a0c35cb643c4db63bd8a75",
+  "section_sha256": "a88d4c019e6d1a3376ad515fd69ac280de50f14b979853ffd9f00955ea3f49ba",
+  "scope": "metadata received intake only; original execution/checkpoint/applied/Job/model guards unchanged",
+  "formal_copy_applied": true,
+  "main_database_migrated": false,
+  "Harness_imported": false,
+  "accepted_SQL_bytes_unchanged_including_historical_proposal_comment": true,
+  "SA19": "NOT_STARTED",
+  "real_gates": "NOT_RUN"
+}
