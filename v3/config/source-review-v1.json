@@ -65,11 +65,11 @@
     },
     {
       "path": "src/mgar_v3/super_agent/source_review_transport.py",
-      "sha256": "aaced7b981735b1e894ffed7ef7f9a11cf3ba111fc315845e477f942a984b881"
+      "sha256": "c03147c1049fb08dddc2c88ff44a77fc7edcbdc313db264a949d8336557f548c"
     },
     {
       "path": "src/mgar_v3/super_agent/source_reviews.py",
-      "sha256": "c72cad3a986344dd4adef415ab515e53230a9947e169d7bea4e403a35687e0f5"
+      "sha256": "626e0bf70766ad06dd284684bb2b0a1e0d68fa6f2ddcccbf43f7785597e31abc"
     },
     {
       "path": "web/source-reviews.css",
@@ -157,7 +157,7 @@
     },
     {
       "path": "docs/super-agent-v1/SA18_REVIEWS.md",
-      "sha256": "b868f9101e07c7fc71618fbca93c9a545d4bf47d3a79389f5c8f008ea4be0fe4"
+      "sha256": "a5e674b0c7989fef52063d6b546894651c0f09f49fd186d074b4ccf0bc5bd6aa"
     },
     {
       "path": "docs/super-agent-v1/sa18-proposal/proposal-manifest.json",

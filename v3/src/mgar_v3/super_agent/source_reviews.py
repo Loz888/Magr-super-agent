@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from collections.abc import Iterator
+from collections.abc import Callable, Iterator
 from contextlib import contextmanager
 from datetime import timedelta
 from typing import TYPE_CHECKING
@@ -456,7 +456,9 @@ class SourceReviews(ReviewStore):
         self._action_current(conn, review, require_approval=True)
 
     @contextmanager
-    def io_guard(self, identifier: UUID, lease: UUID) -> Iterator[None]:
+    def io_guard(
+        self, identifier: UUID, lease: UUID, remote_check: Callable[[], None]
+    ) -> Iterator[None]:
         with self.engine._mutex:
             with self.engine.transaction() as conn:
                 review = self._review(conn, identifier)
@@ -468,7 +470,10 @@ class SourceReviews(ReviewStore):
                 body = self._body_row(conn, review)
             if self._capture(context, profile) != self._decrypt(review, body):
                 raise denied("ACTUAL_BUNDLE_CHANGED")
-            # Last authority read occurs after both step reservation and capture.
+            # Capture can take time or advance remote refs through a callback.
+            # Remote reads must follow it, outside SQL; their callbacks can in
+            # turn commit revocation, so the last authority read follows both.
+            remote_check()
             with self.engine.transaction() as conn:
                 review = self._review(conn, identifier)
                 action = self._action_current(conn, review, require_approval=True)

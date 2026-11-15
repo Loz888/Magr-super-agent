@@ -40,7 +40,7 @@ Harness 第44节确认：162b6ef890f18c89df07adf62b0ca0375b5da69c。正式0051�
 
 `POST /tick` 是显式受控试验入口，经原 Dispatcher 领取 draft_pr。存在其他子系统可派发的 fixture Draft 时返回 OTHER_DISPATCHER_REQUIRED，不消费它们的动作。没有后台自动启用本模块的入口。
 
-私有适配器复用原 Workbench 三步骤协议与原 repair_publication_steps。每步先在原事务保存请求 hash，再检查远端 base/branch/head；之后检查当前 Owner 会话、Source/角色/策略、原目标、input/epoch/async revision、最新 Verifier、实际工作区与原审批/primary/fencing，提交后才调用写端口。创建分支钉住具体 base commit；提交和 Draft 创建前拒绝已改变的远端 head。
+私有适配器复用原 Workbench 三步骤协议与原 repair_publication_steps。每步先在原事务保存请求 hash，之后重新采集并匹配实际已测工作区，再读取远端 base/branch/head 及所需完整对象证明，最后在原 Engine 事务重查 Owner 会话、Source/角色/策略、原目标、input/epoch/async revision、最新 Verifier 与原审批/primary/fencing，提交后才调用写端口。文件/远端回调均早于最后 SQL 权限复核，且不在 SQL 事务内执行。创建分支钉住具体 base commit；采集期间远端推进也会阻止下一次 commit 或 Draft 写入。SA18-I01 的本地定向修复记录见[专项报告](SA18_I01_REPAIR_20261115.md)，独立复验另行放行。
 
 接受远端回执需匹配完整 tree、全部 blob、唯一父 base、完整标题/正文、Draft状态、仓库和 PR head/base；仅变化文件匹配不足。来源撤权、编辑/删除、策略/角色/Coding/Async变更在原事务取消待发并擦除内容。已派发/unknown及真实旧回执保留，不声称取消撤销远端效果。
 

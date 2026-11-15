@@ -145,6 +145,20 @@ class _Draft(WorkbenchDraftTransport):
     def _commit_matches(self, bundle: ReviewBundle, sha: str) -> bool:
         return matches_commit(self.profile, self.review["publication_metadata"], sha)
 
+    def _remote_current(self, kind: StepName) -> None:
+        meta = self.review["publication_metadata"]
+        if self.reader.branch_sha(meta["repository"], meta["base_branch"]) != meta["base_sha"]:
+            raise denied("REMOTE_BASE_CHANGED")
+        head = self.reader.branch_sha(meta["repository"], meta["branch"])
+        if kind == "branch" and head is not None:
+            raise denied("REMOTE_BRANCH_CHANGED")
+        if kind == "commit" and head != meta["base_sha"]:
+            raise denied("REMOTE_BRANCH_CHANGED")
+        if kind == "pull_request" and (
+            head is None or not matches_commit(self.profile, meta, head)
+        ):
+            raise denied("REMOTE_BRANCH_CHANGED")
+
     def _write(
         self,
         publication_id: Any,
@@ -158,20 +172,7 @@ class _Draft(WorkbenchDraftTransport):
         if state == "succeeded":
             return
         meta = self.review["publication_metadata"]
-        # A read callback may observe a newly committed revocation; the final
-        # SQL fence therefore follows all remote reads and step reservation.
-        if self.reader.branch_sha(meta["repository"], meta["base_branch"]) != meta["base_sha"]:
-            raise denied("REMOTE_BASE_CHANGED")
-        head = self.reader.branch_sha(meta["repository"], meta["branch"])
-        if kind == "branch" and head is not None:
-            raise denied("REMOTE_BRANCH_CHANGED")
-        if kind == "commit" and head != meta["base_sha"]:
-            raise denied("REMOTE_BRANCH_CHANGED")
-        if kind == "pull_request" and (
-            head is None or not matches_commit(self.profile, meta, head)
-        ):
-            raise denied("REMOTE_BRANCH_CHANGED")
-        with self.service.io_guard(publication_id, lease):
+        with self.service.io_guard(publication_id, lease, lambda: self._remote_current(kind)):
             if kind == "branch":
                 # Pin the exact reviewed commit rather than resolving a moving
                 # base branch inside the remote create operation.
