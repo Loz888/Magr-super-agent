@@ -1,6 +1,6 @@
 # Super-Agent V1 完整任务书
 
-实施进度：**SAV1-00–SAV1-16 DONE（受控本地工程及用户接受的独立闭环）；SA17 IN_PROGRESS（原Outbox与通知授权复用审计）；SA18–SA24 PLANNED**。短号对应完整ID SAV1-00–SAV1-24。
+实施进度：**SAV1-00–SAV1-16 DONE（受控本地工程及用户接受的独立闭环）；SA17 IN_PROGRESS（本地受控工程完成，等待独立验收）；SA18–SA24 PLANNED**。短号对应完整ID SAV1-00–SAV1-24。
 SA10 dcea520原两失败守卫独立2PASS，39份迁移/原连接/六路由及199历史首次正式通过证据均已核对，未重跑199，见[独立关闭记录](accept/SAV1-10/i01-independent-closure-20261113.json)。旧独立与首轮FAIL保留，不称最终源码单轮201PASS。用户已明确授权启动SA11；完整阅读和原Mailbox/Source权限审计已进行，共享范围按SA11第35节实际确认落地，首轮失败及新前向修复编号分别记录。全部真实/语义/长期门NOT_RUN。
 SA11第35/36节固定确认已核对，0042/0043及七表、11接口和四文件接线正式落地，SA11交付时41checksum一致。首轮309PASS/42FAIL保留，修复仅复验失败范围42→40→26→1，各新增2/14/25/1PASS，剩余0；未重复已通过项，不称最终351全量PASS。候选ca49b76，见[工程交付](SA11_ACCEPTANCE_20261113.md)与[分版本摘要](accept/SAV1-11/accept.json)。SA11已获用户接受独立放行，见[关闭记录](accept/SAV1-11/independent-closure-20261113.json)；SA12当前工程交付见下述记录。
 `HV4-Hxx` 是 [Harness V4 任务](../harness-v4/TASKS.md)，属于外部前置，不是已完成项。
@@ -416,3 +416,10 @@ SA16 6a8b467／3eb08db的I01独立原失败1PASS已核对并获用户接受，�
 按用户指令启动SA17多渠道Outbox与节制通知，审计原Action/Approval/Outbox/Dispatcher、
 Source通知授权、当前接收ACL、quiet/额度与未知回执；共享范围另行精确协调。
 SA18未启动，H12另一CLI负责，真实平台／付费／外发／发布／长期门NOT_RUN。
+
+SA17第42节a09aef7已核对；0049五表、三文件最小接线与11个Owner接口落地。
+100个正式独特目标及29准备目标均有分版本PASS，原失败定向复验，已通过项不重跑，
+原红灯/0执行/错误Coding等待状态预期完整保留。源码c478f6f，46迁移/514引用匹配；
+[本地工程交付](SA17_ACCEPTANCE_20261115.md)／[机器记录](accept/SAV1-17/accept.json)。
+独立NOT_RUN、整卡IN_PROGRESS，SA18不启动；主库仍44迁移，0048/0049未安装，
+H12由另一CLI负责，真实平台/付费/编码能力/外发/发布/全系统安全/长期门NOT_RUN。

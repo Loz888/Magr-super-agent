@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-15T04:11:17.155104+00:00",
+  "updated_at": "2026-11-15T05:07:01.431364+00:00",
   "user_instruction": "Codex owns Super-Agent; local Trae owns Harness; coordination is authorized.",
   "owners": {
     "super_agent": {
@@ -15,7 +15,7 @@
   },
   "active_super_agent_card": "SAV1-17",
   "card_status": "IN_PROGRESS",
-  "work_state": "REQUIREMENTS_ORIGINAL_OUTBOX_AUTHORITY_AND_SHARED_SCOPE_AUDIT",
+  "work_state": "LOCAL_CONTROLLED_SA17_ENGINEERING_COMPLETE_PENDING_INDEPENDENT",
   "harness_observation": {
     "head": "de4775e22e96718e880fde287b2e0928db2945e3",
     "h00_owner_reported_status": "PASS",
@@ -453,7 +453,7 @@
   "sa15": "CLOSED_USER_ACCEPTED_INDEPENDENT",
   "sa14_ownership_commit": "c711d54504c4945625505f47e9df56e22bc1bdac",
   "H12_acceptance_owner": "other CLI per explicit user clarification; no H12 work here",
-  "sa16": "IN_PROGRESS",
+  "sa16": "DONE_USER_ACCEPTED_INDEPENDENT",
   "SA15_shared_scope": {
     "status": "FIXED_CONFIRMED_EXACT_PATCH_APPLIED",
     "commit": "e0432f0e289de868a5956339aeec76db71bd0efe",
@@ -472,7 +472,7 @@
   "sa15_completion_handoff": "PREPARED_LOCALLY_NOT_SENT_OR_ACKNOWLEDGED",
   "sa15_i01_repair": "accept/SAV1-15/i01-repair.json",
   "sa15_independent_closure": "accept/SAV1-15/independent-closure-20261114.json",
-  "sa17": "IN_PROGRESS",
+  "sa17": "IN_PROGRESS_PENDING_INDEPENDENT",
   "SA16_shared_scope": {
     "status": "CONFIRMED_EXACT_APPLIED",
     "migration": "0048_source_autonomy.sql",
@@ -492,10 +492,21 @@
   "sa16_independent_closure": "accept/SAV1-16/independent-closure-20261115.json",
   "sa18": "NOT_STARTED",
   "SA17_shared_scope": {
-    "status": "NOT_YET_PROPOSED",
-    "migration": null,
-    "prior_section41": "SA16 only; not SA17",
-    "H12": "other CLI",
+    "status": "FIXED_CONFIRMED_APPLIED_IN_SA_ONLY",
+    "commit": "a09aef760e4c43ff46595a3c3cc56c503b018e97",
+    "section": 42,
+    "migration": "0049_source_notifications.sql",
+    "migration_files": 46,
+    "main_migration_count": 44,
+    "interfaces": 11,
+    "files": 3,
+    "budget_algorithm_changed": false,
+    "additional_recovery_repair": "sa17-proposal/post-integration-repairs.json",
+    "H12": "other CLI, no import",
     "real_capabilities": "NOT_RUN"
-  }
+  },
+  "sa17_source_commit": "c478f6f62e1aaadd332592c52e9c99fe76b5c3ce",
+  "sa17_source_sha256": "d3c6bfb907e250db803a1ccd7c61f6e950619f78283339ca1abec7ec57060673",
+  "sa17_acceptance": "accept/SAV1-17/accept.json",
+  "sa17_completion_handoff": "PREPARED_LOCALLY_NOT_SENT_OR_ACKNOWLEDGED"
 }

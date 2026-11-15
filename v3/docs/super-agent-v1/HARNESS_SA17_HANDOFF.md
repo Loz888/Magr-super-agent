@@ -1,0 +1,9 @@
+# SA17 本地工程交接（尚未另发完成消息）
+
+确认提交a09aef760e4c43ff46595a3c3cc56c503b018e97第42节已核对；SA副本0049、三文件接线和11路由落地，未修改/导入Harness活动树。
+
+源码候选c478f6f62e1aaadd332592c52e9c99fe76b5c3ce，指纹d3c6bfb907e250db803a1ccd7c61f6e950619f78283339ca1abec7ec57060673。100正式＋29准备独特目标有分版本PASS，已通过项不重跑；等待独立验收，SA18不启动。详见SA17_ACCEPTANCE_20261115.md和accept/SAV1-17/accept.json。
+
+初始SQL SHA3546760623c0bd1710170a75a19e74cf97e759897f975f748c601ae444d91aab不改。导入排序及原Engine recover通知unknown业务原因隔离修复分别见post-integration-format.json和post-integration-repairs.json，原补丁、历史FAIL与所有版本完整保留；同已确认Engine所有权/通知恢复范围，无额外共享文件/接口/迁移/预算语义。未来集成按精确接口和累积补丁审查，不整文件覆盖另一副本。
+
+主库仍44迁移，0048/0049未安装；repo46份。16 Source清单514引用匹配。临时资源清理，用户文件未改。本副本固定H12真实Agent/MVP FAIL、所有真实/付费/外发/发布/长期门不变。本文件仅本地交付准备，未宣称Harness再次收到或认证运行成绩。
