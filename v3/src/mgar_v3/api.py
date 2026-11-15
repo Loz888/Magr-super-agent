@@ -59,6 +59,7 @@ from mgar_v3.super_agent.policy_api import register as register_source_policies
 from mgar_v3.super_agent.source_async_api import register as register_source_async
 from mgar_v3.super_agent.source_autonomy_api import register as register_source_autonomy
 from mgar_v3.super_agent.source_coding_api import register as register_source_coding
+from mgar_v3.super_agent.source_console_api import register as register_source_console
 from mgar_v3.super_agent.source_correlation_api import register as register_source_correlations
 from mgar_v3.super_agent.source_eval_api import register as register_source_eval
 from mgar_v3.super_agent.source_notification_api import register as register_source_notifications
@@ -1299,6 +1300,9 @@ def create_app(
     register_source_autonomy(app, authority, browser_user)
     register_source_notifications(app, authority, browser_user)
     register_source_reviews(app, authority, browser_user)
+    register_source_console(
+        app, authority, browser_user, github_runtime=github_runtime, feishu_runtime=feishu_runtime
+    )
     register(app, authority, authenticated)
     register_commerce(app, authority, authenticated)
     register_recovery(app, configuration, authority, authenticated)

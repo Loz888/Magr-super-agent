@@ -1989,5 +1989,16 @@
       "real_gates": "NOT_RUN",
       "SA20": "NOT_STARTED"
     }
+  },
+  "SAV1-19": {
+    "tests": [
+      "tests/test_source_console_backend.py"
+    ],
+    "timeout_seconds": 300,
+    "components": {
+      "scope": "First formal confirmed0052/Engine/API backend, real key custody, Owner/CAS/atomic disable and original task stop. Preparation54/static312 passes excluded.",
+      "real_gates": "NOT_RUN",
+      "SA20": "NOT_STARTED"
+    }
   }
 }

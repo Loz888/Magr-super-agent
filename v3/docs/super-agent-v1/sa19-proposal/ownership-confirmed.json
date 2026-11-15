@@ -1,0 +1,50 @@
+{
+  "commit": "8d19308a585e80885fc4f0bfeec4853395236ab8",
+  "section": 45,
+  "verified_UTC": "2026-11-15T09:22:51.852935+00:00",
+  "changed_files": [
+    "v3/docs/harness-v4/SUPER_AGENT_HANDOFF.md"
+  ],
+  "SQL_sha256": "765932acca6566a33596e2c543b446c0675ccce689db9e82223b64cf9cd14fb4",
+  "patch_sha256": "b2ba32c532005d4d798f9230c5e1b6d0676ff300a720e62f4a1f2fef7eeb22f8",
+  "files": [
+    {
+      "path": "v3/src/mgar_v3/coordination/engine.py",
+      "before_sha256": "d4130dc7a2269171946611e30efe68c23bde52e877d8d881d31a0629382068e9",
+      "after_sha256": "5658065429a9035ed5d60f4d90571a5adb8d5c732a0a1a53b741bca25841c815"
+    },
+    {
+      "path": "v3/src/mgar_v3/api.py",
+      "before_sha256": "4b04b45423527ecbb64caafd2fc348edec8786e00806f1aa01e19b1009be0549",
+      "after_sha256": "2d0e9dbf78158f425c823ef31f65cb5b37852b156df5b26b3937de55088d2b08"
+    },
+    {
+      "path": "v3/web/agent.html",
+      "before_sha256": "48cede6f717055a0796eb9416cf49bf99816bed44c3868ae38848300837919c3",
+      "after_sha256": "9320988919f0220dff1ebaba208df7d9ac0328bf587b1e91e9004b183469f806"
+    }
+  ],
+  "interfaces": [
+    "GET /api/v3/source-console",
+    "GET /api/v3/source-console/sources/{source_id}",
+    "PUT /api/v3/source-console/sources/{source_id}",
+    "PUT /api/v3/source-console/sources/{source_id}/credentials",
+    "POST /api/v3/source-console/sources/{source_id}/revoke",
+    "PUT /api/v3/source-console/sources/{source_id}/ingress",
+    "POST /api/v3/source-console/disable-all",
+    "PUT /api/v3/source-console/policies/{policy_id}",
+    "POST /api/v3/source-console/policies/{policy_id}/preview",
+    "GET /api/v3/source-console/tasks/{run_id}",
+    "POST /api/v3/source-console/tasks/{run_id}/stop",
+    "GET /api/v3/source-console/decisions",
+    "GET /source-console",
+    "GET /static/source-console.js",
+    "GET /static/source-console.css"
+  ],
+  "section_sha256": "fca92676ce4dbf389315b7c9664d682cf03808bc9dd25de56b1bbd647b7d5271",
+  "formal_copy_applied": true,
+  "main_database_migrated": false,
+  "Harness_imported": false,
+  "SA20": "NOT_STARTED",
+  "real_gates": "NOT_RUN"
+}

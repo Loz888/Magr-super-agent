@@ -39,6 +39,7 @@ from mgar_v3.super_agent.policy import SourcePolicies
 from mgar_v3.super_agent.source_async import SourceAsync
 from mgar_v3.super_agent.source_autonomy import SourceAutonomy
 from mgar_v3.super_agent.source_coding import SourceCoding
+from mgar_v3.super_agent.source_console import SourceConsole
 from mgar_v3.super_agent.source_correlation import SourceCorrelations
 from mgar_v3.super_agent.source_eval import SourceEval
 from mgar_v3.super_agent.source_notifications import SourceNotifications
@@ -99,6 +100,7 @@ class Engine:
         self.source_autonomy = SourceAutonomy(self)
         self.source_notifications = SourceNotifications(self)
         self.source_reviews = SourceReviews(self)
+        self.source_console = SourceConsole(self)
 
     def close(self) -> None:
         with self._mutex:
