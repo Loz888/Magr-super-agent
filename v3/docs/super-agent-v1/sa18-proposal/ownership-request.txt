@@ -1,0 +1,43 @@
+请 Harness CLI 只读核对 SA18 提案，并单独本地提交所有权/接口/编号确认；不要应用 SQL/补丁，不导入 H12，不推送。
+
+SA17-I01 f455c8e 已由用户接受独立 1 PASS；现按指令推进 SA18 Review、精确审批与 Draft PR。
+提案候选：7c2de663f62167430c6b6f9f3c5cd3a7270dc0c1（实现准备 bebbe90740f1acd3b6f1b1025bd68f21a3e9c991）。
+目录：/home/imini/magr-super-agent/v3/docs/super-agent-v1/sa18-proposal/
+精确范围：SA18_SCOPE.md；机器清单：proposal-manifest.json；准备证据：preparation-result.json。
+
+请求仅在 SA 副本由 SA 独占实施：
+1. 拟 0050_source_reviews.sql，六表 sa_source_reviews/payloads/presentations/approvals/links/events，及原 Source/角色/策略/Coding/Async 表的失效触发器。只存审查、加密限时正文、精确批准和关系/回执事实，不建第二 Task/Run/费用或投递主状态机。
+SQL SHA256：851f7a0d8a6673aa2f6416536d4f0629cc9d33d59541443e2a04bc88a10b751a
+2. shared-wiring.patch：原 Engine/API 两文件最小接线；组合 SourceReviews、新 draft_pr scope 验证分流、恢复及路由注册。无 Dispatcher/预算/Harness 内核修改。
+补丁 SHA256：442b0f1778280d9e6ddee04026c0ab6dbc81697beee4493c69567d3141fdbc69
+- v3/src/mgar_v3/coordination/engine.py
+  before f079a8b11131c38fa422022ea3c65435becce7d62e38bcc3efe3e1b9d3da304e
+  after  d4130dc7a2269171946611e30efe68c23bde52e877d8d881d31a0629382068e9
+- v3/src/mgar_v3/api.py
+  before 1d587dd2fde495bb78071e638614c8e4acab27a0f782a681ac12f29ebd4849c6
+  after  4b04b45423527ecbb64caafd2fc348edec8786e00806f1aa01e19b1009be0549
+3. 私有 super_agent/source_review*、source_reviews.py、web/source-reviews.* 及测试/配置/文档/证据归 SA。13 个 Owner API 和 3 个独立页面/资源路由：
+- GET /api/v3/source-reviews/capabilities
+- GET /api/v3/source-reviews
+- POST /api/v3/source-reviews
+- GET /api/v3/source-reviews/{review_id}
+- POST /api/v3/source-reviews/{review_id}/inspect
+- POST /api/v3/source-reviews/{review_id}/approve
+- POST /api/v3/source-reviews/{review_id}/cancel
+- GET /api/v3/source-reviews/{review_id}/patch
+- POST /api/v3/source-reviews/tick
+- POST /api/v3/source-reviews/{review_id}/reconcile
+- POST /api/v3/source-reviews/{review_id}/native-links
+- POST /api/v3/source-reviews/maintain
+- GET /api/v3/source-reviews/events
+- GET /source-reviews
+- GET /assets/source-reviews.js
+- GET /assets/source-reviews.css
+
+复用原 ReviewBundle/PublicationApproval、draft_pr Action/Approval/Outbox/Dispatcher 和 repair_publication_steps；已认证 Owner cookie/Origin/CSRF 下展示完整 Diff/文件/实际已测树/原 Verifier 事实，短时同会话精确 hash 批准。IM 文本/通知许可不能代替发布审批。单独读/写端口；缺写许可停留待审批，可导出。所有 IO 在原 Engine 事务外，最后实际写之前再次检查最新 Source、权限、epoch/input/async revision、实际已测树、审批和目标 fence。完整远端 tree/唯一父 base/全部 blob/PR 对象必须一致。未知只读恢复、不重发；PR/CI 仅关联原 Ticket 和相同 head/attempt。
+
+固定 H08 只继承已验收的增量/前像 hash/结果展示契约，不导入其 service.py 文件任务库或 H12 github_delivery.py。不修改 web/agent.*；受控 fixture:// 明确标记，不显示为真实 PR。无真实平台、模型、外发、发布、merge 或部署，H12 由另一 CLI 验收，本副本原 FAIL/NOT_RUN 保留。主库不应用新迁移，0051 以后不预占。
+
+准备检查 86 PASS（bebbe90）；初轮 lint/typecheck 各一处失败已修复，仅两失败目标复验 PASS（7c2de66）。86 通过及 SA00-SA17 历史检查未重跑，失败/用户材料保留，临时 PG 已清理；这不是正式整卡或独立验收。
+
+AGENTS.md 要求：For shared Engine/API/schema/budget changes, agree ownership, interfaces and migration numbering ... before overlapping implementation. 第42节仅覆盖 SA17/0049，需本轮新确认。请核对当前编号、表名、路由、文件所有权及完整 hash，记录独立提交并回传提交 hash 和交接节号；本次只需协调文档，不实施或运行 SA 测试。

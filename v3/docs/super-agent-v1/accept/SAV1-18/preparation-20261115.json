@@ -1,0 +1,95 @@
+{
+  "card": "SAV1-18",
+  "status": "PREPARATION_PASS_FORMAL_NOT_RUN",
+  "recorded_at_UTC": "2026-11-15T06:22:19.890374+00:00",
+  "checks": [
+    {
+      "scope": "First registered SAV1-18-PREPARE, no historical tests repeated",
+      "source_commit": "bebbe90740f1acd3b6f1b1025bd68f21a3e9c991",
+      "source_sha256": "3e7f9c7159b15ec46d550d413d4e5b85d586a8e61b5288e91f8f7e83ab3d2d18",
+      "command": "make verify TASK=SAV1-18-PREPARE",
+      "exit_code": 0,
+      "counts": {
+        "tests": 86,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "evidence": "evidence/SAV1-18-PREPARE/20261115T062022Z-ebd1d7d1"
+    },
+    {
+      "scope": "Only previously failed lint and typecheck targets",
+      "source_commit": "7c2de663f62167430c6b6f9f3c5cd3a7270dc0c1",
+      "source_sha256": "20118ffc9a7f1e563814b67fd675271c644a1033d20b250d4a1bf383bdeffe9f",
+      "commands": [
+        "make lint",
+        "make typecheck"
+      ],
+      "exit_codes": [
+        0,
+        0
+      ],
+      "source_files": 306,
+      "evidence": "evidence/super-agent-v1/SAV1-18/start-20261115T054718Z-d5764b7b/prepare-static-recheck"
+    }
+  ],
+  "not_rerun": [
+    "86 passing preparation cases after formatting/typing fix",
+    "SA00-SA17 historical passes"
+  ],
+  "failed_history_retained": "evidence/super-agent-v1/SAV1-18/start-20261115T054718Z-d5764b7b/prepare-01",
+  "immutable_archives": [
+    {
+      "path": "evidence/super-agent-v1/SAV1-18/start-20261115T054718Z-d5764b7b/prepare-01/source-bebbe90740f1.tar.gz",
+      "sha256": "038399d571e6f3071b560655ea296a05a03d643d64c0e4b61720f707c295e042"
+    },
+    {
+      "path": "evidence/super-agent-v1/SAV1-18/start-20261115T054718Z-d5764b7b/prepare-static-recheck/source-7c2de663f621.tar.gz",
+      "sha256": "94126cfa24e76b827197bc60de4c11abf872cab93b3264c83410094bca9b8e1d"
+    }
+  ],
+  "SQL": {
+    "path": "v3/migrations/0050_source_reviews.sql",
+    "draft": "0050_source_reviews.sql",
+    "sha256": "851f7a0d8a6673aa2f6416536d4f0629cc9d33d59541443e2a04bc88a10b751a",
+    "tables": [
+      "sa_source_reviews",
+      "sa_source_review_payloads",
+      "sa_source_review_presentations",
+      "sa_source_review_approvals",
+      "sa_source_review_links",
+      "sa_source_review_events"
+    ]
+  },
+  "shared_patch": {
+    "path": "shared-wiring.patch",
+    "sha256": "442b0f1778280d9e6ddee04026c0ab6dbc81697beee4493c69567d3141fdbc69",
+    "files": [
+      {
+        "path": "v3/src/mgar_v3/coordination/engine.py",
+        "before_sha256": "f079a8b11131c38fa422022ea3c65435becce7d62e38bcc3efe3e1b9d3da304e",
+        "after_sha256": "d4130dc7a2269171946611e30efe68c23bde52e877d8d881d31a0629382068e9"
+      },
+      {
+        "path": "v3/src/mgar_v3/api.py",
+        "before_sha256": "1d587dd2fde495bb78071e638614c8e4acab27a0f782a681ac12f29ebd4849c6",
+        "after_sha256": "4b04b45423527ecbb64caafd2fc348edec8786e00806f1aa01e19b1009be0549"
+      }
+    ]
+  },
+  "formal_integration": "NOT_RUN_WAITING_NEW_HARNESS_CONFIRMATION",
+  "independent_gate": "NOT_RUN",
+  "real_gates": "NOT_RUN",
+  "SA19": "NOT_STARTED",
+  "protected_user_file_unchanged": true,
+  "main_database": "not migrated; read-only check recorded separately",
+  "isolated_pg_cleanup": {
+    "container": "sa18-prepare-01-pg-e92cfe67",
+    "inspect_exit": 1
+  },
+  "limits": [
+    "Preparation tests do not verify formal Engine/API wiring or remote three-step publication.",
+    "86 PASS is bound to bebbe90, static PASS to 7c2de66; no single-final-source full-suite claim.",
+    "Fixed H12 live Agent/MVP FAIL remains; another CLI owns its review."
+  ]
+}
