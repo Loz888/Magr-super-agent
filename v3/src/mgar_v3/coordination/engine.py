@@ -41,6 +41,7 @@ from mgar_v3.super_agent.source_autonomy import SourceAutonomy
 from mgar_v3.super_agent.source_coding import SourceCoding
 from mgar_v3.super_agent.source_correlation import SourceCorrelations
 from mgar_v3.super_agent.source_eval import SourceEval
+from mgar_v3.super_agent.source_notifications import SourceNotifications
 from mgar_v3.super_agent.source_recall import SourceRecall
 from mgar_v3.super_agent.source_scheduler import SourceScheduler
 from mgar_v3.super_agent.source_subscription import SourceSubscriptions
@@ -95,6 +96,7 @@ class Engine:
         self.source_async = SourceAsync(self)
         self.source_recall = SourceRecall(self)
         self.source_autonomy = SourceAutonomy(self)
+        self.source_notifications = SourceNotifications(self)
 
     def close(self) -> None:
         with self._mutex:
@@ -1091,6 +1093,9 @@ class Engine:
         return action, run
 
     def _validate_action(self, conn: Connection, action: Row, run: Row) -> None:
+        if self.source_notifications.handles(action):
+            self.source_notifications.validate_action(conn, action, run)
+            return
         self.source_policies.check_action(conn, action, run)
         readonly = conn.execute(
             "SELECT scope FROM app.mandates WHERE mandate_id=%s", (run["mandate_id"],)
@@ -1235,6 +1240,8 @@ class Engine:
             try:
                 self._validate_action(conn, action, run)
             except DomainError as exc:
+                if self.source_notifications.defer(conn, action, exc):
+                    return None
                 conn.execute(
                     "UPDATE app.actions SET status='expired',reason_code=%s WHERE action_id=%s",
                     (exc.code, action["action_id"]),
@@ -1292,7 +1299,8 @@ class Engine:
                     "WHERE action_id=%s AND status='dispatching'",
                     (action_id,),
                 )
-            self._apply_effect_outcome(conn, run, status)
+            if not self.source_notifications.record_effect(conn, action, status, external_id):
+                self._apply_effect_outcome(conn, run, status)
             self._event(conn, run["run_id"], "action_" + status, action_id=str(action_id))
 
     def _apply_effect_outcome(self, conn: Connection, run: Row, status: str) -> None:
@@ -1369,7 +1377,10 @@ class Engine:
                 "UPDATE app.outbox SET status='succeeded' WHERE action_id=%s",
                 (action_id,),
             )
-            self._apply_effect_outcome(conn, run, "succeeded")
+            if not self.source_notifications.record_effect(
+                conn, action, "succeeded", external_id
+            ):
+                self._apply_effect_outcome(conn, run, "succeeded")
             self._event(conn, run["run_id"], "action_reconciled", action_id=str(action_id))
             return True
 
@@ -1528,6 +1539,7 @@ class Engine:
             self.source_coding.recover_conn(conn)
             self.source_async.recover_conn(conn)
             self.source_autonomy.recover_conn(conn)
+            self.source_notifications.recover_conn(conn)
             return {
                 "unknown_actions": len(unknown),
                 "paused_runs": len(paused),

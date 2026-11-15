@@ -1847,5 +1847,19 @@
       "real_gates": "NOT_RUN",
       "SA18": "NOT_STARTED"
     }
+  },
+  "SAV1-17": {
+    "tests": [
+      "tests/test_source_notification_private.py",
+      "tests/test_source_notification_integration.py",
+      "tests/test_source_notification_api.py",
+      "tests/test_source_notification_recovery.py"
+    ],
+    "timeout_seconds": 600,
+    "components": {
+      "engineering": "First formal original Engine/46 migrations/eleven routes/controlled Channel/real PG and SIGKILL; no prior card/preparation passes rerun",
+      "real_gates": "NOT_RUN",
+      "SA18": "NOT_STARTED"
+    }
   }
 }

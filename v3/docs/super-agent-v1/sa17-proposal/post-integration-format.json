@@ -1,0 +1,17 @@
+{
+  "files": [
+    {
+      "path": "v3/src/mgar_v3/coordination/engine.py",
+      "approved_after_sha256": "4785f320795bd7cbc266a99e0f7de5e795c170dc12528c5d3a33f6303b4468a6",
+      "formatted_after_sha256": "7ed1a025d4fe107eaad7bff094e2f17a2c5e689abcec0cae14831629ccace186",
+      "change": "Sort existing/new import lines only; all non-import AST and imported symbols identical"
+    },
+    {
+      "path": "v3/src/mgar_v3/api.py",
+      "approved_after_sha256": "9cc4abbffe505aff071a09c58f4d1380ac7fee34eb48e4e74463d0e9e8bfe1c2",
+      "formatted_after_sha256": "1d587dd2fde495bb78071e638614c8e4acab27a0f782a681ac12f29ebd4849c6",
+      "change": "Sort existing/new import lines only; all non-import AST and imported symbols identical"
+    }
+  ],
+  "semantic_changes": false
+}

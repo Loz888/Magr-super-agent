@@ -152,6 +152,8 @@ class FastPath:
         return row
 
     def _own_result(self, conn: Connection, item: ItemMetadata, clear: bytes) -> bool:
+        if self.engine.source_notifications.own_result(conn, item):
+            return True
         # Only a current, verified GitHub resource and an actual known receipt count.
         # Body markers, fixture:// links, hints alone and unknown writes never count.
         if item.event.scope.source_kind != "github":

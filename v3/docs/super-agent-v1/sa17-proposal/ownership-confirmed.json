@@ -1,0 +1,14 @@
+{
+  "confirmed_at_UTC": "2026-11-15T04:33:45.039217+00:00",
+  "commit": "a09aef760e4c43ff46595a3c3cc56c503b018e97",
+  "section": 42,
+  "changed_files": [
+    "v3/docs/harness-v4/SUPER_AGENT_HANDOFF.md"
+  ],
+  "section_sha256": "1295b0a6c959a81197711d863e5f15dfeb2dea38eb3b13093721633e0f595784",
+  "sql_sha256": "3546760623c0bd1710170a75a19e74cf97e759897f975f748c601ae444d91aab",
+  "patch_sha256": "289879fe1c9c344a11db140866e47c364e6ce3da8215f03f5c2031a0b7c23545",
+  "harness_imported": false,
+  "main_database_migrated": false,
+  "real_gates": "NOT_RUN"
+}
