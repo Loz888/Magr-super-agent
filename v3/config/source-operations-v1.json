@@ -18,7 +18,7 @@
   "registration": "make verify TASK=SAV1-20",
   "formal_unique_cases": 55,
   "preparation_cases_version_bound": 88,
-  "independent_review": "NOT_RUN",
+  "independent_review": "NOT_PASSED_SA20_I01_REPAIR_PENDING_INDEPENDENT_RECHECK",
   "real_gates": "NOT_RUN",
   "H12_fixed_live_agent_mvp": "FAIL_RETAINED_OTHER_CLI",
   "SA21": "NOT_STARTED",
@@ -241,7 +241,7 @@
     },
     {
       "path": "src/mgar_v3/super_agent/source_operations_projection.py",
-      "sha256": "f6f06020de5cc7799034aa82a808432eaa658872861111678ce7727d2a61356c"
+      "sha256": "f9d3bfe19a24ce071543c037af16888ffac62dfbc6941c648575c7c377ed982b"
     },
     {
       "path": "src/mgar_v3/super_agent/source_operations_relay.py",

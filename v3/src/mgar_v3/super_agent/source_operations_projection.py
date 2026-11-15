@@ -85,16 +85,30 @@ def snapshot(core: SourceOperations, conn: Connection) -> OperationsSnapshot:
                 cursor=cursor([row, sg]),
             )
         )
+    # Count facts from each stream; their independent sequence IDs cannot be
+    # compared as one clock. Within the current Coding epoch/version, an
+    # appended completion advances this cursor even with no new run_events.
     runs = conn.execute(
         "SELECT r.run_id,r.execution_epoch,r.status,r.created_at,"
-        "coalesce(e.event_id,0) AS progress_cursor,coalesce(e.created_at,r"
-        ".created_at) AS progress_at "
+        "e.completed+c.completed AS progress_cursor,"
+        "greatest(r.created_at,e.created_at,c.created_at) AS progress_at "
         "FROM app.runs r JOIN app.tickets t USING(ticket_id) JOIN app.threads h USING(thread_id) "
-        "LEFT JOIN LATERAL (SELECT event_id,created_at FROM app.run_events WHERE run_id=r.run_id "
-        "AND kind NOT IN ('worker_heartbeat','watchdog_observed') ORDER BY event_id DESC LIMIT 1) "
-        "e ON true LEFT JOIN LATERAL (SELECT max(ce.event_id) AS event_id,"
+        "LEFT JOIN LATERAL (SELECT count(*) AS completed,max(created_at) AS created_at "
+        "FROM app.run_events WHERE run_id=r.run_id "
+        "AND kind NOT IN ('worker_heartbeat','watchdog_observed')) e ON true "
+        "LEFT JOIN LATERAL (SELECT count(*) AS completed,"
         "max(ce.created_at) AS created_at FROM app.sa_coding_events ce "
-        "JOIN app.sa_coding_bindings cb USING(coding_id,project_id) WHERE cb.run_id=r.run_id "
+        "JOIN app.sa_coding_bindings cb USING(coding_id,project_id) "
+        "JOIN app.sa_coding_attempts ca ON ca.attempt_id=ce.attempt_id "
+        "AND ca.coding_id=cb.coding_id AND ca.project_id=cb.project_id "
+        "JOIN app.source_policies p ON p.policy_id=cb.policy_id AND p.project_id=cb.project_id "
+        "JOIN app.source_policy_versions pv ON pv.policy_id=p.policy_id "
+        "AND pv.revision=p.current_revision WHERE cb.run_id=r.run_id AND ca.run_id=r.run_id "
+        "AND cb.project_id=h.project_id AND ca.execution_epoch=r.execution_epoch "
+        "AND cb.state='admitted' AND ce.revision=cb.revision AND cb.revision=cb.mandate_revision "
+        "AND p.current_revision=cb.policy_revision AND NOT pv.revoked "
+        "AND pv.definition_sha256=cb.policy_sha256 AND ca.fenced_at IS NULL "
+        "AND ca.state IN ('running','result_recorded') "
         "AND ce.event_type IN ('OPERATION_KNOWN','VERIFICATION_RECORDED',"
         "'ATTEMPT_RESULT_RECORDED')) c ON true WHERE h.project_id=%s AND ("
         "r.status NOT IN ('cancelled','failed','succeeded') "
