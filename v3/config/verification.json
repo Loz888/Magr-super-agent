@@ -2059,5 +2059,16 @@
       "real_gates": "NOT_RUN",
       "SA21": "NOT_STARTED"
     }
+  },
+  "SAV1-20-CLIENT": {
+    "tests": [
+      "tests/test_source_operations_client.py"
+    ],
+    "timeout_seconds": 120,
+    "components": {
+      "scope": "First private limited HTTP client credential-file/role/unknown receipt/restart/redirect/response-boundary checks with synthetic MockTransport only; shared hooks still not applied",
+      "real_gates": "NOT_RUN",
+      "SA21": "NOT_STARTED"
+    }
   }
 }
