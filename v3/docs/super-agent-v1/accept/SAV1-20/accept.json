@@ -881,5 +881,766 @@
     "Two positive TestClient fixtures supplied default testclient peer; set explicit loopback to test successful machine transport.",
     "Restore hold mock accepts new Settings(_env_file=None) signature; assertions unchanged, previous18 cases not rerun."
   ],
-  "static": "See raw round results and final closeout; each failed target only rerun, newly implemented scopes checked separately."
+  "static": "See raw round results and final closeout; each failed target only rerun, newly implemented scopes checked separately.",
+  "source_commit": "79188c23a9e035a27871dfe32842f1c55f85e430",
+  "source_sha256": "de08985496c78ae84a06913c3354f6685b35aece9690fcbc9b981e7d6d1a6510",
+  "source_archive": "evidence/super-agent-v1/SAV1-20/start-20261115T110801Z-a46682a3/final-audit-type-failed-only/source-79188c23a9e0.tar.gz",
+  "archive_sha256": "a6f86eb7845b800ec18b5e8b76a9c47703d0d2d998711a1f8a750f73eed451af",
+  "closeout": {
+    "UTC": "2026-11-15T12:58:34.899115+00:00",
+    "source_commit": "79188c23a9e035a27871dfe32842f1c55f85e430",
+    "source_sha256": "de08985496c78ae84a06913c3354f6685b35aece9690fcbc9b981e7d6d1a6510",
+    "source_archive": "evidence/super-agent-v1/SAV1-20/start-20261115T110801Z-a46682a3/final-audit-type-failed-only/source-79188c23a9e0.tar.gz",
+    "archive_sha256": "a6f86eb7845b800ec18b5e8b76a9c47703d0d2d998711a1f8a750f73eed451af",
+    "archive_matches_source": true,
+    "source_stable_during_last_check": true,
+    "formal_functional_PASS_version_bound": 55,
+    "preparation_PASS_version_bound": 88,
+    "latest_full_suite": "NOT_RUN_PER_FAILED_ONLY_RULE",
+    "inventory": {
+      "SA21": "NOT_STARTED",
+      "artifact_references": 654,
+      "card": "SAV1-20",
+      "formal_migrations": 50,
+      "formal_test_files": 8,
+      "main_database": {
+        "checksums_match": true,
+        "connection_closed": true,
+        "migrations": 44,
+        "operations_tables": 0,
+        "port": 55435,
+        "read_only": true
+      },
+      "operations_schemas": 17,
+      "ownership_commit": "1c4f494442d2d5fc8d4c1d35856cc91c922cc70e",
+      "real_gates": "NOT_RUN",
+      "section": 46,
+      "source_catalogues": 19,
+      "status": "PASS_OFFLINE_INVENTORY_ONLY",
+      "at_source_commit": "3fd5ac4cc19be30c11bf44c7e18eb06f1502cd45",
+      "afterwards": "Only explicit model-registry typing and its own catalogue SHA; prior passing inventory not repeated."
+    },
+    "static_attempts": [
+      {
+        "round": "prepare-01",
+        "check": "lint",
+        "command": [
+          "make",
+          "lint"
+        ],
+        "exit_code": 2,
+        "source_commit": "a9e2a7ab15ad506567a48676858aed0ececb4236",
+        "source_sha256": "b43738f9b3fa43d29e13c9f247277f003584b210afd85b30f0271850607c6d15",
+        "raw_result": "evidence/super-agent-v1/SAV1-20/start-20261115T110801Z-a46682a3/prepare-01/result.json",
+        "resolved_by": "evidence/super-agent-v1/SAV1-20/start-20261115T110801Z-a46682a3/prepare-failed3-recheck/result.json#lint-failed"
+      },
+      {
+        "round": "prepare-01",
+        "check": "typecheck",
+        "command": [
+          "make",
+          "typecheck"
+        ],
+        "exit_code": 0,
+        "source_commit": "a9e2a7ab15ad506567a48676858aed0ececb4236",
+        "source_sha256": "b43738f9b3fa43d29e13c9f247277f003584b210afd85b30f0271850607c6d15",
+        "raw_result": "evidence/super-agent-v1/SAV1-20/start-20261115T110801Z-a46682a3/prepare-01/result.json"
+      },
+      {
+        "round": "prepare-failed3-recheck",
+        "check": "lint-failed",
+        "command": [
+          "make",
+          "lint"
+        ],
+        "exit_code": 0,
+        "source_commit": "78513a4d032e627b3504a979857173ca970b7ac3",
+        "source_sha256": "a09720997a455f6fa388a96dea04a639d879e2519feb420dc5b4613d2912d70a",
+        "raw_result": "evidence/super-agent-v1/SAV1-20/start-20261115T110801Z-a46682a3/prepare-failed3-recheck/result.json"
+      },
+      {
+        "round": "client-first",
+        "check": "lint-new-client",
+        "command": [
+          "uv",
+          "run",
+          "--frozen",
+          "ruff",
+          "check",
+          "src/mgar_v3/super_agent/source_operations_client.py",
+          "tests/test_source_operations_client.py"
+        ],
+        "exit_code": 1,
+        "source_commit": "f3e260ffbe4cb75f1bc69aaded5e33aaec33da43",
+        "source_sha256": "e7770766e5cf193b1525c862272a19d6b992960a0b28e8e1c101188cef3573f7",
+        "raw_result": "evidence/super-agent-v1/SAV1-20/start-20261115T110801Z-a46682a3/client-first/result.json",
+        "resolved_by": "evidence/super-agent-v1/SAV1-20/start-20261115T110801Z-a46682a3/client-static-failed-only/result.json#lint-new-client"
+      },
+      {
+        "round": "client-first",
+        "check": "type-new-client",
+        "command": [
+          "uv",
+          "run",
+          "--frozen",
+          "mypy",
+          "--follow-imports=silent",
+          "src/mgar_v3/super_agent/source_operations_client.py"
+        ],
+        "exit_code": 1,
+        "source_commit": "f3e260ffbe4cb75f1bc69aaded5e33aaec33da43",
+        "source_sha256": "e7770766e5cf193b1525c862272a19d6b992960a0b28e8e1c101188cef3573f7",
+        "raw_result": "evidence/super-agent-v1/SAV1-20/start-20261115T110801Z-a46682a3/client-first/result.json",
+        "resolved_by": "evidence/super-agent-v1/SAV1-20/start-20261115T110801Z-a46682a3/client-type-failed-only/result.json#type-new-client"
+      },
+      {
+        "round": "client-static-failed-only",
+        "check": "lint-new-client",
+        "command": [
+          "uv",
+          "run",
+          "--frozen",
+          "ruff",
+          "check",
+          "src/mgar_v3/super_agent/source_operations_client.py",
+          "tests/test_source_operations_client.py"
+        ],
+        "exit_code": 0,
+        "source_commit": "32b9f4b5e0a9635d9cf3fe1ea285de5eccd4cf57",
+        "source_sha256": "a55f2cf816ec95596db8590450af3a5604335c3357c66cdd15b86356ae5c84d2",
+        "raw_result": "evidence/super-agent-v1/SAV1-20/start-20261115T110801Z-a46682a3/client-static-failed-only/result.json"
+      },
+      {
+        "round": "client-static-failed-only",
+        "check": "type-new-client",
+        "command": [
+          "uv",
+          "run",
+          "--frozen",
+          "mypy",
+          "--follow-imports=silent",
+          "src/mgar_v3/super_agent/source_operations_client.py"
+        ],
+        "exit_code": 1,
+        "source_commit": "32b9f4b5e0a9635d9cf3fe1ea285de5eccd4cf57",
+        "source_sha256": "a55f2cf816ec95596db8590450af3a5604335c3357c66cdd15b86356ae5c84d2",
+        "raw_result": "evidence/super-agent-v1/SAV1-20/start-20261115T110801Z-a46682a3/client-static-failed-only/result.json",
+        "resolved_by": "evidence/super-agent-v1/SAV1-20/start-20261115T110801Z-a46682a3/client-type-failed-only/result.json#type-new-client"
+      },
+      {
+        "round": "client-type-failed-only",
+        "check": "type-new-client",
+        "command": [
+          "uv",
+          "run",
+          "--frozen",
+          "mypy",
+          "--follow-imports=silent",
+          "src/mgar_v3/super_agent/source_operations_client.py"
+        ],
+        "exit_code": 0,
+        "source_commit": "1670ba99fc09cf4c0c94abf6b6d18d217e9d2bad",
+        "source_sha256": "eff5a0e9663fad9a386cd7c81e4ff6c74ef1f2db9e939e21da3e9610ecc7b9a7",
+        "raw_result": "evidence/super-agent-v1/SAV1-20/start-20261115T110801Z-a46682a3/client-type-failed-only/result.json"
+      },
+      {
+        "round": "formal-control-first",
+        "check": "lint-new-control",
+        "command": [
+          "uv",
+          "run",
+          "--frozen",
+          "ruff",
+          "check",
+          "src/mgar_v3/super_agent/source_operations.py",
+          "src/mgar_v3/super_agent/source_operations_api.py",
+          "src/mgar_v3/super_agent/source_operations_projection.py",
+          "src/mgar_v3/super_agent/source_operations_runtime.py",
+          "tests/sa20_support.py",
+          "tests/test_source_operations_store.py",
+          "tests/test_source_operations_api.py"
+        ],
+        "exit_code": 1,
+        "source_commit": "e87b82a2153f7044c1ddb66987d6947032651dcc",
+        "source_sha256": "cc372ca4d8d77fe148a4c07158c0d8ef5e8e4499753949500e80fec35eab4f54",
+        "raw_result": "evidence/super-agent-v1/SAV1-20/start-20261115T110801Z-a46682a3/formal-control-first/result.json",
+        "resolved_by": "evidence/super-agent-v1/SAV1-20/start-20261115T110801Z-a46682a3/formal-control-failed2-recheck/result.json#lint-new-control"
+      },
+      {
+        "round": "formal-control-first",
+        "check": "type-new-control",
+        "command": [
+          "uv",
+          "run",
+          "--frozen",
+          "mypy",
+          "--follow-imports=silent",
+          "src/mgar_v3/super_agent/source_operations.py",
+          "src/mgar_v3/super_agent/source_operations_api.py",
+          "src/mgar_v3/super_agent/source_operations_projection.py",
+          "src/mgar_v3/super_agent/source_operations_runtime.py"
+        ],
+        "exit_code": 1,
+        "source_commit": "e87b82a2153f7044c1ddb66987d6947032651dcc",
+        "source_sha256": "cc372ca4d8d77fe148a4c07158c0d8ef5e8e4499753949500e80fec35eab4f54",
+        "raw_result": "evidence/super-agent-v1/SAV1-20/start-20261115T110801Z-a46682a3/formal-control-first/result.json",
+        "resolved_by": "evidence/super-agent-v1/SAV1-20/start-20261115T110801Z-a46682a3/formal-control-failed13-recheck/result.json#type-new-control"
+      },
+      {
+        "round": "formal-control-failed13-recheck",
+        "check": "lint-new-control",
+        "command": [
+          "uv",
+          "run",
+          "--frozen",
+          "ruff",
+          "check",
+          "src/mgar_v3/super_agent/source_operations.py",
+          "src/mgar_v3/super_agent/source_operations_api.py",
+          "src/mgar_v3/super_agent/source_operations_projection.py",
+          "src/mgar_v3/super_agent/source_operations_runtime.py",
+          "tests/sa20_support.py",
+          "tests/test_source_operations_store.py",
+          "tests/test_source_operations_api.py"
+        ],
+        "exit_code": 1,
+        "source_commit": "e879c06bd06f6550883d04e4e1fd32c676399ce1",
+        "source_sha256": "65fe1ba735e0536b74a12bd37f6c4d39bb7f5e33c98e91cf17b40043919ae572",
+        "raw_result": "evidence/super-agent-v1/SAV1-20/start-20261115T110801Z-a46682a3/formal-control-failed13-recheck/result.json",
+        "resolved_by": "evidence/super-agent-v1/SAV1-20/start-20261115T110801Z-a46682a3/formal-control-failed2-recheck/result.json#lint-new-control"
+      },
+      {
+        "round": "formal-control-failed13-recheck",
+        "check": "type-new-control",
+        "command": [
+          "uv",
+          "run",
+          "--frozen",
+          "mypy",
+          "--follow-imports=silent",
+          "src/mgar_v3/super_agent/source_operations.py",
+          "src/mgar_v3/super_agent/source_operations_api.py",
+          "src/mgar_v3/super_agent/source_operations_projection.py",
+          "src/mgar_v3/super_agent/source_operations_runtime.py"
+        ],
+        "exit_code": 0,
+        "source_commit": "e879c06bd06f6550883d04e4e1fd32c676399ce1",
+        "source_sha256": "65fe1ba735e0536b74a12bd37f6c4d39bb7f5e33c98e91cf17b40043919ae572",
+        "raw_result": "evidence/super-agent-v1/SAV1-20/start-20261115T110801Z-a46682a3/formal-control-failed13-recheck/result.json"
+      },
+      {
+        "round": "formal-control-failed2-recheck",
+        "check": "lint-new-control",
+        "command": [
+          "uv",
+          "run",
+          "--frozen",
+          "ruff",
+          "check",
+          "src/mgar_v3/super_agent/source_operations.py",
+          "src/mgar_v3/super_agent/source_operations_api.py",
+          "src/mgar_v3/super_agent/source_operations_projection.py",
+          "src/mgar_v3/super_agent/source_operations_runtime.py",
+          "tests/sa20_support.py",
+          "tests/test_source_operations_store.py",
+          "tests/test_source_operations_api.py"
+        ],
+        "exit_code": 0,
+        "source_commit": "acfbc29f0159ae9850c86e431555b6fc46c973b6",
+        "source_sha256": "514b68613573057a0b6d2d4eba860fdda6ba4d2cea0d0785b0f98eab5999ad25",
+        "raw_result": "evidence/super-agent-v1/SAV1-20/start-20261115T110801Z-a46682a3/formal-control-failed2-recheck/result.json"
+      },
+      {
+        "round": "recovery-deployment-first",
+        "check": "lint-new-recovery",
+        "command": [
+          "uv",
+          "run",
+          "--frozen",
+          "ruff",
+          "check",
+          "src/mgar_v3/super_agent/source_operations_backup.py",
+          "src/mgar_v3/super_agent/source_operations_gateway.py",
+          "src/mgar_v3/super_agent/source_operations_relay.py",
+          "tests/sa20_process_support.py",
+          "tests/test_source_operations_backup.py",
+          "tests/test_source_operations_deployment.py"
+        ],
+        "exit_code": 1,
+        "source_commit": "7b703452340f8523daaf4d88e79929864441a7ea",
+        "source_sha256": "f4234c96834e1c2ad737ebfda7f1eda0044aa2bca8cb60e165c3312759ac7d5e",
+        "raw_result": "evidence/super-agent-v1/SAV1-20/start-20261115T110801Z-a46682a3/recovery-deployment-first/result.json",
+        "resolved_by": "evidence/super-agent-v1/SAV1-20/start-20261115T110801Z-a46682a3/native-process-runtime-first/result.json#lint-new-recovery"
+      },
+      {
+        "round": "recovery-deployment-first",
+        "check": "type-new-recovery",
+        "command": [
+          "uv",
+          "run",
+          "--frozen",
+          "mypy",
+          "--follow-imports=silent",
+          "src/mgar_v3/super_agent/source_operations_backup.py",
+          "src/mgar_v3/super_agent/source_operations_gateway.py",
+          "src/mgar_v3/super_agent/source_operations_relay.py"
+        ],
+        "exit_code": 1,
+        "source_commit": "7b703452340f8523daaf4d88e79929864441a7ea",
+        "source_sha256": "f4234c96834e1c2ad737ebfda7f1eda0044aa2bca8cb60e165c3312759ac7d5e",
+        "raw_result": "evidence/super-agent-v1/SAV1-20/start-20261115T110801Z-a46682a3/recovery-deployment-first/result.json",
+        "resolved_by": "evidence/super-agent-v1/SAV1-20/start-20261115T110801Z-a46682a3/native-process-runtime-first/result.json#type-new-recovery"
+      },
+      {
+        "round": "native-process-runtime-first",
+        "check": "lint-new-recovery",
+        "command": [
+          "uv",
+          "run",
+          "--frozen",
+          "ruff",
+          "check",
+          "src/mgar_v3/super_agent/source_operations_backup.py",
+          "src/mgar_v3/super_agent/source_operations_gateway.py",
+          "src/mgar_v3/super_agent/source_operations_relay.py",
+          "tests/sa20_process_support.py",
+          "tests/test_source_operations_backup.py",
+          "tests/test_source_operations_deployment.py"
+        ],
+        "exit_code": 0,
+        "source_commit": "e2f0fe5faf0db5a3894d39aa285e39102e6c9258",
+        "source_sha256": "395490379589b04956f7378402208fbf501b3e29795a8ff796e21bce62be23e4",
+        "raw_result": "evidence/super-agent-v1/SAV1-20/start-20261115T110801Z-a46682a3/native-process-runtime-first/result.json"
+      },
+      {
+        "round": "native-process-runtime-first",
+        "check": "type-new-recovery",
+        "command": [
+          "uv",
+          "run",
+          "--frozen",
+          "mypy",
+          "--follow-imports=silent",
+          "src/mgar_v3/super_agent/source_operations_backup.py",
+          "src/mgar_v3/super_agent/source_operations_gateway.py",
+          "src/mgar_v3/super_agent/source_operations_relay.py"
+        ],
+        "exit_code": 0,
+        "source_commit": "e2f0fe5faf0db5a3894d39aa285e39102e6c9258",
+        "source_sha256": "395490379589b04956f7378402208fbf501b3e29795a8ff796e21bce62be23e4",
+        "raw_result": "evidence/super-agent-v1/SAV1-20/start-20261115T110801Z-a46682a3/native-process-runtime-first/result.json"
+      },
+      {
+        "round": "native-process-runtime-first",
+        "check": "lint-new-native",
+        "command": [
+          "uv",
+          "run",
+          "--frozen",
+          "ruff",
+          "check",
+          "src/mgar_v3/super_agent/source_operations.py",
+          "src/mgar_v3/super_agent/source_operations_api.py",
+          "src/mgar_v3/super_agent/source_operations_client.py",
+          "src/mgar_v3/super_agent/source_operations_domain.py",
+          "src/mgar_v3/super_agent/source_operations_projection.py",
+          "src/mgar_v3/super_agent/source_operations_runtime.py",
+          "tests/sa20_support.py",
+          "tests/sa20_kill_actor.py",
+          "tests/test_source_operations_processes.py",
+          "tests/test_source_operations_runtime.py"
+        ],
+        "exit_code": 1,
+        "source_commit": "e2f0fe5faf0db5a3894d39aa285e39102e6c9258",
+        "source_sha256": "395490379589b04956f7378402208fbf501b3e29795a8ff796e21bce62be23e4",
+        "raw_result": "evidence/super-agent-v1/SAV1-20/start-20261115T110801Z-a46682a3/native-process-runtime-first/result.json",
+        "resolved_by": "evidence/super-agent-v1/SAV1-20/start-20261115T110801Z-a46682a3/boundaries-and-native-static/result.json#lint-new-native"
+      },
+      {
+        "round": "native-process-runtime-first",
+        "check": "type-new-native",
+        "command": [
+          "uv",
+          "run",
+          "--frozen",
+          "mypy",
+          "--follow-imports=silent",
+          "src/mgar_v3/super_agent/source_operations.py",
+          "src/mgar_v3/super_agent/source_operations_api.py",
+          "src/mgar_v3/super_agent/source_operations_client.py",
+          "src/mgar_v3/super_agent/source_operations_domain.py",
+          "src/mgar_v3/super_agent/source_operations_projection.py",
+          "src/mgar_v3/super_agent/source_operations_runtime.py"
+        ],
+        "exit_code": 1,
+        "source_commit": "e2f0fe5faf0db5a3894d39aa285e39102e6c9258",
+        "source_sha256": "395490379589b04956f7378402208fbf501b3e29795a8ff796e21bce62be23e4",
+        "raw_result": "evidence/super-agent-v1/SAV1-20/start-20261115T110801Z-a46682a3/native-process-runtime-first/result.json",
+        "resolved_by": "evidence/super-agent-v1/SAV1-20/start-20261115T110801Z-a46682a3/boundaries-and-native-static/result.json#type-new-native"
+      },
+      {
+        "round": "boundaries-and-native-static",
+        "check": "lint-new-native",
+        "command": [
+          "uv",
+          "run",
+          "--frozen",
+          "ruff",
+          "check",
+          "src/mgar_v3/super_agent/source_operations.py",
+          "src/mgar_v3/super_agent/source_operations_api.py",
+          "src/mgar_v3/super_agent/source_operations_client.py",
+          "src/mgar_v3/super_agent/source_operations_domain.py",
+          "src/mgar_v3/super_agent/source_operations_projection.py",
+          "src/mgar_v3/super_agent/source_operations_runtime.py",
+          "tests/sa20_support.py",
+          "tests/sa20_kill_actor.py",
+          "tests/test_source_operations_processes.py",
+          "tests/test_source_operations_runtime.py",
+          "tests/test_source_operations_boundaries.py"
+        ],
+        "exit_code": 0,
+        "source_commit": "72f4e666ebe8fe8dd4ced6c9eb3592cd67146709",
+        "source_sha256": "c6d4f8d210e5d1c450f5b238799b95dddc84515fde481f41c1df543fcbb883a4",
+        "raw_result": "evidence/super-agent-v1/SAV1-20/start-20261115T110801Z-a46682a3/boundaries-and-native-static/result.json"
+      },
+      {
+        "round": "boundaries-and-native-static",
+        "check": "type-new-native",
+        "command": [
+          "uv",
+          "run",
+          "--frozen",
+          "mypy",
+          "--follow-imports=silent",
+          "src/mgar_v3/super_agent/source_operations.py",
+          "src/mgar_v3/super_agent/source_operations_api.py",
+          "src/mgar_v3/super_agent/source_operations_client.py",
+          "src/mgar_v3/super_agent/source_operations_domain.py",
+          "src/mgar_v3/super_agent/source_operations_projection.py",
+          "src/mgar_v3/super_agent/source_operations_runtime.py"
+        ],
+        "exit_code": 0,
+        "source_commit": "72f4e666ebe8fe8dd4ced6c9eb3592cd67146709",
+        "source_sha256": "c6d4f8d210e5d1c450f5b238799b95dddc84515fde481f41c1df543fcbb883a4",
+        "raw_result": "evidence/super-agent-v1/SAV1-20/start-20261115T110801Z-a46682a3/boundaries-and-native-static/result.json"
+      },
+      {
+        "round": "boundaries-and-native-static",
+        "check": "lint-shared-first",
+        "command": [
+          "uv",
+          "run",
+          "--frozen",
+          "ruff",
+          "check",
+          "src/mgar_v3/coordination/engine.py",
+          "src/mgar_v3/settings.py",
+          "src/mgar_v3/api.py"
+        ],
+        "exit_code": 1,
+        "source_commit": "72f4e666ebe8fe8dd4ced6c9eb3592cd67146709",
+        "source_sha256": "c6d4f8d210e5d1c450f5b238799b95dddc84515fde481f41c1df543fcbb883a4",
+        "raw_result": "evidence/super-agent-v1/SAV1-20/start-20261115T110801Z-a46682a3/boundaries-and-native-static/result.json",
+        "resolved_by": "evidence/super-agent-v1/SAV1-20/start-20261115T110801Z-a46682a3/restore-layout-and-style/result.json#lint-shared-recheck"
+      },
+      {
+        "round": "boundaries-and-native-static",
+        "check": "type-shared-first",
+        "command": [
+          "uv",
+          "run",
+          "--frozen",
+          "mypy",
+          "--follow-imports=silent",
+          "src/mgar_v3/coordination/engine.py",
+          "src/mgar_v3/settings.py",
+          "src/mgar_v3/api.py"
+        ],
+        "exit_code": 0,
+        "source_commit": "72f4e666ebe8fe8dd4ced6c9eb3592cd67146709",
+        "source_sha256": "c6d4f8d210e5d1c450f5b238799b95dddc84515fde481f41c1df543fcbb883a4",
+        "raw_result": "evidence/super-agent-v1/SAV1-20/start-20261115T110801Z-a46682a3/boundaries-and-native-static/result.json"
+      },
+      {
+        "round": "restore-layout-and-style",
+        "check": "lint-shared-recheck",
+        "command": [
+          "uv",
+          "run",
+          "--frozen",
+          "ruff",
+          "check",
+          "src/mgar_v3/coordination/engine.py",
+          "src/mgar_v3/settings.py",
+          "src/mgar_v3/api.py"
+        ],
+        "exit_code": 0,
+        "source_commit": "d69dfb26baed518e36f870a18c3a1dcf30ec6648",
+        "source_sha256": "f6c9f0615f3f5b31aafd146b04fc4c55875f368d89b296b6cb49f187b972f0d5",
+        "raw_result": "evidence/super-agent-v1/SAV1-20/start-20261115T110801Z-a46682a3/restore-layout-and-style/result.json"
+      },
+      {
+        "round": "restore-layout-and-style",
+        "check": "lint-layout",
+        "command": [
+          "uv",
+          "run",
+          "--frozen",
+          "ruff",
+          "check",
+          "src/mgar_v3/super_agent/source_operations_backup.py",
+          "tests/test_source_operations_restore_layout.py"
+        ],
+        "exit_code": 1,
+        "source_commit": "d69dfb26baed518e36f870a18c3a1dcf30ec6648",
+        "source_sha256": "f6c9f0615f3f5b31aafd146b04fc4c55875f368d89b296b6cb49f187b972f0d5",
+        "raw_result": "evidence/super-agent-v1/SAV1-20/start-20261115T110801Z-a46682a3/restore-layout-and-style/result.json",
+        "resolved_by": "evidence/super-agent-v1/SAV1-20/start-20261115T110801Z-a46682a3/final-inventory-and-static/result.json#lint-layout-recheck"
+      },
+      {
+        "round": "restore-layout-and-style",
+        "check": "type-layout",
+        "command": [
+          "uv",
+          "run",
+          "--frozen",
+          "mypy",
+          "--follow-imports=silent",
+          "src/mgar_v3/super_agent/source_operations_backup.py"
+        ],
+        "exit_code": 0,
+        "source_commit": "d69dfb26baed518e36f870a18c3a1dcf30ec6648",
+        "source_sha256": "f6c9f0615f3f5b31aafd146b04fc4c55875f368d89b296b6cb49f187b972f0d5",
+        "raw_result": "evidence/super-agent-v1/SAV1-20/start-20261115T110801Z-a46682a3/restore-layout-and-style/result.json"
+      },
+      {
+        "round": "final-inventory-and-static",
+        "check": "lint-layout-recheck",
+        "command": [
+          "uv",
+          "run",
+          "--frozen",
+          "ruff",
+          "check",
+          "src/mgar_v3/super_agent/source_operations_backup.py",
+          "tests/test_source_operations_restore_layout.py"
+        ],
+        "exit_code": 0,
+        "source_commit": "3fd5ac4cc19be30c11bf44c7e18eb06f1502cd45",
+        "source_sha256": "a5e8358a0a23bb896707ddede037870d8bebd5c28a72e182afa7710e39854327",
+        "raw_result": "evidence/super-agent-v1/SAV1-20/start-20261115T110801Z-a46682a3/final-inventory-and-static/result.json"
+      },
+      {
+        "round": "final-inventory-and-static",
+        "check": "lint-new-audit",
+        "command": [
+          "uv",
+          "run",
+          "--frozen",
+          "ruff",
+          "check",
+          "src/mgar_v3/super_agent/source_operations_audit.py"
+        ],
+        "exit_code": 0,
+        "source_commit": "3fd5ac4cc19be30c11bf44c7e18eb06f1502cd45",
+        "source_sha256": "a5e8358a0a23bb896707ddede037870d8bebd5c28a72e182afa7710e39854327",
+        "raw_result": "evidence/super-agent-v1/SAV1-20/start-20261115T110801Z-a46682a3/final-inventory-and-static/result.json"
+      },
+      {
+        "round": "final-inventory-and-static",
+        "check": "type-new-audit",
+        "command": [
+          "uv",
+          "run",
+          "--frozen",
+          "mypy",
+          "--follow-imports=silent",
+          "src/mgar_v3/super_agent/source_operations_audit.py"
+        ],
+        "exit_code": 1,
+        "source_commit": "3fd5ac4cc19be30c11bf44c7e18eb06f1502cd45",
+        "source_sha256": "a5e8358a0a23bb896707ddede037870d8bebd5c28a72e182afa7710e39854327",
+        "raw_result": "evidence/super-agent-v1/SAV1-20/start-20261115T110801Z-a46682a3/final-inventory-and-static/result.json",
+        "resolved_by": "evidence/super-agent-v1/SAV1-20/start-20261115T110801Z-a46682a3/final-audit-type-failed-only/result.json#type-new-audit"
+      },
+      {
+        "round": "final-audit-type-failed-only",
+        "check": "type-new-audit",
+        "command": [
+          "uv",
+          "run",
+          "--frozen",
+          "mypy",
+          "--follow-imports=silent",
+          "src/mgar_v3/super_agent/source_operations_audit.py"
+        ],
+        "exit_code": 0,
+        "source_commit": "79188c23a9e035a27871dfe32842f1c55f85e430",
+        "source_sha256": "de08985496c78ae84a06913c3354f6685b35aece9690fcbc9b981e7d6d1a6510",
+        "raw_result": "evidence/super-agent-v1/SAV1-20/start-20261115T110801Z-a46682a3/final-audit-type-failed-only/result.json"
+      }
+    ],
+    "all_failed_static_scopes_resolved": true,
+    "protected": [
+      {
+        "path": "/home/imini/magr-super-agent/v3/.env",
+        "unchanged": true,
+        "sha256": "59bbc2b5c0f88095e670311fc6b1e3c925248250f96543dff84b1c21ae80293b"
+      },
+      {
+        "path": "/home/imini/magr-super-agent/v3/docs/super-agent-v1/accept/SAV1-06/cli-takeover-20261111.json",
+        "unchanged": true,
+        "sha256": "f4adf9605c87d6256bd2ec17b8436da8a7bced763a8e03b185a8cfe19d34a29f"
+      },
+      {
+        "path": "/home/imini/magr-super-agent/v3/evidence/super-agent-v1/SAV1-19/independent-I01-recheck-20261115T105610Z-a8c51c74/candidate-archive-audit.json",
+        "unchanged": true,
+        "sha256": "44842a8335358637ba0c4a5d779b0868d6ab35af20e37024bc012818ffa456a6"
+      },
+      {
+        "path": "/home/imini/magr-super-agent/v3/evidence/super-agent-v1/SAV1-19/independent-I01-recheck-20261115T105610Z-a8c51c74/locked-route-path-helper.txt",
+        "unchanged": true,
+        "sha256": "243011d2a68ca7fec43c3f1d4cecedfa2f8997d87ce97dbe1ac8c27013910889"
+      },
+      {
+        "path": "/home/imini/magr-super-agent/v3/evidence/super-agent-v1/SAV1-19/independent-I01-recheck-20261115T105610Z-a8c51c74/review-result.json",
+        "unchanged": true,
+        "sha256": "f792c5146836f9969c9376a96265d153c50619e348a615c9c430c58d40f5dda1"
+      },
+      {
+        "path": "/home/imini/magr-super-agent/v3/evidence/super-agent-v1/SAV1-19/independent-I01-recheck-20261115T105610Z-a8c51c74/evidence-path",
+        "unchanged": true,
+        "sha256": "07deade7faba8f3911b919c2eab967c475c8f5fa1ee9d591d86b90431cf94d81"
+      },
+      {
+        "path": "/home/imini/magr-super-agent/v3/evidence/super-agent-v1/SAV1-19/independent-I01-recheck-20261115T105610Z-a8c51c74/original3-command.json",
+        "unchanged": true,
+        "sha256": "48ea51178dafa7bae8aa78866973e98cfacc378b824b0fefdb74bea419d44d37"
+      },
+      {
+        "path": "/home/imini/magr-super-agent/v3/evidence/super-agent-v1/SAV1-19/independent-I01-recheck-20261115T105610Z-a8c51c74/integrity-audit.json",
+        "unchanged": true,
+        "sha256": "9fb3822c32fc2cf60b93c21533cfea8b052a246099c7fbcd6f1a9f791e5bcd27"
+      },
+      {
+        "path": "/home/imini/magr-super-agent/v3/evidence/super-agent-v1/SAV1-19/independent-I01-recheck-20261115T105610Z-a8c51c74/original3-junit.xml",
+        "unchanged": true,
+        "sha256": "863c1dc1f3fb90924dba3e12130c996727f942c68d46f5e0b6c69a9eb8afe4df"
+      },
+      {
+        "path": "/home/imini/magr-super-agent/v3/evidence/super-agent-v1/SAV1-19/independent-I01-recheck-20261115T105610Z-a8c51c74/independent-observations.jsonl",
+        "unchanged": true,
+        "sha256": "d370ba10fe8f385a928bb1fa4e0efa008850d448d5102350228d3bff12356600"
+      },
+      {
+        "path": "/home/imini/magr-super-agent/v3/evidence/super-agent-v1/SAV1-19/independent-I01-recheck-20261115T105610Z-a8c51c74/original3.log",
+        "unchanged": true,
+        "sha256": "25fab77380f78282cb9637912dfb232fe97512c0392198f24fcdc352354bbfd1"
+      },
+      {
+        "path": "/home/imini/magr-super-agent/v3/evidence/super-agent-v1/SAV1-19/independent-I01-recheck-20261115T105610Z-a8c51c74/cleanup-final.json",
+        "unchanged": true,
+        "sha256": "806bbec14ebcbe5fbfaba05e9b6343458721ff6b48df02e181998a3d644e9a4e"
+      },
+      {
+        "path": "/home/imini/magr-super-agent/v3/evidence/super-agent-v1/SAV1-19/independent-I01-recheck-20261115T105610Z-a8c51c74/original3-pytest-exit-code.txt",
+        "unchanged": true,
+        "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+      },
+      {
+        "path": "/home/imini/magr-super-agent/v3/evidence/super-agent-v1/SAV1-19/independent-I01-recheck-20261115T105610Z-a8c51c74/run.py",
+        "unchanged": true,
+        "sha256": "124cb5b01e35e8bd9dae28b66f58c0ca4589b31b3cf30d7c55594db3e10aea57"
+      },
+      {
+        "path": "/home/imini/magr-super-agent/v3/evidence/super-agent-v1/SAV1-19/independent-I01-recheck-20261115T105610Z-a8c51c74/test_independent_sa19.py",
+        "unchanged": true,
+        "sha256": "5c43f888333ecbdab4e83438d9b38495fb796fc8a0c74eb4690ddae044960dc4"
+      },
+      {
+        "path": "/home/imini/magr-super-agent/v3/evidence/super-agent-v1/SAV1-19/independent-I01-recheck-20261115T105610Z-a8c51c74/baseline.json",
+        "unchanged": true,
+        "sha256": "edbc98746b4feb88186c41928383d2d15371af04a1924b2999261a93bd0530af"
+      },
+      {
+        "path": "/home/imini/magr-super-agent/v3/evidence/super-agent-v1/SAV1-19/independent-I01-recheck-20261115T105610Z-a8c51c74/REPORT.md",
+        "unchanged": true,
+        "sha256": "dd3a2891599020c3bc05a231dc6f794dd521e9d4a4e577cae0ec9b1fbf145a2c"
+      },
+      {
+        "path": "/home/imini/magr-super-agent/v3/evidence/super-agent-v1/SAV1-19/independent-I01-recheck-20261115T105610Z-a8c51c74/evidence-manifest.json",
+        "unchanged": true,
+        "sha256": "76d1f49d781b87cbd366d05b2591420a9c8e2ca2c79f09c7dc6a98ac40b0bace"
+      }
+    ],
+    "owned_container_cleanup": [
+      {
+        "round": "restore-layout-and-style",
+        "container": "sa20-restore-layout-and-pg-8224ca06",
+        "gone": true,
+        "remaining_databases": []
+      },
+      {
+        "round": "recovery-deployment-first",
+        "container": "sa20-recovery-deploymen-pg-f2db86be",
+        "gone": true,
+        "remaining_databases": []
+      },
+      {
+        "round": "native-process-runtime-first",
+        "container": "sa20-native-process-run-pg-23dde1ee",
+        "gone": true,
+        "remaining_databases": []
+      },
+      {
+        "round": "boundaries-and-native-static",
+        "container": "sa20-boundaries-and-nat-pg-6deb8bae",
+        "gone": true,
+        "remaining_databases": []
+      },
+      {
+        "round": "prepare-01",
+        "container": "sa20-prepare-01-pg-7ab2e5b1",
+        "gone": true,
+        "remaining_databases": []
+      },
+      {
+        "round": "formal-control-first",
+        "container": "sa20-formal-control-fir-pg-a1e45e21",
+        "gone": true,
+        "remaining_databases": []
+      },
+      {
+        "round": "formal-control-failed2-recheck",
+        "container": "sa20-formal-control-fai-pg-01914d02",
+        "gone": true,
+        "remaining_databases": []
+      },
+      {
+        "round": "formal-control-failed13-recheck",
+        "container": "sa20-formal-control-fai-pg-e84e770c",
+        "gone": true,
+        "remaining_databases": []
+      },
+      {
+        "round": "prepare-failed3-recheck",
+        "container": "sa20-prepare-failed3-re-pg-056ca588",
+        "gone": true,
+        "remaining_databases": []
+      }
+    ],
+    "owned_containers_remaining": [],
+    "owned_role_processes_remaining": [],
+    "legacy_H06_preserved": {
+      "name": "mgar-h06-d90f522e28f74d94-offline",
+      "id": "d7a4ba2c20a5a6989228de3b7e1682f29241f3b4e5b82e786961e099c16eb5b3"
+    },
+    "main_database_migrated": false,
+    "other_CLI_resources_modified": false,
+    "host_systemd_services_installed": false,
+    "assembler_failure_preserved": "evidence/super-agent-v1/SAV1-20/start-20261115T110801Z-a46682a3/closeout-assembly-first-failure.json",
+    "real_gates": "NOT_RUN",
+    "SA21": "NOT_STARTED"
+  }
 }
