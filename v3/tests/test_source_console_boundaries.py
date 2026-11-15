@@ -77,3 +77,37 @@ def test_source_revoke_over_authenticated_http_invalidates_cipher_and_current_se
         value = c.get(f"{PREFIX}/sources/{source.source_id}").json()
         assert not value["credential"]["configured"] and value["credential"]["revoked"]
         assert not value["settings"]["enabled"]
+
+
+@pytest.mark.parametrize(
+    "path",
+    [
+        "/static/%2e/source-console.html",
+        "/static/nested/%2e%2e/source-console.js",
+        "/static//source-console.css",
+        "/static/source-console.js%2f..%2fsource-console.css",
+    ],
+)
+def test_static_normalized_aliases_cannot_fall_through_to_public_mount(engine, path):
+    from fastapi.testclient import TestClient
+    from mgar_v3.api import create_app
+
+    with TestClient(
+        create_app(engine.settings, engine, run_background=False), base_url="http://127.0.0.1:18081"
+    ) as c:
+        response = c.get(path)
+        assert response.status_code == 404
+        assert "function" not in response.text and "<!doctype" not in response.text
+        assert response.headers["cache-control"] == "no-store"
+
+
+def test_static_head_does_not_fall_through_owner_get_route_to_public_mount(engine):
+    from fastapi.testclient import TestClient
+    from mgar_v3.api import create_app
+
+    with TestClient(
+        create_app(engine.settings, engine, run_background=False), base_url="http://127.0.0.1:18081"
+    ) as c:
+        response = c.head("/static/source-console.js")
+        assert response.status_code == 405 and not response.content
+        assert response.headers["cache-control"] == "no-store"

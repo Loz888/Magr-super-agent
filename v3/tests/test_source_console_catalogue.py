@@ -63,7 +63,8 @@ def test_all_eighteen_source_catalogues_current_references_and_seventeen_history
     )
 
 
-def test_completed_registry_covers_backend_http_browser_boundaries_and_delivery_without_preparation():
+def test_completed_registry_covers_backend_http_browser_boundaries_and_delivery_without_preparation(
+):
     registry = load("config/verification.json")
     assert set(registry["SAV1-19"]["tests"]) == {
         "tests/test_source_console_backend.py",

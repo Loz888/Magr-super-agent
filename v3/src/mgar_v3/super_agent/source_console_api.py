@@ -1,6 +1,7 @@
 """Same-session console routes; new settings never activate a platform runtime."""
 
 import json
+import posixpath
 from collections.abc import Callable
 from pathlib import Path
 from typing import Annotated, Any
@@ -269,6 +270,13 @@ def register(
 
     @app.middleware("http")
     async def no_page_static_alias(request: Request, call_next: Callable[..., Any]) -> Any:
-        if request.url.path == "/static/source-console.html":
+        path = request.url.path
+        normalized = posixpath.normpath(path)
+        owned = {"/static/source-console.js", "/static/source-console.css"}
+        if normalized == "/static/source-console.html" or (
+            normalized in owned and path != normalized
+        ):
             return JSONResponse({"code": "NOT_FOUND"}, status_code=404, headers=HEADERS)
+        if normalized in owned and request.method != "GET":
+            return JSONResponse({"code": "METHOD_NOT_ALLOWED"}, status_code=405, headers=HEADERS)
         return await call_next(request)

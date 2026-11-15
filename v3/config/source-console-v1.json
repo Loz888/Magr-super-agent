@@ -95,7 +95,7 @@
     },
     {
       "path": "src/mgar_v3/super_agent/source_console_api.py",
-      "sha256": "a62861888adef05ab553403f207e107ac3684942c1f7bfae2ec26d443ac7e47b"
+      "sha256": "ac98a1a9484127b723123e1a7c0f7b0b0e824659ac4901f2c8d1471822528150"
     },
     {
       "path": "src/mgar_v3/super_agent/source_console_credentials.py",
@@ -127,7 +127,7 @@
     },
     {
       "path": "tests/test_source_console_boundaries.py",
-      "sha256": "83af805deea5b1c5e7d23326ab228eca4797089cd29989057af915ec8c94d598"
+      "sha256": "d34f2dd65263cbc5cea4c15f30185cba1b634920a3fbe6923e7c95a20972ed4c"
     },
     {
       "path": "tests/test_source_console_browser.py",
@@ -135,7 +135,7 @@
     },
     {
       "path": "tests/test_source_console_catalogue.py",
-      "sha256": "fe73cc46373ec5949473ed7fc05430f9d8a9ff92d370285df5e9bd974b7458fc"
+      "sha256": "2306d2b30794572a6687bc4d0cfc3df07bb880c3b192c150649cf174d8c1779a"
     },
     {
       "path": "tests/test_source_console_http.py",
