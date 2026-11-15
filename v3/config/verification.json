@@ -2159,5 +2159,23 @@
       "real_gates": "NOT_RUN",
       "SA21": "NOT_STARTED"
     }
+  },
+  "SAV1-21": {
+    "tests": [
+      "tests/test_source_security_lifecycle.py",
+      "tests/test_source_security_model.py",
+      "tests/test_source_security_ownership.py",
+      "tests/test_source_security_pg_restart.py",
+      "tests/test_source_security_restore.py"
+    ],
+    "timeout_seconds": 600,
+    "components": {
+      "scope": "First25 new controlled cross-component privacy/retention/model-audit/Outbox/writer/scheduler/project/actual isolated PG crash and held DB-CAS-key restoration checks. Old passing targets excluded.",
+      "functional_unique": 25,
+      "platform_and_model": "controlled_fixture_only",
+      "main_PG_migrated_or_restarted": false,
+      "real_gates": "NOT_RUN",
+      "SA22": "NOT_STARTED"
+    }
   }
 }

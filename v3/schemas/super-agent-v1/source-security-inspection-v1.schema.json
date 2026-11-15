@@ -1,0 +1,91 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "SourceSecurityInspection",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "schema_version": {
+      "const": "source-security-inspection-v1"
+    },
+    "project_id": {
+      "type": "string",
+      "minLength": 1
+    },
+    "sources": {
+      "type": "array",
+      "maxItems": 32,
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "input_facts": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "tombstones": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "retained_ciphertexts": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "ciphertexts_due_for_purge": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "unavailable_ciphertexts": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "metadata_due_for_purge": {
+            "type": "integer",
+            "minimum": 0
+          },
+          "source_id": {
+            "type": "string",
+            "format": "uuid"
+          }
+        },
+        "required": [
+          "input_facts",
+          "tombstones",
+          "retained_ciphertexts",
+          "ciphertexts_due_for_purge",
+          "unavailable_ciphertexts",
+          "metadata_due_for_purge",
+          "source_id"
+        ]
+      }
+    },
+    "partial": {
+      "type": "boolean"
+    },
+    "read_only": {
+      "const": true
+    },
+    "contains_body": {
+      "const": false
+    },
+    "security_gate": {
+      "const": "NOT_ESTABLISHED_BY_INSPECTION"
+    },
+    "cleanup": {
+      "const": "existing_owner_source_ingress_purge"
+    },
+    "restore": {
+      "const": "keep_hold_until_fresh_deletions_and_revocations_reconciled"
+    }
+  },
+  "required": [
+    "schema_version",
+    "project_id",
+    "sources",
+    "partial",
+    "read_only",
+    "contains_body",
+    "security_gate",
+    "cleanup",
+    "restore"
+  ]
+}

@@ -1,0 +1,69 @@
+{
+  "version": "super-agent-security-v1",
+  "status": "IN_PROGRESS_FIRST_CHECKS_NOT_RUN",
+  "business_writer": "original Engine held connection and transaction",
+  "DB_migrations": 0,
+  "shared_Engine_API_changed": false,
+  "new_API_routes": 0,
+  "registration": "make verify TASK=SAV1-21",
+  "new_cases": 25,
+  "security_verdict_from_inspection": false,
+  "independent_review": "NOT_RUN",
+  "real_gates": "NOT_RUN",
+  "H12_fixed_live_agent_mvp": "FAIL_RETAINED_OTHER_CLI",
+  "SA22": "NOT_STARTED",
+  "artifacts": [
+    {
+      "path": "config/verification.json",
+      "sha256": "f82501f4ad730a10ae4081e5589df0aa6a8fcf60e8533ea1640a858ed36ad167"
+    },
+    {
+      "path": "docs/super-agent-v1/SA21_SECURITY.md",
+      "sha256": "dedc639be5d2f7dfb544dca25dcbb37b2231fcff127e302794ffb94fc41b2cc7"
+    },
+    {
+      "path": "schemas/super-agent-v1/source-security-inspection-v1.schema.json",
+      "sha256": "e7679ee5daf7473ba695d7c9fe519f952c5c84cb95ab372c7119371ef1775fda"
+    },
+    {
+      "path": "fixtures/super-agent-v1/sa21/threat-fault-matrix.json",
+      "sha256": "c4ebf1f2bc09f0b7d72f84df5d09eb8d3f276fe92640af2c1afb801ebf5df335"
+    },
+    {
+      "path": "src/mgar_v3/super_agent/source_security.py",
+      "sha256": "5fa9a8eba6ba4e8e2ac81225f482477cd1fcba05a4d034381ba57c2253e7346d"
+    },
+    {
+      "path": "tests/sa21_support.py",
+      "sha256": "e90433f8eff7aac0d4837f882190e37b5d5aa706b2feeafd79c7f461c7a6188d"
+    },
+    {
+      "path": "tests/sa21_recovery_support.py",
+      "sha256": "d3865f88d902263a8e3fcc4622188cdbfe14b0938874f3de6efe16a044e87292"
+    },
+    {
+      "path": "tests/sa21_restore_actor.py",
+      "sha256": "6a6ba86ffd888913746a16da1adcc97630975dcd604b51efc8cf52e4bb8e3ea3"
+    },
+    {
+      "path": "tests/test_source_security_lifecycle.py",
+      "sha256": "579b2c2f4975ce4bd8c0cac743476395040653b4e2c63ba76db882e4139db754"
+    },
+    {
+      "path": "tests/test_source_security_model.py",
+      "sha256": "8bf0f4e275a69f1568026f0b5351e068b87c65176d68751d715cb70444ef2729"
+    },
+    {
+      "path": "tests/test_source_security_ownership.py",
+      "sha256": "0a79dc259e6d3c07b4ab14c049b35179742735afffea235fb9402bb6d9db9880"
+    },
+    {
+      "path": "tests/test_source_security_pg_restart.py",
+      "sha256": "1086cb378e432c50c78ce4dfb13901346c2a529b06142bb3258a1391e473fe9a"
+    },
+    {
+      "path": "tests/test_source_security_restore.py",
+      "sha256": "93ed3dd4a4cf35e6613a7ae4549ea6254d35f7062de88be038fa1bea6fa813b2"
+    }
+  ]
+}
