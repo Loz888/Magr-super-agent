@@ -1,3 +1,7 @@
+当前更新：SA20-I01独立P2已确认：实际Coding完成事实未计入Watchdog进展。私有修复候选7b4566d仅原失败项1PASS/exit0；九次实际完成均更新时间和游标，原探针字节/断言未改。原13独立、55正式/88准备和静态通过未重跑，原失败保留；见[修复报告](SA20_I01_REPAIR_20261115.md)及[机器记录](accept/SAV1-20/i01-repair.json)。SA20未放行，等待独立复验；主库仍44，SA21未启动，全部真实门NOT_RUN，固定H12 FAIL保留。
+
+以下为历史阶段记录：
+
 当前更新：SA20当前：第46节1c4f494已核对，正式0053四表、原Engine/API/Settings接线与11接口及独立常驻控制进程、HTTPS、加密备份恢复已交付。55个正式独特用例与原88准备项有分版本PASS，修复仅复验失败项/目标；见[工程交付](SA20_ACCEPTANCE_20261115.md)、[运维手册](../../deploy/super-agent-v1/README.md)及[逐例证据](accept/SAV1-20/accept.json)。整卡IN_PROGRESS等待独立验收，SA21未启动；主库仍44，真实门NOT_RUN，固定H12 FAIL保留。
 
 以下为历史阶段记录：

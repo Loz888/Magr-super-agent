@@ -1,0 +1,246 @@
+{
+  "card": "SAV1-20",
+  "finding": "SA20-I01",
+  "severity": "P2",
+  "status": "LOCAL_FAILED_TARGET_REPAIRED_PENDING_INDEPENDENT_RECHECK",
+  "source_commit": "7b4566de43cbc7a6359029d6e86e8f93e47044ee",
+  "source_sha256": "66b5a1651367454efbbb0eadf91de202219a61b24e056fccb58f971fd9b55f5e",
+  "original_independent_result": "NOT_PASSED_SA20_I01_RETAINED",
+  "original_independent_report": "evidence/super-agent-v1/SAV1-20/independent-review-20261115T131036Z-568098e4/REPORT.md",
+  "cause": "Coding lateral projection was joined but SELECT consumed only original run_events timestamps and IDs.",
+  "repair": {
+    "paths": [
+      "src/mgar_v3/super_agent/source_operations_projection.py",
+      "config/source-operations-v1.json"
+    ],
+    "progress_at": "greatest(original Run creation, non-heartbeat run_event creation, eligible Coding completion creation)",
+    "progress_cursor": "Count of non-heartbeat run_events plus count of eligible immutable Coding completions; independent sequence IDs are never compared.",
+    "Coding_scope": "Same project/run; attempt execution_epoch matches Run; admitted current binding revision equals event and mandate revision; current nonrevoked policy revision/hash; attempt running or result_recorded, unfenced.",
+    "Coding_events": [
+      "OPERATION_KNOWN",
+      "VERIFICATION_RECORDED",
+      "ATTEMPT_RESULT_RECORDED"
+    ],
+    "sole_writer": "Original Engine held connection and transaction; projection remains read-only.",
+    "shared_Engine_API_schema_migrations_changed": false,
+    "0054_reserved": false,
+    "Harness_active_tree_touched": false
+  },
+  "repair_test": {
+    "target": "test_watchdog_progress_consumes_actual_known_coding_operations",
+    "counts": {
+      "tests": 1,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "exit_code": 0,
+    "seconds": 46.0,
+    "command": [
+      "/home/imini/magr-super-agent/v3/.venv/bin/python",
+      "-m",
+      "pytest",
+      "-q",
+      "-s",
+      "--tb=short",
+      "/home/imini/magr-super-agent/v3/evidence/super-agent-v1/SAV1-20/i01-repair-20261115T133235Z-594477aa/test_independent_sa20.py::test_watchdog_progress_consumes_actual_known_coding_operations",
+      "--basetemp=/home/imini/magr-super-agent/v3/evidence/super-agent-v1/SAV1-20/i01-repair-20261115T133235Z-594477aa/pytest-temp",
+      "--junitxml=/home/imini/magr-super-agent/v3/evidence/super-agent-v1/SAV1-20/i01-repair-20261115T133235Z-594477aa/junit.xml"
+    ],
+    "command_record": "evidence/super-agent-v1/SAV1-20/i01-repair-20261115T133235Z-594477aa/command.json",
+    "log": "evidence/super-agent-v1/SAV1-20/i01-repair-20261115T133235Z-594477aa/pytest.log",
+    "junit": "evidence/super-agent-v1/SAV1-20/i01-repair-20261115T133235Z-594477aa/junit.xml",
+    "observations": "evidence/super-agent-v1/SAV1-20/i01-repair-20261115T133235Z-594477aa/independent-observations.jsonl",
+    "actual_known_operations": 9,
+    "all_known_events_reflected": true,
+    "each_sample_cursor_delta": 1,
+    "all_sample_timestamps_equal_completed_event": true,
+    "evidence_basis": "Existing unchanged probe ran original SA14 Runtime against actual local Git/Docker/PG, verified GOOD worktree and unchanged BAD source. Cursor values summarized read-only from its original observations.",
+    "samples": [
+      {
+        "coding_event_at": "2026-11-15T13:38:07.953628+00:00",
+        "coding_event_id": 6,
+        "kind": "actual_known_operation",
+        "known_event_reflected": true,
+        "operation_id": "ccae0892-5080-54ac-bf20-978a90e227c2",
+        "progress_after": 2,
+        "progress_at_after": "2026-11-15T13:38:07.953628+00:00",
+        "progress_at_before": "2026-11-15T13:38:02.061098+00:00",
+        "progress_before": 1
+      },
+      {
+        "coding_event_at": "2026-11-15T13:38:11.985927+00:00",
+        "coding_event_id": 9,
+        "kind": "actual_known_operation",
+        "known_event_reflected": true,
+        "operation_id": "9ff10867-45bb-5ee1-9019-caaa866c0985",
+        "progress_after": 3,
+        "progress_at_after": "2026-11-15T13:38:11.985927+00:00",
+        "progress_at_before": "2026-11-15T13:38:07.953628+00:00",
+        "progress_before": 2
+      },
+      {
+        "coding_event_at": "2026-11-15T13:38:15.612179+00:00",
+        "coding_event_id": 13,
+        "kind": "actual_known_operation",
+        "known_event_reflected": true,
+        "operation_id": "3076972f-4c87-508b-a2ec-7cebe6c5b16c",
+        "progress_after": 4,
+        "progress_at_after": "2026-11-15T13:38:15.612179+00:00",
+        "progress_at_before": "2026-11-15T13:38:11.985927+00:00",
+        "progress_before": 3
+      },
+      {
+        "coding_event_at": "2026-11-15T13:38:17.302403+00:00",
+        "coding_event_id": 16,
+        "kind": "actual_known_operation",
+        "known_event_reflected": true,
+        "operation_id": "9c10f881-8a0e-5976-a242-4d6b00c91809",
+        "progress_after": 6,
+        "progress_at_after": "2026-11-15T13:38:17.302403+00:00",
+        "progress_at_before": "2026-11-15T13:38:17.278924+00:00",
+        "progress_before": 5
+      },
+      {
+        "coding_event_at": "2026-11-15T13:38:21.930693+00:00",
+        "coding_event_id": 21,
+        "kind": "actual_known_operation",
+        "known_event_reflected": true,
+        "operation_id": "5c1493f7-88fd-50d7-b0b4-7c670b210edc",
+        "progress_after": 7,
+        "progress_at_after": "2026-11-15T13:38:21.930693+00:00",
+        "progress_at_before": "2026-11-15T13:38:17.302403+00:00",
+        "progress_before": 6
+      },
+      {
+        "coding_event_at": "2026-11-15T13:38:27.618813+00:00",
+        "coding_event_id": 24,
+        "kind": "actual_known_operation",
+        "known_event_reflected": true,
+        "operation_id": "332f3acd-b212-574a-a862-c14dbf3a6fe9",
+        "progress_after": 8,
+        "progress_at_after": "2026-11-15T13:38:27.618813+00:00",
+        "progress_at_before": "2026-11-15T13:38:21.930693+00:00",
+        "progress_before": 7
+      },
+      {
+        "coding_event_at": "2026-11-15T13:38:31.265201+00:00",
+        "coding_event_id": 28,
+        "kind": "actual_known_operation",
+        "known_event_reflected": true,
+        "operation_id": "7d646f76-ca4b-57b4-8a1b-60fa51c794f7",
+        "progress_after": 9,
+        "progress_at_after": "2026-11-15T13:38:31.265201+00:00",
+        "progress_at_before": "2026-11-15T13:38:27.618813+00:00",
+        "progress_before": 8
+      },
+      {
+        "coding_event_at": "2026-11-15T13:38:33.027273+00:00",
+        "coding_event_id": 31,
+        "kind": "actual_known_operation",
+        "known_event_reflected": true,
+        "operation_id": "54629a77-0e1c-5262-9b49-888198b279ad",
+        "progress_after": 11,
+        "progress_at_after": "2026-11-15T13:38:33.027273+00:00",
+        "progress_at_before": "2026-11-15T13:38:33.005799+00:00",
+        "progress_before": 10
+      },
+      {
+        "coding_event_at": "2026-11-15T13:38:35.373783+00:00",
+        "coding_event_id": 34,
+        "kind": "actual_known_operation",
+        "known_event_reflected": true,
+        "operation_id": "ca62048e-dc2c-504b-9c73-f77753515eb0",
+        "progress_after": 12,
+        "progress_at_after": "2026-11-15T13:38:35.373783+00:00",
+        "progress_at_before": "2026-11-15T13:38:33.027273+00:00",
+        "progress_before": 11
+      }
+    ]
+  },
+  "probe": {
+    "source": "/home/imini/magr-super-agent/v3/.local/sa20-independent-20261115T131036Z-568098e4/test_independent_sa20.py",
+    "copy": "/home/imini/magr-super-agent/v3/evidence/super-agent-v1/SAV1-20/i01-repair-20261115T133235Z-594477aa/test_independent_sa20.py",
+    "sha256": "535046d75027a30034f51cb49f2aced784ae6833e80135d2e74ba516e164c9a7",
+    "copy_sha256": "535046d75027a30034f51cb49f2aced784ae6833e80135d2e74ba516e164c9a7",
+    "assertions_and_bytes_unchanged": true,
+    "reason": "Probe resolves evidence-path beside __file__ and appends observations there. Byte-identical copy plus a new output pointer preserves original failed observations and input pointer.",
+    "target": "test_watchdog_progress_consumes_actual_known_coding_operations",
+    "output_pointer_changed_only_in_new_copy_directory": true
+  },
+  "source_binding": {
+    "UTC": "2026-11-15T13:37:52.776378+00:00",
+    "source_commit": "7b4566de43cbc7a6359029d6e86e8f93e47044ee",
+    "source_sha256": "66b5a1651367454efbbb0eadf91de202219a61b24e056fccb58f971fd9b55f5e",
+    "archive": "evidence/super-agent-v1/SAV1-20/i01-repair-20261115T133235Z-594477aa/source-7b4566de43cb.tar.gz",
+    "archive_sha256": "9963552943999194edb92be731f139a680935451a38adbe938e8cd03ee76f04e",
+    "archive_source_sha256": "66b5a1651367454efbbb0eadf91de202219a61b24e056fccb58f971fd9b55f5e",
+    "inputs": {
+      "/home/imini/magr-super-agent/v3/.local/sa20-independent-20261115T131036Z-568098e4/test_independent_sa20.py": "535046d75027a30034f51cb49f2aced784ae6833e80135d2e74ba516e164c9a7",
+      "/home/imini/magr-super-agent/v3/evidence/super-agent-v1/SAV1-20/i01-repair-20261115T133235Z-594477aa/test_independent_sa20.py": "535046d75027a30034f51cb49f2aced784ae6833e80135d2e74ba516e164c9a7",
+      "/home/imini/magr-super-agent/v3/evidence/super-agent-v1/SAV1-20/i01-repair-20261115T133235Z-594477aa/evidence-path": "ac147a67e1813e9e2933f748611dde58e00f21a53a1ba37e27782b1ec70a385f",
+      "/home/imini/magr-super-agent/v3/evidence/super-agent-v1/SAV1-20/i01-repair-20261115T133235Z-594477aa/run-repair.py": "761439ba910ae006cf2409eef2bcc4c806e872533cb3fb1dcff79c7fa3579f6f"
+    },
+    "scope": "Only the frozen original failed SA20-I01 target; no prior passes or static checks",
+    "source_after": "66b5a1651367454efbbb0eadf91de202219a61b24e056fccb58f971fd9b55f5e",
+    "source_stable": true,
+    "head_stable": true,
+    "worktree_stable": true,
+    "tested_inputs_stable": true
+  },
+  "retest_policy": {
+    "only_original_one_failed_target": true,
+    "other13_independent_PASS_not_rerun": true,
+    "historical55_formal88_preparation_not_rerun": true,
+    "lint_typecheck_not_rerun": true,
+    "latest_full_suite": "NOT_RUN",
+    "old_failures_preserved": true,
+    "probe_assertions_thresholds_unchanged": true
+  },
+  "cleanup": {
+    "main_before": {
+      "migrations": 44,
+      "migrations_sha256": "4b62890a639ea50ac99fd6b7863562d9e787aeeb63168efb3e2ea826eeec8673",
+      "operations_tables": []
+    },
+    "main_after": {
+      "migrations": 44,
+      "migrations_sha256": "4b62890a639ea50ac99fd6b7863562d9e787aeeb63168efb3e2ea826eeec8673",
+      "operations_tables": []
+    },
+    "main_unchanged": true,
+    "main_port": 55435,
+    "temporary_databases_observed": [
+      "mgar_v3_test_6c2489466baa4186824a58f03660cc02"
+    ],
+    "pg_after": {
+      "databases": [],
+      "sessions": []
+    },
+    "assignment_containers_after": [],
+    "unrelated_containers_preserved": true,
+    "legacy_H06_preserved": true,
+    "protected_files": {
+      "protected_count": 32299,
+      "changed_files": [],
+      "all_unchanged": true
+    },
+    "main_migrations_not_applied": true,
+    "source_migrations_unchanged_from_delivery": true
+  },
+  "requirements_read": "evidence/super-agent-v1/SAV1-20/i01-repair-20261115T133235Z-594477aa/requirements-reread-after-context.json",
+  "evidence": "evidence/super-agent-v1/SAV1-20/i01-repair-20261115T133235Z-594477aa",
+  "report": "docs/super-agent-v1/SA20_I01_REPAIR_20261115.md",
+  "independent_recheck": "NOT_RUN",
+  "SA20": "IN_PROGRESS_NOT_RELEASED_PENDING_INDEPENDENT_RECHECK",
+  "SA21": "NOT_STARTED",
+  "live_source_channel_gate": "NOT_RUN",
+  "live_coding_gate": "NOT_RUN",
+  "live_publication_gate": "NOT_RUN",
+  "continuous_operation_gate": "NOT_RUN",
+  "whole_system_policy_security_gate": "NOT_RUN",
+  "paid": "NOT_RUN",
+  "external_send": "NOT_RUN",
+  "fixed_H12_live_agent_mvp": "FAIL_RETAINED_OTHER_CLI",
+  "limitations": "One failed projection boundary only. No wait to stalled threshold or actual alert asserted; no stale epoch/version/heartbeat boundary rerun; previous passes remain bound to their original revisions."
+}

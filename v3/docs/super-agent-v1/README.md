@@ -1,6 +1,10 @@
 # MAGR Super-Agent 落地任务书
 
-状态：**SAV1-00–SAV1-19 DONE（用户接受的受控本地独立闭环）；SA20 IN_PROGRESS（本地受控工程已交付，待独立验收）；SA21–SA24 PLANNED**。更新：2026-11-15。
+状态：**SAV1-00–SAV1-19 DONE（用户接受的受控本地独立闭环）；SA20 IN_PROGRESS（SA20-I01本地定向1PASS，待独立复验）；SA21–SA24 PLANNED**。更新：2026-11-15。
+
+SA20-I01独立P2已确认：实际Coding完成事实未计入Watchdog进展。私有修复候选7b4566d仅原失败项1PASS/exit0；九次实际完成均更新时间和游标，原探针字节/断言未改。原13独立、55正式/88准备和静态通过未重跑，原失败保留；见[修复报告](SA20_I01_REPAIR_20261115.md)及[机器记录](accept/SAV1-20/i01-repair.json)。SA20未放行，等待独立复验；主库仍44，SA21未启动，全部真实门NOT_RUN，固定H12 FAIL保留。
+
+以下保留原工程交付与历史阶段记录：
 
 SA19 045934c/40bbbcf的I01独立原三个失败参数3PASS已核对并获用户接受，静态资源均拒绝且no-store，原探针不改、其他通过及旧失败保留；见[独立关闭](accept/SAV1-19/independent-closure-20261115.json)。按指令启动SA20常驻部署/Watchdog/运维，先审计既有进程、身份、租约、源健康和备份边界，共享范围另行精确协调。SA21未启动，主库仍44，真实门NOT_RUN，固定H12 FAIL保留。
 
