@@ -1,0 +1,272 @@
+{
+  "card": "SAV1-18",
+  "status": "IN_PROGRESS_AWAITING_INDEPENDENT_REVIEW",
+  "engineering_gate": "PASS_VERSION_BOUND_CONTROLLED_SCOPE",
+  "independent_review": "NOT_RUN",
+  "recorded_UTC": "2026-11-15T07:58:11.494096+00:00",
+  "source_candidate": "ecb9eded2f05b017d5216531d3c6e4d0e67ea852",
+  "source_sha256": "98ad8ff01740b48f52201dfa82a0e00b2d1102ae31285fb39954a51703415f8d",
+  "source_archive": "evidence/super-agent-v1/SAV1-18/start-20261115T054718Z-d5764b7b/formal0051-final-remainder3/source-ecb9eded2f05.tar.gz",
+  "source_archive_sha256": "8600cad77d1efe96377adee752c13db9e3aa01de58501c210dd851cbeeb393cd",
+  "source_stable": true,
+  "latest_formal_round": {
+    "task": "SAV1-18-FINAL-REMAINDER",
+    "evidence": "evidence/SAV1-18-FINAL-REMAINDER/20261115T075303Z-cee65f4d",
+    "result_sha256": "7e8e65850c8a81e5c8b4394b2c58a7e9ede72ce545ea70ba9ae166615437af01",
+    "junit_sha256": "2f33901c53d2c93ef2ed3e986e176df86ef356bdd9e7835f9b10c4583d522391",
+    "counts": {
+      "tests": 3,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "command_exit_code": 0,
+    "scope": {
+      "previously_failed_Owner_async_intake": 1,
+      "first48_migration_and_final_registry_guards": 2
+    },
+    "original_async_probe_unchanged": true,
+    "docs_SQL_overlay_used": false,
+    "prior_unique_passes_not_rerun": 65
+  },
+  "registered_scope": {
+    "files": 8,
+    "distinct_formal_cases_with_version_bound_PASS": 68,
+    "unresolved_known_formal_failures": 0,
+    "cases_by_file": {
+      "tests/test_source_review_api.py": 38,
+      "tests/test_source_review_async.py": 2,
+      "tests/test_source_review_boundaries.py": 4,
+      "tests/test_source_review_browser.py": 1,
+      "tests/test_source_review_catalogue.py": 5,
+      "tests/test_source_review_integration.py": 14,
+      "tests/test_source_review_native_index.py": 1,
+      "tests/test_source_review_recovery.py": 3
+    },
+    "not_latest_revision_full_suite_PASS": true,
+    "preparation86_separate": true,
+    "draft_SQL_guard2_and_overlay1_separate": true
+  },
+  "retesting_policy": "Repair only failed cases/check targets; initial new scope separate. No repeat of previously passing cases or full-suite claim.",
+  "later_change_to_previously_passed_migration_guard": "Only expected count47->48 and lookup0050 by name for added forward0051; old passed guard not rerun, first final48-migration guard tested on this candidate.",
+  "static_checks": "Version-bound preparation make lint/typecheck and new-module targets passed after failed-target-only repairs; no repeat on final SQL/registry-only revision.",
+  "ownership": {
+    "0050_commit": "09145fe0939b209c43addb0ae6bbbdcc6a6df9a2",
+    "0051_commit": "162b6ef890f18c89df07adf62b0ca0375b5da69c",
+    "0051_SQL_sha256": "2bfcba77da3ad089737e1ae9fcb9db1aef72ca844e27c313c57a9686b55debd5",
+    "Engine_API_bytes_still_exact_section43": true,
+    "main_database_migrated": false,
+    "Harness_worktree_modified_or_imported": false
+  },
+  "requirements_reread_records": [
+    {
+      "path": "evidence/super-agent-v1/SAV1-18/start-20261115T054718Z-d5764b7b/requirements-read.json",
+      "sha256": "fb72efd213645f97d2382e05504628bf0596a5c9d26fa6be7cb9f78c24f7e873"
+    },
+    {
+      "path": "evidence/super-agent-v1/SAV1-18/start-20261115T054718Z-d5764b7b/requirements-reread-01.json",
+      "sha256": "29406b749b4a48c8639cffb078037545e02a05e4b41379ee146fca2c7762551e"
+    },
+    {
+      "path": "evidence/super-agent-v1/SAV1-18/start-20261115T054718Z-d5764b7b/requirements-reread-02.json",
+      "sha256": "dc7be2d452f5c1d1e461c920023264018e91db5a2ef54f0a711516f218670767"
+    }
+  ],
+  "evidence_inventory": {
+    "rounds": "evidence/super-agent-v1/SAV1-18/start-20261115T054718Z-d5764b7b/versioned-rounds.json",
+    "rounds_sha256": "bc0221df1af1a2488aada52f71e60e7d22654fc0579adc9abdfba2779df58820",
+    "junit_case_history": "evidence/super-agent-v1/SAV1-18/start-20261115T054718Z-d5764b7b/versioned-formal-checks.json",
+    "junit_case_history_sha256": "940e29b6a0e306d77c96f42cb426bb70c5f0f363c4e5f3c1793293093e0d4d5a",
+    "final_inventory": "evidence/super-agent-v1/SAV1-18/start-20261115T054718Z-d5764b7b/final-inventory.json",
+    "final_inventory_sha256": "1127fd037d48d718222cd0a080945f30a9199d2b433871f2953108dda1f2f3b6"
+  },
+  "rounds": [
+    {
+      "round": "async-draft-lint-recheck",
+      "source_commit": "19a98f7effc2a846af9a3486151992288e26bee7",
+      "source_sha256": "db9baaff3ef40e7cc7babf9cf1ecb7c74640cbc78f64f78f530c9d43157926bc",
+      "source_archive": "evidence/super-agent-v1/SAV1-18/start-20261115T054718Z-d5764b7b/async-draft-lint-recheck/source-19a98f7effc2.tar.gz",
+      "archive_sha256": "7225abab37dc1eb7b3c27e5acd746ac1a6fa277c883b1515964fa38fc82f6552",
+      "scope": "Only previously failed new draft lint target; draft2/overlay1 and all previous PASS not rerun",
+      "command_exit_codes": {
+        "lint-draft-first": 0
+      },
+      "source_stable": true
+    },
+    {
+      "round": "async-intake-draft-01",
+      "source_commit": "7ab606e2f2e62ca9d5e9db75a5a6e50a10d6ac72",
+      "source_sha256": "a271255af43d305d62c9790ce3d7a18e0a8fd42d87a1561d63a1b341f9edfdf3",
+      "source_archive": "evidence/super-agent-v1/SAV1-18/start-20261115T054718Z-d5764b7b/async-intake-draft-01/source-7ab606e2f2e6.tar.gz",
+      "archive_sha256": "8cdb80073edda0dbd3495d7dc975856a5a345fc788f509be6abb8874c1a21ce1",
+      "scope": "Only original failed async intake node with explicit docs-only PG overlay; first proposed0051 two guard checks; previous passes not rerun; no formal migration",
+      "command_exit_codes": {
+        "failed1-draft-overlay": 0,
+        "draft-guards-first2": 0,
+        "lint-draft-first": 1
+      },
+      "source_stable": true
+    },
+    {
+      "round": "boundaries-01",
+      "source_commit": "28cc3e6df0d539d7eccd9a13bbd01b25b66dbf5a",
+      "source_sha256": "d6676bb78e89852aafc258a3bf3e84b1610c39b314f009472c717b2a3c9ddfac",
+      "source_archive": "evidence/super-agent-v1/SAV1-18/start-20261115T054718Z-d5764b7b/boundaries-01/source-28cc3e6df0d5.tar.gz",
+      "archive_sha256": "da14f0266daf7adeabbc2bbdeb53b4721c4587f467498db33ad437f16ffc369e",
+      "scope": "First Owner HTTP/native CI/remote target/browser/SIGKILL scope only; all14 formal and86 preparation PASS not rerun",
+      "command_exit_codes": {
+        "verify": 2,
+        "lint-new-boundaries": 1,
+        "typecheck-native-boundary": 0
+      },
+      "source_stable": true
+    },
+    {
+      "round": "browser-repair-and-async-first",
+      "source_commit": "835cb5f6e914e83396e8df389eb7e47b1b40a0f6",
+      "source_sha256": "e0012297871540daa9fe99b352031f62b8efd4dcba7cbe91912177875f18028d",
+      "source_archive": "evidence/super-agent-v1/SAV1-18/start-20261115T054718Z-d5764b7b/browser-repair-and-async-first/source-835cb5f6e914.tar.gz",
+      "archive_sha256": "10d446481b4aa11bdfbb9138b67c5d34ea8009fdf25288617b9e101b32fb078b",
+      "scope": "Only failed browser1 and failed boundary lint; first async2 and its new lint scope separately; prior45 boundary/14 formal/86 prep/typecheck PASS excluded",
+      "command_exit_codes": {
+        "browser-failed1": 0,
+        "async-first2": 2,
+        "lint-failed-boundaries": 0,
+        "lint-async-first": 0
+      },
+      "source_stable": true
+    },
+    {
+      "round": "delivery-first3",
+      "source_commit": "0140cab721ed9610b38475fe8b507f05a6953fb1",
+      "source_sha256": "8796277f91301a7f8961158d693e812ffa7e4fa9e0bf9dc45beb2c7d488e68c2",
+      "source_archive": "evidence/super-agent-v1/SAV1-18/start-20261115T054718Z-d5764b7b/delivery-first3/source-0140cab721ed.tar.gz",
+      "archive_sha256": "8c09d8a473cea77e8ed2d3fc986c889da9b6ccafbc9679e19ad6167e1fd40f16",
+      "scope": "First contract/default/current548refs integrity only; remaining migration0051/registry2 await confirmation, no past passes rerun",
+      "command_exit_codes": {
+        "verify": 2,
+        "lint-catalogue-first": 0
+      },
+      "source_stable": true
+    },
+    {
+      "round": "delivery-integrity-recheck1",
+      "source_commit": "39d0393ffd4be9c3da98e2f9ee11c22cd92699d6",
+      "source_sha256": "f0abdeadf53bd8c2d9021d2109b6ee8f3b1e079e029abbca66a7dcd8190e455b",
+      "source_archive": "evidence/super-agent-v1/SAV1-18/start-20261115T054718Z-d5764b7b/delivery-integrity-recheck1/source-39d0393ffd4b.tar.gz",
+      "archive_sha256": "93b60987181d26865acdca6ebff9c0edd74fe7ac6e6b04c29a18e823e76d6ee9",
+      "scope": "Only failed current-artifact integrity case; schema/default2 and lint already PASS not rerun",
+      "command_exit_codes": {
+        "failed1": 0
+      },
+      "source_stable": true
+    },
+    {
+      "round": "formal-01",
+      "source_commit": "5ea1a4f89da02d18a00f9ad8ee087ee1ebc03d93",
+      "source_sha256": "cba656e348ecd77bab954755bab39eee29a094a18f2c6ff65cf70d339198b72a",
+      "source_archive": "evidence/super-agent-v1/SAV1-18/start-20261115T054718Z-d5764b7b/formal-01/source-5ea1a4f89da0.tar.gz",
+      "archive_sha256": "3312d5dee55e2aa09729420b8fc1b5e0c07be542e71238deae5d8a95f047fc06",
+      "scope": "First formal original Engine/0050 and actual Worker-to-Draft integration; preparation86 and historical passes not rerun; new module static targets only",
+      "command_exit_codes": {
+        "verify": 2,
+        "lint-new-integration": 1,
+        "typecheck-new-integration": 1
+      },
+      "source_stable": true
+    },
+    {
+      "round": "formal-repair-01",
+      "source_commit": "531f4a845233498b586f6bcf3330609ddd450f4a",
+      "source_sha256": "07e8fedc3eaaaeb9429a2f2c0192c06a704e6733edcb56848970749d825694ce",
+      "source_archive": "evidence/super-agent-v1/SAV1-18/start-20261115T054718Z-d5764b7b/formal-repair-01/source-531f4a845233.tar.gz",
+      "archive_sha256": "37233aa3f12fa0dbc86366f1ceb233bb32d6feec16ba127000f08d9e7e2e3757",
+      "scope": "Only original12 failed runtime cases and failed new-module lint/typecheck targets; formal2 and preparation86 PASS excluded",
+      "command_exit_codes": {
+        "lint-new-integration": 0,
+        "typecheck-new-integration": 0,
+        "failed12": 0
+      },
+      "source_stable": true
+    },
+    {
+      "round": "formal0051-final-remainder3",
+      "source_commit": "ecb9eded2f05b017d5216531d3c6e4d0e67ea852",
+      "source_sha256": "98ad8ff01740b48f52201dfa82a0e00b2d1102ae31285fb39954a51703415f8d",
+      "source_archive": "evidence/super-agent-v1/SAV1-18/start-20261115T054718Z-d5764b7b/formal0051-final-remainder3/source-ecb9eded2f05.tar.gz",
+      "archive_sha256": "8600cad77d1efe96377adee752c13db9e3aa01de58501c210dd851cbeeb393cd",
+      "scope": "Only original failed Owner async intake1 after official confirmed0051; first48-migration and completed-registry2. No old passing targets repeated, no docs SQL overlay.",
+      "command_exit_codes": {
+        "verify": 0
+      },
+      "source_stable": true
+    },
+    {
+      "round": "native-index-first",
+      "source_commit": "16f0ba84160ab5d5526fc952096310a6ed79e113",
+      "source_sha256": "af8b5a3a4b1c29b193240b1220f2719b51ea8877e4b7c75000d6f341da31493b",
+      "source_archive": "evidence/super-agent-v1/SAV1-18/start-20261115T054718Z-d5764b7b/native-index-first/source-16f0ba84160a.tar.gz",
+      "archive_sha256": "940ea3d6f0523ffda33b55bdf6d93e7e0619b1c99194a59d16a34c2bd4069c94",
+      "scope": "First original correlation-index integration and current modified module static targets only; historical native/boundary passes not repeated",
+      "command_exit_codes": {
+        "verify": 0,
+        "lint-native-index-first": 0,
+        "typecheck-native-index-first": 0
+      },
+      "source_stable": true
+    },
+    {
+      "round": "prepare-01",
+      "source_commit": "bebbe90740f1acd3b6f1b1025bd68f21a3e9c991",
+      "source_sha256": "3e7f9c7159b15ec46d550d413d4e5b85d586a8e61b5288e91f8f7e83ab3d2d18",
+      "source_archive": "evidence/super-agent-v1/SAV1-18/start-20261115T054718Z-d5764b7b/prepare-01/source-bebbe90740f1.tar.gz",
+      "archive_sha256": "038399d571e6f3071b560655ea296a05a03d643d64c0e4b61720f707c295e042",
+      "scope": "First SA18 preparation registration and first lint/typecheck only; prior SA00-SA17 targets excluded",
+      "command_exit_codes": {
+        "verify": 0,
+        "lint": 2,
+        "typecheck": 2
+      },
+      "source_stable": true
+    },
+    {
+      "round": "prepare-static-recheck",
+      "source_commit": "7c2de663f62167430c6b6f9f3c5cd3a7270dc0c1",
+      "source_sha256": "20118ffc9a7f1e563814b67fd675271c644a1033d20b250d4a1bf383bdeffe9f",
+      "source_archive": "evidence/super-agent-v1/SAV1-18/start-20261115T054718Z-d5764b7b/prepare-static-recheck/source-7c2de663f621.tar.gz",
+      "archive_sha256": "94126cfa24e76b827197bc60de4c11abf872cab93b3264c83410094bca9b8e1d",
+      "scope": "Only failed lint and typecheck targets; preparation86PASS not rerun",
+      "command_exit_codes": {
+        "lint": 0,
+        "typecheck": 0
+      },
+      "source_stable": true
+    }
+  ],
+  "evidence_limitations": [
+    "Passing evidence belongs to listed revisions; no final full-suite rerun.",
+    "Generic raw runner result SA18=PREPARATION_ONLY is an inherited stage label, retained unchanged; command/JUnit/registered task scopes identify actual stage and verdicts.",
+    "Confirmed0051 retains historical PROPOSAL comment exactly; installation/confirmation records establish current formal scope.",
+    "Preparation/draft registration is historical and excluded from the final eight-file formal registry."
+  ],
+  "resources": {
+    "main_database_migrations": 44,
+    "repository_migrations": 48,
+    "source_catalogues": 17,
+    "artifact_references": 550,
+    "migration_checksums_and_artifact_hashes_match": true,
+    "temporary_test_databases_sessions_and_owned_containers_remaining": 0,
+    "prior_user_file_unchanged_and_untracked": true,
+    "historical_failures_retained": true,
+    "preexisting_H06_container_preserved": true
+  },
+  "H08": "Fixed accepted full result/direct preimage contract only; no H08 service/H12 import",
+  "H12_fixed_live_agent_mvp": "FAIL; review owned by another CLI",
+  "real_platform": "NOT_RUN",
+  "paid": "NOT_RUN",
+  "outbound": "NOT_RUN",
+  "live_publication": "NOT_RUN",
+  "merge_deploy": "NOT_RUN",
+  "long_running": "NOT_RUN",
+  "SA19": "NOT_STARTED"
+}

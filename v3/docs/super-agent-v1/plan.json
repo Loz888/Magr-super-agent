@@ -590,11 +590,27 @@
       "card": "TASKS.md#sa18",
       "verification_target_on_implementation": "SAV1-18",
       "authorized_by_user": "Continue SA18 after confirming user-accepted SA17-I01 scoped independent pass",
-      "work_state": "REQUIREMENTS_FIXED_H08_AND_ORIGINAL_REVIEW_PUBLICATION_AUDIT",
-      "engineering_gate": "NOT_RUN",
+      "work_state": "CONTROLLED_ENGINEERING_DELIVERED_AWAITING_INDEPENDENT_REVIEW",
+      "engineering_gate": "PASS_VERSION_BOUND_CONTROLLED_SCOPE",
       "independent_review": "NOT_RUN",
-      "shared_scope": "NOT_YET_PROPOSED",
-      "SA19": "NOT_STARTED"
+      "shared_scope": "CONFIRMED0050_SECTION43_AND0051_SECTION44_APPLIED_SA_COPY_ONLY",
+      "SA19": "NOT_STARTED",
+      "ownership_commits": [
+        "09145fe0939b209c43addb0ae6bbbdcc6a6df9a2",
+        "162b6ef890f18c89df07adf62b0ca0375b5da69c"
+      ],
+      "source_candidate": "ecb9eded2f05b017d5216531d3c6e4d0e67ea852",
+      "source_sha256": "98ad8ff01740b48f52201dfa82a0e00b2d1102ae31285fb39954a51703415f8d",
+      "formal_distinct_cases_with_version_bound_PASS": 68,
+      "latest_round_only_PASS": 3,
+      "previous65_not_rerun": true,
+      "not_latest_revision_full_suite_PASS": true,
+      "acceptance_summary": "accept/SAV1-18/accept.json",
+      "delivery_report": "SA18_DELIVERY_20261115.md",
+      "repository_migrations": 48,
+      "main_migrations": 44,
+      "real_gates": "NOT_RUN",
+      "H12_fixed_live_agent_mvp": "FAIL; other CLI review"
     },
     {
       "id": "SAV1-19",
