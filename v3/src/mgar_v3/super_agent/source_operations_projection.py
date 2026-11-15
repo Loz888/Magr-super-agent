@@ -90,7 +90,12 @@ def snapshot(core: SourceOperations, conn: Connection) -> OperationsSnapshot:
         "FROM app.runs r JOIN app.tickets t USING(ticket_id) JOIN app.threads h USING(thread_id) "
         "LEFT JOIN LATERAL (SELECT event_id,created_at FROM app.run_events WHERE run_id=r.run_id "
         "AND kind NOT IN ('worker_heartbeat','watchdog_observed') ORDER BY event_id DESC LIMIT 1) "
-        "e ON true WHERE h.project_id=%s AND (r.status NOT IN ('cancelled','failed','succeeded') "
+        "e ON true LEFT JOIN LATERAL (SELECT max(ce.event_id) AS event_id,"
+        "max(ce.created_at) AS created_at FROM app.sa_coding_events ce "
+        "JOIN app.sa_coding_bindings cb USING(coding_id,project_id) WHERE cb.run_id=r.run_id "
+        "AND ce.event_type IN ('OPERATION_KNOWN','VERIFICATION_RECORDED',"
+        "'ATTEMPT_RESULT_RECORDED')) c ON true WHERE h.project_id=%s AND ("
+        "r.status NOT IN ('cancelled','failed','succeeded') "
         "OR EXISTS(SELECT 1 FROM app.actions WHERE run_id=r.run_id AND status='outcome_unknown') "
         "OR EXISTS(SELECT 1 FROM app.usage_calls WHERE run_id=r.run_id AND"
         " status IN ('reserved','unknown'))) "
@@ -101,8 +106,11 @@ def snapshot(core: SourceOperations, conn: Connection) -> OperationsSnapshot:
     for row in runs[:32]:
         run_id = row["run_id"]
         jobs = conn.execute(
-            "SELECT j.job_id,j.revision,j.state,c.expires_at AS deadline FROM app.sa_async_jobs j "
-            "JOIN app.sa_async_checkpoints c USING(checkpoint_id) "
+            "SELECT j.job_id,j.revision,j.state,least(b.valid_until,j.created_at+"
+            "((m.scope->'grant'->>'max_seconds')::int*interval '1 second')) AS deadline "
+            "FROM app.sa_async_jobs j JOIN app.sa_coding_bindings b USING(codi"
+            "ng_id,project_id,run_id) "
+            "JOIN app.mandates m USING(mandate_id) "
             "WHERE j.run_id=%s AND j.project_id=%s AND j.state<>'known' ORDER "
             "BY j.job_id LIMIT 257",
             (run_id, core.project),
@@ -156,7 +164,7 @@ def snapshot(core: SourceOperations, conn: Connection) -> OperationsSnapshot:
         (core.project,),
     ).fetchall()
     dependency = conn.execute(
-        "SELECT state FROM app.dependency_health WHERE project_id=%s AND repository=%s "
+        "SELECT state,generation FROM app.dependency_health WHERE project_id=%s AND repository=%s "
         "AND dependency='redis' AND checked_at>%s-interval '60 seconds'",
         (core.project, core.engine.settings.repository.lower(), now),
     ).fetchone()
@@ -189,5 +197,6 @@ def snapshot(core: SourceOperations, conn: Connection) -> OperationsSnapshot:
         backlog_cursor=cursor(backlog),
         notification_cursor=cursor(outgoing),
         usage_cursor=cursor(usage),
+        dependency_cursor=cursor(dependency),
         partial=partial,
     )

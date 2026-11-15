@@ -15,16 +15,41 @@ from mgar_v3.super_agent.source_operations_domain import (
 )
 
 
-def configured(engine, tmp_path, roles=("scheduler", "worker", "dispatcher", "watchdog")):
-    env = owner(engine)
+def configured(
+    engine,
+    tmp_path,
+    roles=("scheduler", "worker", "dispatcher", "watchdog"),
+    *,
+    owner_env=None,
+    source_ids=(),
+    lease_seconds=30,
+):
+    if owner_env is None:
+        env = owner(engine)
+    else:
+        from mgar_v3.web_access import WebAccounts
+
+        accounts = WebAccounts(engine)
+        user = accounts.session(owner_env.cookie)
+        assert user is not None
+        env = SimpleNamespace(
+            engine=engine, cookie=owner_env.cookie, accounts=accounts, user_id=user.user_id
+        )
     env.service = engine.source_operations
     env.ids = {role: uuid4() for role in roles}
     env.tokens = {role: ("sa20_" + uuid4().hex + uuid4().hex) for role in roles}
     env.definition = OperationsDefinition(
         enabled=True,
+        lease_seconds=lease_seconds,
         valid_until=datetime.now(UTC) + timedelta(hours=1),
         components=tuple(
-            ComponentGrant(component_id=c, role=role, enabled=True) for role, c in env.ids.items()
+            ComponentGrant(
+                component_id=c,
+                role=role,
+                enabled=True,
+                source_ids=source_ids if role == "source" else (),
+            )
+            for role, c in env.ids.items()
         ),
     )
     env.service.save(

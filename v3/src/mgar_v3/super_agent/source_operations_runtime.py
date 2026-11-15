@@ -65,6 +65,32 @@ class OriginalSchedulerPort(OperationsPort):
 
         guard()
         maintenance = self.engine.source_scheduler.maintain()
+        # Redis is a reconstructable dependency. Probe it outside SQL, without
+        # invoking the legacy MCP inventory or loading platform credentials.
+        from redis import Redis
+        from redis.exceptions import RedisError
+
+        state = "unavailable"
+        try:
+            with Redis.from_url(
+                self.engine.settings.redis_url.get_secret_value(),
+                socket_connect_timeout=0.25,
+                socket_timeout=0.25,
+            ) as redis:
+                if redis.ping():
+                    state = "ready"
+        except (RedisError, OSError):
+            pass
+        guard()
+        with self.engine.transaction() as conn:
+            conn.execute(
+                "INSERT INTO app.dependency_health(project_id,repository,dependency,state) "
+                "VALUES(%s,%s,'redis',%s) ON CONFLICT(project_id,repository,dependency) DO UPDATE "
+                "SET state=excluded.state,checked_at=clock_timestamp(),generation="
+                "dependency_health.generation+CASE WHEN dependency_health.state=excluded.state "
+                "THEN 0 ELSE 1 END",
+                (self.engine.settings.project_id, self.engine.settings.repository.lower(), state),
+            )
         with delegation(self.engine, guard) as cookie:
             command = AutonomyCycleRequest(limit=16)
             guard()
@@ -163,7 +189,7 @@ def create_application() -> Any:
     from mgar_v3.api import create_app
     from mgar_v3.settings import Settings
 
-    configuration = Settings()
+    configuration = Settings(_env_file=None)
     if (configuration.artifact_root.parent / "restore-hold.json").exists():
         raise RuntimeError(
             "Restored installation is held pending revocation and remote-write review"

@@ -196,11 +196,16 @@ def register(
 
     @app.post(PREFIX + "/components/{component_id}/tick")
     def tick(
+        request: Request,
         component_id: Annotated[UUID, Depends(machine)],
         engine: Annotated[Engine, Depends(authority)],
         body: Annotated[ComponentTick, Depends(body_parser(ComponentTick))],
     ) -> JSONResponse:
-        return response(engine.source_operations.tick(component_id, body))
+        return response(
+            engine.source_operations.tick(
+                component_id, body, authenticate=lambda: machine(request, component_id) and None
+            )
+        )
 
     @app.post(PREFIX + "/components/{component_id}/observations")
     def observations(
@@ -249,6 +254,7 @@ def register(
                 ).fetchone()
                 if owner is None:
                     raise denied("SOURCE_UNAVAILABLE", 503)
+            machine(request, component_id)  # Re-read file credentials after reservation reads.
             if github_runtime is not None and github_runtime.source_id == source_id:
                 if github_runtime.broker.sources.engine is not engine:
                     raise denied("SOURCE_UNAVAILABLE", 503)

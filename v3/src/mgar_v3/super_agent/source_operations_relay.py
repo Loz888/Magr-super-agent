@@ -122,7 +122,10 @@ def create_relay(configuration: RelayConfiguration) -> FastAPI:
                     "X-MGAR-Operations-Generation": str(component.generation),
                 }
             )
-            path = f"/api/v3/source-operations/components/{configuration.client.component_id}/relay/{source_id}"
+            path = (
+                f"/api/v3/source-operations/components/{configuration.client.component_id}"
+                f"/relay/{source_id}"
+            )
             async with httpx.AsyncClient(
                 base_url=configuration.client.api_url,
                 timeout=10,

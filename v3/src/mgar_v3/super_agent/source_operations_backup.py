@@ -143,7 +143,7 @@ def _pg_environment(dsn: str) -> dict[str, str]:
     if set(values) - set(allowed):
         raise BackupError("Unsupported explicit database connection options")
     result = {"PATH": "/usr/bin:/bin", "LANG": "C.UTF-8", "PGCONNECT_TIMEOUT": "5"}
-    result.update({allowed[k]: v for k, v in values.items()})
+    result.update({allowed[k]: str(v) for k, v in values.items() if v is not None})
     return result
 
 
@@ -212,15 +212,20 @@ def project(connection: Any, expected: str) -> None:
         raise BackupError("Backup project binding does not match")
 
 
+def acquire(connection: Any, lock_id: int) -> bool:
+    row = connection.execute("SELECT pg_try_advisory_lock(%s)", (lock_id,)).fetchone()
+    return bool(row and row[0])
+
+
 def backup(configuration: BackupConfiguration, destination: Path) -> dict[str, Any]:
     entries = {}
     kinds = {}
     encryption_key = key(configuration.encryption_key)
     dsn = configuration.database_url.get_secret_value()
     with psycopg.connect(dsn, autocommit=True) as connection:
-        if not connection.execute("SELECT pg_try_advisory_lock(31010002)").fetchone()[0]:
+        if not acquire(connection, 31010002):
             raise BackupError("Stop the active Engine before taking an offline backup")
-        if not connection.execute("SELECT pg_try_advisory_lock(31010001)").fetchone()[0]:
+        if not acquire(connection, 31010001):
             raise BackupError("A migration is in progress")
         project(connection, configuration.project_id)
         migrations = migration_sha(connection)
@@ -387,9 +392,7 @@ def restore(
     }
     write_new(target_root / HOLD, json.dumps(hold).encode())
     with psycopg.connect(target_dsn, autocommit=True) as connection:
-        if not connection.execute("SELECT pg_try_advisory_lock(31010002)").fetchone()[0] or (
-            not connection.execute("SELECT pg_try_advisory_lock(31010001)").fetchone()[0]
-        ):
+        if not acquire(connection, 31010002) or (not acquire(connection, 31010001)):
             raise BackupError("Restore target is active")
         if connection.execute(
             "SELECT 1 FROM pg_tables WHERE schemaname NOT IN ('pg_catalog','in"

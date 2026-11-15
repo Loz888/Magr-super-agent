@@ -53,11 +53,11 @@
   "artifacts": [
     {
       "path": "config/source-scheduler-v1.json",
-      "sha256": "924d1483c488ebf029c1a3b9b88d00d97e28b844589fa62fd8cbe24ad7b55784"
+      "sha256": "24465534c5a7a04cb0c26f98f4d08a47dfa360295dc08b7eadd36e4260cc3021"
     },
     {
       "path": "config/verification.json",
-      "sha256": "06c439d0e4d59008b322308941ba984463dca7a39916160efa28e2ae8398795a"
+      "sha256": "7b911ec9520c39bd01de0ccf7e81aa3230ca920ed1e82b82b651e2530e6214a8"
     },
     {
       "path": "docs/super-agent-v1/accept/SAV1-13/history/api-import-order-followup.json",

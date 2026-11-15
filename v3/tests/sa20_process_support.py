@@ -1,6 +1,5 @@
 """Real bounded local listeners/processes; no desktop, paid model or real source."""
 
-import os
 import socket
 import subprocess
 import sys
@@ -132,3 +131,73 @@ def role_process(path, log, *, once=False):
                 except subprocess.TimeoutExpired:
                     process.kill()
                     process.wait(5)
+
+
+def client_file(env, role, url):
+    import json
+
+    path = env.secrets_path.parent / (role + "-client.json")
+    path.write_text(
+        json.dumps(
+            {
+                "api_url": url,
+                "component_id": str(env.ids[role]),
+                "role": role,
+                "token": env.tokens[role],
+                "interval_seconds": 2,
+            }
+        )
+    )
+    path.chmod(0o600)
+    return path
+
+
+@contextmanager
+def api_process(settings, secrets_path, tmp_path):
+    sock = socket.socket()
+    sock.bind(("127.0.0.1", 0))
+    port = sock.getsockname()[1]
+    sock.close()
+    env = environment(settings)
+    env["MGAR_V3_OPERATIONS_SERVICE_CONFIG"] = str(secrets_path)
+    env["MGAR_V3_REDIS_URL"] = "redis://127.0.0.1:9/0"
+    log = (tmp_path / ("api-" + str(port) + ".log")).open("ab")
+    process = subprocess.Popen(
+        [
+            sys.executable,
+            "-m",
+            "uvicorn",
+            "mgar_v3.super_agent.source_operations_runtime:create_application",
+            "--factory",
+            "--host",
+            "127.0.0.1",
+            "--port",
+            str(port),
+            "--no-proxy-headers",
+            "--no-access-log",
+        ],
+        env=env,
+        cwd=tmp_path,
+        stdout=log,
+        stderr=subprocess.STDOUT,
+    )
+    try:
+        wait_for(
+            lambda: (
+                httpx.get(
+                    f"http://127.0.0.1:{port}/api/v3/auth/session", trust_env=False
+                ).status_code
+                == 200
+            ),
+            30,
+        )
+        yield process, f"http://127.0.0.1:{port}"
+    finally:
+        if process.poll() is None:
+            process.terminate()
+            try:
+                process.wait(15)
+            except subprocess.TimeoutExpired:
+                process.kill()
+                process.wait(5)
+        log.close()

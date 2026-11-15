@@ -320,13 +320,25 @@ class SourceOperations:
             ):
                 raise denied("FENCED")
 
-    def tick(self, component_id: UUID, body: ComponentTick) -> Row:
+    def tick(
+        self,
+        component_id: UUID,
+        body: ComponentTick,
+        *,
+        authenticate: Callable[[], None] | None = None,
+    ) -> Row:
         with self.engine.transaction() as conn:
             row = self._lease(conn, component_id, body.generation, body.boot_id)
             if row["role"] not in {"scheduler", "worker", "dispatcher"}:
                 raise denied("ROLE_DENIED", 403)
             if (row["tick_request_id"], row["tick_sequence"]) == (body.request_id, body.sequence):
-                return {"state": row["tick_state"], **row["tick_result"], "reused": True}
+                return {
+                    "state": row["tick_state"],
+                    "sequence": row["tick_sequence"],
+                    "request_id": row["tick_request_id"],
+                    **row["tick_result"],
+                    "reused": True,
+                }
             if row["tick_state"] in {"reserved", "unknown"}:
                 raise denied("AWAITING_RECONCILIATION")
             if (
@@ -340,12 +352,18 @@ class SourceOperations:
                 "tick_state='reserved',tick_result='{}' WHERE project_id=%s AND component_id=%s",
                 (body.request_id, body.sequence, self.project, component_id),
             )
+
+        def guard() -> None:
+            if authenticate is not None:
+                authenticate()  # Private-file IO remains outside SQL.
+            self.check_tick(component_id, body)
+
         state, result = "unknown", TickOutcome(unknown=1)
         # Distinguish a definitive pre-dispatch fence from an exception after a
         # port may already have performed part of its bounded work.
         with self.engine._mutex:
             try:
-                self.check_tick(component_id, body)
+                guard()
             except DomainError:
                 result, state = TickOutcome(blocked=1), "known"
             else:
@@ -356,7 +374,7 @@ class SourceOperations:
                             waiting_runner=role == "worker", blocked=int(role != "worker")
                         )
                     else:
-                        result = port.invoke(lambda: self.check_tick(component_id, body))
+                        result = port.invoke(guard)
                         if not isinstance(result, TickOutcome):
                             raise ValueError("A bounded receipt is required")
                     state = "known"
@@ -380,7 +398,13 @@ class SourceOperations:
             ).fetchone()
             if changed is None:
                 raise denied("AWAITING_RECONCILIATION")
-        return {"state": state, **result.model_dump(mode="json"), "reused": False}
+        return {
+            "state": state,
+            "sequence": body.sequence,
+            "request_id": body.request_id,
+            **result.model_dump(mode="json"),
+            "reused": False,
+        }
 
     def recover(self) -> int:
         if self._recovered:

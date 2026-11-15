@@ -2094,5 +2094,27 @@
       "real_gates": "NOT_RUN",
       "SA21": "NOT_STARTED"
     }
+  },
+  "SAV1-20-PROCESSES": {
+    "tests": [
+      "tests/test_source_operations_processes.py"
+    ],
+    "timeout_seconds": 420,
+    "components": {
+      "scope": "First real independent local role processes, controller SIGKILL/restart, tick SIGKILL, Runner liveness loss and original PG queued state. Prior passing targets excluded.",
+      "real_gates": "NOT_RUN",
+      "SA21": "NOT_STARTED"
+    }
+  },
+  "SAV1-20-RUNTIME": {
+    "tests": [
+      "tests/test_source_operations_runtime.py"
+    ],
+    "timeout_seconds": 420,
+    "components": {
+      "scope": "First original SA14 H03/H06 async work after client exit, SA17 unknown notification, signed raw Source relay, final credential revoke, real Redis loss; controlled engineering only.",
+      "real_gates": "NOT_RUN",
+      "SA21": "NOT_STARTED"
+    }
   }
 }

@@ -94,6 +94,13 @@ class TickReceipt(Model):
     sequence: Counter = 0
     request_id: UUID | None = None
     processed: Counter = 0
+    pending: Counter = 0
+    blocked: Counter = 0
+    unknown: Counter = 0
+    waiting_runner: bool = Field(default=False, strict=True)
+    model_calls: Counter = 0
+    external_writes: Counter = 0
+    reused: bool = Field(default=False, strict=True)
 
 
 class ServiceView(Model):

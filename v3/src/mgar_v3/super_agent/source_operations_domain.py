@@ -349,6 +349,7 @@ class OperationsSnapshot(Model):
     notification_unknown: Counter = 0
     usage_unknown: Counter = 0
     redis: Literal["unknown", "ready", "unavailable"] = "unknown"
+    dependency_cursor: Sha256 = digest([])
     backlog_cursor: Sha256 = digest([])
     notification_cursor: Sha256 = digest([])
     usage_cursor: Sha256 = digest([])
@@ -484,5 +485,10 @@ def signals(
             SignalFact(kind="usage_unknown", cursor=snapshot.usage_cursor, severity="critical")
         )
     if snapshot.redis == "unavailable":
-        result.append(SignalFact(kind="dependency_unavailable", cursor=digest("redis-unavailable")))
+        result.append(
+            SignalFact(
+                kind="dependency_unavailable",
+                cursor=digest(["redis-unavailable", snapshot.dependency_cursor]),
+            )
+        )
     return tuple(result)

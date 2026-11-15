@@ -238,13 +238,13 @@ def test_authenticated_but_noncanonical_tar_is_rejected_before_any_extraction(tm
 
 
 def test_default_deployment_refuses_restored_hold_before_opening_engine(tmp_path, monkeypatch):
-    from mgar_v3.super_agent import source_operations_runtime
     from mgar_v3.settings import Settings
+    from mgar_v3.super_agent import source_operations_runtime
 
     (tmp_path / HOLD).write_text(json.dumps({"activation": False}))
     monkeypatch.setattr(Settings, "__init__", lambda self, **kw: None)
     # model_construct avoids loading any real .env or opening a database.
     fake = Settings.model_construct(artifact_root=tmp_path / "artifacts")
-    monkeypatch.setattr("mgar_v3.settings.Settings", lambda: fake)
+    monkeypatch.setattr("mgar_v3.settings.Settings", lambda **kwargs: fake)
     with pytest.raises(RuntimeError, match="Restored installation"):
         source_operations_runtime.create_application()
