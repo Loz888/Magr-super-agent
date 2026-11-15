@@ -43,7 +43,6 @@ def create_source(env, kind="github", *, credentials=True, enabled=True):
 
 
 def policy(source, *, mode="shadow", **changes):
-    env = source.env
     scope = source.value["scope"]
     github = scope["source_kind"] == "github"
     actor = ActorRef.model_validate(

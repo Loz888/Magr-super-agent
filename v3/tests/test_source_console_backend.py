@@ -11,6 +11,7 @@ import pytest
 from sa19_support import bind_ingress, create_source, owner, policy, save_policy
 
 from mgar_v3.api import create_app
+from mgar_v3.coordination.engine import Engine
 from mgar_v3.domain import DomainError, TriggerInput
 from mgar_v3.sources.domain import SourceScope
 from mgar_v3.super_agent.policy_domain import PolicyPreview, PolicySave
@@ -279,7 +280,8 @@ def test_global_disable_is_atomic_over_both_original_sources_and_has_no_parallel
     assert all(p["revoked"] for p in view["policies"])
     with engine.transaction() as conn:
         tables = conn.execute(
-            "SELECT tablename FROM pg_tables WHERE schemaname='app' AND tablename LIKE 'sa_console_%'"
+            "SELECT tablename FROM pg_tables WHERE schemaname='app' AND "
+            "tablename LIKE 'sa_console_%'"
         ).fetchall()
         assert {r["tablename"] for r in tables} == {"sa_console_credentials", "sa_console_audit"}
 
@@ -449,27 +451,46 @@ def test_owner_can_stop_original_run_and_epoch_cas_rejects_stale_command(engine,
 
 def test_other_project_run_is_not_readable_or_stoppable_from_console(engine, trigger):
     env = owner(engine)
-    receipt = engine.ingest(
-        TriggerInput.model_validate(
-            {
-                **trigger.model_dump(mode="json"),
-                "project_id": "another-project",
-                "external_event_id": "other-project",
-            }
-        )
+    original_settings = engine.settings
+    artifacts = engine.artifacts
+    engine.close()
+    # Each real Engine holds the sole advisory lock for its configured project.
+    # The original Engine correctly rejects a foreign project at intake.
+    other = Engine(
+        original_settings.model_copy(update={"project_id": "another-project"}), artifacts
     )
-    for action in [
-        lambda: env.service.task(env.cookie, receipt.run_id),
-        lambda: env.service.stop_task(
-            env.cookie,
-            receipt.run_id,
-            ConsoleTaskStop(expected_epoch=0, review_ref="fixture-other"),
-        ),
-    ]:
-        with pytest.raises(DomainError) as failure:
-            action()
-        assert failure.value.code == "CONSOLE_TASK_NOT_FOUND"
-    assert not env.service.snapshot(env.cookie)["tasks"]["items"]
+    try:
+        receipt = other.ingest(
+            TriggerInput.model_validate(
+                {
+                    **trigger.model_dump(mode="json"),
+                    "project_id": "another-project",
+                    "external_event_id": "other-project",
+                }
+            )
+        )
+        epoch = other.get_run(receipt.run_id)["execution_epoch"]
+    finally:
+        other.close()
+    current = Engine(original_settings, artifacts)
+    try:
+        for action in [
+            lambda: current.source_console.task(env.cookie, receipt.run_id),
+            lambda: current.source_console.stop_task(
+                env.cookie,
+                receipt.run_id,
+                ConsoleTaskStop(
+                    expected_epoch=epoch,
+                    review_ref="fixture-other",
+                ),
+            ),
+        ]:
+            with pytest.raises(DomainError) as failure:
+                action()
+            assert failure.value.code == "CONSOLE_TASK_NOT_FOUND"
+        assert not current.source_console.snapshot(env.cookie)["tasks"]["items"]
+    finally:
+        current.close()
 
 
 @pytest.mark.parametrize("unsafe", ["mode", "symlink", "hardlink"])

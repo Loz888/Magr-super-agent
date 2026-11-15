@@ -32,7 +32,8 @@ HEADERS = {
     "Cache-Control": "no-store",
     "X-Content-Type-Options": "nosniff",
     "Content-Security-Policy": "default-src 'self'; script-src 'self'; style-src 'self'; "
-    "connect-src 'self'; frame-ancestors 'none'; object-src 'none'; base-uri 'none'; form-action 'self'",
+    "connect-src 'self'; frame-ancestors 'none'; object-src 'none'; "
+    "base-uri 'none'; form-action 'self'",
 }
 
 
@@ -212,7 +213,18 @@ def register(
     ) -> JSONResponse:
         return response(console(engine).decisions(cookie(request), limit))
 
-    app.include_router(router)
+    # Keep the owned bounded routes directly visible to the original app and
+    # its route inventory; do not defer them behind a lazy included router.
+    for route in router.routes:
+        assert isinstance(route, APIRoute)
+        app.router.add_api_route(
+            route.path,
+            route.endpoint,
+            methods=list(route.methods),
+            name=route.name,
+            response_model=None,
+            route_class_override=ConsoleRoute,
+        )
 
     def file(request: Request, engine: Engine, path: Path) -> FileResponse:
         with engine.transaction() as conn:

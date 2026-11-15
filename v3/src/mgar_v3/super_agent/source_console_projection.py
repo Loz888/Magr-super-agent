@@ -139,10 +139,12 @@ class ConsoleProjection(ConsoleStore):
             "SELECT r.outcome_code,c.status AS call_status,c.call_id,b.mode AS router_mode,"
             "r.proposals IS NOT NULL AS has_proposals,"
             "(SELECT v.payload->>'intended_action' FROM app.sa_source_eval_decisions v "
-            "WHERE v.batch_id=s.batch_id AND v.payload->'input_ids' @> jsonb_build_array(d.input_id::text) "
+            "WHERE v.batch_id=s.batch_id AND v.payload->'input_ids' @> "
+            "jsonb_build_array(d.input_id::text) "
             "ORDER BY v.created_at DESC,v.decision_key LIMIT 1) AS semantic_action,"
             "(SELECT v.payload->>'reason_code' FROM app.sa_source_eval_decisions v "
-            "WHERE v.batch_id=s.batch_id AND v.payload->'input_ids' @> jsonb_build_array(d.input_id::text) "
+            "WHERE v.batch_id=s.batch_id AND v.payload->'input_ids' @> "
+            "jsonb_build_array(d.input_id::text) "
             "ORDER BY v.created_at DESC,v.decision_key LIMIT 1) AS semantic_reason "
             "FROM app.sa_source_eval_inputs i JOIN app.sa_source_eval_snapshots s USING(batch_id) "
             "LEFT JOIN app.sa_source_eval_results r ON r.batch_id=s.batch_id "
@@ -215,9 +217,11 @@ class ConsoleProjection(ConsoleStore):
                 (identifier,),
             ).fetchall()
             usage = conn.execute(
-                "SELECT count(*) AS calls,coalesce(sum(CASE WHEN status='known' AND settled_micros IS NOT NULL "
+                "SELECT count(*) AS calls,coalesce(sum(CASE WHEN status='known' "
+                "AND settled_micros IS NOT NULL "
                 "THEN settled_micros ELSE reserved_micros END),0) AS total_micros,"
-                "count(*) FILTER(WHERE status IN ('reserved','unknown') OR settled_micros IS NULL) AS unresolved_calls "
+                "count(*) FILTER(WHERE status IN ('reserved','unknown') OR "
+                "settled_micros IS NULL) AS unresolved_calls "
                 "FROM app.usage_calls WHERE run_id=%s",
                 (identifier,),
             ).fetchone()
@@ -252,7 +256,8 @@ class ConsoleProjection(ConsoleStore):
                 actions = conn.execute(
                     "SELECT a.action_id,a.run_id,a.action_type,a.status,a.expires_at "
                     "FROM app.actions a JOIN app.runs r USING(run_id) "
-                    "JOIN app.tickets t USING(ticket_id) JOIN app.threads th ON th.thread_id=t.thread_id "
+                    "JOIN app.tickets t USING(ticket_id) JOIN app.threads th ON "
+                    "th.thread_id=t.thread_id "
                     "WHERE th.project_id=%s ORDER BY a.expires_at DESC LIMIT 51",
                     (self.project,),
                 ).fetchall()

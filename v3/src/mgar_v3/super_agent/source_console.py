@@ -283,10 +283,13 @@ class SourceConsole(ConsoleProjection):
 
     def _source_runs(self, conn: Connection, identifier: UUID) -> list[UUID]:
         rows = conn.execute(
-            "SELECT b.run_id FROM app.source_run_policies b JOIN app.source_policies p USING(policy_id) "
+            "SELECT b.run_id FROM app.source_run_policies b JOIN "
+            "app.source_policies p USING(policy_id) "
             "WHERE b.project_id=%s AND p.source_instance_id=%s UNION "
-            "SELECT run_id FROM app.sa_coding_bindings WHERE project_id=%s AND source_instance_id=%s UNION "
-            "SELECT run_id FROM app.sa_autonomy_attempts WHERE project_id=%s AND source_instance_id=%s LIMIT 1001",
+            "SELECT run_id FROM app.sa_coding_bindings WHERE project_id=%s "
+            "AND source_instance_id=%s UNION "
+            "SELECT run_id FROM app.sa_autonomy_attempts WHERE project_id=%s "
+            "AND source_instance_id=%s LIMIT 1001",
             (self.project, identifier, self.project, identifier, self.project, identifier),
         ).fetchall()
         if len(rows) > 1000:

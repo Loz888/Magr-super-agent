@@ -85,7 +85,8 @@ class ConsoleStore:
 
     def _credential(self, conn: Connection, identifier: UUID) -> Row | None:
         return conn.execute(
-            "SELECT * FROM app.sa_console_credentials WHERE source_instance_id=%s AND project_id=%s",
+            "SELECT * FROM app.sa_console_credentials WHERE "
+            "source_instance_id=%s AND project_id=%s",
             (identifier, self.project),
         ).fetchone()
 
@@ -97,7 +98,7 @@ class ConsoleStore:
         return {
             "revision": row["revision"] if row else 0,
             "configured": active,
-            "field_names": row["field_names"] if active else [],
+            "field_names": row["field_names"] if row is not None and active else [],
             "valid_until": row["valid_until"] if row else None,
             "revoked": bool(row and row["revoked_at"] is not None),
             "write_only": True,
@@ -156,7 +157,8 @@ class ConsoleStore:
             "SELECT r.run_id,r.ticket_id,r.status,r.outcome,r.reason_code,r.execution_epoch,"
             "r.execution_mode,r.graph_version,t.thread_id,t.status AS ticket_status "
             "FROM app.runs r JOIN app.tickets t USING(ticket_id) "
-            "JOIN app.threads th ON th.thread_id=t.thread_id WHERE r.run_id=%s AND th.project_id=%s",
+            "JOIN app.threads th ON th.thread_id=t.thread_id WHERE "
+            "r.run_id=%s AND th.project_id=%s",
             (identifier, self.project),
         ).fetchone()
         if row is None:
