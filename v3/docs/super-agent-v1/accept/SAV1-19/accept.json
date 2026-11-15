@@ -1,0 +1,1076 @@
+{
+  "card": "SAV1-19",
+  "status": "IN_PROGRESS_LOCAL_ENGINEERING_DELIVERED_PENDING_INDEPENDENT",
+  "source_commit": "7c2d7687a092a714fa58adf3616f314c40d38ac9",
+  "source_sha256": "dc6af02f523f3fe997b5446b8eada45f518d1cdec043bc3c6528c2d5fc159371",
+  "scope": "Original Owner-account console with sources/groups/users, encrypted write-only credentials, current health and authority, Shadow explanations, Task/Worker/Job metadata, shared cost/notification views, global/source revoke and original task stop. Controlled PG/Chromium only.",
+  "engineering_gate": "PASS_VERSION_BOUND_CONTROLLED_SCOPE",
+  "policy_security_gate": "PASS_CONSOLE_CHECKED_BOUNDARIES_ONLY",
+  "whole_system_policy_security_gate": "NOT_RUN",
+  "independent_review": "NOT_RUN",
+  "live_source_channel_gate": "NOT_RUN",
+  "live_coding_gate": "NOT_RUN",
+  "live_publication_gate": "NOT_RUN",
+  "continuous_operation_gate": "NOT_RUN",
+  "paid": "NOT_RUN",
+  "external_send": "NOT_RUN",
+  "H12_fixed_live_agent_mvp": "FAIL_RETAINED_OTHER_CLI",
+  "SA20": "NOT_STARTED",
+  "ownership": {
+    "commit": "8d19308a585e80885fc4f0bfeec4853395236ab8",
+    "section": 45,
+    "confirmation": "docs/super-agent-v1/sa19-proposal/ownership-confirmed.json",
+    "three_shared_files_exact": true,
+    "Harness_active_files_touched": false
+  },
+  "formal": {
+    "unique_cases": 78,
+    "version_bound_PASS": 78,
+    "remaining_failed": 0,
+    "final_revision_full_suite": "NOT_RUN_PER_USER_FAILED_ONLY_RETEST_RULE",
+    "versions": [
+      {
+        "source_commit": "4856d9099f33f04944ff99862aede2c42c0063e3",
+        "source_sha256": "01c24e937dfc90df622970de8c6358a25c79be0c2c9c8e8b09d69ededb2849d2",
+        "formal_PASS": 23
+      },
+      {
+        "source_commit": "73cfb6fd3693157657dcd274dd4eed7d13302ea7",
+        "source_sha256": "53ac73d00f45b182be20c4f018bd280bb18cbf390dcbe6e5aa278aa7810fe40a",
+        "formal_PASS": 2
+      },
+      {
+        "source_commit": "fb61677b66d0c387cfc99ea976b1e79670e33c8d",
+        "source_sha256": "670da76b72d7bad9a4aa015c5d9574d1f1cccabe3215bbcd21a2ba6c80b8a933",
+        "formal_PASS": 9
+      },
+      {
+        "source_commit": "8fc7494abb66f3d9d692c42a1aa832706d271557",
+        "source_sha256": "c6c9d81fa9058dd7a232a4df8d815e256c64576c7874a2625dd4dbc4207fb0e0",
+        "formal_PASS": 5
+      },
+      {
+        "source_commit": "140dab9f5961cd1550686a6fe62d9dd10eb9e82e",
+        "source_sha256": "54002706813a1ee71271da7b0e1614a59610a43fc6ac4535b542b56fb64137bd",
+        "formal_PASS": 29
+      },
+      {
+        "source_commit": "f2e220e9d2d031d778c1aabbab5851138aaf109d",
+        "source_sha256": "895992541832317f78cef18101e730c802400b42ebbebfec5a4211afb7168366",
+        "formal_PASS": 6
+      },
+      {
+        "source_commit": "907deb25e3c415fffe0ea011edce26c65444221e",
+        "source_sha256": "4314cd14b6b83b6dad0e86a90aa58ec76f153ee17da17073f21139509690154c",
+        "formal_PASS": 4
+      }
+    ],
+    "testcases": [
+      {
+        "nodeid": "tests/test_source_console_backend.py::test_actual_platform_scope_and_encrypted_credential_save_are_redacted_and_never_activate[feishu]",
+        "source_commit": "4856d9099f33f04944ff99862aede2c42c0063e3",
+        "source_sha256": "01c24e937dfc90df622970de8c6358a25c79be0c2c9c8e8b09d69ededb2849d2",
+        "junit": "evidence/SAV1-19/20261115T093507Z-6bdf89e6/junit.xml",
+        "scope": "SAV1-19"
+      },
+      {
+        "nodeid": "tests/test_source_console_backend.py::test_actual_platform_scope_and_encrypted_credential_save_are_redacted_and_never_activate[github]",
+        "source_commit": "4856d9099f33f04944ff99862aede2c42c0063e3",
+        "source_sha256": "01c24e937dfc90df622970de8c6358a25c79be0c2c9c8e8b09d69ededb2849d2",
+        "junit": "evidence/SAV1-19/20261115T093507Z-6bdf89e6/junit.xml",
+        "scope": "SAV1-19"
+      },
+      {
+        "nodeid": "tests/test_source_console_backend.py::test_ciphertext_is_bound_to_exact_installation_and_revision",
+        "source_commit": "4856d9099f33f04944ff99862aede2c42c0063e3",
+        "source_sha256": "01c24e937dfc90df622970de8c6358a25c79be0c2c9c8e8b09d69ededb2849d2",
+        "junit": "evidence/SAV1-19/20261115T093507Z-6bdf89e6/junit.xml",
+        "scope": "SAV1-19"
+      },
+      {
+        "nodeid": "tests/test_source_console_backend.py::test_confirmed0052_exact_shared_files_49_migrations_and_actual_engine_routes",
+        "source_commit": "73cfb6fd3693157657dcd274dd4eed7d13302ea7",
+        "source_sha256": "53ac73d00f45b182be20c4f018bd280bb18cbf390dcbe6e5aa278aa7810fe40a",
+        "junit": "evidence/super-agent-v1/SAV1-19/start-20261115T084702Z-1880540c/backend-failed2-recheck/junit.xml",
+        "scope": "backend-failed2-recheck"
+      },
+      {
+        "nodeid": "tests/test_source_console_backend.py::test_credentials_rotate_with_original_source_revision_and_stale_cas_cannot_overwrite",
+        "source_commit": "4856d9099f33f04944ff99862aede2c42c0063e3",
+        "source_sha256": "01c24e937dfc90df622970de8c6358a25c79be0c2c9c8e8b09d69ededb2849d2",
+        "junit": "evidence/SAV1-19/20261115T093507Z-6bdf89e6/junit.xml",
+        "scope": "SAV1-19"
+      },
+      {
+        "nodeid": "tests/test_source_console_backend.py::test_current_worker_gate_blocks_backend_repair_authority_not_only_ui[auto_repair]",
+        "source_commit": "4856d9099f33f04944ff99862aede2c42c0063e3",
+        "source_sha256": "01c24e937dfc90df622970de8c6358a25c79be0c2c9c8e8b09d69ededb2849d2",
+        "junit": "evidence/SAV1-19/20261115T093507Z-6bdf89e6/junit.xml",
+        "scope": "SAV1-19"
+      },
+      {
+        "nodeid": "tests/test_source_console_backend.py::test_current_worker_gate_blocks_backend_repair_authority_not_only_ui[shadow_with_write_grant]",
+        "source_commit": "4856d9099f33f04944ff99862aede2c42c0063e3",
+        "source_sha256": "01c24e937dfc90df622970de8c6358a25c79be0c2c9c8e8b09d69ededb2849d2",
+        "junit": "evidence/SAV1-19/20261115T093507Z-6bdf89e6/junit.xml",
+        "scope": "SAV1-19"
+      },
+      {
+        "nodeid": "tests/test_source_console_backend.py::test_global_disable_is_atomic_over_both_original_sources_and_has_no_parallel_flag",
+        "source_commit": "4856d9099f33f04944ff99862aede2c42c0063e3",
+        "source_sha256": "01c24e937dfc90df622970de8c6358a25c79be0c2c9c8e8b09d69ededb2849d2",
+        "junit": "evidence/SAV1-19/20261115T093507Z-6bdf89e6/junit.xml",
+        "scope": "SAV1-19"
+      },
+      {
+        "nodeid": "tests/test_source_console_backend.py::test_global_failure_rolls_back_first_source_and_credential_erasure",
+        "source_commit": "4856d9099f33f04944ff99862aede2c42c0063e3",
+        "source_sha256": "01c24e937dfc90df622970de8c6358a25c79be0c2c9c8e8b09d69ededb2849d2",
+        "junit": "evidence/SAV1-19/20261115T093507Z-6bdf89e6/junit.xml",
+        "scope": "SAV1-19"
+      },
+      {
+        "nodeid": "tests/test_source_console_backend.py::test_key_io_refuses_active_business_transaction",
+        "source_commit": "4856d9099f33f04944ff99862aede2c42c0063e3",
+        "source_sha256": "01c24e937dfc90df622970de8c6358a25c79be0c2c9c8e8b09d69ededb2849d2",
+        "junit": "evidence/SAV1-19/20261115T093507Z-6bdf89e6/junit.xml",
+        "scope": "SAV1-19"
+      },
+      {
+        "nodeid": "tests/test_source_console_backend.py::test_other_project_run_is_not_readable_or_stoppable_from_console",
+        "source_commit": "73cfb6fd3693157657dcd274dd4eed7d13302ea7",
+        "source_sha256": "53ac73d00f45b182be20c4f018bd280bb18cbf390dcbe6e5aa278aa7810fe40a",
+        "junit": "evidence/super-agent-v1/SAV1-19/start-20261115T084702Z-1880540c/backend-failed2-recheck/junit.xml",
+        "scope": "backend-failed2-recheck"
+      },
+      {
+        "nodeid": "tests/test_source_console_backend.py::test_owner_can_stop_original_run_and_epoch_cas_rejects_stale_command",
+        "source_commit": "4856d9099f33f04944ff99862aede2c42c0063e3",
+        "source_sha256": "01c24e937dfc90df622970de8c6358a25c79be0c2c9c8e8b09d69ededb2849d2",
+        "junit": "evidence/SAV1-19/20261115T093507Z-6bdf89e6/junit.xml",
+        "scope": "SAV1-19"
+      },
+      {
+        "nodeid": "tests/test_source_console_backend.py::test_owner_revoked_during_key_io_prevents_any_source_or_secret_commit",
+        "source_commit": "4856d9099f33f04944ff99862aede2c42c0063e3",
+        "source_sha256": "01c24e937dfc90df622970de8c6358a25c79be0c2c9c8e8b09d69ededb2849d2",
+        "junit": "evidence/SAV1-19/20261115T093507Z-6bdf89e6/junit.xml",
+        "scope": "SAV1-19"
+      },
+      {
+        "nodeid": "tests/test_source_console_backend.py::test_preview_and_observation_are_read_only_and_semantics_explicitly_not_run",
+        "source_commit": "4856d9099f33f04944ff99862aede2c42c0063e3",
+        "source_sha256": "01c24e937dfc90df622970de8c6358a25c79be0c2c9c8e8b09d69ededb2849d2",
+        "junit": "evidence/SAV1-19/20261115T093507Z-6bdf89e6/junit.xml",
+        "scope": "SAV1-19"
+      },
+      {
+        "nodeid": "tests/test_source_console_backend.py::test_rule_scope_cannot_exceed_selected_app_group_user_or_events[actor]",
+        "source_commit": "4856d9099f33f04944ff99862aede2c42c0063e3",
+        "source_sha256": "01c24e937dfc90df622970de8c6358a25c79be0c2c9c8e8b09d69ededb2849d2",
+        "junit": "evidence/SAV1-19/20261115T093507Z-6bdf89e6/junit.xml",
+        "scope": "SAV1-19"
+      },
+      {
+        "nodeid": "tests/test_source_console_backend.py::test_rule_scope_cannot_exceed_selected_app_group_user_or_events[conversation]",
+        "source_commit": "4856d9099f33f04944ff99862aede2c42c0063e3",
+        "source_sha256": "01c24e937dfc90df622970de8c6358a25c79be0c2c9c8e8b09d69ededb2849d2",
+        "junit": "evidence/SAV1-19/20261115T093507Z-6bdf89e6/junit.xml",
+        "scope": "SAV1-19"
+      },
+      {
+        "nodeid": "tests/test_source_console_backend.py::test_rule_scope_cannot_exceed_selected_app_group_user_or_events[event]",
+        "source_commit": "4856d9099f33f04944ff99862aede2c42c0063e3",
+        "source_sha256": "01c24e937dfc90df622970de8c6358a25c79be0c2c9c8e8b09d69ededb2849d2",
+        "junit": "evidence/SAV1-19/20261115T093507Z-6bdf89e6/junit.xml",
+        "scope": "SAV1-19"
+      },
+      {
+        "nodeid": "tests/test_source_console_backend.py::test_scope_only_setup_never_creates_key_and_keeps_credentials_unconfigured",
+        "source_commit": "4856d9099f33f04944ff99862aede2c42c0063e3",
+        "source_sha256": "01c24e937dfc90df622970de8c6358a25c79be0c2c9c8e8b09d69ededb2849d2",
+        "junit": "evidence/SAV1-19/20261115T093507Z-6bdf89e6/junit.xml",
+        "scope": "SAV1-19"
+      },
+      {
+        "nodeid": "tests/test_source_console_backend.py::test_source_revision_changed_during_key_io_is_rechecked_before_mutation",
+        "source_commit": "4856d9099f33f04944ff99862aede2c42c0063e3",
+        "source_sha256": "01c24e937dfc90df622970de8c6358a25c79be0c2c9c8e8b09d69ededb2849d2",
+        "junit": "evidence/SAV1-19/20261115T093507Z-6bdf89e6/junit.xml",
+        "scope": "SAV1-19"
+      },
+      {
+        "nodeid": "tests/test_source_console_backend.py::test_source_revoke_composes_actual_policy_settings_ingress_and_cipher_erasure[feishu]",
+        "source_commit": "4856d9099f33f04944ff99862aede2c42c0063e3",
+        "source_sha256": "01c24e937dfc90df622970de8c6358a25c79be0c2c9c8e8b09d69ededb2849d2",
+        "junit": "evidence/SAV1-19/20261115T093507Z-6bdf89e6/junit.xml",
+        "scope": "SAV1-19"
+      },
+      {
+        "nodeid": "tests/test_source_console_backend.py::test_source_revoke_composes_actual_policy_settings_ingress_and_cipher_erasure[github]",
+        "source_commit": "4856d9099f33f04944ff99862aede2c42c0063e3",
+        "source_sha256": "01c24e937dfc90df622970de8c6358a25c79be0c2c9c8e8b09d69ededb2849d2",
+        "junit": "evidence/SAV1-19/20261115T093507Z-6bdf89e6/junit.xml",
+        "scope": "SAV1-19"
+      },
+      {
+        "nodeid": "tests/test_source_console_backend.py::test_stale_global_snapshot_is_rejected_without_disabling_new_source",
+        "source_commit": "4856d9099f33f04944ff99862aede2c42c0063e3",
+        "source_sha256": "01c24e937dfc90df622970de8c6358a25c79be0c2c9c8e8b09d69ededb2849d2",
+        "junit": "evidence/SAV1-19/20261115T093507Z-6bdf89e6/junit.xml",
+        "scope": "SAV1-19"
+      },
+      {
+        "nodeid": "tests/test_source_console_backend.py::test_unsafe_key_files_fail_closed_without_replacing_credentials[hardlink]",
+        "source_commit": "4856d9099f33f04944ff99862aede2c42c0063e3",
+        "source_sha256": "01c24e937dfc90df622970de8c6358a25c79be0c2c9c8e8b09d69ededb2849d2",
+        "junit": "evidence/SAV1-19/20261115T093507Z-6bdf89e6/junit.xml",
+        "scope": "SAV1-19"
+      },
+      {
+        "nodeid": "tests/test_source_console_backend.py::test_unsafe_key_files_fail_closed_without_replacing_credentials[mode]",
+        "source_commit": "4856d9099f33f04944ff99862aede2c42c0063e3",
+        "source_sha256": "01c24e937dfc90df622970de8c6358a25c79be0c2c9c8e8b09d69ededb2849d2",
+        "junit": "evidence/SAV1-19/20261115T093507Z-6bdf89e6/junit.xml",
+        "scope": "SAV1-19"
+      },
+      {
+        "nodeid": "tests/test_source_console_backend.py::test_unsafe_key_files_fail_closed_without_replacing_credentials[symlink]",
+        "source_commit": "4856d9099f33f04944ff99862aede2c42c0063e3",
+        "source_sha256": "01c24e937dfc90df622970de8c6358a25c79be0c2c9c8e8b09d69ededb2849d2",
+        "junit": "evidence/SAV1-19/20261115T093507Z-6bdf89e6/junit.xml",
+        "scope": "SAV1-19"
+      },
+      {
+        "nodeid": "tests/test_source_console_boundaries.py::test_fresh_verified_identity_event_after_binding_has_current_usable_proof_only",
+        "source_commit": "fb61677b66d0c387cfc99ea976b1e79670e33c8d",
+        "source_sha256": "670da76b72d7bad9a4aa015c5d9574d1f1cccabe3215bbcd21a2ba6c80b8a933",
+        "junit": "evidence/SAV1-19-BOUNDARIES/20261115T101600Z-e2b06f34/junit.xml",
+        "scope": "SAV1-19-BOUNDARIES"
+      },
+      {
+        "nodeid": "tests/test_source_console_boundaries.py::test_shadow_decision_retains_actual_intended_action_without_inventing_model_execution[ask]",
+        "source_commit": "fb61677b66d0c387cfc99ea976b1e79670e33c8d",
+        "source_sha256": "670da76b72d7bad9a4aa015c5d9574d1f1cccabe3215bbcd21a2ba6c80b8a933",
+        "junit": "evidence/SAV1-19-BOUNDARIES/20261115T101600Z-e2b06f34/junit.xml",
+        "scope": "SAV1-19-BOUNDARIES"
+      },
+      {
+        "nodeid": "tests/test_source_console_boundaries.py::test_shadow_decision_retains_actual_intended_action_without_inventing_model_execution[attach]",
+        "source_commit": "fb61677b66d0c387cfc99ea976b1e79670e33c8d",
+        "source_sha256": "670da76b72d7bad9a4aa015c5d9574d1f1cccabe3215bbcd21a2ba6c80b8a933",
+        "junit": "evidence/SAV1-19-BOUNDARIES/20261115T101600Z-e2b06f34/junit.xml",
+        "scope": "SAV1-19-BOUNDARIES"
+      },
+      {
+        "nodeid": "tests/test_source_console_boundaries.py::test_shadow_decision_retains_actual_intended_action_without_inventing_model_execution[create]",
+        "source_commit": "fb61677b66d0c387cfc99ea976b1e79670e33c8d",
+        "source_sha256": "670da76b72d7bad9a4aa015c5d9574d1f1cccabe3215bbcd21a2ba6c80b8a933",
+        "junit": "evidence/SAV1-19-BOUNDARIES/20261115T101600Z-e2b06f34/junit.xml",
+        "scope": "SAV1-19-BOUNDARIES"
+      },
+      {
+        "nodeid": "tests/test_source_console_boundaries.py::test_shadow_decision_retains_actual_intended_action_without_inventing_model_execution[ignore]",
+        "source_commit": "fb61677b66d0c387cfc99ea976b1e79670e33c8d",
+        "source_sha256": "670da76b72d7bad9a4aa015c5d9574d1f1cccabe3215bbcd21a2ba6c80b8a933",
+        "junit": "evidence/SAV1-19-BOUNDARIES/20261115T101600Z-e2b06f34/junit.xml",
+        "scope": "SAV1-19-BOUNDARIES"
+      },
+      {
+        "nodeid": "tests/test_source_console_boundaries.py::test_shadow_decision_retains_actual_intended_action_without_inventing_model_execution[observe]",
+        "source_commit": "fb61677b66d0c387cfc99ea976b1e79670e33c8d",
+        "source_sha256": "670da76b72d7bad9a4aa015c5d9574d1f1cccabe3215bbcd21a2ba6c80b8a933",
+        "junit": "evidence/SAV1-19-BOUNDARIES/20261115T101600Z-e2b06f34/junit.xml",
+        "scope": "SAV1-19-BOUNDARIES"
+      },
+      {
+        "nodeid": "tests/test_source_console_boundaries.py::test_source_revoke_over_authenticated_http_invalidates_cipher_and_current_settings",
+        "source_commit": "fb61677b66d0c387cfc99ea976b1e79670e33c8d",
+        "source_sha256": "670da76b72d7bad9a4aa015c5d9574d1f1cccabe3215bbcd21a2ba6c80b8a933",
+        "junit": "evidence/SAV1-19-BOUNDARIES/20261115T101600Z-e2b06f34/junit.xml",
+        "scope": "SAV1-19-BOUNDARIES"
+      },
+      {
+        "nodeid": "tests/test_source_console_boundaries.py::test_static_head_does_not_fall_through_owner_get_route_to_public_mount",
+        "source_commit": "8fc7494abb66f3d9d692c42a1aa832706d271557",
+        "source_sha256": "c6c9d81fa9058dd7a232a4df8d815e256c64576c7874a2625dd4dbc4207fb0e0",
+        "junit": "evidence/super-agent-v1/SAV1-19/start-20261115T084702Z-1880540c/new-static-aliases-and-lint/static-junit.xml",
+        "scope": "new-static-aliases-and-lint"
+      },
+      {
+        "nodeid": "tests/test_source_console_boundaries.py::test_static_normalized_aliases_cannot_fall_through_to_public_mount[/static/%2e/source-console.html]",
+        "source_commit": "8fc7494abb66f3d9d692c42a1aa832706d271557",
+        "source_sha256": "c6c9d81fa9058dd7a232a4df8d815e256c64576c7874a2625dd4dbc4207fb0e0",
+        "junit": "evidence/super-agent-v1/SAV1-19/start-20261115T084702Z-1880540c/new-static-aliases-and-lint/static-junit.xml",
+        "scope": "new-static-aliases-and-lint"
+      },
+      {
+        "nodeid": "tests/test_source_console_boundaries.py::test_static_normalized_aliases_cannot_fall_through_to_public_mount[/static//source-console.css]",
+        "source_commit": "8fc7494abb66f3d9d692c42a1aa832706d271557",
+        "source_sha256": "c6c9d81fa9058dd7a232a4df8d815e256c64576c7874a2625dd4dbc4207fb0e0",
+        "junit": "evidence/super-agent-v1/SAV1-19/start-20261115T084702Z-1880540c/new-static-aliases-and-lint/static-junit.xml",
+        "scope": "new-static-aliases-and-lint"
+      },
+      {
+        "nodeid": "tests/test_source_console_boundaries.py::test_static_normalized_aliases_cannot_fall_through_to_public_mount[/static/nested/%2e%2e/source-console.js]",
+        "source_commit": "8fc7494abb66f3d9d692c42a1aa832706d271557",
+        "source_sha256": "c6c9d81fa9058dd7a232a4df8d815e256c64576c7874a2625dd4dbc4207fb0e0",
+        "junit": "evidence/super-agent-v1/SAV1-19/start-20261115T084702Z-1880540c/new-static-aliases-and-lint/static-junit.xml",
+        "scope": "new-static-aliases-and-lint"
+      },
+      {
+        "nodeid": "tests/test_source_console_boundaries.py::test_static_normalized_aliases_cannot_fall_through_to_public_mount[/static/source-console.js%2f..%2fsource-console.css]",
+        "source_commit": "8fc7494abb66f3d9d692c42a1aa832706d271557",
+        "source_sha256": "c6c9d81fa9058dd7a232a4df8d815e256c64576c7874a2625dd4dbc4207fb0e0",
+        "junit": "evidence/super-agent-v1/SAV1-19/start-20261115T084702Z-1880540c/new-static-aliases-and-lint/static-junit.xml",
+        "scope": "new-static-aliases-and-lint"
+      },
+      {
+        "nodeid": "tests/test_source_console_boundaries.py::test_static_page_alias_cannot_expose_page_and_owner_asset_routes_precede_fallback",
+        "source_commit": "fb61677b66d0c387cfc99ea976b1e79670e33c8d",
+        "source_sha256": "670da76b72d7bad9a4aa015c5d9574d1f1cccabe3215bbcd21a2ba6c80b8a933",
+        "junit": "evidence/SAV1-19-BOUNDARIES/20261115T101600Z-e2b06f34/junit.xml",
+        "scope": "SAV1-19-BOUNDARIES"
+      },
+      {
+        "nodeid": "tests/test_source_console_browser.py::test_browser_completes_source_secret_rule_preview_ingress_and_zero_budget_without_files[feishu]",
+        "source_commit": "140dab9f5961cd1550686a6fe62d9dd10eb9e82e",
+        "source_sha256": "54002706813a1ee71271da7b0e1614a59610a43fc6ac4535b542b56fb64137bd",
+        "junit": "evidence/super-agent-v1/SAV1-19/start-20261115T084702Z-1880540c/http-browser-failed-recheck/browser-junit.xml",
+        "scope": "http-browser-failed-recheck"
+      },
+      {
+        "nodeid": "tests/test_source_console_browser.py::test_browser_completes_source_secret_rule_preview_ingress_and_zero_budget_without_files[github]",
+        "source_commit": "140dab9f5961cd1550686a6fe62d9dd10eb9e82e",
+        "source_sha256": "54002706813a1ee71271da7b0e1614a59610a43fc6ac4535b542b56fb64137bd",
+        "junit": "evidence/super-agent-v1/SAV1-19/start-20261115T084702Z-1880540c/http-browser-failed-recheck/browser-junit.xml",
+        "scope": "http-browser-failed-recheck"
+      },
+      {
+        "nodeid": "tests/test_source_console_browser.py::test_browser_distinguishes_online_insufficient_and_closing_does_not_cancel_original_task",
+        "source_commit": "140dab9f5961cd1550686a6fe62d9dd10eb9e82e",
+        "source_sha256": "54002706813a1ee71271da7b0e1614a59610a43fc6ac4535b542b56fb64137bd",
+        "junit": "evidence/super-agent-v1/SAV1-19/start-20261115T084702Z-1880540c/http-browser-failed-recheck/browser-junit.xml",
+        "scope": "http-browser-failed-recheck"
+      },
+      {
+        "nodeid": "tests/test_source_console_browser.py::test_browser_shadow_reason_and_not_run_are_visible_on_narrow_authenticated_page",
+        "source_commit": "f2e220e9d2d031d778c1aabbab5851138aaf109d",
+        "source_sha256": "895992541832317f78cef18101e730c802400b42ebbebfec5a4211afb7168366",
+        "junit": "evidence/super-agent-v1/SAV1-19/start-20261115T084702Z-1880540c/delivery-and-mobile-first/mobile-junit.xml",
+        "scope": "delivery-and-mobile-first"
+      },
+      {
+        "nodeid": "tests/test_source_console_catalogue.py::test_all_eighteen_source_catalogues_current_references_and_seventeen_history_files_match",
+        "source_commit": "f2e220e9d2d031d778c1aabbab5851138aaf109d",
+        "source_sha256": "895992541832317f78cef18101e730c802400b42ebbebfec5a4211afb7168366",
+        "junit": "evidence/SAV1-19-DELIVERY/20261115T102038Z-7cf63c23/junit.xml",
+        "scope": "SAV1-19-DELIVERY"
+      },
+      {
+        "nodeid": "tests/test_source_console_catalogue.py::test_completed_registry_covers_backend_http_browser_boundaries_and_delivery_without_preparation",
+        "source_commit": "f2e220e9d2d031d778c1aabbab5851138aaf109d",
+        "source_sha256": "895992541832317f78cef18101e730c802400b42ebbebfec5a4211afb7168366",
+        "junit": "evidence/SAV1-19-DELIVERY/20261115T102038Z-7cf63c23/junit.xml",
+        "scope": "SAV1-19-DELIVERY"
+      },
+      {
+        "nodeid": "tests/test_source_console_catalogue.py::test_delivery_ownership_bytes_and_operation_guidance_remain_exact",
+        "source_commit": "f2e220e9d2d031d778c1aabbab5851138aaf109d",
+        "source_sha256": "895992541832317f78cef18101e730c802400b42ebbebfec5a4211afb7168366",
+        "junit": "evidence/SAV1-19-DELIVERY/20261115T102038Z-7cf63c23/junit.xml",
+        "scope": "SAV1-19-DELIVERY"
+      },
+      {
+        "nodeid": "tests/test_source_console_catalogue.py::test_final_console_catalogue_has_no_runtime_execution_or_publication_activation",
+        "source_commit": "f2e220e9d2d031d778c1aabbab5851138aaf109d",
+        "source_sha256": "895992541832317f78cef18101e730c802400b42ebbebfec5a4211afb7168366",
+        "junit": "evidence/SAV1-19-DELIVERY/20261115T102038Z-7cf63c23/junit.xml",
+        "scope": "SAV1-19-DELIVERY"
+      },
+      {
+        "nodeid": "tests/test_source_console_catalogue.py::test_published_console_schema_and_inert_example_match_actual_input_contracts",
+        "source_commit": "f2e220e9d2d031d778c1aabbab5851138aaf109d",
+        "source_sha256": "895992541832317f78cef18101e730c802400b42ebbebfec5a4211afb7168366",
+        "junit": "evidence/SAV1-19-DELIVERY/20261115T102038Z-7cf63c23/junit.xml",
+        "scope": "SAV1-19-DELIVERY"
+      },
+      {
+        "nodeid": "tests/test_source_console_http.py::test_all_twelve_owner_routes_deny_local_bearer_without_cookie[GET-/decisions]",
+        "source_commit": "140dab9f5961cd1550686a6fe62d9dd10eb9e82e",
+        "source_sha256": "54002706813a1ee71271da7b0e1614a59610a43fc6ac4535b542b56fb64137bd",
+        "junit": "evidence/super-agent-v1/SAV1-19/start-20261115T084702Z-1880540c/http-browser-failed-recheck/http-junit.xml",
+        "scope": "http-browser-failed-recheck"
+      },
+      {
+        "nodeid": "tests/test_source_console_http.py::test_all_twelve_owner_routes_deny_local_bearer_without_cookie[GET-/sources/00000000-0000-4000-8000-000000000019]",
+        "source_commit": "140dab9f5961cd1550686a6fe62d9dd10eb9e82e",
+        "source_sha256": "54002706813a1ee71271da7b0e1614a59610a43fc6ac4535b542b56fb64137bd",
+        "junit": "evidence/super-agent-v1/SAV1-19/start-20261115T084702Z-1880540c/http-browser-failed-recheck/http-junit.xml",
+        "scope": "http-browser-failed-recheck"
+      },
+      {
+        "nodeid": "tests/test_source_console_http.py::test_all_twelve_owner_routes_deny_local_bearer_without_cookie[GET-/tasks/00000000-0000-4000-8000-000000000019]",
+        "source_commit": "140dab9f5961cd1550686a6fe62d9dd10eb9e82e",
+        "source_sha256": "54002706813a1ee71271da7b0e1614a59610a43fc6ac4535b542b56fb64137bd",
+        "junit": "evidence/super-agent-v1/SAV1-19/start-20261115T084702Z-1880540c/http-browser-failed-recheck/http-junit.xml",
+        "scope": "http-browser-failed-recheck"
+      },
+      {
+        "nodeid": "tests/test_source_console_http.py::test_all_twelve_owner_routes_deny_local_bearer_without_cookie[GET-]",
+        "source_commit": "140dab9f5961cd1550686a6fe62d9dd10eb9e82e",
+        "source_sha256": "54002706813a1ee71271da7b0e1614a59610a43fc6ac4535b542b56fb64137bd",
+        "junit": "evidence/super-agent-v1/SAV1-19/start-20261115T084702Z-1880540c/http-browser-failed-recheck/http-junit.xml",
+        "scope": "http-browser-failed-recheck"
+      },
+      {
+        "nodeid": "tests/test_source_console_http.py::test_all_twelve_owner_routes_deny_local_bearer_without_cookie[POST-/disable-all]",
+        "source_commit": "140dab9f5961cd1550686a6fe62d9dd10eb9e82e",
+        "source_sha256": "54002706813a1ee71271da7b0e1614a59610a43fc6ac4535b542b56fb64137bd",
+        "junit": "evidence/super-agent-v1/SAV1-19/start-20261115T084702Z-1880540c/http-browser-failed-recheck/http-junit.xml",
+        "scope": "http-browser-failed-recheck"
+      },
+      {
+        "nodeid": "tests/test_source_console_http.py::test_all_twelve_owner_routes_deny_local_bearer_without_cookie[POST-/policies/00000000-0000-4000-8000-000000000019/preview]",
+        "source_commit": "140dab9f5961cd1550686a6fe62d9dd10eb9e82e",
+        "source_sha256": "54002706813a1ee71271da7b0e1614a59610a43fc6ac4535b542b56fb64137bd",
+        "junit": "evidence/super-agent-v1/SAV1-19/start-20261115T084702Z-1880540c/http-browser-failed-recheck/http-junit.xml",
+        "scope": "http-browser-failed-recheck"
+      },
+      {
+        "nodeid": "tests/test_source_console_http.py::test_all_twelve_owner_routes_deny_local_bearer_without_cookie[POST-/sources/00000000-0000-4000-8000-000000000019/revoke]",
+        "source_commit": "140dab9f5961cd1550686a6fe62d9dd10eb9e82e",
+        "source_sha256": "54002706813a1ee71271da7b0e1614a59610a43fc6ac4535b542b56fb64137bd",
+        "junit": "evidence/super-agent-v1/SAV1-19/start-20261115T084702Z-1880540c/http-browser-failed-recheck/http-junit.xml",
+        "scope": "http-browser-failed-recheck"
+      },
+      {
+        "nodeid": "tests/test_source_console_http.py::test_all_twelve_owner_routes_deny_local_bearer_without_cookie[POST-/tasks/00000000-0000-4000-8000-000000000019/stop]",
+        "source_commit": "140dab9f5961cd1550686a6fe62d9dd10eb9e82e",
+        "source_sha256": "54002706813a1ee71271da7b0e1614a59610a43fc6ac4535b542b56fb64137bd",
+        "junit": "evidence/super-agent-v1/SAV1-19/start-20261115T084702Z-1880540c/http-browser-failed-recheck/http-junit.xml",
+        "scope": "http-browser-failed-recheck"
+      },
+      {
+        "nodeid": "tests/test_source_console_http.py::test_all_twelve_owner_routes_deny_local_bearer_without_cookie[PUT-/policies/00000000-0000-4000-8000-000000000019]",
+        "source_commit": "140dab9f5961cd1550686a6fe62d9dd10eb9e82e",
+        "source_sha256": "54002706813a1ee71271da7b0e1614a59610a43fc6ac4535b542b56fb64137bd",
+        "junit": "evidence/super-agent-v1/SAV1-19/start-20261115T084702Z-1880540c/http-browser-failed-recheck/http-junit.xml",
+        "scope": "http-browser-failed-recheck"
+      },
+      {
+        "nodeid": "tests/test_source_console_http.py::test_all_twelve_owner_routes_deny_local_bearer_without_cookie[PUT-/sources/00000000-0000-4000-8000-000000000019/credentials]",
+        "source_commit": "140dab9f5961cd1550686a6fe62d9dd10eb9e82e",
+        "source_sha256": "54002706813a1ee71271da7b0e1614a59610a43fc6ac4535b542b56fb64137bd",
+        "junit": "evidence/super-agent-v1/SAV1-19/start-20261115T084702Z-1880540c/http-browser-failed-recheck/http-junit.xml",
+        "scope": "http-browser-failed-recheck"
+      },
+      {
+        "nodeid": "tests/test_source_console_http.py::test_all_twelve_owner_routes_deny_local_bearer_without_cookie[PUT-/sources/00000000-0000-4000-8000-000000000019/ingress]",
+        "source_commit": "140dab9f5961cd1550686a6fe62d9dd10eb9e82e",
+        "source_sha256": "54002706813a1ee71271da7b0e1614a59610a43fc6ac4535b542b56fb64137bd",
+        "junit": "evidence/super-agent-v1/SAV1-19/start-20261115T084702Z-1880540c/http-browser-failed-recheck/http-junit.xml",
+        "scope": "http-browser-failed-recheck"
+      },
+      {
+        "nodeid": "tests/test_source_console_http.py::test_all_twelve_owner_routes_deny_local_bearer_without_cookie[PUT-/sources/00000000-0000-4000-8000-000000000019]",
+        "source_commit": "140dab9f5961cd1550686a6fe62d9dd10eb9e82e",
+        "source_sha256": "54002706813a1ee71271da7b0e1614a59610a43fc6ac4535b542b56fb64137bd",
+        "junit": "evidence/super-agent-v1/SAV1-19/start-20261115T084702Z-1880540c/http-browser-failed-recheck/http-junit.xml",
+        "scope": "http-browser-failed-recheck"
+      },
+      {
+        "nodeid": "tests/test_source_console_http.py::test_bounded_parser_errors_do_not_reflect_input_secrets[body2-application/json-413]",
+        "source_commit": "140dab9f5961cd1550686a6fe62d9dd10eb9e82e",
+        "source_sha256": "54002706813a1ee71271da7b0e1614a59610a43fc6ac4535b542b56fb64137bd",
+        "junit": "evidence/super-agent-v1/SAV1-19/start-20261115T084702Z-1880540c/http-browser-failed-recheck/http-junit.xml",
+        "scope": "http-browser-failed-recheck"
+      },
+      {
+        "nodeid": "tests/test_source_console_http.py::test_bounded_parser_errors_do_not_reflect_input_secrets[secret-marker-text/plain-415]",
+        "source_commit": "140dab9f5961cd1550686a6fe62d9dd10eb9e82e",
+        "source_sha256": "54002706813a1ee71271da7b0e1614a59610a43fc6ac4535b542b56fb64137bd",
+        "junit": "evidence/super-agent-v1/SAV1-19/start-20261115T084702Z-1880540c/http-browser-failed-recheck/http-junit.xml",
+        "scope": "http-browser-failed-recheck"
+      },
+      {
+        "nodeid": "tests/test_source_console_http.py::test_bounded_parser_errors_do_not_reflect_input_secrets[{\"credentials\":\"secret-marker\", \"credentials\":\"duplicate\"}-application/json-422]",
+        "source_commit": "140dab9f5961cd1550686a6fe62d9dd10eb9e82e",
+        "source_sha256": "54002706813a1ee71271da7b0e1614a59610a43fc6ac4535b542b56fb64137bd",
+        "junit": "evidence/super-agent-v1/SAV1-19/start-20261115T084702Z-1880540c/http-browser-failed-recheck/http-junit.xml",
+        "scope": "http-browser-failed-recheck"
+      },
+      {
+        "nodeid": "tests/test_source_console_http.py::test_bounded_parser_errors_do_not_reflect_input_secrets[{\"secret-marker\":-application/json-422]",
+        "source_commit": "140dab9f5961cd1550686a6fe62d9dd10eb9e82e",
+        "source_sha256": "54002706813a1ee71271da7b0e1614a59610a43fc6ac4535b542b56fb64137bd",
+        "junit": "evidence/super-agent-v1/SAV1-19/start-20261115T084702Z-1880540c/http-browser-failed-recheck/http-junit.xml",
+        "scope": "http-browser-failed-recheck"
+      },
+      {
+        "nodeid": "tests/test_source_console_http.py::test_current_binding_revocation_committed_inside_status_blocks_old_projection",
+        "source_commit": "907deb25e3c415fffe0ea011edce26c65444221e",
+        "source_sha256": "4314cd14b6b83b6dad0e86a90aa58ec76f153ee17da17073f21139509690154c",
+        "junit": "evidence/SAV1-19-HTTP/20261115T100916Z-421aeda9/junit.xml",
+        "scope": "SAV1-19-HTTP"
+      },
+      {
+        "nodeid": "tests/test_source_console_http.py::test_current_cookie_mutation_still_requires_origin_and_csrf[foreign-origin]",
+        "source_commit": "140dab9f5961cd1550686a6fe62d9dd10eb9e82e",
+        "source_sha256": "54002706813a1ee71271da7b0e1614a59610a43fc6ac4535b542b56fb64137bd",
+        "junit": "evidence/super-agent-v1/SAV1-19/start-20261115T084702Z-1880540c/http-browser-failed-recheck/http-junit.xml",
+        "scope": "http-browser-failed-recheck"
+      },
+      {
+        "nodeid": "tests/test_source_console_http.py::test_current_cookie_mutation_still_requires_origin_and_csrf[missing-csrf]",
+        "source_commit": "140dab9f5961cd1550686a6fe62d9dd10eb9e82e",
+        "source_sha256": "54002706813a1ee71271da7b0e1614a59610a43fc6ac4535b542b56fb64137bd",
+        "junit": "evidence/super-agent-v1/SAV1-19/start-20261115T084702Z-1880540c/http-browser-failed-recheck/http-junit.xml",
+        "scope": "http-browser-failed-recheck"
+      },
+      {
+        "nodeid": "tests/test_source_console_http.py::test_current_cookie_mutation_still_requires_origin_and_csrf[missing-origin]",
+        "source_commit": "140dab9f5961cd1550686a6fe62d9dd10eb9e82e",
+        "source_sha256": "54002706813a1ee71271da7b0e1614a59610a43fc6ac4535b542b56fb64137bd",
+        "junit": "evidence/super-agent-v1/SAV1-19/start-20261115T084702Z-1880540c/http-browser-failed-recheck/http-junit.xml",
+        "scope": "http-browser-failed-recheck"
+      },
+      {
+        "nodeid": "tests/test_source_console_http.py::test_current_cookie_mutation_still_requires_origin_and_csrf[wrong-csrf]",
+        "source_commit": "140dab9f5961cd1550686a6fe62d9dd10eb9e82e",
+        "source_sha256": "54002706813a1ee71271da7b0e1614a59610a43fc6ac4535b542b56fb64137bd",
+        "junit": "evidence/super-agent-v1/SAV1-19/start-20261115T084702Z-1880540c/http-browser-failed-recheck/http-junit.xml",
+        "scope": "http-browser-failed-recheck"
+      },
+      {
+        "nodeid": "tests/test_source_console_http.py::test_http_source_credentials_page_cache_controls_and_safe_validation",
+        "source_commit": "fb61677b66d0c387cfc99ea976b1e79670e33c8d",
+        "source_sha256": "670da76b72d7bad9a4aa015c5d9574d1f1cccabe3215bbcd21a2ba6c80b8a933",
+        "junit": "evidence/super-agent-v1/SAV1-19/start-20261115T084702Z-1880540c/last-http-and-new-boundaries/http-junit.xml",
+        "scope": "last-http-and-new-boundaries"
+      },
+      {
+        "nodeid": "tests/test_source_console_http.py::test_identity_snapshot_uses_auth_revision_and_does_not_write_authenticated_read_audits",
+        "source_commit": "140dab9f5961cd1550686a6fe62d9dd10eb9e82e",
+        "source_sha256": "54002706813a1ee71271da7b0e1614a59610a43fc6ac4535b542b56fb64137bd",
+        "junit": "evidence/super-agent-v1/SAV1-19/start-20261115T084702Z-1880540c/http-browser-failed-recheck/http-junit.xml",
+        "scope": "http-browser-failed-recheck"
+      },
+      {
+        "nodeid": "tests/test_source_console_http.py::test_metadata_task_projection_excludes_original_message_and_stops_only_exact_epoch",
+        "source_commit": "140dab9f5961cd1550686a6fe62d9dd10eb9e82e",
+        "source_sha256": "54002706813a1ee71271da7b0e1614a59610a43fc6ac4535b542b56fb64137bd",
+        "junit": "evidence/super-agent-v1/SAV1-19/start-20261115T084702Z-1880540c/http-browser-failed-recheck/http-junit.xml",
+        "scope": "http-browser-failed-recheck"
+      },
+      {
+        "nodeid": "tests/test_source_console_http.py::test_original_runtime_health_keeps_connection_separate_from_message_permissions[offline-unknown]",
+        "source_commit": "907deb25e3c415fffe0ea011edce26c65444221e",
+        "source_sha256": "4314cd14b6b83b6dad0e86a90aa58ec76f153ee17da17073f21139509690154c",
+        "junit": "evidence/SAV1-19-HTTP/20261115T100916Z-421aeda9/junit.xml",
+        "scope": "SAV1-19-HTTP"
+      },
+      {
+        "nodeid": "tests/test_source_console_http.py::test_original_runtime_health_keeps_connection_separate_from_message_permissions[online-granted]",
+        "source_commit": "907deb25e3c415fffe0ea011edce26c65444221e",
+        "source_sha256": "4314cd14b6b83b6dad0e86a90aa58ec76f153ee17da17073f21139509690154c",
+        "junit": "evidence/SAV1-19-HTTP/20261115T100916Z-421aeda9/junit.xml",
+        "scope": "SAV1-19-HTTP"
+      },
+      {
+        "nodeid": "tests/test_source_console_http.py::test_original_runtime_health_keeps_connection_separate_from_message_permissions[online-insufficient]",
+        "source_commit": "907deb25e3c415fffe0ea011edce26c65444221e",
+        "source_sha256": "4314cd14b6b83b6dad0e86a90aa58ec76f153ee17da17073f21139509690154c",
+        "junit": "evidence/SAV1-19-HTTP/20261115T100916Z-421aeda9/junit.xml",
+        "scope": "SAV1-19-HTTP"
+      },
+      {
+        "nodeid": "tests/test_source_console_http.py::test_preview_over_http_is_read_only_and_marks_semantic_not_run",
+        "source_commit": "140dab9f5961cd1550686a6fe62d9dd10eb9e82e",
+        "source_sha256": "54002706813a1ee71271da7b0e1614a59610a43fc6ac4535b542b56fb64137bd",
+        "junit": "evidence/super-agent-v1/SAV1-19/start-20261115T084702Z-1880540c/http-browser-failed-recheck/http-junit.xml",
+        "scope": "http-browser-failed-recheck"
+      },
+      {
+        "nodeid": "tests/test_source_console_http.py::test_private_page_and_both_assets_require_owner[/source-console-303]",
+        "source_commit": "140dab9f5961cd1550686a6fe62d9dd10eb9e82e",
+        "source_sha256": "54002706813a1ee71271da7b0e1614a59610a43fc6ac4535b542b56fb64137bd",
+        "junit": "evidence/super-agent-v1/SAV1-19/start-20261115T084702Z-1880540c/http-browser-failed-recheck/http-junit.xml",
+        "scope": "http-browser-failed-recheck"
+      },
+      {
+        "nodeid": "tests/test_source_console_http.py::test_private_page_and_both_assets_require_owner[/static/source-console.css-401]",
+        "source_commit": "140dab9f5961cd1550686a6fe62d9dd10eb9e82e",
+        "source_sha256": "54002706813a1ee71271da7b0e1614a59610a43fc6ac4535b542b56fb64137bd",
+        "junit": "evidence/super-agent-v1/SAV1-19/start-20261115T084702Z-1880540c/http-browser-failed-recheck/http-junit.xml",
+        "scope": "http-browser-failed-recheck"
+      },
+      {
+        "nodeid": "tests/test_source_console_http.py::test_private_page_and_both_assets_require_owner[/static/source-console.js-401]",
+        "source_commit": "140dab9f5961cd1550686a6fe62d9dd10eb9e82e",
+        "source_sha256": "54002706813a1ee71271da7b0e1614a59610a43fc6ac4535b542b56fb64137bd",
+        "junit": "evidence/super-agent-v1/SAV1-19/start-20261115T084702Z-1880540c/http-browser-failed-recheck/http-junit.xml",
+        "scope": "http-browser-failed-recheck"
+      }
+    ],
+    "historical_failed_observations": 33
+  },
+  "preparation": {
+    "unique_PASS": 54,
+    "record": "docs/super-agent-v1/accept/SAV1-19/preparation-20261115.json",
+    "not_repeated": true
+  },
+  "static_checks": [
+    {
+      "round": "backend-failed2-recheck",
+      "target": "lint-new-backend",
+      "command": [
+        "uv",
+        "run",
+        "--frozen",
+        "ruff",
+        "check",
+        "src/mgar_v3/super_agent/source_console.py",
+        "src/mgar_v3/super_agent/source_console_api.py",
+        "src/mgar_v3/super_agent/source_console_credentials.py",
+        "src/mgar_v3/super_agent/source_console_projection.py",
+        "src/mgar_v3/super_agent/source_console_store.py",
+        "src/mgar_v3/coordination/engine.py",
+        "src/mgar_v3/api.py",
+        "tests/sa19_support.py",
+        "tests/test_source_console_backend.py"
+      ],
+      "exit_code": 0,
+      "source_commit": "73cfb6fd3693157657dcd274dd4eed7d13302ea7",
+      "source_sha256": "53ac73d00f45b182be20c4f018bd280bb18cbf390dcbe6e5aa278aa7810fe40a",
+      "log": "evidence/super-agent-v1/SAV1-19/start-20261115T084702Z-1880540c/backend-failed2-recheck/lint-new-backend.log"
+    },
+    {
+      "round": "backend-failed2-recheck",
+      "target": "typecheck-new-backend",
+      "command": [
+        "uv",
+        "run",
+        "--frozen",
+        "mypy",
+        "--follow-imports=silent",
+        "src/mgar_v3/super_agent/source_console.py",
+        "src/mgar_v3/super_agent/source_console_api.py",
+        "src/mgar_v3/super_agent/source_console_credentials.py",
+        "src/mgar_v3/super_agent/source_console_projection.py",
+        "src/mgar_v3/super_agent/source_console_store.py",
+        "src/mgar_v3/coordination/engine.py",
+        "src/mgar_v3/api.py"
+      ],
+      "exit_code": 1,
+      "source_commit": "73cfb6fd3693157657dcd274dd4eed7d13302ea7",
+      "source_sha256": "53ac73d00f45b182be20c4f018bd280bb18cbf390dcbe6e5aa278aa7810fe40a",
+      "log": "evidence/super-agent-v1/SAV1-19/start-20261115T084702Z-1880540c/backend-failed2-recheck/typecheck-new-backend.log"
+    },
+    {
+      "round": "backend-type-recheck",
+      "target": "typecheck-new-backend",
+      "command": [
+        "uv",
+        "run",
+        "--frozen",
+        "mypy",
+        "--follow-imports=silent",
+        "src/mgar_v3/super_agent/source_console.py",
+        "src/mgar_v3/super_agent/source_console_api.py",
+        "src/mgar_v3/super_agent/source_console_credentials.py",
+        "src/mgar_v3/super_agent/source_console_projection.py",
+        "src/mgar_v3/super_agent/source_console_store.py",
+        "src/mgar_v3/coordination/engine.py",
+        "src/mgar_v3/api.py"
+      ],
+      "exit_code": 0,
+      "source_commit": "83fe1ab9a12edce8098d935c9bc6eba128b79656",
+      "source_sha256": "1d00c91e42f2925461e6fe6f754a809d823adbb3cc3279b74f822e70961a9181",
+      "log": "evidence/super-agent-v1/SAV1-19/start-20261115T084702Z-1880540c/backend-type-recheck/typecheck-new-backend.log"
+    },
+    {
+      "round": "delivery-and-mobile-first",
+      "target": "lint-failed",
+      "command": [
+        "uv",
+        "run",
+        "--frozen",
+        "ruff",
+        "check",
+        "src/mgar_v3/super_agent/source_console_projection.py",
+        "src/mgar_v3/super_agent/source_console_store.py",
+        "src/mgar_v3/super_agent/source_console_api.py",
+        "tests/test_source_console_http.py",
+        "tests/test_source_console_browser.py",
+        "tests/sa19_browser_support.py",
+        "tests/test_source_console_boundaries.py",
+        "tests/test_source_console_catalogue.py"
+      ],
+      "exit_code": 1,
+      "source_commit": "f2e220e9d2d031d778c1aabbab5851138aaf109d",
+      "source_sha256": "895992541832317f78cef18101e730c802400b42ebbebfec5a4211afb7168366",
+      "log": "evidence/super-agent-v1/SAV1-19/start-20261115T084702Z-1880540c/delivery-and-mobile-first/lint-failed.log"
+    },
+    {
+      "round": "formal-backend-01",
+      "target": "lint-new-backend",
+      "command": [
+        "uv",
+        "run",
+        "--frozen",
+        "ruff",
+        "check",
+        "src/mgar_v3/super_agent/source_console.py",
+        "src/mgar_v3/super_agent/source_console_api.py",
+        "src/mgar_v3/super_agent/source_console_credentials.py",
+        "src/mgar_v3/super_agent/source_console_projection.py",
+        "src/mgar_v3/super_agent/source_console_store.py",
+        "src/mgar_v3/coordination/engine.py",
+        "src/mgar_v3/api.py",
+        "tests/sa19_support.py",
+        "tests/test_source_console_backend.py"
+      ],
+      "exit_code": 1,
+      "source_commit": "4856d9099f33f04944ff99862aede2c42c0063e3",
+      "source_sha256": "01c24e937dfc90df622970de8c6358a25c79be0c2c9c8e8b09d69ededb2849d2",
+      "log": "evidence/super-agent-v1/SAV1-19/start-20261115T084702Z-1880540c/formal-backend-01/lint-new-backend.log"
+    },
+    {
+      "round": "formal-backend-01",
+      "target": "typecheck-new-backend",
+      "command": [
+        "uv",
+        "run",
+        "--frozen",
+        "mypy",
+        "--follow-imports=silent",
+        "src/mgar_v3/super_agent/source_console.py",
+        "src/mgar_v3/super_agent/source_console_api.py",
+        "src/mgar_v3/super_agent/source_console_credentials.py",
+        "src/mgar_v3/super_agent/source_console_projection.py",
+        "src/mgar_v3/super_agent/source_console_store.py",
+        "src/mgar_v3/coordination/engine.py",
+        "src/mgar_v3/api.py"
+      ],
+      "exit_code": 1,
+      "source_commit": "4856d9099f33f04944ff99862aede2c42c0063e3",
+      "source_sha256": "01c24e937dfc90df622970de8c6358a25c79be0c2c9c8e8b09d69ededb2849d2",
+      "log": "evidence/super-agent-v1/SAV1-19/start-20261115T084702Z-1880540c/formal-backend-01/typecheck-new-backend.log"
+    },
+    {
+      "round": "http-browser-failed-recheck",
+      "target": "lint-failed-ui",
+      "command": [
+        "uv",
+        "run",
+        "--frozen",
+        "ruff",
+        "check",
+        "src/mgar_v3/super_agent/source_console_projection.py",
+        "src/mgar_v3/super_agent/source_console_store.py",
+        "src/mgar_v3/super_agent/source_console_api.py",
+        "tests/test_source_console_http.py",
+        "tests/test_source_console_browser.py",
+        "tests/sa19_browser_support.py"
+      ],
+      "exit_code": 1,
+      "source_commit": "140dab9f5961cd1550686a6fe62d9dd10eb9e82e",
+      "source_sha256": "54002706813a1ee71271da7b0e1614a59610a43fc6ac4535b542b56fb64137bd",
+      "log": "evidence/super-agent-v1/SAV1-19/start-20261115T084702Z-1880540c/http-browser-failed-recheck/lint-failed-ui.log"
+    },
+    {
+      "round": "http-browser-first",
+      "target": "lint-ui-projections",
+      "command": [
+        "uv",
+        "run",
+        "--frozen",
+        "ruff",
+        "check",
+        "src/mgar_v3/super_agent/source_console_projection.py",
+        "src/mgar_v3/super_agent/source_console_store.py",
+        "tests/test_source_console_http.py",
+        "tests/test_source_console_browser.py",
+        "tests/sa19_browser_support.py"
+      ],
+      "exit_code": 1,
+      "source_commit": "907deb25e3c415fffe0ea011edce26c65444221e",
+      "source_sha256": "4314cd14b6b83b6dad0e86a90aa58ec76f153ee17da17073f21139509690154c",
+      "log": "evidence/super-agent-v1/SAV1-19/start-20261115T084702Z-1880540c/http-browser-first/lint-ui-projections.log"
+    },
+    {
+      "round": "http-browser-first",
+      "target": "type-ui-projections",
+      "command": [
+        "uv",
+        "run",
+        "--frozen",
+        "mypy",
+        "--follow-imports=silent",
+        "src/mgar_v3/super_agent/source_console_projection.py",
+        "src/mgar_v3/super_agent/source_console_store.py"
+      ],
+      "exit_code": 0,
+      "source_commit": "907deb25e3c415fffe0ea011edce26c65444221e",
+      "source_sha256": "4314cd14b6b83b6dad0e86a90aa58ec76f153ee17da17073f21139509690154c",
+      "log": "evidence/super-agent-v1/SAV1-19/start-20261115T084702Z-1880540c/http-browser-first/type-ui-projections.log"
+    },
+    {
+      "round": "last-http-and-new-boundaries",
+      "target": "lint-failed",
+      "command": [
+        "uv",
+        "run",
+        "--frozen",
+        "ruff",
+        "check",
+        "src/mgar_v3/super_agent/source_console_projection.py",
+        "src/mgar_v3/super_agent/source_console_store.py",
+        "src/mgar_v3/super_agent/source_console_api.py",
+        "tests/test_source_console_http.py",
+        "tests/test_source_console_browser.py",
+        "tests/sa19_browser_support.py",
+        "tests/test_source_console_boundaries.py"
+      ],
+      "exit_code": 1,
+      "source_commit": "fb61677b66d0c387cfc99ea976b1e79670e33c8d",
+      "source_sha256": "670da76b72d7bad9a4aa015c5d9574d1f1cccabe3215bbcd21a2ba6c80b8a933",
+      "log": "evidence/super-agent-v1/SAV1-19/start-20261115T084702Z-1880540c/last-http-and-new-boundaries/lint-failed.log"
+    },
+    {
+      "round": "lint-only-final",
+      "target": "lint-failed",
+      "command": [
+        "uv",
+        "run",
+        "--frozen",
+        "ruff",
+        "check",
+        "src/mgar_v3/super_agent/source_console_projection.py",
+        "src/mgar_v3/super_agent/source_console_store.py",
+        "src/mgar_v3/super_agent/source_console_api.py",
+        "tests/test_source_console_http.py",
+        "tests/test_source_console_browser.py",
+        "tests/sa19_browser_support.py",
+        "tests/test_source_console_boundaries.py",
+        "tests/test_source_console_catalogue.py"
+      ],
+      "exit_code": 0,
+      "source_commit": "7c2d7687a092a714fa58adf3616f314c40d38ac9",
+      "source_sha256": "dc6af02f523f3fe997b5446b8eada45f518d1cdec043bc3c6528c2d5fc159371",
+      "log": "evidence/super-agent-v1/SAV1-19/start-20261115T084702Z-1880540c/lint-only-final/lint-failed.log"
+    },
+    {
+      "round": "new-static-aliases-and-lint",
+      "target": "lint-failed",
+      "command": [
+        "uv",
+        "run",
+        "--frozen",
+        "ruff",
+        "check",
+        "src/mgar_v3/super_agent/source_console_projection.py",
+        "src/mgar_v3/super_agent/source_console_store.py",
+        "src/mgar_v3/super_agent/source_console_api.py",
+        "tests/test_source_console_http.py",
+        "tests/test_source_console_browser.py",
+        "tests/sa19_browser_support.py",
+        "tests/test_source_console_boundaries.py",
+        "tests/test_source_console_catalogue.py"
+      ],
+      "exit_code": 1,
+      "source_commit": "8fc7494abb66f3d9d692c42a1aa832706d271557",
+      "source_sha256": "c6c9d81fa9058dd7a232a4df8d815e256c64576c7874a2625dd4dbc4207fb0e0",
+      "log": "evidence/super-agent-v1/SAV1-19/start-20261115T084702Z-1880540c/new-static-aliases-and-lint/lint-failed.log"
+    },
+    {
+      "round": "prepare-01",
+      "target": "lint",
+      "command": [
+        "make",
+        "lint"
+      ],
+      "exit_code": 2,
+      "source_commit": "3a911854842bbf81b02bfbcc28234f99eb27ffed",
+      "source_sha256": "64c7982eac90792ce7db35896f039933e8f62534af372751150ecc3d18bd3e70",
+      "log": "evidence/super-agent-v1/SAV1-19/start-20261115T084702Z-1880540c/prepare-01/lint.log"
+    },
+    {
+      "round": "prepare-01",
+      "target": "typecheck",
+      "command": [
+        "make",
+        "typecheck"
+      ],
+      "exit_code": 0,
+      "source_commit": "3a911854842bbf81b02bfbcc28234f99eb27ffed",
+      "source_sha256": "64c7982eac90792ce7db35896f039933e8f62534af372751150ecc3d18bd3e70",
+      "log": "evidence/super-agent-v1/SAV1-19/start-20261115T084702Z-1880540c/prepare-01/typecheck.log"
+    },
+    {
+      "round": "prepare-lint-recheck",
+      "target": "lint",
+      "command": [
+        "make",
+        "lint"
+      ],
+      "exit_code": 0,
+      "source_commit": "070ac219733dc8bcd5cd6d7528e973758c4622b0",
+      "source_sha256": "994b7eeff4126ceee9a1f637ffcaf0eba4ad7f4ae481d83f76d04a26d082e36f",
+      "log": "evidence/super-agent-v1/SAV1-19/start-20261115T084702Z-1880540c/prepare-lint-recheck/lint.log"
+    }
+  ],
+  "static_scope_note": "Initial full lint/typecheck and later newly implemented scopes are bound to the recorded versions. Repairs repeat only failed target. Do not interpret these as a fresh complete lint/typecheck run on the final source; later private API static-fallback hardening was linted and behavior-checked, not a repeat of passed type targets.",
+  "all_check_rounds": [
+    {
+      "round": "backend-failed2-recheck",
+      "source_commit": "73cfb6fd3693157657dcd274dd4eed7d13302ea7",
+      "source_sha256": "53ac73d00f45b182be20c4f018bd280bb18cbf390dcbe6e5aa278aa7810fe40a",
+      "archive": "evidence/super-agent-v1/SAV1-19/start-20261115T084702Z-1880540c/backend-failed2-recheck/source-73cfb6fd3693.tar.gz",
+      "archive_sha256": "43f704985af39d2d2d22d487285053e202c4a544db1c42df9afb2a5f1987334f",
+      "archive_source_verified": true,
+      "source_stable": true
+    },
+    {
+      "round": "backend-type-recheck",
+      "source_commit": "83fe1ab9a12edce8098d935c9bc6eba128b79656",
+      "source_sha256": "1d00c91e42f2925461e6fe6f754a809d823adbb3cc3279b74f822e70961a9181",
+      "archive": "evidence/super-agent-v1/SAV1-19/start-20261115T084702Z-1880540c/backend-type-recheck/source-83fe1ab9a12e.tar.gz",
+      "archive_sha256": "0a8978e16f862d1b8f209255e282414c9a0cb8274a5b8321c50c653cb43f33b7",
+      "archive_source_verified": true,
+      "source_stable": true
+    },
+    {
+      "round": "delivery-and-mobile-first",
+      "source_commit": "f2e220e9d2d031d778c1aabbab5851138aaf109d",
+      "source_sha256": "895992541832317f78cef18101e730c802400b42ebbebfec5a4211afb7168366",
+      "archive": "evidence/super-agent-v1/SAV1-19/start-20261115T084702Z-1880540c/delivery-and-mobile-first/source-f2e220e9d2d0.tar.gz",
+      "archive_sha256": "2a820237741bb3f215be33cb206e649f8d0c74f01fd4d2981fe750ee489c80a3",
+      "archive_source_verified": true,
+      "source_stable": true
+    },
+    {
+      "round": "formal-backend-01",
+      "source_commit": "4856d9099f33f04944ff99862aede2c42c0063e3",
+      "source_sha256": "01c24e937dfc90df622970de8c6358a25c79be0c2c9c8e8b09d69ededb2849d2",
+      "archive": "evidence/super-agent-v1/SAV1-19/start-20261115T084702Z-1880540c/formal-backend-01/source-4856d9099f33.tar.gz",
+      "archive_sha256": "5987eaa1a7665ff084768ed16aa77d90d0f2e023a9024a1f71ca3fe9358e8b51",
+      "archive_source_verified": true,
+      "source_stable": true
+    },
+    {
+      "round": "http-browser-failed-recheck",
+      "source_commit": "140dab9f5961cd1550686a6fe62d9dd10eb9e82e",
+      "source_sha256": "54002706813a1ee71271da7b0e1614a59610a43fc6ac4535b542b56fb64137bd",
+      "archive": "evidence/super-agent-v1/SAV1-19/start-20261115T084702Z-1880540c/http-browser-failed-recheck/source-140dab9f5961.tar.gz",
+      "archive_sha256": "92843ceb01c64e3569e44fa0019bb65a79f5e8487168e9b7acd53086dfd7692b",
+      "archive_source_verified": true,
+      "source_stable": true
+    },
+    {
+      "round": "http-browser-first",
+      "source_commit": "907deb25e3c415fffe0ea011edce26c65444221e",
+      "source_sha256": "4314cd14b6b83b6dad0e86a90aa58ec76f153ee17da17073f21139509690154c",
+      "archive": "evidence/super-agent-v1/SAV1-19/start-20261115T084702Z-1880540c/http-browser-first/source-907deb25e3c4.tar.gz",
+      "archive_sha256": "2cd115cb21bc6c593cf1bc4b86722ee8632dd40f2323975229d383882565f4db",
+      "archive_source_verified": true,
+      "source_stable": true
+    },
+    {
+      "round": "last-http-and-new-boundaries",
+      "source_commit": "fb61677b66d0c387cfc99ea976b1e79670e33c8d",
+      "source_sha256": "670da76b72d7bad9a4aa015c5d9574d1f1cccabe3215bbcd21a2ba6c80b8a933",
+      "archive": "evidence/super-agent-v1/SAV1-19/start-20261115T084702Z-1880540c/last-http-and-new-boundaries/source-fb61677b66d0.tar.gz",
+      "archive_sha256": "5cfcaf0c099e001509b6f0151e6bf8899ab4b45e21c381b861f18362a9c0b054",
+      "archive_source_verified": true,
+      "source_stable": true
+    },
+    {
+      "round": "lint-only-final",
+      "source_commit": "7c2d7687a092a714fa58adf3616f314c40d38ac9",
+      "source_sha256": "dc6af02f523f3fe997b5446b8eada45f518d1cdec043bc3c6528c2d5fc159371",
+      "archive": "evidence/super-agent-v1/SAV1-19/start-20261115T084702Z-1880540c/lint-only-final/source-7c2d7687a092.tar.gz",
+      "archive_sha256": "63d9607a50efdcc113ff99446649ebe9f2f4bf53e988fa4ec70e304c89f471c2",
+      "archive_source_verified": true,
+      "source_stable": true
+    },
+    {
+      "round": "new-static-aliases-and-lint",
+      "source_commit": "8fc7494abb66f3d9d692c42a1aa832706d271557",
+      "source_sha256": "c6c9d81fa9058dd7a232a4df8d815e256c64576c7874a2625dd4dbc4207fb0e0",
+      "archive": "evidence/super-agent-v1/SAV1-19/start-20261115T084702Z-1880540c/new-static-aliases-and-lint/source-8fc7494abb66.tar.gz",
+      "archive_sha256": "96dfa3c9295930d290ae2487a327eb7ca64c0e2eb7dbf96ffac90f26c1a1de49",
+      "archive_source_verified": true,
+      "source_stable": true
+    },
+    {
+      "round": "prepare-01",
+      "source_commit": "3a911854842bbf81b02bfbcc28234f99eb27ffed",
+      "source_sha256": "64c7982eac90792ce7db35896f039933e8f62534af372751150ecc3d18bd3e70",
+      "archive": "evidence/super-agent-v1/SAV1-19/start-20261115T084702Z-1880540c/prepare-01/source-3a911854842b.tar.gz",
+      "archive_sha256": "425f83898d884ddd2b778d625ccbbdcd360f912c99be9119e20ecf5d8ede697e",
+      "archive_source_verified": true,
+      "source_stable": true
+    },
+    {
+      "round": "prepare-lint-recheck",
+      "source_commit": "070ac219733dc8bcd5cd6d7528e973758c4622b0",
+      "source_sha256": "994b7eeff4126ceee9a1f637ffcaf0eba4ad7f4ae481d83f76d04a26d082e36f",
+      "archive": "evidence/super-agent-v1/SAV1-19/start-20261115T084702Z-1880540c/prepare-lint-recheck/source-070ac219733d.tar.gz",
+      "archive_sha256": "5983e24adf0dea54fdd32f9b82a7956dda45d535025bed361b2728704085f6bf",
+      "archive_source_verified": true,
+      "source_stable": true
+    }
+  ],
+  "raw_provenance": "evidence/super-agent-v1/SAV1-19/start-20261115T084702Z-1880540c/provenance-full.json",
+  "readonly_closeout": {
+    "UTC": "2026-11-15T10:24:49.329321+00:00",
+    "source_commit": "7c2d7687a092a714fa58adf3616f314c40d38ac9",
+    "source_sha256": "dc6af02f523f3fe997b5446b8eada45f518d1cdec043bc3c6528c2d5fc159371",
+    "main_port": 55435,
+    "main_migrations": 44,
+    "main_checksum_match": true,
+    "main_console_tables": 0,
+    "repository_migrations": 49,
+    "current_Source_catalogues": 18,
+    "current_artifact_references": 584,
+    "protected_file_sha256": "f4adf9605c87d6256bd2ec17b8436da8a7bced763a8e03b185a8cfe19d34a29f",
+    "shared_three_files_exact": true,
+    "owned_containers_remaining": [],
+    "owned_browser_processes_remaining": [],
+    "isolated_cleanup_records": [
+      "evidence/super-agent-v1/SAV1-19/start-20261115T084702Z-1880540c/backend-failed2-recheck/cleanup.json",
+      "evidence/super-agent-v1/SAV1-19/start-20261115T084702Z-1880540c/delivery-and-mobile-first/cleanup.json",
+      "evidence/super-agent-v1/SAV1-19/start-20261115T084702Z-1880540c/formal-backend-01/cleanup.json",
+      "evidence/super-agent-v1/SAV1-19/start-20261115T084702Z-1880540c/http-browser-failed-recheck/cleanup.json",
+      "evidence/super-agent-v1/SAV1-19/start-20261115T084702Z-1880540c/http-browser-first/cleanup.json",
+      "evidence/super-agent-v1/SAV1-19/start-20261115T084702Z-1880540c/last-http-and-new-boundaries/cleanup.json",
+      "evidence/super-agent-v1/SAV1-19/start-20261115T084702Z-1880540c/new-static-aliases-and-lint/cleanup.json",
+      "evidence/super-agent-v1/SAV1-19/start-20261115T084702Z-1880540c/prepare-01/cleanup.json"
+    ],
+    "main_readonly_sessions_closed": true,
+    "legacy_container_preserved": true,
+    "other_H12_resources_untouched": true,
+    "real_gates": "NOT_RUN",
+    "SA20": "NOT_STARTED"
+  },
+  "fix_notes": [
+    "Initial formal router lazy inventory and cross-project fixture assumption failures retained; private route registration repaired and fixture uses legitimate sequential Engines.",
+    "First HTTP failures included invalid TestClient host and stale-after-binding identity proof expectations; fixed probe setup without relaxing server contract. Stable UUID replaces per-import random route parameter, raw failed JUnit retained.",
+    "Actual UI budget failure required original organization scope before project save; explicit first-organization setup added. Test socket reuse fixed without touching original Engine.",
+    "Private resource routes now precede original static mount; dot/encoded/double-slash aliases and HEAD cannot bypass Owner GET routes.",
+    "Credential rotation HTTP probe used wrong valid-until field; only that remaining failed case rerun.",
+    "All lint formatting failures preserved; source/test string wrapping and import separation kept equivalent AST."
+  ],
+  "limitations": [
+    "Fixture/MockTransport/source-synthetic receipts are controlled engineering data; no real listeners/models/Worker activation/messages/PRs.",
+    "Console configuration does not auto-compose or activate a platform Runtime; trusted deployed service and later live acceptance remain necessary.",
+    "Metadata lists bounded50; identities100. Scope counts are visible-item counts, not an unbounded total.",
+    "Initial three browser screenshots lacked Linux CJK glyphs; DOM assertions passed. First new narrow-screen Shadow screenshot uses existing Windows CJK fonts read-only; no font asset redistributed.",
+    "Existing main database on55435 retains44 migrations; formal repository49 installed only in disposable test DBs.",
+    "Current candidate has no single all78 behavior rerun; passed checks remain tied to their tested source versions."
+  ],
+  "report": "docs/super-agent-v1/SA19_ACCEPTANCE_20261115.md",
+  "operator_guide": "docs/super-agent-v1/SA19_CONSOLE.md"
+}
