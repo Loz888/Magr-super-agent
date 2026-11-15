@@ -1,0 +1,50 @@
+{
+  "version": "sa18-async-intake-forward-repair-v1",
+  "status": "WAITING_NEW_HARNESS_0051_CONFIRMATION",
+  "prepared_UTC": "2026-11-15T07:30:45.681980+00:00",
+  "SQL": {
+    "draft": "0051_source_review_async_intake.sql",
+    "formal_path": "v3/migrations/0051_source_review_async_intake.sql",
+    "sha256": "2bfcba77da3ad089737e1ae9fcb9db1aef72ca844e27c313c57a9686b55debd5"
+  },
+  "scope": [
+    "one new SQL predicate sa_source_review_intake_current(uuid) for metadata receipt only",
+    "replace sa_async_input_guard only in received INSERT branch with the named predicate",
+    "original sa_async_current/Job/checkpoint/apply/model guards byte unchanged",
+    "no new table/API/Engine/Python/shared file/fee semantics",
+    "do not rewrite0047 or0050; no main database migration"
+  ],
+  "original_failure": {
+    "candidate": "835cb5f6e914e83396e8df389eb7e47b1b40a0f6",
+    "nodeid": "tests/test_source_review_async.py::test_owner_async_restriction_commits_while_review_waits_and_invalidates_old_bundle",
+    "evidence": "evidence/SAV1-18-ASYNC/20261115T072024Z-33e3823c"
+  },
+  "checks": [
+    {
+      "candidate": "7ab606e2f2e62ca9d5e9db75a5a6e50a10d6ac72",
+      "scope": "same original failed node, explicit isolated docs-SQL overlay only",
+      "passed": 1,
+      "exit_code": 0,
+      "evidence": "evidence/super-agent-v1/SAV1-18/start-20261115T054718Z-d5764b7b/async-intake-draft-01/failed1-draft-overlay.log"
+    },
+    {
+      "candidate": "7ab606e2f2e62ca9d5e9db75a5a6e50a10d6ac72",
+      "scope": "first proposed-SQL installation and unchanged other execution guards",
+      "passed": 2,
+      "exit_code": 0,
+      "evidence": "evidence/SAV1-18-ASYNC-REPAIR-DRAFT/20261115T072757Z-01a77d0e"
+    },
+    {
+      "candidate": "19a98f7effc2a846af9a3486151992288e26bee7",
+      "scope": "only failed new lint target",
+      "exit_code": 0,
+      "evidence": "evidence/super-agent-v1/SAV1-18/start-20261115T054718Z-d5764b7b/async-draft-lint-recheck"
+    }
+  ],
+  "past_passes_not_rerun": true,
+  "formal0051": "NOT_RUN",
+  "main_migrations": 44,
+  "repo_formal_migrations": 47,
+  "SA19": "NOT_STARTED",
+  "real_gates": "NOT_RUN"
+}

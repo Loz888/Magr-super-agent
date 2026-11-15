@@ -1,0 +1,17 @@
+请 Harness CLI 只读核对 SA18 的最小前向修复，并单独本地提交 0051 编号与 SQL 范围确认；不应用 SQL，不运行 SA 测试，不夹带 H12，不推送。
+
+第43节 09145fe 已确认的0050和Engine/API精确补丁保持原字节。浏览器复验、原生PR/CI及三处真实SIGKILL均已有通过证据；新增实际 SA14→SA18 组合首次检查发现：Run进入waiting_approval后，原sa_async_input_guard要求running，合法Owner限制无法提交。
+
+具体材料（SA副本）：
+- docs/super-agent-v1/sa18-proposal/0051_source_review_async_intake.sql
+- docs/super-agent-v1/sa18-proposal/async-intake-repair-manifest.json
+当前提案源码提交 19a98f7effc2a846af9a3486151992288e26bee7（草案及实测提交7ab606e2f2e62ca9d5e9db75a5a6e50a10d6ac72）。
+SQL SHA256：2bfcba77da3ad089737e1ae9fcb9db1aef72ca844e27c313c57a9686b55debd5
+
+申请0051_source_review_async_intake.sql仅在SA副本由SA独占：新增sa_source_review_intake_current(uuid)元数据收件谓词，仅对原fixture Source Coding、同Run/Assignment/epoch、真实已完成Verifier和Review事实、当前active Async/admitted Coding/未结束Ticket的waiting_approval状态生效。只在原sa_async_input_guard的INSERT received分支追加该例外，接收新限制后原0050触发器立即失效并擦除旧审查包。
+
+不改变sa_async_current、Job启动、checkpoint、新工具/模型payload或applied守卫，不授予执行/审批/发布，不改0047/0050、不加表/路由/Engine/API/Python共享文件或财务语义。审查失效后仍能接收同任务的受控元数据，不能复用旧审批或自行应用/开工。
+
+相同原失败node在真实隔离PG的显式docs-SQL overlay下1PASS；新安装及其他执行守卫字节不变2PASS。原探针断言未改，原通过项未重跑；新lint一次折行错误仅失败目标复验PASS，失败保留。上述仅草案证据，正式0051未应用，正式失败仍待确认后只复验这一项。主库仍44、SA正式目录47，不迁移主库；0052以后不预占。
+
+AGENTS.md要求共享Engine/API/schema/budget变更先对齐所有权、接口及迁移编号。第43节只覆盖0050，不能扩为0051确认。请核对编号/函数名/范围及完整SQL hash，单独提交协调文档，回传提交hash与交接节号。
