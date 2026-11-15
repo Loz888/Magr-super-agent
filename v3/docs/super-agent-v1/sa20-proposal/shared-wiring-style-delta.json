@@ -1,0 +1,9 @@
+{
+  "reason": "Only reorder the already confirmed source_operations_api import to satisfy I001; no new shared symbol, method, interface or migration scope. Original accepted proposal bytes remain evidence.",
+  "baseline_exact_wiring_commit": "e87b82a2153f7044c1ddb66987d6947032651dcc",
+  "baseline_api_sha256": "524a8ec755e5e00ad66015e209410c90a1f212ca7a13a3f78b1e48b523fa3e99",
+  "final_api_sha256": "6b03778bfcca7bc378fbcf595f8c4c10d9a66bf1472394964c52b67920a0fc2a",
+  "delta_sha256": "63ebd5f44984c9b67043eb20366f9554675cd35262b657f62cb38faabc4b8213",
+  "harness_ownership_confirmation": "1c4f494442d2d5fc8d4c1d35856cc91c922cc70e",
+  "section": 46
+}

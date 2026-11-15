@@ -129,7 +129,7 @@
     },
     {
       "path": "config/verification.json",
-      "sha256": "91e48c99f83a7758846c19ee4a06b0e2fcf4d728a761e98f43279e6f3d97fc18"
+      "sha256": "93481f9305a3b4e7149e914dcd9993062236eb0a8033e7205d1d1aa0289d3884"
     },
     {
       "path": "migrations/0041_source_correlations.sql",
@@ -141,7 +141,7 @@
     },
     {
       "path": "src/mgar_v3/api.py",
-      "sha256": "524a8ec755e5e00ad66015e209410c90a1f212ca7a13a3f78b1e48b523fa3e99"
+      "sha256": "6b03778bfcca7bc378fbcf595f8c4c10d9a66bf1472394964c52b67920a0fc2a"
     }
   ],
   "baseline_before_formal_integration": "e9ee378c1977cdb4feaea29bda2d00e3f6c891ca"

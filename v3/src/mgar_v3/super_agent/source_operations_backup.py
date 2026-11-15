@@ -412,6 +412,23 @@ def restore(
             continue
         destination.parent.mkdir(parents=True, exist_ok=True, mode=0o700)
         write_new(destination, value)
+    # Retain the capsule's staged key inventory and install independent0600
+    # files at the original at-rest consumers' canonical locations. Never use
+    # hard/symbolic links for private key files.
+    layout = {
+        "keys/console.key": "source-console-credentials/key.bin",
+        "keys/web.key": "web/credentials.key",
+    }
+    for source, relative in layout.items():
+        destination = target_root / relative
+        destination.parent.mkdir(mode=0o700, parents=True, exist_ok=True)
+        write_new(destination, entries[source])
+    hold["state"] = "RESTORED_ON_HOLD"
+    complete = target_root / "restore-complete.json"
+    write_new(complete, json.dumps(hold).encode())
+    with directory(target_root) as parent:
+        os.rename(complete.name, HOLD, src_dir_fd=parent, dst_dir_fd=parent)
+        os.fsync(parent)
     (target_root / "artifacts").mkdir(mode=0o700, exist_ok=True)
     return {
         "state": "RESTORED_ON_HOLD",

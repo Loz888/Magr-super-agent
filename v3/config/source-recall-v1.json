@@ -247,7 +247,7 @@
     },
     {
       "path": "src/mgar_v3/api.py",
-      "sha256": "524a8ec755e5e00ad66015e209410c90a1f212ca7a13a3f78b1e48b523fa3e99"
+      "sha256": "6b03778bfcca7bc378fbcf595f8c4c10d9a66bf1472394964c52b67920a0fc2a"
     },
     {
       "path": "src/mgar_v3/context/store.py",

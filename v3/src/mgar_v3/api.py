@@ -60,10 +60,10 @@ from mgar_v3.super_agent.source_async_api import register as register_source_asy
 from mgar_v3.super_agent.source_autonomy_api import register as register_source_autonomy
 from mgar_v3.super_agent.source_coding_api import register as register_source_coding
 from mgar_v3.super_agent.source_console_api import register as register_source_console
-from mgar_v3.super_agent.source_operations_api import register as register_source_operations
 from mgar_v3.super_agent.source_correlation_api import register as register_source_correlations
 from mgar_v3.super_agent.source_eval_api import register as register_source_eval
 from mgar_v3.super_agent.source_notification_api import register as register_source_notifications
+from mgar_v3.super_agent.source_operations_api import register as register_source_operations
 from mgar_v3.super_agent.source_recall_api import register as register_source_recall
 from mgar_v3.super_agent.source_review_api import register as register_source_reviews
 from mgar_v3.super_agent.source_scheduler_api import register as register_source_scheduler
