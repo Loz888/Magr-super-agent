@@ -1,0 +1,16 @@
+{
+  "UTC": "2026-11-15T04:56:56.349064+00:00",
+  "scope": "SA17 already-confirmed Engine notification recovery isolation; no additional shared file/interface/schema/number/budget change",
+  "ownership_commit": "a09aef760e4c43ff46595a3c3cc56c503b018e97",
+  "patch": "recovery-isolation-repair.patch",
+  "patch_sha256": "8df19d848cd8077aa02a50673fcb72ff1e4d1697f98627d125473eb7e9717d66",
+  "files": [
+    {
+      "path": "v3/src/mgar_v3/coordination/engine.py",
+      "before_sha256": "7ed1a025d4fe107eaad7bff094e2f17a2c5e689abcec0cae14831629ccace186",
+      "after_sha256": "f079a8b11131c38fa422022ea3c65435becce7d62e38bcc3efe3e1b9d3da304e"
+    }
+  ],
+  "reason": "Only legacy non-notification unknown actions may write the original business Run reason_code; notification unknown stays in original Action/Outbox plus Delivery facts",
+  "repair_scope": "Original2 SIGKILL failures only; earlier81 passing formal checks not rerun"
+}

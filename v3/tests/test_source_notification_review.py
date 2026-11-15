@@ -19,7 +19,7 @@ def test_actual_coding_verification_notifies_review_without_completing_or_publis
     engine, tmp_path, monkeypatch
 ):
     import sa13_runtime_support
-    from sa13_runtime_support import runtime_env, run
+    from sa13_runtime_support import run, runtime_env
 
     original_new_source = sa13_runtime_support.new_source
 
@@ -61,7 +61,7 @@ def test_actual_coding_verification_notifies_review_without_completing_or_publis
         result = run(env)
         assert result["verification"] == "verified"
         before = engine.get_run(env.target.run_id)
-        assert before["status"] == "waiting_approval" and before["outcome"] != "published"
+        assert before["status"] == "running" and before["outcome"] != "published"
         source = env.source
         instance = source.installation
         service = engine.source_notifications

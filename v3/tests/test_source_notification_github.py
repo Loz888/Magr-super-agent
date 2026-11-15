@@ -1,5 +1,6 @@
 """First SA17 GitHub controlled channel and no-private-log disclosure checks."""
 
+from dataclasses import replace
 from datetime import UTC, datetime, timedelta
 from types import SimpleNamespace
 
@@ -10,13 +11,16 @@ from sa17_support import ControlledChannel
 
 from mgar_v3.domain import DomainError
 from mgar_v3.sources.domain import ActorRef
+from mgar_v3.sources.github_broker import GitHubReadBroker
+from mgar_v3.sources.github_domain import GitHubConfigure
+from mgar_v3.sources.github_runtime import GitHubRuntime
 from mgar_v3.sources.ingress_domain import IngressConfigure
 from mgar_v3.sources.registry import SourceRegistry
 from mgar_v3.super_agent.policy_domain import NotificationDestination, PolicyDefinition, PolicySave
 from mgar_v3.super_agent.source_notification_domain import (
     NotificationConfigure,
-    NotificationSettings,
     NotificationPlanRequest,
+    NotificationSettings,
 )
 from mgar_v3.super_agent.source_notification_ports import NotificationProfile
 
@@ -39,7 +43,22 @@ def setup(engine, *, data_classes=("public_summary",)):
         update={"revision": instance.revision + 1, "channel_capabilities": caps}
     )
     SourceRegistry(engine).register_instance(instance)
+    gh.sources.configure(
+        gh.cookie,
+        gh.source_id,
+        GitHubConfigure(
+            expected_revision=1,
+            settings=gh.settings,
+            review_ref="SA17-controlled-current-channel-capabilities",
+        ),
+    )
+    instance = SourceRegistry(engine).get_instance(gh.source_id)
     gh.instance = instance
+    gh.activation = replace(gh.activation, config_revision=2)
+    gh.broker = GitHubReadBroker(
+        gh.sources, gh.source_id, 2, gh.secrets, gh.activation, transport=gh.broker._transport
+    )
+    gh.runtime = GitHubRuntime(gh.broker)
     raw = gh.policy.model_dump(mode="json")
     raw["selector"]["source_revision"] = instance.revision
     destination = NotificationDestination(

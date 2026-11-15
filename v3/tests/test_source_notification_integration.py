@@ -21,6 +21,8 @@ def test_formal0049_exact_checksum_original_composition_and_shared_bytes(engine)
     m = json.loads((p / "proposal-manifest.json").read_text())
     formatting = json.loads((p / "post-integration-format.json").read_text())
     after = {r["path"]: r["formatted_after_sha256"] for r in formatting["files"]}
+    repairs = json.loads((p / "post-integration-repairs.json").read_text())
+    after.update({f["path"]: f["after_sha256"] for f in repairs["files"]})
     expected = {
         r.name: hashlib.sha256(r.read_bytes()).hexdigest() for r in (a / "migrations").glob("*.sql")
     }

@@ -200,13 +200,21 @@ class NotificationStore:
             (run["run_id"], run["report_hash"]),
         ).fetchone()
         verification = conn.execute(
-            "SELECT v.verification_id,v.tree_sha256,v.result FROM app.sa_coding_verifications v "
+            "SELECT v.verification_id,v.tree_sha256,v.result,a.state AS attempt_state "
+            "FROM app.sa_coding_verifications v "
             "JOIN app.sa_coding_attempts a USING(attempt_id,coding_id,project_id) "
             "WHERE a.run_id=%s AND a.execution_epoch=%s AND v.project_id=%s "
-            "ORDER BY v.observed_at DESC,v.verification_id DESC LIMIT 1",
+            "AND a.attempt_id=(SELECT latest.attempt_id FROM app.sa_coding_attempts latest "
+            "WHERE latest.run_id=a.run_id AND latest.execution_epoch=a.execution_epoch "
+            "AND latest.project_id=a.project_id ORDER BY latest.created_at DESC,latest.attempt_id "
+            "DESC LIMIT 1) ORDER BY v.observed_at DESC,v.verification_id DESC LIMIT 1",
             (run["run_id"], run["execution_epoch"], self.project),
         ).fetchone()
-        proven = verdict is not None or bool(verification and verification["result"] == "passed")
+        final_coding = bool(
+            verification
+            and verification["result"] == "passed"
+            and verification["attempt_state"] == "result_recorded"
+        )
         state = run["status"]
         critical = state == "failed" or (
             state == "paused"
@@ -232,8 +240,9 @@ class NotificationStore:
             state=state,
             content_class=kind,
             cause_sha256=cause,
-            verified=proven and state in {"waiting_approval", "succeeded"},
-            reviewable=bool(verification and proven and state == "waiting_approval"),
+            verified=(verdict is not None and state in {"waiting_approval", "succeeded"})
+            or (final_coding and state in {"running", "paused", "waiting_approval", "succeeded"}),
+            reviewable=final_coding and state in {"running", "paused", "waiting_approval"},
             needs_input=state == "waiting_input",
             critical=critical,
         )

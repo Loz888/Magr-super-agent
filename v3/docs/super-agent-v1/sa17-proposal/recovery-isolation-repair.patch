@@ -1,0 +1,20 @@
+--- a/v3/src/mgar_v3/coordination/engine.py
++++ b/v3/src/mgar_v3/coordination/engine.py
+@@ -1487,7 +1487,7 @@
+         with self.transaction() as conn:
+             unknown = conn.execute(
+                 "UPDATE app.actions SET status='outcome_unknown',lease_token=NULL "
+-                "WHERE status='dispatching' RETURNING run_id"
++                "WHERE status='dispatching' RETURNING run_id,action_type"
+             ).fetchall()
+             conn.execute(
+                 "UPDATE app.outbox SET status='outcome_unknown',lease_token=NULL,lease_until=NULL "
+@@ -1507,6 +1507,8 @@
+                 "WHERE status='dispatching'"
+             )
+             for row in unknown:
++                if self.source_notifications.handles(row):
++                    continue
+                 conn.execute(
+                     "UPDATE app.runs SET reason_code='OUTCOME_UNKNOWN' WHERE run_id=%s",
+                     (row["run_id"],),

@@ -3,10 +3,12 @@
 from datetime import timedelta
 
 from sa08_support import ingest, policy
+from sa12_support import claim, ready, session
 from sa17_support import plan, row, setup
 
 from mgar_v3.sources.registry import SourceRegistry
 from mgar_v3.super_agent.source_notification_domain import NotificationConfigure
+from mgar_v3.super_agent.source_scheduler_domain import SchedulerAssignmentRequest
 
 
 def new_cause(e):
@@ -19,8 +21,19 @@ def new_cause(e):
 
 def test_real_waiting_input_question_notifies_without_advancing_wait_state(engine, tmp_path):
     e = setup(engine, tmp_path, kind="necessary_question", fail=False)
-    run = engine.begin_run(e.work.run_id)
-    engine.fail_run(e.work.run_id, "CONTEXT_LIMIT", run["execution_epoch"])
+    scheduler = e.source.scheduler
+    worker = session(scheduler)
+    active = ready(scheduler, worker, claim(scheduler, worker))
+    request = SchedulerAssignmentRequest(
+        assignment_id=active["assignment_id"],
+        session_id=worker["session_id"],
+        epoch=active["execution_epoch"],
+        expected_revision=active["revision"],
+    )
+    with engine.source_scheduler.worker_context(worker["bearer"], request):
+        run = engine.begin_run(e.work.run_id)
+        engine.fail_run(e.work.run_id, "CONTEXT_LIMIT", run["execution_epoch"])
+
     before = engine.get_run(e.work.run_id)
     assert before["status"] == "waiting_input"
     p = plan(e)
