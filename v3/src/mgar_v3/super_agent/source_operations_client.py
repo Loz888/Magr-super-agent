@@ -124,6 +124,7 @@ class LocalOperationsClient:
         )
         self.boot_id = uuid4()
         self.open_id = uuid4()
+        self.generation: int | None = None
         self.unconfirmed_tick: UUID | None = None
 
     def close(self) -> None:
@@ -143,7 +144,15 @@ class LocalOperationsClient:
         path = f"/api/v3/source-operations/components/{self.config.component_id}/{operation}"
         try:
             payload = body.model_dump(mode="json") if body is not None else None
-            with self.http.stream(method, path, json=payload) as response:
+            lease_headers = None
+            if operation == "observations":
+                if self.generation is None:
+                    raise ServiceUnavailable
+                lease_headers = {
+                    "X-MGAR-Operations-Boot": str(self.boot_id),
+                    "X-MGAR-Operations-Generation": str(self.generation),
+                }
+            with self.http.stream(method, path, json=payload, headers=lease_headers) as response:
                 if response.status_code != 200:
                     if method == "POST" and response.status_code >= 500:
                         raise SubmissionUnconfirmed
@@ -212,6 +221,7 @@ class LocalOperationsClient:
         state: Literal["ready", "waiting_runner"] = (
             "waiting_runner" if grant.role == "worker" and not view.driver_available else "ready"
         )
+        self.generation = component.generation
         self.request(
             "heartbeat",
             ComponentHeartbeat(

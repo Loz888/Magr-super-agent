@@ -136,6 +136,7 @@ def create_gateway(configuration: GatewayConfiguration) -> FastAPI:
             (k, v)
             for k, v in request.headers.items()
             if k.lower() not in HOP | SENSITIVE | extra_hop
+            and not k.lower().startswith(("x-mgar-", "x-forwarded-"))
         ]
         headers.append(("Host", authority))
         target = path + (

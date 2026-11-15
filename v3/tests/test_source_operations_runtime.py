@@ -1,6 +1,5 @@
 """First original SA14/17 composition, signed relay and real dependency faults."""
 
-import json
 import subprocess
 from uuid import uuid4
 
@@ -108,6 +107,7 @@ def test_separate_signed_source_relay_ack_requires_engine_commit_and_scope_then_
     engine, tmp_path
 ):
     from sa06_support import payload, setup, signed
+
     from mgar_v3.super_agent.source_operations_relay import RelayConfiguration, create_relay
 
     source = setup(engine)
@@ -184,6 +184,7 @@ def test_separate_signed_source_relay_ack_requires_engine_commit_and_scope_then_
 
 def test_credential_removed_during_reserved_tick_blocks_actual_port_dispatch(engine, tmp_path):
     from fastapi.testclient import TestClient
+
     from mgar_v3.super_agent.source_operations_domain import ComponentOpen
 
     env = configured(engine, tmp_path)
@@ -228,7 +229,10 @@ def test_real_redis_loss_is_observed_without_losing_or_starting_original_queue(
     engine, tmp_path, trigger
 ):
     name = "sa20-redis-fault-" + uuid4().hex[:12]
-    image = "redis:7.4.7-bookworm@sha256:976ab0f0939b78c06d802bcd3bea44c5142ea9a756a57b861e08819817f768c8"
+    image = (
+        "redis:7.4.7-bookworm@sha256:"
+        "976ab0f0939b78c06d802bcd3bea44c5142ea9a756a57b861e08819817f768c8"
+    )
     result = subprocess.run(
         [
             "docker",

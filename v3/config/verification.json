@@ -2116,5 +2116,16 @@
       "real_gates": "NOT_RUN",
       "SA21": "NOT_STARTED"
     }
+  },
+  "SAV1-20-BOUNDARIES": {
+    "tests": [
+      "tests/test_source_operations_boundaries.py"
+    ],
+    "timeout_seconds": 120,
+    "components": {
+      "scope": "First retained-component history/current-scope projection, stale Watchdog boot/generation and native observation headers; previous139 functional passes excluded.",
+      "real_gates": "NOT_RUN",
+      "SA21": "NOT_STARTED"
+    }
   }
 }

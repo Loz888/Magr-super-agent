@@ -24,11 +24,13 @@ def cursor(rows: Any) -> str:
 
 def snapshot(core: SourceOperations, conn: Connection) -> OperationsSnapshot:
     now = core.now(conn)
-    version, _ = core._current(conn)
+    version, definition = core._current(conn)
+    current_ids = [g.component_id for g in definition.components] if definition else []
     components = conn.execute(
         "SELECT component_id,role,generation,boot_id,state,expires_at,sequence,config_revision "
-        "FROM app.sa_operations_components WHERE project_id=%s ORDER BY component_id LIMIT 17",
-        (core.project,),
+        "FROM app.sa_operations_components WHERE project_id=%s AND component_id=ANY(%s::uuid[]) "
+        "ORDER BY component_id LIMIT 17",
+        (core.project, current_ids),
     ).fetchall()
     # A changed configuration invalidates old liveness immediately. Keep its
     # generation in the snapshot so a client can open the next fenced lease.

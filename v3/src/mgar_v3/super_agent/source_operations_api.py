@@ -120,6 +120,19 @@ def register(
             raise denied("COMPONENT_AUTH_REQUIRED", 401)
         return component_id
 
+    def lease_headers(request: Request) -> tuple[int, UUID]:
+        if any(
+            len(request.headers.getlist(h)) != 1
+            for h in ("X-MGAR-Operations-Generation", "X-MGAR-Operations-Boot")
+        ):
+            raise denied("FENCED")
+        try:
+            generation = int(request.headers["X-MGAR-Operations-Generation"])
+            boot = UUID(request.headers["X-MGAR-Operations-Boot"])
+        except ValueError:
+            raise denied("FENCED") from None
+        return generation, boot
+
     @app.get(PREFIX)
     def read(
         request: Request,
@@ -201,19 +214,24 @@ def register(
         engine: Annotated[Engine, Depends(authority)],
         body: Annotated[ComponentTick, Depends(body_parser(ComponentTick))],
     ) -> JSONResponse:
+        def reauthenticate() -> None:
+            machine(request, component_id)
+
         return response(
-            engine.source_operations.tick(
-                component_id, body, authenticate=lambda: machine(request, component_id) and None
-            )
+            engine.source_operations.tick(component_id, body, authenticate=reauthenticate)
         )
 
     @app.post(PREFIX + "/components/{component_id}/observations")
     def observations(
+        request: Request,
         component_id: Annotated[UUID, Depends(machine)],
         engine: Annotated[Engine, Depends(authority)],
         body: Annotated[SignalSubmission, Depends(body_parser(SignalSubmission))],
     ) -> JSONResponse:
-        return response(engine.source_operations.observe(component_id, body))
+        generation, boot = lease_headers(request)
+        with engine.transaction() as conn:
+            engine.source_operations._lease(conn, component_id, generation, boot)
+            return response(engine.source_operations.observe(component_id, body))
 
     @app.post(PREFIX + "/components/{component_id}/relay/{source_id}")
     async def relay(
@@ -233,16 +251,14 @@ def register(
             "x-lark-request-nonce",
             "x-lark-signature",
         }
+        if any(len(request.headers.getlist(h)) > 1 for h in allowed):
+            raise denied("REQUEST_INVALID", 422)
         headers = {k: v for k, v in request.headers.items() if k.lower() in allowed}
         envelope = TransportEnvelope(headers=headers, payload=payload)
         with engine._mutex:
             with engine.transaction() as conn:
                 _, _, grant = engine.source_operations._grant(conn, component_id, role="source")
-                try:
-                    generation = int(request.headers.get("X-MGAR-Operations-Generation", ""))
-                    boot = UUID(request.headers.get("X-MGAR-Operations-Boot", ""))
-                except ValueError:
-                    raise denied("FENCED") from None
+                generation, boot = lease_headers(request)
                 engine.source_operations._lease(conn, component_id, generation, boot)
                 if source_id not in grant.source_ids:
                     raise denied("SCOPE_DENIED", 403)
