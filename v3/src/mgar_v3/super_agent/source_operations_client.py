@@ -6,7 +6,7 @@ import os
 import stat
 import time
 from pathlib import Path
-from typing import Any, Literal, TypeVar
+from typing import Any, Literal
 from uuid import UUID, uuid4
 
 import httpx
@@ -26,7 +26,6 @@ from mgar_v3.super_agent.source_operations_domain import (
     signals,
 )
 
-M = TypeVar("M", bound=Model)
 MAX_BYTES = 65536
 
 
@@ -51,7 +50,7 @@ def _unique(pairs: list[tuple[str, Any]]) -> dict[str, Any]:
     return result
 
 
-def private_model(path: Path, model: type[M]) -> M:
+def private_model[M: Model](path: Path, model: type[M]) -> M:
     """Open every path component without symlink following and bound credential IO."""
     directory = None
     fd = None
