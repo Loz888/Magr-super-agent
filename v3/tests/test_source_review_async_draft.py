@@ -55,7 +55,8 @@ def test_running_apply_checkpoint_model_and_job_guards_remain_byte_identical(dra
     assert (
         actual.replace(
             replacement,
-            "OR (NEW.state='received' AND NEW.origin<>'system' AND NOT app.sa_async_current(NEW.async_id))",
+            "OR (NEW.state='received' AND NEW.origin<>'system' "
+            "AND NOT app.sa_async_current(NEW.async_id))",
         )
         == original
     )
