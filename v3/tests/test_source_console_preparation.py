@@ -245,7 +245,8 @@ def draft(engine):
         conn.execute(
             "INSERT INTO app.sa_console_credentials(source_instance_id,project_id,"
             "source_kind,scope_sha256,revision,ciphertext,ciphertext_sha256,field_names,"
-            "valid_until,updated_by,review_ref) VALUES(%s,%s,'github',%s,1,%s,%s,%s,%s,%s,'fixture')",
+            "valid_until,updated_by,review_ref) "
+            "VALUES(%s,%s,'github',%s,1,%s,%s,%s,%s,%s,'fixture')",
             (
                 identifier,
                 engine.settings.project_id,
