@@ -89,7 +89,7 @@
     },
     {
       "path": "src/mgar_v3/super_agent/source_autonomy.py",
-      "sha256": "175849d1d0621e04cb338a55792db712274c8d932ac3320cd78a7ff747894ce0"
+      "sha256": "c32c41d8afa222a7212c79d452a29d844c1419a94c9fc27a4f1b774a9fddd980"
     },
     {
       "path": "src/mgar_v3/super_agent/source_autonomy_api.py",

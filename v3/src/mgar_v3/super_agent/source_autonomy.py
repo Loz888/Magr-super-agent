@@ -339,7 +339,19 @@ class SourceAutonomy(AutonomyStore):
             factory_configured=hasattr(self.engine.source_scheduler, "_enqueue_authorized")
             and hasattr(self.engine.source_coding, "_admit_authorized"),
         )
-        return plan_admission(rule, signal, f, at=self.now(conn)), source, profile
+        plan = plan_admission(rule, signal, f, at=self.now(conn))
+        if plan.disposition == "admit" and history["n"] and not reviewed_reopen:
+            # A fresh signal is not a new problem or permission to reopen it.
+            # Persist a duplicate claim on the original transaction; only the
+            # reviewed reopen path can extend this subject's original lineage.
+            return (
+                AutonomyAdmissionPlan(
+                    disposition="duplicate", reason_code="AUTONOMY_SUBJECT_ALREADY_TRACKED"
+                ),
+                None,
+                None,
+            )
+        return plan, source, profile
 
     def _accept(
         self,
