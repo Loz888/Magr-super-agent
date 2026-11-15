@@ -102,7 +102,9 @@ def test_machine_auth_separates_components_browser_and_actual_peer(engine, tmp_p
 
 def test_machine_activation_heartbeat_tick_and_rotation_do_not_leak_credentials(engine, tmp_path):
     env = configured(engine, tmp_path)
-    with TestClient(app(env), base_url="http://127.0.0.1:18080") as client:
+    with TestClient(
+        app(env), base_url="http://127.0.0.1:18080", client=("127.0.0.1", 1234)
+    ) as client:
         snapshot = client.get(path(env, "snapshot"), headers=headers(env))
         assert snapshot.status_code == 200, snapshot.text
         assert all(token not in snapshot.text for token in env.tokens.values())
@@ -135,7 +137,9 @@ def test_machine_activation_heartbeat_tick_and_rotation_do_not_leak_credentials(
 def test_nonexecuting_role_cannot_tick_even_with_valid_machine_token(engine, tmp_path):
     env = configured(engine, tmp_path)
     selected = "watchdog"
-    with TestClient(app(env), base_url="http://127.0.0.1:18080") as client:
+    with TestClient(
+        app(env), base_url="http://127.0.0.1:18080", client=("127.0.0.1", 1234)
+    ) as client:
         raw = ComponentOpen(
             config_revision=1, expected_generation=0, boot_id=uuid4(), request_id=uuid4()
         ).model_dump(mode="json")

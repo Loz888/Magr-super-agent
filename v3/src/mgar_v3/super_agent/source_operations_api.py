@@ -30,7 +30,6 @@ from mgar_v3.super_agent.source_operations_domain import (
 )
 from mgar_v3.web_access import SESSION_COOKIE, BrowserSession
 
-
 PREFIX = "/api/v3/source-operations"
 
 
