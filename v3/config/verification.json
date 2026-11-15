@@ -1923,5 +1923,16 @@
       "real_gates": "NOT_RUN",
       "SA19": "NOT_STARTED"
     }
+  },
+  "SAV1-18-ASYNC-REPAIR-DRAFT": {
+    "tests": [
+      "tests/test_source_review_async_draft.py"
+    ],
+    "timeout_seconds": 120,
+    "components": {
+      "scope": "First proposed0051 installation/integrity guard checks in isolated PG; formal0051 NOT_RUN and prior passes excluded",
+      "real_gates": "NOT_RUN",
+      "SA19": "NOT_STARTED"
+    }
   }
 }
