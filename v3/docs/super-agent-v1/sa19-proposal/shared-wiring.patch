@@ -1,0 +1,48 @@
+--- a/v3/src/mgar_v3/coordination/engine.py
++++ b/v3/src/mgar_v3/coordination/engine.py
+@@ -39,6 +39,7 @@
+ from mgar_v3.super_agent.source_async import SourceAsync
+ from mgar_v3.super_agent.source_autonomy import SourceAutonomy
+ from mgar_v3.super_agent.source_coding import SourceCoding
++from mgar_v3.super_agent.source_console import SourceConsole
+ from mgar_v3.super_agent.source_correlation import SourceCorrelations
+ from mgar_v3.super_agent.source_eval import SourceEval
+ from mgar_v3.super_agent.source_notifications import SourceNotifications
+@@ -99,6 +100,7 @@
+         self.source_autonomy = SourceAutonomy(self)
+         self.source_notifications = SourceNotifications(self)
+         self.source_reviews = SourceReviews(self)
++        self.source_console = SourceConsole(self)
+ 
+     def close(self) -> None:
+         with self._mutex:
+--- a/v3/src/mgar_v3/api.py
++++ b/v3/src/mgar_v3/api.py
+@@ -59,6 +59,7 @@
+ from mgar_v3.super_agent.source_async_api import register as register_source_async
+ from mgar_v3.super_agent.source_autonomy_api import register as register_source_autonomy
+ from mgar_v3.super_agent.source_coding_api import register as register_source_coding
++from mgar_v3.super_agent.source_console_api import register as register_source_console
+ from mgar_v3.super_agent.source_correlation_api import register as register_source_correlations
+ from mgar_v3.super_agent.source_eval_api import register as register_source_eval
+ from mgar_v3.super_agent.source_notification_api import register as register_source_notifications
+@@ -1299,6 +1300,9 @@
+     register_source_autonomy(app, authority, browser_user)
+     register_source_notifications(app, authority, browser_user)
+     register_source_reviews(app, authority, browser_user)
++    register_source_console(
++        app, authority, browser_user, github_runtime=github_runtime, feishu_runtime=feishu_runtime
++    )
+     register(app, authority, authenticated)
+     register_commerce(app, authority, authenticated)
+     register_recovery(app, configuration, authority, authenticated)
+--- a/v3/web/agent.html
++++ b/v3/web/agent.html
+@@ -94,6 +94,7 @@
+           <p class="sidebar-empty">连接后查看你的分析记录</p>
+         </nav>
+         <div class="sidebar-bottom">
++          <a class="settings-button" id="open-source-console" href="/source-console">来源与任务控制台</a>
+           <span class="private-note">源码阅读 · 搜索 · 证据核验</span>
+           <button id="open-settings" class="settings-button">
+             <span class="status-dot" id="connection-dot"></span

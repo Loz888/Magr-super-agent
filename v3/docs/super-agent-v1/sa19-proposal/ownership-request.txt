@@ -1,0 +1,34 @@
+SA19 具体共享范围确认请求（仅SA副本）
+
+用户已接受SA18-I01 ed3d24f独立原2PASS并授权启动SA19；闭环证据在
+accept/SAV1-18/independent-closure-20261115.json。SA08/SA09前置DONE已核对。
+请仅确认本请求的编号、表/函数、接口及文件所有权，不导入或运行SA补丁。
+
+1. 拟0052_source_console.sql：两个新表 app.sa_console_credentials /
+app.sa_console_audit；两个函数 app.sa_console_credential_guard /
+app.sa_console_audit_append_only，及对应trigger/index。仅加密来源凭据保管和最小审计，
+没有第二Task/Run/Action/Usage、控制flag状态机或调度/预算算法。
+SQL SHA256：765932acca6566a33596e2c543b446c0675ccce689db9e82223b64cf9cd14fb4
+
+2. shared-wiring.patch：原Engine只import/构造SourceConsole；原API只import/register，
+传递已存在的GitHub/FeishuRuntime观察端口；web/agent.html只加登录后来源控制台入口。
+三文件before/after和所有15接口完整列表见proposal-manifest.json；12个Owner API和
+独立页面/JS/CSS三资源归SA侧。其他原页面脚本/样式、账户/凭据旧逻辑不改。
+补丁 SHA256：b2ba32c532005d4d798f9230c5e1b6d0676ff300a720e62f4a1f2fef7eeb22f8
+
+3. SA私有source_console*.py、专属web/source-console.*、测试/契约/禁用样例与说明归SA。
+业务写仍经原Engine同一持锁PG连接/RLock；文件/crypto和远端IO在事务外。
+复用原注册/来源设置/身份/策略/Ingress与Engine.cancel，旧模块不重写。
+全局停用按原事实原子撤销所有来源，不新增独立全局开关；unknown/费用保留。
+源凭据仅Owner安全网页写入，API不读回，绑定安装、范围、revision及expiry后加密。
+健康只读原Runtime.current status，在线与消息权限分开，缺诊断为unknown。
+当前Worker真实能力未放行，UI和后端拒绝auto_repair保存；配置不启动平台/监听/
+模型/Worker/通知/发布，观察页不产生业务副作用。原事件与任务不因关闭浏览器停止。
+
+4. 正式0052及三文件补丁在本次新固定确认前不应用。主库只读仍44迁移，SA正式目录
+48份，旧迁移和0050/0051不改，不预占0053以后。H12由另一CLI负责，不读/导入
+Harness活动或未提交实现，不操作Harness库，不新增真实/付费/外发或推送。
+草案与私有首次检查单独登记，结果见preparation-result.json，不能当正式集成验收。
+
+请将确认作为仅含协调文档的独立本地提交，并回传commit及HANDOFF节号。此前
+第44节162b6ef只覆盖0051，不作为本次0052/三文件/15接口的确认。

@@ -1,0 +1,25 @@
+{
+  "task": "SAV1-18",
+  "finding": "SA18-I01",
+  "status": "DONE_LOCAL_CONTROLLED_ENGINEERING_USER_ACCEPTED",
+  "UTC": "2026-11-15T08:47:02.411965+00:00",
+  "source_candidate": "ed3d24f9340672698744a9cce61269f9198d0483",
+  "source_sha256": "1a1817ce86a34a0c4d53bf0d51cbf4223d24eb81675c5229ab22f042bc7094ed",
+  "delivery_commit": "9593b62b0f819cfea2589a9774bfac5492173557",
+  "independent_report": "evidence/super-agent-v1/SAV1-18/independent-I01-recheck-20261115T083259Z-7489af65/REPORT.md",
+  "independent_result_sha256": "c6935dab1bc0e772d082dc249b3368f0b027b274415d1dade615990aef03f8ee",
+  "junit_sha256": "110eafc13c50dc07c9e2f3be8a681099cb0c0ad5955428d68865e2b4add278cd",
+  "counts": {
+    "tests": 2,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "original_probe_sha256": "4f2f74739f379e2f252bf0a8dcaf0551431df4b3ae6e48b5d6e41fef8d78add1",
+  "actual_git_no_publication_commit_or_PR": true,
+  "original15_and_historical68_86_SIGKILL_static_not_rerun": true,
+  "new_tests_run": false,
+  "user_authorized_next": "SAV1-19",
+  "real_gates": "NOT_RUN",
+  "H12_fixed_live_agent_mvp": "FAIL; other CLI owns review"
+}

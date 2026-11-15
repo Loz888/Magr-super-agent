@@ -1,0 +1,79 @@
+{
+  "version": "sa19-console-proposal-v1",
+  "status": "PROPOSAL_NOT_FORMALLY_APPLIED_WAITING_HARNESS_CONFIRMATION",
+  "prepared_UTC": "2026-11-15T08:51:11.101259+00:00",
+  "base_commit": "9593b62b0f819cfea2589a9774bfac5492173557",
+  "SQL": {
+    "draft": "0052_source_console.sql",
+    "formal_path": "v3/migrations/0052_source_console.sql",
+    "sha256": "765932acca6566a33596e2c543b446c0675ccce689db9e82223b64cf9cd14fb4",
+    "tables": [
+      "app.sa_console_credentials",
+      "app.sa_console_audit"
+    ],
+    "functions": [
+      "app.sa_console_credential_guard",
+      "app.sa_console_audit_append_only"
+    ]
+  },
+  "patch": {
+    "file": "shared-wiring.patch",
+    "sha256": "b2ba32c532005d4d798f9230c5e1b6d0676ff300a720e62f4a1f2fef7eeb22f8",
+    "files": [
+      {
+        "path": "v3/src/mgar_v3/coordination/engine.py",
+        "before_sha256": "d4130dc7a2269171946611e30efe68c23bde52e877d8d881d31a0629382068e9",
+        "after_sha256": "5658065429a9035ed5d60f4d90571a5adb8d5c732a0a1a53b741bca25841c815"
+      },
+      {
+        "path": "v3/src/mgar_v3/api.py",
+        "before_sha256": "4b04b45423527ecbb64caafd2fc348edec8786e00806f1aa01e19b1009be0549",
+        "after_sha256": "2d0e9dbf78158f425c823ef31f65cb5b37852b156df5b26b3937de55088d2b08"
+      },
+      {
+        "path": "v3/web/agent.html",
+        "before_sha256": "48cede6f717055a0796eb9416cf49bf99816bed44c3868ae38848300837919c3",
+        "after_sha256": "9320988919f0220dff1ebaba208df7d9ac0328bf587b1e91e9004b183469f806"
+      }
+    ]
+  },
+  "interfaces": [
+    "GET /api/v3/source-console",
+    "GET /api/v3/source-console/sources/{source_id}",
+    "PUT /api/v3/source-console/sources/{source_id}",
+    "PUT /api/v3/source-console/sources/{source_id}/credentials",
+    "POST /api/v3/source-console/sources/{source_id}/revoke",
+    "PUT /api/v3/source-console/sources/{source_id}/ingress",
+    "POST /api/v3/source-console/disable-all",
+    "PUT /api/v3/source-console/policies/{policy_id}",
+    "POST /api/v3/source-console/policies/{policy_id}/preview",
+    "GET /api/v3/source-console/tasks/{run_id}",
+    "POST /api/v3/source-console/tasks/{run_id}/stop",
+    "GET /api/v3/source-console/decisions",
+    "GET /source-console",
+    "GET /static/source-console.js",
+    "GET /static/source-console.css"
+  ],
+  "private_scope": [
+    "src/mgar_v3/super_agent/source_console*.py",
+    "web/source-console.html",
+    "web/source-console.js",
+    "web/source-console.css",
+    "tests/test_source_console_*.py",
+    "tests/sa19_*.py"
+  ],
+  "constraints": [
+    "Original Engine same held PG connection and RLock; crypto/key filesystem/network/Docker outside SQL",
+    "Only encrypted source credential custody and metadata audit; no second Task/Run/Action/Usage state",
+    "Compose existing SourceRegistry/GitHub/Feishu settings, policy/revocation/ingress, Engine.cancel and budgets; no edits to their shared/private old modules",
+    "Global stop revokes existing source authority atomically, state derived from original current facts rather than a parallel global flag",
+    "Current live Worker capability unaccepted: console backend and UI reject auto_repair save; no live listener/model/notification/PR activation",
+    "Runtime health from same-Engine registered original runtimes, fresh current diagnostics; no health request performs external IO",
+    "All new API/HTML/assets Owner session; mutations Origin/CSRF; credentials write-only/redacted",
+    "No main migration, no0053 reservation, no Harness/H12 imports or worktree changes"
+  ],
+  "repo_formal_migrations": 48,
+  "main_database_migrations": 44,
+  "SA20": "NOT_STARTED",
+  "real_gates": "NOT_RUN"
+}

@@ -1,0 +1,17 @@
+[
+  {
+    "path": "v3/src/mgar_v3/coordination/engine.py",
+    "before_sha256": "d4130dc7a2269171946611e30efe68c23bde52e877d8d881d31a0629382068e9",
+    "after_sha256": "5658065429a9035ed5d60f4d90571a5adb8d5c732a0a1a53b741bca25841c815"
+  },
+  {
+    "path": "v3/src/mgar_v3/api.py",
+    "before_sha256": "4b04b45423527ecbb64caafd2fc348edec8786e00806f1aa01e19b1009be0549",
+    "after_sha256": "2d0e9dbf78158f425c823ef31f65cb5b37852b156df5b26b3937de55088d2b08"
+  },
+  {
+    "path": "v3/web/agent.html",
+    "before_sha256": "48cede6f717055a0796eb9416cf49bf99816bed44c3868ae38848300837919c3",
+    "after_sha256": "9320988919f0220dff1ebaba208df7d9ac0328bf587b1e91e9004b183469f806"
+  }
+]

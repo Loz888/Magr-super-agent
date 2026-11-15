@@ -1,0 +1,28 @@
+{
+  "label": "SYNTHETIC_CONTRACT_EXAMPLE_NOT_ACTIVATION",
+  "source": {
+    "source_kind": "feishu",
+    "expected_source_revision": 0,
+    "configuration": {
+      "expected_revision": 0,
+      "settings": {
+        "app_id": "cli_SA19",
+        "tenant_key": "Tenant_SA19",
+        "bot_open_id": "Bot_SA19",
+        "chat_ids": [
+          "Chat_SA19"
+        ],
+        "sender_open_ids": [
+          "Human_SA19"
+        ],
+        "scopes_review_ref": "synthetic-review",
+        "enabled": false
+      },
+      "review_ref": "synthetic-owner-review"
+    }
+  },
+  "credentials": null,
+  "worker_started": false,
+  "model_calls": 0,
+  "external_writes": 0
+}

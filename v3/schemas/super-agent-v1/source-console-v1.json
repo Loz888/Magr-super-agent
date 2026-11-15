@@ -1,0 +1,647 @@
+{
+  "version": "source-console-v1",
+  "contracts": {
+    "ConsoleSourceSave": {
+      "$defs": {
+        "FeishuConfigure": {
+          "additionalProperties": false,
+          "properties": {
+            "expected_revision": {
+              "minimum": 0,
+              "title": "Expected Revision",
+              "type": "integer"
+            },
+            "settings": {
+              "$ref": "#/$defs/FeishuSettings"
+            },
+            "review_ref": {
+              "maxLength": 256,
+              "minLength": 1,
+              "title": "Review Ref",
+              "type": "string"
+            }
+          },
+          "required": [
+            "expected_revision",
+            "settings",
+            "review_ref"
+          ],
+          "title": "FeishuConfigure",
+          "type": "object"
+        },
+        "FeishuConsoleCredentials": {
+          "additionalProperties": false,
+          "properties": {
+            "app_secret": {
+              "format": "password",
+              "title": "App Secret",
+              "type": "string",
+              "writeOnly": true
+            },
+            "verification_token": {
+              "format": "password",
+              "title": "Verification Token",
+              "type": "string",
+              "writeOnly": true
+            },
+            "encrypt_key": {
+              "format": "password",
+              "title": "Encrypt Key",
+              "type": "string",
+              "writeOnly": true
+            }
+          },
+          "required": [
+            "app_secret",
+            "verification_token",
+            "encrypt_key"
+          ],
+          "title": "FeishuConsoleCredentials",
+          "type": "object"
+        },
+        "FeishuSettings": {
+          "additionalProperties": false,
+          "properties": {
+            "schema_version": {
+              "const": "feishu-bot-v1",
+              "default": "feishu-bot-v1",
+              "title": "Schema Version",
+              "type": "string"
+            },
+            "app_id": {
+              "maxLength": 256,
+              "minLength": 1,
+              "title": "App Id",
+              "type": "string"
+            },
+            "tenant_key": {
+              "maxLength": 256,
+              "minLength": 1,
+              "title": "Tenant Key",
+              "type": "string"
+            },
+            "bot_open_id": {
+              "maxLength": 256,
+              "minLength": 1,
+              "title": "Bot Open Id",
+              "type": "string"
+            },
+            "chat_ids": {
+              "items": {
+                "maxLength": 256,
+                "minLength": 1,
+                "type": "string"
+              },
+              "maxItems": 100,
+              "minItems": 1,
+              "title": "Chat Ids",
+              "type": "array"
+            },
+            "sender_open_ids": {
+              "items": {
+                "maxLength": 256,
+                "minLength": 1,
+                "type": "string"
+              },
+              "maxItems": 100,
+              "minItems": 1,
+              "title": "Sender Open Ids",
+              "type": "array"
+            },
+            "context_bot_open_ids": {
+              "default": [],
+              "items": {
+                "maxLength": 256,
+                "minLength": 1,
+                "type": "string"
+              },
+              "maxItems": 100,
+              "title": "Context Bot Open Ids",
+              "type": "array"
+            },
+            "events": {
+              "default": [
+                "im.message.receive_v1"
+              ],
+              "items": {
+                "enum": [
+                  "im.message.receive_v1",
+                  "im.message.recalled_v1"
+                ],
+                "type": "string"
+              },
+              "maxItems": 2,
+              "minItems": 1,
+              "title": "Events",
+              "type": "array"
+            },
+            "receive_mode": {
+              "default": "mentions_or_topics",
+              "enum": [
+                "mentions_or_topics",
+                "all_selected"
+              ],
+              "title": "Receive Mode",
+              "type": "string"
+            },
+            "followup_topics": {
+              "default": [],
+              "items": {
+                "$ref": "#/$defs/FollowupTopic"
+              },
+              "maxItems": 100,
+              "title": "Followup Topics",
+              "type": "array"
+            },
+            "requested_scopes": {
+              "default": [
+                "im:message.group_at_msg:readonly"
+              ],
+              "items": {
+                "maxLength": 256,
+                "minLength": 1,
+                "type": "string"
+              },
+              "maxItems": 20,
+              "minItems": 1,
+              "title": "Requested Scopes",
+              "type": "array"
+            },
+            "scopes_review_ref": {
+              "maxLength": 256,
+              "minLength": 1,
+              "title": "Scopes Review Ref",
+              "type": "string"
+            },
+            "history_enabled": {
+              "default": false,
+              "title": "History Enabled",
+              "type": "boolean"
+            },
+            "enabled": {
+              "default": false,
+              "title": "Enabled",
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "app_id",
+            "tenant_key",
+            "bot_open_id",
+            "chat_ids",
+            "sender_open_ids",
+            "scopes_review_ref"
+          ],
+          "title": "FeishuSettings",
+          "type": "object"
+        },
+        "FollowupTopic": {
+          "additionalProperties": false,
+          "properties": {
+            "chat_id": {
+              "maxLength": 256,
+              "minLength": 1,
+              "title": "Chat Id",
+              "type": "string"
+            },
+            "thread_id": {
+              "maxLength": 256,
+              "minLength": 1,
+              "title": "Thread Id",
+              "type": "string"
+            }
+          },
+          "required": [
+            "chat_id",
+            "thread_id"
+          ],
+          "title": "FollowupTopic",
+          "type": "object"
+        },
+        "GitHubConfigure": {
+          "additionalProperties": false,
+          "properties": {
+            "expected_revision": {
+              "minimum": 0,
+              "title": "Expected Revision",
+              "type": "integer"
+            },
+            "settings": {
+              "$ref": "#/$defs/GitHubSettings"
+            },
+            "review_ref": {
+              "maxLength": 256,
+              "minLength": 1,
+              "title": "Review Ref",
+              "type": "string"
+            }
+          },
+          "required": [
+            "expected_revision",
+            "settings",
+            "review_ref"
+          ],
+          "title": "GitHubConfigure",
+          "type": "object"
+        },
+        "GitHubConsoleCredentials": {
+          "additionalProperties": false,
+          "properties": {
+            "app_private_key": {
+              "format": "password",
+              "title": "App Private Key",
+              "type": "string",
+              "writeOnly": true
+            },
+            "webhook_secret": {
+              "format": "password",
+              "title": "Webhook Secret",
+              "type": "string",
+              "writeOnly": true
+            }
+          },
+          "required": [
+            "app_private_key",
+            "webhook_secret"
+          ],
+          "title": "GitHubConsoleCredentials",
+          "type": "object"
+        },
+        "GitHubRepository": {
+          "additionalProperties": false,
+          "properties": {
+            "repository_id": {
+              "exclusiveMinimum": 0,
+              "maximum": 9223372036854775807,
+              "title": "Repository Id",
+              "type": "integer"
+            },
+            "full_name": {
+              "pattern": "^[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+$",
+              "title": "Full Name",
+              "type": "string"
+            },
+            "private": {
+              "title": "Private",
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "repository_id",
+            "full_name",
+            "private"
+          ],
+          "title": "GitHubRepository",
+          "type": "object"
+        },
+        "GitHubSettings": {
+          "additionalProperties": false,
+          "properties": {
+            "schema_version": {
+              "const": "github-app-v1",
+              "default": "github-app-v1",
+              "title": "Schema Version",
+              "type": "string"
+            },
+            "app_id": {
+              "exclusiveMinimum": 0,
+              "maximum": 9223372036854775807,
+              "title": "App Id",
+              "type": "integer"
+            },
+            "account_id": {
+              "exclusiveMinimum": 0,
+              "maximum": 9223372036854775807,
+              "title": "Account Id",
+              "type": "integer"
+            },
+            "installation_id": {
+              "exclusiveMinimum": 0,
+              "maximum": 9223372036854775807,
+              "title": "Installation Id",
+              "type": "integer"
+            },
+            "repository": {
+              "$ref": "#/$defs/GitHubRepository"
+            },
+            "events": {
+              "items": {
+                "enum": [
+                  "issues",
+                  "issue_comment",
+                  "pull_request",
+                  "pull_request_review",
+                  "pull_request_review_comment",
+                  "workflow_run",
+                  "check_run",
+                  "check_suite"
+                ],
+                "type": "string"
+              },
+              "maxItems": 8,
+              "minItems": 1,
+              "title": "Events",
+              "type": "array"
+            },
+            "sender_ids": {
+              "items": {
+                "exclusiveMinimum": 0,
+                "maximum": 9223372036854775807,
+                "type": "integer"
+              },
+              "maxItems": 100,
+              "minItems": 1,
+              "title": "Sender Ids",
+              "type": "array"
+            },
+            "context_bot_ids": {
+              "default": [],
+              "items": {
+                "exclusiveMinimum": 0,
+                "maximum": 9223372036854775807,
+                "type": "integer"
+              },
+              "maxItems": 100,
+              "title": "Context Bot Ids",
+              "type": "array"
+            },
+            "own_bot_ids": {
+              "items": {
+                "exclusiveMinimum": 0,
+                "maximum": 9223372036854775807,
+                "type": "integer"
+              },
+              "maxItems": 100,
+              "minItems": 1,
+              "title": "Own Bot Ids",
+              "type": "array"
+            },
+            "enabled": {
+              "default": false,
+              "title": "Enabled",
+              "type": "boolean"
+            }
+          },
+          "required": [
+            "app_id",
+            "account_id",
+            "installation_id",
+            "repository",
+            "events",
+            "sender_ids",
+            "own_bot_ids"
+          ],
+          "title": "GitHubSettings",
+          "type": "object"
+        }
+      },
+      "additionalProperties": false,
+      "properties": {
+        "source_kind": {
+          "enum": [
+            "github",
+            "feishu"
+          ],
+          "title": "Source Kind",
+          "type": "string"
+        },
+        "expected_source_revision": {
+          "maximum": 9223372036854775807,
+          "minimum": 0,
+          "title": "Expected Source Revision",
+          "type": "integer"
+        },
+        "expected_credential_revision": {
+          "default": 0,
+          "maximum": 9223372036854775807,
+          "minimum": 0,
+          "title": "Expected Credential Revision",
+          "type": "integer"
+        },
+        "display_name": {
+          "default": "",
+          "maxLength": 200,
+          "title": "Display Name",
+          "type": "string"
+        },
+        "configuration": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/GitHubConfigure"
+            },
+            {
+              "$ref": "#/$defs/FeishuConfigure"
+            }
+          ],
+          "title": "Configuration"
+        },
+        "credentials": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/GitHubConsoleCredentials"
+            },
+            {
+              "$ref": "#/$defs/FeishuConsoleCredentials"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Credentials"
+        },
+        "credential_valid_until": {
+          "anyOf": [
+            {
+              "format": "date-time",
+              "type": "string"
+            },
+            {
+              "type": "null"
+            }
+          ],
+          "default": null,
+          "title": "Credential Valid Until"
+        }
+      },
+      "required": [
+        "source_kind",
+        "expected_source_revision",
+        "configuration"
+      ],
+      "title": "ConsoleSourceSave",
+      "type": "object"
+    },
+    "ConsoleCredentialSave": {
+      "$defs": {
+        "FeishuConsoleCredentials": {
+          "additionalProperties": false,
+          "properties": {
+            "app_secret": {
+              "format": "password",
+              "title": "App Secret",
+              "type": "string",
+              "writeOnly": true
+            },
+            "verification_token": {
+              "format": "password",
+              "title": "Verification Token",
+              "type": "string",
+              "writeOnly": true
+            },
+            "encrypt_key": {
+              "format": "password",
+              "title": "Encrypt Key",
+              "type": "string",
+              "writeOnly": true
+            }
+          },
+          "required": [
+            "app_secret",
+            "verification_token",
+            "encrypt_key"
+          ],
+          "title": "FeishuConsoleCredentials",
+          "type": "object"
+        },
+        "GitHubConsoleCredentials": {
+          "additionalProperties": false,
+          "properties": {
+            "app_private_key": {
+              "format": "password",
+              "title": "App Private Key",
+              "type": "string",
+              "writeOnly": true
+            },
+            "webhook_secret": {
+              "format": "password",
+              "title": "Webhook Secret",
+              "type": "string",
+              "writeOnly": true
+            }
+          },
+          "required": [
+            "app_private_key",
+            "webhook_secret"
+          ],
+          "title": "GitHubConsoleCredentials",
+          "type": "object"
+        }
+      },
+      "additionalProperties": false,
+      "properties": {
+        "expected_source_revision": {
+          "exclusiveMinimum": 0,
+          "title": "Expected Source Revision",
+          "type": "integer"
+        },
+        "expected_credential_revision": {
+          "maximum": 9223372036854775807,
+          "minimum": 0,
+          "title": "Expected Credential Revision",
+          "type": "integer"
+        },
+        "credentials": {
+          "anyOf": [
+            {
+              "$ref": "#/$defs/GitHubConsoleCredentials"
+            },
+            {
+              "$ref": "#/$defs/FeishuConsoleCredentials"
+            }
+          ],
+          "title": "Credentials"
+        },
+        "valid_until": {
+          "format": "date-time",
+          "title": "Valid Until",
+          "type": "string"
+        },
+        "review_ref": {
+          "maxLength": 256,
+          "minLength": 1,
+          "title": "Review Ref",
+          "type": "string"
+        }
+      },
+      "required": [
+        "expected_source_revision",
+        "expected_credential_revision",
+        "credentials",
+        "valid_until",
+        "review_ref"
+      ],
+      "title": "ConsoleCredentialSave",
+      "type": "object"
+    },
+    "ConsoleSourceRevoke": {
+      "additionalProperties": false,
+      "properties": {
+        "expected_source_revision": {
+          "exclusiveMinimum": 0,
+          "title": "Expected Source Revision",
+          "type": "integer"
+        },
+        "review_ref": {
+          "maxLength": 256,
+          "minLength": 1,
+          "title": "Review Ref",
+          "type": "string"
+        }
+      },
+      "required": [
+        "expected_source_revision",
+        "review_ref"
+      ],
+      "title": "ConsoleSourceRevoke",
+      "type": "object"
+    },
+    "ConsoleDisableSources": {
+      "additionalProperties": false,
+      "properties": {
+        "expected_snapshot_sha256": {
+          "pattern": "^[a-f0-9]{64}$",
+          "title": "Expected Snapshot Sha256",
+          "type": "string"
+        },
+        "review_ref": {
+          "maxLength": 256,
+          "minLength": 1,
+          "title": "Review Ref",
+          "type": "string"
+        }
+      },
+      "required": [
+        "expected_snapshot_sha256",
+        "review_ref"
+      ],
+      "title": "ConsoleDisableSources",
+      "type": "object"
+    },
+    "ConsoleTaskStop": {
+      "additionalProperties": false,
+      "properties": {
+        "expected_epoch": {
+          "maximum": 9223372036854775807,
+          "minimum": 0,
+          "title": "Expected Epoch",
+          "type": "integer"
+        },
+        "review_ref": {
+          "maxLength": 256,
+          "minLength": 1,
+          "title": "Review Ref",
+          "type": "string"
+        }
+      },
+      "required": [
+        "expected_epoch",
+        "review_ref"
+      ],
+      "title": "ConsoleTaskStop",
+      "type": "object"
+    }
+  },
+  "secrets": "write-only HTTPS/same-origin Owner input; never activation",
+  "default_auto_repair": false
+}

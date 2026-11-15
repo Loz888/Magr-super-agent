@@ -571,7 +571,7 @@
       "id": "SAV1-18",
       "short_id": "SA18",
       "title": "Review、精确审批与 Draft PR",
-      "status": "IN_PROGRESS",
+      "status": "DONE",
       "priority": "P0",
       "phase": "S3",
       "depends_on": [
@@ -590,11 +590,11 @@
       "card": "TASKS.md#sa18",
       "verification_target_on_implementation": "SAV1-18",
       "authorized_by_user": "Continue SA18 after confirming user-accepted SA17-I01 scoped independent pass",
-      "work_state": "SA18_I01_LOCAL_REPAIR_2PASS_AWAITING_INDEPENDENT_RECHECK",
+      "work_state": "USER_ACCEPTED_INDEPENDENT_I01_CLOSURE",
       "engineering_gate": "LOCAL_I01_REPAIR_ONLY_2PASS_INDEPENDENT_NOT_RELEASED",
-      "independent_review": "FAIL_SA18_I01_PENDING_INDEPENDENT_RECHECK",
+      "independent_review": "PASS_LOCAL_CONTROLLED_VERSIONED_EVIDENCE",
       "shared_scope": "CONFIRMED0050_SECTION43_AND0051_SECTION44_APPLIED_SA_COPY_ONLY",
-      "SA19": "NOT_STARTED",
+      "SA19": "AUTHORIZED_TO_START",
       "ownership_commits": [
         "09145fe0939b209c43addb0ae6bbbdcc6a6df9a2",
         "162b6ef890f18c89df07adf62b0ca0375b5da69c"
@@ -616,13 +616,15 @@
       "initial_engineering_summary": "accept/SAV1-18/accept.json",
       "repair_summary": "accept/SAV1-18/i01-repair.json",
       "repair_report": "SA18_I01_REPAIR_20261115.md",
-      "current_finding": "SA18-I01_LOCAL_REPAIR_AWAITING_INDEPENDENT_RECHECK"
+      "current_finding": "SA18-I01_CLOSED_INDEPENDENTLY",
+      "independent_closure": "accept/SAV1-18/independent-closure-20261115.json",
+      "next_card": "SAV1-19"
     },
     {
       "id": "SAV1-19",
       "short_id": "SA19",
       "title": "来源、策略、Shadow 与任务控制台",
-      "status": "PLANNED",
+      "status": "IN_PROGRESS",
       "priority": "P1",
       "phase": "S3",
       "depends_on": [
@@ -636,7 +638,13 @@
       },
       "optional": false,
       "card": "TASKS.md#sa19",
-      "verification_target_on_implementation": "SAV1-19"
+      "verification_target_on_implementation": "SAV1-19",
+      "work_state": "REQUIREMENTS_AND_EXISTING_ACCOUNT_SOURCE_AUTHORITIES_AUDIT",
+      "authorized_by_user": "Start SA19 after confirming user-accepted SA18-I01 independent original2 PASS",
+      "engineering_gate": "NOT_RUN",
+      "independent_review": "NOT_RUN",
+      "shared_scope": "CONCRETE_0052_AND_THREE_FILE_PROPOSAL_PREPARING",
+      "SA20": "NOT_STARTED"
     },
     {
       "id": "SAV1-20",
