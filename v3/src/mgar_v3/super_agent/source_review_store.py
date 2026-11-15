@@ -177,6 +177,8 @@ class ReviewStore:
         coding_id: UUID,
         profile_sha256: str,
         user: UUID,
+        *,
+        require_primary: bool = True,
     ) -> tuple[Row, Row, Any, ReviewVerification, ReviewProfile, int, int]:
         coding = self.engine.source_coding
         binding = coding.binding(conn, coding_id)
@@ -212,11 +214,10 @@ class ReviewStore:
         ):
             raise denied("TARGET_VERIFICATION_CHANGED")
         primary = conn.execute(
-            "SELECT 1 FROM app.subscriptions WHERE run_id=%s AND thread_id=%s "
-            "AND active AND role='primary'",
-            (run["run_id"], run["thread_id"]),
+            "SELECT run_id FROM app.subscriptions WHERE thread_id=%s AND active AND role='primary'",
+            (run["thread_id"],),
         ).fetchone()
-        if not primary:
+        if (primary and primary["run_id"] != run["run_id"]) or (require_primary and not primary):
             raise denied("PRIMARY_REQUIRED")
         ar, ai = self._async(conn, coding_id, v)
         return run, attempt, mandate, v, profile, ar, ai
@@ -229,7 +230,7 @@ class ReviewStore:
     ) -> ReviewContext:
         user = self._console(conn, cookie)
         run, attempt, mandate, v, profile, ar, ai = self._base_facts(
-            conn, request.coding_id, request.profile_sha256, user
+            conn, request.coding_id, request.profile_sha256, user, require_primary=False
         )
         if (
             request.verification_id != v.verification_id

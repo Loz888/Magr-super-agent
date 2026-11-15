@@ -7,7 +7,7 @@ Source content erasure, and verifies the whole Git tree and unique base parent.
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any
+from typing import TYPE_CHECKING, Any, cast
 from uuid import UUID, uuid4
 
 from psycopg.types.json import Jsonb
@@ -44,7 +44,8 @@ class ReviewLedger(WorkbenchPublicationLedger):
             if action["status"] != "dispatching" or action["lease_token"] != lease_token:
                 raise denied("LEASE_FENCED")
             step = conn.execute(
-                "SELECT * FROM app.repair_publication_steps WHERE action_id=%s AND ordinal=%s FOR UPDATE",
+                "SELECT * FROM app.repair_publication_steps WHERE action_id=%s"
+                " AND ordinal=%s FOR UPDATE",
                 (action["action_id"], ordinal),
             ).fetchone()
             if step:
@@ -54,7 +55,8 @@ class ReviewLedger(WorkbenchPublicationLedger):
                     return "succeeded"
                 raise PublicationUncertain("Original publication step is unknown; query only")
             conn.execute(
-                "INSERT INTO app.repair_publication_steps(action_id,ordinal,kind,request_hash,status) "
+                "INSERT INTO app.repair_publication_steps(action_id,ordinal,kind,"
+                "request_hash,status) "
                 "VALUES(%s,%s,%s,%s,'dispatching')",
                 (action["action_id"], ordinal, kind, request_hash),
             )
@@ -72,7 +74,8 @@ class ReviewLedger(WorkbenchPublicationLedger):
             if step and step["kind"] != kind:
                 raise denied("STEP_REQUEST_CHANGED")
             conn.execute(
-                "INSERT INTO app.repair_publication_steps(action_id,ordinal,kind,request_hash,status,receipt) "
+                "INSERT INTO app.repair_publication_steps(action_id,ordinal,kind,"
+                "request_hash,status,receipt) "
                 "VALUES(%s,%s,%s,%s,'succeeded',%s) ON CONFLICT(action_id,ordinal) DO UPDATE "
                 "SET status='succeeded',receipt=EXCLUDED.receipt",
                 (review["action_id"], ordinal, kind, digest(dict(receipt)), Jsonb(dict(receipt))),
@@ -101,8 +104,10 @@ class ReviewLedger(WorkbenchPublicationLedger):
             }
             receipt = digest(facts)
             conn.execute(
-                "INSERT INTO app.sa_source_review_links(link_id,review_id,kind,receipt_sha256,facts) "
-                "VALUES(%s,%s,'draft_pr',%s,%s) ON CONFLICT(review_id,kind,receipt_sha256) DO NOTHING",
+                "INSERT INTO app.sa_source_review_links(link_id,review_id,kind,"
+                "receipt_sha256,facts) "
+                "VALUES(%s,%s,'draft_pr',%s,%s) ON CONFLICT(review_id,kind,"
+                "receipt_sha256) DO NOTHING",
                 (uuid4(), publication_id, receipt, Jsonb(facts)),
             )
             self.service._event(conn, review, "published", "CONTROLLED_DRAFT_VERIFIED")
@@ -239,7 +244,7 @@ class ReviewTransport:
             ledger.receipt_step(
                 review["review_id"],
                 ordinal,
-                kind,
+                cast(StepName, kind),
                 {"already_present": True, "sha": head, "number": pull.number},
             )
         ledger.attach_pull_request(review["review_id"], pull)

@@ -73,7 +73,7 @@ class SourceReviews(ReviewStore):
 
     @staticmethod
     def _binding(review: Row) -> str:
-        return REVIEW_VERSION + ":" + str(review["review_id"]) + ":" + review["bundle_sha256"]
+        return REVIEW_VERSION + ":" + str(review["review_id"]) + ":" + str(review["bundle_sha256"])
 
     @staticmethod
     def _exact(review: Row, request: ReviewExact) -> None:
@@ -127,6 +127,28 @@ class SourceReviews(ReviewStore):
             with self.engine.transaction() as conn:
                 if self._console(conn, cookie) != context.prepared_by:
                     raise denied("OWNER_CHANGED", 403)
+                # Source Coding owns an original Thread/Run but does not create
+                # a legacy publication subscription. This explicit Owner
+                # preparation may create the first one; it never revives an
+                # inactive row or replaces another primary. Every subsequent
+                # use, including the scope check below, requires it to exist.
+                subscription = conn.execute(
+                    "SELECT active,role FROM app.subscriptions WHERE thread_id=%s AND run_id=%s",
+                    (context.target.thread_id, context.target.run_id),
+                ).fetchone()
+                if subscription is None:
+                    other = conn.execute(
+                        "SELECT 1 FROM app.subscriptions WHERE thread_id=%s AND active"
+                        " AND role='primary'",
+                        (context.target.thread_id,),
+                    ).fetchone()
+                    if other:
+                        raise denied("PRIMARY_REQUIRED")
+                    conn.execute(
+                        "INSERT INTO app.subscriptions(thread_id,run_id,role) VALUES(%s,"
+                        "%s,'primary')",
+                        (context.target.thread_id, context.target.run_id),
+                    )
                 self._capture_scope(conn, context, before, after)
                 run = self.engine._run(conn, context.target.run_id)
                 busy = conn.execute(
@@ -144,9 +166,11 @@ class SourceReviews(ReviewStore):
                     raise denied("TARGET_WRITE_CONFLICT")
                 fencing = int(grant["fencing_token"]) + 1 if grant else 1
                 conn.execute(
-                    "INSERT INTO app.target_write_grants(target,run_id,execution_epoch,fencing_token) "
+                    "INSERT INTO app.target_write_grants(target,run_id,"
+                    "execution_epoch,fencing_token) "
                     "VALUES(%s,%s,%s,%s) ON CONFLICT(target) DO UPDATE SET run_id=EXCLUDED.run_id,"
-                    "execution_epoch=EXCLUDED.execution_epoch,fencing_token=EXCLUDED.fencing_token,active=true",
+                    "execution_epoch=EXCLUDED.execution_epoch,"
+                    "fencing_token=EXCLUDED.fencing_token,active=true",
                     (target, run["run_id"], context.epoch, fencing),
                 )
                 payload = {
@@ -167,7 +191,8 @@ class SourceReviews(ReviewStore):
                 )
                 action_id = uuid4()
                 conn.execute(
-                    "INSERT INTO app.actions(action_id,run_id,action_type,target,payload,payload_hash,"
+                    "INSERT INTO app.actions(action_id,run_id,action_type,target,"
+                    "payload,payload_hash,"
                     "base_revision,execution_epoch,fencing_token,dedupe_key,status,expires_at) "
                     "VALUES(%s,%s,'draft_pr',%s,%s,%s,%s,%s,%s,%s,'proposed',%s)",
                     (
@@ -184,7 +209,8 @@ class SourceReviews(ReviewStore):
                     ),
                 )
                 conn.execute(
-                    "UPDATE app.runs SET status='waiting_approval',reason_code='SOURCE_REVIEW_REQUIRED' "
+                    "UPDATE app.runs SET status='waiting_approval',"
+                    "reason_code='SOURCE_REVIEW_REQUIRED' "
                     "WHERE run_id=%s",
                     (run["run_id"],),
                 )
@@ -217,8 +243,10 @@ class SourceReviews(ReviewStore):
                     tuple(values.values()),
                 )
                 conn.execute(
-                    "INSERT INTO app.sa_source_review_payloads(review_id,bundle_sha256,content_sha256,"
-                    "cipher_sha256,ciphertext,plaintext_bytes,expires_at) VALUES(%s,%s,%s,%s,%s,%s,%s)",
+                    "INSERT INTO app.sa_source_review_payloads(review_id,"
+                    "bundle_sha256,content_sha256,"
+                    "cipher_sha256,ciphertext,plaintext_bytes,expires_at) VALUES(%s,"
+                    "%s,%s,%s,%s,%s,%s)",
                     (
                         context.review_id,
                         bundle.payload_hash,
@@ -383,13 +411,16 @@ class SourceReviews(ReviewStore):
                 )
                 approval_id = uuid4()
                 conn.execute(
-                    "INSERT INTO app.approvals(approval_id,action_id,actor,payload_hash,approved_at) "
+                    "INSERT INTO app.approvals(approval_id,action_id,actor,"
+                    "payload_hash,approved_at) "
                     "VALUES(%s,%s,%s,%s,%s)",
                     (approval_id, action["action_id"], context.actor, review["action_sha256"], now),
                 )
                 conn.execute(
-                    "INSERT INTO app.sa_source_review_approvals(review_id,presentation_id,approval_id,"
-                    "user_id,session_sha256,bundle_sha256,action_sha256,publication_approval,approved_at,"
+                    "INSERT INTO app.sa_source_review_approvals(review_id,"
+                    "presentation_id,approval_id,"
+                    "user_id,session_sha256,bundle_sha256,action_sha256,"
+                    "publication_approval,approved_at,"
                     "expires_at) VALUES(%s,%s,%s,%s,%s,%s,%s,%s,%s,%s)",
                     (
                         identifier,
@@ -519,7 +550,8 @@ class SourceReviews(ReviewStore):
                     "SELECT 1 FROM app.outbox o JOIN app.actions a USING(action_id) "
                     "JOIN app.runs r USING(run_id) WHERE o.status='ready' AND a.status='ready' "
                     "AND a.action_type='draft_pr' AND r.execution_mode='fixture' "
-                    "AND o.next_retry_at<=now() AND a.payload->>'scope_kind' IS DISTINCT FROM %s LIMIT 1",
+                    "AND o.next_retry_at<=now() AND a.payload->>'scope_kind' IS"
+                    " DISTINCT FROM %s LIMIT 1",
                     (REVIEW_VERSION,),
                 ).fetchone()
                 if other:
