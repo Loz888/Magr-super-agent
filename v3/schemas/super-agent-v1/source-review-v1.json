@@ -1,0 +1,657 @@
+{
+  "version": "source-review-v1",
+  "authority": "HTTP DTOs contain IDs and exact hashes only; internal context is evidence, never caller authorization",
+  "contracts": {
+    "ReviewPrepare": {
+      "additionalProperties": false,
+      "properties": {
+        "request_id": {
+          "format": "uuid",
+          "title": "Request Id",
+          "type": "string"
+        },
+        "coding_id": {
+          "format": "uuid",
+          "title": "Coding Id",
+          "type": "string"
+        },
+        "verification_id": {
+          "format": "uuid",
+          "title": "Verification Id",
+          "type": "string"
+        },
+        "expected_epoch": {
+          "maximum": 9223372036854775807,
+          "minimum": 1,
+          "title": "Expected Epoch",
+          "type": "integer"
+        },
+        "expected_input_revision": {
+          "maximum": 9223372036854775807,
+          "minimum": 1,
+          "title": "Expected Input Revision",
+          "type": "integer"
+        },
+        "profile_sha256": {
+          "pattern": "^[a-f0-9]{64}$",
+          "title": "Profile Sha256",
+          "type": "string"
+        }
+      },
+      "required": [
+        "request_id",
+        "coding_id",
+        "verification_id",
+        "expected_epoch",
+        "expected_input_revision",
+        "profile_sha256"
+      ],
+      "title": "ReviewPrepare",
+      "type": "object"
+    },
+    "ReviewApprove": {
+      "additionalProperties": false,
+      "properties": {
+        "bundle_sha256": {
+          "pattern": "^[a-f0-9]{64}$",
+          "title": "Bundle Sha256",
+          "type": "string"
+        },
+        "action_sha256": {
+          "pattern": "^[a-f0-9]{64}$",
+          "title": "Action Sha256",
+          "type": "string"
+        },
+        "presentation_id": {
+          "format": "uuid",
+          "title": "Presentation Id",
+          "type": "string"
+        }
+      },
+      "required": [
+        "bundle_sha256",
+        "action_sha256",
+        "presentation_id"
+      ],
+      "title": "ReviewApprove",
+      "type": "object"
+    },
+    "ReviewExact": {
+      "additionalProperties": false,
+      "properties": {
+        "bundle_sha256": {
+          "pattern": "^[a-f0-9]{64}$",
+          "title": "Bundle Sha256",
+          "type": "string"
+        },
+        "action_sha256": {
+          "pattern": "^[a-f0-9]{64}$",
+          "title": "Action Sha256",
+          "type": "string"
+        }
+      },
+      "required": [
+        "bundle_sha256",
+        "action_sha256"
+      ],
+      "title": "ReviewExact",
+      "type": "object"
+    },
+    "ReviewNativeLink": {
+      "$defs": {
+        "CorrelationInputRef": {
+          "additionalProperties": false,
+          "properties": {
+            "input_id": {
+              "format": "uuid",
+              "title": "Input Id",
+              "type": "string"
+            },
+            "source_instance_id": {
+              "format": "uuid",
+              "title": "Source Instance Id",
+              "type": "string"
+            },
+            "project_id": {
+              "maxLength": 100,
+              "minLength": 1,
+              "title": "Project Id",
+              "type": "string"
+            },
+            "version_fingerprint": {
+              "pattern": "^[a-f0-9]{64}$",
+              "title": "Version Fingerprint",
+              "type": "string"
+            },
+            "state_sha256": {
+              "pattern": "^[a-f0-9]{64}$",
+              "title": "State Sha256",
+              "type": "string"
+            }
+          },
+          "required": [
+            "input_id",
+            "source_instance_id",
+            "project_id",
+            "version_fingerprint",
+            "state_sha256"
+          ],
+          "title": "CorrelationInputRef",
+          "type": "object"
+        }
+      },
+      "additionalProperties": false,
+      "properties": {
+        "bundle_sha256": {
+          "pattern": "^[a-f0-9]{64}$",
+          "title": "Bundle Sha256",
+          "type": "string"
+        },
+        "action_sha256": {
+          "pattern": "^[a-f0-9]{64}$",
+          "title": "Action Sha256",
+          "type": "string"
+        },
+        "source_input": {
+          "$ref": "#/$defs/CorrelationInputRef"
+        }
+      },
+      "required": [
+        "bundle_sha256",
+        "action_sha256",
+        "source_input"
+      ],
+      "title": "ReviewNativeLink",
+      "type": "object"
+    },
+    "ReviewCycle": {
+      "additionalProperties": false,
+      "properties": {
+        "limit": {
+          "default": 8,
+          "maximum": 32,
+          "minimum": 1,
+          "title": "Limit",
+          "type": "integer"
+        }
+      },
+      "title": "ReviewCycle",
+      "type": "object"
+    }
+  },
+  "internal_evidence": {
+    "ReviewContext": {
+      "$defs": {
+        "CodingOrigin": {
+          "additionalProperties": false,
+          "properties": {
+            "input": {
+              "$ref": "#/$defs/CorrelationInputRef"
+            },
+            "identity_id": {
+              "format": "uuid",
+              "title": "Identity Id",
+              "type": "string"
+            },
+            "identity_revision": {
+              "maximum": 9223372036854775807,
+              "minimum": 1,
+              "title": "Identity Revision",
+              "type": "integer"
+            },
+            "principal_id": {
+              "format": "uuid",
+              "title": "Principal Id",
+              "type": "string"
+            },
+            "engine_actor": {
+              "pattern": "^[A-Za-z0-9_-]{1,100}$",
+              "title": "Engine Actor",
+              "type": "string"
+            },
+            "policy_id": {
+              "format": "uuid",
+              "title": "Policy Id",
+              "type": "string"
+            },
+            "policy_revision": {
+              "maximum": 9223372036854775807,
+              "minimum": 1,
+              "title": "Policy Revision",
+              "type": "integer"
+            },
+            "policy_sha256": {
+              "pattern": "^[a-f0-9]{64}$",
+              "title": "Policy Sha256",
+              "type": "string"
+            },
+            "expires_at": {
+              "format": "date-time",
+              "title": "Expires At",
+              "type": "string"
+            }
+          },
+          "required": [
+            "input",
+            "identity_id",
+            "identity_revision",
+            "principal_id",
+            "engine_actor",
+            "policy_id",
+            "policy_revision",
+            "policy_sha256",
+            "expires_at"
+          ],
+          "title": "CodingOrigin",
+          "type": "object"
+        },
+        "CodingTarget": {
+          "additionalProperties": false,
+          "properties": {
+            "project_id": {
+              "maxLength": 100,
+              "minLength": 1,
+              "title": "Project Id",
+              "type": "string"
+            },
+            "thread_id": {
+              "format": "uuid",
+              "title": "Thread Id",
+              "type": "string"
+            },
+            "ticket_id": {
+              "format": "uuid",
+              "title": "Ticket Id",
+              "type": "string"
+            },
+            "run_id": {
+              "format": "uuid",
+              "title": "Run Id",
+              "type": "string"
+            },
+            "mandate_id": {
+              "format": "uuid",
+              "title": "Mandate Id",
+              "type": "string"
+            }
+          },
+          "required": [
+            "project_id",
+            "thread_id",
+            "ticket_id",
+            "run_id",
+            "mandate_id"
+          ],
+          "title": "CodingTarget",
+          "type": "object"
+        },
+        "CorrelationInputRef": {
+          "additionalProperties": false,
+          "properties": {
+            "input_id": {
+              "format": "uuid",
+              "title": "Input Id",
+              "type": "string"
+            },
+            "source_instance_id": {
+              "format": "uuid",
+              "title": "Source Instance Id",
+              "type": "string"
+            },
+            "project_id": {
+              "maxLength": 100,
+              "minLength": 1,
+              "title": "Project Id",
+              "type": "string"
+            },
+            "version_fingerprint": {
+              "pattern": "^[a-f0-9]{64}$",
+              "title": "Version Fingerprint",
+              "type": "string"
+            },
+            "state_sha256": {
+              "pattern": "^[a-f0-9]{64}$",
+              "title": "State Sha256",
+              "type": "string"
+            }
+          },
+          "required": [
+            "input_id",
+            "source_instance_id",
+            "project_id",
+            "version_fingerprint",
+            "state_sha256"
+          ],
+          "title": "CorrelationInputRef",
+          "type": "object"
+        },
+        "ReviewTarget": {
+          "additionalProperties": false,
+          "properties": {
+            "repository": {
+              "pattern": "^[a-z0-9_.-]+/[a-z0-9_.-]+$",
+              "title": "Repository",
+              "type": "string"
+            },
+            "repository_id": {
+              "maximum": 9223372036854775807,
+              "minimum": 1,
+              "title": "Repository Id",
+              "type": "integer"
+            },
+            "base_branch": {
+              "maxLength": 200,
+              "pattern": "^[A-Za-z0-9_.-]+(?:/[A-Za-z0-9_.-]+){0,3}$",
+              "title": "Base Branch",
+              "type": "string"
+            },
+            "base_sha": {
+              "pattern": "^[a-f0-9]{40}$",
+              "title": "Base Sha",
+              "type": "string"
+            },
+            "branch": {
+              "pattern": "^sa18/[a-f0-9]{32}$",
+              "title": "Branch",
+              "type": "string"
+            },
+            "mode": {
+              "const": "fixture",
+              "default": "fixture",
+              "title": "Mode",
+              "type": "string"
+            },
+            "source_kind": {
+              "const": "fixture_git",
+              "default": "fixture_git",
+              "title": "Source Kind",
+              "type": "string"
+            }
+          },
+          "required": [
+            "repository",
+            "repository_id",
+            "base_branch",
+            "base_sha",
+            "branch"
+          ],
+          "title": "ReviewTarget",
+          "type": "object"
+        },
+        "ReviewVerification": {
+          "additionalProperties": false,
+          "description": "Projection of one original Verifier row and its trusted execution receipt.",
+          "properties": {
+            "verification_id": {
+              "format": "uuid",
+              "title": "Verification Id",
+              "type": "string"
+            },
+            "operation_id": {
+              "format": "uuid",
+              "title": "Operation Id",
+              "type": "string"
+            },
+            "execution_operation_id": {
+              "format": "uuid",
+              "title": "Execution Operation Id",
+              "type": "string"
+            },
+            "attempt_id": {
+              "format": "uuid",
+              "title": "Attempt Id",
+              "type": "string"
+            },
+            "coding_id": {
+              "format": "uuid",
+              "title": "Coding Id",
+              "type": "string"
+            },
+            "mandate_sha256": {
+              "pattern": "^[a-f0-9]{64}$",
+              "title": "Mandate Sha256",
+              "type": "string"
+            },
+            "receipt_sha256": {
+              "pattern": "^[a-f0-9]{64}$",
+              "title": "Receipt Sha256",
+              "type": "string"
+            },
+            "tree_sha256": {
+              "pattern": "^[a-f0-9]{64}$",
+              "title": "Tree Sha256",
+              "type": "string"
+            },
+            "environment_sha256": {
+              "pattern": "^[a-f0-9]{64}$",
+              "title": "Environment Sha256",
+              "type": "string"
+            },
+            "profile_sha256": {
+              "pattern": "^[a-f0-9]{64}$",
+              "title": "Profile Sha256",
+              "type": "string"
+            },
+            "acceptance_sha256": {
+              "pattern": "^[a-f0-9]{64}$",
+              "title": "Acceptance Sha256",
+              "type": "string"
+            },
+            "provenance_sha256": {
+              "pattern": "^[a-f0-9]{64}$",
+              "title": "Provenance Sha256",
+              "type": "string"
+            },
+            "result": {
+              "const": "passed",
+              "title": "Result",
+              "type": "string"
+            },
+            "tests_run": {
+              "exclusiveMinimum": 0,
+              "maximum": 1000000,
+              "title": "Tests Run",
+              "type": "integer"
+            },
+            "tests_failed": {
+              "const": 0,
+              "default": 0,
+              "title": "Tests Failed",
+              "type": "integer"
+            },
+            "observed_at": {
+              "format": "date-time",
+              "title": "Observed At",
+              "type": "string"
+            }
+          },
+          "required": [
+            "verification_id",
+            "operation_id",
+            "execution_operation_id",
+            "attempt_id",
+            "coding_id",
+            "mandate_sha256",
+            "receipt_sha256",
+            "tree_sha256",
+            "environment_sha256",
+            "profile_sha256",
+            "acceptance_sha256",
+            "provenance_sha256",
+            "result",
+            "tests_run",
+            "observed_at"
+          ],
+          "title": "ReviewVerification",
+          "type": "object"
+        }
+      },
+      "additionalProperties": false,
+      "properties": {
+        "review_id": {
+          "format": "uuid",
+          "title": "Review Id",
+          "type": "string"
+        },
+        "coding_id": {
+          "format": "uuid",
+          "title": "Coding Id",
+          "type": "string"
+        },
+        "target": {
+          "$ref": "#/$defs/CodingTarget"
+        },
+        "origin": {
+          "$ref": "#/$defs/CodingOrigin"
+        },
+        "attempt_id": {
+          "format": "uuid",
+          "title": "Attempt Id",
+          "type": "string"
+        },
+        "assignment_id": {
+          "format": "uuid",
+          "title": "Assignment Id",
+          "type": "string"
+        },
+        "session_id": {
+          "format": "uuid",
+          "title": "Session Id",
+          "type": "string"
+        },
+        "workspace_id": {
+          "format": "uuid",
+          "title": "Workspace Id",
+          "type": "string"
+        },
+        "epoch": {
+          "maximum": 9223372036854775807,
+          "minimum": 1,
+          "title": "Epoch",
+          "type": "integer"
+        },
+        "input_revision": {
+          "maximum": 9223372036854775807,
+          "minimum": 1,
+          "title": "Input Revision",
+          "type": "integer"
+        },
+        "async_revision": {
+          "maximum": 9223372036854775807,
+          "minimum": 0,
+          "title": "Async Revision",
+          "type": "integer"
+        },
+        "async_input_revision": {
+          "maximum": 9223372036854775807,
+          "minimum": 0,
+          "title": "Async Input Revision",
+          "type": "integer"
+        },
+        "mandate_sha256": {
+          "pattern": "^[a-f0-9]{64}$",
+          "title": "Mandate Sha256",
+          "type": "string"
+        },
+        "coding_revision": {
+          "maximum": 9223372036854775807,
+          "minimum": 1,
+          "title": "Coding Revision",
+          "type": "integer"
+        },
+        "worker_profile_sha256": {
+          "pattern": "^[a-f0-9]{64}$",
+          "title": "Worker Profile Sha256",
+          "type": "string"
+        },
+        "profile_sha256": {
+          "pattern": "^[a-f0-9]{64}$",
+          "title": "Profile Sha256",
+          "type": "string"
+        },
+        "environment_sha256": {
+          "pattern": "^[a-f0-9]{64}$",
+          "title": "Environment Sha256",
+          "type": "string"
+        },
+        "acceptance_sha256": {
+          "pattern": "^[a-f0-9]{64}$",
+          "title": "Acceptance Sha256",
+          "type": "string"
+        },
+        "baseline_tree_sha256": {
+          "pattern": "^[a-f0-9]{64}$",
+          "title": "Baseline Tree Sha256",
+          "type": "string"
+        },
+        "registration_sha256": {
+          "pattern": "^[a-f0-9]{64}$",
+          "title": "Registration Sha256",
+          "type": "string"
+        },
+        "context_sha256": {
+          "pattern": "^[a-f0-9]{64}$",
+          "title": "Context Sha256",
+          "type": "string"
+        },
+        "publication": {
+          "$ref": "#/$defs/ReviewTarget"
+        },
+        "verification": {
+          "$ref": "#/$defs/ReviewVerification"
+        },
+        "actor": {
+          "pattern": "^[A-Za-z0-9_-]{1,100}$",
+          "title": "Actor",
+          "type": "string"
+        },
+        "prepared_by": {
+          "format": "uuid",
+          "title": "Prepared By",
+          "type": "string"
+        },
+        "prepared_at": {
+          "format": "date-time",
+          "title": "Prepared At",
+          "type": "string"
+        },
+        "expires_at": {
+          "format": "date-time",
+          "title": "Expires At",
+          "type": "string"
+        }
+      },
+      "required": [
+        "review_id",
+        "coding_id",
+        "target",
+        "origin",
+        "attempt_id",
+        "assignment_id",
+        "session_id",
+        "workspace_id",
+        "epoch",
+        "input_revision",
+        "async_revision",
+        "async_input_revision",
+        "mandate_sha256",
+        "coding_revision",
+        "worker_profile_sha256",
+        "profile_sha256",
+        "environment_sha256",
+        "acceptance_sha256",
+        "baseline_tree_sha256",
+        "registration_sha256",
+        "context_sha256",
+        "publication",
+        "verification",
+        "actor",
+        "prepared_by",
+        "prepared_at",
+        "expires_at"
+      ],
+      "title": "ReviewContext",
+      "type": "object"
+    }
+  }
+}

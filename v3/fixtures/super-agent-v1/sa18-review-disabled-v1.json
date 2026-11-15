@@ -1,0 +1,13 @@
+{
+  "label": "SYNTHETIC_CONTRACT_EXAMPLE_NOT_ACTIVATION",
+  "profiles_configured": 0,
+  "default_live_write": false,
+  "prepare": {
+    "request_id": "00000000-0000-4000-8000-000000000001",
+    "coding_id": "00000000-0000-4000-8000-000000000002",
+    "verification_id": "00000000-0000-4000-8000-000000000003",
+    "expected_epoch": 1,
+    "expected_input_revision": 1,
+    "profile_sha256": "0000000000000000000000000000000000000000000000000000000000000000"
+  }
+}

@@ -1,0 +1,159 @@
+{
+  "contract_version": "feishu-bot-v1",
+  "status": "FROZEN_FOR_ENGINEERING",
+  "default_runtime": null,
+  "default_listener": false,
+  "default_paid_models": false,
+  "default_outbound": false,
+  "live_source_channel_gate": "NOT_RUN",
+  "sdk": {
+    "package": "lark-oapi",
+    "version": "1.7.5",
+    "upstream_ws_client_sha256": "ce05f37d012929721b6484e419340c2ae9ab707510e2cb414123984816df1614"
+  },
+  "ownership_confirmation": "d0053f4d7bdf850f4c3c458bd36d3c10b9a3e650 section 29; user relay actually verified",
+  "credential_boundary": "server-only Secrets; internal token inherits actual App permissions; fixed read endpoints; no Worker/cache/token API",
+  "ordering": "derived revision, no native order; sticky ambiguity and no fabricated editing operator",
+  "official_sources": [
+    "https://github.com/larksuite/oapi-sdk-python",
+    "https://pypi.org/project/lark-oapi/1.7.5/",
+    "https://open.feishu.cn/document/uAjLw4CM/ukTMukTMukTM/reference/im-v1/message/list"
+  ],
+  "artifacts": [
+    {
+      "path": "src/mgar_v3/sources/feishu.py",
+      "sha256": "eb80f010bd2dd075369251955d4d4ae61b838a5e8d4527a6ff3cb1b13c0ff055"
+    },
+    {
+      "path": "src/mgar_v3/sources/feishu_api.py",
+      "sha256": "da553ad906cf66917c7b09280dce00fccd562e23520427fa5009b5f80a5f8ad2"
+    },
+    {
+      "path": "src/mgar_v3/sources/feishu_broker.py",
+      "sha256": "24ed3bde6262339ec5f541960f7fb5ab070fbc1218d5888d0391453cd3fed3b8"
+    },
+    {
+      "path": "src/mgar_v3/sources/feishu_domain.py",
+      "sha256": "66cba300b4e2a95b7ba15f4baa72878aa3757c1e856e9ef6370cd66ddde089da"
+    },
+    {
+      "path": "src/mgar_v3/sources/feishu_response.py",
+      "sha256": "5a80ec0b3eb652f0a9422c6be775a0d3e5d78960825589945784de38dcb7bf69"
+    },
+    {
+      "path": "src/mgar_v3/sources/feishu_runtime.py",
+      "sha256": "e1033fac729f7f8a8fa77bcc144eb1b8eeaa05d39c0e04d48881de6ca95e0482"
+    },
+    {
+      "path": "src/mgar_v3/sources/feishu_sdk.py",
+      "sha256": "23c8cb73f45d71bcccce83d6b0fb9775489d09ce9b95e20461ff876e5dd2f603"
+    },
+    {
+      "path": "src/mgar_v3/sources/feishu_store.py",
+      "sha256": "de34edb29c9afea7eeb79b94ec38e1c72e544a14c3498cc007171e1210205338"
+    },
+    {
+      "path": "src/mgar_v3/sources/feishu_topics.py",
+      "sha256": "4d99b1c30d76a266a81f35953a42fa473e8625e1fda2ae67f329cdb30d2731a3"
+    },
+    {
+      "path": "src/mgar_v3/sources/ingress.py",
+      "sha256": "ac6f4acc3e09bf96d7ef32a98db359e1f57bdfd60c6261901c2058aed9ff1e07"
+    },
+    {
+      "path": "src/mgar_v3/api.py",
+      "sha256": "1d587dd2fde495bb78071e638614c8e4acab27a0f782a681ac12f29ebd4849c6"
+    },
+    {
+      "path": "migrations/0035_feishu_source.sql",
+      "sha256": "4153ec29eae99136cd3103f4b17903411fb19f7b44f90d951c3f18199aed94b1"
+    },
+    {
+      "path": "schemas/super-agent-v1/feishu-configure-v1.schema.json",
+      "sha256": "057382a5468a11d4870ee62ff574bfb1fefe12feb80c7269219eb6ba77873807"
+    },
+    {
+      "path": "schemas/super-agent-v1/feishu-health-v1.schema.json",
+      "sha256": "6c12157aa92940eb084b16cb2b957bc3e7e65789fd78a35158a7e1e22d28133f"
+    },
+    {
+      "path": "schemas/super-agent-v1/feishu-settings-v1.schema.json",
+      "sha256": "a6b48fc3080086162fee39e4cff3f63c55980edadafcbc297b796e66f0430bdd"
+    },
+    {
+      "path": "fixtures/super-agent-v1/feishu-v1/recordings.json",
+      "sha256": "d287f41d53f2eb6b1e974e5e93c40ee6ffaad73a66cc3f3ecb05f5f381e2d3d2"
+    },
+    {
+      "path": "tests/test_super_agent_sa06.py",
+      "sha256": "24e17a6b117b655d8a44540ae071e99588d291c6e676ae11a32473b55b34d74c"
+    },
+    {
+      "path": "tests/test_super_agent_sa06_broker.py",
+      "sha256": "3539a63b005fba01f5b5b7754011e37dbbadb847f30753f12163e470d7a419a2"
+    },
+    {
+      "path": "tests/test_super_agent_sa06_contract.py",
+      "sha256": "3b06b570f46a7f3fdbbfbf4f86c6749a872b64b5cab216c6a3f43a562e329dce"
+    },
+    {
+      "path": "tests/test_super_agent_sa06_health.py",
+      "sha256": "18a0b33eb838aea9e400c87632eeadd19cc5e32f3e3027e9b709f3c892815957"
+    },
+    {
+      "path": "tests/test_super_agent_sa06_migration.py",
+      "sha256": "56b5300de0def72c8cd0c38cfe43d8425dfaa4907f337b57761bc03ccc47ff49"
+    },
+    {
+      "path": "tests/test_super_agent_sa06_privacy.py",
+      "sha256": "c7eeba5c59666117861097755447f9dc99e028bda447421cbb69f03260eb27f4"
+    },
+    {
+      "path": "tests/test_super_agent_sa06_repair_formats.py",
+      "sha256": "fbc7267bf6d0845006518000012ad50f72e23adf82ed1bbd08e105a62af7747c"
+    },
+    {
+      "path": "tests/test_super_agent_sa06_repair_health.py",
+      "sha256": "1f9ff64868bbe2f6da5b561e7b642e8c29e1b46b6500b942b2d80f35d3014c2f"
+    },
+    {
+      "path": "tests/test_super_agent_sa06_repair_topics.py",
+      "sha256": "0ed643430925b9d86764ee5d51cf748d141ef6f1d5a16d3d9126b684cb51d7a7"
+    },
+    {
+      "path": "tests/test_super_agent_sa06_sdk.py",
+      "sha256": "29e7e23334851df6cee71c048d718059f865e250509dfe436fd2182b9f1c8823"
+    },
+    {
+      "path": "tests/sa06_support.py",
+      "sha256": "cb9b91f25471a4d092ba5ba6abfe27fdd8cad8377ffa9a8242967fe684d4c5cc"
+    },
+    {
+      "path": "tests/test_super_agent_sa05.py",
+      "sha256": "cb62304ef042b740372bba3ad17bc3222f58b53276e762205f5d3b5cb33207c0"
+    },
+    {
+      "path": "pyproject.toml",
+      "sha256": "e55d60f92bc94308a8caa85932dade26e1a00d432ca2593d7f418cc3f67d2ffd"
+    },
+    {
+      "path": "uv.lock",
+      "sha256": "aebd9ec38ee81c627cf5a948b1d447d60ae39e93a919eda1e4f52bba208e7c4c"
+    },
+    {
+      "path": "config/verification.json",
+      "sha256": "d1df74ced7dde957b82d3095c04f52bb7ab30ac8942571d0553f3f1c0d440cfa"
+    },
+    {
+      "path": "config/source-ingress-v1.json",
+      "sha256": "1494133626e6c306816a013828f1886400e1e37b67edbf7fe5ce95aa3b7608f0"
+    },
+    {
+      "path": "config/source-github-v1.json",
+      "sha256": "ea8ed4c8078962ee5d4808355c8d9739aba8ac53582a52bf8f90c724ba9a693d"
+    }
+  ],
+  "artifact_snapshot_utc": "2026-11-14T11:38:35.581071+00:00",
+  "artifact_snapshot_scope": "SA15 current composition/catalogue hashes only; prior bytes in accept/SAV1-15/history/pre-sa15. Historical passing/failing evidence unchanged; no rerun implied.",
+  "artifact_status": "CURRENT_FORMAL_HASHES"
+}

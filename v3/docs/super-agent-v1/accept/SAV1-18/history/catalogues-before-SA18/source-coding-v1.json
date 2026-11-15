@@ -1,0 +1,339 @@
+{
+  "contract_version": "source-coding-mandate-v1",
+  "runtime_version": "source-coding-fixture-runtime-v1",
+  "status": "FORMAL_IMPLEMENTATION_LOCAL_ENGINEERING_READY_PENDING_INDEPENDENT",
+  "ownership_status": "ACTUALLY_CONFIRMED_FIXED_COMMIT",
+  "ownership_commit": "617e14a52d65c5276bcd3ef87dbd0f05b4a3c08d",
+  "ownership_section": 38,
+  "migration": "0046_source_coding.sql",
+  "migration_sha256": "379e9de4a018c7f38cc3615eae31b9c9d9e44ebdf16cbcf3c101c81d9874f212",
+  "migration_count_after_install": 43,
+  "source_fact_tables": 6,
+  "management_prefix": "/api/v3/source-coding",
+  "owner_routes": 4,
+  "worker_routes": 2,
+  "default_runtime": null,
+  "default_provider": null,
+  "default_cipher": null,
+  "default_worker": null,
+  "default_listener": null,
+  "default_supervisor_thread": null,
+  "default_profiles": [],
+  "authority": "Original Engine same held PG connection, mutex and advisory lock; original Thread/Ticket/Run/Mandate/Assignment/session/epoch and original shared financial ledgers. The Coding namespace never upgrades legacy grants.",
+  "repository_support": "Only explicit public fixture_git bugfix of existing pure-function .py files approved by the bounded AST fixture gate; private/live GitHub snapshots, other writable file types, new files, arbitrary feature/refactor and run_app are unavailable.",
+  "edit_protocol": "Required full-content edits only. Any supplied replacements key, including null/empty and general Mapping input, is rejected; original R5 worktree remains unchanged.",
+  "financial_truth": "Original usage_calls and Engine settlement with SA07 organization/project reserve. Unknown continues occupying the original reservation; no new monetary ledger or automatic paid activation.",
+  "payload_retention": "Bounded encrypted Source-dependent model responses and checkpoints expire within the current Source origin/Mandate and a server-only retention of1..1800seconds, default1800. Payload reads first commit maintenance outside the access transaction; expired or withdrawn ciphertext is irreversibly erased before a denied read can roll back. Minimal bodyless watermark remains.",
+  "trusted_verification": "Exact original Task/Run/Assignment/session/epoch/resource operation and actual H03 tree/environment/profile/acceptance plus trusted Broker journal; bare Worker/model claims cannot establish verification or complete a business Task.",
+  "harness_h11_commit": "d3f3457b3d9dfab68bc73a40add299e4e633fbeb",
+  "harness_h11_engineering": "PASS_INDEPENDENT_SCOPED",
+  "harness_h11_recovery": "PASS_INDEPENDENT_SCOPED",
+  "harness_h12_commit": "88c75b8dac75da7e7d0c283a451c0ff5a3a3c9b0",
+  "harness_h12_live_agent": "FAIL",
+  "harness_h12_mvp": "FAIL",
+  "engineering_gate": "PASS",
+  "policy_security_gate": "NOT_RUN",
+  "independent_review": "NOT_RUN",
+  "semantic_evaluation": "NOT_RUN",
+  "live_source_channel": "NOT_RUN",
+  "paid_model": "NOT_RUN",
+  "live_coding": "NOT_RUN",
+  "live_publication": "NOT_RUN",
+  "continuous_operation": "NOT_RUN",
+  "SA14": "PLANNED_NOT_STARTED",
+  "verification_registration": "SAV1-13; source-bound outcomes are separate and no PASS is implied by registration or artifact hashes.",
+  "historical_preparation": {
+    "contract_passed": 139,
+    "workspace_passed": 13,
+    "rerun": false,
+    "formal_integration_inferred": false
+  },
+  "artifact_snapshot_utc": "2026-11-14T11:38:35.575381+00:00",
+  "artifact_snapshot_scope": "SA15 current composition/catalogue hashes only; prior bytes in accept/SAV1-15/history/pre-sa15. Historical passing/failing evidence unchanged; no rerun implied.",
+  "artifacts": [
+    {
+      "path": "config/source-scheduler-v1.json",
+      "sha256": "9984dd4dba9a2f741d1d9f4681e6c6b69dc667495d7c5538ec756c761b580ca5"
+    },
+    {
+      "path": "config/verification.json",
+      "sha256": "d1df74ced7dde957b82d3095c04f52bb7ab30ac8942571d0553f3f1c0d440cfa"
+    },
+    {
+      "path": "docs/super-agent-v1/accept/SAV1-13/history/api-import-order-followup.json",
+      "sha256": "4df50c3010b9ab3cb81b5f16823ab27902f9e53d3fa5a9853c29403ceec6f8af"
+    },
+    {
+      "path": "docs/super-agent-v1/accept/SAV1-13/history/api-import-order-followup.patch",
+      "sha256": "8046fc7a34ab283d330e9ebaf5a43590a61919968026dc32482f7024f9556a89"
+    },
+    {
+      "path": "docs/super-agent-v1/accept/SAV1-13/history/registration-script-20261113T120805718918Z.py",
+      "sha256": "c1b4eb6cf448a0f1f0ac0074e9b8bdd6776ec9ea8087c3271b0deda17a938d4f"
+    },
+    {
+      "path": "docs/super-agent-v1/accept/SAV1-13/history/registration-script-20261113T121705918034Z.py",
+      "sha256": "82bf6df340048d4a81b0774824eca1d0ebbc1570c1fdbb8878159a1eb20463f0"
+    },
+    {
+      "path": "docs/super-agent-v1/accept/SAV1-13/history/registration-script.py",
+      "sha256": "3af02ee9e888da6f8ed31d27f197e1ba1fa0970d61718fae07b8c706b9222558"
+    },
+    {
+      "path": "docs/super-agent-v1/sa13-proposal/0046_source_coding.sql",
+      "sha256": "379e9de4a018c7f38cc3615eae31b9c9d9e44ebdf16cbcf3c101c81d9874f212"
+    },
+    {
+      "path": "docs/super-agent-v1/sa13-proposal/SA13_SCOPE.md",
+      "sha256": "8fa36e7e3511a0865abc426646568338bd5b4edd507bc3e19e790fbb8e4123f9"
+    },
+    {
+      "path": "docs/super-agent-v1/sa13-proposal/contracts-compatibility.patch",
+      "sha256": "68d808f64459e647ece77496ab4152362d4bac98283009232e59cb7f2ab26832"
+    },
+    {
+      "path": "docs/super-agent-v1/sa13-proposal/engine-api-scheduler-wiring.patch",
+      "sha256": "81ed4dcafd9f26abaa484bbe4646608fdb8aa47e99f0f722430ffa828c3d630f"
+    },
+    {
+      "path": "docs/super-agent-v1/sa13-proposal/harness-imports.json",
+      "sha256": "429a354849206643f8734c81abc009ebfc1a98f84f621cafc1db844b0176126a"
+    },
+    {
+      "path": "docs/super-agent-v1/sa13-proposal/incremental-full-content-compatibility.patch",
+      "sha256": "d94514e56c13066ee3f39c482f668fdc83b820d1c290daed05b70d520265c8a2"
+    },
+    {
+      "path": "docs/super-agent-v1/sa13-proposal/ownership-request.txt",
+      "sha256": "ecb61f6be2535ba37b5dade17a9014af09cebd8416c3845ec31aeaa9e82eda38"
+    },
+    {
+      "path": "docs/super-agent-v1/sa13-proposal/proposal-manifest.json",
+      "sha256": "40e6a302a4337ae67ecee47c14b46fd3070fd18f119bae0d063d5cce048eb1b4"
+    },
+    {
+      "path": "docs/super-agent-v1/sa13-proposal/schema-notes.md",
+      "sha256": "46d3a75f0047332358c16e9a0d20e7c1a3a1fc65a3bb84998de78924a33dfb3e"
+    },
+    {
+      "path": "docs/super-agent-v1/sa13-proposal/shared-wiring-metadata.json",
+      "sha256": "9103b55fa14c8789fed582c8ebd4ce55290b2481793354ff0e8119d6643ae3c2"
+    },
+    {
+      "path": "docs/super-agent-v1/sa13-proposal/shared-wiring.patch",
+      "sha256": "01c7ec61c678e59099c687962b0413c9bfac0be45c0bb0167e7078f5b157d590"
+    },
+    {
+      "path": "migrations/0046_source_coding.sql",
+      "sha256": "379e9de4a018c7f38cc3615eae31b9c9d9e44ebdf16cbcf3c101c81d9874f212"
+    },
+    {
+      "path": "schemas/super-agent-v1/source-coding-admit-v1.schema.json",
+      "sha256": "d79f542a35dc9e75d44fa7cce095b4149d44a0a41a80530c3317f89b286fb11d"
+    },
+    {
+      "path": "schemas/super-agent-v1/source-coding-cancel-v1.schema.json",
+      "sha256": "324b5659ae2ad11b5b9e80c3c80817104645bd23c9069bfd6aa4eed6978f3ea1"
+    },
+    {
+      "path": "schemas/super-agent-v1/source-coding-inspect-v1.schema.json",
+      "sha256": "c035a3eef345255583ec9595ce88fbee52793b9b7f1dbcc575e5bf1454e36e7e"
+    },
+    {
+      "path": "schemas/super-agent-v1/source-coding-mandate-v1.schema.json",
+      "sha256": "f6bf1ffc6e638cc273c0aead57af61af178cdf4ceb0d6ac4557762d2a7241481"
+    },
+    {
+      "path": "schemas/super-agent-v1/source-coding-run-v1.schema.json",
+      "sha256": "9cf381e2cc09c9177afefaf0b464b1970b1f02c18baab5737477d0fe8066acb3"
+    },
+    {
+      "path": "scripts/verify.py",
+      "sha256": "f1839ed9eb9f18274f9968485ec76c839026687491994f2d9bb8fc52bb0476d8"
+    },
+    {
+      "path": "src/mgar_v3/api.py",
+      "sha256": "1d587dd2fde495bb78071e638614c8e4acab27a0f782a681ac12f29ebd4849c6"
+    },
+    {
+      "path": "src/mgar_v3/coordination/engine.py",
+      "sha256": "f079a8b11131c38fa422022ea3c65435becce7d62e38bcc3efe3e1b9d3da304e"
+    },
+    {
+      "path": "src/mgar_v3/harness/coding_loop.py",
+      "sha256": "9bd10946398a8744a5ba5654bb6e81870650f16091983854d0f0123f2536ac3a"
+    },
+    {
+      "path": "src/mgar_v3/harness/contracts.py",
+      "sha256": "d9ba15e16a80791e6e92deefea609bf809773cc4d90baa72bd31d71a9313aaf4"
+    },
+    {
+      "path": "src/mgar_v3/harness/incremental.py",
+      "sha256": "3fbf3a796b3ae3d1eb1192c5a4ddfa2a249d1b111e2139471015be4fb4d29def"
+    },
+    {
+      "path": "src/mgar_v3/harness/long_context.py",
+      "sha256": "449149cbbcf702c10caf3b7e3770cf78e96a7a07d435150c56a0efa493c5d720"
+    },
+    {
+      "path": "src/mgar_v3/harness/source_coding_adapters.py",
+      "sha256": "959c6a5c42223c076ffece8ff57f5a990e36cec9ccdfbec510ea519b290d30b1"
+    },
+    {
+      "path": "src/mgar_v3/super_agent/source_coding.py",
+      "sha256": "64a267a8665039e287a6b4cced7d76360af5d975193cc7599fc313d61f5acffa"
+    },
+    {
+      "path": "src/mgar_v3/super_agent/source_coding_api.py",
+      "sha256": "c4acd942769331d7d1fe33d7e45c9b679cd5bbbd72143716310f1655c16dae1a"
+    },
+    {
+      "path": "src/mgar_v3/super_agent/source_coding_budget.py",
+      "sha256": "b96f8bf610bff59366b3d6f56c9a2d751d8b4363022b0b3395774fd89773256e"
+    },
+    {
+      "path": "src/mgar_v3/super_agent/source_coding_domain.py",
+      "sha256": "aa0af169a1e3d32db3984d111fdbadfb642a1a1606c54812edaecc4878e242e2"
+    },
+    {
+      "path": "src/mgar_v3/super_agent/source_coding_journal.py",
+      "sha256": "065fb20746bec3e054d1401db7bb49b73e986d4e30b6337a5e519453164c3373"
+    },
+    {
+      "path": "src/mgar_v3/super_agent/source_coding_rules.py",
+      "sha256": "592e5f2961df9dee9a92619691bd8d3c8a0bf4b5192d3c08d23faec15f4c1431"
+    },
+    {
+      "path": "src/mgar_v3/super_agent/source_coding_runtime.py",
+      "sha256": "ad84ee8acb3a71f47f620f15a58a9c695f017ef7d7e1746b3a53f5514db81f74"
+    },
+    {
+      "path": "src/mgar_v3/super_agent/source_coding_workspace.py",
+      "sha256": "470307df50cd2305f344bd574273cdf1530f161ffcac0a54739e609819216251"
+    },
+    {
+      "path": "src/mgar_v3/super_agent/source_scheduler.py",
+      "sha256": "cb5f5b643ff40b8bf606480568ed51e1011ecec5095418b2dffa90f61b8d42b6"
+    },
+    {
+      "path": "tests/sa13_crash_actor.py",
+      "sha256": "f61fc28b9696ceb300e94560029f6909a3fdbb547a08f5f82c12c34aa4cc8a89"
+    },
+    {
+      "path": "tests/sa13_runtime_support.py",
+      "sha256": "a893176855f49b8dfd23a8ed5f9df7c1cfb4f4a3777284a002f2319a713e78ae"
+    },
+    {
+      "path": "tests/sa13_support.py",
+      "sha256": "95eb511c0db53a86e2b3ca7b3d59d041074b42c7fdac3314d346052d92912bd9"
+    },
+    {
+      "path": "tests/test_harness_v4_h01.py",
+      "sha256": "cd2d9e6d56c4c30e6a0de02b739953ca24ce56d624297b7a30e4e5eb7dc275ef"
+    },
+    {
+      "path": "tests/test_harness_v4_h02.py",
+      "sha256": "a8423ad1500d423bb1930dbe5e0dafa969988464203cd4a8d299ed8f2f5e8b3d"
+    },
+    {
+      "path": "tests/test_super_agent_sa05.py",
+      "sha256": "cb62304ef042b740372bba3ad17bc3222f58b53276e762205f5d3b5cb33207c0"
+    },
+    {
+      "path": "tests/test_super_agent_sa06_migration.py",
+      "sha256": "56b5300de0def72c8cd0c38cfe43d8425dfaa4907f337b57761bc03ccc47ff49"
+    },
+    {
+      "path": "tests/test_super_agent_sa07_migration.py",
+      "sha256": "7c52a544b2bc81df482597d05c9510d60a381b4a3c7cc1836ec36394ef9013ea"
+    },
+    {
+      "path": "tests/test_super_agent_sa08_migration.py",
+      "sha256": "f04e78011a41cfaf72078eea54aa3760f8adef6ff18b40bbee8c26a0815c5236"
+    },
+    {
+      "path": "tests/test_super_agent_sa09_migration.py",
+      "sha256": "58a9c1f526aeed72f723bf319542da28142991aa025bc65f0a1ce81cc5ceb6e8"
+    },
+    {
+      "path": "tests/test_super_agent_sa10_migration.py",
+      "sha256": "39d0fe035421fea5f4b0c0d2b2d644db6df6cd94b28258adc1bab86c6e85b19a"
+    },
+    {
+      "path": "tests/test_super_agent_sa11_migration.py",
+      "sha256": "1945b9b7633a761f8a074fb86bf620d81c02059d1453f937d6053c60b095e647"
+    },
+    {
+      "path": "tests/test_super_agent_sa12_migration.py",
+      "sha256": "7a2d762045a49f11912482a737548c2e0da357398b056936ce7441c6f5d8f73c"
+    },
+    {
+      "path": "tests/test_super_agent_sa12_runtime.py",
+      "sha256": "d5884e6157b2f851903257cceffb2d0a822a16cd7e1c1074c96642aa06d2d35f"
+    },
+    {
+      "path": "tests/test_super_agent_sa12_source.py",
+      "sha256": "a5b86afa6a671b765b3bbf266f6f050caa7ec5970569b0be48d700fbbdba94e7"
+    },
+    {
+      "path": "tests/test_super_agent_sa13.py",
+      "sha256": "b4310f827fb5afaeebe9b994ea56cc2865ad696fbfb29288178db6cbbb7989d7"
+    },
+    {
+      "path": "tests/test_super_agent_sa13_api.py",
+      "sha256": "5594cdf232d5f4de5df8cb8bc78643268e1c494a4807ffe4ae6cba63c7c53448"
+    },
+    {
+      "path": "tests/test_super_agent_sa13_compatibility.py",
+      "sha256": "39886c0a61d1941865c82bc4caeff51944baa463e2fca9cfb1d152c6e9505790"
+    },
+    {
+      "path": "tests/test_super_agent_sa13_initial_tree.py",
+      "sha256": "c8266978a533896f428d636be6df259d2693d6abb4af9fe2e9b565e428ce90fa"
+    },
+    {
+      "path": "tests/test_super_agent_sa13_lifecycle.py",
+      "sha256": "d26447d47cf0c4063579c24bd6b39c0c355563e99bbb29aca902645c8a2e250d"
+    },
+    {
+      "path": "tests/test_super_agent_sa13_migration.py",
+      "sha256": "edf4a2e4abce8965271d85930d631f8a39cc697f243b482a48d21314df5a21c2"
+    },
+    {
+      "path": "tests/test_super_agent_sa13_recovery.py",
+      "sha256": "ca6d6830e5f82d15f2fb12fe64f1e166c9bab558cc9e4143a2cecd3d5278fe34"
+    },
+    {
+      "path": "tests/test_super_agent_sa13_runtime.py",
+      "sha256": "c1d56593b9349f1fea7190a3999f7a4adec0627b5c2369dce11fffb7b16fc849"
+    },
+    {
+      "path": "tests/test_super_agent_sa13_verification.py",
+      "sha256": "0be8b9dda8c4472e482ea142d397ed2eb77fe41cf0a3daede521440c92454b87"
+    }
+  ],
+  "payload_retention_seconds_default": 1800,
+  "payload_retention_seconds_min": 1,
+  "payload_retention_seconds_max": 1800,
+  "maintenance": {
+    "entrypoint": "SourceCoding.maintain",
+    "activation": "Explicit trusted Python server port; no HTTP route, default maintenance thread or platform listener.",
+    "batch_limit_default": 128,
+    "batch_limit_max": 256,
+    "cursor": "coding_id ordered after a bounded UUID cursor",
+    "transaction": "Requires the original held connection to be idle before its own short transaction. Committed erasure cannot be rolled back by the later access transaction.",
+    "read_path": "SourceCodingJournal.get_payload performs scoped maintenance before current authority and decryption.",
+    "effects": "Fence invalid attempts and erase expired or withdrawn ciphertext while preserving minimal facts; no resource/model IO, financial settlement, resource release, resend or business completion."
+  },
+  "initial_tree_binding": "Before first Coding execution, recheck actual H03 manifest, registration and immutable reviewed initial tree; a storage-owner edit is not an approved replacement. Subsequent changes require the original trusted pre/postimage journal and current authority.",
+  "migration_status": "FORMAL0046_INSTALLED_MAIN_AND_DISPOSABLE_PG",
+  "outcomes_are_versioned": true,
+  "local_policy_negative_checks": "PASS_REGISTERED_CONTROLLED_SCOPE_ONLY_NOT_COMPLETE_SYSTEM",
+  "readiness_summary": "docs/super-agent-v1/accept/SAV1-13/accept.json",
+  "latest_functional_source_commit": "47fb162",
+  "latest_functional_source_sha256": "2b32953d1210e97e0bb8584c41f612a681edaed261dfee0e61be17f37977309a",
+  "distinct_formal_cases_with_passing_evidence": 212,
+  "latest_single_full_suite_pass_claimed": false,
+  "remaining_failed_cases": 0,
+  "artifact_status": "CURRENT_FORMAL_HASHES"
+}

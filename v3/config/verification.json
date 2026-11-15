@@ -1945,5 +1945,18 @@
       "real_gates": "NOT_RUN",
       "SA19": "NOT_STARTED"
     }
+  },
+  "SAV1-18-DELIVERY-FIRST3": {
+    "tests": [
+      "tests/test_source_review_catalogue.py::test_review_contracts_are_bounded_owner_identifiers_and_inert_example",
+      "tests/test_source_review_catalogue.py::test_all_current_source_catalogue_references_match_and_old_bytes_are_preserved",
+      "tests/test_source_review_catalogue.py::test_delivery_configuration_keeps_no_live_write_model_merge_or_deployment"
+    ],
+    "timeout_seconds": 120,
+    "components": {
+      "scope": "First completed contract/inert configuration/current artifact integrity3 only; formal0051 and final registry2 not run",
+      "real_gates": "NOT_RUN",
+      "SA19": "NOT_STARTED"
+    }
   }
 }

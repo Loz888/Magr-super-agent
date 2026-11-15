@@ -1,0 +1,179 @@
+{
+  "contract_version": "source-router-snapshot-v1",
+  "proposal_version": "source-router-proposals-v1",
+  "decision_version": "source-router-decision-v1",
+  "status": "LOCAL_IMPLEMENTATION_ONLY",
+  "ownership_commit": "0e0adc6a5bb5a7e0c3a3c8323e33513e4b911d84",
+  "ownership_section": 32,
+  "migration": "0039_super_agent_source_eval.sql",
+  "default_enabled": false,
+  "default_provider": null,
+  "http_enqueue_mode": "fixture; live is a trusted runtime keyword, never an HTTP authorization",
+  "eligible_for_execution": false,
+  "financial_truth": "Original router_calls/authorization_budgets and SA07 project attribution; no parallel monetary ledger",
+  "raw_response_cas": false,
+  "semantic_quality_gate": "NOT_RUN",
+  "operator_dataset_status": "DRAFT_SYNTHETIC_OPERATOR_REVIEW_REQUIRED",
+  "harness_0037_or_h12_imported": false,
+  "artifacts": [
+    {
+      "path": "src/mgar_v3/super_agent/source_eval.py",
+      "sha256": "a6e14971c9e7da317f2f78110639348ee5e62baa231428dbcc72669231c60cdc"
+    },
+    {
+      "path": "src/mgar_v3/super_agent/source_eval_api.py",
+      "sha256": "5d74121b4ae9d3d9fda5177febd994779b9ce71902472c55b8c5b4e2eacc95ec"
+    },
+    {
+      "path": "src/mgar_v3/super_agent/source_eval_domain.py",
+      "sha256": "e9c98b64fed05a13cddd3eee74cee989310e02bdeab6a5f02e5e2ed7421b01c8"
+    },
+    {
+      "path": "src/mgar_v3/super_agent/source_eval_model.py",
+      "sha256": "89a12c8caa307265cdc1d8b565a41f9ae4d57d058863244ccd7b102f387787ba"
+    },
+    {
+      "path": "src/mgar_v3/super_agent/source_eval_rules.py",
+      "sha256": "6ecf9d4081fe44ab2a980289550f63d3dc6048fe0fa3a24201992a463372b920"
+    },
+    {
+      "path": "src/mgar_v3/super_agent/source_eval_scoring.py",
+      "sha256": "83ac7bce3f52d132df9cd12daf74dcd735c5e8568dbdbc5ac5879771e2b28cc5"
+    },
+    {
+      "path": "tests/test_super_agent_sa09.py",
+      "sha256": "04c9bec6c817b05c6050e5af66e24ab8c028de80d2c30b1718758270dd023406"
+    },
+    {
+      "path": "tests/test_super_agent_sa09_api.py",
+      "sha256": "d48e242eef7b4e33d9f2a07a272049e9c38cd173c2da12b4ffe4a65d44ad8fc9"
+    },
+    {
+      "path": "tests/test_super_agent_sa09_boundaries.py",
+      "sha256": "19314d1a497c5ae435c656637605e4ced8b93761a098c53f1d09772f02e9ad51"
+    },
+    {
+      "path": "tests/test_super_agent_sa09_domain.py",
+      "sha256": "225d56412f7eb5656e562914654560e9b36b1bc8eafbd25b654596a39e412941"
+    },
+    {
+      "path": "tests/test_super_agent_sa09_legacy.py",
+      "sha256": "e0c131e31dc15fa971aa7e2947b8f08756317a9e2b6a6b1d330c6a38e21712ba"
+    },
+    {
+      "path": "tests/test_super_agent_sa09_metrics.py",
+      "sha256": "9e495ade78f0c669e2425639eb3b51d5f70f24bd3e4d50e453b5d687d516b519"
+    },
+    {
+      "path": "tests/test_super_agent_sa09_migration.py",
+      "sha256": "58a9c1f526aeed72f723bf319542da28142991aa025bc65f0a1ce81cc5ceb6e8"
+    },
+    {
+      "path": "tests/test_super_agent_sa09_model.py",
+      "sha256": "4595c6518207d7840cc0c4d365ee7e5e0f9b4daf8c4c3b27869d131889c45782"
+    },
+    {
+      "path": "tests/test_super_agent_sa09_recovery.py",
+      "sha256": "48a11ebd927722857b01e72cca6fd5f749068cb921f0f0216c9fc5cf1a74b7af"
+    },
+    {
+      "path": "tests/test_super_agent_sa09_scoring.py",
+      "sha256": "6cf40857a7f88cac14974af7bacc7aca8464ca42a21f1dc0a9be6bf87ee6cdbc"
+    },
+    {
+      "path": "tests/sa09_support.py",
+      "sha256": "53f8bbc1087bee97045dbda5f5f248acd79c46364730385952c7d8574280387b"
+    },
+    {
+      "path": "tests/sa09_crash_actor.py",
+      "sha256": "d5c26c62d33c825497f7a8ecd9082e1bfbed5bb53760f004a80829b8dd11b9a8"
+    },
+    {
+      "path": "migrations/0039_super_agent_source_eval.sql",
+      "sha256": "8b18840590c7841022d7985d66904cd580aee916777cadc9f8baca3cb1837669"
+    },
+    {
+      "path": "schemas/super-agent-v1/source-router-corpus-v1.schema.json",
+      "sha256": "6a502997402c6f1bec023a045e9d3ef206f4ca1510b26293c5372d422c37fbb1"
+    },
+    {
+      "path": "schemas/super-agent-v1/source-router-decision-v1.schema.json",
+      "sha256": "83996e77ef68b24e155ceda10e05668300f1d09ccd3fec2ff4806edd9e4a2105"
+    },
+    {
+      "path": "schemas/super-agent-v1/source-router-prediction-v1.schema.json",
+      "sha256": "8b882dfee1e4f2505f0662970d5e0a796318c22665018dc00b89612f2b9ff6ed"
+    },
+    {
+      "path": "schemas/super-agent-v1/source-router-proposals-v1.schema.json",
+      "sha256": "5b5dea5cdf15688b8e854007b1e2613c94ce1fc93e028f8f741bbf87d13bedd8"
+    },
+    {
+      "path": "schemas/super-agent-v1/source-router-snapshot-v1.schema.json",
+      "sha256": "606a9e4ccf8bf8802e113f9353dcba8abf65d2830bb96e226711cece55c23601"
+    },
+    {
+      "path": "schemas/super-agent-v1/source-eval-configure-v1.schema.json",
+      "sha256": "f0199e7b71e6248b0af4956baf33330e0183bde5449453fdd3a8a31ae808cdf5"
+    },
+    {
+      "path": "schemas/super-agent-v1/source-eval-enqueue-v1.schema.json",
+      "sha256": "7ae32aa8b14c193813d90d4be5975827ee45c81e4330488d5f97fd2b847afbba"
+    },
+    {
+      "path": "fixtures/super-agent-v1/sa09-routing/draft-cases-v1.json",
+      "sha256": "5cea4ea451404a4e5896ac28f0c2f863692c3777041b85732ea56ef545e8505e"
+    },
+    {
+      "path": "fixtures/super-agent-v1/sa09-routing/operator-review-draft-v1.json",
+      "sha256": "02a07535b5ee098780d271b4d332cbe271fbb52e28690147c921111e07b3d764"
+    },
+    {
+      "path": "config/harness-model-import-v1.json",
+      "sha256": "e44c227fa058c41a439cd28ade90b7b65ddeb746d3de7e982fa77cf83b2502c9"
+    },
+    {
+      "path": "src/mgar_v3/routing/store.py",
+      "sha256": "912cd1533306a8ae19f4fb3e2b2cc2803085613d3d9dca79b5d7265249397f45"
+    },
+    {
+      "path": "src/mgar_v3/routing/worker.py",
+      "sha256": "2f382b355275a60bb9d4e78649f13a49828d4dc64fd040cfa329f3f7cb74d3d3"
+    },
+    {
+      "path": "src/mgar_v3/coordination/engine.py",
+      "sha256": "f079a8b11131c38fa422022ea3c65435becce7d62e38bcc3efe3e1b9d3da304e"
+    },
+    {
+      "path": "src/mgar_v3/api.py",
+      "sha256": "1d587dd2fde495bb78071e638614c8e4acab27a0f782a681ac12f29ebd4849c6"
+    },
+    {
+      "path": "src/mgar_v3/routing/budget.py",
+      "sha256": "743481672e320d0b5799ae2d2d3e39b2a490df25c9b5c9d177c3c5a723c8bdbf"
+    },
+    {
+      "path": "src/mgar_v3/super_agent/budget.py",
+      "sha256": "5b58ddca87e3e8c0f9121a89d3bab6c4f9a36852e29cfaedf6c82564d46f17f3"
+    },
+    {
+      "path": "src/mgar_v3/repository_analysis/store.py",
+      "sha256": "4b811c20430fe6b4e989ea3ef0acb92a89216796925575426c42d2d291310efa"
+    },
+    {
+      "path": "tests/test_super_agent_sa09_corpus.py",
+      "sha256": "a431209299157581ccbb2a1492422b896c77790e026ea97e90fc3042074c2405"
+    },
+    {
+      "path": "config/verification.json",
+      "sha256": "d1df74ced7dde957b82d3095c04f52bb7ab30ac8942571d0553f3f1c0d440cfa"
+    },
+    {
+      "path": "tests/test_super_agent_sa09_i01.py",
+      "sha256": "3cc2e45985a24f193db970a894e6dbac3f6fc92a34e49c439f79c00673308f5b"
+    }
+  ],
+  "artifact_snapshot_utc": "2026-11-14T11:38:35.579401+00:00",
+  "artifact_snapshot_scope": "SA15 current composition/catalogue hashes only; prior bytes in accept/SAV1-15/history/pre-sa15. Historical passing/failing evidence unchanged; no rerun implied.",
+  "artifact_status": "CURRENT_FORMAL_HASHES"
+}

@@ -62,7 +62,7 @@
     },
     {
       "path": "src/mgar_v3/api.py",
-      "sha256": "1d587dd2fde495bb78071e638614c8e4acab27a0f782a681ac12f29ebd4849c6"
+      "sha256": "4b04b45423527ecbb64caafd2fc348edec8786e00806f1aa01e19b1009be0549"
     },
     {
       "path": "migrations/0035_feishu_source.sql",
@@ -142,7 +142,7 @@
     },
     {
       "path": "config/verification.json",
-      "sha256": "d1df74ced7dde957b82d3095c04f52bb7ab30ac8942571d0553f3f1c0d440cfa"
+      "sha256": "1a138ae5bb57cf4667b25d392dff0ceb44c41c787c16381f15a51d26c6b18740"
     },
     {
       "path": "config/source-ingress-v1.json",

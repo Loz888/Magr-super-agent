@@ -1,0 +1,390 @@
+{
+  "contract_version": "source-async-v1",
+  "status": "CLOSED_USER_ACCEPTED_INDEPENDENT_LOCAL_CONTROLLED_SCOPE",
+  "scope": "Only original accepted public fixture_git / existing pure-function Python; no actual DB writes, arbitrary command, host execution, network or payment",
+  "ownership_commit": "c711d54504c4945625505f47e9df56e22bc1bdac",
+  "ownership_section": 39,
+  "formal_migration": "0047_source_async.sql",
+  "formal_migration_sha256": "9ce372e6a82cbf747c51624486ef7548faf056cc60912e0287279be8b569f041",
+  "shared_patch_sha256": "c43e05c0d8aabe1bccf3484cbb7922c5f6f1897f6d2cd5ac0840b4454ff85b5e",
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/capabilities",
+      "auth": "owner",
+      "body": null
+    },
+    {
+      "method": "POST",
+      "path": "/admissions",
+      "auth": "owner",
+      "body": "AsyncAdmitRequest"
+    },
+    {
+      "method": "GET",
+      "path": "/bindings/{coding_id}",
+      "auth": "owner",
+      "body": null
+    },
+    {
+      "method": "POST",
+      "path": "/bindings/{coding_id}/restrictions",
+      "auth": "owner",
+      "body": "AsyncRestrictRequest"
+    },
+    {
+      "method": "GET",
+      "path": "/bindings/{coding_id}/inputs",
+      "auth": "owner",
+      "body": null
+    },
+    {
+      "method": "GET",
+      "path": "/bindings/{coding_id}/jobs",
+      "auth": "owner",
+      "body": null
+    },
+    {
+      "method": "GET",
+      "path": "/bindings/{coding_id}/events",
+      "auth": "owner",
+      "body": null
+    },
+    {
+      "method": "POST",
+      "path": "/bindings/{coding_id}/jobs/{job_id}/cancel",
+      "auth": "owner",
+      "body": "AsyncJobCancelRequest"
+    },
+    {
+      "method": "POST",
+      "path": "/worker/{coding_id}/start",
+      "auth": "worker",
+      "body": "AsyncWorkerRequest"
+    },
+    {
+      "method": "GET",
+      "path": "/worker/{coding_id}/state",
+      "auth": "worker",
+      "body": null
+    },
+    {
+      "method": "GET",
+      "path": "/worker/{coding_id}/jobs/{job_id}",
+      "auth": "worker",
+      "body": null
+    },
+    {
+      "method": "POST",
+      "path": "/worker/{coding_id}/jobs/{job_id}/cancel",
+      "auth": "worker",
+      "body": "AsyncWorkerJobCancelRequest"
+    }
+  ],
+  "limits": {
+    "ordinary_inputs_per_run": 256,
+    "source_refs_per_view": 64,
+    "checkpoints_per_run": 512,
+    "jobs_per_run": 128,
+    "page_size": 64,
+    "view_seconds_max": 1800,
+    "no_new_input_no_periodic_model_calls": true
+  },
+  "states": {
+    "inputs": [
+      "received",
+      "applied",
+      "blocked"
+    ],
+    "jobs": [
+      "prepared",
+      "running",
+      "stop_requested",
+      "unknown",
+      "known"
+    ]
+  },
+  "control": "Current human task_controller plus exact Ticket membership and Source model-input read permission, or current Owner typed deny sets; only precise database mapping; no quotes/code/link labels/CI control",
+  "frozen_control_profile": "Server-only AsyncControlProfile digest included in AsyncScope; registration immutable; mismatch fences old execution",
+  "model_dispatch": "ControlledAsyncCodingModel base start performs prepare outside mutex, then verifies actual immutable request under a final dispatch guard; waiting is outside mutex; usage settles even after permission loss",
+  "activation": {
+    "constructor_starts_threads": false,
+    "default_runtime": null,
+    "explicit_current_worker_start_required": true,
+    "legacy_coding_scheduler_bypass": "deny async-managed targets without original guarded execution context"
+  },
+  "fixed_harness": {
+    "h09": "7d8f0ab5df1d4b98ff3140af553c11bc1ca74a1c",
+    "h09_followup": "096300eed8946086f99e331ae4c8c9c733108ff9",
+    "already_integrated_h11": "d3f3457b3d9dfab68bc73a40add299e4e633fbeb",
+    "new_Harness_blob_imports": [],
+    "scope": "SafePoint existing port only; no H09 file inbox/Store/Service/Ledger/SSE and no H12 import"
+  },
+  "registration": "make verify TASK=SAV1-14",
+  "historical_preparation": "docs/super-agent-v1/accept/SAV1-14/preparation-20261114.json",
+  "six_gates": {
+    "engineering_gate": "PASS_VERSIONED_LOCAL_CONTROLLED_SCOPE",
+    "policy_security_gate": "NOT_RUN",
+    "live_source_channel_gate": "NOT_RUN",
+    "live_coding_gate": "NOT_RUN",
+    "live_publication_gate": "NOT_RUN",
+    "continuous_operation_gate": "NOT_RUN"
+  },
+  "h12_real_agent_MVP": "FAIL",
+  "SA15": "NOT_STARTED",
+  "installed_migration_count": 44,
+  "scope_gate": "PASS_VERSIONED_LOCAL_CONTROLLED_FIXTURE_ONLY",
+  "independent_review": "PASS_LOCAL_CONTROLLED_SCOPE_USER_ACCEPTED",
+  "functional_candidate": "e88ff0c5b4ca586e3bc9c0b4d9cf42769a61042f",
+  "distinct_formal_cases_with_PASS": 62,
+  "single_final_full_suite_PASS_claimed": false,
+  "passed_cases_repeated": 0,
+  "historical_preparation_repeated": false,
+  "acceptance_summary": "docs/super-agent-v1/accept/SAV1-14/accept.json",
+  "versioned_static_note": "lint/mypy278 PASS at5758b31; new boundary lint first PASS atbe489f7. Later repair code does not repeat previously passing static targets per user instruction.",
+  "artifacts": [
+    {
+      "path": "config/source-coding-v1.json",
+      "sha256": "1d501b341ab50b3a0efa57cdaa5dd9423d7f4ff3a6931f84444c8810277c7e05"
+    },
+    {
+      "path": "config/source-scheduler-v1.json",
+      "sha256": "9984dd4dba9a2f741d1d9f4681e6c6b69dc667495d7c5538ec756c761b580ca5"
+    },
+    {
+      "path": "config/verification.json",
+      "sha256": "d1df74ced7dde957b82d3095c04f52bb7ab30ac8942571d0553f3f1c0d440cfa"
+    },
+    {
+      "path": "docs/super-agent-v1/accept/SAV1-14/history/registration-script.py",
+      "sha256": "ae2030d235be3cf98489855e460094eba85a6cf98a923c8bafbdf688ca06e0a4"
+    },
+    {
+      "path": "docs/super-agent-v1/sa14-proposal/0047_source_async.sql",
+      "sha256": "9ce372e6a82cbf747c51624486ef7548faf056cc60912e0287279be8b569f041"
+    },
+    {
+      "path": "docs/super-agent-v1/sa14-proposal/SA14_SCOPE.md",
+      "sha256": "96063b58454bc45b500bfdc884b4431623edb63a8e9108161821bd0ae81eaec2"
+    },
+    {
+      "path": "docs/super-agent-v1/sa14-proposal/harness-reuse.json",
+      "sha256": "e8ad44ea8a8b2c7e9c0af4d7e4be4ded72b50b44a640dce2b03be3dfb01eeb9e"
+    },
+    {
+      "path": "docs/super-agent-v1/sa14-proposal/interfaces.json",
+      "sha256": "82a4fcacf5533a2e7aa954b183bc886b4d3c64dffef1fd0c61319d5552146f89"
+    },
+    {
+      "path": "docs/super-agent-v1/sa14-proposal/ownership-confirmed.json",
+      "sha256": "6f6a82f993d3bbd78332334bc9b6ac757cf2c5d9b7612783f613fb6f04c19b73"
+    },
+    {
+      "path": "docs/super-agent-v1/sa14-proposal/ownership-request.txt",
+      "sha256": "40f2ed9e8fbb51a85931f38d487307386bdcead347a16000da31374cadd8e588"
+    },
+    {
+      "path": "docs/super-agent-v1/sa14-proposal/proposal-manifest.json",
+      "sha256": "3eba38063090c5f016e0ae7b0b45dfa3f3b21fb5ffecb0df715503fce354a94c"
+    },
+    {
+      "path": "docs/super-agent-v1/sa14-proposal/shared-risk-review.json",
+      "sha256": "4844c107b710dfb15449ec0b4e4740a65f4571fa4c213d869de3afeb09319523"
+    },
+    {
+      "path": "docs/super-agent-v1/sa14-proposal/shared-wiring-metadata.json",
+      "sha256": "184d6b9d4d8888ae4b925cbf299aeca87d0d74cd6289732d9222c0324ffaa1e0"
+    },
+    {
+      "path": "docs/super-agent-v1/sa14-proposal/shared-wiring.patch",
+      "sha256": "c43e05c0d8aabe1bccf3484cbb7922c5f6f1897f6d2cd5ac0840b4454ff85b5e"
+    },
+    {
+      "path": "migrations/0047_source_async.sql",
+      "sha256": "9ce372e6a82cbf747c51624486ef7548faf056cc60912e0287279be8b569f041"
+    },
+    {
+      "path": "schemas/super-agent-v1/source-async-admit-v1.schema.json",
+      "sha256": "8a631d0b60314dd7352d8d193905586b47b8666904b639d3045b72864d408313"
+    },
+    {
+      "path": "schemas/super-agent-v1/source-async-checkpoint-v1.schema.json",
+      "sha256": "baa300fbbc43800b497ea48a0eb689e30b0d93e04b14a3ff414215a7c3d3017d"
+    },
+    {
+      "path": "schemas/super-agent-v1/source-async-input-v1.schema.json",
+      "sha256": "79edb0fe4483384dd06ae84f0dc42e84d0645b5702cc6ca6e2db6fa79abc0982"
+    },
+    {
+      "path": "schemas/super-agent-v1/source-async-job-cancel-v1.schema.json",
+      "sha256": "b479e5558bc722de87a35d42df86e398c48f0facb61dff9a2d86f56def03baa6"
+    },
+    {
+      "path": "schemas/super-agent-v1/source-async-job-v1.schema.json",
+      "sha256": "6523ec8249da476320888323a8f760a82326ff8d4a9c5f445bf703afbaba98a7"
+    },
+    {
+      "path": "schemas/super-agent-v1/source-async-restriction-v1.schema.json",
+      "sha256": "93e8c60a01b9d552a49fbb9219d7e351ec2afb45f22435e41df40a57b5fdd907"
+    },
+    {
+      "path": "schemas/super-agent-v1/source-async-worker-job-cancel-v1.schema.json",
+      "sha256": "9e5a3a01dd6bae3c1eb497b163bfd632f5cd177ad9495d46acaa406a9885403e"
+    },
+    {
+      "path": "schemas/super-agent-v1/source-async-worker-v1.schema.json",
+      "sha256": "0f2e265bdb5b302f55898a020d114adbe01506b7edfc1ea2db33a580c81edac9"
+    },
+    {
+      "path": "src/mgar_v3/api.py",
+      "sha256": "1d587dd2fde495bb78071e638614c8e4acab27a0f782a681ac12f29ebd4849c6"
+    },
+    {
+      "path": "src/mgar_v3/coordination/engine.py",
+      "sha256": "f079a8b11131c38fa422022ea3c65435becce7d62e38bcc3efe3e1b9d3da304e"
+    },
+    {
+      "path": "src/mgar_v3/sources/ingress.py",
+      "sha256": "ac6f4acc3e09bf96d7ef32a98db359e1f57bdfd60c6261901c2058aed9ff1e07"
+    },
+    {
+      "path": "src/mgar_v3/super_agent/source_async.py",
+      "sha256": "9fb9cdc556271ba4553a696d434129333965d040dd39c020f4e20f43680ced0f"
+    },
+    {
+      "path": "src/mgar_v3/super_agent/source_async_api.py",
+      "sha256": "98cd596dae254cb4de5d6660d8a8b1230a1c006a947c1bb37d7dee18308822ab"
+    },
+    {
+      "path": "src/mgar_v3/super_agent/source_async_domain.py",
+      "sha256": "223355de89dee2da58b1324772df9692bbece2aad10cf3c5203492652a9f829e"
+    },
+    {
+      "path": "src/mgar_v3/super_agent/source_async_plan.py",
+      "sha256": "f0798342f39563c8d0c9213ffc985b77ffe069c8a556e0b487826899ba3b3da5"
+    },
+    {
+      "path": "src/mgar_v3/super_agent/source_async_rules.py",
+      "sha256": "d1e481ac2a28a5f292fa4804efc6e4aafc19e53321bf1e0723b4e2d7234ae045"
+    },
+    {
+      "path": "src/mgar_v3/super_agent/source_async_runtime.py",
+      "sha256": "3a57fe0af82fa70c476b3831d23210d3cc86ba444faa3d88a544ba9cfded88f9"
+    },
+    {
+      "path": "src/mgar_v3/super_agent/source_coding.py",
+      "sha256": "64a267a8665039e287a6b4cced7d76360af5d975193cc7599fc313d61f5acffa"
+    },
+    {
+      "path": "src/mgar_v3/super_agent/source_coding_api.py",
+      "sha256": "c4acd942769331d7d1fe33d7e45c9b679cd5bbbd72143716310f1655c16dae1a"
+    },
+    {
+      "path": "src/mgar_v3/super_agent/source_coding_budget.py",
+      "sha256": "b96f8bf610bff59366b3d6f56c9a2d751d8b4363022b0b3395774fd89773256e"
+    },
+    {
+      "path": "src/mgar_v3/super_agent/source_coding_domain.py",
+      "sha256": "aa0af169a1e3d32db3984d111fdbadfb642a1a1606c54812edaecc4878e242e2"
+    },
+    {
+      "path": "src/mgar_v3/super_agent/source_coding_journal.py",
+      "sha256": "065fb20746bec3e054d1401db7bb49b73e986d4e30b6337a5e519453164c3373"
+    },
+    {
+      "path": "src/mgar_v3/super_agent/source_coding_rules.py",
+      "sha256": "592e5f2961df9dee9a92619691bd8d3c8a0bf4b5192d3c08d23faec15f4c1431"
+    },
+    {
+      "path": "src/mgar_v3/super_agent/source_coding_runtime.py",
+      "sha256": "ad84ee8acb3a71f47f620f15a58a9c695f017ef7d7e1746b3a53f5514db81f74"
+    },
+    {
+      "path": "src/mgar_v3/super_agent/source_coding_workspace.py",
+      "sha256": "470307df50cd2305f344bd574273cdf1530f161ffcac0a54739e609819216251"
+    },
+    {
+      "path": "tests/sa14_crash_actor.py",
+      "sha256": "ba9918817ea0110b5643c621fc0952d655ce1429ef7339a406bf692e23b38989"
+    },
+    {
+      "path": "tests/sa14_support.py",
+      "sha256": "191154d0a1cd35292ea3a3263459c3c13f31662192cafa4d09d9a877c229a180"
+    },
+    {
+      "path": "tests/test_super_agent_sa05.py",
+      "sha256": "cb62304ef042b740372bba3ad17bc3222f58b53276e762205f5d3b5cb33207c0"
+    },
+    {
+      "path": "tests/test_super_agent_sa06_migration.py",
+      "sha256": "56b5300de0def72c8cd0c38cfe43d8425dfaa4907f337b57761bc03ccc47ff49"
+    },
+    {
+      "path": "tests/test_super_agent_sa07_migration.py",
+      "sha256": "7c52a544b2bc81df482597d05c9510d60a381b4a3c7cc1836ec36394ef9013ea"
+    },
+    {
+      "path": "tests/test_super_agent_sa08_migration.py",
+      "sha256": "f04e78011a41cfaf72078eea54aa3760f8adef6ff18b40bbee8c26a0815c5236"
+    },
+    {
+      "path": "tests/test_super_agent_sa09_migration.py",
+      "sha256": "58a9c1f526aeed72f723bf319542da28142991aa025bc65f0a1ce81cc5ceb6e8"
+    },
+    {
+      "path": "tests/test_super_agent_sa10_migration.py",
+      "sha256": "39d0fe035421fea5f4b0c0d2b2d644db6df6cd94b28258adc1bab86c6e85b19a"
+    },
+    {
+      "path": "tests/test_super_agent_sa11_migration.py",
+      "sha256": "1945b9b7633a761f8a074fb86bf620d81c02059d1453f937d6053c60b095e647"
+    },
+    {
+      "path": "tests/test_super_agent_sa12_migration.py",
+      "sha256": "7a2d762045a49f11912482a737548c2e0da357398b056936ce7441c6f5d8f73c"
+    },
+    {
+      "path": "tests/test_super_agent_sa13_migration.py",
+      "sha256": "edf4a2e4abce8965271d85930d631f8a39cc697f243b482a48d21314df5a21c2"
+    },
+    {
+      "path": "tests/test_super_agent_sa14_api.py",
+      "sha256": "55bfd2ad9e9b8a8a3f0b04ca2689a0e7a5aac046b59f473220e2fd980bfcac62"
+    },
+    {
+      "path": "tests/test_super_agent_sa14_boundaries.py",
+      "sha256": "06c6b1dd6f063b338060d0108dfb6cdf192689da5b56a13f1f1ab55f458bd773"
+    },
+    {
+      "path": "tests/test_super_agent_sa14_contracts.py",
+      "sha256": "7941585be62e5a3dfa0dfe82a02418b6db31e27ff7f47a163a1805867a44dad6"
+    },
+    {
+      "path": "tests/test_super_agent_sa14_draft.py",
+      "sha256": "21032e4a6e27f30fbac7dfadfe193a0ef06326a658b1140c5e3f5156ed8e8a69"
+    },
+    {
+      "path": "tests/test_super_agent_sa14_inbox.py",
+      "sha256": "b69bc16227c18e4c4d719455fe41f6168e3515563bc6c39c0d20f00465351823"
+    },
+    {
+      "path": "tests/test_super_agent_sa14_recovery.py",
+      "sha256": "06340655dc541d2e601ade6c7b7a79b5742470a183bb4402dbb0ed482998886d"
+    },
+    {
+      "path": "tests/test_super_agent_sa14_runtime.py",
+      "sha256": "a9baa75612e334a2dcb1677ef237dac46721ca7a4c9537d40201c3b820fbe672"
+    }
+  ],
+  "artifact_snapshot_utc": "2026-11-14T11:38:35.573278+00:00",
+  "artifact_snapshot_scope": "SA15 current composition/catalogue hashes only; prior bytes in accept/SAV1-15/history/pre-sa15. Historical passing/failing evidence unchanged; no rerun implied.",
+  "I01": {
+    "local_repair": "PASS_ORIGINAL_TWO_FAILED_CASES_ONLY",
+    "source_commit": "e88ff0c5b4ca586e3bc9c0b4d9cf42769a61042f",
+    "source_sha256": "2bd117ebf19bb038dacedc0b965cda7873ea782ff4cfbcf6cc3758f84c516cb8",
+    "record": "docs/super-agent-v1/accept/SAV1-14/i01-repair.json",
+    "independent_reacceptance": "PASS_USER_ACCEPTED",
+    "old35_and_other_PASS_repeated": false
+  },
+  "independent_closure": "docs/super-agent-v1/accept/SAV1-14/independent-closure-20261114.json"
+}

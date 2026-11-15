@@ -1,6 +1,6 @@
 # SA18：完整审查与受控 Draft PR
 
-状态：IN_PROGRESS。固定 Harness 第43节已确认并接线；86项准备和14项首批正式目标有分版本通过证据。首次 HTTP/浏览器/原生 CI/SIGKILL 边界检查进行中，最终工程结论以 accept/SAV1-18/accept.json 为准，独立验收 NOT_RUN。SA19 未启动。
+状态：IN_PROGRESS，尚未具备独立验收条件。固定 Harness 第43节已确认并接线；86项准备及62个正式独特目标有分版本通过证据，含真实浏览器和三处SIGKILL。另有1项实际异步控制组合失败：waiting_approval 阶段原SQL拒收合法限制。拟0051已在隔离草案验证，正式落地等待新编号确认，见[具体请求](sa18-proposal/async-intake-repair-request.txt)。最终工程摘要尚未签发，独立验收 NOT_RUN。SA19 未启动。
 
 ## 开放范围
 

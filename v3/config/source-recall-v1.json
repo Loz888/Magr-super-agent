@@ -247,7 +247,7 @@
     },
     {
       "path": "src/mgar_v3/api.py",
-      "sha256": "1d587dd2fde495bb78071e638614c8e4acab27a0f782a681ac12f29ebd4849c6"
+      "sha256": "4b04b45423527ecbb64caafd2fc348edec8786e00806f1aa01e19b1009be0549"
     },
     {
       "path": "src/mgar_v3/context/store.py",
@@ -255,7 +255,7 @@
     },
     {
       "path": "src/mgar_v3/coordination/engine.py",
-      "sha256": "f079a8b11131c38fa422022ea3c65435becce7d62e38bcc3efe3e1b9d3da304e"
+      "sha256": "d4130dc7a2269171946611e30efe68c23bde52e877d8d881d31a0629382068e9"
     },
     {
       "path": "src/mgar_v3/evidence/artifacts.py",

@@ -145,15 +145,15 @@
   "artifacts": [
     {
       "path": "config/source-coding-v1.json",
-      "sha256": "1d501b341ab50b3a0efa57cdaa5dd9423d7f4ff3a6931f84444c8810277c7e05"
+      "sha256": "a3ca3379bbe945b3d481a083b22333436d2052b5c5f70ad8ddbed0b330346f2e"
     },
     {
       "path": "config/source-scheduler-v1.json",
-      "sha256": "9984dd4dba9a2f741d1d9f4681e6c6b69dc667495d7c5538ec756c761b580ca5"
+      "sha256": "8fb960cdd52813cb6987ac226b443330444ef8a492eb7b105a7be964a65b6f8b"
     },
     {
       "path": "config/verification.json",
-      "sha256": "d1df74ced7dde957b82d3095c04f52bb7ab30ac8942571d0553f3f1c0d440cfa"
+      "sha256": "1a138ae5bb57cf4667b25d392dff0ceb44c41c787c16381f15a51d26c6b18740"
     },
     {
       "path": "docs/super-agent-v1/accept/SAV1-14/history/registration-script.py",
@@ -237,11 +237,11 @@
     },
     {
       "path": "src/mgar_v3/api.py",
-      "sha256": "1d587dd2fde495bb78071e638614c8e4acab27a0f782a681ac12f29ebd4849c6"
+      "sha256": "4b04b45423527ecbb64caafd2fc348edec8786e00806f1aa01e19b1009be0549"
     },
     {
       "path": "src/mgar_v3/coordination/engine.py",
-      "sha256": "f079a8b11131c38fa422022ea3c65435becce7d62e38bcc3efe3e1b9d3da304e"
+      "sha256": "d4130dc7a2269171946611e30efe68c23bde52e877d8d881d31a0629382068e9"
     },
     {
       "path": "src/mgar_v3/sources/ingress.py",
