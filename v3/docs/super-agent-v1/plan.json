@@ -639,12 +639,16 @@
       "optional": false,
       "card": "TASKS.md#sa19",
       "verification_target_on_implementation": "SAV1-19",
-      "work_state": "REQUIREMENTS_AND_EXISTING_ACCOUNT_SOURCE_AUTHORITIES_AUDIT",
+      "work_state": "PRIVATE_IMPLEMENTATION_CONCRETE_SHARED_SCOPE_WAITING_CONFIRMATION",
       "authorized_by_user": "Start SA19 after confirming user-accepted SA18-I01 independent original2 PASS",
       "engineering_gate": "NOT_RUN",
       "independent_review": "NOT_RUN",
-      "shared_scope": "CONCRETE_0052_AND_THREE_FILE_PROPOSAL_PREPARING",
-      "SA20": "NOT_STARTED"
+      "shared_scope": "0052_TWO_TABLES_ENGINE_API_AGENT_HTML_THREE_FILES_15_INTERFACES_REQUESTED",
+      "SA20": "NOT_STARTED",
+      "proposal_commit": "3a911854842bbf81b02bfbcc28234f99eb27ffed",
+      "preparation_PASS": 54,
+      "preparation_summary": "accept/SAV1-19/preparation-20261115.json",
+      "ownership_request": "sa19-proposal/ownership-request.txt"
     },
     {
       "id": "SAV1-20",

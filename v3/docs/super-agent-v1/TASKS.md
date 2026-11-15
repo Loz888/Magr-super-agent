@@ -1,6 +1,8 @@
 # Super-Agent V1 完整任务书
 
-实施进度：**SAV1-00–SAV1-17 DONE（用户接受的受控本地独立闭环）；SA18 IN_PROGRESS（I01本地修复，等待独立复验）；SA19–SA24 PLANNED**。短号对应完整ID SAV1-00–SAV1-24。
+实施进度：**SAV1-00–SAV1-18 DONE（用户接受的受控本地独立闭环）；SA19 IN_PROGRESS（控制台私有实现与共享范围确认）；SA20–SA24 PLANNED**。短号对应完整ID SAV1-00–SAV1-24。
+
+SA18 ed3d24f/9593b62的I01独立原2项2PASS已核对并获用户接受，原15及历史68/86/静态通过不重跑，见[独立关闭](accept/SAV1-18/independent-closure-20261115.json)。现按用户指令启动SA19。私有契约及0052隔离草案54PASS、typecheck312PASS，lint一处仅失败目标复验PASS；[具体提案](sa19-proposal/ownership-request.txt)包含0052两表/三文件接线/15接口，正式接线待新固定确认。SA20未启动，主库仍44，真实门NOT_RUN，固定H12真实Agent/MVP FAIL保留。
 
 SA18-I01独立P1（最后工作区采集后缺少远端head/base复查）已本地定向修复；候选ed3d24f仅原两个失败参数2PASS/exit0，writer均只有branch，无commit/PR写入，真实Git对象已核对。原探针/断言/失败证据保留，原15独立及历史68/86/静态通过未重跑。见[修复报告](SA18_I01_REPAIR_20261115.md)和[机器记录](accept/SAV1-18/i01-repair.json)。SA18保持IN_PROGRESS等待独立复验，SA19未启动，真实门NOT_RUN，固定H12真实Agent/MVP FAIL保留。
 

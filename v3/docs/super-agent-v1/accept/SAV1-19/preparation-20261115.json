@@ -1,0 +1,40 @@
+{
+  "card": "SAV1-19",
+  "status": "IN_PROGRESS_PREPARATION_ONLY_FORMAL_WAITING_SHARED_CONFIRMATION",
+  "UTC": "2026-11-15T08:57:14.836758+00:00",
+  "proposal_commit": "3a911854842bbf81b02bfbcc28234f99eb27ffed",
+  "preparation_candidate": "3a911854842bbf81b02bfbcc28234f99eb27ffed",
+  "preparation_source_sha256": "64c7982eac90792ce7db35896f039933e8f62534af372751150ecc3d18bd3e70",
+  "counts": {
+    "tests": 54,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "preparation_evidence": "evidence/SAV1-19-PREPARE/20261115T085516Z-90755c36",
+  "first_typecheck": "PASS 312 source files; not rerun",
+  "first_lint": "FAIL1 long SQL literal, original log retained",
+  "failed_lint_only_recheck": {
+    "candidate": "070ac219733dc8bcd5cd6d7528e973758c4622b0",
+    "source_sha256": "994b7eeff4126ceee9a1f637ffcaf0eba4ad7f4ae481d83f76d04a26d082e36f",
+    "exit_code": 0,
+    "test_AST_unchanged": true,
+    "54_test_and_typecheck_passes_not_rerun": true
+  },
+  "ownership_request": "docs/super-agent-v1/sa19-proposal/ownership-request.txt",
+  "SQL_sha256": "765932acca6566a33596e2c543b446c0675ccce689db9e82223b64cf9cd14fb4",
+  "patch_sha256": "b2ba32c532005d4d798f9230c5e1b6d0676ff300a720e62f4a1f2fef7eeb22f8",
+  "shared_files": 3,
+  "new_interfaces": 15,
+  "formal0052_and_shared_patch": "NOT_APPLIED",
+  "main_migrations": 44,
+  "repository_formal_migrations": 48,
+  "Harness_read_only_committed_tree": {
+    "head": "162b6ef890f18c89df07adf62b0ca0375b5da69c",
+    "committed0052_files": [],
+    "uncommitted_work_not_read": true,
+    "not_a_new_ownership_confirmation": true
+  },
+  "SA20": "NOT_STARTED",
+  "real_gates": "NOT_RUN"
+}
