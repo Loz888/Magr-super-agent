@@ -1,0 +1,165 @@
+{
+  "version": "source-console-v1",
+  "status": "CONTROLLED_IMPLEMENTATION_PENDING_INDEPENDENT_REVIEW",
+  "ownership_commit": "8d19308a585e80885fc4f0bfeec4853395236ab8",
+  "migration": "0052_source_console.sql",
+  "api_routes": 12,
+  "console_routes": 3,
+  "defaults": {
+    "default_mode": "shadow",
+    "automatic_repair": false,
+    "worker_started": false,
+    "dispatcher_started": false,
+    "model_calls": 0,
+    "external_writes": 0,
+    "runtime_started": false
+  },
+  "writer": "original Engine held PG connection/mutex; original Source/Policy/Ingress/Identity/Budget/Run services",
+  "credentials": "server-only purpose-bound encryption; fixed private key path; write-only HTTP; no activation",
+  "list_limit": 50,
+  "identity_limit": 100,
+  "independent_review": "NOT_RUN",
+  "real_gates": "NOT_RUN",
+  "H12_fixed_live_agent_mvp": "FAIL; another CLI owns H12",
+  "SA20": "NOT_STARTED",
+  "registration": "make verify TASK=SAV1-19",
+  "repair_policy": "only failed cases/check targets; previous passes remain bound to their source versions",
+  "artifacts": [
+    {
+      "path": "config/verification.json",
+      "sha256": "d2c7f31ac8c8a570a60e76f75cb5c43f146fcc3cc2dbe2ae0a705731715ce968"
+    },
+    {
+      "path": "docs/super-agent-v1/SA19_CONSOLE.md",
+      "sha256": "e966d543ea047241746044da623011fa41761ac9292eb6f506e8f03dd4e14a90"
+    },
+    {
+      "path": "docs/super-agent-v1/accept/SAV1-19/history/manifest.json",
+      "sha256": "4966e304352be31c6e8be1e3176f31035c5e2bae3274a4e7f68abb963744875b"
+    },
+    {
+      "path": "docs/super-agent-v1/sa19-proposal/0052_source_console.sql",
+      "sha256": "765932acca6566a33596e2c543b446c0675ccce689db9e82223b64cf9cd14fb4"
+    },
+    {
+      "path": "docs/super-agent-v1/sa19-proposal/SA19_SCOPE.md",
+      "sha256": "5999b55ff80afb2945e7e31530285d5948e020075f61d6b114316085cb0887b1"
+    },
+    {
+      "path": "docs/super-agent-v1/sa19-proposal/ownership-confirmed.json",
+      "sha256": "84761945d0a0f07bf9ff7b031f8ca99405788c4731ac37e6927c8396aa822376"
+    },
+    {
+      "path": "docs/super-agent-v1/sa19-proposal/ownership-request.txt",
+      "sha256": "6f2eebda3180e334fe4713f42bbaff39c3ca6b07c3d0ea170fa80d5a4f06b974"
+    },
+    {
+      "path": "docs/super-agent-v1/sa19-proposal/preparation-result.json",
+      "sha256": "fa1f2459f717877a4c98c002ef3dbd26f2ba40f017897c7bae1bce3958a23549"
+    },
+    {
+      "path": "docs/super-agent-v1/sa19-proposal/proposal-manifest.json",
+      "sha256": "ddb2e8e10da20995f94dd87faa20d2cd0659019bfc475044aff79348d8fdb18f"
+    },
+    {
+      "path": "docs/super-agent-v1/sa19-proposal/shared-file-hashes.json",
+      "sha256": "b133906f98c44d7aafe5137f97a7a6f85f69d5b5cf1717243e4cf219f8072e68"
+    },
+    {
+      "path": "docs/super-agent-v1/sa19-proposal/shared-wiring.patch",
+      "sha256": "b2ba32c532005d4d798f9230c5e1b6d0676ff300a720e62f4a1f2fef7eeb22f8"
+    },
+    {
+      "path": "fixtures/super-agent-v1/sa19-console-disabled-v1.json",
+      "sha256": "3d9c083c85ab1a28561c25b3b1bfbe732f3083094747ffcb369688c641fa32e2"
+    },
+    {
+      "path": "migrations/0052_source_console.sql",
+      "sha256": "765932acca6566a33596e2c543b446c0675ccce689db9e82223b64cf9cd14fb4"
+    },
+    {
+      "path": "schemas/super-agent-v1/source-console-v1.json",
+      "sha256": "16048d5eace3e5b4fc21477627f9cf5e92b5526fb4fed19a176fb7872929a6a2"
+    },
+    {
+      "path": "src/mgar_v3/api.py",
+      "sha256": "2d0e9dbf78158f425c823ef31f65cb5b37852b156df5b26b3937de55088d2b08"
+    },
+    {
+      "path": "src/mgar_v3/coordination/engine.py",
+      "sha256": "5658065429a9035ed5d60f4d90571a5adb8d5c732a0a1a53b741bca25841c815"
+    },
+    {
+      "path": "src/mgar_v3/super_agent/source_console.py",
+      "sha256": "75129b8b4675440423473f8fdf61c9b81845056092313995f56deb1c99da771e"
+    },
+    {
+      "path": "src/mgar_v3/super_agent/source_console_api.py",
+      "sha256": "a62861888adef05ab553403f207e107ac3684942c1f7bfae2ec26d443ac7e47b"
+    },
+    {
+      "path": "src/mgar_v3/super_agent/source_console_credentials.py",
+      "sha256": "da1dfb6341e63aecc4a3d5790c30259e3cfa5fb49915db3f386dac635203860d"
+    },
+    {
+      "path": "src/mgar_v3/super_agent/source_console_domain.py",
+      "sha256": "80f19612ed478deedf2d480f0de7ac2c5d7e9742a7f5bbc08dbbb2ec4a146feb"
+    },
+    {
+      "path": "src/mgar_v3/super_agent/source_console_projection.py",
+      "sha256": "e05058fc8945d0ee14516e280533a9c1cb8acca7f0bcac8084326b75a735aae8"
+    },
+    {
+      "path": "src/mgar_v3/super_agent/source_console_store.py",
+      "sha256": "09a89e93c2e828adbbcd1b144fe0872d4c7157e0c1b11d525060b47bfe43f547"
+    },
+    {
+      "path": "tests/sa19_browser_support.py",
+      "sha256": "55c26e12c9f74e3dd59383d83923df452245a3884662c5c818695045a0fef05a"
+    },
+    {
+      "path": "tests/sa19_support.py",
+      "sha256": "5ec3b024fc3e6e13e32183fc1292055d6003b77b6e2f8178487ce3fb4d95d51e"
+    },
+    {
+      "path": "tests/test_source_console_backend.py",
+      "sha256": "d57d9385e72b33dae06dd7f591e1917767e7675af5545ac55582df8802ff4762"
+    },
+    {
+      "path": "tests/test_source_console_boundaries.py",
+      "sha256": "83af805deea5b1c5e7d23326ab228eca4797089cd29989057af915ec8c94d598"
+    },
+    {
+      "path": "tests/test_source_console_browser.py",
+      "sha256": "43decd15010bdf1f664fa4b1a385c0191c7fac74706d01299752e33b24bb23ac"
+    },
+    {
+      "path": "tests/test_source_console_catalogue.py",
+      "sha256": "fe73cc46373ec5949473ed7fc05430f9d8a9ff92d370285df5e9bd974b7458fc"
+    },
+    {
+      "path": "tests/test_source_console_http.py",
+      "sha256": "cd2e7f00b0c0b732149500db0fd60b635f681a097b96c883605657ca0437ff1f"
+    },
+    {
+      "path": "tests/test_source_console_preparation.py",
+      "sha256": "364ac0650f1153784060d5f4b48dee5722167b868107a81815875ed84b284dc1"
+    },
+    {
+      "path": "web/agent.html",
+      "sha256": "9320988919f0220dff1ebaba208df7d9ac0328bf587b1e91e9004b183469f806"
+    },
+    {
+      "path": "web/source-console.css",
+      "sha256": "86e7d349aed14e2a9f1744513b29d34a85fb78add46450cc0d8091cdf5380cf9"
+    },
+    {
+      "path": "web/source-console.html",
+      "sha256": "77be856adc9694ef0692f1d135144663c3bdc17fd9b20ceb32a968538d321f93"
+    },
+    {
+      "path": "web/source-console.js",
+      "sha256": "93b1f6a347d6ae8736dcaa77231ea9c829de7480a0f372b69f77ef910c2bd077"
+    }
+  ]
+}

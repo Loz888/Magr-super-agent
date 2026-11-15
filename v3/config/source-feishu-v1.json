@@ -142,7 +142,7 @@
     },
     {
       "path": "config/verification.json",
-      "sha256": "211fa1217c64fd43b4fa15390c534974924388195e67fa4037568c0dceab539f"
+      "sha256": "d2c7f31ac8c8a570a60e76f75cb5c43f146fcc3cc2dbe2ae0a705731715ce968"
     },
     {
       "path": "config/source-ingress-v1.json",

@@ -176,3 +176,30 @@ def test_browser_distinguishes_online_insufficient_and_closing_does_not_cancel_o
         b.wait("document.getElementById('task-facts').textContent.includes('已停止')")
     assert engine.source_console.task(e.cookie, run.run_id)["run"]["status"] == "cancelled"
     assert not e.calls
+
+
+def test_browser_shadow_reason_and_not_run_are_visible_on_narrow_authenticated_page(
+    engine, tmp_path
+):
+    from sa09_support import apply
+    from sa09_support import setup as eval_setup
+
+    e = eval_setup(engine)
+    apply(e, action="ignore")
+    with browser(engine, tmp_path, e.cookie, cjk_fonts=True) as b:
+        b.call(
+            "Emulation.setDeviceMetricsOverride",
+            width=390,
+            height=844,
+            deviceScaleFactor=1,
+            mobile=False,
+        )
+        b.evaluate("document.querySelector('[data-panel=tasks]').click()")
+        b.wait("document.getElementById('decision-list').textContent.includes('IRRELEVANT')")
+        text = b.evaluate("document.getElementById('decision-list').textContent")
+        assert "未运行语义评估" in text and "会忽略" in text and "与当前任务无关" in text
+        assert b.evaluate("document.documentElement.scrollWidth <= innerWidth")
+        evidence(b, tmp_path, "mobile-shadow-observation")
+    with engine.transaction() as conn:
+        assert conn.execute("SELECT count(*) AS n FROM app.router_calls").fetchone()["n"] == 0
+        assert conn.execute("SELECT count(*) AS n FROM app.runs").fetchone()["n"] == 0

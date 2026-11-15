@@ -27,7 +27,7 @@ def test_shadow_decision_retains_actual_intended_action_without_inventing_model_
     assert row["semantic_action"] == decisions[0].intended_action == "would_" + action
     assert row["semantic_reason"] == decisions[0].reason_code
     assert row["semantic_evaluation"] == "NOT_RUN" and row["call_id"] is None
-    assert not row["source_instance_id"] is None
+    assert row["source_instance_id"] is not None
     assert not before["actions"]["items"] and not before["decisions"]["observing_invokes_model"]
     text = json.dumps(before, default=str)
     assert "Please investigate this issue" not in text

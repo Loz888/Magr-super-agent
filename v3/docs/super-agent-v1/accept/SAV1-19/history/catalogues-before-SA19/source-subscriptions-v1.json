@@ -1,0 +1,202 @@
+{
+  "contract_version": "source-subscription-v1",
+  "snapshot_version": "source-intake-v1",
+  "status": "FORMAL_IMPLEMENTATION",
+  "ownership_status": "ACTUALLY_CONFIRMED_FIXED_COMMIT",
+  "ownership_commit": "d0af0747dd129033cb7bd0abd2af9ca5a57a8d4a",
+  "ownership_section": 35,
+  "artifact_snapshot_utc": "2026-11-14T11:38:35.584891+00:00",
+  "artifact_snapshot_scope": "SA15 current composition/catalogue hashes only; prior bytes in accept/SAV1-15/history/pre-sa15. Historical passing/failing evidence unchanged; no rerun implied.",
+  "artifact_status": "CURRENT_FORMAL_HASHES",
+  "migration": "0042_source_subscriptions.sql",
+  "migration_status": "FORMAL0042_AND0043_INSTALLED",
+  "installed_migration_count": 41,
+  "shared_wiring_status": "EXACT_APPROVED_PATCH_APPLIED",
+  "shared_proposal": {
+    "sql_path": "docs/super-agent-v1/sa11-proposal/0042_source_subscriptions.sql",
+    "sql_sha256": "3e29900f22472c4d8b0c5b2bc60a64a798134532b2e47ab09427cc5006d4c8d0",
+    "patch_path": "docs/super-agent-v1/sa11-proposal/shared-wiring.patch",
+    "patch_sha256": "da51e1366a086a53125127f2fd54fec3b497629478a542d15a37c220365dedb6",
+    "request_path": "docs/super-agent-v1/sa11-proposal/ownership-request.txt",
+    "request_sha256": "a24851da271f0b31b237ed6796b528f46e3c8de3dd5089360584ec088e745321",
+    "legacy_migrations_0037_0040_imported": false
+  },
+  "source_fact_tables": 7,
+  "management_route_count": 11,
+  "management_prefix": "/api/v3/source-subscriptions",
+  "default_subscriptions": [],
+  "default_listener": null,
+  "default_worker": null,
+  "default_model_provider": null,
+  "automatic_subscription_creation": false,
+  "automatic_run_creation": false,
+  "eligible_for_execution": false,
+  "model_calls": 0,
+  "external_business_writes": 0,
+  "context_persistence": "CANONICAL_REFERENCE_METADATA_ONLY",
+  "source_text": "Fresh current Source/identity/policy/head/TTL checks precede memory-only materialization. Source text is absent from durable subscription facts, legacy run_inputs.question and graph checkpoints; observer pages cannot materialize worker text.",
+  "authority": "Owner-reviewed selectors bind an original existing Task/Run/Mandate. Primary still requires current human controller and follow_up authority; context_only and observer facts grant no tools, target changes, model authority or external effects.",
+  "transaction": "Original Engine mutex/advisory lock and same held PostgreSQL connection; ingress capture, route and delivery facts share the original canonical submission transaction.",
+  "source_cursor": "Separate metadata cursor for each original Run and Source lane; original legacy Mailbox cursor and Run input_revision retain their existing semantics.",
+  "sequence_owner": "Original Thread.latest_seq allocation in the original Engine transaction; Source delivery does not advance Thread.revision.",
+  "target_identity": "Stable original Ticket/Thread/Mandate and explicit bound Run; current epoch fences each prepared page, materialization and acknowledgement. A new Run requires explicit owner rebind to an existing authorized attempt.",
+  "subscription_lifetime": "Owner-reviewed selector TTL is separate from seed body TTL. Each later input needs current Receive/read scope; an expired seed never revives old text or an alias.",
+  "blocked_references": "Current rejection facts may be acknowledged as metadata without materializing expired/revoked bodies. A previously ready page cannot be consumed after its permissions, head, content or epoch changes.",
+  "handback": "Immutable once-per-canonical-version needs_routing or loop_blocked facts, bounded per problem/time window; no direct Eval/model call, old FastPath decision rewrite, unknown retry or automatic Task reopening.",
+  "source_eval_v1_and_i01_fence_unchanged": true,
+  "financial_truth": "Original shared budgets and Engine/Router/repository ledgers remain authoritative; no new financial ledger or paid execution authority.",
+  "verification_registration": "SAV1-11 formal checks and their exact scopes/results are recorded separately in docs/super-agent-v1/accept/SAV1-11/accept.json; this artifact manifest is not a check result.",
+  "independent_review": "NOT_RUN",
+  "semantic_evaluation": "NOT_RUN",
+  "real_platform_paid_external_publication_continuous_operation": "NOT_RUN",
+  "pending_artifacts": [],
+  "artifacts": [
+    {
+      "path": "src/mgar_v3/super_agent/source_subscription.py",
+      "sha256": "8407be1a4965212d93c516e51d37da872eb4ce6f45d02b3a9ace7a5861e1d4ad"
+    },
+    {
+      "path": "src/mgar_v3/super_agent/source_subscription_api.py",
+      "sha256": "5f3209e527e655d42d79fd1a52ca9a6ead42324c99bf27de7d0279d191fa1ce3"
+    },
+    {
+      "path": "src/mgar_v3/super_agent/source_subscription_domain.py",
+      "sha256": "e6f1fe94d69a8af70aaa6374a6f81182ceac9765c3876d16f4d0e657901335a9"
+    },
+    {
+      "path": "src/mgar_v3/super_agent/source_subscription_rules.py",
+      "sha256": "900942bf658061b592ae7d03224d0763e21455f7224c9c76be462a1cc924d9b0"
+    },
+    {
+      "path": "tests/test_super_agent_sa11.py",
+      "sha256": "28790838f9291e719082d80b5ca4f47ec9685a87247246fcd2c79c41b3bbb06c"
+    },
+    {
+      "path": "tests/test_super_agent_sa11_api.py",
+      "sha256": "c0b11d164752d21975d1350b3063c9120105dddc07ec75cf0b8bb73d5a35131a"
+    },
+    {
+      "path": "tests/test_super_agent_sa11_contracts.py",
+      "sha256": "c5efb4caf4862fce883d39d0df18b055fa45842e35e40120f22ed3d554d8867b"
+    },
+    {
+      "path": "tests/test_super_agent_sa11_migration.py",
+      "sha256": "1945b9b7633a761f8a074fb86bf620d81c02059d1453f937d6053c60b095e647"
+    },
+    {
+      "path": "tests/test_super_agent_sa11_recovery.py",
+      "sha256": "48b2d1fcb985c6e26d8dc9a57e792e767d12dab8c5a9f9c1b1cbae90080b1b03"
+    },
+    {
+      "path": "tests/sa11_support.py",
+      "sha256": "1f5a5d3d0a3ce832ca76b0a1b5f202c07e5c414b0c8316a03378e52843a917a2"
+    },
+    {
+      "path": "tests/sa11_crash_actor.py",
+      "sha256": "02de0c66a1b1e709d8cee4c65403d52b28b1c1405547f54173cbe05bdf7c6721"
+    },
+    {
+      "path": "migrations/0042_source_subscriptions.sql",
+      "sha256": "3e29900f22472c4d8b0c5b2bc60a64a798134532b2e47ab09427cc5006d4c8d0"
+    },
+    {
+      "path": "docs/super-agent-v1/sa11-proposal/0042_source_subscriptions.sql",
+      "sha256": "3e29900f22472c4d8b0c5b2bc60a64a798134532b2e47ab09427cc5006d4c8d0"
+    },
+    {
+      "path": "src/mgar_v3/coordination/engine.py",
+      "sha256": "d4130dc7a2269171946611e30efe68c23bde52e877d8d881d31a0629382068e9"
+    },
+    {
+      "path": "src/mgar_v3/api.py",
+      "sha256": "4b04b45423527ecbb64caafd2fc348edec8786e00806f1aa01e19b1009be0549"
+    },
+    {
+      "path": "src/mgar_v3/sources/ingress.py",
+      "sha256": "ac6f4acc3e09bf96d7ef32a98db359e1f57bdfd60c6261901c2058aed9ff1e07"
+    },
+    {
+      "path": "src/mgar_v3/super_agent/fast_path.py",
+      "sha256": "019954b0144cf9118f4a39945cde07138c007aba9ab55dd2315913a518d770fa"
+    },
+    {
+      "path": "docs/super-agent-v1/sa11-proposal/shared-wiring.patch",
+      "sha256": "da51e1366a086a53125127f2fd54fec3b497629478a542d15a37c220365dedb6"
+    },
+    {
+      "path": "config/verification.json",
+      "sha256": "57edac3e377f3e8dc020423964745905025f560806a22954b35c31d564a706c9"
+    },
+    {
+      "path": "schemas/super-agent-v1/source-subscription-v1.schema.json",
+      "sha256": "d9ef014e9f3e2f3cd10b23aef4fdbb21b33f1320bb600fde44cbfd1854c48d5e"
+    },
+    {
+      "path": "schemas/super-agent-v1/source-intake-v1.schema.json",
+      "sha256": "335332677c9eef45e112cf2c2ae2d2a4a03c60bdb7ea235fe0b181bf6aeb8bbe"
+    },
+    {
+      "path": "schemas/super-agent-v1/source-subscription-save-v1.schema.json",
+      "sha256": "9d0646f2d728334d5a704acd99356cf97cec59f1eb047eae4f1f3a01d5fbe3f2"
+    },
+    {
+      "path": "schemas/super-agent-v1/source-subscription-renew-v1.schema.json",
+      "sha256": "db4dad2ef71233027e922c4204a14c291e6dd6bb349cc22a8c788ce227ef5a1d"
+    },
+    {
+      "path": "schemas/super-agent-v1/source-subscription-rebind-v1.schema.json",
+      "sha256": "075eddf1e84e76947f06cd02d0b816ec9d8116c87877a41c8eda19a812543504"
+    },
+    {
+      "path": "schemas/super-agent-v1/source-subscription-close-v1.schema.json",
+      "sha256": "cb10a5a67890919d59b8f947b1ba13b437fd81ee489dc33cc4a2678d78316cdb"
+    },
+    {
+      "path": "schemas/super-agent-v1/source-subscription-handback-v1.schema.json",
+      "sha256": "bdeeedcc0c6e407a7b1ac310b1e7ded31dcc1d0d575387fa56929f09ccc440ec"
+    },
+    {
+      "path": "schemas/super-agent-v1/source-subscription-dispatch-v1.schema.json",
+      "sha256": "96468f2225fd7bcf4317352a01fa47ca31644b041f7cd35076b0dfc5ff90c673"
+    },
+    {
+      "path": "schemas/super-agent-v1/source-subscription-prepare-v1.schema.json",
+      "sha256": "e44113254d754542538f375767a1d9964bc5502935317cf4696d41e6b3794e50"
+    },
+    {
+      "path": "schemas/super-agent-v1/source-subscription-ack-v1.schema.json",
+      "sha256": "e53b64df5b46c4bc903a08d2de0b3436c6cda7e1899cb5282aee89e3a680f23d"
+    },
+    {
+      "path": "schemas/super-agent-v1/source-subscription-delivery-v1.schema.json",
+      "sha256": "437ccd4f8ee16ff17a99f6bb9c1e51fa36ee3a2273e6e9b3e1825182f4bb8bab"
+    },
+    {
+      "path": "schemas/super-agent-v1/source-subscription-consumption-v1.schema.json",
+      "sha256": "d1c7b5a43ed18b658d009244c4af29ff16410c96c7125703eb42df0dfa6e936c"
+    },
+    {
+      "path": "schemas/super-agent-v1/source-subscription-anchor-v1.schema.json",
+      "sha256": "5268c89ad24d10575442b523c3c1bf870485e13ceb82358ed444ae5cc1c43334"
+    },
+    {
+      "path": "schemas/super-agent-v1/source-subscription-decision-v1.schema.json",
+      "sha256": "141e4890e7d2b95c8a2b28404b600e9a5432594b195a8b754dae0a96181761fc"
+    },
+    {
+      "path": "schemas/super-agent-v1/source-subscription-matches-v1.schema.json",
+      "sha256": "75bc1e12f71fcb5a91fb2a2fe45f228a8a5249211dca674b1c2969fca442c96e"
+    },
+    {
+      "path": "migrations/0043_source_subscription_canonical_guard.sql",
+      "sha256": "55f7e50886149eca9ae78db2bc5e72d186b41679fc403c8c318aa6fb8e10a008"
+    }
+  ],
+  "forward_repair": {
+    "migration": "0043_source_subscription_canonical_guard.sql",
+    "sql_sha256": "55f7e50886149eca9ae78db2bc5e72d186b41679fc403c8c318aa6fb8e10a008",
+    "ownership_commit": "a9b02bfe946f643d58b868ad3bcb4ad851aeec5e",
+    "ownership_section": 36,
+    "scope": "Minimal original canonical-version trigger function repair in a forward migration; original40 SQL byte history preserved"
+  }
+}

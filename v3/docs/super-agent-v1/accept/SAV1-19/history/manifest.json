@@ -1,0 +1,74 @@
+{
+  "source_commit": "9593b62b0f819cfea2589a9774bfac5492173557",
+  "note": "Original17 committed catalogues before SA19; historical results and pointers preserved",
+  "artifacts": [
+    {
+      "path": "docs/super-agent-v1/accept/SAV1-19/history/catalogues-before-SA19/source-async-v1.json",
+      "sha256": "79ac51112b9313a38387398aaf83d08f63220a5c0c8ea3faf449350ab33f6116"
+    },
+    {
+      "path": "docs/super-agent-v1/accept/SAV1-19/history/catalogues-before-SA19/source-autonomy-v1.json",
+      "sha256": "99a39a7b9e5dab90ffdb514e16ae1a601b6a9dfb58d3bbbfd25f713eabccdf5f"
+    },
+    {
+      "path": "docs/super-agent-v1/accept/SAV1-19/history/catalogues-before-SA19/source-coding-v1.json",
+      "sha256": "c1cff26c8ad9b30b986a63cdc20795804c30c5d98bb4f58024fa887d97075336"
+    },
+    {
+      "path": "docs/super-agent-v1/accept/SAV1-19/history/catalogues-before-SA19/source-contract-v1.json",
+      "sha256": "a9e250da4799d5de353224a9b5c1029b698aa8bbe3ed9a9e8ee5b43228187fa3"
+    },
+    {
+      "path": "docs/super-agent-v1/accept/SAV1-19/history/catalogues-before-SA19/source-correlation-v1.json",
+      "sha256": "466eb30dd621f7f50f1adb0accb19eff95c8b716eec8dd79d51c5ac25ee64321"
+    },
+    {
+      "path": "docs/super-agent-v1/accept/SAV1-19/history/catalogues-before-SA19/source-eval-v1.json",
+      "sha256": "8bdae6efd0c20bbba39bb7d6d68e77272fc27ea3e080d076c32169ecbadc3703"
+    },
+    {
+      "path": "docs/super-agent-v1/accept/SAV1-19/history/catalogues-before-SA19/source-fast-path-v1.json",
+      "sha256": "6a664cc00d0d0d285079ccf2bdfcd3b00e340ba5dba45718804bcf5839028b7d"
+    },
+    {
+      "path": "docs/super-agent-v1/accept/SAV1-19/history/catalogues-before-SA19/source-feishu-v1.json",
+      "sha256": "b8b72c6567a806d916fd5358457c1eab53a65508ef6587cf701cd425a5943195"
+    },
+    {
+      "path": "docs/super-agent-v1/accept/SAV1-19/history/catalogues-before-SA19/source-github-v1.json",
+      "sha256": "ea8ed4c8078962ee5d4808355c8d9739aba8ac53582a52bf8f90c724ba9a693d"
+    },
+    {
+      "path": "docs/super-agent-v1/accept/SAV1-19/history/catalogues-before-SA19/source-identity-v1.json",
+      "sha256": "1e2adf660b230d6b5961244d6d8cc549ffd3be1d28406710fd797a276d463b73"
+    },
+    {
+      "path": "docs/super-agent-v1/accept/SAV1-19/history/catalogues-before-SA19/source-ingress-v1.json",
+      "sha256": "1494133626e6c306816a013828f1886400e1e37b67edbf7fe5ce95aa3b7608f0"
+    },
+    {
+      "path": "docs/super-agent-v1/accept/SAV1-19/history/catalogues-before-SA19/source-notification-v1.json",
+      "sha256": "4cefa8973eea289797a2f4358d60c36266cea81c4703649edfa69a4f643bee7f"
+    },
+    {
+      "path": "docs/super-agent-v1/accept/SAV1-19/history/catalogues-before-SA19/source-policy-v1.json",
+      "sha256": "8f870fb989fb96c3b591067279e3f8281cc42d49166d7410c6b7f43e36415c96"
+    },
+    {
+      "path": "docs/super-agent-v1/accept/SAV1-19/history/catalogues-before-SA19/source-recall-v1.json",
+      "sha256": "a9e676a4c7ea6f28e7f0988725d449d4e2e4affb9cff57e298fe1e8fa5a3927d"
+    },
+    {
+      "path": "docs/super-agent-v1/accept/SAV1-19/history/catalogues-before-SA19/source-review-v1.json",
+      "sha256": "0653f60670a787dff7edd640d1ad5647ead8f3c602dd395b5ff7606aa5c254fe"
+    },
+    {
+      "path": "docs/super-agent-v1/accept/SAV1-19/history/catalogues-before-SA19/source-scheduler-v1.json",
+      "sha256": "607d2bf6df8b89405e0fe3746fc48ae565afcf92cfd28fe47481b97eccb7b3e1"
+    },
+    {
+      "path": "docs/super-agent-v1/accept/SAV1-19/history/catalogues-before-SA19/source-subscriptions-v1.json",
+      "sha256": "6b20ccd772b32f96112b75d2d20d35c65428426004f04664ccf308f9e5db71c4"
+    }
+  ]
+}

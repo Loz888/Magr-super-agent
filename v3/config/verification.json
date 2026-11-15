@@ -1992,11 +1992,15 @@
   },
   "SAV1-19": {
     "tests": [
-      "tests/test_source_console_backend.py"
+      "tests/test_source_console_backend.py",
+      "tests/test_source_console_http.py",
+      "tests/test_source_console_browser.py",
+      "tests/test_source_console_boundaries.py",
+      "tests/test_source_console_catalogue.py"
     ],
-    "timeout_seconds": 300,
+    "timeout_seconds": 600,
     "components": {
-      "scope": "First formal confirmed0052/Engine/API backend, real key custody, Owner/CAS/atomic disable and original task stop. Preparation54/static312 passes excluded.",
+      "scope": "Completed SA19 controlled console contract/backend/Owner HTTP/UI/identity/provenance/registry delivery scope. Results are version-bound; after repair only failed nodes rerun. Preparation54 excluded.",
       "real_gates": "NOT_RUN",
       "SA20": "NOT_STARTED"
     }
@@ -2030,6 +2034,17 @@
     "timeout_seconds": 240,
     "components": {
       "scope": "First console decision provenance5, asset aliases/revoked session1, fresh identity proof1, HTTP source revoke1",
+      "real_gates": "NOT_RUN",
+      "SA20": "NOT_STARTED"
+    }
+  },
+  "SAV1-19-DELIVERY": {
+    "tests": [
+      "tests/test_source_console_catalogue.py"
+    ],
+    "timeout_seconds": 120,
+    "components": {
+      "scope": "First completed schema/18-source-catalogue/current-artifacts/history/registry/defaults/guidance checks",
       "real_gates": "NOT_RUN",
       "SA20": "NOT_STARTED"
     }

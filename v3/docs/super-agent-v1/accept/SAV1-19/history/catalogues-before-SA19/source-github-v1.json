@@ -1,0 +1,108 @@
+{
+  "contract_version": "github-app-v1",
+  "status": "FROZEN_FOR_ENGINEERING",
+  "default_runtime": null,
+  "default_listener": false,
+  "default_paid_models": false,
+  "default_outbound": false,
+  "live_source_channel_gate": "NOT_RUN",
+  "credential_boundary": "private server Broker; one repository/read permissions/short expiry; no token cache/API/Worker",
+  "snapshot_boundary": "owner-signed grant + current identity/roles/policy/revision; fixed commit/tree modes/blob proof; no links/submodules",
+  "ordering": "derived hashes, native_order=None; SA04 conservative ambiguity",
+  "official_reference_checked_at_utc": "2026-11-11T02:50:54.825037+00:00",
+  "official_sources": [
+    "https://docs.github.com/en/webhooks/using-webhooks/validating-webhook-deliveries",
+    "https://docs.github.com/en/webhooks/webhook-events-and-payloads",
+    "https://docs.github.com/en/apps/creating-github-apps/authenticating-with-a-github-app/generating-a-json-web-token-jwt-for-a-github-app",
+    "https://docs.github.com/en/apps/creating-github-apps/authenticating-with-a-github-app/generating-an-installation-access-token-for-a-github-app",
+    "https://docs.github.com/en/rest/git/trees",
+    "https://docs.github.com/en/rest/git/commits",
+    "https://docs.github.com/en/rest/repos/contents"
+  ],
+  "api_version": "2026-03-10",
+  "ownership_confirmation": "79798690c93497d1740d54cc91fc2f755f55f250 section 24",
+  "artifacts": [
+    {
+      "path": "schemas/super-agent-v1/github-settings-v1.schema.json",
+      "sha256": "657fb5a03a14ea1b30616be0084a5739d448815938a6f29086ac87d8094b42e2"
+    },
+    {
+      "path": "schemas/super-agent-v1/github-configure-v1.schema.json",
+      "sha256": "5147ead14884091c6d1d44543c85b6f5b0834816c39a269938cd720a22810fb2"
+    },
+    {
+      "path": "schemas/super-agent-v1/github-resource-v1.schema.json",
+      "sha256": "fdeb9ee404fb7295ac18a1078638b0d064f34165ef2e2c98506c0312968263fa"
+    },
+    {
+      "path": "schemas/super-agent-v1/github-snapshot-grant-v1.schema.json",
+      "sha256": "549f6caca23848559492100edced6a48d037d94fd86fb0fa1a38864cc4ec5a59"
+    },
+    {
+      "path": "schemas/super-agent-v1/github-snapshot-save-v1.schema.json",
+      "sha256": "12d3a0a78dfaf461c71ed2a7d765bb9fbd6b434a50636a7d8a30d87b3ef5274d"
+    },
+    {
+      "path": "schemas/super-agent-v1/github-revoke-v1.schema.json",
+      "sha256": "c2a8a906242cc1bb85439d98260673917bc41e036d4671b777a64cb14e221380"
+    },
+    {
+      "path": "fixtures/super-agent-v1/github-v1/recordings.json",
+      "sha256": "bcda71f5124ce149f197e6f5ca27496c17776e146ba73a1204e094e239cc9b73"
+    },
+    {
+      "path": "migrations/0034_github_app.sql",
+      "sha256": "327ab8d0892410527892bd588e504f548e8898630b8207a388b36bc357b21c96"
+    },
+    {
+      "path": "src/mgar_v3/sources/github.py",
+      "sha256": "3be75c5dc0a7091c8450e6a34c8d49802f052a7855ef8771fd11a14139827f26"
+    },
+    {
+      "path": "src/mgar_v3/sources/ingress.py",
+      "sha256": "ac6f4acc3e09bf96d7ef32a98db359e1f57bdfd60c6261901c2058aed9ff1e07"
+    },
+    {
+      "path": "tests/test_super_agent_sa05_repair.py",
+      "sha256": "2e5dd42ac39bc34899b9e0144034950def6621038fd1a188bf0cfc369062c79d"
+    },
+    {
+      "path": "src/mgar_v3/sources/github_broker.py",
+      "sha256": "5c203ee62545fa42365a3d07586aaec83922c9831a968f55345c07a97595c817"
+    },
+    {
+      "path": "tests/test_super_agent_sa05_history_repair.py",
+      "sha256": "dd5340f17b995104a3961f461d68174d3333e7a7ca8c1e5c79d863a63562cec3"
+    }
+  ],
+  "SA05_repair": {
+    "baseline": "4ecac50cf6f984746f9efc25ed5d4f7995cb2665",
+    "findings": [
+      "SA05-I01 oversized verified mutation",
+      "SA05-I02 resource author versus event operator"
+    ],
+    "oversized_mutation": "metadata-only within original envelope bound; omit body/body_ref, retain derived observed version; never truncate",
+    "author": "source sender controls Receive; trusted resource mutation proof also covers original-author changes after moderator-first observation",
+    "version": "authenticated operator distinguishes same-text/same-timestamp mutation observations",
+    "no_shared_schema_engine_api_migration_budget_changes": true
+  },
+  "SA05_history_repair": {
+    "baseline": "0548a0f34de8e80b6d0a26002f3540d2a27cb12d",
+    "findings": [
+      "SA05-RR01 unselected-author current history invalidation",
+      "SA05-RR02 equivalent live/history proof mismatch"
+    ],
+    "observation": "Current authored snapshot, not a fabricated editor event; unselected author body/body_ref omitted, exact derived observed version retained",
+    "proof": "Authenticated GitHub resource proof normalized identically for live and history; generic ItemMetadata.fingerprint still includes moderation, body, actor, scope and operation",
+    "receive": "App actor ceiling applies to history; original Engine rechecks current Receive per item; no identity evidence is synthesized",
+    "shared_engine_api_schema_migration_budget_harness_changes": false
+  },
+  "SA06_compatibility": {
+    "change": "Current role/kind context_only grant; no historical flag fabrication, Engine/API DTO/budget changes",
+    "baseline": "9fb6593cbd12a511cf089a5ddebcdb98f408f253",
+    "historical_acceptance": "Prior frozen commits and accept/evidence untouched"
+  },
+  "artifact_snapshot_utc": "2026-11-14T09:50:12.753339+00:00",
+  "artifact_snapshot_scope": "Current SA14 composition/catalogue hashes only; pre-SA14 bytes preserved in accept/SAV1-14/history/pre-sa14. Historical PASS/FAIL and independent closure records unchanged; no rerun implied.",
+  "artifact_status": "CURRENT_FORMAL_HASHES"
+}

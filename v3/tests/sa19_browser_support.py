@@ -62,7 +62,7 @@ class CDP:
 
 
 @contextmanager
-def browser(engine, tmp_path, cookie, *, feishu_runtime=None):
+def browser(engine, tmp_path, cookie, *, feishu_runtime=None, cjk_fonts=False):
     assert CHROME.is_file()
     sock = socket.socket()
     sock.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
@@ -92,6 +92,11 @@ def browser(engine, tmp_path, cookie, *, feishu_runtime=None):
         stderr=(tmp_path / "chromium-stderr.log").open("wb"),
         env={
             **os.environ,
+            **(
+                {"FONTCONFIG_FILE": str(ROOT / ".local/sa19-browser-fonts/fonts.conf")}
+                if cjk_fonts
+                else {}
+            ),
             "LD_LIBRARY_PATH": str(
                 ROOT / ".local/sa18-browser-runtime/extracted/usr/lib/x86_64-linux-gnu"
             ),
