@@ -162,6 +162,15 @@ class _Draft(WorkbenchDraftTransport):
         # SQL fence therefore follows all remote reads and step reservation.
         if self.reader.branch_sha(meta["repository"], meta["base_branch"]) != meta["base_sha"]:
             raise denied("REMOTE_BASE_CHANGED")
+        head = self.reader.branch_sha(meta["repository"], meta["branch"])
+        if kind == "branch" and head is not None:
+            raise denied("REMOTE_BRANCH_CHANGED")
+        if kind == "commit" and head != meta["base_sha"]:
+            raise denied("REMOTE_BRANCH_CHANGED")
+        if kind == "pull_request" and (
+            head is None or not matches_commit(self.profile, meta, head)
+        ):
+            raise denied("REMOTE_BRANCH_CHANGED")
         with self.service.io_guard(publication_id, lease):
             if kind == "branch":
                 # Pin the exact reviewed commit rather than resolving a moving

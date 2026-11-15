@@ -7,10 +7,11 @@ from uuid import uuid4
 
 from psycopg.types.json import Jsonb
 
-from mgar_v3.domain import digest
+from mgar_v3.domain import DomainError, digest
+from mgar_v3.super_agent.source_correlation_domain import CorrelationInputRef
 from mgar_v3.super_agent.source_review_bundle import denied
 from mgar_v3.super_agent.source_review_domain import ReviewContext
-from mgar_v3.super_agent.source_review_store import Row
+from mgar_v3.super_agent.source_review_store import Row, decode
 
 if TYPE_CHECKING:
     from mgar_v3.coordination.engine import Connection
@@ -50,7 +51,7 @@ def link_proof(
     if (
         code is None
         or code.head_sha != pull["head_sha"]
-        or code.base_sha != pull["base_sha"]
+        or (code.base_sha is not None and code.base_sha != pull["base_sha"])
         or code.head_repository_id not in {None, context.publication.repository_id}
     ):
         raise denied("NATIVE_HEAD_CHANGED")
@@ -59,6 +60,35 @@ def link_proof(
         raise denied("NATIVE_EVENT_KIND_DENIED")
     if kind == "workflow_run" and (code.run_id is None or code.run_attempt is None):
         raise denied("NATIVE_CI_ATTEMPT_REQUIRED")
+    if kind != "pull_request":
+        # SA05 CI receipts carry head/attempt but do not invent a base SHA.
+        # First bind a current, exact PR event from the same installation.
+        # Re-reading that input prevents a force-push/base change or a different
+        # installation from inheriting the old verification through a link.
+        anchors = conn.execute(
+            "SELECT facts FROM app.sa_source_review_links WHERE review_id=%s AND kind='ci' "
+            "AND facts->'resource_proof'->'code_ref'->>'base_sha'=%s "
+            "AND facts->'resource_proof'->'code_ref'->>'head_sha'=%s ORDER BY observed_at LIMIT 64",
+            (context.review_id, pull["base_sha"], pull["head_sha"]),
+        ).fetchall()
+        matched = False
+        for anchor in anchors:
+            ref = decode(CorrelationInputRef, anchor["facts"]["source_input"])
+            try:
+                current = service.engine.source_correlations._input(conn, ref.input_id)
+            except DomainError:
+                continue
+            if (
+                current.ref == ref
+                and current.item.event.event_kind.startswith("pull_request.")
+                and current.item.event.scope == source.item.event.scope
+            ):
+                matched = True
+                break
+        if not matched:
+            raise denied("CURRENT_NATIVE_PR_ANCHOR_REQUIRED")
+    elif code.base_sha != pull["base_sha"]:
+        raise denied("NATIVE_BASE_REQUIRED")
     facts = {
         "mode": "fixture",
         "source_kind": "fixture_git",
@@ -66,7 +96,7 @@ def link_proof(
         "repository_id": context.publication.repository_id,
         "number": pull["number"],
         "head_sha": code.head_sha,
-        "base_sha": code.base_sha,
+        "base_sha": pull["base_sha"],
         "ticket_id": str(context.target.ticket_id),
         "run_id": str(context.target.run_id),
         "source_input": source.ref.model_dump(mode="json"),

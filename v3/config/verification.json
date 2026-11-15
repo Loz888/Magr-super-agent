@@ -1898,5 +1898,19 @@
       "real_gates": "NOT_RUN",
       "SA19": "NOT_STARTED"
     }
+  },
+  "SAV1-18-BOUNDARIES": {
+    "tests": [
+      "tests/test_source_review_api.py",
+      "tests/test_source_review_boundaries.py",
+      "tests/test_source_review_browser.py",
+      "tests/test_source_review_recovery.py"
+    ],
+    "timeout_seconds": 1100,
+    "components": {
+      "scope": "First Owner HTTP/full browser/current remote/native PR-CI and actual SIGKILL boundaries only; previous14 formal and86 preparation passes excluded",
+      "real_gates": "NOT_RUN",
+      "SA19": "NOT_STARTED"
+    }
   }
 }

@@ -94,10 +94,10 @@ class SourceReviews(ReviewStore):
 
     def _capture(self, context: ReviewContext, profile: ReviewProfile) -> ReviewBundle:
         before, after = profile.capture.capture(context)
-        bundle = build_bundle(context, before, after)
-        with self.engine.transaction() as conn:
-            self._capture_scope(conn, context, before, after)
-        return bundle
+        # Preparation already checked the complete path set against the frozen
+        # Mandate. Every caller compares this exact bundle and rechecks current
+        # authority after capture, before presentation/approval/physical IO.
+        return build_bundle(context, before, after)
 
     def prepare(self, cookie: str, request: ReviewPrepare) -> Row:
         with self.engine._mutex:
