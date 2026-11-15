@@ -7,6 +7,7 @@ import json
 from pathlib import Path
 from typing import Any
 
+from mgar_v3.domain import Model
 from mgar_v3.settings import ROOT
 from mgar_v3.super_agent.source_operations_backup import BackupConfiguration, RestoreConfiguration
 from mgar_v3.super_agent.source_operations_client import ServiceView, TickReceipt
@@ -26,7 +27,7 @@ from mgar_v3.super_agent.source_operations_domain import (
 from mgar_v3.super_agent.source_operations_gateway import GatewayConfiguration
 from mgar_v3.super_agent.source_operations_relay import RelayConfiguration
 
-SCHEMAS = {
+SCHEMAS: dict[str, type[Model]] = {
     "definition": OperationsDefinition,
     "save": OperationsSave,
     "open": ComponentOpen,

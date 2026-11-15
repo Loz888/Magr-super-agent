@@ -221,7 +221,7 @@
     },
     {
       "path": "src/mgar_v3/super_agent/source_operations_audit.py",
-      "sha256": "8f12f8a1359688d1be2f7f2ba2a9d98d8947135587a65eaa230c00b996e446e6"
+      "sha256": "eb363a81ae0e6840e48a9e3d3212f5b9155fc1e52812d36719aa8f0f2fe1ccd8"
     },
     {
       "path": "src/mgar_v3/super_agent/source_operations_backup.py",
