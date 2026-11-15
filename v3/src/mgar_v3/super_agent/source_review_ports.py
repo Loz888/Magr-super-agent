@@ -59,7 +59,7 @@ class ReviewProfile:
             or not self.base_branch
             or not self.actor
             or self.valid_until.utcoffset() is None
-            or self.reader is self.writer
+            or id(self.reader) == id(self.writer)
         ):
             raise ValueError("bounded explicit fixture read/write profiles required")
 

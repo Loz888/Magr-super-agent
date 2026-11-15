@@ -417,7 +417,8 @@ def test_proposed_sql_installs_six_review_fact_tables_in_real_pg(draft):
     tables = {
         r[0]
         for r in draft.execute(
-            "SELECT tablename FROM pg_tables WHERE schemaname='app' AND tablename LIKE 'sa_source_review%'"
+            "SELECT tablename FROM pg_tables WHERE schemaname='app' "
+            "AND tablename LIKE 'sa_source_review%'"
         ).fetchall()
     }
     assert tables == {
