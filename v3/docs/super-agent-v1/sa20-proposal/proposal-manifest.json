@@ -1,0 +1,57 @@
+{
+  "card": "SAV1-20",
+  "status": "PROPOSED_NOT_CONFIRMED_NOT_APPLIED",
+  "baseline_commit": "40bbbcf4f7433fe040d4c09bb8249ee3c5e05354",
+  "migration": "0053_source_operations.sql",
+  "tables": [
+    "sa_operations_versions",
+    "sa_operations_controls",
+    "sa_operations_components",
+    "sa_operations_incidents"
+  ],
+  "SQL_sha256": "1ae8bd6ee189f8efe7f937a2ccc90e2b49b2012107f751426b9d8a27e10d2c37",
+  "patch_sha256": "ecc71e2f4effe7ccf138fe1b2663e33b22481e2e065828c41dcc28626a86c74a",
+  "files": [
+    {
+      "path": "v3/src/mgar_v3/coordination/engine.py",
+      "before_sha256": "5658065429a9035ed5d60f4d90571a5adb8d5c732a0a1a53b741bca25841c815",
+      "after_sha256": "8d4e0ca17ef3fff7509e82a201bdd9d5bbe2e71560766fac3e9a5ad219869129"
+    },
+    {
+      "path": "v3/src/mgar_v3/settings.py",
+      "before_sha256": "45325d1b10eb8ae3048dd9fd689b8bcf28f7b4741a1c3a793b112aa8a132b68f",
+      "after_sha256": "7fcbf070e4e4db395e2dbaecc30a53c0c26338952d3cd5f9c86bfe8b0361c880"
+    },
+    {
+      "path": "v3/src/mgar_v3/api.py",
+      "before_sha256": "2d0e9dbf78158f425c823ef31f65cb5b37852b156df5b26b3937de55088d2b08",
+      "after_sha256": "524a8ec755e5e00ad66015e209410c90a1f212ca7a13a3f78b1e48b523fa3e99"
+    }
+  ],
+  "interfaces": [
+    "GET /api/v3/source-operations",
+    "PUT /api/v3/source-operations",
+    "GET /api/v3/source-operations/metrics",
+    "GET /api/v3/source-operations/incidents",
+    "POST /api/v3/source-operations/incidents/{incident_key}/decision",
+    "POST /api/v3/source-operations/components/{component_id}/open",
+    "POST /api/v3/source-operations/components/{component_id}/heartbeat",
+    "POST /api/v3/source-operations/components/{component_id}/tick",
+    "GET /api/v3/source-operations/components/{component_id}/snapshot",
+    "POST /api/v3/source-operations/components/{component_id}/observations",
+    "POST /api/v3/source-operations/components/{component_id}/relay/{source_id}"
+  ],
+  "roles": [
+    "source",
+    "scheduler",
+    "worker",
+    "dispatcher",
+    "watchdog"
+  ],
+  "business_writer": "original Engine held connection/RLock only",
+  "default_roles_enabled": false,
+  "real_gates": "NOT_RUN",
+  "SA21": "NOT_STARTED",
+  "H12": "fixed FAIL retained; no H12 import",
+  "0054_reserved": false
+}

@@ -1,0 +1,49 @@
+请为 SA20 单独确认所有权/接口/迁移编号，并仅提交协调文档，不应用SQL或补丁。
+
+SA19候选045934c的I01独立3PASS已核对并获用户接受。SA20按完整任务书启动，SA21未启动。
+本次共享提案是0053_source_operations.sql四张运维事实表，以及原Engine/API/Settings三文件精确补丁；11个接口明细见下。当前正式仓库仍49迁移，主库55435仍44；0053仅docs草案，补丁未应用。未预占0054，不导入或修改H12。
+
+SQL SHA256: 1ae8bd6ee189f8efe7f937a2ccc90e2b49b2012107f751426b9d8a27e10d2c37
+patch SHA256: ecc71e2f4effe7ccf138fe1b2663e33b22481e2e065828c41dcc28626a86c74a
+
+三文件变更前/后SHA256：
+v3/src/mgar_v3/coordination/engine.py
+  before 5658065429a9035ed5d60f4d90571a5adb8d5c732a0a1a53b741bca25841c815
+  after  8d4e0ca17ef3fff7509e82a201bdd9d5bbe2e71560766fac3e9a5ad219869129
+v3/src/mgar_v3/settings.py
+  before 45325d1b10eb8ae3048dd9fd689b8bcf28f7b4741a1c3a793b112aa8a132b68f
+  after  7fcbf070e4e4db395e2dbaecc30a53c0c26338952d3cd5f9c86bfe8b0361c880
+v3/src/mgar_v3/api.py
+  before 2d0e9dbf78158f425c823ef31f65cb5b37852b156df5b26b3937de55088d2b08
+  after  524a8ec755e5e00ad66015e209410c90a1f212ca7a13a3f78b1e48b523fa3e99
+
+接口：
+GET /api/v3/source-operations
+PUT /api/v3/source-operations
+GET /api/v3/source-operations/metrics
+GET /api/v3/source-operations/incidents
+POST /api/v3/source-operations/incidents/{incident_key}/decision
+POST /api/v3/source-operations/components/{component_id}/open
+POST /api/v3/source-operations/components/{component_id}/heartbeat
+POST /api/v3/source-operations/components/{component_id}/tick
+GET /api/v3/source-operations/components/{component_id}/snapshot
+POST /api/v3/source-operations/components/{component_id}/observations
+POST /api/v3/source-operations/components/{component_id}/relay/{source_id}
+
+表名：
+sa_operations_versions
+sa_operations_controls
+sa_operations_components
+sa_operations_incidents
+
+精确范围：
+- Engine只新增SourceOperations组合，同一原持锁PG连接/RLock仍是唯一业务写者。
+- API仅接线新11接口、Host/Origin参数化为单个严格HTTPS origin、公网模式Secure cookie及关闭HTTP首次Owner setup；默认回环行为保留。Settings新增web_public_origin、operations_service_config及纯验证/集合属性。
+- 运维表只保存Owner签署配置历史/当前引用、组件generation/boot/sequence及待确认tick、无正文去重告警和wait/escalate决定；不复制任务/账本，不放宽预算、ToolAuthority或原工作授权。
+- Source relay/Scheduler/Worker/Dispatcher/Watchdog为分凭据的受信本机HTTP客户端，默认未启用。原Source/角色/政策/Mandate/Assignment/Job/Outbox仍逐操作检查。unknown不能清空或自动重发，心跳不成为语义进展。
+- SA私有实现/测试/部署产物位于source_operations*.py、tests/sa20_*、test_source_operations_*、deploy/super-agent-v1/*、专用schema/fixtures/config及本提案目录。
+- 新生产部署、真实Source/模型/外发/发布/长期门仍NOT_RUN；H12固定FAIL保留，另一个CLI负责。
+
+请检查0053编号、四张表、11路由、三文件及TLS/Owner语义是否冲突，并以完整SQL/patch哈希绑定SA副本范围。请回传单独本地确认提交和SUPER_AGENT_HANDOFF节号；不需要导入任何H12提交。
+
+此请求是协调材料，未声称Harness已确认或实施。具体安全/备份/进程边界见同目录SA20_SCOPE.md。准备检查会单独绑定提交和证据，不能替代正式接线或真实能力验收。

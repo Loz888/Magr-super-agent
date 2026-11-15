@@ -145,15 +145,15 @@
   "artifacts": [
     {
       "path": "config/source-coding-v1.json",
-      "sha256": "bd5a4fc160ebb32354d574f21982e250b73aa2b2820adfd4998a77d43aecdaf1"
+      "sha256": "ab821175af55ab047cdd21d2be3a23a6ea5816caef6c1a9e8dba7e08bca4d3d4"
     },
     {
       "path": "config/source-scheduler-v1.json",
-      "sha256": "6684a86fc7bb5f5eb90d515dec4519663b77435f38770d8c216472bf05bb15b8"
+      "sha256": "df4de1241e5369e5c9df1f2c35966351a6eba6b03eeaadb2eb8930053760776a"
     },
     {
       "path": "config/verification.json",
-      "sha256": "6232d23adbe0b4d37e9aea5fde7fab9746a5a86cff6702a7cc1842df73d6528f"
+      "sha256": "83386c193174a61f2941d0f505e6a054891f50ad5553b2d4f7396329f843559c"
     },
     {
       "path": "docs/super-agent-v1/accept/SAV1-14/history/registration-script.py",

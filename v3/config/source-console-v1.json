@@ -27,7 +27,7 @@
   "artifacts": [
     {
       "path": "config/verification.json",
-      "sha256": "6232d23adbe0b4d37e9aea5fde7fab9746a5a86cff6702a7cc1842df73d6528f"
+      "sha256": "83386c193174a61f2941d0f505e6a054891f50ad5553b2d4f7396329f843559c"
     },
     {
       "path": "docs/super-agent-v1/SA19_CONSOLE.md",

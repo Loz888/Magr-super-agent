@@ -1,0 +1,100 @@
+{
+  "card": "SAV1-19",
+  "status": "DONE_USER_ACCEPTED_SCOPED_INDEPENDENT_LOCAL_CONTROLLED",
+  "accepted_UTC": "2026-11-15T11:08:01.046255+00:00",
+  "source_commit": "045934c038b1ad401e2572790a119d4b58a50100",
+  "source_sha256": "5eb904d4e19f408e1ff16752a28403b5e42bac456e92ac9401a349be8b0cc223",
+  "delivery_commit": "40bbbcf4f7433fe040d4c09bb8249ee3c5e05354",
+  "independent_directory": "/home/imini/magr-super-agent/v3/evidence/super-agent-v1/SAV1-19/independent-I01-recheck-20261115T105610Z-a8c51c74",
+  "independent_result": {
+    "schema": "sa19-i01-independent-recheck-v1",
+    "UTC": "2026-11-15T10:58:51.650158+00:00",
+    "status": "PASS_SCOPED_INDEPENDENT_RECHECK",
+    "SA19_I01": "CLOSED_INDEPENDENT_PASS",
+    "SA19": "LOCAL_CONTROLLED_ENGINEERING_ACCEPTED_WITH_VERSIONED_EVIDENCE",
+    "SA20": "NOT_STARTED",
+    "reviewed_head": "40bbbcf4f7433fe040d4c09bb8249ee3c5e05354",
+    "source_commit": "045934c038b1ad401e2572790a119d4b58a50100",
+    "source_before": "5eb904d4e19f408e1ff16752a28403b5e42bac456e92ac9401a349be8b0cc223",
+    "source_after": "5eb904d4e19f408e1ff16752a28403b5e42bac456e92ac9401a349be8b0cc223",
+    "source_unchanged": true,
+    "probe_sha256": "5c43f888333ecbdab4e83438d9b38495fb796fc8a0c74eb4690ddae044960dc4",
+    "probe_unchanged": true,
+    "counts": {
+      "tests": 3,
+      "passed": 3,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "exit_code": 0,
+    "wrapper_exit_code": 0,
+    "observations": [
+      {
+        "case": "root_path_GET_/static/source-console.html",
+        "status": 404,
+        "root_path": "/sa19-independent-prefix",
+        "request_path": "/sa19-independent-prefix/static/source-console.html",
+        "cache_control": "no-store",
+        "content_type": "application/json",
+        "body_bytes": 20
+      },
+      {
+        "case": "root_path_HEAD_/static/source-console.js",
+        "status": 405,
+        "root_path": "/sa19-independent-prefix",
+        "request_path": "/sa19-independent-prefix/static/source-console.js",
+        "cache_control": "no-store",
+        "content_type": "application/json",
+        "body_bytes": 0
+      },
+      {
+        "case": "root_path_HEAD_/static/source-console.css",
+        "status": 405,
+        "root_path": "/sa19-independent-prefix",
+        "request_path": "/sa19-independent-prefix/static/source-console.css",
+        "cache_control": "no-store",
+        "content_type": "application/json",
+        "body_bytes": 0
+      }
+    ],
+    "command": "original3-command.json",
+    "junit": "original3-junit.xml",
+    "log": "original3.log",
+    "exit_code_file": "original3-pytest-exit-code.txt",
+    "previous_independent_evidence": "/home/imini/magr-super-agent/v3/evidence/super-agent-v1/SAV1-19/independent-review-20261115T103215Z-629c8b76",
+    "original33_PASS_rerun": false,
+    "historical78_formal54_preparation_rerun": false,
+    "static_PASS_rerun": false,
+    "single_final_full_suite_claimed": false,
+    "known_open_findings_in_scope": 0,
+    "integrity": {
+      "migration_files": 49,
+      "Source_catalogues": 18,
+      "artifact_references": 584,
+      "shared_Engine_API_homepage_original_tests_Harness_unchanged": true,
+      "protected_files": 5138
+    },
+    "cleanup": "cleanup-final.json",
+    "gates": {
+      "engineering_gate": "PASS_LOCAL_CONTROLLED_VERSIONED_EVIDENCE",
+      "policy_security_gate": "PASS_ORIGINAL3_ROOT_PATH_STATIC_BOUNDARIES",
+      "whole_system_policy_security_gate": "NOT_RUN",
+      "live_source_channel_gate": "NOT_RUN",
+      "live_coding_gate": "NOT_RUN; fixed H12 FAIL retained",
+      "live_publication_gate": "NOT_RUN",
+      "continuous_operation_gate": "NOT_RUN"
+    },
+    "limitations": [
+      "本轮只复验原三个静态失败参数；其余33独立PASS、历史78/54及静态通过目标未重跑。",
+      "未额外验证完整挂载应用、全部路径变体或全系统安全；原报告没有发现真实密钥或业务正文泄露。",
+      "没有启用真实来源、付费模型、实际外发或发布，也未操作Harness活动树。"
+    ]
+  },
+  "read_only_closure_audit": "evidence/super-agent-v1/SAV1-20/start-20261115T110801Z-a46682a3/sa19-independent-closure-audit.json",
+  "user_authorized_next_card": "SAV1-20",
+  "prior_passes_rerun": 0,
+  "historical_78formal_54preparation_preserved": true,
+  "real_gates": "NOT_RUN",
+  "H12": "Fixed live Agent/MVP FAIL retained; other CLI"
+}

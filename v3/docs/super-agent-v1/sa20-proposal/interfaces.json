@@ -1,0 +1,13 @@
+[
+  "GET /api/v3/source-operations",
+  "PUT /api/v3/source-operations",
+  "GET /api/v3/source-operations/metrics",
+  "GET /api/v3/source-operations/incidents",
+  "POST /api/v3/source-operations/incidents/{incident_key}/decision",
+  "POST /api/v3/source-operations/components/{component_id}/open",
+  "POST /api/v3/source-operations/components/{component_id}/heartbeat",
+  "POST /api/v3/source-operations/components/{component_id}/tick",
+  "GET /api/v3/source-operations/components/{component_id}/snapshot",
+  "POST /api/v3/source-operations/components/{component_id}/observations",
+  "POST /api/v3/source-operations/components/{component_id}/relay/{source_id}"
+]
