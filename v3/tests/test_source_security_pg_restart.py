@@ -62,6 +62,7 @@ def test_real_pg_server_crash_does_not_ack_uncommitted_or_duplicate_committed_so
             source_inputs=1,
             deliveries=1,
             old_connection_rejected=True,
+            actual_owned_PG_ports=cluster.ports,
         )
     finally:
         recovered.close()

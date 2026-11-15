@@ -125,7 +125,7 @@
     },
     {
       "path": "config/verification.json",
-      "sha256": "f82501f4ad730a10ae4081e5589df0aa6a8fcf60e8533ea1640a858ed36ad167"
+      "sha256": "1df3efa7c70d055f7952faf34c7664122313824dfd5036019f04d376ccd64ba9"
     },
     {
       "path": "schemas/super-agent-v1/source-subscription-v1.schema.json",

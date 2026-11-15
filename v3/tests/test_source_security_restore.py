@@ -26,6 +26,15 @@ from mgar_v3.super_agent.source_operations_backup import HOLD, backup, restore, 
 from mgar_v3.super_agent.source_recall_domain import RecallPageRequest
 
 
+def current_gateway(source):
+    with source.engine.transaction() as conn:
+        generation = conn.execute(
+            "SELECT generation FROM app.source_ingress_controls WHERE source_instance_id=%s",
+            (source.installation.scope.source_instance_id,),
+        ).fetchone()["generation"]
+    return gateway(source, generation=generation)
+
+
 @pytest.mark.parametrize("operation", ["delete", "policy"])
 def test_actual_old_backup_replay_of_new_privacy_fact_blocks_all_derived_reads_and_keeps_hold(
     engine, tmp_path, operation
@@ -47,7 +56,7 @@ def test_actual_old_backup_replay_of_new_privacy_fact_blocks_all_derived_reads_a
         current = copy.copy(env.source)
         current.engine = primary
         primary.source_ingress.cipher = BodyCipher(current.key)
-        current.gateway = gateway(current)
+        current.gateway = current_gateway(current)
         withdraw(current, env.input_id, operation)
         for request in requests:
             with pytest.raises(DomainError):
@@ -73,7 +82,7 @@ def test_actual_old_backup_replay_of_new_privacy_fact_blocks_all_derived_reads_a
             restored.engine = recovered
             restored.key = (root / "keys/source.key").read_bytes()
             recovered.source_ingress.cipher = BodyCipher(restored.key)
-            restored.gateway = gateway(restored)
+            restored.gateway = current_gateway(restored)
             assert recovered.source_recall.page(env.owner, requests[0])["content"]
             withdraw(restored, env.input_id, operation)
             for request in requests:

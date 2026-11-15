@@ -2177,5 +2177,24 @@
       "real_gates": "NOT_RUN",
       "SA22": "NOT_STARTED"
     }
+  },
+  "SAV1-21-REPAIR-01": {
+    "tests": [
+      "tests/test_source_security_lifecycle.py::test_committed_withdrawal_blocks_source_memory_derived_export_and_saved_cursor[policy]",
+      "tests/test_source_security_lifecycle.py::test_same_withdrawal_cancels_pending_but_preserves_unknown_without_releasing_content[False-policy]",
+      "tests/test_source_security_lifecycle.py::test_same_withdrawal_cancels_pending_but_preserves_unknown_without_releasing_content[True-policy]",
+      "tests/test_source_security_model.py::test_model_input_audit_never_retains_body_and_withdrawal_cannot_retry_unknown_or_invalid_model[lost_stream]",
+      "tests/test_source_security_model.py::test_model_input_audit_never_retains_body_and_withdrawal_cannot_retry_unknown_or_invalid_model[invalid_proposal]",
+      "tests/test_source_security_pg_restart.py::test_real_pg_server_crash_does_not_ack_uncommitted_or_duplicate_committed_source[before_commit-False]",
+      "tests/test_source_security_pg_restart.py::test_real_pg_server_crash_does_not_ack_uncommitted_or_duplicate_committed_source[after_commit-True]",
+      "tests/test_source_security_restore.py::test_actual_old_backup_replay_of_new_privacy_fact_blocks_all_derived_reads_and_keeps_hold[delete]",
+      "tests/test_source_security_restore.py::test_actual_old_backup_replay_of_new_privacy_fact_blocks_all_derived_reads_and_keeps_hold[policy]"
+    ],
+    "timeout_seconds": 420,
+    "components": {
+      "scope": "Only the nine original failed SA21 targets after fixture correction; previous16 and static passes excluded; original test assertions unchanged.",
+      "real_gates": "NOT_RUN",
+      "SA22": "NOT_STARTED"
+    }
   }
 }

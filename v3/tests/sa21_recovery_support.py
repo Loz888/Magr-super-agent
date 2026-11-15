@@ -13,6 +13,7 @@ import pytest
 from cryptography.fernet import Fernet
 from psycopg import sql
 from psycopg.conninfo import make_conninfo
+from pydantic import SecretStr
 
 from mgar_v3.coordination.engine import Engine
 from mgar_v3.evidence.artifacts import ArtifactStore
@@ -29,6 +30,7 @@ IMAGE = (
 class Cluster:
     def __init__(self, name, identifier, dsn):
         self.name, self.identifier, self.dsn = name, identifier, dsn
+        self.ports = []
 
     def owned(self):
         info = json.loads(subprocess.check_output(["docker", "inspect", self.identifier]))[0]
@@ -50,6 +52,17 @@ class Cluster:
         subprocess.run(
             ["docker", "start", self.identifier], check=True, capture_output=True, timeout=15
         )
+        port = (
+            subprocess.check_output(
+                ["docker", "port", self.identifier, "5432/tcp"], text=True, timeout=10
+            )
+            .strip()
+            .split(":")[-1]
+        )
+        self.ports.append(port)
+        self.dsn = make_conninfo(self.dsn, port=port)
+        if hasattr(self, "settings"):
+            self.settings = self.settings.model_copy(update={"database_url": SecretStr(self.dsn)})
         deadline = time.monotonic() + 30
         while time.monotonic() < deadline:
             try:
@@ -182,8 +195,6 @@ def assert_activation_held(settings):
 
 
 def recovered_settings(original, dsn, root):
-    from pydantic import SecretStr
-
     return original.model_copy(
         update={"database_url": SecretStr(dsn), "artifact_root": root / "artifacts"}
     )

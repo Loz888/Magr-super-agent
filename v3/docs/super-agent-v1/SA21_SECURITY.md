@@ -1,6 +1,8 @@
 # SA21 隐私、安全与灾难恢复
 
-SA20-I01 的独立原失败项 1 PASS 已核对并获用户接受；见[关闭记录](accept/SAV1-20/independent-closure-20261115.json)。SA21 当前 IN_PROGRESS；本卡首次检查尚未运行，SA22 未启动。真实平台、付费、外发、发布和长期门保持 NOT_RUN，固定 H12 真实 Agent/MVP FAIL 保留。
+SA20-I01 的独立原失败项 1 PASS 已核对并获用户接受；见[关闭记录](accept/SAV1-20/independent-closure-20261115.json)。SA21 当前 IN_PROGRESS，最终候选和分版本结果见[工程交付](SA21_ACCEPTANCE_20261115.md)及[机器摘要](accept/SAV1-21/accept.json)，独立验收另列。SA22 未启动。真实平台、付费、外发、发布和长期门保持 NOT_RUN，固定 H12 真实 Agent/MVP FAIL 保留。
+
+首次候选 62f03f5 的 25 项为 16 PASS、9 FAIL；九项失败属于辅助夹具错误：策略 current_revision 字段、PG 容器重启后的动态映射端口及 SA13 已推进的 Gateway generation。原始失败完整保留，修正后仅这九项进入定向复验；断言不改、不重跑原16通过。首次 lint/typecheck 328 文件通过，修复不重复已通过静态目标。
 
 本卡验证已有权威边界之间的组合，加入显式 Owner 保留状态检查器 `SourceSecurity(engine).inspect(cookie)`。检查器只使用调用方原 Engine 的持锁连接及短事务；不另开业务连接、不读取正文/密钥/CAS、不裁决权限或宣称安全门通过。每次最多列出当前项目 32 个来源，超过时标为 partial；过期密文、待清理 metadata 和 unavailable 密文分别计数。实际清理仍使用原 `SourceIngress.purge`，没有新的自动删除任务、表、API 或激活开关。
 

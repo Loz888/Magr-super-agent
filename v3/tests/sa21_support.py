@@ -44,7 +44,8 @@ def withdraw(source, input_id, operation):
         source.cookie,
         source.policy_id,
         PolicyRevoke(
-            expected_revision=current["revision"], review_ref="SA21-control-plane-withdrawal"
+            expected_revision=current["current_revision"],
+            review_ref="SA21-control-plane-withdrawal",
         ),
     )
 
