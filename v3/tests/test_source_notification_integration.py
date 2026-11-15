@@ -62,6 +62,7 @@ def test_actual_dispatcher_records_delivery_without_advancing_failed_task(engine
 def test_verified_original_readonly_graph_result_notifies_without_publication(engine, tmp_path):
     from sa12_support import claim, ready, session
     from test_super_agent_sa16_boundaries import ExactFixtureReader
+
     from mgar_v3.graph.runner import Runner
     from mgar_v3.settings import ROOT
     from mgar_v3.super_agent.source_scheduler_domain import SchedulerAssignmentRequest
@@ -227,7 +228,7 @@ def test_final_quota_exhaustion_is_not_unknown_and_never_reaches_channel(
 
 def test_trusted_receipt_causality_needs_exact_sender_scope_thread_and_entity(engine, tmp_path):
     e = setup(engine, tmp_path)
-    p = plan(e)
+    plan(e)
     e.service.tick(e.cookie)
     with engine.transaction() as conn:
         saved = conn.execute(

@@ -218,7 +218,8 @@ class SourceNotifications(NotificationStore):
             )
             conn.execute(
                 "INSERT INTO app.actions(action_id,run_id,action_type,target,payload,"
-                "payload_hash,base_revision,execution_epoch,fencing_token,dedupe_key,status,expires_at) "
+                "payload_hash,base_revision,execution_epoch,fencing_token,dedupe_key,"
+                "status,expires_at) "
                 "VALUES(%s,%s,%s,%s,%s,%s,%s,%s,1,%s,'ready',%s)",
                 (
                     action_id,
@@ -396,7 +397,8 @@ class SourceNotifications(NotificationStore):
             ).fetchone()
         ):
             conn.execute(
-                "UPDATE app.actions SET status='cancelled',reason_code='NOTIFICATION_FINAL_CHECK_BLOCKED' "
+                "UPDATE app.actions SET status='cancelled',"
+                "reason_code='NOTIFICATION_FINAL_CHECK_BLOCKED' "
                 "WHERE action_id=%s",
                 (action["action_id"],),
             )
@@ -489,7 +491,8 @@ class SourceNotifications(NotificationStore):
         rows = conn.execute(
             "SELECT n.* FROM app.sa_notification_intents n JOIN app.actions a "
             "USING(action_id) WHERE n.project_id=%s AND a.status='outcome_unknown' "
-            "AND NOT EXISTS(SELECT 1 FROM app.sa_notification_receipts d WHERE d.action_id=n.action_id "
+            "AND NOT EXISTS(SELECT 1 FROM app.sa_notification_receipts d WHERE "
+            "d.action_id=n.action_id "
             "AND d.phase IN ('dispatch','recovery')) ORDER BY n.created_at LIMIT 64",
             (self.project,),
         ).fetchall()
@@ -512,7 +515,8 @@ class SourceNotifications(NotificationStore):
             self._console(conn, cookie)
             rows = conn.execute(
                 "SELECT n.action_id,n.run_id,n.content_class,n.body_sha256,"
-                "n.payload_sha256,n.expires_at,a.status,a.external_id FROM app.sa_notification_intents n "
+                "n.payload_sha256,n.expires_at,a.status,a.external_id FROM "
+                "app.sa_notification_intents n "
                 "JOIN app.actions a USING(action_id) WHERE n.project_id=%s "
                 "ORDER BY n.created_at DESC,n.action_id LIMIT %s",
                 (self.project, limit + 1),
@@ -526,7 +530,8 @@ class SourceNotifications(NotificationStore):
             action, _ = self.engine._action(conn, action_id)
             receipts = conn.execute(
                 "SELECT phase,outcome,remote_message_id,observed_at "
-                "FROM app.sa_notification_receipts WHERE action_id=%s ORDER BY observed_at LIMIT 64",
+                "FROM app.sa_notification_receipts WHERE action_id=%s ORDER BY "
+                "observed_at LIMIT 64",
                 (action_id,),
             ).fetchall()
             return {
@@ -550,7 +555,8 @@ class SourceNotifications(NotificationStore):
             if action["status"] not in {"ready", "proposed", "approved"}:
                 raise denied("INFLIGHT_OR_SETTLED", 409)
             conn.execute(
-                "UPDATE app.actions SET status='cancelled',reason_code='NOTIFICATION_OWNER_CANCELLED' "
+                "UPDATE app.actions SET status='cancelled',"
+                "reason_code='NOTIFICATION_OWNER_CANCELLED' "
                 "WHERE action_id=%s",
                 (action_id,),
             )
@@ -568,7 +574,8 @@ class SourceNotifications(NotificationStore):
             self._console(conn, cookie)
             rows = conn.execute(
                 "SELECT event_id,action_id,source_instance_id,kind,reason_code,created_at "
-                "FROM app.sa_notification_events WHERE project_id=%s ORDER BY event_id DESC LIMIT %s",
+                "FROM app.sa_notification_events WHERE project_id=%s ORDER BY event_id "
+                "DESC LIMIT %s",
                 (self.project, limit + 1),
             ).fetchall()
             return {"events": rows[:limit], "partial": len(rows) > limit}
