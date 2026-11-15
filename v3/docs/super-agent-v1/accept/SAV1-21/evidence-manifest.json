@@ -1,0 +1,91 @@
+{
+  "UTC": "2026-11-15T15:24:02.702583+00:00",
+  "files": [
+    {
+      "path": "evidence/super-agent-v1/SAV1-21/start-20261115T145313Z-d8e73443/initial25/candidate.json",
+      "sha256": "94638c4ee2208b986a1e7132de27154eb1ebfbe623e7da2789ad50b620e9dffa"
+    },
+    {
+      "path": "evidence/super-agent-v1/SAV1-21/start-20261115T145313Z-d8e73443/initial25/result.json",
+      "sha256": "de88c5b2b3ce3c0ba987a27bcecbadabadff1462878e292628219d48f46b207d"
+    },
+    {
+      "path": "evidence/super-agent-v1/SAV1-21/start-20261115T145313Z-d8e73443/initial25/cleanup.json",
+      "sha256": "7f9db321c40176d64e029dc53b4513d6187ffb928dcc4660a4779293813abad6"
+    },
+    {
+      "path": "evidence/super-agent-v1/SAV1-21/start-20261115T145313Z-d8e73443/initial25/protected-after.json",
+      "sha256": "0c3281b336f5b2583ba3b8a1ff5e58ba6fc7c40de11fbb6a077094e371a4b564"
+    },
+    {
+      "path": "evidence/SAV1-21/20261115T151221Z-ab815196/junit.xml",
+      "sha256": "9ae4fdc678a8d9bb2c821ff2c583c278263050b4fa9d2a68be28456c58cf17ed"
+    },
+    {
+      "path": "evidence/SAV1-21/20261115T151221Z-ab815196/command.log",
+      "sha256": "90fbc019f3b9445a334c964459a1cd1c2535c65097ea78f936e759c0a36095e0"
+    },
+    {
+      "path": "evidence/super-agent-v1/SAV1-21/start-20261115T145313Z-d8e73443/repair09/candidate.json",
+      "sha256": "50cf928315ef0b09606a3fc9432256a840d4ecc4afb0a947b8d8053f1ae98dcb"
+    },
+    {
+      "path": "evidence/super-agent-v1/SAV1-21/start-20261115T145313Z-d8e73443/repair09/result.json",
+      "sha256": "af773137a803c58e0a4b77dc5b944e6bbb32a008467bb57abd79e23b7ef1b5ed"
+    },
+    {
+      "path": "evidence/super-agent-v1/SAV1-21/start-20261115T145313Z-d8e73443/repair09/cleanup.json",
+      "sha256": "41814a1f9eaa9751a424fafc3fa4765f251f927db5e5d97383c1f87ee0b70794"
+    },
+    {
+      "path": "evidence/super-agent-v1/SAV1-21/start-20261115T145313Z-d8e73443/repair09/protected-after.json",
+      "sha256": "0c3281b336f5b2583ba3b8a1ff5e58ba6fc7c40de11fbb6a077094e371a4b564"
+    },
+    {
+      "path": "evidence/SAV1-21-REPAIR-01/20261115T151809Z-62404542/junit.xml",
+      "sha256": "ce50185b8e86ba31989dad2085044abcc24b2d4d905435c2b4dc383e37acf1b8"
+    },
+    {
+      "path": "evidence/SAV1-21-REPAIR-01/20261115T151809Z-62404542/command.log",
+      "sha256": "c762dcb98215f4e64c39bdfd5e86c73ca039b35085a296f36193f3b2c93bd619"
+    },
+    {
+      "path": "evidence/super-agent-v1/SAV1-21/start-20261115T145313Z-d8e73443/requirements-read.json",
+      "sha256": "fd0dff57283d9cd5d9f4ed8b788a728d58e82499eee65443ced080a53ab322c9"
+    },
+    {
+      "path": "evidence/super-agent-v1/SAV1-21/start-20261115T145313Z-d8e73443/fixture-repair01.json",
+      "sha256": "b557c867e1985e55b7c29f410a1b8a718238d41b70a370abca98a5d5abc65083"
+    },
+    {
+      "path": "evidence/super-agent-v1/SAV1-21/start-20261115T145313Z-d8e73443/final-integrity.json",
+      "sha256": "e2bd9ccbb4bf0251d0ada9ac9bd514d7ae20f1991e7e2c14022827b0ffe36570"
+    },
+    {
+      "path": "evidence/super-agent-v1/SAV1-21/start-20261115T145313Z-d8e73443/observations.json",
+      "sha256": "0e3ac335d898f1cb9f04905e82e90559dbd76df37fe195051505c0e7bec09ec4"
+    },
+    {
+      "path": "evidence/super-agent-v1/SAV1-21/start-20261115T145313Z-d8e73443/protected-before.json",
+      "sha256": "95634fffe0bf390fd108f230bad273863c2354a0353125106634854af3ef5048"
+    },
+    {
+      "path": "evidence/super-agent-v1/SAV1-21/start-20261115T145313Z-d8e73443/historical-failures-preserved.json",
+      "sha256": "c84aa1fb02b9e01658ce3e8af7be58714e809e14ae1af624ab4928d60a8107b3"
+    }
+  ],
+  "source_archives": [
+    {
+      "source_commit": "62f03f59e2d4ec6a95643dd140e5681a09bb0ebd",
+      "source_sha256": "eb65846b8cfbc50926d50feef9d67fb1500ec37169378419c836a1d7a72d3e84",
+      "archive": "evidence/super-agent-v1/SAV1-21/start-20261115T145313Z-d8e73443/initial25/source-62f03f59e2d4.tar.gz",
+      "archive_sha256": "73cdd10178fa34ad58158471e12f109995cdfeb32c7f8572b219721cc94771cf"
+    },
+    {
+      "source_commit": "5be5dc736b7a1014d4ac75e823547b442522cb81",
+      "source_sha256": "fdc012ae82b1ebaa1bcdccbfb56c4be95f7ac347c7aa7562dbe33d3dc5d1c8a1",
+      "archive": "evidence/super-agent-v1/SAV1-21/start-20261115T145313Z-d8e73443/repair09/source-5be5dc736b7a.tar.gz",
+      "archive_sha256": "be678df20e40d6781f1f0a1bd9af31f9bdbde613d505dcb068299bad770f3aad"
+    }
+  ]
+}

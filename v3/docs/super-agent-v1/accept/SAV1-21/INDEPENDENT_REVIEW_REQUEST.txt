@@ -1,0 +1,35 @@
+SA21 本地受控工程独立验收请求
+
+候选 5be5dc736b7a1014d4ac75e823547b442522cb81
+源码SHA256 fdc012ae82b1ebaa1bcdccbfb56c4be95f7ac347c7aa7562dbe33d3dc5d1c8a1
+主摘要 docs/super-agent-v1/accept/SAV1-21/accept.json
+完整证据 evidence/super-agent-v1/SAV1-21/start-20261115T145313Z-d8e73443
+
+初25=16PASS/9FAIL；9FAIL仅原夹具/API字段、Gateway generation与Docker动态端口错误。
+修正断言AST未改，原9定向9PASS；原16/历史13/55/88及已通过静态目标不重跑。
+请只复验这9个原失败目标，保留其他首次通过证据的源码/归档绑定；可新增独立边界。
+不得将分版本25PASS写成最终同版本单轮全量通过。
+
+原9个目标：
+tests/test_source_security_lifecycle.py::test_committed_withdrawal_blocks_source_memory_derived_export_and_saved_cursor[policy]
+tests/test_source_security_lifecycle.py::test_same_withdrawal_cancels_pending_but_preserves_unknown_without_releasing_content[False-policy]
+tests/test_source_security_lifecycle.py::test_same_withdrawal_cancels_pending_but_preserves_unknown_without_releasing_content[True-policy]
+tests/test_source_security_model.py::test_model_input_audit_never_retains_body_and_withdrawal_cannot_retry_unknown_or_invalid_model[lost_stream]
+tests/test_source_security_model.py::test_model_input_audit_never_retains_body_and_withdrawal_cannot_retry_unknown_or_invalid_model[invalid_proposal]
+tests/test_source_security_pg_restart.py::test_real_pg_server_crash_does_not_ack_uncommitted_or_duplicate_committed_source[before_commit-False]
+tests/test_source_security_pg_restart.py::test_real_pg_server_crash_does_not_ack_uncommitted_or_duplicate_committed_source[after_commit-True]
+tests/test_source_security_restore.py::test_actual_old_backup_replay_of_new_privacy_fact_blocks_all_derived_reads_and_keeps_hold[delete]
+tests/test_source_security_restore.py::test_actual_old_backup_replay_of_new_privacy_fact_blocks_all_derived_reads_and_keeps_hold[policy]
+
+使用锁定Python3.12；UV_OFFLINE=1，TMPDIR=$PWD/.local/tmp，PYTHONPATH=$PWD/src:$PWD/tests，MGAR_V3_ALLOW_PAID=0，MGAR_V3_ALLOW_EXTERNAL_WRITE=0。
+创建唯一新证据目录和pytest --basetemp/--junitxml路径，不覆盖历史失败或修改原探针断言。
+可按config/verification.json中的SAV1-21-REPAIR-01展开原9个精确pytest参数。
+若复用scripts.verify.execute，应显式提供本轮独立evidence_root，避免覆盖原有latest指针。
+原conftest仅在其唯一mgar_v3_test_*数据库运行正式50份迁移；禁止主库迁移/重启。
+PG崩溃探针自行创建/核对随机ID和owner label的专属容器，重启后需读取实际动态映射端口；禁止操作其他CLI、主库或原H06。
+
+只读核对25逐例、两份源码归档、初始lint/typecheck328、50份迁移、19Source目录654refs和SA21私有13产物。
+初始失败、用户.env和未跟踪文件、SA20独立原报告/探针/失败/Windows镜像保留。
+本卡无共享Engine/API/schema/预算/SQL变更、不预占0054、不导入H12，无需新共享接线确认。
+
+SA21 IN_PROGRESS等待独立，SA22未启动；真实平台/付费/外发/发布/长期/超出受控矩阵的完整系统安全NOT_RUN，H12原FAIL保留。

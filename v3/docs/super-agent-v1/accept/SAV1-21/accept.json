@@ -1,0 +1,202 @@
+{
+  "card": "SAV1-21",
+  "status": "IN_PROGRESS_LOCAL_CONTROLLED_ENGINEERING_DELIVERED_PENDING_INDEPENDENT",
+  "source_commit": "5be5dc736b7a1014d4ac75e823547b442522cb81",
+  "source_sha256": "fdc012ae82b1ebaa1bcdccbfb56c4be95f7ac347c7aa7562dbe33d3dc5d1c8a1",
+  "engineering_gate": "PASS_VERSION_BOUND_CONTROLLED_SCOPE",
+  "policy_security_gate": "PASS_REGISTERED_CONTROLLED_COMPOSITIONS_ONLY",
+  "whole_system_policy_security_gate": "NOT_RUN_BEYOND_REGISTERED_CONTROLLED_MATRIX",
+  "independent_review": "NOT_RUN",
+  "scope": "New Owner-only body-free retention inspection; original receive/Recall/Memory/CAS/notification/model-ledger/scheduler/writer/project composition and actual exclusive PG crash/held restore/OS storage fault. No shared Engine/API/schema/migration or runtime activation.",
+  "phases": {
+    "initial25": {
+      "source_commit": "62f03f59e2d4ec6a95643dd140e5681a09bb0ebd",
+      "source_sha256": "eb65846b8cfbc50926d50feef9d67fb1500ec37169378419c836a1d7a72d3e84",
+      "archive": "evidence/super-agent-v1/SAV1-21/start-20261115T145313Z-d8e73443/initial25/source-62f03f59e2d4.tar.gz",
+      "archive_sha256": "73cdd10178fa34ad58158471e12f109995cdfeb32c7f8572b219721cc94771cf",
+      "archive_source_sha256": "eb65846b8cfbc50926d50feef9d67fb1500ec37169378419c836a1d7a72d3e84",
+      "counts": {
+        "tests": 25,
+        "failures": 9,
+        "errors": 0,
+        "skipped": 0
+      },
+      "passed": 16,
+      "pytest_exit_code": 1,
+      "registered_exit_code": 1,
+      "outer_make_exit_code": 2,
+      "duration_seconds": 171.761,
+      "command": [
+        "/home/imini/magr-super-agent/v3/.venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "tests/test_source_security_lifecycle.py",
+        "tests/test_source_security_model.py",
+        "tests/test_source_security_ownership.py",
+        "tests/test_source_security_pg_restart.py",
+        "tests/test_source_security_restore.py",
+        "--junitxml=/home/imini/magr-super-agent/v3/evidence/SAV1-21/20261115T151221Z-ab815196/junit.xml"
+      ],
+      "junit": "evidence/SAV1-21/20261115T151221Z-ab815196/junit.xml",
+      "log": "evidence/SAV1-21/20261115T151221Z-ab815196/command.log",
+      "candidate_record": "evidence/super-agent-v1/SAV1-21/start-20261115T145313Z-d8e73443/initial25/candidate.json",
+      "cleanup_record": "evidence/super-agent-v1/SAV1-21/start-20261115T145313Z-d8e73443/initial25/cleanup.json"
+    },
+    "repair09": {
+      "source_commit": "5be5dc736b7a1014d4ac75e823547b442522cb81",
+      "source_sha256": "fdc012ae82b1ebaa1bcdccbfb56c4be95f7ac347c7aa7562dbe33d3dc5d1c8a1",
+      "archive": "evidence/super-agent-v1/SAV1-21/start-20261115T145313Z-d8e73443/repair09/source-5be5dc736b7a.tar.gz",
+      "archive_sha256": "be678df20e40d6781f1f0a1bd9af31f9bdbde613d505dcb068299bad770f3aad",
+      "archive_source_sha256": "fdc012ae82b1ebaa1bcdccbfb56c4be95f7ac347c7aa7562dbe33d3dc5d1c8a1",
+      "counts": {
+        "tests": 9,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "passed": 9,
+      "pytest_exit_code": 0,
+      "registered_exit_code": 0,
+      "outer_make_exit_code": 0,
+      "duration_seconds": 74.43,
+      "command": [
+        "/home/imini/magr-super-agent/v3/.venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "tests/test_source_security_lifecycle.py::test_committed_withdrawal_blocks_source_memory_derived_export_and_saved_cursor[policy]",
+        "tests/test_source_security_lifecycle.py::test_same_withdrawal_cancels_pending_but_preserves_unknown_without_releasing_content[False-policy]",
+        "tests/test_source_security_lifecycle.py::test_same_withdrawal_cancels_pending_but_preserves_unknown_without_releasing_content[True-policy]",
+        "tests/test_source_security_model.py::test_model_input_audit_never_retains_body_and_withdrawal_cannot_retry_unknown_or_invalid_model[lost_stream]",
+        "tests/test_source_security_model.py::test_model_input_audit_never_retains_body_and_withdrawal_cannot_retry_unknown_or_invalid_model[invalid_proposal]",
+        "tests/test_source_security_pg_restart.py::test_real_pg_server_crash_does_not_ack_uncommitted_or_duplicate_committed_source[before_commit-False]",
+        "tests/test_source_security_pg_restart.py::test_real_pg_server_crash_does_not_ack_uncommitted_or_duplicate_committed_source[after_commit-True]",
+        "tests/test_source_security_restore.py::test_actual_old_backup_replay_of_new_privacy_fact_blocks_all_derived_reads_and_keeps_hold[delete]",
+        "tests/test_source_security_restore.py::test_actual_old_backup_replay_of_new_privacy_fact_blocks_all_derived_reads_and_keeps_hold[policy]",
+        "--junitxml=/home/imini/magr-super-agent/v3/evidence/SAV1-21-REPAIR-01/20261115T151809Z-62404542/junit.xml"
+      ],
+      "junit": "evidence/SAV1-21-REPAIR-01/20261115T151809Z-62404542/junit.xml",
+      "log": "evidence/SAV1-21-REPAIR-01/20261115T151809Z-62404542/command.log",
+      "candidate_record": "evidence/super-agent-v1/SAV1-21/start-20261115T145313Z-d8e73443/repair09/candidate.json",
+      "cleanup_record": "evidence/super-agent-v1/SAV1-21/start-20261115T145313Z-d8e73443/repair09/cleanup.json"
+    }
+  },
+  "formal_unique_cases": 25,
+  "unique_cases_with_version_bound_PASS": 25,
+  "final_revision_full25_rerun": false,
+  "initial_PASS16_not_rerun": true,
+  "repair_only_original_failed9": true,
+  "original_assertions_unchanged": "See fixture-repair01.json assertion AST comparisons; only original API fixture bindings corrected.",
+  "historical13_independent55_formal88_preparation_not_rerun": true,
+  "static": {
+    "source_commit": "62f03f59e2d4ec6a95643dd140e5681a09bb0ebd",
+    "source_sha256": "eb65846b8cfbc50926d50feef9d67fb1500ec37169378419c836a1d7a72d3e84",
+    "lint": {
+      "status": "PASS",
+      "log": "evidence/super-agent-v1/SAV1-21/start-20261115T145313Z-d8e73443/initial25/lint.log",
+      "exit_code": 0
+    },
+    "typecheck": {
+      "status": "PASS",
+      "source_files": 328,
+      "log": "evidence/super-agent-v1/SAV1-21/start-20261115T145313Z-d8e73443/initial25/typecheck.log",
+      "exit_code": 0
+    },
+    "repair_static_rerun": false,
+    "SourceSecurity_module_unchanged_after_initial_static": true,
+    "limitation": "Full static results remain bound to initial commit; repair changed tests/configuration/docs only."
+  },
+  "cases": "docs/super-agent-v1/accept/SAV1-21/cases.json",
+  "matrix": "fixtures/super-agent-v1/sa21/threat-fault-matrix.json",
+  "observations": "evidence/super-agent-v1/SAV1-21/start-20261115T145313Z-d8e73443/observations.json",
+  "fixture_repair": "evidence/super-agent-v1/SAV1-21/start-20261115T145313Z-d8e73443/fixture-repair01.json",
+  "requirements_read": "evidence/super-agent-v1/SAV1-21/start-20261115T145313Z-d8e73443/requirements-read.json",
+  "dependencies": {
+    "SAV1-04": {
+      "path": "docs/super-agent-v1/accept/SAV1-04/accept.json",
+      "sha256": "47b779b14c786a7a8f7b935d5d0d60aa6becd68f3f5a630d93132e773f934b7c",
+      "status": "ACCEPTED_ENGINEERING_DEPENDENCY"
+    },
+    "SAV1-15": {
+      "path": "docs/super-agent-v1/accept/SAV1-15/independent-closure-20261114.json",
+      "sha256": "a131d4daa1120d1c5c68c79ea4019063d7b67aabd01887f2309c0295c1962ed9",
+      "status": "CLOSED_USER_ACCEPTED_INDEPENDENT_LOCAL_CONTROLLED_SCOPE"
+    },
+    "SAV1-17": {
+      "path": "docs/super-agent-v1/accept/SAV1-17/independent-closure-20261115.json",
+      "sha256": "d0ebd305592ff3821561b807c998fb54aac9fcd024ced71cbc3f5855790d917a",
+      "status": "DONE_USER_ACCEPTED_SCOPED_INDEPENDENT_LOCAL_CONTROLLED"
+    },
+    "SAV1-20": {
+      "path": "docs/super-agent-v1/accept/SAV1-20/independent-closure-20261115.json",
+      "sha256": "2997fbebd1ca29f680ee88146bd4d3cd2c6e334746b0cfa7f227c3fa38f02ec7",
+      "status": "DONE_USER_ACCEPTED_SCOPED_INDEPENDENT_LOCAL_CONTROLLED"
+    }
+  },
+  "implementation": {
+    "new_source_modules": [
+      "src/mgar_v3/super_agent/source_security.py"
+    ],
+    "new_API_routes": 0,
+    "new_DB_migrations": 0,
+    "new_private_schemas": 1,
+    "new_business_writer": false,
+    "new_background_or_listener_activation": false,
+    "new_shared_ownership_required": false,
+    "0054_reserved": false,
+    "Harness_active_tree_modified": false
+  },
+  "retention_strategy": "docs/super-agent-v1/SA21_SECURITY.md",
+  "integrity": {
+    "UTC": "2026-11-15T15:22:16.317125+00:00",
+    "source_candidate": "5be5dc736b7a1014d4ac75e823547b442522cb81",
+    "source_sha256": "fdc012ae82b1ebaa1bcdccbfb56c4be95f7ac347c7aa7562dbe33d3dc5d1c8a1",
+    "source_stable": true,
+    "formal_migrations": 50,
+    "Source_catalogues": 19,
+    "Source_references": 654,
+    "SA21_private_artifacts": 13,
+    "main_readonly_port": 55435,
+    "main_migrations": 44,
+    "main_checksum_matches": true,
+    "main_operations_tables": 0,
+    "main_sa21_databases": [],
+    "main_sa21_sessions": [],
+    "main_readonly_connection_closed": true,
+    "card_containers": [],
+    "assignment_containers": [],
+    "legacy_H06_preserved": true,
+    "containers": [
+      "d7a4ba2c20a5\tmgar-h06-d90f522e28f74d94-offline",
+      "cc7758f9cc33\tmagr-super-agent-redis-1",
+      "b7fff584d0d8\tmagr-super-agent-postgres-1",
+      "02766ef0f53c\tmgar-v3-postgres-1",
+      "bfac460e7a6b\tmgar-v3-redis-1"
+    ],
+    "protected_files_unchanged": 259,
+    "Harness_active_tree_touched": false,
+    "SA22": "NOT_STARTED",
+    "real_gates": "NOT_RUN"
+  },
+  "evidence": "evidence/super-agent-v1/SAV1-21/start-20261115T145313Z-d8e73443",
+  "report": "docs/super-agent-v1/SA21_ACCEPTANCE_20261115.md",
+  "independent_request": "docs/super-agent-v1/accept/SAV1-21/INDEPENDENT_REVIEW_REQUEST.txt",
+  "live_source_channel_gate": "NOT_RUN",
+  "live_coding_gate": "NOT_RUN",
+  "live_publication_gate": "NOT_RUN",
+  "continuous_operation_gate": "NOT_RUN",
+  "paid": "NOT_RUN",
+  "external_send": "NOT_RUN",
+  "H12_fixed_live_agent_mvp": "FAIL_RETAINED_OTHER_CLI",
+  "SA22": "NOT_STARTED",
+  "limitations": [
+    "Controlled synthetic data and MockTransport; no real platform/model/outgoing write.",
+    "25 new registered cases plus explicitly historical version-bound evidence; no final same-revision full-suite pass.",
+    "Real exclusive PG service kill/restart and kernel EFBIG only; physical disk-full/power loss/cloud/multi-node recovery NOT_RUN.",
+    "Old backups are privileged offline copies; tests replay current deletion/revocation while hold remains and never authorize activation.",
+    "Retention inspection exposes counts, not a security verdict; existing Source/Recall paths remain the disclosure authority."
+  ],
+  "old_SA20_failure_preservation": "evidence/super-agent-v1/SAV1-21/start-20261115T145313Z-d8e73443/historical-failures-preserved.json",
+  "old_SA20_protected_files_unchanged": 32299
+}

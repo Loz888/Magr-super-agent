@@ -1,0 +1,324 @@
+{
+  "tests/test_source_security_lifecycle.py::test_committed_withdrawal_blocks_source_memory_derived_export_and_saved_cursor[delete]": [
+    {
+      "stage": "initial25",
+      "status": "PASS",
+      "source_commit": "62f03f59e2d4ec6a95643dd140e5681a09bb0ebd",
+      "source_sha256": "eb65846b8cfbc50926d50feef9d67fb1500ec37169378419c836a1d7a72d3e84",
+      "junit": "evidence/SAV1-21/20261115T151221Z-ab815196/junit.xml",
+      "seconds": 6.205
+    }
+  ],
+  "tests/test_source_security_lifecycle.py::test_committed_withdrawal_blocks_source_memory_derived_export_and_saved_cursor[edit]": [
+    {
+      "stage": "initial25",
+      "status": "PASS",
+      "source_commit": "62f03f59e2d4ec6a95643dd140e5681a09bb0ebd",
+      "source_sha256": "eb65846b8cfbc50926d50feef9d67fb1500ec37169378419c836a1d7a72d3e84",
+      "junit": "evidence/SAV1-21/20261115T151221Z-ab815196/junit.xml",
+      "seconds": 3.662
+    }
+  ],
+  "tests/test_source_security_lifecycle.py::test_committed_withdrawal_blocks_source_memory_derived_export_and_saved_cursor[identity]": [
+    {
+      "stage": "initial25",
+      "status": "PASS",
+      "source_commit": "62f03f59e2d4ec6a95643dd140e5681a09bb0ebd",
+      "source_sha256": "eb65846b8cfbc50926d50feef9d67fb1500ec37169378419c836a1d7a72d3e84",
+      "junit": "evidence/SAV1-21/20261115T151221Z-ab815196/junit.xml",
+      "seconds": 4.047
+    }
+  ],
+  "tests/test_source_security_lifecycle.py::test_committed_withdrawal_blocks_source_memory_derived_export_and_saved_cursor[policy]": [
+    {
+      "stage": "initial25",
+      "status": "FAIL",
+      "source_commit": "62f03f59e2d4ec6a95643dd140e5681a09bb0ebd",
+      "source_sha256": "eb65846b8cfbc50926d50feef9d67fb1500ec37169378419c836a1d7a72d3e84",
+      "junit": "evidence/SAV1-21/20261115T151221Z-ab815196/junit.xml",
+      "seconds": 4.004
+    },
+    {
+      "stage": "repair09",
+      "status": "PASS",
+      "source_commit": "5be5dc736b7a1014d4ac75e823547b442522cb81",
+      "source_sha256": "fdc012ae82b1ebaa1bcdccbfb56c4be95f7ac347c7aa7562dbe33d3dc5d1c8a1",
+      "junit": "evidence/SAV1-21-REPAIR-01/20261115T151809Z-62404542/junit.xml",
+      "seconds": 6.512
+    }
+  ],
+  "tests/test_source_security_lifecycle.py::test_same_withdrawal_cancels_pending_but_preserves_unknown_without_releasing_content[False-delete]": [
+    {
+      "stage": "initial25",
+      "status": "PASS",
+      "source_commit": "62f03f59e2d4ec6a95643dd140e5681a09bb0ebd",
+      "source_sha256": "eb65846b8cfbc50926d50feef9d67fb1500ec37169378419c836a1d7a72d3e84",
+      "junit": "evidence/SAV1-21/20261115T151221Z-ab815196/junit.xml",
+      "seconds": 3.555
+    }
+  ],
+  "tests/test_source_security_lifecycle.py::test_same_withdrawal_cancels_pending_but_preserves_unknown_without_releasing_content[False-identity]": [
+    {
+      "stage": "initial25",
+      "status": "PASS",
+      "source_commit": "62f03f59e2d4ec6a95643dd140e5681a09bb0ebd",
+      "source_sha256": "eb65846b8cfbc50926d50feef9d67fb1500ec37169378419c836a1d7a72d3e84",
+      "junit": "evidence/SAV1-21/20261115T151221Z-ab815196/junit.xml",
+      "seconds": 3.67
+    }
+  ],
+  "tests/test_source_security_lifecycle.py::test_same_withdrawal_cancels_pending_but_preserves_unknown_without_releasing_content[False-policy]": [
+    {
+      "stage": "initial25",
+      "status": "FAIL",
+      "source_commit": "62f03f59e2d4ec6a95643dd140e5681a09bb0ebd",
+      "source_sha256": "eb65846b8cfbc50926d50feef9d67fb1500ec37169378419c836a1d7a72d3e84",
+      "junit": "evidence/SAV1-21/20261115T151221Z-ab815196/junit.xml",
+      "seconds": 3.648
+    },
+    {
+      "stage": "repair09",
+      "status": "PASS",
+      "source_commit": "5be5dc736b7a1014d4ac75e823547b442522cb81",
+      "source_sha256": "fdc012ae82b1ebaa1bcdccbfb56c4be95f7ac347c7aa7562dbe33d3dc5d1c8a1",
+      "junit": "evidence/SAV1-21-REPAIR-01/20261115T151809Z-62404542/junit.xml",
+      "seconds": 3.386
+    }
+  ],
+  "tests/test_source_security_lifecycle.py::test_same_withdrawal_cancels_pending_but_preserves_unknown_without_releasing_content[True-delete]": [
+    {
+      "stage": "initial25",
+      "status": "PASS",
+      "source_commit": "62f03f59e2d4ec6a95643dd140e5681a09bb0ebd",
+      "source_sha256": "eb65846b8cfbc50926d50feef9d67fb1500ec37169378419c836a1d7a72d3e84",
+      "junit": "evidence/SAV1-21/20261115T151221Z-ab815196/junit.xml",
+      "seconds": 3.955
+    }
+  ],
+  "tests/test_source_security_lifecycle.py::test_same_withdrawal_cancels_pending_but_preserves_unknown_without_releasing_content[True-identity]": [
+    {
+      "stage": "initial25",
+      "status": "PASS",
+      "source_commit": "62f03f59e2d4ec6a95643dd140e5681a09bb0ebd",
+      "source_sha256": "eb65846b8cfbc50926d50feef9d67fb1500ec37169378419c836a1d7a72d3e84",
+      "junit": "evidence/SAV1-21/20261115T151221Z-ab815196/junit.xml",
+      "seconds": 3.78
+    }
+  ],
+  "tests/test_source_security_lifecycle.py::test_same_withdrawal_cancels_pending_but_preserves_unknown_without_releasing_content[True-policy]": [
+    {
+      "stage": "initial25",
+      "status": "FAIL",
+      "source_commit": "62f03f59e2d4ec6a95643dd140e5681a09bb0ebd",
+      "source_sha256": "eb65846b8cfbc50926d50feef9d67fb1500ec37169378419c836a1d7a72d3e84",
+      "junit": "evidence/SAV1-21/20261115T151221Z-ab815196/junit.xml",
+      "seconds": 3.595
+    },
+    {
+      "stage": "repair09",
+      "status": "PASS",
+      "source_commit": "5be5dc736b7a1014d4ac75e823547b442522cb81",
+      "source_sha256": "fdc012ae82b1ebaa1bcdccbfb56c4be95f7ac347c7aa7562dbe33d3dc5d1c8a1",
+      "junit": "evidence/SAV1-21-REPAIR-01/20261115T151809Z-62404542/junit.xml",
+      "seconds": 3.651
+    }
+  ],
+  "tests/test_source_security_lifecycle.py::test_untrusted_injected_body_is_not_retained_exported_or_decrypted[signature]": [
+    {
+      "stage": "initial25",
+      "status": "PASS",
+      "source_commit": "62f03f59e2d4ec6a95643dd140e5681a09bb0ebd",
+      "source_sha256": "eb65846b8cfbc50926d50feef9d67fb1500ec37169378419c836a1d7a72d3e84",
+      "junit": "evidence/SAV1-21/20261115T151221Z-ab815196/junit.xml",
+      "seconds": 2.538
+    }
+  ],
+  "tests/test_source_security_lifecycle.py::test_untrusted_injected_body_is_not_retained_exported_or_decrypted[conversation]": [
+    {
+      "stage": "initial25",
+      "status": "PASS",
+      "source_commit": "62f03f59e2d4ec6a95643dd140e5681a09bb0ebd",
+      "source_sha256": "eb65846b8cfbc50926d50feef9d67fb1500ec37169378419c836a1d7a72d3e84",
+      "junit": "evidence/SAV1-21/20261115T151221Z-ab815196/junit.xml",
+      "seconds": 2.584
+    }
+  ],
+  "tests/test_source_security_lifecycle.py::test_untrusted_injected_body_is_not_retained_exported_or_decrypted[sender]": [
+    {
+      "stage": "initial25",
+      "status": "PASS",
+      "source_commit": "62f03f59e2d4ec6a95643dd140e5681a09bb0ebd",
+      "source_sha256": "eb65846b8cfbc50926d50feef9d67fb1500ec37169378419c836a1d7a72d3e84",
+      "junit": "evidence/SAV1-21/20261115T151221Z-ab815196/junit.xml",
+      "seconds": 2.555
+    }
+  ],
+  "tests/test_source_security_lifecycle.py::test_expired_body_is_purged_through_original_owner_command_without_erasing_minimal_facts": [
+    {
+      "stage": "initial25",
+      "status": "PASS",
+      "source_commit": "62f03f59e2d4ec6a95643dd140e5681a09bb0ebd",
+      "source_sha256": "eb65846b8cfbc50926d50feef9d67fb1500ec37169378419c836a1d7a72d3e84",
+      "junit": "evidence/SAV1-21/20261115T151221Z-ab815196/junit.xml",
+      "seconds": 3.475
+    }
+  ],
+  "tests/test_source_security_lifecycle.py::test_inspection_requires_current_owner_and_never_calls_body_decryption": [
+    {
+      "stage": "initial25",
+      "status": "PASS",
+      "source_commit": "62f03f59e2d4ec6a95643dd140e5681a09bb0ebd",
+      "source_sha256": "eb65846b8cfbc50926d50feef9d67fb1500ec37169378419c836a1d7a72d3e84",
+      "junit": "evidence/SAV1-21/20261115T151221Z-ab815196/junit.xml",
+      "seconds": 2.326
+    }
+  ],
+  "tests/test_source_security_model.py::test_model_input_audit_never_retains_body_and_withdrawal_cannot_retry_unknown_or_invalid_model[lost_stream]": [
+    {
+      "stage": "initial25",
+      "status": "FAIL",
+      "source_commit": "62f03f59e2d4ec6a95643dd140e5681a09bb0ebd",
+      "source_sha256": "eb65846b8cfbc50926d50feef9d67fb1500ec37169378419c836a1d7a72d3e84",
+      "junit": "evidence/SAV1-21/20261115T151221Z-ab815196/junit.xml",
+      "seconds": 2.97
+    },
+    {
+      "stage": "repair09",
+      "status": "PASS",
+      "source_commit": "5be5dc736b7a1014d4ac75e823547b442522cb81",
+      "source_sha256": "fdc012ae82b1ebaa1bcdccbfb56c4be95f7ac347c7aa7562dbe33d3dc5d1c8a1",
+      "junit": "evidence/SAV1-21-REPAIR-01/20261115T151809Z-62404542/junit.xml",
+      "seconds": 3.067
+    }
+  ],
+  "tests/test_source_security_model.py::test_model_input_audit_never_retains_body_and_withdrawal_cannot_retry_unknown_or_invalid_model[invalid_proposal]": [
+    {
+      "stage": "initial25",
+      "status": "FAIL",
+      "source_commit": "62f03f59e2d4ec6a95643dd140e5681a09bb0ebd",
+      "source_sha256": "eb65846b8cfbc50926d50feef9d67fb1500ec37169378419c836a1d7a72d3e84",
+      "junit": "evidence/SAV1-21/20261115T151221Z-ab815196/junit.xml",
+      "seconds": 3.134
+    },
+    {
+      "stage": "repair09",
+      "status": "PASS",
+      "source_commit": "5be5dc736b7a1014d4ac75e823547b442522cb81",
+      "source_sha256": "fdc012ae82b1ebaa1bcdccbfb56c4be95f7ac347c7aa7562dbe33d3dc5d1c8a1",
+      "junit": "evidence/SAV1-21-REPAIR-01/20261115T151809Z-62404542/junit.xml",
+      "seconds": 3.253
+    }
+  ],
+  "tests/test_source_security_ownership.py::test_two_scheduler_claims_share_original_writer_and_cancel_fences_winning_worker": [
+    {
+      "stage": "initial25",
+      "status": "PASS",
+      "source_commit": "62f03f59e2d4ec6a95643dd140e5681a09bb0ebd",
+      "source_sha256": "eb65846b8cfbc50926d50feef9d67fb1500ec37169378419c836a1d7a72d3e84",
+      "junit": "evidence/SAV1-21/20261115T151221Z-ab815196/junit.xml",
+      "seconds": 2.529
+    }
+  ],
+  "tests/test_source_security_ownership.py::test_second_engine_cannot_become_a_security_maintenance_writer": [
+    {
+      "stage": "initial25",
+      "status": "PASS",
+      "source_commit": "62f03f59e2d4ec6a95643dd140e5681a09bb0ebd",
+      "source_sha256": "eb65846b8cfbc50926d50feef9d67fb1500ec37169378419c836a1d7a72d3e84",
+      "junit": "evidence/SAV1-21/20261115T151221Z-ab815196/junit.xml",
+      "seconds": 2.123
+    }
+  ],
+  "tests/test_source_security_ownership.py::test_owner_inspection_does_not_include_a_legitimately_registered_other_project": [
+    {
+      "stage": "initial25",
+      "status": "PASS",
+      "source_commit": "62f03f59e2d4ec6a95643dd140e5681a09bb0ebd",
+      "source_sha256": "eb65846b8cfbc50926d50feef9d67fb1500ec37169378419c836a1d7a72d3e84",
+      "junit": "evidence/SAV1-21/20261115T151221Z-ab815196/junit.xml",
+      "seconds": 2.288
+    }
+  ],
+  "tests/test_source_security_pg_restart.py::test_real_pg_server_crash_does_not_ack_uncommitted_or_duplicate_committed_source[before_commit-False]": [
+    {
+      "stage": "initial25",
+      "status": "FAIL",
+      "source_commit": "62f03f59e2d4ec6a95643dd140e5681a09bb0ebd",
+      "source_sha256": "eb65846b8cfbc50926d50feef9d67fb1500ec37169378419c836a1d7a72d3e84",
+      "junit": "evidence/SAV1-21/20261115T151221Z-ab815196/junit.xml",
+      "seconds": 37.681
+    },
+    {
+      "stage": "repair09",
+      "status": "PASS",
+      "source_commit": "5be5dc736b7a1014d4ac75e823547b442522cb81",
+      "source_sha256": "fdc012ae82b1ebaa1bcdccbfb56c4be95f7ac347c7aa7562dbe33d3dc5d1c8a1",
+      "junit": "evidence/SAV1-21-REPAIR-01/20261115T151809Z-62404542/junit.xml",
+      "seconds": 8.52
+    }
+  ],
+  "tests/test_source_security_pg_restart.py::test_real_pg_server_crash_does_not_ack_uncommitted_or_duplicate_committed_source[after_commit-True]": [
+    {
+      "stage": "initial25",
+      "status": "FAIL",
+      "source_commit": "62f03f59e2d4ec6a95643dd140e5681a09bb0ebd",
+      "source_sha256": "eb65846b8cfbc50926d50feef9d67fb1500ec37169378419c836a1d7a72d3e84",
+      "junit": "evidence/SAV1-21/20261115T151221Z-ab815196/junit.xml",
+      "seconds": 37.553
+    },
+    {
+      "stage": "repair09",
+      "status": "PASS",
+      "source_commit": "5be5dc736b7a1014d4ac75e823547b442522cb81",
+      "source_sha256": "fdc012ae82b1ebaa1bcdccbfb56c4be95f7ac347c7aa7562dbe33d3dc5d1c8a1",
+      "junit": "evidence/SAV1-21-REPAIR-01/20261115T151809Z-62404542/junit.xml",
+      "seconds": 8.127
+    }
+  ],
+  "tests/test_source_security_restore.py::test_actual_old_backup_replay_of_new_privacy_fact_blocks_all_derived_reads_and_keeps_hold[delete]": [
+    {
+      "stage": "initial25",
+      "status": "FAIL",
+      "source_commit": "62f03f59e2d4ec6a95643dd140e5681a09bb0ebd",
+      "source_sha256": "eb65846b8cfbc50926d50feef9d67fb1500ec37169378419c836a1d7a72d3e84",
+      "junit": "evidence/SAV1-21/20261115T151221Z-ab815196/junit.xml",
+      "seconds": 4.265
+    },
+    {
+      "stage": "repair09",
+      "status": "PASS",
+      "source_commit": "5be5dc736b7a1014d4ac75e823547b442522cb81",
+      "source_sha256": "fdc012ae82b1ebaa1bcdccbfb56c4be95f7ac347c7aa7562dbe33d3dc5d1c8a1",
+      "junit": "evidence/SAV1-21-REPAIR-01/20261115T151809Z-62404542/junit.xml",
+      "seconds": 17.066
+    }
+  ],
+  "tests/test_source_security_restore.py::test_actual_old_backup_replay_of_new_privacy_fact_blocks_all_derived_reads_and_keeps_hold[policy]": [
+    {
+      "stage": "initial25",
+      "status": "FAIL",
+      "source_commit": "62f03f59e2d4ec6a95643dd140e5681a09bb0ebd",
+      "source_sha256": "eb65846b8cfbc50926d50feef9d67fb1500ec37169378419c836a1d7a72d3e84",
+      "junit": "evidence/SAV1-21/20261115T151221Z-ab815196/junit.xml",
+      "seconds": 4.207
+    },
+    {
+      "stage": "repair09",
+      "status": "PASS",
+      "source_commit": "5be5dc736b7a1014d4ac75e823547b442522cb81",
+      "source_sha256": "fdc012ae82b1ebaa1bcdccbfb56c4be95f7ac347c7aa7562dbe33d3dc5d1c8a1",
+      "junit": "evidence/SAV1-21-REPAIR-01/20261115T151809Z-62404542/junit.xml",
+      "seconds": 16.012
+    }
+  ],
+  "tests/test_source_security_restore.py::test_real_storage_write_failure_after_db_restore_preserves_unknown_and_incomplete_hold": [
+    {
+      "stage": "initial25",
+      "status": "PASS",
+      "source_commit": "62f03f59e2d4ec6a95643dd140e5681a09bb0ebd",
+      "source_sha256": "eb65846b8cfbc50926d50feef9d67fb1500ec37169378419c836a1d7a72d3e84",
+      "junit": "evidence/SAV1-21/20261115T151221Z-ab815196/junit.xml",
+      "seconds": 15.558
+    }
+  ]
+}

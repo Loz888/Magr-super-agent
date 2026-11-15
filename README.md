@@ -1,6 +1,6 @@
 # MGAR V3.5 · 持续研发 Agent
 
-**Super-Agent升级进度（2026-11-15）：SA00–SA19已由用户接受受控本地独立闭环；SA20-I01本地仅原失败项1PASS，候选7b4566d，等待独立复验。原13独立、55正式与88准备通过不重跑，历史失败保留。SA21未启动，真实门NOT_RUN、固定H12 FAIL保留。见[当前修复](v3/docs/super-agent-v1/SA20_I01_REPAIR_20261115.md)／[原工程交付](v3/docs/super-agent-v1/SA20_ACCEPTANCE_20261115.md)。**
+**Super-Agent升级进度（2026-11-15）：SA00–SA20已由用户接受受控本地独立闭环；SA21本地受控工程已交付、等待独立验收。候选5be5dc7，25个新检查具分版本PASS，修复仅原9项复验9PASS，已通过项不重跑，历史失败保留。SA22未启动，真实门NOT_RUN、固定H12 FAIL保留。见[SA21交付](v3/docs/super-agent-v1/SA21_ACCEPTANCE_20261115.md)／[SA20关闭](v3/docs/super-agent-v1/accept/SAV1-20/independent-closure-20261115.json)。**
 
 **网页使用入口已统一：启动后打开首页，填写 GitHub 仓库 URL 和问题，即可在同一页提交真实分析、查看执行过程和继续追问。首次打开创建管理员账户，模型凭据与使用许可直接在网页弹窗填写。[单页 Agent 使用说明](v3/docs/agent-ui.md)。**
 
