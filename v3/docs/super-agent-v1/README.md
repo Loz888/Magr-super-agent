@@ -1,6 +1,10 @@
 # MAGR Super-Agent 落地任务书
 
-状态：**SAV1-00–SAV1-18 DONE（用户接受的受控本地独立闭环）；SA19 IN_PROGRESS（本地受控工程交付，待独立验收）；SA20–SA24 PLANNED**。更新：2026-11-15。
+状态：**SAV1-00–SAV1-18 DONE（用户接受的受控本地独立闭环）；SA19 IN_PROGRESS（SA19-I01本地修复，待独立复验）；SA20–SA24 PLANNED**。更新：2026-11-15。
+
+SA19-I01独立P2（非空ASGI root_path绕过私有静态保护）已确认并本地定向修复。候选045934c仅原三个失败参数3PASS/exit0，HTML别名GET为404、JS/CSS HEAD为405，均no-store；原探针字节/断言未改，其他33独立通过、历史78正式/54准备与静态通过目标均未重跑。见[修复报告](SA19_I01_REPAIR_20261115.md)及[机器记录](accept/SAV1-19/i01-repair.json)。SA19保持IN_PROGRESS、未放行，等待独立复验；SA20未启动，主库仍44，真实门NOT_RUN，固定H12 FAIL保留。
+
+以下保留原交付与历史阶段记录：
 
 SA18独立关闭已获用户接受。SA19第45节8d19308确认已核对，正式0052及原Engine/API/首页三文件按精确hash落地。候选7c2d768，78正式独特用例分版本PASS、54准备PASS保留，修复只复验失败项/目标，不称最终同版本全量通过；见[本地工程交付](SA19_ACCEPTANCE_20261115.md)与[逐例摘要](accept/SAV1-19/accept.json)。49仓库迁移/584产物引用匹配，主库仍44，无本卡临时资源残留。SA19等待独立验收，SA20未启动，真实门NOT_RUN，固定H12真实Agent/MVP FAIL保留。
 

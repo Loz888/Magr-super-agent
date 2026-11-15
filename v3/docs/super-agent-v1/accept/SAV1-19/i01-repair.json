@@ -1,0 +1,182 @@
+{
+  "schema": "sa19-i01-repair-v1",
+  "finding": "SA19-I01",
+  "priority": "P2",
+  "status": "LOCAL_REPAIR_PASS_PENDING_INDEPENDENT_RECHECK",
+  "UTC": "2026-11-15T10:53:39.214774+00:00",
+  "SA19": "NOT_PASSED_PENDING_INDEPENDENT_RECHECK",
+  "SA20": "NOT_STARTED",
+  "source_commit": "045934c038b1ad401e2572790a119d4b58a50100",
+  "source_sha256": "5eb904d4e19f408e1ff16752a28403b5e42bac456e92ac9401a349be8b0cc223",
+  "original_review": "evidence/super-agent-v1/SAV1-19/independent-review-20261115T103215Z-629c8b76",
+  "original_review_result": "FAIL_SA19_I01",
+  "original_source_commit": "7c2d7687a092a714fa58adf3616f314c40d38ac9",
+  "original_probe_sha256": "5c43f888333ecbdab4e83438d9b38495fb796fc8a0c74eb4690ddae044960dc4",
+  "original_probe_unchanged": true,
+  "change": {
+    "implementation": "src/mgar_v3/super_agent/source_console_api.py",
+    "description": "Use the same Starlette get_route_path(scope) as Router/StaticFiles before existing alias normalization and method checks. Strip only the actual segment-aware ASGI root_path; no fixed prefix, root routing or authorization relaxation.",
+    "catalogue": "config/source-console-v1.json existing API artifact SHA only",
+    "shared_Engine_API_homepage_unchanged": true,
+    "interfaces_migrations_budget_unchanged": true
+  },
+  "test_result": {
+    "tests": 3,
+    "PASS": 3,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0,
+    "exit_code": 0,
+    "exact_original_failed_cases": [
+      "test_private_static_fallback_keeps_owner_boundary_under_root_path[GET-/static/source-console.html]",
+      "test_private_static_fallback_keeps_owner_boundary_under_root_path[HEAD-/static/source-console.js]",
+      "test_private_static_fallback_keeps_owner_boundary_under_root_path[HEAD-/static/source-console.css]"
+    ],
+    "observations": [
+      {
+        "case": "root_path_GET_/static/source-console.html",
+        "status": 404,
+        "root_path": "/sa19-independent-prefix",
+        "request_path": "/sa19-independent-prefix/static/source-console.html",
+        "cache_control": "no-store",
+        "content_type": "application/json",
+        "body_bytes": 20
+      },
+      {
+        "case": "root_path_HEAD_/static/source-console.js",
+        "status": 405,
+        "root_path": "/sa19-independent-prefix",
+        "request_path": "/sa19-independent-prefix/static/source-console.js",
+        "cache_control": "no-store",
+        "content_type": "application/json",
+        "body_bytes": 0
+      },
+      {
+        "case": "root_path_HEAD_/static/source-console.css",
+        "status": 405,
+        "root_path": "/sa19-independent-prefix",
+        "request_path": "/sa19-independent-prefix/static/source-console.css",
+        "cache_control": "no-store",
+        "content_type": "application/json",
+        "body_bytes": 0
+      }
+    ],
+    "command": [
+      "uv",
+      "run",
+      "--frozen",
+      "python",
+      "-m",
+      "pytest",
+      "-q",
+      "-s",
+      "--tb=short",
+      "/home/imini/magr-super-agent/v3/evidence/super-agent-v1/SAV1-19/I01-repair-20261115T105007Z-91ee9819/test_independent_sa19.py::test_private_static_fallback_keeps_owner_boundary_under_root_path[GET-/static/source-console.html]",
+      "/home/imini/magr-super-agent/v3/evidence/super-agent-v1/SAV1-19/I01-repair-20261115T105007Z-91ee9819/test_independent_sa19.py::test_private_static_fallback_keeps_owner_boundary_under_root_path[HEAD-/static/source-console.js]",
+      "/home/imini/magr-super-agent/v3/evidence/super-agent-v1/SAV1-19/I01-repair-20261115T105007Z-91ee9819/test_independent_sa19.py::test_private_static_fallback_keeps_owner_boundary_under_root_path[HEAD-/static/source-console.css]",
+      "--junitxml=/home/imini/magr-super-agent/v3/evidence/super-agent-v1/SAV1-19/I01-repair-20261115T105007Z-91ee9819/repair-01/junit.xml"
+    ],
+    "command_record": "evidence/super-agent-v1/SAV1-19/I01-repair-20261115T105007Z-91ee9819/repair-01/original-failed3-command.json",
+    "junit": "evidence/super-agent-v1/SAV1-19/I01-repair-20261115T105007Z-91ee9819/repair-01/junit.xml",
+    "log": "evidence/super-agent-v1/SAV1-19/I01-repair-20261115T105007Z-91ee9819/repair-01/original-failed3.log",
+    "observations_file": "evidence/super-agent-v1/SAV1-19/I01-repair-20261115T105007Z-91ee9819/independent-observations.jsonl"
+  },
+  "retest_policy": {
+    "only_original_three_failed_parameters": true,
+    "other33_independent_PASS_not_rerun": true,
+    "historical78_formal54_preparation_not_rerun": true,
+    "lint_typecheck_not_rerun": true,
+    "probe_assertions_thresholds_unchanged": true,
+    "full_latest_suite": "NOT_RUN"
+  },
+  "source_binding": {
+    "archive": "evidence/super-agent-v1/SAV1-19/I01-repair-20261115T105007Z-91ee9819/repair-01/source-045934c038b1.tar.gz",
+    "archive_sha256": "2f1c0fd191a5d24b8de7860ba038246a5f1341af3fe55af2d1c6d46dac1c233f",
+    "archive_fingerprint_matches_workspace": true,
+    "source_before": "5eb904d4e19f408e1ff16752a28403b5e42bac456e92ac9401a349be8b0cc223",
+    "source_after": "5eb904d4e19f408e1ff16752a28403b5e42bac456e92ac9401a349be8b0cc223",
+    "source_stable": true
+  },
+  "closeout": {
+    "UTC": "2026-11-15T10:52:18.682131+00:00",
+    "source_commit": "045934c038b1ad401e2572790a119d4b58a50100",
+    "source_sha256": "5eb904d4e19f408e1ff16752a28403b5e42bac456e92ac9401a349be8b0cc223",
+    "original_probe_sha256": "5c43f888333ecbdab4e83438d9b38495fb796fc8a0c74eb4690ddae044960dc4",
+    "probe_unchanged": true,
+    "exact_original_failed_cases": [
+      "test_private_static_fallback_keeps_owner_boundary_under_root_path[GET-/static/source-console.html]",
+      "test_private_static_fallback_keeps_owner_boundary_under_root_path[HEAD-/static/source-console.js]",
+      "test_private_static_fallback_keeps_owner_boundary_under_root_path[HEAD-/static/source-console.css]"
+    ],
+    "counts": {
+      "tests": 3,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "exit_code": 0,
+    "observations": [
+      {
+        "case": "root_path_GET_/static/source-console.html",
+        "status": 404,
+        "root_path": "/sa19-independent-prefix",
+        "request_path": "/sa19-independent-prefix/static/source-console.html",
+        "cache_control": "no-store",
+        "content_type": "application/json",
+        "body_bytes": 20
+      },
+      {
+        "case": "root_path_HEAD_/static/source-console.js",
+        "status": 405,
+        "root_path": "/sa19-independent-prefix",
+        "request_path": "/sa19-independent-prefix/static/source-console.js",
+        "cache_control": "no-store",
+        "content_type": "application/json",
+        "body_bytes": 0
+      },
+      {
+        "case": "root_path_HEAD_/static/source-console.css",
+        "status": 405,
+        "root_path": "/sa19-independent-prefix",
+        "request_path": "/sa19-independent-prefix/static/source-console.css",
+        "cache_control": "no-store",
+        "content_type": "application/json",
+        "body_bytes": 0
+      }
+    ],
+    "source_stable": true,
+    "main_port": 55435,
+    "main_migrations": 44,
+    "main_console_tables": 0,
+    "main_checksums_match": true,
+    "main_readonly_session_closed": true,
+    "formal_migrations": 49,
+    "migrations_unchanged": true,
+    "Source_catalogues": 18,
+    "artifact_references": 584,
+    "shared_three_files_exact": true,
+    "protected_files_unchanged": 50,
+    "original_review_and_failure_bytes_preserved": true,
+    "isolated_PG": {
+      "container": "sa19-repair-01-pg-5f188649",
+      "inspect_exit": 1
+    },
+    "isolated_DBs_remaining": [],
+    "legacy_H06_preserved": true,
+    "Harness_active_tree_untouched": true,
+    "other33_independent_PASS_not_rerun": true,
+    "historical78formal54preparation_not_rerun": true,
+    "lint_typecheck_not_rerun": true,
+    "independent_recheck": "NOT_RUN",
+    "SA19": "NOT_PASSED_PENDING_INDEPENDENT_RECHECK",
+    "SA20": "NOT_STARTED",
+    "real_gates": "NOT_RUN"
+  },
+  "evidence": "evidence/super-agent-v1/SAV1-19/I01-repair-20261115T105007Z-91ee9819",
+  "report": "docs/super-agent-v1/SA19_I01_REPAIR_20261115.md",
+  "independent_recheck": "NOT_RUN",
+  "whole_system_security": "NOT_RUN",
+  "real_gates": "NOT_RUN",
+  "fixed_H12_live_agent_mvp": "FAIL_RETAINED_OTHER_CLI",
+  "limitations": "Only three mounted private static failures rechecked; no business JSON/body/real-secret leak was found in the original report. Does not establish complete mounted-application functionality or whole-system security."
+}
