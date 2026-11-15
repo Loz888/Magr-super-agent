@@ -20,7 +20,7 @@ from mgar_v3.super_agent.source_notification_domain import (
     NotificationPlanRequest,
 )
 from mgar_v3.super_agent.source_notification_ports import NotificationProfile
-from mgar_v3.super_agent.source_notification_rules import delivery_key, render
+from mgar_v3.super_agent.source_notification_rules import delivery_key, delivery_scope, render
 from mgar_v3.super_agent.source_notification_store import NotificationStore, Row, denied
 
 if TYPE_CHECKING:
@@ -150,6 +150,7 @@ class SourceNotifications(NotificationStore):
             if len(template.body.encode()) > definition.notification.max_bytes:
                 raise denied("CONTENT_LIMIT")
             destination = settings.destination.model_dump(mode="json")
+            native_destination = delivery_scope(destination)
             key = delivery_key(
                 self.project,
                 str(run["run_id"]),
@@ -157,10 +158,21 @@ class SourceNotifications(NotificationStore):
                 destination,
                 request.content_class,
             )
+            # Native-address lookup also covers immutable pre-fix intents whose
+            # saved keys included a target alias. Keep their original keys and
+            # approvals, including unknown/cancelled outcomes, rather than
+            # creating another Action when the key algorithm changes.
             existing = conn.execute(
                 "SELECT action_id FROM app.sa_notification_intents "
-                "WHERE project_id=%s AND idempotency_key=%s",
-                (self.project, key),
+                "WHERE project_id=%s AND run_id=%s AND cause_sha256=%s AND content_class=%s "
+                "AND destination->'thread'=%s::jsonb ORDER BY created_at,action_id LIMIT 1",
+                (
+                    self.project,
+                    run["run_id"],
+                    facts.cause_sha256,
+                    request.content_class,
+                    json.dumps(native_destination),
+                ),
             ).fetchone()
             if existing is not None:
                 self._event(
@@ -182,14 +194,21 @@ class SourceNotifications(NotificationStore):
             if expires <= now + timedelta(seconds=1):
                 raise denied("EXPIRED")
             aggregation = digest(
-                [self.project, str(run["run_id"]), destination, request.content_class]
+                [self.project, str(run["run_id"]), native_destination, request.content_class]
             )
             superseded = conn.execute(
                 "UPDATE app.actions a SET status='cancelled',"
                 "reason_code='NOTIFICATION_AGGREGATED' FROM app.sa_notification_intents n "
-                "WHERE a.action_id=n.action_id AND n.project_id=%s AND n.aggregation_key=%s "
+                "WHERE a.action_id=n.action_id AND n.project_id=%s AND n.run_id=%s "
+                "AND n.content_class=%s AND n.destination->'thread'=%s::jsonb "
                 "AND n.created_at>%s AND a.status='ready' RETURNING a.action_id",
-                (self.project, aggregation, now - timedelta(seconds=settings.aggregation_seconds)),
+                (
+                    self.project,
+                    run["run_id"],
+                    request.content_class,
+                    json.dumps(native_destination),
+                    now - timedelta(seconds=settings.aggregation_seconds),
+                ),
             ).fetchall()
             for old in superseded:
                 conn.execute(

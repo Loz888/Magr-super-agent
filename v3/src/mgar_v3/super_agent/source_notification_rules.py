@@ -4,7 +4,7 @@ import hashlib
 from datetime import datetime, timedelta
 
 from mgar_v3.domain import DomainError, digest
-from mgar_v3.super_agent.policy_domain import NotificationGrant
+from mgar_v3.super_agent.policy_domain import NotificationDestination, NotificationGrant
 from mgar_v3.super_agent.source_notification_domain import NotificationFacts, NotificationTemplate
 
 _TEMPLATES = {
@@ -49,6 +49,14 @@ def quiet_until(grant: NotificationGrant, at: datetime) -> datetime | None:
     return at + timedelta(days=7)  # Permanently quiet: expiry cancels before any send.
 
 
+def delivery_scope(destination: object) -> dict[str, object]:
+    """The exact installed native address carried by ChannelMessage.destination."""
+    return NotificationDestination.model_validate(destination).thread.model_dump(mode="json")
+
+
 def delivery_key(project: str, run_id: str, cause: str, destination: object, kind: str) -> str:
-    # Configuration revision/reconnect/restart never creates a new delivery identity.
-    return digest(["source-notification-v1", project, run_id, cause, destination, kind])
+    # Display aliases, disclosure metadata and configuration revisions cannot
+    # give the same native recipient a second delivery identity.
+    return digest(
+        ["source-notification-v1", project, run_id, cause, delivery_scope(destination), kind]
+    )

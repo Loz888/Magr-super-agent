@@ -19,7 +19,7 @@ from mgar_v3.super_agent.source_notification_domain import (
     NotificationSettings,
 )
 from mgar_v3.super_agent.source_notification_ports import NotificationProfile
-from mgar_v3.super_agent.source_notification_rules import quiet_until
+from mgar_v3.super_agent.source_notification_rules import delivery_scope, quiet_until
 
 if TYPE_CHECKING:
     from mgar_v3.coordination.engine import Connection, Engine
@@ -260,13 +260,13 @@ class NotificationStore:
             "SELECT max(e.created_at) AS last,count(*) FILTER(WHERE e.created_at>%s) AS hour "
             "FROM app.sa_notification_events e JOIN app.sa_notification_intents n USING(action_id) "
             "WHERE e.project_id=%s AND n.source_instance_id=%s AND e.kind='send_authorized' "
-            "AND e.action_id<>%s AND n.destination=%s::jsonb",
+            "AND e.action_id<>%s AND n.destination->'thread'=%s::jsonb",
             (
                 now - timedelta(hours=1),
                 self.project,
                 intent["source_instance_id"],
                 intent["action_id"],
-                json.dumps(intent["destination"]),
+                json.dumps(delivery_scope(intent["destination"])),
             ),
         ).fetchone()
         assert other is not None

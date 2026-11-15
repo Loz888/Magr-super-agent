@@ -38,7 +38,7 @@
   "artifacts": [
     {
       "path": "docs/super-agent-v1/SA17_NOTIFICATIONS.md",
-      "sha256": "3ab6e5c2645feb62490b8005a7e9211a11a84887e717f2a19d614990814c6ea6"
+      "sha256": "20c6b9bad5397a834243edde336cfabbe434b8427f66060f26e3ccac2c8541d3"
     },
     {
       "path": "migrations/0049_source_notifications.sql",
@@ -54,7 +54,7 @@
     },
     {
       "path": "src/mgar_v3/super_agent/source_notifications.py",
-      "sha256": "4b285b23b4aa5244af86a7ecdb0787e2068e2205a8c7ef2fd10e947bf62f89c7"
+      "sha256": "4966f4ec9309ad20bbb5f3aac31076885ba69453017b7330298e9dc236122282"
     },
     {
       "path": "src/mgar_v3/super_agent/source_notification_domain.py",
@@ -66,11 +66,11 @@
     },
     {
       "path": "src/mgar_v3/super_agent/source_notification_rules.py",
-      "sha256": "87ac6e0c52912c2b3ff6b87a5882c2e351fb4b17eb71f3855bef5ce7ba2e825a"
+      "sha256": "bc4fc094edff26acd201f3fd2c27ee644c848d10f877b1256b17a03b49bcec0a"
     },
     {
       "path": "src/mgar_v3/super_agent/source_notification_store.py",
-      "sha256": "b9af54f73505dcae7694767644e3966fcfef1ce29f176840f063a87c9e66a162"
+      "sha256": "0d948f60cd7abe56dcda162d693feb0bc0f808c60d2946b0898750665155ff37"
     },
     {
       "path": "src/mgar_v3/super_agent/source_notification_transport.py",
@@ -176,5 +176,7 @@
       "path": "docs/super-agent-v1/sa17-proposal/preparation-result.json",
       "sha256": "143d8558ccf015e8b6e7a1e51a851dc26fca2ebea7adc9579c236cff6ecc72e1"
     }
-  ]
+  ],
+  "destination_identity": "ChannelMessage SourceThreadRef: exact source scope, conversation_id and native_thread_id; target/visibility stay exact authorization metadata",
+  "identity_repair": "SA17-I01; historical saved intents participate by native thread without rewriting keys or approvals"
 }

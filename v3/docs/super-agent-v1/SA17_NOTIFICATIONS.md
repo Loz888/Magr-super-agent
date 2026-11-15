@@ -21,7 +21,7 @@
 
 Owner先保存明确NotificationGrant，再签署通知配置：当前policy revision/hash、服务端profile hash、原话题、内容类别、频率、cooldown、聚合和有效期。SourceInstance与Channel能力声明必须和已注册profile一致。配置CAS递增并保留签署历史；默认disabled。
 
-计划时重验当前Source/canonical Input/身份角色/Receive/策略/任务来源链和真实结果，程序为实际模板payload_hash写入原Approval，随后创建原Action/Outbox。按项目、Run、cause、目的地和内容类生成持久幂等键；重连、重启、配置版本变化都不能重建同一结果的发送。
+计划时重验当前Source/canonical Input/身份角色/Receive/策略/任务来源链和真实结果，程序为实际模板payload_hash写入原Approval，随后创建原Action/Outbox。按项目、Run、cause、实际原生接收范围和内容类生成持久幂等键；重连、重启、配置版本变化都不能重建同一结果的发送。
 
 领取前重验当前授权、hash、epoch/revision、期限和quiet/频率/cooldown。quiet或限频只延期原ready记录；聚合窗口内更新cause会取消旧未发动作，保留旧不可变intent并只留一个最新待发动作。发送前先提交SA07通知配额，再开一个原事务做最终当前检查，提交后才调用Channel。已完成提交的撤权/角色变更在该边界会阻止实际发送。最后检查之后已经开始的远端调用按真实结果记账，不承诺撤回已发请求。
 
@@ -60,3 +60,5 @@ Dispatcher每次只发送一个已领取的原Action，匹配安装/scope、幂�
 固定确认a09aef760e4c43ff46595a3c3cc56c503b018e97第42节覆盖0049五表、三文件接线及11接口；原SQL/补丁和完整哈希不改。初始接线后仅对Engine/API导入排序，非导入AST与符号集合相同。随后两个SIGKILL失败定位到原recover对通知也覆盖业务原因，精确同范围修复另存recovery-isolation-repair.patch与post-integration-repairs.json，不增加文件/接口/编号/预算范围。旧文件、失败、原探针和分版本归档完整保留。
 
 已通过项按用户要求不重跑；版本汇总不等于最新候选单轮全量通过。静态成绩绑定其列明版本，后续修复按失败范围执行。独立验收尚未完成；真实平台、付费、外发、发布、全系统安全与长期运行均NOT_RUN。
+
+SA17-I01修正：实际投递身份为ChannelMessage使用的SourceThreadRef（完整安装scope、conversation_id、native_thread_id）。target别名和visibility仍由原NotificationGrant/配置/精确payload审批校验，但不拆分同一接收话题的幂等、聚合、冷却或小时限频。历史不可变intent按其保存的thread与cause参与重复查找，聚合/限频也读取原thread，旧平台幂等键、回执和签署事实不改写。无SQL/迁移、Engine/API或共享预算算法变更；仅复验原独立别名失败项，其余通过项不重跑，等待独立复验。
