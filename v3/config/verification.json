@@ -1912,5 +1912,16 @@
       "real_gates": "NOT_RUN",
       "SA19": "NOT_STARTED"
     }
+  },
+  "SAV1-18-ASYNC": {
+    "tests": [
+      "tests/test_source_review_async.py"
+    ],
+    "timeout_seconds": 300,
+    "components": {
+      "scope": "First actual SA14-to-SA18 context lifetime and Owner restriction while awaiting review; prior passes excluded",
+      "real_gates": "NOT_RUN",
+      "SA19": "NOT_STARTED"
+    }
   }
 }

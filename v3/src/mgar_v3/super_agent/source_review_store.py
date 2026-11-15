@@ -246,6 +246,12 @@ class ReviewStore:
             profile.valid_until,
             v.observed_at + timedelta(minutes=15),
         )
+        view = conn.execute(
+            "SELECT expires_at FROM app.sa_async_operation_views WHERE operation_id=%s",
+            (v.operation_id,),
+        ).fetchone()
+        if view is not None:
+            expires = min(expires, view["expires_at"])
         if expires <= now + timedelta(seconds=2):
             raise denied("EXPIRED")
         identifier = uuid4()

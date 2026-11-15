@@ -6,7 +6,6 @@ import signal
 import subprocess
 import sys
 from datetime import datetime
-from pathlib import Path
 from uuid import UUID
 
 import pytest
@@ -115,7 +114,8 @@ def test_actual_sigkill_preserves_unknown_and_never_replays_publication(point, e
         finally:
             with restarted.transaction() as conn:
                 ops = conn.execute(
-                    "SELECT provider_operation_id,assignment_id FROM app.sa_scheduler_operations WHERE kind IN ('start','job')"
+                    "SELECT provider_operation_id,assignment_id FROM app.sa_scheduler_operations "
+                    "WHERE kind IN ('start','job')"
                 ).fetchall()
             for op in ops:
                 probe = docker("container", "inspect", op["provider_operation_id"])

@@ -2,6 +2,7 @@
 
 import base64
 import json
+import os
 import socket
 import subprocess
 import threading
@@ -15,6 +16,7 @@ from sa18_runtime_support import reviewed
 from websockets.sync.client import connect
 
 from mgar_v3.api import create_app
+from mgar_v3.settings import ROOT
 from mgar_v3.web_access import SESSION_COOKIE
 
 CHROME = Path(
@@ -88,7 +90,13 @@ def browser(engine, tmp_path, cookie):
             "about:blank",
         ],
         stdout=subprocess.DEVNULL,
-        stderr=subprocess.DEVNULL,
+        stderr=(tmp_path / "chromium-stderr.log").open("wb"),
+        env={
+            **os.environ,
+            "LD_LIBRARY_PATH": str(
+                ROOT / ".local/sa18-browser-runtime/extracted/usr/lib/x86_64-linux-gnu"
+            ),
+        },
     )
     client = None
     try:
@@ -116,7 +124,8 @@ def browser(engine, tmp_path, cookie):
         )["success"]
         client.call("Page.navigate", url="http://127.0.0.1:18081/source-reviews")
         client.wait(
-            "document.getElementById('reviews') && document.querySelectorAll('#reviews button').length===1"
+            "document.getElementById('reviews') && "
+            "document.querySelectorAll('#reviews button').length===1"
         )
         yield client
     finally:
@@ -137,7 +146,8 @@ def test_actual_owner_console_reviews_full_diff_approves_and_displays_fixture_re
         with browser(engine, tmp_path, e.cookie) as b:
             b.evaluate("document.querySelector('#reviews button').click()")
             b.wait(
-                "document.getElementById('detail').hidden===false && !document.getElementById('approve').disabled"
+                "document.getElementById('detail').hidden===false && "
+                "!document.getElementById('approve').disabled"
             )
             body = b.evaluate("document.body.innerText")
             assert "+    return sum(values)" in body

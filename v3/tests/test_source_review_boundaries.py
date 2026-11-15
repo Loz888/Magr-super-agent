@@ -5,7 +5,8 @@ from datetime import timedelta
 from uuid import uuid4
 
 import pytest
-from sa05_support import payload, setup as github_setup, signed
+from sa05_support import payload, signed
+from sa05_support import setup as github_setup
 from sa18_runtime_support import approve, git, reviewed
 
 from mgar_v3.domain import DomainError
