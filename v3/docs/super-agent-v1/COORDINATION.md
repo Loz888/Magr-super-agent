@@ -360,3 +360,10 @@ SA18独立关闭已获用户接受。SA19第45节8d19308确认已核对，正式
 SA19-I01独立P2（非空ASGI root_path绕过私有静态保护）已确认并本地定向修复。候选045934c仅原三个失败参数3PASS/exit0，HTML别名GET为404、JS/CSS HEAD为405，均no-store；原探针字节/断言未改，其他33独立通过、历史78正式/54准备与静态通过目标均未重跑。见[修复报告](SA19_I01_REPAIR_20261115.md)及[机器记录](accept/SAV1-19/i01-repair.json)。SA19保持IN_PROGRESS、未放行，等待独立复验；SA20未启动，主库仍44，真实门NOT_RUN，固定H12 FAIL保留。
 
 只改SA私有source_console_api.py及其Source目录指纹，无共享Engine/API/首页/迁移/预算语义变化，不增加接口或新编号。未操作Harness活动树或H12；不要求新的共享所有权确认。
+
+
+## SA20具体提案与阶段准备，2026-11-15
+
+SA20当前：私有契约/纯信号/0053隔离草案70项与限权客户端18项均有分版本PASS，原失败仅定向复验、通过项不重跑；静态结果按版本保留。见[实施边界](SA20_OPERATIONS.md)／[70项准备](accept/SAV1-20/preparation-20261115.json)／[客户端摘要](accept/SAV1-20/client-preparation-20261115.json)。[0053四表/三文件/11接口具体请求](sa20-proposal/ownership-request.txt)待Harness新确认，正式SQL/共享接线未应用，部署与备份恢复演练NOT_RUN。SA21未启动，主库仍44，真实门NOT_RUN，固定H12 FAIL保留。
+
+提案a9e2a7a/记录3f75b60，0053 SQL 1ae8bd6e…d2c37、三文件patch ecc71e2f…6c74a，完整哈希在请求中。私有客户端后续实现不改SQL/patch，已通过项未重跑。当前只读取固定Harness提交8d19308，未应用其活动树或声称已收到SA20新确认。

@@ -1,3 +1,7 @@
+当前更新：SA20当前：私有契约/纯信号/0053隔离草案70项与限权客户端18项均有分版本PASS，原失败仅定向复验、通过项不重跑；静态结果按版本保留。见[实施边界](SA20_OPERATIONS.md)／[70项准备](accept/SAV1-20/preparation-20261115.json)／[客户端摘要](accept/SAV1-20/client-preparation-20261115.json)。[0053四表/三文件/11接口具体请求](sa20-proposal/ownership-request.txt)待Harness新确认，正式SQL/共享接线未应用，部署与备份恢复演练NOT_RUN。SA21未启动，主库仍44，真实门NOT_RUN，固定H12 FAIL保留。
+
+以下为历史阶段记录：
+
 当前更新：SA19 045934c/40bbbcf的I01独立原三个失败参数3PASS已核对并获用户接受，静态资源均拒绝且no-store，原探针不改、其他通过及旧失败保留；见[独立关闭](accept/SAV1-19/independent-closure-20261115.json)。按指令启动SA20常驻部署/Watchdog/运维，先审计既有进程、身份、租约、源健康和备份边界，共享范围另行精确协调。SA21未启动，主库仍44，真实门NOT_RUN，固定H12 FAIL保留。
 
 以下为历史阶段记录：

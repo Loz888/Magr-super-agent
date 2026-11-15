@@ -1,0 +1,58 @@
+{
+  "card": "SAV1-20",
+  "scope": "PRIVATE_CLIENT_PREPARATION_ONLY_NO_FORMAL_HOOKS",
+  "status": "IN_PROGRESS_WAITING_SHARED_CONFIRMATION",
+  "UTC": "2026-11-15T11:36:41.708618+00:00",
+  "client_tests": {
+    "unique_PASS": 18,
+    "source_commit": "f3e260ffbe4cb75f1bc69aaded5e33aaec33da43",
+    "source_sha256": "e7770766e5cf193b1525c862272a19d6b992960a0b28e8e1c101188cef3573f7",
+    "result": "evidence/SAV1-20-CLIENT/20261115T113011Z-015a235c/result.json",
+    "test_transport": "synthetic httpx.MockTransport only; no real service process or platform",
+    "not_rerun": true
+  },
+  "earlier_contract_SQL_preparation": {
+    "unique_version_bound_PASS": 70,
+    "record": "docs/super-agent-v1/accept/SAV1-20/preparation-20261115.json",
+    "not_rerun": true
+  },
+  "total_distinct_stage_cases": 88,
+  "latest_source_commit": "1670ba99fc09cf4c0c94abf6b6d18d217e9d2bad",
+  "latest_source_sha256": "eff5a0e9663fad9a386cd7c81e4ff6c74ef1f2db9e939e21da3e9610ecc7b9a7",
+  "static_results": {
+    "initial_full_typecheck": "PASS318 at a9e2a7a, not rerun",
+    "initial_full_lint": "FAIL8 then failed target PASS at78513a4; not rerun after client feature",
+    "new_client_lint": "FAILUP047 atf3e260f, failed target PASS at32b9f4b; not rerun",
+    "new_client_mypy": "FAIL4kwargs atf3e260f and32b9f4b, remaining single-file failed target PASS at1670ba9",
+    "preserved_intermediate_error": "First textual HTTP kwargs replacement did not match the formatted call. Raw error and commit retained; exact patch applied for final failed-only mypy target."
+  },
+  "source_archives_and_raw_rounds": "evidence/super-agent-v1/SAV1-20/start-20261115T110801Z-a46682a3",
+  "formal_0053_shared_Engine_API_Settings": "NOT_APPLIED",
+  "formal_operations_runtime_and_endpoints": "NOT_RUN_NOT_DELIVERED_YET",
+  "real_daemons_TLS_deployment_backup_restore_fault_drills": "NOT_RUN",
+  "ownership_request": "docs/super-agent-v1/sa20-proposal/ownership-request.txt",
+  "ownership_request_commit": "3f75b60",
+  "closeout": {
+    "UTC": "2026-11-15T11:34:35.024958+00:00",
+    "source_commit": "1670ba99fc09cf4c0c94abf6b6d18d217e9d2bad",
+    "source_sha256": "eff5a0e9663fad9a386cd7c81e4ff6c74ef1f2db9e939e21da3e9610ecc7b9a7",
+    "main_migrations": 44,
+    "main_port": 55435,
+    "main_operations_tables": 0,
+    "main_readonly_sessions_closed": true,
+    "formal_repository_migrations": 49,
+    "artifact_references": 584,
+    "SQL_and_shared_patch_exact_proposal": true,
+    "shared_three_files_before_hashes_match": true,
+    "formal_SQL_patch_not_applied": true,
+    "owned_containers_remaining": [],
+    "protected_files_unchanged": 18,
+    "legacy_H06_preserved": true,
+    "other_CLI_resources_untouched": true,
+    "real_gates": "NOT_RUN",
+    "SA21": "NOT_STARTED"
+  },
+  "SA21": "NOT_STARTED",
+  "real_gates": "NOT_RUN",
+  "H12": "fixed FAIL retained; another CLI"
+}
