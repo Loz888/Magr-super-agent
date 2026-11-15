@@ -517,13 +517,14 @@
       "optional": false,
       "card": "TASKS.md#sa16",
       "verification_target_on_implementation": "SAV1-16",
-      "work_state": "IMPLEMENTED_PREPARING_INDEPENDENT_REVIEW",
-      "engineering_gate": "SEE_VERSIONED_ACCEPTANCE",
-      "independent_review": "NOT_RUN",
+      "work_state": "I01_LOCAL_SINGLE_CASE_PASS_PENDING_INDEPENDENT",
+      "engineering_gate": "PENDING_INDEPENDENT_I01_RECHECK",
+      "independent_review": "FAIL_SA16_I01_AWAITING_RECHECK",
       "shared_scope": "CONFIRMED_91c0b75_SECTION41_0048_FIVE_FILES_13_ROUTES",
       "next_card": "SA17_NOT_STARTED",
       "acceptance": "accept/SAV1-16/accept.json",
-      "ownership": "sa16-proposal/ownership-confirmed.json"
+      "ownership": "sa16-proposal/ownership-confirmed.json",
+      "i01_repair": "accept/SAV1-16/i01-repair.json"
     },
     {
       "id": "SAV1-17",

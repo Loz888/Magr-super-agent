@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-14T14:09:58.999650+00:00",
+  "updated_at": "2026-11-15T03:56:53.444296+00:00",
   "user_instruction": "Codex owns Super-Agent; local Trae owns Harness; coordination is authorized.",
   "owners": {
     "super_agent": {
@@ -15,7 +15,7 @@
   },
   "active_super_agent_card": "SAV1-16",
   "card_status": "IN_PROGRESS",
-  "work_state": "IMPLEMENTED_PREPARING_INDEPENDENT_REVIEW",
+  "work_state": "I01_LOCAL_SINGLE_CASE_PASS_PENDING_INDEPENDENT",
   "harness_observation": {
     "head": "de4775e22e96718e880fde287b2e0928db2945e3",
     "h00_owner_reported_status": "PASS",
@@ -486,5 +486,7 @@
     "interfaces": 13,
     "ownership_record": "sa16-proposal/ownership-confirmed.json"
   },
-  "sa16_acceptance": "accept/SAV1-16/accept.json"
+  "sa16_acceptance": "accept/SAV1-16/accept.json",
+  "sa16_i01_repair": "accept/SAV1-16/i01-repair.json",
+  "sa16_independent_review": "FAIL_SA16_I01_AWAITING_RECHECK"
 }
