@@ -352,7 +352,11 @@ def draft(engine):
     sql = (P / "0053_source_operations.sql").read_text()
     env = owner(engine)
     with engine.transaction() as conn:
-        conn.execute(sql)
+        installed = conn.execute(
+            "SELECT to_regclass('app.sa_operations_controls') AS ready"
+        ).fetchone()
+        if installed["ready"] is None:
+            conn.execute(sql)
     return env
 
 
@@ -364,7 +368,9 @@ def install_control(e, revision=1, enabled=True):
     )
     with e.engine.transaction() as conn:
         conn.execute(
-            "INSERT INTO app.sa_operations_versions(project_id,revision,definition,definition_sha256,signed_by,review_ref,valid_until) VALUES(%s,%s,%s,%s,%s,%s,%s)",
+            "INSERT INTO app.sa_operations_versions(project_id,revision,d"
+            "efinition,definition_sha256,signed_by,review_ref,valid_until"
+            ") VALUES(%s,%s,%s,%s,%s,%s,%s)",
             (
                 e.engine.settings.project_id,
                 revision,
@@ -376,7 +382,9 @@ def install_control(e, revision=1, enabled=True):
             ),
         )
         conn.execute(
-            "INSERT INTO app.sa_operations_controls(project_id,revision) VALUES(%s,%s) ON CONFLICT(project_id) DO UPDATE SET revision=excluded.revision",
+            "INSERT INTO app.sa_operations_controls(project_id,revision) "
+            "VALUES(%s,%s) ON CONFLICT(project_id) DO UPDATE SET revision"
+            "=excluded.revision",
             (e.engine.settings.project_id, revision),
         )
     return d
@@ -385,7 +393,10 @@ def install_control(e, revision=1, enabled=True):
 def open_component(e):
     with e.engine.transaction() as conn:
         return conn.execute(
-            "INSERT INTO app.sa_operations_components(project_id,component_id,role,config_revision,generation,boot_id,open_request_id,state,expires_at) VALUES(%s,%s,'worker',1,1,%s,%s,'starting',clock_timestamp()+interval '20 seconds') RETURNING *",
+            "INSERT INTO app.sa_operations_components(project_id,componen"
+            "t_id,role,config_revision,generation,boot_id,open_request_id"
+            ",state,expires_at) VALUES(%s,%s,'worker',1,1,%s,%s,'starting"
+            "',clock_timestamp()+interval '20 seconds') RETURNING *",
             (e.engine.settings.project_id, e.component_id, uuid4(), uuid4()),
         ).fetchone()
 
@@ -396,7 +407,8 @@ def test_exact0053_is_overlay_only_four_tables_and_original49_migration_ledger(d
         assert conn.execute("SELECT count(*) AS n FROM app.schema_migrations").fetchone()["n"] == 49
         assert (
             conn.execute(
-                "SELECT count(*) AS n FROM pg_tables WHERE schemaname='app' AND tablename LIKE 'sa_operations_%'"
+                "SELECT count(*) AS n FROM pg_tables WHERE schemaname='app' A"
+                "ND tablename LIKE 'sa_operations_%'"
             ).fetchone()["n"]
             == 4
         )
@@ -424,7 +436,8 @@ def test_ops_versions_are_immutable_and_no_body_or_financial_permissions_fit(dra
         conn.execute("DELETE FROM app.sa_operations_versions")
     with pytest.raises(psycopg.Error), draft.engine.transaction() as conn:
         conn.execute(
-            'UPDATE app.sa_operations_versions SET definition=definition||\'{"body":"private"}\'::jsonb'
+            "UPDATE app.sa_operations_versions SET definition=definition|"
+            '|\'{"body":"private"}\'::jsonb'
         )
 
 
@@ -437,7 +450,8 @@ def test_component_generation_and_pending_unknown_survive_reopen_attempt(draft):
     request = uuid4()
     with e.engine.transaction() as conn:
         conn.execute(
-            "UPDATE app.sa_operations_components SET tick_request_id=%s,tick_sequence=1,tick_state='reserved'",
+            "UPDATE app.sa_operations_components SET tick_request_id=%s,t"
+            "ick_sequence=1,tick_state='reserved'",
             (request,),
         )
         conn.execute("UPDATE app.sa_operations_components SET tick_state='unknown'")
@@ -455,13 +469,16 @@ def test_committed_ops_revoke_blocks_new_heartbeat_but_keeps_old_result_receipt(
     open_component(e)
     with e.engine.transaction() as conn:
         conn.execute(
-            "UPDATE app.sa_operations_components SET tick_request_id=%s,tick_sequence=1,tick_state='reserved'",
+            "UPDATE app.sa_operations_components SET tick_request_id=%s,t"
+            "ick_sequence=1,tick_state='reserved'",
             (uuid4(),),
         )
     install_control(e, revision=2, enabled=False)
     with pytest.raises(psycopg.Error), e.engine.transaction() as conn:
         conn.execute(
-            "UPDATE app.sa_operations_components SET sequence=sequence+1,heartbeat_at=clock_timestamp(),expires_at=clock_timestamp()+interval '20 seconds'"
+            "UPDATE app.sa_operations_components SET sequence=sequence+1,"
+            "heartbeat_at=clock_timestamp(),expires_at=clock_timestamp()+"
+            "interval '20 seconds'"
         )
     with e.engine.transaction() as conn:
         conn.execute("UPDATE app.sa_operations_components SET tick_state='unknown'")
