@@ -1,0 +1,13 @@
+:root{color-scheme:light dark;font:16px/1.6 system-ui,sans-serif;color:#172b3a;background:#f4f6f8}
+*{box-sizing:border-box}body{margin:0}main{max-width:1060px;margin:auto;padding:28px}
+nav,.row{display:flex;align-items:center;gap:16px;flex-wrap:wrap}nav{justify-content:space-between}
+section,details{background:#fff;border:1px solid #ccd6df;border-radius:12px;padding:22px;margin:20px 0}
+h1{font-size:30px}h2{font-size:22px;flex:1}h3{font-size:18px}.notice{border-left:4px solid #bc7b16;padding:12px;background:#fff3db}
+button,input,select{font:inherit;border:1px solid #8eacbe;border-radius:6px;padding:8px 12px}
+button{cursor:pointer;background:#eaf2f8;color:#143f59}button:disabled{opacity:.5;cursor:default}
+button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible{outline:3px solid #277caa;outline-offset:3px}
+form{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:18px;padding-top:18px}
+label{display:flex;flex-direction:column;gap:4px}pre{overflow:auto;white-space:pre-wrap;overflow-wrap:anywhere;background:#edf2f5;border-radius:6px;padding:16px;font:14px/1.55 ui-monospace,monospace}
+#reviews button{display:block;text-align:left;width:100%;margin:10px 0}#status{min-height:28px}
+@media(prefers-color-scheme:dark){:root{background:#131d24;color:#e0eaf0}section,details{background:#1b2933;border-color:#3b5363}pre{background:#111c24}.notice{background:#382e1c}button{background:#263f50;color:#e0eff8}}
+@media(max-width:600px){main{padding:14px}section,details{padding:14px}.row button{width:100%}}

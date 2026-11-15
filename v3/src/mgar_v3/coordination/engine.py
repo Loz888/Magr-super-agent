@@ -43,6 +43,7 @@ from mgar_v3.super_agent.source_correlation import SourceCorrelations
 from mgar_v3.super_agent.source_eval import SourceEval
 from mgar_v3.super_agent.source_notifications import SourceNotifications
 from mgar_v3.super_agent.source_recall import SourceRecall
+from mgar_v3.super_agent.source_reviews import SourceReviews
 from mgar_v3.super_agent.source_scheduler import SourceScheduler
 from mgar_v3.super_agent.source_subscription import SourceSubscriptions
 
@@ -97,6 +98,7 @@ class Engine:
         self.source_recall = SourceRecall(self)
         self.source_autonomy = SourceAutonomy(self)
         self.source_notifications = SourceNotifications(self)
+        self.source_reviews = SourceReviews(self)
 
     def close(self) -> None:
         with self._mutex:
@@ -1096,6 +1098,9 @@ class Engine:
         if self.source_notifications.handles(action):
             self.source_notifications.validate_action(conn, action, run)
             return
+        if self.source_reviews.handles(action):
+            self.source_reviews.validate_action(conn, action, run)
+            return
         self.source_policies.check_action(conn, action, run)
         readonly = conn.execute(
             "SELECT scope FROM app.mandates WHERE mandate_id=%s", (run["mandate_id"],)
@@ -1542,6 +1547,7 @@ class Engine:
             self.source_async.recover_conn(conn)
             self.source_autonomy.recover_conn(conn)
             self.source_notifications.recover_conn(conn)
+            self.source_reviews.recover_conn(conn)
             return {
                 "unknown_actions": len(unknown),
                 "paused_runs": len(paused),

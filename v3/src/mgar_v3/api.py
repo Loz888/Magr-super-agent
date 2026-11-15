@@ -63,6 +63,7 @@ from mgar_v3.super_agent.source_correlation_api import register as register_sour
 from mgar_v3.super_agent.source_eval_api import register as register_source_eval
 from mgar_v3.super_agent.source_notification_api import register as register_source_notifications
 from mgar_v3.super_agent.source_recall_api import register as register_source_recall
+from mgar_v3.super_agent.source_review_api import register as register_source_reviews
 from mgar_v3.super_agent.source_scheduler_api import register as register_source_scheduler
 from mgar_v3.super_agent.source_subscription_api import register as register_source_subscriptions
 from mgar_v3.web_access import (
@@ -1297,6 +1298,7 @@ def create_app(
     register_source_recall(app, authority, browser_user)
     register_source_autonomy(app, authority, browser_user)
     register_source_notifications(app, authority, browser_user)
+    register_source_reviews(app, authority, browser_user)
     register(app, authority, authenticated)
     register_commerce(app, authority, authenticated)
     register_recovery(app, configuration, authority, authenticated)

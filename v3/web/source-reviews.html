@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="zh-CN">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>修复审查 · MAGR</title><link rel="stylesheet" href="/assets/source-reviews.css">
+<script src="/assets/source-reviews.js" defer></script></head>
+<body><main>
+<nav><a href="/">返回控制台</a><span>修复审查</span></nav>
+<h1>审查已验证的修复</h1>
+<p class="notice">当前仅开放受控工程流程。受控 Draft PR 回执不会创建真实 GitHub PR。</p>
+<p id="status" role="status" aria-live="polite">正在检查登录状态…</p>
+<section><div class="row"><h2>审查列表</h2><button id="refresh" type="button">刷新</button></div>
+<div id="reviews"></div></section>
+<details><summary>从已完成的编码验证准备审查</summary>
+<form id="prepare">
+<label>编码记录 ID<input id="coding" required autocomplete="off"></label>
+<label>验证回执 ID<input id="verification" required autocomplete="off"></label>
+<label>执行版本<input id="epoch" type="number" min="1" value="1" required></label>
+<label>输入版本<input id="revision" type="number" min="1" value="1" required></label>
+<label>受控发布配置<select id="profile" required></select></label>
+<button type="submit">准备完整审查包</button></form></details>
+<section id="detail" hidden>
+<h2>完整审查包</h2><p id="summary"></p><pre id="facts"></pre>
+<h3>完整 Diff</h3><pre id="diff"></pre><div id="files"></div>
+<p id="expires"></p><div class="row">
+<button id="approve" disabled type="button">批准此审查包的受控 Draft PR</button>
+<button id="cancel" type="button">拒绝此审查包</button>
+<button id="patch" type="button">下载补丁</button>
+<button id="reconcile" type="button">只读核对未知回执</button>
+</div><p>批准只创建待派发动作；不会合并或部署。</p>
+<button id="tick" type="button">派发已批准的受控动作</button></section>
+</main></body></html>

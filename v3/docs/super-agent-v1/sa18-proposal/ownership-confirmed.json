@@ -1,0 +1,27 @@
+{
+  "commit": "09145fe0939b209c43addb0ae6bbbdcc6a6df9a2",
+  "section": 43,
+  "verified_UTC": "2026-11-15T06:36:54.471022+00:00",
+  "changed_files": [
+    "v3/docs/harness-v4/SUPER_AGENT_HANDOFF.md"
+  ],
+  "SQL_sha256": "851f7a0d8a6673aa2f6416536d4f0629cc9d33d59541443e2a04bc88a10b751a",
+  "patch_sha256": "442b0f1778280d9e6ddee04026c0ab6dbc81697beee4493c69567d3141fdbc69",
+  "files": [
+    {
+      "path": "v3/src/mgar_v3/coordination/engine.py",
+      "before_sha256": "f079a8b11131c38fa422022ea3c65435becce7d62e38bcc3efe3e1b9d3da304e",
+      "after_sha256": "d4130dc7a2269171946611e30efe68c23bde52e877d8d881d31a0629382068e9"
+    },
+    {
+      "path": "v3/src/mgar_v3/api.py",
+      "before_sha256": "1d587dd2fde495bb78071e638614c8e4acab27a0f782a681ac12f29ebd4849c6",
+      "after_sha256": "4b04b45423527ecbb64caafd2fc348edec8786e00806f1aa01e19b1009be0549"
+    }
+  ],
+  "formal_copy_applied": true,
+  "main_database_migrated": false,
+  "Harness_imported": false,
+  "SA19": "NOT_STARTED",
+  "real_gates": "NOT_RUN"
+}
