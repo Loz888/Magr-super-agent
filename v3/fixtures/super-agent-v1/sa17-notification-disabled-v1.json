@@ -1,0 +1,40 @@
+{
+  "label": "SYNTHETIC_CONTRACT_EXAMPLE_NOT_ACTIVATION",
+  "configure": {
+    "expected_revision": 0,
+    "settings": {
+      "enabled": false,
+      "policy_id": "00000000-0000-4000-8000-000000000001",
+      "policy_revision": 1,
+      "policy_sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+      "profile_sha256": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+      "destination": {
+        "thread": {
+          "scope": {
+            "source_kind": "feishu",
+            "source_instance_id": "00000000-0000-4000-8000-000000000002",
+            "tenant_id": "fixture-tenant",
+            "installation_id": "fixture-install"
+          },
+          "conversation_id": "fixture-chat",
+          "native_thread_id": "fixture-topic"
+        },
+        "target": "feishu:fixture-chat:fixture-topic",
+        "visibility": "private"
+      },
+      "content_classes": [
+        "verified_result",
+        "necessary_question",
+        "review_available",
+        "critical_fault"
+      ],
+      "cooldown_seconds": 300,
+      "aggregation_seconds": 5,
+      "ttl_seconds": 3600,
+      "valid_from": "2026-11-15T00:00:00Z",
+      "valid_until": "2026-11-16T00:00:00Z"
+    },
+    "review_ref": "SYNTHETIC-DISABLED-EXAMPLE-NOT-AUTHORITY"
+  },
+  "real_gates": "NOT_RUN"
+}

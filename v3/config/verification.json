@@ -1856,11 +1856,23 @@
       "tests/test_source_notification_recovery.py",
       "tests/test_source_notification_boundaries.py",
       "tests/test_source_notification_github.py",
-      "tests/test_source_notification_review.py"
+      "tests/test_source_notification_review.py",
+      "tests/test_source_notification_catalogue.py"
     ],
     "timeout_seconds": 600,
     "components": {
       "engineering": "First formal original Engine/46 migrations/eleven routes/controlled Channel/real PG and SIGKILL; no prior card/preparation passes rerun",
+      "real_gates": "NOT_RUN",
+      "SA18": "NOT_STARTED"
+    }
+  },
+  "SAV1-17-CATALOGUE": {
+    "tests": [
+      "tests/test_source_notification_catalogue.py"
+    ],
+    "timeout_seconds": 120,
+    "components": {
+      "scope": "First delivery schema/catalogue/current-source provenance checks only; runtime95/preparation29 passes not repeated",
       "real_gates": "NOT_RUN",
       "SA18": "NOT_STARTED"
     }

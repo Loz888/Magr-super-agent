@@ -1,0 +1,324 @@
+{
+  "version": "source-notification-v1",
+  "authority": "Current Owner only; internal facts are never a client DTO",
+  "contracts": {
+    "NotificationConfigure": {
+      "$defs": {
+        "NotificationDestination": {
+          "additionalProperties": false,
+          "properties": {
+            "thread": {
+              "$ref": "#/$defs/SourceThreadRef"
+            },
+            "target": {
+              "maxLength": 256,
+              "minLength": 1,
+              "title": "Target",
+              "type": "string"
+            },
+            "visibility": {
+              "enum": [
+                "public",
+                "private"
+              ],
+              "title": "Visibility",
+              "type": "string"
+            }
+          },
+          "required": [
+            "thread",
+            "target",
+            "visibility"
+          ],
+          "title": "NotificationDestination",
+          "type": "object"
+        },
+        "NotificationSettings": {
+          "additionalProperties": false,
+          "properties": {
+            "enabled": {
+              "default": false,
+              "title": "Enabled",
+              "type": "boolean"
+            },
+            "policy_id": {
+              "format": "uuid",
+              "title": "Policy Id",
+              "type": "string"
+            },
+            "policy_revision": {
+              "minimum": 1,
+              "title": "Policy Revision",
+              "type": "integer"
+            },
+            "policy_sha256": {
+              "pattern": "^[a-f0-9]{64}$",
+              "title": "Policy Sha256",
+              "type": "string"
+            },
+            "profile_sha256": {
+              "pattern": "^[a-f0-9]{64}$",
+              "title": "Profile Sha256",
+              "type": "string"
+            },
+            "destination": {
+              "$ref": "#/$defs/NotificationDestination"
+            },
+            "content_classes": {
+              "items": {
+                "enum": [
+                  "verified_result",
+                  "necessary_question",
+                  "review_available",
+                  "critical_fault"
+                ],
+                "type": "string"
+              },
+              "maxItems": 4,
+              "minItems": 1,
+              "title": "Content Classes",
+              "type": "array"
+            },
+            "cooldown_seconds": {
+              "default": 300,
+              "maximum": 86400,
+              "minimum": 1,
+              "title": "Cooldown Seconds",
+              "type": "integer"
+            },
+            "aggregation_seconds": {
+              "default": 5,
+              "maximum": 300,
+              "minimum": 0,
+              "title": "Aggregation Seconds",
+              "type": "integer"
+            },
+            "ttl_seconds": {
+              "default": 3600,
+              "maximum": 86400,
+              "minimum": 30,
+              "title": "Ttl Seconds",
+              "type": "integer"
+            },
+            "valid_from": {
+              "format": "date-time",
+              "title": "Valid From",
+              "type": "string"
+            },
+            "valid_until": {
+              "format": "date-time",
+              "title": "Valid Until",
+              "type": "string"
+            }
+          },
+          "required": [
+            "policy_id",
+            "policy_revision",
+            "policy_sha256",
+            "profile_sha256",
+            "destination",
+            "content_classes",
+            "valid_from",
+            "valid_until"
+          ],
+          "title": "NotificationSettings",
+          "type": "object"
+        },
+        "SourceScope": {
+          "additionalProperties": false,
+          "properties": {
+            "source_kind": {
+              "pattern": "^[a-z][a-z0-9_]{0,31}$",
+              "title": "Source Kind",
+              "type": "string"
+            },
+            "source_instance_id": {
+              "format": "uuid",
+              "title": "Source Instance Id",
+              "type": "string"
+            },
+            "tenant_id": {
+              "maxLength": 256,
+              "minLength": 1,
+              "title": "Tenant Id",
+              "type": "string"
+            },
+            "installation_id": {
+              "maxLength": 256,
+              "minLength": 1,
+              "title": "Installation Id",
+              "type": "string"
+            }
+          },
+          "required": [
+            "source_kind",
+            "source_instance_id",
+            "tenant_id",
+            "installation_id"
+          ],
+          "title": "SourceScope",
+          "type": "object"
+        },
+        "SourceThreadRef": {
+          "additionalProperties": false,
+          "properties": {
+            "scope": {
+              "$ref": "#/$defs/SourceScope"
+            },
+            "conversation_id": {
+              "maxLength": 256,
+              "minLength": 1,
+              "title": "Conversation Id",
+              "type": "string"
+            },
+            "native_thread_id": {
+              "anyOf": [
+                {
+                  "maxLength": 256,
+                  "minLength": 1,
+                  "type": "string"
+                },
+                {
+                  "type": "null"
+                }
+              ],
+              "default": null,
+              "title": "Native Thread Id"
+            }
+          },
+          "required": [
+            "scope",
+            "conversation_id"
+          ],
+          "title": "SourceThreadRef",
+          "type": "object"
+        }
+      },
+      "additionalProperties": false,
+      "properties": {
+        "expected_revision": {
+          "minimum": 0,
+          "title": "Expected Revision",
+          "type": "integer"
+        },
+        "settings": {
+          "$ref": "#/$defs/NotificationSettings"
+        },
+        "review_ref": {
+          "maxLength": 200,
+          "minLength": 1,
+          "title": "Review Ref",
+          "type": "string"
+        }
+      },
+      "required": [
+        "expected_revision",
+        "settings",
+        "review_ref"
+      ],
+      "title": "NotificationConfigure",
+      "type": "object"
+    },
+    "NotificationPlanRequest": {
+      "$defs": {
+        "CorrelationInputRef": {
+          "additionalProperties": false,
+          "properties": {
+            "input_id": {
+              "format": "uuid",
+              "title": "Input Id",
+              "type": "string"
+            },
+            "source_instance_id": {
+              "format": "uuid",
+              "title": "Source Instance Id",
+              "type": "string"
+            },
+            "project_id": {
+              "maxLength": 100,
+              "minLength": 1,
+              "title": "Project Id",
+              "type": "string"
+            },
+            "version_fingerprint": {
+              "pattern": "^[a-f0-9]{64}$",
+              "title": "Version Fingerprint",
+              "type": "string"
+            },
+            "state_sha256": {
+              "pattern": "^[a-f0-9]{64}$",
+              "title": "State Sha256",
+              "type": "string"
+            }
+          },
+          "required": [
+            "input_id",
+            "source_instance_id",
+            "project_id",
+            "version_fingerprint",
+            "state_sha256"
+          ],
+          "title": "CorrelationInputRef",
+          "type": "object"
+        }
+      },
+      "additionalProperties": false,
+      "properties": {
+        "run_id": {
+          "format": "uuid",
+          "title": "Run Id",
+          "type": "string"
+        },
+        "source_input": {
+          "$ref": "#/$defs/CorrelationInputRef"
+        },
+        "content_class": {
+          "enum": [
+            "verified_result",
+            "necessary_question",
+            "review_available",
+            "critical_fault"
+          ],
+          "title": "Content Class",
+          "type": "string"
+        }
+      },
+      "required": [
+        "run_id",
+        "source_input",
+        "content_class"
+      ],
+      "title": "NotificationPlanRequest",
+      "type": "object"
+    },
+    "NotificationCancelRequest": {
+      "additionalProperties": false,
+      "properties": {
+        "payload_sha256": {
+          "pattern": "^[a-f0-9]{64}$",
+          "title": "Payload Sha256",
+          "type": "string"
+        }
+      },
+      "required": [
+        "payload_sha256"
+      ],
+      "title": "NotificationCancelRequest",
+      "type": "object"
+    },
+    "NotificationCycleRequest": {
+      "additionalProperties": false,
+      "properties": {
+        "limit": {
+          "default": 16,
+          "maximum": 64,
+          "minimum": 1,
+          "title": "Limit",
+          "type": "integer"
+        }
+      },
+      "title": "NotificationCycleRequest",
+      "type": "object"
+    }
+  }
+}

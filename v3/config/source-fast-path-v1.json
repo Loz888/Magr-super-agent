@@ -19,7 +19,7 @@
     },
     {
       "path": "src/mgar_v3/super_agent/fast_path.py",
-      "sha256": "4a8ea9ed9afc54e6a40a7e49eca8a1ac15f33035781273b71cd4e4251bbbf8b6"
+      "sha256": "019954b0144cf9118f4a39945cde07138c007aba9ab55dd2315913a518d770fa"
     },
     {
       "path": "src/mgar_v3/super_agent/fast_path_domain.py",
