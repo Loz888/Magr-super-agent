@@ -2000,5 +2000,27 @@
       "real_gates": "NOT_RUN",
       "SA20": "NOT_STARTED"
     }
+  },
+  "SAV1-19-HTTP": {
+    "tests": [
+      "tests/test_source_console_http.py"
+    ],
+    "timeout_seconds": 240,
+    "components": {
+      "scope": "First HTTP owner/body/CSRF/redaction and new current identity/health/task metadata projections; previous25 backend/54 preparation excluded",
+      "real_gates": "NOT_RUN",
+      "SA20": "NOT_STARTED"
+    }
+  },
+  "SAV1-19-BROWSER": {
+    "tests": [
+      "tests/test_source_console_browser.py"
+    ],
+    "timeout_seconds": 240,
+    "components": {
+      "scope": "First actual Chromium UI forms/credentials/Shadow/Ingress/shared budget/health/task close and stop",
+      "real_gates": "NOT_RUN",
+      "SA20": "NOT_STARTED"
+    }
   }
 }

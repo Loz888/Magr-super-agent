@@ -136,10 +136,42 @@ class ConsoleStore:
                     credential["revision"] if credential else 0,
                 ]
             )
+        roles = conn.execute(
+            "SELECT b.binding_id,b.revision,b.active,b.roles,i.revision AS identity_revision,"
+            "i.revoked_at,i.principal_id FROM app.source_role_bindings b "
+            "JOIN app.source_identities i USING(identity_id,project_id) "
+            "WHERE b.project_id=%s ORDER BY b.binding_id LIMIT 1001",
+            (self.project,),
+        ).fetchall()
+        if len(roles) > 1000:
+            raise DomainError("CONSOLE_SCOPE_BOUND", "身份授权数量超过本版上限。", 409)
+        identities = conn.execute(
+            "SELECT identity_id,revision,revoked_at FROM app.source_identities "
+            "WHERE project_id=%s ORDER BY identity_id LIMIT 1001",
+            (self.project,),
+        ).fetchall()
+        if len(identities) > 1000:
+            raise DomainError("CONSOLE_SCOPE_BOUND", "来源身份数量超过本版上限。", 409)
         return digest(
             {
                 "project": self.project,
                 "sources": sources,
+                "identities": [
+                    [str(i["identity_id"]), i["revision"], i["revoked_at"] is not None]
+                    for i in identities
+                ],
+                "roles": [
+                    [
+                        str(r["binding_id"]),
+                        r["revision"],
+                        r["active"],
+                        r["roles"],
+                        r["identity_revision"],
+                        r["revoked_at"] is not None,
+                        str(r["principal_id"]),
+                    ]
+                    for r in roles
+                ],
                 "policies": [
                     [
                         str(p["policy_id"]),

@@ -39,6 +39,12 @@ class ConsoleProjection(ConsoleStore):
             "WHERE source_instance_id=%s AND project_id=%s",
             (identifier, self.project),
         ).fetchone()
+        fast = conn.execute(
+            "SELECT c.revision,v.settings FROM app.sa_fast_path_controls c "
+            "JOIN app.sa_fast_path_versions v ON v.source_instance_id=c.source_instance_id "
+            "AND v.revision=c.revision WHERE c.source_instance_id=%s AND c.project_id=%s",
+            (identifier, self.project),
+        ).fetchone()
         return {
             "source_id": identifier,
             "scope": instance.scope.model_dump(mode="json"),
@@ -49,6 +55,7 @@ class ConsoleProjection(ConsoleStore):
             "settings": config["definition"] if config else None,
             "stale": bool(config and config["source_revision"] != instance.revision),
             "credential": self._credential_public(conn, identifier),
+            "fast_path": fast or {"revision": 0, "settings": {"enabled": False}},
             "ingress": control or {"generation": 0, "settings": {"owner": "disabled"}},
             "health": {
                 "connection": "unknown",
@@ -232,6 +239,16 @@ class ConsoleProjection(ConsoleStore):
                 "WHERE v.project_id=%s AND v.run_id=%s ORDER BY v.signed_at DESC LIMIT 51",
                 (self.project, identifier),
             ).fetchall()
+            authorities = conn.execute(
+                "SELECT p.source_instance_id AS source_id,b.policy_id,b.policy_revision,"
+                "NULL::uuid AS input_id,'policy' AS kind FROM app.source_run_policies b "
+                "JOIN app.source_policies p USING(policy_id) WHERE b.run_id=%s AND b.project_id=%s UNION "
+                "SELECT source_instance_id,policy_id,policy_revision,input_id,'coding' "
+                "FROM app.sa_coding_bindings WHERE run_id=%s AND project_id=%s UNION "
+                "SELECT source_instance_id,NULL::uuid,NULL::bigint,input_id,'autonomy' "
+                "FROM app.sa_autonomy_attempts WHERE run_id=%s AND project_id=%s LIMIT 51",
+                (identifier, self.project, identifier, self.project, identifier, self.project),
+            ).fetchall()
             return {
                 "run": run,
                 "jobs": jobs[:50],
@@ -239,10 +256,45 @@ class ConsoleProjection(ConsoleStore):
                 "actions": actions[:50],
                 "usage": usage,
                 "source_links": links[:50],
-                "truncated": any(len(rows) > 50 for rows in (jobs, assignments, actions, links)),
+                "source_authorities": authorities[:50],
+                "truncated": any(
+                    len(rows) > 50 for rows in (jobs, assignments, actions, links, authorities)
+                ),
                 "pending_jobs": sum(row["state"] != "known" for row in jobs),
                 "closing_browser_cancels_task": False,
             }
+
+    def _identity_views(self, conn: Connection) -> Row:
+        evidence = conn.execute(
+            "SELECT e.evidence_id,e.identity_id,e.source_revision,e.verified_at,e.expires_at,"
+            "e.source_thread,i.actor_ref,i.revision AS identity_revision,i.revoked_at,"
+            "(e.auth_revision=i.revision AND i.revoked_at IS NULL "
+            "AND e.expires_at>clock_timestamp() AND e.source_revision=(SELECT max(v.revision) "
+            "FROM app.source_instance_versions v WHERE v.source_instance_id=e.source_instance_id)) AS usable "
+            "FROM app.source_identity_evidence e JOIN app.source_identities i USING(identity_id,project_id) "
+            "WHERE e.project_id=%s ORDER BY e.verified_at DESC,e.evidence_id DESC LIMIT 101",
+            (self.project,),
+        ).fetchall()
+        bindings = conn.execute(
+            "SELECT b.binding_id,b.identity_id,b.roles,b.revision,b.active,b.revoked_at,"
+            "i.actor_ref,i.revision AS identity_revision,i.revoked_at AS identity_revoked_at,"
+            "i.principal_id,(SELECT count(*) FROM app.source_task_controllers c "
+            "WHERE c.binding_id=b.binding_id AND c.active) AS controlled_ticket_count "
+            "FROM app.source_role_bindings b JOIN app.source_identities i USING(identity_id,project_id) "
+            "WHERE b.project_id=%s ORDER BY b.binding_id LIMIT 101",
+            (self.project,),
+        ).fetchall()
+        principals = conn.execute(
+            "SELECT principal_id,principal_kind,engine_actor,console_user_id "
+            "FROM app.source_principals WHERE project_id=%s ORDER BY principal_id LIMIT 101",
+            (self.project,),
+        ).fetchall()
+        return {
+            "evidence": evidence[:100],
+            "bindings": bindings[:100],
+            "principals": principals[:100],
+            "truncated": any(len(rows) > 100 for rows in (evidence, bindings, principals)),
+        }
 
     def snapshot(self, cookie: str, runtimes: tuple[Any, ...] = ()) -> Row:
         with self.engine._mutex:
@@ -251,6 +303,7 @@ class ConsoleProjection(ConsoleStore):
                 snapshot = self._snapshot_hash(conn)
                 sources = [self._source_view(conn, i) for i in self._instances(conn)]
                 policies = self._policies(conn)
+                identities = self._identity_views(conn)
                 tasks = self._tasks(conn)
                 decisions = self._decisions(conn)
                 actions = conn.execute(
@@ -277,6 +330,7 @@ class ConsoleProjection(ConsoleStore):
                 "snapshot_sha256": snapshot,
                 "capabilities": self.capabilities(),
                 "sources": sources,
+                "identities": identities,
                 "policies": policies,
                 "tasks": tasks,
                 "decisions": decisions,
