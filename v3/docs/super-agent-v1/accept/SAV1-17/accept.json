@@ -1,20 +1,20 @@
 {
   "card": "SAV1-17",
-  "status": "IN_PROGRESS_SA17_I01_REPAIR_PASS_PENDING_INDEPENDENT",
-  "updated_at_UTC": "2026-11-15T05:35:37.336344+00:00",
+  "status": "DONE_USER_ACCEPTED_SCOPED_INDEPENDENT_LOCAL_CONTROLLED",
+  "updated_at_UTC": "2026-11-15T05:47:18.996776+00:00",
   "source_commit": "f455c8ed3e23f565990f42392736064a0b54eff4",
   "source_sha256": "6f862aa6ca89ba2a9136217464f7d1c959960658660b15f2a51459e4b81be74b",
   "runtime_implementation_candidate": "83ad632402e9b05b477ca61cd9177dc5de161f77",
   "runtime_implementation_sha256": "6b50f49ae05412abf63efcef8832f0cf537ddeea95856d52c7b880619647adf7",
   "ownership_commit": "a09aef760e4c43ff46595a3c3cc56c503b018e97",
   "ownership_section": 42,
-  "engineering_gate": "NOT_PASSED_SA17_I01_PENDING_INDEPENDENT_RECHECK",
+  "engineering_gate": "PASS_LOCAL_CONTROLLED_VERSIONED_EVIDENCE",
   "policy_security_gate": "NOT_RUN_SYSTEM_WIDE; local negative scope covered by listed targets",
   "live_source_channel_gate": "NOT_RUN",
   "live_coding_gate": "NOT_RUN; controlled fixture Coding verification only; fixed H12 FAIL retained",
   "live_publication_gate": "NOT_RUN",
   "continuous_operation_gate": "NOT_RUN",
-  "independent_review": "FAIL_SA17_I01_AWAITING_RECHECK",
+  "independent_review": "PASS_ORIGINAL_FAILED_CASE_SCOPED_USER_ACCEPTED",
   "SA18": "NOT_STARTED",
   "registered_formal_unique": 100,
   "runtime_unique": 95,
@@ -226,5 +226,7 @@
   "original_formal_and_preparation_evidence": "Retained as previous versioned evidence; not rerun after I01",
   "current_repair": "accept/SAV1-17/i01-repair.json",
   "repair_recheck_cases": 1,
-  "repair_recheck_exit_code": 0
+  "repair_recheck_exit_code": 0,
+  "independent_closure": "accept/SAV1-17/independent-closure-20261115.json",
+  "next_authorized_card": "SAV1-18"
 }

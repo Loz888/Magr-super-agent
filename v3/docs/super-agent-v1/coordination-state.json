@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-11-15T05:35:37.336344+00:00",
+  "updated_at": "2026-11-15T05:47:18.996776+00:00",
   "user_instruction": "Codex owns Super-Agent; local Trae owns Harness; coordination is authorized.",
   "owners": {
     "super_agent": {
@@ -13,9 +13,9 @@
       "cards": "HV4-H00..HV4-H18"
     }
   },
-  "active_super_agent_card": "SAV1-17",
+  "active_super_agent_card": "SAV1-18",
   "card_status": "IN_PROGRESS",
-  "work_state": "SA17_I01_REPAIR_PASS_PENDING_INDEPENDENT",
+  "work_state": "REQUIREMENTS_FIXED_H08_AND_ORIGINAL_REVIEW_PUBLICATION_AUDIT",
   "harness_observation": {
     "head": "de4775e22e96718e880fde287b2e0928db2945e3",
     "h00_owner_reported_status": "PASS",
@@ -472,7 +472,7 @@
   "sa15_completion_handoff": "PREPARED_LOCALLY_NOT_SENT_OR_ACKNOWLEDGED",
   "sa15_i01_repair": "accept/SAV1-15/i01-repair.json",
   "sa15_independent_closure": "accept/SAV1-15/independent-closure-20261114.json",
-  "sa17": "IN_PROGRESS_PENDING_INDEPENDENT_I01_RECHECK",
+  "sa17": "DONE_USER_ACCEPTED_SCOPED_INDEPENDENT",
   "SA16_shared_scope": {
     "status": "CONFIRMED_EXACT_APPLIED",
     "migration": "0048_source_autonomy.sql",
@@ -490,7 +490,7 @@
   "sa16_i01_repair": "accept/SAV1-16/i01-repair.json",
   "sa16_independent_review": "PASS_USER_ACCEPTED_SCOPED",
   "sa16_independent_closure": "accept/SAV1-16/independent-closure-20261115.json",
-  "sa18": "NOT_STARTED",
+  "sa18": "IN_PROGRESS",
   "SA17_shared_scope": {
     "status": "FIXED_CONFIRMED_APPLIED_IN_SA_ONLY",
     "commit": "a09aef760e4c43ff46595a3c3cc56c503b018e97",
@@ -510,5 +510,14 @@
   "sa17_acceptance": "accept/SAV1-17/accept.json",
   "sa17_completion_handoff": "PREPARED_LOCALLY_NOT_SENT_OR_ACKNOWLEDGED",
   "sa17_i01_repair": "accept/SAV1-17/i01-repair.json",
-  "sa17_independent_review": "FAIL_SA17_I01_AWAITING_RECHECK"
+  "sa17_independent_review": "PASS_USER_ACCEPTED_SCOPED",
+  "sa17_independent_closure": "accept/SAV1-17/independent-closure-20261115.json",
+  "sa19": "NOT_STARTED",
+  "SA18_shared_scope": {
+    "status": "NOT_YET_PROPOSED",
+    "migration": null,
+    "prior_section42": "SA17 only; not SA18",
+    "H12": "other CLI",
+    "real_capabilities": "NOT_RUN"
+  }
 }

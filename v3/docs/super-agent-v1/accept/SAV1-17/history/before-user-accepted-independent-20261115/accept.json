@@ -1,0 +1,230 @@
+{
+  "card": "SAV1-17",
+  "status": "IN_PROGRESS_SA17_I01_REPAIR_PASS_PENDING_INDEPENDENT",
+  "updated_at_UTC": "2026-11-15T05:35:37.336344+00:00",
+  "source_commit": "f455c8ed3e23f565990f42392736064a0b54eff4",
+  "source_sha256": "6f862aa6ca89ba2a9136217464f7d1c959960658660b15f2a51459e4b81be74b",
+  "runtime_implementation_candidate": "83ad632402e9b05b477ca61cd9177dc5de161f77",
+  "runtime_implementation_sha256": "6b50f49ae05412abf63efcef8832f0cf537ddeea95856d52c7b880619647adf7",
+  "ownership_commit": "a09aef760e4c43ff46595a3c3cc56c503b018e97",
+  "ownership_section": 42,
+  "engineering_gate": "NOT_PASSED_SA17_I01_PENDING_INDEPENDENT_RECHECK",
+  "policy_security_gate": "NOT_RUN_SYSTEM_WIDE; local negative scope covered by listed targets",
+  "live_source_channel_gate": "NOT_RUN",
+  "live_coding_gate": "NOT_RUN; controlled fixture Coding verification only; fixed H12 FAIL retained",
+  "live_publication_gate": "NOT_RUN",
+  "continuous_operation_gate": "NOT_RUN",
+  "independent_review": "FAIL_SA17_I01_AWAITING_RECHECK",
+  "SA18": "NOT_STARTED",
+  "registered_formal_unique": 100,
+  "runtime_unique": 95,
+  "final_catalogue_first_checks": 5,
+  "preparation_unique": 29,
+  "full_suite_on_final_revision": "NOT_RUN_PER_USER_REPAIR_SCOPE",
+  "passing_targets_repeated": 0,
+  "unresolved_failed_targets": 0,
+  "rounds": [
+    {
+      "round": "prepare-first",
+      "source_commit": "43e2df5281bc1eb825074aea2be6370ec3b58219",
+      "source_sha256": "afc99fdac59a1eea70ae62d87e96e72f92533072644484760f50c37573800754",
+      "archive_sha256": "15e339be2a5dd3b1d392b4cd1a2518d97a969979d3bb6e741c8db72cf670c287",
+      "counts": {
+        "tests": 29,
+        "passed": 29,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "results": {
+        "pytest": 0,
+        "lint": 0,
+        "typecheck": 0
+      },
+      "evidence": "evidence/super-agent-v1/SAV1-17/start-20261115T041117Z-02d2ff43/prepare-first",
+      "junit": "evidence/super-agent-v1/SAV1-17/start-20261115T041117Z-02d2ff43/prepare-first/junit.xml"
+    },
+    {
+      "round": "formal-first",
+      "source_commit": "240bec2cc79eb23d81e453308ac50ff78fa23a1c",
+      "source_sha256": "777be5097f5518ee9883dd770e35309911c1ec25db485b68997f8c3ffd5ba9ef",
+      "archive_sha256": "88ab8d782bcedf78ad7e3d4c07e0abec0468ea9e5ec162640467641763946b64",
+      "counts": {
+        "tests": 83,
+        "passed": 43,
+        "failures": 40,
+        "errors": 0,
+        "skipped": 0
+      },
+      "results": {
+        "pytest": 1,
+        "lint-new": 1,
+        "typecheck-new": 1
+      },
+      "evidence": "evidence/super-agent-v1/SAV1-17/start-20261115T041117Z-02d2ff43/formal-first",
+      "junit": "evidence/super-agent-v1/SAV1-17/start-20261115T041117Z-02d2ff43/formal-first/junit.xml"
+    },
+    {
+      "round": "formal-repair-01",
+      "source_commit": "1e755d467c5c0b47567e343d855ebdf269b5a3c2",
+      "source_sha256": "656ec702bda216447b77226808cd3a74363d1b539832021461a596a1f6077180",
+      "archive_sha256": "a424bce67995301c205fdfd6a6c849ccb30a4fe28affb4decefdd57b741c7c11",
+      "counts": {
+        "tests": 0,
+        "passed": 0,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "results": {
+        "pytest": 4,
+        "lint-new": 0,
+        "typecheck-new": 0
+      },
+      "evidence": "evidence/super-agent-v1/SAV1-17/start-20261115T041117Z-02d2ff43/formal-repair-01",
+      "junit": "evidence/super-agent-v1/SAV1-17/start-20261115T041117Z-02d2ff43/formal-repair-01/junit.xml"
+    },
+    {
+      "round": "formal-repair-02",
+      "source_commit": "1e755d467c5c0b47567e343d855ebdf269b5a3c2",
+      "source_sha256": "656ec702bda216447b77226808cd3a74363d1b539832021461a596a1f6077180",
+      "archive_sha256": "a424bce67995301c205fdfd6a6c849ccb30a4fe28affb4decefdd57b741c7c11",
+      "counts": {
+        "tests": 40,
+        "passed": 38,
+        "failures": 2,
+        "errors": 0,
+        "skipped": 0
+      },
+      "results": {
+        "pytest": 1
+      },
+      "evidence": "evidence/super-agent-v1/SAV1-17/start-20261115T041117Z-02d2ff43/formal-repair-02",
+      "junit": "evidence/super-agent-v1/SAV1-17/start-20261115T041117Z-02d2ff43/formal-repair-02/junit.xml"
+    },
+    {
+      "round": "formal-repair-03",
+      "source_commit": "260061d5ac84b42faaa528eca24d0bda3a0912e7",
+      "source_sha256": "718754e042aea64d65a7b89d53b1c5c53550ef882d683c64ff6db5c21a6a7382",
+      "archive_sha256": "316b8da0e7f59811d3c1842d2fcc355d1a1c7dde86bc257854400e44a4528c23",
+      "counts": {
+        "tests": 2,
+        "passed": 0,
+        "failures": 2,
+        "errors": 0,
+        "skipped": 0
+      },
+      "results": {
+        "pytest": 1
+      },
+      "evidence": "evidence/super-agent-v1/SAV1-17/start-20261115T041117Z-02d2ff43/formal-repair-03",
+      "junit": "evidence/super-agent-v1/SAV1-17/start-20261115T041117Z-02d2ff43/formal-repair-03/junit.xml"
+    },
+    {
+      "round": "new-boundaries-first",
+      "source_commit": "260061d5ac84b42faaa528eca24d0bda3a0912e7",
+      "source_sha256": "718754e042aea64d65a7b89d53b1c5c53550ef882d683c64ff6db5c21a6a7382",
+      "archive_sha256": "316b8da0e7f59811d3c1842d2fcc355d1a1c7dde86bc257854400e44a4528c23",
+      "counts": {
+        "tests": 12,
+        "passed": 7,
+        "failures": 5,
+        "errors": 0,
+        "skipped": 0
+      },
+      "results": {
+        "pytest": 1,
+        "lint-new-tests": 1
+      },
+      "evidence": "evidence/super-agent-v1/SAV1-17/start-20261115T041117Z-02d2ff43/new-boundaries-first",
+      "junit": "evidence/super-agent-v1/SAV1-17/start-20261115T041117Z-02d2ff43/new-boundaries-first/junit.xml"
+    },
+    {
+      "round": "remaining-seven-repair-01",
+      "source_commit": "83ad632402e9b05b477ca61cd9177dc5de161f77",
+      "source_sha256": "6b50f49ae05412abf63efcef8832f0cf537ddeea95856d52c7b880619647adf7",
+      "archive_sha256": "07ca19b4413b23676890753e4d9d890cacdeb03d228ba8eced0fbec289d6e408",
+      "counts": {
+        "tests": 7,
+        "passed": 7,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "results": {
+        "pytest": 0,
+        "lint-new-tests": 0
+      },
+      "evidence": "evidence/super-agent-v1/SAV1-17/start-20261115T041117Z-02d2ff43/remaining-seven-repair-01",
+      "junit": "evidence/super-agent-v1/SAV1-17/start-20261115T041117Z-02d2ff43/remaining-seven-repair-01/junit.xml"
+    },
+    {
+      "round": "catalogue-first",
+      "source_commit": "c478f6f62e1aaadd332592c52e9c99fe76b5c3ce",
+      "source_sha256": "d3c6bfb907e250db803a1ccd7c61f6e950619f78283339ca1abec7ec57060673",
+      "archive_sha256": "39e3ec27da8e6ebdbf80e5d64aafd06cfdf3818b954a163e0459fc45369df7be",
+      "counts": {
+        "tests": 5,
+        "passed": 5,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "results": {
+        "registered-catalogue": 0,
+        "lint-new-catalogue": 0
+      },
+      "evidence": "evidence/super-agent-v1/SAV1-17/start-20261115T041117Z-02d2ff43/catalogue-first",
+      "junit": "evidence/SAV1-17-CATALOGUE/20261115T050307Z-78b8bea6/junit.xml"
+    }
+  ],
+  "scope": [
+    "original Action/Approval/Outbox/Dispatcher with independent notification receipts",
+    "four fixed minimal public_summary templates; exact original Source thread only",
+    "current Source/identity/ACL/policy checks at plan, claim and after committed notification quota",
+    "quiet/aggregation/cooldown/hour quota, canonical input invalidation and immutable causal metadata",
+    "unknown no resend; capability-based read-only query, unqueryable manual wait",
+    "actual original readonly Verifier result, controlled GitHub and Feishu ports, actual fixture Coding review and two real SIGKILL boundaries"
+  ],
+  "main_database": {
+    "port": 55435,
+    "migration_count": 44,
+    "old_checksums_match": true,
+    "0048_installed": false,
+    "0049_installed": false,
+    "write_performed": false,
+    "sa17_named_sessions": 0,
+    "other_test_databases_count_observed_only": 0
+  },
+  "migration_files": 46,
+  "source_catalogues": 16,
+  "artifact_references": 514,
+  "source_stable_during_checks": true,
+  "protected_user_file_sha256": "f4adf9605c87d6256bd2ec17b8436da8a7bced763a8e03b185a8cfe19d34a29f",
+  "protected_user_file_still_untracked": true,
+  "temporary_pg_containers_remaining": [],
+  "evidence": "evidence/super-agent-v1/SAV1-17/start-20261115T041117Z-02d2ff43",
+  "integrity_audit": "evidence/super-agent-v1/SAV1-17/start-20261115T041117Z-02d2ff43/delivery-integrity-audit.json",
+  "local_model_or_platform_spend": {
+    "real_model_calls": 0,
+    "paid_spend": 0,
+    "real_platform_sends": 0,
+    "real_publications": 0,
+    "note": "Fixture provider usage remains controlled protocol evidence, not real model quality or spend."
+  },
+  "limits": [
+    "No full suite on final revision per user instruction",
+    "Static passes bind43e2df5 and1e755d4; later recovery/private-projection repair did not repeat passed static targets",
+    "Historical formal guard metadata expectation updated for the recovery patch, not rerun; new catalogue target verifies current patch provenance",
+    "Earlier runner SA17 PREPARATION_ONLY literal is conservative stage metadata, not a capability result; commands/scopes and JUnit above are authoritative",
+    "First Coding review probe expected waiting_approval, but original Coding contract retains running after result_recorded. Original failure preserved; corrected to assert truthful original state and no publication/completion."
+  ],
+  "repair_scope_note": "First83=43PASS40FAIL (single test setup stale Source revision); only40 retried (one wrong path attempt ran0), 38PASS2FAIL. Original2 SIGKILL points reached after test cipher setup; actual recovery isolation repaired. First12 new targets=7PASS5FAIL; onlyremaining2+5=7PASS. Finally5 new catalogue targets PASS. Original29 and all earlier passing targets never rerun.",
+  "local_repair_gate": "PASS_ORIGINAL_FAILED_CASE_ONLY",
+  "independent_result": "evidence/super-agent-v1/SAV1-17/independent-review-20261115T051115Z-b9a52137/review-result.json",
+  "history": "accept/SAV1-17/history/before-I01/accept.json",
+  "original_formal_and_preparation_evidence": "Retained as previous versioned evidence; not rerun after I01",
+  "current_repair": "accept/SAV1-17/i01-repair.json",
+  "repair_recheck_cases": 1,
+  "repair_recheck_exit_code": 0
+}

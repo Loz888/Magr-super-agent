@@ -1,0 +1,146 @@
+{
+  "card": "SAV1-17",
+  "status": "DONE_USER_ACCEPTED_SCOPED_INDEPENDENT_LOCAL_CONTROLLED",
+  "accepted_UTC": "2026-11-15T05:47:18.996776+00:00",
+  "source_commit": "f455c8ed3e23f565990f42392736064a0b54eff4",
+  "source_sha256": "6f862aa6ca89ba2a9136217464f7d1c959960658660b15f2a51459e4b81be74b",
+  "delivery_commit": "12e75472ed9d7861bf84fdbf4b2937988059b59e",
+  "independent_directory": "evidence/super-agent-v1/SAV1-17/independent-I01-recheck-20261115T054210Z-793fa749",
+  "independent_result": {
+    "schema": "sa17-i01-independent-recheck-v1",
+    "UTC": "2026-11-15T05:44:06.629110+00:00",
+    "status": "PASS_SCOPED_INDEPENDENT_RECHECK",
+    "SA17_I01": "CLOSED_INDEPENDENT_PASS",
+    "SA17": "LOCAL_CONTROLLED_ENGINEERING_ACCEPTED_WITH_VERSIONED_EVIDENCE",
+    "SA18": "NOT_STARTED",
+    "reviewed_head": "12e75472ed9d7861bf84fdbf4b2937988059b59e",
+    "source_commit": "f455c8ed3e23f565990f42392736064a0b54eff4",
+    "source_before": "6f862aa6ca89ba2a9136217464f7d1c959960658660b15f2a51459e4b81be74b",
+    "source_after": "6f862aa6ca89ba2a9136217464f7d1c959960658660b15f2a51459e4b81be74b",
+    "source_unchanged": true,
+    "probe_sha256": "9cc19b43237dd9469b7e5264c6fd8a0ebfe479989eb7a65266dc120e6b43836c",
+    "probe_unchanged": true,
+    "test_target": "test_independent_sa17.py::test_destination_label_change_cannot_resend_same_cause_to_same_native_thread",
+    "counts": {
+      "tests": 1,
+      "passed": 1,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "exit_code": 0,
+    "wrapper_exit_code": 0,
+    "junit": "junit.xml",
+    "log": "pytest.log",
+    "exit_code_receipt": "pytest-exit-code.txt",
+    "runtime_facts": {
+      "same_action_reused": true,
+      "controlled_sends": 1,
+      "intent_count": 1,
+      "second_tick_dispatched": []
+    },
+    "previous_independent_evidence": "/home/imini/magr-super-agent/v3/evidence/super-agent-v1/SAV1-17/independent-review-20261115T051115Z-b9a52137",
+    "prior_49_PASS_rerun": 0,
+    "historical_formal_100_and_preparation_29_rerun": false,
+    "static_targets_rerun": 0,
+    "full_suite_on_repaired_revision": "NOT_RUN_PER_USER_SCOPE",
+    "known_open_findings_in_scope": 0,
+    "historical_original45_exit_limit": "45 JUnit PASS; previous outer summary wrapper exit1 KeyError and pytest child exit not persisted. Original records retained; this recheck does not turn that old wrapper into exit0.",
+    "migration_files": 46,
+    "Source_artifact_refs": 514,
+    "cleanup": "cleanup-final.json",
+    "protected_files": 723,
+    "protected_files_unchanged": true,
+    "gates": {
+      "engineering_gate": "PASS_LOCAL_CONTROLLED_VERSIONED_EVIDENCE",
+      "policy_security_gate": "NOT_RUN_FULL_SYSTEM; original alias failure scope independently PASS",
+      "live_source_channel_gate": "NOT_RUN",
+      "live_coding_gate": "NOT_RUN; fixed H12 FAIL retained",
+      "live_publication_gate": "NOT_RUN",
+      "continuous_operation_gate": "NOT_RUN"
+    },
+    "limits": [
+      "本轮只执行原失败同cause别名目标，原49项独立PASS不重跑。",
+      "去重/聚合/限频统一原生thread的代码已审阅；未额外运行不同cause限频或其他新边界。",
+      "新候选不宣称单轮50/100/129或全仓lint/typecheck通过。",
+      "仅受控Channel；无真实平台、付费、真实外发或发布，不操作Harness活动树。"
+    ]
+  },
+  "verified_manifest_files": [
+    {
+      "path": "REPORT.md",
+      "bytes": 2554,
+      "sha256": "16f61b89cb7f9195fb7bad76b0935893f42eab6dc51f241f496fd31d17aed0c7"
+    },
+    {
+      "path": "baseline.json",
+      "bytes": 158889,
+      "sha256": "2b1232ef655a90dccdc1900f167550655863f595feef66830c380b67ca9caecf"
+    },
+    {
+      "path": "candidate-archive-audit.json",
+      "bytes": 353,
+      "sha256": "4f94b9378f72ba8aedbe9bd6aad9e2ea44453290df463ebe3d475c2346091311"
+    },
+    {
+      "path": "cleanup-final.json",
+      "bytes": 448,
+      "sha256": "e6d2d49b2626915662d6e74618e9026911653298fc767bd576f8eda1ec969661"
+    },
+    {
+      "path": "command.json",
+      "bytes": 10865,
+      "sha256": "af07db43b095c2334dcbc723f3d5514558566a17dae50aee69da1bc9753d82fd"
+    },
+    {
+      "path": "evidence-path",
+      "bytes": 114,
+      "sha256": "262b6dfc1096d0dadb0f66adcaac801cf638f21dce6f60a1440eea030752ad4e"
+    },
+    {
+      "path": "independent-observations.jsonl",
+      "bytes": 1362,
+      "sha256": "bddd9eaec117ecd2aee2dadfa8d2effa6eae29f11234c8151a7db9e6f69e1814"
+    },
+    {
+      "path": "integrity-audit.json",
+      "bytes": 116904,
+      "sha256": "c85aeae612027dca4fed239295cb6b373994c8bf8639ba9b5f5ab86eb3720410"
+    },
+    {
+      "path": "junit.xml",
+      "bytes": 450,
+      "sha256": "627b0a6c8e1967cefeb48cac2a22e4281acff7a01141f00096cc51598acc9549"
+    },
+    {
+      "path": "pytest-exit-code.txt",
+      "bytes": 2,
+      "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+    },
+    {
+      "path": "pytest.log",
+      "bytes": 965,
+      "sha256": "7693737b79cd8b4764640c4a1e6c0cf7a3dbd7eda398c6c143ea4feba5b1d7ef"
+    },
+    {
+      "path": "review-result.json",
+      "bytes": 2744,
+      "sha256": "31dffda686262199866ff9aa934890902ef683ffb6745ce7a4dbf440382e5aff"
+    },
+    {
+      "path": "run.py",
+      "bytes": 5191,
+      "sha256": "dd3a2774b0cf8040d4e24cdfad5941b541e95be9a5e5396ece5c2cb6acbe972f"
+    },
+    {
+      "path": "test_independent_sa17.py",
+      "bytes": 4593,
+      "sha256": "9cc19b43237dd9469b7e5264c6fd8a0ebfe479989eb7a65266dc120e6b43836c"
+    }
+  ],
+  "original_45_wrapper_error_preserved": true,
+  "prior_passes_rerun": 0,
+  "real_gates": "NOT_RUN",
+  "H12": "Fixed local live Agent/MVP FAIL retained, other CLI owns acceptance",
+  "user_authorized_next_card": "SAV1-18"
+}

@@ -531,7 +531,7 @@
       "id": "SAV1-17",
       "short_id": "SA17",
       "title": "多渠道 Outbox 与节制通知",
-      "status": "IN_PROGRESS",
+      "status": "DONE",
       "priority": "P0",
       "phase": "S3",
       "depends_on": [
@@ -546,9 +546,9 @@
       "optional": false,
       "card": "TASKS.md#sa17",
       "verification_target_on_implementation": "SAV1-17",
-      "work_state": "SA17_I01_REPAIR_PASS_PENDING_INDEPENDENT",
-      "engineering_gate": "NOT_PASSED_SA17_I01_PENDING_INDEPENDENT_RECHECK",
-      "independent_review": "FAIL_SA17_I01_AWAITING_RECHECK",
+      "work_state": "LOCAL_CONTROLLED_USER_ACCEPTED_SCOPED_INDEPENDENT_CLOSED",
+      "engineering_gate": "PASS_LOCAL_CONTROLLED_VERSIONED_EVIDENCE",
+      "independent_review": "PASS_ORIGINAL_FAILED_CASE_SCOPED_USER_ACCEPTED",
       "shared_scope": "NOT_YET_PROPOSED",
       "next_card": "SA18_NOT_STARTED",
       "source_commit": "f455c8ed3e23f565990f42392736064a0b54eff4",
@@ -564,13 +564,14 @@
       "SA18": "NOT_STARTED",
       "repair_acceptance": "accept/SAV1-17/i01-repair.json",
       "repair_failed_only_cases": 1,
-      "repair_recheck_exit_code": 0
+      "repair_recheck_exit_code": 0,
+      "independent_closure": "accept/SAV1-17/independent-closure-20261115.json"
     },
     {
       "id": "SAV1-18",
       "short_id": "SA18",
       "title": "Review、精确审批与 Draft PR",
-      "status": "PLANNED",
+      "status": "IN_PROGRESS",
       "priority": "P0",
       "phase": "S3",
       "depends_on": [
@@ -587,7 +588,13 @@
       },
       "optional": false,
       "card": "TASKS.md#sa18",
-      "verification_target_on_implementation": "SAV1-18"
+      "verification_target_on_implementation": "SAV1-18",
+      "authorized_by_user": "Continue SA18 after confirming user-accepted SA17-I01 scoped independent pass",
+      "work_state": "REQUIREMENTS_FIXED_H08_AND_ORIGINAL_REVIEW_PUBLICATION_AUDIT",
+      "engineering_gate": "NOT_RUN",
+      "independent_review": "NOT_RUN",
+      "shared_scope": "NOT_YET_PROPOSED",
+      "SA19": "NOT_STARTED"
     },
     {
       "id": "SAV1-19",
