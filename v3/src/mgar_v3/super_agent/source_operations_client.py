@@ -135,9 +135,8 @@ class LocalOperationsClient:
         method = methods[operation]
         path = f"/api/v3/source-operations/components/{self.config.component_id}/{operation}"
         try:
-            with self.http.stream(
-                method, path, **({"json": body.model_dump(mode="json")} if body is not None else {})
-            ) as response:
+            payload = body.model_dump(mode="json") if body is not None else None
+            with self.http.stream(method, path, json=payload) as response:
                 if response.status_code != 200:
                     if method == "POST" and response.status_code >= 500:
                         raise SubmissionUnconfirmed
