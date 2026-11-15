@@ -1,0 +1,58 @@
+{
+  "status": "PREPARATION_PASS_NOT_FORMAL_ACCEPTANCE",
+  "candidate": "43e2df5281bc1eb825074aea2be6370ec3b58219",
+  "source_sha256": "afc99fdac59a1eea70ae62d87e96e72f92533072644484760f50c37573800754",
+  "evidence": "evidence/super-agent-v1/SAV1-17/start-20261115T041117Z-02d2ff43/prepare-first",
+  "checks": {
+    "source_commit": "43e2df5281bc1eb825074aea2be6370ec3b58219",
+    "source_sha256": "afc99fdac59a1eea70ae62d87e96e72f92533072644484760f50c37573800754",
+    "source_after": "afc99fdac59a1eea70ae62d87e96e72f92533072644484760f50c37573800754",
+    "source_stable": true,
+    "results": {
+      "pytest": {
+        "command": [
+          "/home/imini/magr-super-agent/v3/.venv/bin/python",
+          "-m",
+          "pytest",
+          "-q",
+          "tests/test_source_notification_preparation.py",
+          "--junitxml=/home/imini/magr-super-agent/v3/evidence/super-agent-v1/SAV1-17/start-20261115T041117Z-02d2ff43/prepare-first/junit.xml"
+        ],
+        "exit_code": 0,
+        "source_commit": "43e2df5281bc1eb825074aea2be6370ec3b58219",
+        "source_sha256": "afc99fdac59a1eea70ae62d87e96e72f92533072644484760f50c37573800754"
+      },
+      "lint": {
+        "command": [
+          "make",
+          "lint"
+        ],
+        "exit_code": 0,
+        "source_commit": "43e2df5281bc1eb825074aea2be6370ec3b58219",
+        "source_sha256": "afc99fdac59a1eea70ae62d87e96e72f92533072644484760f50c37573800754"
+      },
+      "typecheck": {
+        "command": [
+          "make",
+          "typecheck"
+        ],
+        "exit_code": 0,
+        "source_commit": "43e2df5281bc1eb825074aea2be6370ec3b58219",
+        "source_sha256": "afc99fdac59a1eea70ae62d87e96e72f92533072644484760f50c37573800754"
+      }
+    },
+    "counts": {
+      "tests": 29,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "SA17": "PREPARATION_ONLY",
+    "SA18": "NOT_STARTED",
+    "real_gates": "NOT_RUN"
+  },
+  "formal_integration": "NOT_RUN_AWAITING_FIXED_HARNESS_CONFIRMATION",
+  "shared_applied": false,
+  "SA18": "NOT_STARTED",
+  "real_gates": "NOT_RUN"
+}

@@ -1,0 +1,39 @@
+请Harness CLI只读核对SA17提案，并单独本地提交所有权/接口/编号确认；不要应用SQL/补丁，不导入H12，不推送。
+
+SA16-I01已由用户接受，当前按指令启动SA17多渠道Outbox与节制通知。提案源码/SQL/补丁提交43e2df5281bc1eb825074aea2be6370ec3b58219。
+目录：/home/imini/magr-super-agent/v3/docs/super-agent-v1/sa17-proposal/
+完整范围：SA17_SCOPE.md；机器清单：proposal-manifest.json。
+
+请求仅在SA副本由SA独占实施：
+1. 0049_source_notifications.sql，五表sa_notification_controls/versions/intents/receipts/events及配套guard/待发撤权触发器；不改旧迁移、不建立第二Task/Run/费用/Delivery主状态机。
+SQL SHA256：3546760623c0bd1710170a75a19e74cf97e759897f975f748c601ae444d91aab
+2. shared-wiring.patch：原Engine、API、FastPath三文件最小接线。
+补丁 SHA256：289879fe1c9c344a11db140866e47c364e6ce3da8215f03f5c2031a0b7c23545
+- v3/src/mgar_v3/coordination/engine.py
+  before 1c0c6321e1092f99ddb8460dc02d2602fa6a654693dd52bfefc08f0a8e06c652
+  after  4785f320795bd7cbc266a99e0f7de5e795c170dc12528c5d3a33f6303b4468a6
+- v3/src/mgar_v3/api.py
+  before 6d6f21282f7c11ce718ba084bf6da1093acb225a27b40808c2b0084301e7eb2c
+  after  9cc4abbffe505aff071a09c58f4d1380ac7fee34eb48e4e74463d0e9e8bfe1c2
+- v3/src/mgar_v3/super_agent/fast_path.py
+  before 4a8ea9ed9afc54e6a40a7e49eca8a1ac15f33035781273b71cd4e4251bbbf8b6
+  after  019954b0144cf9118f4a39945cde07138c007aba9ab55dd2315913a518d770fa
+
+3. 私有super_agent/source_notification*和source_notifications.py、测试/配置/文档/证据归SA；11个当前Owner接口：
+- GET /api/v3/source-notifications/capabilities
+- GET /api/v3/source-notifications/sources/{source_id}
+- PUT /api/v3/source-notifications/sources/{source_id}
+- POST /api/v3/source-notifications/plans
+- GET /api/v3/source-notifications/plans
+- GET /api/v3/source-notifications/plans/{action_id}
+- POST /api/v3/source-notifications/plans/{action_id}/cancel
+- POST /api/v3/source-notifications/tick
+- POST /api/v3/source-notifications/plans/{action_id}/reconcile
+- POST /api/v3/source-notifications/maintain
+- GET /api/v3/source-notifications/events
+
+继承当前Owner cookie及Origin/CSRF，严格有界DTO，不接受自由正文/URL/接收者、模型自报成功或provider/runtime注入。原Action/Approval/Outbox和Dispatcher唯一发送路径；仅新source_notification类型处理独立Delivery，通知回执不推进业务Task/Run发布成功。quiet、当前Source/身份/ACL/策略与实际hash在计划/领取/最终发送前检查。模板四类最小披露，原话题、聚合/冷却/持久幂等；unknown只能按能力只读对账，不能重发。
+
+只使用明确受控fixture Channel profile，无默认发送/监听/付费/真实平台操作。现有H12由另一CLI验收，本副本原FAIL/NOT_RUN保留，不导入H12。共享预算仅复用SA07 notification_quota，不改算法；0049以后的编号本次不预占。主库无新迁移。
+
+AGENTS.md要求：For shared Engine/API/schema/budget changes, agree ownership, interfaces and migration numbering ... before overlapping implementation. 第41节只覆盖SA16，需本轮新确认。请核对固定SQL/补丁完整hash及编号、表名、路由、文件所有权是否冲突，记录独立提交，并把提交hash和交接节号回传。
