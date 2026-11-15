@@ -1836,5 +1836,16 @@
       "SA17": "NOT_STARTED",
       "real_gates": "NOT_RUN"
     }
+  },
+  "SAV1-17-PREPARE": {
+    "tests": [
+      "tests/test_source_notification_preparation.py"
+    ],
+    "timeout_seconds": 180,
+    "components": {
+      "scope": "First SA17 contract/template/quiet/profile/draft-PG checks only; formal integration NOT_RUN",
+      "real_gates": "NOT_RUN",
+      "SA18": "NOT_STARTED"
+    }
   }
 }

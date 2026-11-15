@@ -1,0 +1,64 @@
+{
+  "version": "sa17-shared-proposal-v1",
+  "prepared_at_UTC": "2026-11-15T04:19:45.075094+00:00",
+  "status": "AWAITING_NEW_FIXED_HARNESS_CONFIRMATION",
+  "migration": {
+    "path": "v3/migrations/0049_source_notifications.sql",
+    "draft": "0049_source_notifications.sql",
+    "sha256": "3546760623c0bd1710170a75a19e74cf97e759897f975f748c601ae444d91aab",
+    "tables": [
+      "sa_notification_controls",
+      "sa_notification_versions",
+      "sa_notification_intents",
+      "sa_notification_receipts",
+      "sa_notification_events"
+    ]
+  },
+  "patch": {
+    "path": "shared-wiring.patch",
+    "sha256": "289879fe1c9c344a11db140866e47c364e6ce3da8215f03f5c2031a0b7c23545",
+    "files": [
+      {
+        "path": "v3/src/mgar_v3/coordination/engine.py",
+        "before_sha256": "1c0c6321e1092f99ddb8460dc02d2602fa6a654693dd52bfefc08f0a8e06c652",
+        "after_sha256": "4785f320795bd7cbc266a99e0f7de5e795c170dc12528c5d3a33f6303b4468a6"
+      },
+      {
+        "path": "v3/src/mgar_v3/api.py",
+        "before_sha256": "6d6f21282f7c11ce718ba084bf6da1093acb225a27b40808c2b0084301e7eb2c",
+        "after_sha256": "9cc4abbffe505aff071a09c58f4d1380ac7fee34eb48e4e74463d0e9e8bfe1c2"
+      },
+      {
+        "path": "v3/src/mgar_v3/super_agent/fast_path.py",
+        "before_sha256": "4a8ea9ed9afc54e6a40a7e49eca8a1ac15f33035781273b71cd4e4251bbbf8b6",
+        "after_sha256": "019954b0144cf9118f4a39945cde07138c007aba9ab55dd2315913a518d770fa"
+      }
+    ]
+  },
+  "owner": "SA exclusively in SA checkout only",
+  "private_prefix": "source_notification* / source_notifications.py",
+  "interfaces": [
+    "GET /api/v3/source-notifications/capabilities",
+    "GET /api/v3/source-notifications/sources/{source_id}",
+    "PUT /api/v3/source-notifications/sources/{source_id}",
+    "POST /api/v3/source-notifications/plans",
+    "GET /api/v3/source-notifications/plans",
+    "GET /api/v3/source-notifications/plans/{action_id}",
+    "POST /api/v3/source-notifications/plans/{action_id}/cancel",
+    "POST /api/v3/source-notifications/tick",
+    "POST /api/v3/source-notifications/plans/{action_id}/reconcile",
+    "POST /api/v3/source-notifications/maintain",
+    "GET /api/v3/source-notifications/events"
+  ],
+  "boundaries": [
+    "original Engine held connection only",
+    "network outside SQL transactions",
+    "original Action/Approval/Outbox delivery state",
+    "notification receipt never completes business task",
+    "exact original thread/destination and current Source/ACL/policy",
+    "unknown read-only lookup only; no resend",
+    "no money algorithm or Harness imports",
+    "controlled channel profiles only; real platform/outbound gates NOT_RUN",
+    "SA18 not started"
+  ]
+}

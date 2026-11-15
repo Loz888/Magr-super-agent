@@ -1,0 +1,96 @@
+--- a/v3/src/mgar_v3/coordination/engine.py
++++ b/v3/src/mgar_v3/coordination/engine.py
+@@ -38,6 +38,7 @@
+ from mgar_v3.super_agent.policy import SourcePolicies
+ from mgar_v3.super_agent.source_async import SourceAsync
+ from mgar_v3.super_agent.source_autonomy import SourceAutonomy
++from mgar_v3.super_agent.source_notifications import SourceNotifications
+ from mgar_v3.super_agent.source_coding import SourceCoding
+ from mgar_v3.super_agent.source_correlation import SourceCorrelations
+ from mgar_v3.super_agent.source_eval import SourceEval
+@@ -95,6 +96,7 @@
+         self.source_async = SourceAsync(self)
+         self.source_recall = SourceRecall(self)
+         self.source_autonomy = SourceAutonomy(self)
++        self.source_notifications = SourceNotifications(self)
+ 
+     def close(self) -> None:
+         with self._mutex:
+@@ -1091,6 +1093,9 @@
+         return action, run
+ 
+     def _validate_action(self, conn: Connection, action: Row, run: Row) -> None:
++        if self.source_notifications.handles(action):
++            self.source_notifications.validate_action(conn, action, run)
++            return
+         self.source_policies.check_action(conn, action, run)
+         readonly = conn.execute(
+             "SELECT scope FROM app.mandates WHERE mandate_id=%s", (run["mandate_id"],)
+@@ -1235,6 +1240,8 @@
+             try:
+                 self._validate_action(conn, action, run)
+             except DomainError as exc:
++                if self.source_notifications.defer(conn, action, exc):
++                    return None
+                 conn.execute(
+                     "UPDATE app.actions SET status='expired',reason_code=%s WHERE action_id=%s",
+                     (exc.code, action["action_id"]),
+@@ -1292,7 +1299,8 @@
+                     "WHERE action_id=%s AND status='dispatching'",
+                     (action_id,),
+                 )
+-            self._apply_effect_outcome(conn, run, status)
++            if not self.source_notifications.record_effect(conn, action, status, external_id):
++                self._apply_effect_outcome(conn, run, status)
+             self._event(conn, run["run_id"], "action_" + status, action_id=str(action_id))
+ 
+     def _apply_effect_outcome(self, conn: Connection, run: Row, status: str) -> None:
+@@ -1369,7 +1377,10 @@
+                 "UPDATE app.outbox SET status='succeeded' WHERE action_id=%s",
+                 (action_id,),
+             )
+-            self._apply_effect_outcome(conn, run, "succeeded")
++            if not self.source_notifications.record_effect(
++                conn, action, "succeeded", external_id
++            ):
++                self._apply_effect_outcome(conn, run, "succeeded")
+             self._event(conn, run["run_id"], "action_reconciled", action_id=str(action_id))
+             return True
+ 
+@@ -1528,6 +1539,7 @@
+             self.source_coding.recover_conn(conn)
+             self.source_async.recover_conn(conn)
+             self.source_autonomy.recover_conn(conn)
++            self.source_notifications.recover_conn(conn)
+             return {
+                 "unknown_actions": len(unknown),
+                 "paused_runs": len(paused),
+--- a/v3/src/mgar_v3/api.py
++++ b/v3/src/mgar_v3/api.py
+@@ -58,6 +58,7 @@
+ from mgar_v3.super_agent.policy_api import register as register_source_policies
+ from mgar_v3.super_agent.source_async_api import register as register_source_async
+ from mgar_v3.super_agent.source_autonomy_api import register as register_source_autonomy
++from mgar_v3.super_agent.source_notification_api import register as register_source_notifications
+ from mgar_v3.super_agent.source_coding_api import register as register_source_coding
+ from mgar_v3.super_agent.source_correlation_api import register as register_source_correlations
+ from mgar_v3.super_agent.source_eval_api import register as register_source_eval
+@@ -1295,6 +1296,7 @@
+     register_source_async(app, authority, browser_user)
+     register_source_recall(app, authority, browser_user)
+     register_source_autonomy(app, authority, browser_user)
++    register_source_notifications(app, authority, browser_user)
+     register(app, authority, authenticated)
+     register_commerce(app, authority, authenticated)
+     register_recovery(app, configuration, authority, authenticated)
+--- a/v3/src/mgar_v3/super_agent/fast_path.py
++++ b/v3/src/mgar_v3/super_agent/fast_path.py
+@@ -152,6 +152,8 @@
+         return row
+ 
+     def _own_result(self, conn: Connection, item: ItemMetadata, clear: bytes) -> bool:
++        if self.engine.source_notifications.own_result(conn, item):
++            return True
+         # Only a current, verified GitHub resource and an actual known receipt count.
+         # Body markers, fixture:// links, hints alone and unknown writes never count.
+         if item.event.scope.source_kind != "github":
