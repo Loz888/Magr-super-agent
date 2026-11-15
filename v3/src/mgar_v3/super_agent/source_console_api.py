@@ -217,6 +217,7 @@ def register(
     # its route inventory; do not defer them behind a lazy included router.
     for route in router.routes:
         assert isinstance(route, APIRoute)
+        assert route.methods is not None
         app.router.add_api_route(
             route.path,
             route.endpoint,
