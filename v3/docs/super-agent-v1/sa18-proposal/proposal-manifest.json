@@ -1,0 +1,65 @@
+{
+  "version": "sa18-shared-proposal-v1",
+  "prepared_at_UTC": "2026-11-15T06:19:18.547489+00:00",
+  "status": "AWAITING_NEW_FIXED_HARNESS_CONFIRMATION",
+  "migration": {
+    "path": "v3/migrations/0050_source_reviews.sql",
+    "draft": "0050_source_reviews.sql",
+    "sha256": "851f7a0d8a6673aa2f6416536d4f0629cc9d33d59541443e2a04bc88a10b751a",
+    "tables": [
+      "sa_source_reviews",
+      "sa_source_review_payloads",
+      "sa_source_review_presentations",
+      "sa_source_review_approvals",
+      "sa_source_review_links",
+      "sa_source_review_events"
+    ]
+  },
+  "patch": {
+    "path": "shared-wiring.patch",
+    "sha256": "442b0f1778280d9e6ddee04026c0ab6dbc81697beee4493c69567d3141fdbc69",
+    "files": [
+      {
+        "path": "v3/src/mgar_v3/coordination/engine.py",
+        "before_sha256": "f079a8b11131c38fa422022ea3c65435becce7d62e38bcc3efe3e1b9d3da304e",
+        "after_sha256": "d4130dc7a2269171946611e30efe68c23bde52e877d8d881d31a0629382068e9"
+      },
+      {
+        "path": "v3/src/mgar_v3/api.py",
+        "before_sha256": "1d587dd2fde495bb78071e638614c8e4acab27a0f782a681ac12f29ebd4849c6",
+        "after_sha256": "4b04b45423527ecbb64caafd2fc348edec8786e00806f1aa01e19b1009be0549"
+      }
+    ]
+  },
+  "owner": "SA exclusively in SA checkout only",
+  "private_prefix": "super_agent/source_review* and source_reviews.py; web/source-reviews.*",
+  "interfaces": [
+    "GET /api/v3/source-reviews/capabilities",
+    "GET /api/v3/source-reviews",
+    "POST /api/v3/source-reviews",
+    "GET /api/v3/source-reviews/{review_id}",
+    "POST /api/v3/source-reviews/{review_id}/inspect",
+    "POST /api/v3/source-reviews/{review_id}/approve",
+    "POST /api/v3/source-reviews/{review_id}/cancel",
+    "GET /api/v3/source-reviews/{review_id}/patch",
+    "POST /api/v3/source-reviews/tick",
+    "POST /api/v3/source-reviews/{review_id}/reconcile",
+    "POST /api/v3/source-reviews/{review_id}/native-links",
+    "POST /api/v3/source-reviews/maintain",
+    "GET /api/v3/source-reviews/events",
+    "GET /source-reviews",
+    "GET /assets/source-reviews.js",
+    "GET /assets/source-reviews.css"
+  ],
+  "boundaries": [
+    "original Engine held PG connection and RLock sole business writer",
+    "no filesystem or remote IO within SQL transactions",
+    "reuse original ReviewBundle, draft_pr Action, Approval, Outbox, Dispatcher and repair_publication_steps",
+    "exact Owner session presentation and current ACL/epoch/async/tree/test fences",
+    "independent server registered fixture read and write ports; no default live grant",
+    "full remote tree/parent/blobs and exact Draft PR match",
+    "unknown read-only reconciliation only, never resend",
+    "no Harness/H12 import or budget changes; no main DB migration",
+    "SA19 not started; all real capability gates NOT_RUN"
+  ]
+}

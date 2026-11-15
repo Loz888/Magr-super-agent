@@ -1876,5 +1876,16 @@
       "real_gates": "NOT_RUN",
       "SA18": "NOT_STARTED"
     }
+  },
+  "SAV1-18-PREPARE": {
+    "tests": [
+      "tests/test_source_review_preparation.py"
+    ],
+    "timeout_seconds": 240,
+    "components": {
+      "scope": "First SA18 typed evidence/full bundle/exact approval/actual H03 capture and draft isolated PG checks only; formal integration NOT_RUN",
+      "real_gates": "NOT_RUN",
+      "SA19": "NOT_STARTED"
+    }
   }
 }
