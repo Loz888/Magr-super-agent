@@ -1,0 +1,133 @@
+{
+  "schema": "sa22-repository-assistant-delivery-v1",
+  "UTC": "2026-11-16T10:24:50.628155+00:00",
+  "status": "IN_PROGRESS_ACTIVATED",
+  "source_commit": "39e151e24a71378342a7cdd7bbec38d7048c4127",
+  "source_sha256": "f2fcdad0daadf6bcb82f5a408b911d0df631568bd592bcd12cdea1b1915dc57c",
+  "features": {
+    "natural_language_source_discovery": true,
+    "read_only_tools": [
+      "list_files",
+      "search_code",
+      "read_file"
+    ],
+    "actual_line_range_citations": true,
+    "contextual_followup": true,
+    "history_turns": 3,
+    "history_dependency_limit": 16,
+    "conversation_body_TTL_seconds": 1800,
+    "per_question_model_request_limit": 5,
+    "per_question_tool_request_limit": 4,
+    "fixed_upstream_commit": "efb09f4fedb35c4bc7f579dda0b7e64d2e3111be",
+    "static_read_scope": [
+      "v3/src",
+      "README.md"
+    ],
+    "arbitrary_host_or_network_access": false
+  },
+  "engineering": {
+    "unique_targets_with_PASS": 24,
+    "attempts": [
+      {
+        "commit": "d6246b11a131b869b582c09a74ae3bd144260efb",
+        "source_sha256": "8460a125200c639f44bba39bccffb9e1f2693d97374b3d2392093a5e68217236",
+        "counts": {
+          "PASS": 22,
+          "FAIL": 2,
+          "ERROR": 0,
+          "SKIP": 0
+        }
+      },
+      {
+        "commit": "39e151e24a71378342a7cdd7bbec38d7048c4127",
+        "source_sha256": "f2fcdad0daadf6bcb82f5a408b911d0df631568bd592bcd12cdea1b1915dc57c",
+        "counts": {
+          "PASS": 2,
+          "FAIL": 0,
+          "ERROR": 0,
+          "SKIP": 0
+        }
+      }
+    ],
+    "passed_targets_repeated": false,
+    "latest_full24_claimed": false,
+    "old_model20_reply11_and_historical_checks_repeated": false,
+    "lint": {
+      "status": "PASS",
+      "commit": "39e151e24a71378342a7cdd7bbec38d7048c4127"
+    },
+    "typecheck": {
+      "status": "PASS",
+      "files": 339,
+      "commit": "39e151e24a71378342a7cdd7bbec38d7048c4127"
+    },
+    "real_target_retrieval_preview": {
+      "status": "PASS",
+      "model_calls": 0,
+      "actual_paths": [
+        "v3/src/mgar_v3/memory/loop.py",
+        "v3/src/mgar_v3/memory/model.py",
+        "v3/src/mgar_v3/memory/retrieval.py"
+      ],
+      "actual_excerpt_bytes": 4594
+    }
+  },
+  "deployment": {
+    "enabled": true,
+    "websocket_connected": true,
+    "api_started": true,
+    "profile_sha256": "e55cde4a2c54f90b9086e87e1b3747ded82f5a6685620beccb7d7967bb39aa31",
+    "manifest_sha256": "3f1aa9e6474ea34d8e39dca6157a9bbf274ef9586af0460d64ed30d88d8d65d7",
+    "original_coding_manifest_sha256": "e205b9085cd189a61ae6281bd951c966e9742e912779908e62f013dc5b7228e1",
+    "coding_permission_changed": false,
+    "policy_revision": 4,
+    "budget_revisions": {
+      "organization": 1,
+      "project": 1
+    },
+    "main_migrations": 44,
+    "onboarding_migrations": 51,
+    "new_migrations": [],
+    "shared_Engine_API_or_financial_algorithm_changed": false,
+    "helper_archive_sha256": "820964b9033fd28ccc9f46e5832be9c1f7ddf8d597f9658c9ba95d0b17bc8309",
+    "expires_at": "2026-11-17T04:04:22.248182+00:00",
+    "automatic_reconnect": false
+  },
+  "budget": {
+    "lifetime_micros": 2000000,
+    "prior_real_model_calls": 10,
+    "real_model_calls_at_observation": 10,
+    "settled_micros": 10509,
+    "held_micros": 0,
+    "unknown_calls": 0,
+    "reset": false,
+    "H12_budget_changed": false
+  },
+  "live": {
+    "new_repository_assistant_model_effect": "NOT_RUN_AWAITING_NEW_HUMAN_MESSAGE",
+    "new_dynamic_answer_delivery": "NOT_RUN",
+    "multi_turn_real_effect": "NOT_RUN",
+    "previous10_real_model_questions": "KNOWN_SETTLED_PREVIOUS_VERSION",
+    "independent_review": "NOT_RUN",
+    "H12_quality": "FAIL_RETAINED",
+    "publication": "NOT_RUN",
+    "formal_SA22_full_six_gates": "NOT_RELEASED",
+    "SA23": "NOT_STARTED"
+  },
+  "scope_authorization": "User explicitly requested the new assistant functionality; same Bot/owner/repository/USD2/expiry; SA private scope under Harness section48",
+  "evidence": "evidence/super-agent-v1/SAV1-22/repository-assistant-20261116T085325Z-9397eb62",
+  "report": "docs/super-agent-v1/SA22_REPOSITORY_ASSISTANT_20261116.md",
+  "cleanup": {
+    "test_pg_removed": true,
+    "test_sessions_ended": true,
+    "service_and_onboarding_pg_intentionally_retained": true,
+    "env_and_user_file_unchanged": true,
+    "other_CLI_resources_untouched": true
+  },
+  "known_limits": [
+    "bounded concept/lexical retrieval and model tool loop, not a generic semantic quality claim",
+    "fixed committed source snapshot; current active files and arbitrary local directories are not read",
+    "three recent delivered turns within source TTL; no permanent chat memory",
+    "current new explicit request is required for coding; no publication"
+  ]
+}
