@@ -27,7 +27,7 @@
     },
     {
       "path": "src/mgar_v3/super_agent/source_repository_tools.py",
-      "sha256": "d7fd60cb211f0762bfa6004137d97b99d43ce1dcd0b6c09906c87b7d78508c9f"
+      "sha256": "33cf0ca1e298c08e8faa0669bcb6c17f8373d7941947a819afb09942dba143a7"
     },
     {
       "path": "src/mgar_v3/super_agent/source_conversation_history.py",
@@ -35,7 +35,7 @@
     },
     {
       "path": "src/mgar_v3/super_agent/source_conversations.py",
-      "sha256": "f48f0fcab456731f4195efe01862e3139e0d83d6b2552cca0aaa12bf56d53025"
+      "sha256": "148745c2425193539b2d3018621787418fc2d834fa92900711df7fe8e21c5ec5"
     },
     {
       "path": "tests/test_source_repository_tools.py",
@@ -43,11 +43,11 @@
     },
     {
       "path": "tests/test_source_repository_conversations.py",
-      "sha256": "029e50a24e8e96b70b6084664caada4c868b2f45bbd99ae1b822fae62a8b1b06"
+      "sha256": "58cc63faed7d8c59434438d071037382f339d90eeed510dd05a11e7292f59977"
     },
     {
       "path": "config/verification.json",
-      "sha256": "8e836782d8d9adb139dad3ece46ccc11571890d087d1e86367c1d0a8e82f7477"
+      "sha256": "6ce195e89079312db35d21f6818a03d93b877b112d3bf9091458114346b0603e"
     }
   ],
   "new_tests": "SAV1-22-REPOSITORY",

@@ -18,9 +18,17 @@ def git(root, *args):
 
 def repository(root):
     files = {
-        "v3/src/memory/model.py": 'class MemoryRecord:\n    scope: str\n    evidence: str\n    status: str = "active"\n',
-        "v3/src/memory/store.py": 'from .model import MemoryRecord\n\ndef store_memory(record):\n    """Persist memory with evidence and scope."""\n    return record.scope\n',
-        "v3/src/memory/retrieval.py": 'def search_memory(scope):\n    """Retrieve active memory under current scope."""\n    return scope\n',
+        "v3/src/memory/model.py": (
+            'class MemoryRecord:\n    scope: str\n    evidence: str\n    status: str = "active"\n'
+        ),
+        "v3/src/memory/store.py": (
+            "from .model import MemoryRecord\n\ndef store_memory(record):\n"
+            '    """Persist memory with evidence and scope."""\n    return record.scope\n'
+        ),
+        "v3/src/memory/retrieval.py": (
+            'def search_memory(scope):\n    """Retrieve active memory under current scope."""\n'
+            "    return scope\n"
+        ),
         "v3/src/context/long.py": "# uninteresting padding\n" * 500
         + 'def hidden_tail():\n    return "actual tail implementation"\n',
         "v3/src/secrets.json": '{"controlled_secret":"MUST_NOT_DISCLOSE"}',
@@ -85,11 +93,8 @@ def answer(request, text="记忆使用实际MemoryRecord与scope约束。"):
 
 
 def receive(env, text, **changes):
-    result = env.runtime.receive(
-        signed(
-            env.source,
-            payload(message_id="Om_Repo-" + uuid4().hex, body=text + " @_user_1", **changes),
-        )
-    )
+    raw = payload(message_id="Om_Repo-" + uuid4().hex, body=text + " @_user_1")
+    raw["event"]["message"].update(changes)
+    result = env.runtime.receive(signed(env.source, raw))
     assert result.disposition == "accepted"
     return result.input_ids[0]

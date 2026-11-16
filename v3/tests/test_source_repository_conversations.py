@@ -91,7 +91,8 @@ def test_model_searches_then_reads_long_file_tail_on_original_shared_budget(engi
         assert len(env.model_calls) == 3
         with engine.transaction() as conn:
             rows = conn.execute(
-                "SELECT step_key,status,settled_micros,result FROM app.usage_calls ORDER BY step_key"
+                "SELECT step_key,status,settled_micros,result "
+                "FROM app.usage_calls ORDER BY step_key"
             ).fetchall()
             assert len(rows) == 3 and sum(r["settled_micros"] for r in rows) == 360
             assert all(r["status"] == "known" for r in rows)
@@ -372,7 +373,8 @@ def test_restart_reconstructs_context_from_original_pg_and_private_keys(engine, 
         dispatch(engine)
         second = receive(env, "那就查看源码再回答")
         settings, cipher = engine.settings, engine.source_ingress.cipher
-        profile = next(iter(engine.source_notifications._profiles.values()))
+        config = engine.source_notifications.read(env.source.cookie, env.source.source_id)
+        profile = engine.source_notifications._profiles[config["settings"]["profile_sha256"]]
         engine.close()
         replacement = Engine(settings, ArtifactStore(settings.artifact_root))
         replacement.source_ingress.cipher = cipher

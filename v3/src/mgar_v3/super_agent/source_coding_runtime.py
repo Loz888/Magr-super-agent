@@ -450,7 +450,7 @@ class _Continuation:
         if self.session.profile.experimental:
             state = payload.get("state")
             baseline = state.get("baseline_files") if isinstance(state, dict) else None
-            if not isinstance(baseline, dict):
+            if not isinstance(state, dict) or not isinstance(baseline, dict):
                 raise _deny("SOURCE_CODING_CHECKPOINT_INVALID")
             payload = {
                 "format": "source-trial-continuation-v1",

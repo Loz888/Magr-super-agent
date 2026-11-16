@@ -195,7 +195,7 @@ class RepositorySession:
             if t not in {"the", "and", "please", "explain", "code", "src", "mgar_v3"}
         ]
         self._paths(self.names)
-        hits = []
+        hits: list[dict[str, Any]] = []
         for path in self.names:
             try:
                 lines = self.repository.text(path).splitlines()

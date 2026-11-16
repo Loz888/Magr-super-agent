@@ -2316,5 +2316,18 @@
       "model": "controlled HTTP only; no paid model or platform calls",
       "scope": "SA22 repository tools and contextual follow-up only; old20 and historical passes not repeated"
     }
+  },
+  "SAV1-22-REPOSITORY-R1": {
+    "tests": [
+      "tests/test_source_repository_conversations.py::test_history_does_not_include_future_or_other_native_topic_input",
+      "tests/test_source_repository_conversations.py::test_restart_reconstructs_context_from_original_pg_and_private_keys"
+    ],
+    "timeout_seconds": 360,
+    "components": {
+      "git": "real immutable local Git blobs and changed active tree",
+      "postgres": "real disposable PG; original Engine and source permissions",
+      "model": "controlled HTTP only; no paid model or platform calls",
+      "scope": "only original two failures; initial22 PASS and historical passes not repeated"
+    }
   }
 }

@@ -475,13 +475,17 @@ class SourceConversations:
     def _history(self, run: Row) -> list[Row]:
         with self.engine.transaction() as conn:
             self._source(conn, self.engine._run(conn, run["run_id"]))
-            scope = conn.execute(
+            scope_row = conn.execute(
                 "SELECT scope FROM app.mandates WHERE mandate_id=%s", (run["mandate_id"],)
-            ).fetchone()["scope"]
+            ).fetchone()
+            if scope_row is None:
+                raise denied("ORIGIN")
+            scope = scope_row["scope"]
             captured = []
             for pair in scope.get("conversation_context", []):
                 call = conn.execute(
-                    "SELECT result FROM app.usage_calls WHERE call_id=%s AND run_id=%s AND status='known'",
+                    "SELECT result FROM app.usage_calls "
+                    "WHERE call_id=%s AND run_id=%s AND status='known'",
                     (UUID(pair["call_id"]), UUID(pair["run_id"])),
                 ).fetchone()
                 if call is None or call["result"] is None:
@@ -629,9 +633,12 @@ class SourceConversations:
             if fresh.ref != source_ref:
                 raise denied("INPUT_CHANGED")
             self._check_reads(conn, fresh, session)
-            scope = conn.execute(
+            scope_row = conn.execute(
                 "SELECT scope FROM app.mandates WHERE mandate_id=%s", (run["mandate_id"],)
-            ).fetchone()["scope"]
+            ).fetchone()
+            if scope_row is None:
+                raise denied("ORIGIN")
+            scope = scope_row["scope"]
             expiries = [
                 self.engine.source_correlations._input(conn, UUID(ref["input_id"])).expires
                 for ref in scope.get("conversation_dependencies", [])
