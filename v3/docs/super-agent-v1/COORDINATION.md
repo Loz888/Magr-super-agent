@@ -1,5 +1,14 @@
 # Super-Agent / Harness 协作约定
 
+2026-11-16回复阶段：按用户指令接通Bot群本人固定收信／状态回复，三份不同原输入的实际平台
+回执accepted、原Action succeeded且Outbox各派发一次。代码80848a1；新11项与typecheck在初轮
+通过，格式修正仅复验失败lint通过，历史通过不重跑。只改SA私有回复／通知模块及登记，
+没有共享Engine/API/schema/预算算法或Harness活动树改动，不占用0054，无新共享范围请求。
+模型／编码关闭，费用USD0/2；H12原FAIL保留，SA22完整六门NOT_RUN，SA23未启动。
+见[回复接通记录](SA22_REPLY_BACKEND_20261116.md)。本条为本地记录，没有向另一CLI发送消息。
+
+以下保留此前仅接收的引导阶段协调状态：
+
 2026-11-16当前：SA21原9+新3独立12PASS已获用户接受，按受控本地范围关闭；SA22启动真实试用准备。用户明确本机magr-harness对应仓库、本人、Bot群及USD2模型共享总上限/仓库代码外发。MAGR助手已发布入群，实际长连接/安装证明及绑定后原收件箱1份accepted已核对；当前Shadow禁发、0付费，真实回复/编码/长期试验未交付。只读检查Harness已提交HEAD 1c4f494及H12固定门仍FAIL，未修改/导入活动文件；[依赖查询草稿](sa22-proposal/harness-readiness-request.txt)未发送。本轮没有产品源码/共享Engine/API/schema/预算改动，也不占用0054；没有新共享范围需要对方确认。详见[SA22状态](SA22_STATUS_20261116.md)。
 
 以下保留此前协调状态：

@@ -1,0 +1,256 @@
+{
+  "card": "SAV1-22",
+  "scope": "Feishu owner-only fixed receipt/status reply slice; no semantic model chat or coding",
+  "status": "IN_PROGRESS_SLICE_IMPLEMENTED_AND_LIVE_REPLIES_OBSERVED",
+  "UTC": "2026-11-16T05:22:02.486975+00:00",
+  "implementation_commits": [
+    "d46f5d7758d28d0690aaa1e3a547a6785c738536",
+    "80848a1c9e9940621c8ea583185fc5e186e09763"
+  ],
+  "source_commit": "80848a1c9e9940621c8ea583185fc5e186e09763",
+  "source_sha256": "b77b8975b8f6c1a01ef997039010e7fe0b745eea253eb252769f113c61f299ef",
+  "initial_source_commit": "d46f5d7758d28d0690aaa1e3a547a6785c738536",
+  "initial_source_sha256": "c59f9cd932f45d6a169415ec92fc41a7fad205e8a7d6dc7cf5d77ab116157049",
+  "archives": [
+    {
+      "commit": "d46f5d7758d28d0690aaa1e3a547a6785c738536",
+      "path": "evidence/super-agent-v1/SAV1-22/start-20261116T040246Z-f670fff6/reply-backend-20261116T043531Z-931a1969/initial/source.tar",
+      "sha256": "34e47f36ec5f73ce38a04ed5aebde585bb230f1b1611910baf12ae5d454aa904"
+    },
+    {
+      "commit": "80848a1c9e9940621c8ea583185fc5e186e09763",
+      "path": "evidence/super-agent-v1/SAV1-22/start-20261116T040246Z-f670fff6/reply-backend-20261116T043531Z-931a1969/lint-repair/source.tar",
+      "sha256": "51daee319f73398f5e25a56c0dcc507b19c80eb8f54b60a3ce71b809b5b06494"
+    }
+  ],
+  "checks": {
+    "initial_registered": {
+      "command": [
+        "make",
+        "verify",
+        "TASK=SAV1-22-REPLIES"
+      ],
+      "source_commit": "d46f5d7758d28d0690aaa1e3a547a6785c738536",
+      "counts": {
+        "tests": 11,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "exit_code": 0,
+      "duration_seconds": 49.403,
+      "components": {
+        "postgres": "real_exclusive_test_instance",
+        "platform": "controlled_http_transport",
+        "model": "not_used",
+        "effects": "original_Action_Approval_Outbox_Dispatcher",
+        "scope": "receipt_reply_slice_only; not complete SA22"
+      },
+      "test_cases": [
+        "test_real_original_outbox_reply_has_no_source_or_coding_claim",
+        "test_duplicate_concurrent_claim_creates_one_original_workflow_and_action",
+        "test_unknown_delivery_is_never_resent[lost]",
+        "test_unknown_delivery_is_never_resent[malformed]",
+        "test_committed_policy_revocation_during_token_prevents_message_request",
+        "test_platform_definitive_rejection_not_reported_as_delivery",
+        "test_expired_source_blocks_queued_reply_before_any_http",
+        "test_foreign_input_denial_rolls_back_without_workflow",
+        "test_fixture_profile_cannot_be_relabeled_live",
+        "test_proxy_cannot_redirect_platform_credentials[http://evil.example:8080]",
+        "test_proxy_cannot_redirect_platform_credentials[http://user:pass@localhost:8080]"
+      ]
+    },
+    "initial_typecheck": {
+      "command": [
+        "make",
+        "typecheck"
+      ],
+      "source_commit": "d46f5d7758d28d0690aaa1e3a547a6785c738536",
+      "status": "PASS",
+      "exit_code": 0,
+      "source_files": 330
+    },
+    "initial_lint": {
+      "command": [
+        "make",
+        "lint"
+      ],
+      "source_commit": "d46f5d7758d28d0690aaa1e3a547a6785c738536",
+      "status": "FAIL",
+      "exit_code": 2,
+      "historical_log_preserved": true
+    },
+    "repair_lint_only": {
+      "command": [
+        "make",
+        "lint"
+      ],
+      "source_commit": "80848a1c9e9940621c8ea583185fc5e186e09763",
+      "status": "PASS",
+      "exit_code": 0,
+      "change": "format/import ordering only; non-import AST unchanged"
+    },
+    "passing_checks_rerun": false,
+    "final_revision_full_rerun_claimed": false,
+    "historical_checks_rerun": false,
+    "catalogue_artifact_hashes": {
+      "count": 11,
+      "match": true,
+      "frozen_catalogue_status": "pre-check candidate metadata; results are in this separate record"
+    }
+  },
+  "slice_gates": {
+    "engineering": "PASS_VERSIONED_EVIDENCE",
+    "fixed_Feishu_reply": "PASS_ACTUAL_DELIVERY",
+    "independent_review": "NOT_RUN"
+  },
+  "full_card_gates": {
+    "engineering_gate": "NOT_RUN",
+    "policy_security_gate": "NOT_RUN",
+    "live_source_channel_gate": "NOT_RUN",
+    "live_coding_gate": "NOT_RUN",
+    "live_publication_gate": "NOT_RUN",
+    "continuous_operation_gate": "NOT_RUN"
+  },
+  "actual_deliveries": [
+    {
+      "action_id": "986d1e65-3c13-4797-8d60-c46063f22afc",
+      "input_id": "9cf96793-484d-4691-98d6-95f31c5670cc",
+      "status": "succeeded",
+      "attempts": 1,
+      "remote_message_id": "om_x100b609cbcb204bcc1b342e594d4502",
+      "outcome": "accepted",
+      "observed_at": "2026-11-16 05:05:46.741505+00:00",
+      "original_message_sha256": "aeb491a67f9b07af85eb7585d069e2ee69d46fdd79715b34f75dcdc8c31659d5",
+      "owner_matches": true,
+      "Bot_group_matches": true
+    },
+    {
+      "action_id": "2b02ac31-a401-4866-b193-4c19c3b141ee",
+      "input_id": "4d426aa7-4564-483c-8041-4e7f04ca46f6",
+      "status": "succeeded",
+      "attempts": 1,
+      "remote_message_id": "om_x100b609cbdd9f4b8c0683200d04a226",
+      "outcome": "accepted",
+      "observed_at": "2026-11-16 05:05:56.036530+00:00",
+      "original_message_sha256": "f9c4c08d8cb2e7034213fbfccae56702ec7c9fe5ff01fcf0125b9c935e4f9820",
+      "owner_matches": true,
+      "Bot_group_matches": true
+    },
+    {
+      "action_id": "ca28099f-b1ad-4718-bbef-1c987ecdb2c8",
+      "input_id": "4915ad06-5d5d-475b-ad16-9e0673145be6",
+      "status": "succeeded",
+      "attempts": 1,
+      "remote_message_id": "om_x100b609d6b194ca4df896552e6a3844",
+      "outcome": "accepted",
+      "observed_at": "2026-11-16 05:19:28.080275+00:00",
+      "original_message_sha256": "e28c7a1feb914eb6a29f1409680ed5dd81e2c5c24c2f91e4d544f8a24cdc79bd",
+      "owner_matches": true,
+      "Bot_group_matches": true
+    }
+  ],
+  "distinct_original_messages": 3,
+  "reply_text": "已收到你的 @ 消息，消息接收与回复服务已连通。当前为受限试用，尚未开启自动编码。",
+  "workflow_kind": "source-receipt-reply-v1",
+  "receipt_workflows_are_coding_successes": false,
+  "versions": {
+    "source_revision": 4,
+    "config_revision": 2,
+    "ingress_generation": 2,
+    "policy_revision": 2
+  },
+  "data_retention": {
+    "encrypted": true,
+    "readable_ttl_seconds": 300,
+    "purge_interval_seconds": 30
+  },
+  "notifications": {
+    "destination": "Bot group; bound owner; reply to original message",
+    "max_per_hour": 20,
+    "cooldown_seconds": 3,
+    "max_bytes": 512,
+    "query_delivery": "unsupported",
+    "platform_idempotency": "unknown",
+    "unknown_retry": false
+  },
+  "runtime": {
+    "at_observation": "2026-11-16T05:17:40.403729+00:00",
+    "receiver_pid": 1307342,
+    "websocket_connected": true,
+    "api_started": true,
+    "intentional_live_postgres": "mgar-sa22-bot-edca22cd043e",
+    "expires_at": "2026-11-17T04:04:22.248182+00:00",
+    "requires_host_WSL_online": true,
+    "automatic_reconnect": false,
+    "formal_72h_trial": false
+  },
+  "budget": {
+    "authorized_model_maximum_USD": 2,
+    "paid_calls": 0,
+    "paid_cost_USD": 0,
+    "model_enabled": false,
+    "router_enabled": false,
+    "coding_enabled": false,
+    "PR_publication_enabled": false
+  },
+  "database": {
+    "main_migrations": 44,
+    "onboarding_migrations": 50,
+    "new_migrations": 0,
+    "reserved_migration_0054": false
+  },
+  "ownership": {
+    "shared_Engine_API_schema_budget_algorithm_changes": false,
+    "Harness_active_tree_changes": false,
+    "second_business_ledger": false
+  },
+  "cleanup": {
+    "test_postgres_and_sessions_removed": true,
+    "intentional_receiver_and_onboarding_postgres_retained": true,
+    "other_resources_untouched": true
+  },
+  "protected_files": {
+    "UTC": "2026-11-16T05:18:24.142367+00:00",
+    "files_checked": 12080,
+    "changed": [],
+    "missing": [],
+    "env_preserved": true,
+    "user_file_sha256": "f4adf9605c87d6256bd2ec17b8436da8a7bced763a8e03b185a8cfe19d34a29f"
+  },
+  "H12": "FAIL_RETAINED; real Agent/MVP not activated",
+  "SA23": "NOT_STARTED",
+  "not_claimed": [
+    "complete SA22 acceptance",
+    "semantic model replies",
+    "real coding success",
+    "new positive task completion",
+    "PR or publication",
+    "continuous 72h or five working days"
+  ],
+  "preserved_failures": [
+    "initial lint",
+    "pre-check launcher archive layout error",
+    "read-only evidence collector SecretStr setup error",
+    "historical SA and H12 failures"
+  ],
+  "evidence": "evidence/super-agent-v1/SAV1-22/start-20261116T040246Z-f670fff6/reply-backend-20261116T043531Z-931a1969",
+  "evidence_files_sha256": {
+    "evidence/super-agent-v1/SAV1-22/start-20261116T040246Z-f670fff6/reply-backend-20261116T043531Z-931a1969/requirements-read.json": "9f0dca8c5d477dea5e1098fc6d1cb4347941e51a8c3b2c072289575a50235cc8",
+    "evidence/super-agent-v1/SAV1-22/start-20261116T040246Z-f670fff6/reply-backend-20261116T043531Z-931a1969/initial/candidate.json": "e0fd42075a38cf92b9318b90f499d4126986142037b58ff36b9d7424b6b37331",
+    "evidence/super-agent-v1/SAV1-22/start-20261116T040246Z-f670fff6/reply-backend-20261116T043531Z-931a1969/initial/verify-result.json": "aa39e0262a774804f21cf88f3556b470f1cf319d37e19c8c7bf9a060761fc3b9",
+    "evidence/super-agent-v1/SAV1-22/start-20261116T040246Z-f670fff6/reply-backend-20261116T043531Z-931a1969/initial/typecheck-result.json": "c6cc5c09f9c7df487185fe58cfd844b0a2a9ecd8de3a29f8c7d5eb65ed0b90da",
+    "evidence/super-agent-v1/SAV1-22/start-20261116T040246Z-f670fff6/reply-backend-20261116T043531Z-931a1969/initial/lint-result.json": "2d22be72ae0fd7f1ab148ead7886bc6c5da0e6c62f6d7b67469e39e342ea2f3a",
+    "evidence/super-agent-v1/SAV1-22/start-20261116T040246Z-f670fff6/reply-backend-20261116T043531Z-931a1969/initial/registered/junit.xml": "ae4a1a02df726ce795fb2eb6528555a91263ea034cc5cd5bc63be134f5ab1767",
+    "evidence/super-agent-v1/SAV1-22/start-20261116T040246Z-f670fff6/reply-backend-20261116T043531Z-931a1969/initial/registered/command.log": "8d6cbb129469a4649049a7feda27f1b0fbc78080356c679b29e76b28ea5e981e",
+    "evidence/super-agent-v1/SAV1-22/start-20261116T040246Z-f670fff6/reply-backend-20261116T043531Z-931a1969/initial/registered/result.json": "cb5133ccdb03c726b50c6fd47ba810c9631b5e71cc430d176a3c47ee50148f84",
+    "evidence/super-agent-v1/SAV1-22/start-20261116T040246Z-f670fff6/reply-backend-20261116T043531Z-931a1969/format-only-repair.json": "ed13ef0127e688308aad67c3eec7f33aee1a8712b405a3fbad27570e9c0e9308",
+    "evidence/super-agent-v1/SAV1-22/start-20261116T040246Z-f670fff6/reply-backend-20261116T043531Z-931a1969/lint-repair/candidate.json": "d7c5d950bbd5e7b1d3bfad5505e82b5bfbc1246f8e55f928f1f4049aea51f6a5",
+    "evidence/super-agent-v1/SAV1-22/start-20261116T040246Z-f670fff6/reply-backend-20261116T043531Z-931a1969/lint-repair/lint-result.json": "f2e09de7d12814e3c7c64ab8883b37688473393fd15fc5bf33756059ddab68da",
+    "evidence/super-agent-v1/SAV1-22/start-20261116T040246Z-f670fff6/reply-backend-20261116T043531Z-931a1969/live-reply/observed-result.json": "1754fefc7c156abb360760483621e8839e9d4bc434d1ebe833bea5e64c030a15",
+    "evidence/super-agent-v1/SAV1-22/start-20261116T040246Z-f670fff6/reply-backend-20261116T043531Z-931a1969/cleanup.json": "dcbbecf41d5ac661abb09873aca6accea9777e2782ba9a5538dd37bf9bdda566",
+    "evidence/super-agent-v1/SAV1-22/start-20261116T040246Z-f670fff6/reply-backend-20261116T043531Z-931a1969/protected-integrity.json": "0ad8fbd6a4784e32ca75c027333c1c7613a2da1d1461ce3ece064e98d6e3bb99",
+    "evidence/super-agent-v1/SAV1-22/start-20261116T040246Z-f670fff6/reply-backend-20261116T043531Z-931a1969/live-reply/followup-observed-result.json": "48be89d233a3a5d59885da169224769ef4014526dc8846ef306ee74283e48055"
+  },
+  "live_observation_note": "Initial two replies also verified on desktop; subsequent successful receipt observed read-only without repeated tests."
+}

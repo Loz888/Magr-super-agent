@@ -1,5 +1,13 @@
 # Super-Agent V1 完整任务书
 
+当前状态（2026-11-16）：**SAV1-00–SAV1-21 DONE；SA22 IN_PROGRESS；SA23–SA24 PLANNED**。
+Bot 群本人三条不同 @ 消息已取得真实固定回复，原 Outbox 各派发一次。新增回复检查11PASS、
+typecheck通过；格式修正后只复验失败lint并通过，未重跑原通过项。模型问答和自动编码未开启，
+新增费用USD0/2，H12原FAIL保留；完整SA22六门仍NOT_RUN。见[回复接通记录](SA22_REPLY_BACKEND_20261116.md)
+及[当前状态](SA22_STATUS_20261116.md)。没有新增迁移或共享Engine/API/schema/预算算法改动。
+
+以下保留此前仅接收、尚未接通回复的引导阶段记录：
+
 状态：**SAV1-00–SAV1-21 DONE（用户接受的受控本地独立闭环）；SA22 IN_PROGRESS（真实试用准备/飞书接入引导）；SA23–SA24 PLANNED**。更新：2026-11-16。
 
 SA21 候选5be5dc7/交付1ec8941的原9项及新增3项独立12PASS已核对并获用户接受，见[独立关闭](accept/SAV1-21/independent-closure-20261116.json)。SA22按用户指令启动：试用目标为本机magr-harness对应Loz888/MAGR-v3、使用者仅本人、模型共享总上限USD2且外发范围为仓库代码。飞书“MAGR助手”已创建/发布/加入Bot群，长连接及真实平台身份已核对，身份绑定后的定向接收产生1份accepted原收件箱输入；此前2份拒收保留。当前Shadow、不保留正文、0模型/0外发，自动回复与任务链未接线；SA22完整六门NOT_RUN，H12原FAIL保留。见[接入状态与剩余工作](SA22_STATUS_20261116.md)及[准备记录](accept/SAV1-22/preparation-20261116.json)。主库仍44，本次专属接入PG安装既有50份SQL；没有重跑历史通过项。
