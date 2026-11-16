@@ -54,23 +54,23 @@
     },
     {
       "path": "src/mgar_v3/super_agent/source_notifications.py",
-      "sha256": "4966f4ec9309ad20bbb5f3aac31076885ba69453017b7330298e9dc236122282"
+      "sha256": "ce1bc4cb3aeff4664bd318c317e591e2e2eb6ca35e56db7541b59531fa4f3ab5"
     },
     {
       "path": "src/mgar_v3/super_agent/source_notification_domain.py",
-      "sha256": "9b8de416b62dd36ff703c96bac2838ccda3b244401992ba05d80e2f5410563cb"
+      "sha256": "5dfaaa9e925ea1cd72fd75a17b457903cb94b4efc9b53f5d5edc7ea9b23a05bb"
     },
     {
       "path": "src/mgar_v3/super_agent/source_notification_ports.py",
-      "sha256": "02a312ef14eb52f698e3fa01b228c6b613c54a0ed9cc6fb3c5735c8d17844680"
+      "sha256": "a6efdb511f984e03bef1f7e85e747594f69ecbe2aab4ad2e9b2d2453134d0b0e"
     },
     {
       "path": "src/mgar_v3/super_agent/source_notification_rules.py",
-      "sha256": "bc4fc094edff26acd201f3fd2c27ee644c848d10f877b1256b17a03b49bcec0a"
+      "sha256": "5883eab633677972b040b017b269563362fc750186d15568c3d9c5fd7efc2f1d"
     },
     {
       "path": "src/mgar_v3/super_agent/source_notification_store.py",
-      "sha256": "0d948f60cd7abe56dcda162d693feb0bc0f808c60d2946b0898750665155ff37"
+      "sha256": "89c5b9234352cbde2f79c222ab4baf93b3ad40ed10653a4b9db18cbffc575df9"
     },
     {
       "path": "src/mgar_v3/super_agent/source_notification_transport.py",

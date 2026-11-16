@@ -30,7 +30,7 @@ class NotificationProfile:
 
     def validate(self) -> None:
         if (
-            self.mode != "fixture"
+            self.mode not in {"fixture", "live"}
             or self.version != "source-notification-channel-v1"
             or self.instance_revision < 1
             or self.sender.scope != self.scope
@@ -39,6 +39,16 @@ class NotificationProfile:
             or self.scope.source_kind not in {"github", "feishu"}
         ):
             raise ValueError("Explicit controlled channel and exact verified installation required")
+        if self.mode == "live":
+            from mgar_v3.super_agent.source_feishu_channel import FeishuNotificationChannel
+
+            if (
+                not isinstance(self.channel, FeishuNotificationChannel)
+                or self.channel.mode != "live"
+                or self.channel.scope != self.scope
+                or self.scope.source_kind != "feishu"
+            ):
+                raise ValueError("Explicit live Feishu server composition required")
 
     @property
     def profile_sha256(self) -> str:

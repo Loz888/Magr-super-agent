@@ -33,7 +33,7 @@
   "artifacts": [
     {
       "path": "config/verification.json",
-      "sha256": "1df3efa7c70d055f7952faf34c7664122313824dfd5036019f04d376ccd64ba9"
+      "sha256": "e526d02b55a350179e5353af7a21ee06f48398b5b101c900d11ada04b10f5fd3"
     },
     {
       "path": "docs/super-agent-v1/sa12-proposal/0044_source_scheduler.sql",

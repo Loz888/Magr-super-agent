@@ -2196,5 +2196,31 @@
       "real_gates": "NOT_RUN",
       "SA22": "NOT_STARTED"
     }
+  },
+  "SAV1-22-REPLIES": {
+    "tests": [
+      "tests/test_source_reply_backend.py"
+    ],
+    "timeout_seconds": 180,
+    "components": {
+      "postgres": "real_exclusive_test_instance",
+      "platform": "controlled_http_transport",
+      "model": "not_used",
+      "effects": "original_Action_Approval_Outbox_Dispatcher",
+      "scope": "receipt_reply_slice_only; not complete SA22"
+    }
+  },
+  "SAV1-22": {
+    "tests": [
+      "tests/test_source_reply_backend.py"
+    ],
+    "timeout_seconds": 180,
+    "components": {
+      "postgres": "real_exclusive_test_instance",
+      "platform": "controlled_http_transport",
+      "model": "not_used",
+      "effects": "original_Action_Approval_Outbox_Dispatcher",
+      "scope": "receipt_reply_slice_only; not complete SA22"
+    }
   }
 }

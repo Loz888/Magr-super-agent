@@ -28,12 +28,23 @@ def render(facts: NotificationFacts) -> NotificationTemplate:
         or facts.state == "cancelled"
     ):
         raise DomainError("NOTIFICATION_CAUSE_UNAVAILABLE", "Current verified cause required", 409)
-    body = _TEMPLATES[facts.content_class] + "\n任务：" + str(facts.ticket_id)
+    if facts.source_receipt:
+        if facts.content_class != "verified_result" or facts.state != "waiting_input":
+            raise DomainError("NOTIFICATION_CAUSE_UNAVAILABLE", "Receipt reply only", 409)
+        body = (
+            "已收到你的 @ 消息，消息接收与回复服务已连通。"
+            "当前为受限试用，尚未开启自动编码。"
+        )
+    else:
+        body = _TEMPLATES[facts.content_class] + "\n任务：" + str(facts.ticket_id)
+    values = facts.model_dump(mode="json")
+    if not facts.source_receipt:
+        values.pop("source_receipt")  # Preserve pre-SA22 task-template fact hashes.
     return NotificationTemplate(
         content_class=facts.content_class,
         body=body,
         body_sha256=hashlib.sha256(body.encode()).hexdigest(),
-        facts_sha256=digest(facts.model_dump(mode="json")),
+        facts_sha256=digest(values),
     )
 
 

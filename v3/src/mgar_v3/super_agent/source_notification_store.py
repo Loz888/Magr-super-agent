@@ -188,12 +188,21 @@ class NotificationStore:
                 is not None
             )
         if not bound:
+            from mgar_v3.super_agent.source_replies import matches_reply_origin
+
+            bound = matches_reply_origin(self.engine, conn, run, source)
+        if not bound:
             raise denied("ORIGINAL_TASK_LINK_REQUIRED")
-        if run["execution_mode"] != "fixture" or run["status"] == "cancelled":
-            raise denied("CONTROLLED_ORIGINAL_RUN_REQUIRED")
+        profile = self._profiles.get(settings.profile_sha256)
+        if profile is None or run["execution_mode"] != profile.mode or run["status"] == "cancelled":
+            raise denied("ORIGINAL_RUN_MODE_REQUIRED")
         return source
 
     def _facts(self, conn: Connection, run: Row, kind: ContentClass) -> NotificationFacts:
+        from mgar_v3.super_agent.source_replies import GRAPH, reply_facts
+
+        if run["graph_version"] == GRAPH:
+            return reply_facts(self.engine, conn, run, kind)
         verdict = conn.execute(
             "SELECT verdict_id,report_hash,passed FROM app.verdicts "
             "WHERE run_id=%s AND report_hash=%s AND passed ORDER BY created_at DESC LIMIT 1",

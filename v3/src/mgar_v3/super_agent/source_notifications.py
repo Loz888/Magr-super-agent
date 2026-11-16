@@ -48,7 +48,8 @@ class SourceNotifications(NotificationStore):
                 "version": NOTIFICATION_VERSION,
                 "default": "disabled",
                 "profiles": sorted(self._profiles),
-                "mode": "fixture_only",
+                "mode": "live_registered" if any(p.mode == "live" for p in self._profiles.values())
+                else "fixture_only",
                 "channels": ["github", "feishu"],
                 "free_text": False,
                 "cross_channel_disclosure": False,

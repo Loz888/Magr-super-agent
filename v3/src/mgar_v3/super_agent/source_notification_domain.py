@@ -83,6 +83,7 @@ class NotificationFacts(NotificationModel):
     reviewable: bool = False
     needs_input: bool = False
     critical: bool = False
+    source_receipt: bool = False
 
 
 class NotificationTemplate(NotificationModel):

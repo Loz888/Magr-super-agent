@@ -1,0 +1,182 @@
+{
+  "version": "source-notification-v1",
+  "status": "FORMAL_IMPLEMENTATION_VERSIONED_EVIDENCE",
+  "ownership_commit": "a09aef760e4c43ff46595a3c3cc56c503b018e97",
+  "migration": "0049_source_notifications.sql",
+  "defaults": {
+    "enabled": false,
+    "profiles": 0,
+    "dispatcher_started": false,
+    "model_calls": 0,
+    "live_channel": false,
+    "publication": false
+  },
+  "channels": [
+    "github",
+    "feishu"
+  ],
+  "channel_mode": "explicit server-side controlled fixture only",
+  "content_classes": [
+    "verified_result",
+    "necessary_question",
+    "review_available",
+    "critical_fault"
+  ],
+  "disclosure": "fixed public_summary template plus task UUID; no raw source/logs/code/URLs",
+  "writer": "original Engine held connection/mutex/short transactions; IO outside SQL",
+  "delivery": "original Action/Approval/Outbox/Dispatcher; receipt never completes business Task",
+  "unknown": "never resend; read-only lookup only if supported, otherwise manual wait",
+  "api_routes": 11,
+  "independent_review": "NOT_RUN",
+  "SA18": "NOT_STARTED",
+  "H12_fixed_live_agent_mvp": "FAIL; other CLI owns H12 acceptance",
+  "real_gates": "NOT_RUN",
+  "registration": "make verify TASK=SAV1-17",
+  "repair_policy": "Previously failed targets only; preparation29 and passed runtime targets not repeated",
+  "runtime_implementation_candidate": "83ad632402e9b05b477ca61cd9177dc5de161f77",
+  "runtime_implementation_sha256": "6b50f49ae05412abf63efcef8832f0cf537ddeea95856d52c7b880619647adf7",
+  "artifacts": [
+    {
+      "path": "docs/super-agent-v1/SA17_NOTIFICATIONS.md",
+      "sha256": "20c6b9bad5397a834243edde336cfabbe434b8427f66060f26e3ccac2c8541d3"
+    },
+    {
+      "path": "migrations/0049_source_notifications.sql",
+      "sha256": "3546760623c0bd1710170a75a19e74cf97e759897f975f748c601ae444d91aab"
+    },
+    {
+      "path": "schemas/super-agent-v1/source-notification-v1.json",
+      "sha256": "2cc2d2e3381c73dea089849358ee87e7c1422c6e7487defddf75f1e88552a299"
+    },
+    {
+      "path": "fixtures/super-agent-v1/sa17-notification-disabled-v1.json",
+      "sha256": "8e2b61ef1e3b4ec32dd83e2bbfcf9ec5d91e2e4aca92cd6feab30a1f930249db"
+    },
+    {
+      "path": "src/mgar_v3/super_agent/source_notifications.py",
+      "sha256": "4966f4ec9309ad20bbb5f3aac31076885ba69453017b7330298e9dc236122282"
+    },
+    {
+      "path": "src/mgar_v3/super_agent/source_notification_domain.py",
+      "sha256": "9b8de416b62dd36ff703c96bac2838ccda3b244401992ba05d80e2f5410563cb"
+    },
+    {
+      "path": "src/mgar_v3/super_agent/source_notification_ports.py",
+      "sha256": "02a312ef14eb52f698e3fa01b228c6b613c54a0ed9cc6fb3c5735c8d17844680"
+    },
+    {
+      "path": "src/mgar_v3/super_agent/source_notification_rules.py",
+      "sha256": "bc4fc094edff26acd201f3fd2c27ee644c848d10f877b1256b17a03b49bcec0a"
+    },
+    {
+      "path": "src/mgar_v3/super_agent/source_notification_store.py",
+      "sha256": "0d948f60cd7abe56dcda162d693feb0bc0f808c60d2946b0898750665155ff37"
+    },
+    {
+      "path": "src/mgar_v3/super_agent/source_notification_transport.py",
+      "sha256": "849d541be6d8dfb44edd5b05b1e15884f28d5f3d9798c8d429997eb0595455a1"
+    },
+    {
+      "path": "src/mgar_v3/super_agent/source_notification_api.py",
+      "sha256": "b641e4aa98f2de599d57b2b4c5177bfe07690ceb87919bb141329b29dcbc7a27"
+    },
+    {
+      "path": "src/mgar_v3/coordination/engine.py",
+      "sha256": "8d4e0ca17ef3fff7509e82a201bdd9d5bbe2e71560766fac3e9a5ad219869129"
+    },
+    {
+      "path": "src/mgar_v3/api.py",
+      "sha256": "6b03778bfcca7bc378fbcf595f8c4c10d9a66bf1472394964c52b67920a0fc2a"
+    },
+    {
+      "path": "src/mgar_v3/super_agent/fast_path.py",
+      "sha256": "019954b0144cf9118f4a39945cde07138c007aba9ab55dd2315913a518d770fa"
+    },
+    {
+      "path": "tests/test_source_notification_preparation.py",
+      "sha256": "8349a9f661f6f0b9bd0582bd098578f7cdcf062dd637dd27d7850d24acf45bd2"
+    },
+    {
+      "path": "tests/test_source_notification_private.py",
+      "sha256": "e52dfc41420d3bd6b571a3002331b81e566b766c6549dad5e74dd3a16ae68b1b"
+    },
+    {
+      "path": "tests/test_source_notification_integration.py",
+      "sha256": "fa18faecc3dfa1c54c5278e589d18ddf678772fea6bce82d5fc5e7cb0fe668dc"
+    },
+    {
+      "path": "tests/test_source_notification_api.py",
+      "sha256": "e6dbab7b77df134cc6f20c41b539123eb2119f162c1f342cb4fd1599c85fe5ef"
+    },
+    {
+      "path": "tests/test_source_notification_recovery.py",
+      "sha256": "5f98f0fadfbb17908f172d3bfaf6c2ddac2cd7f407eb0fe653675bd1a0bb90eb"
+    },
+    {
+      "path": "tests/test_source_notification_boundaries.py",
+      "sha256": "104cd0363f59dc3e7503fcada7c4ceb871ecbdf54d1c930c9061ed6beadde4df"
+    },
+    {
+      "path": "tests/test_source_notification_github.py",
+      "sha256": "89abf179d9d5da8722f007cd69d082301cb4194c8192cc5cef92310c6aa19c05"
+    },
+    {
+      "path": "tests/test_source_notification_review.py",
+      "sha256": "db31685f31aabe7e6a12965e4b1d2b7543774cfb064129cb3c9aab00d4c9cf67"
+    },
+    {
+      "path": "tests/test_source_notification_catalogue.py",
+      "sha256": "06152af3a7b68222d29db89d12a9f1313d1b0fca146cb80cb33122278d4d16fc"
+    },
+    {
+      "path": "tests/sa17_support.py",
+      "sha256": "050127259c94d3aa9fb376e3759596a56db62375151aded57fd8091f5b6e38b0"
+    },
+    {
+      "path": "tests/sa17_crash_actor.py",
+      "sha256": "e87f784ebd454fa2e2b042ebf270f95ea6d31f81b7d4d6723c2309d3156a60c2"
+    },
+    {
+      "path": "docs/super-agent-v1/sa17-proposal/0049_source_notifications.sql",
+      "sha256": "3546760623c0bd1710170a75a19e74cf97e759897f975f748c601ae444d91aab"
+    },
+    {
+      "path": "docs/super-agent-v1/sa17-proposal/shared-wiring.patch",
+      "sha256": "289879fe1c9c344a11db140866e47c364e6ce3da8215f03f5c2031a0b7c23545"
+    },
+    {
+      "path": "docs/super-agent-v1/sa17-proposal/proposal-manifest.json",
+      "sha256": "7dd25cd60bf313bf1ea84b4bf5364d87b2d0bc6f92755d2817fd57b259f216e9"
+    },
+    {
+      "path": "docs/super-agent-v1/sa17-proposal/SA17_SCOPE.md",
+      "sha256": "fd128a11aac44782260711b1e6587adbfbbbc30f4ce7a5c244bae8ce83bde6d5"
+    },
+    {
+      "path": "docs/super-agent-v1/sa17-proposal/ownership-request.txt",
+      "sha256": "0584de71cb5e9b874790e259c1a7e57fa58ff74f2aeaa6617ba5791ba023951d"
+    },
+    {
+      "path": "docs/super-agent-v1/sa17-proposal/ownership-confirmed.json",
+      "sha256": "2b6b985153dff3e880f893421e2ccf24ce8e5cb5b4d6b050161254c0d4831dcd"
+    },
+    {
+      "path": "docs/super-agent-v1/sa17-proposal/post-integration-format.json",
+      "sha256": "84247c63d7947378801a076d9eee8a70de95c03ebf160185ce47bc4c1e66463e"
+    },
+    {
+      "path": "docs/super-agent-v1/sa17-proposal/post-integration-repairs.json",
+      "sha256": "8ed884443f79e86be325c5f269387751246e7c66c7592c173ca9928bb84672e3"
+    },
+    {
+      "path": "docs/super-agent-v1/sa17-proposal/recovery-isolation-repair.patch",
+      "sha256": "8df19d848cd8077aa02a50673fcb72ff1e4d1697f98627d125473eb7e9717d66"
+    },
+    {
+      "path": "docs/super-agent-v1/sa17-proposal/preparation-result.json",
+      "sha256": "143d8558ccf015e8b6e7a1e51a851dc26fca2ebea7adc9579c236cff6ecc72e1"
+    }
+  ],
+  "destination_identity": "ChannelMessage SourceThreadRef: exact source scope, conversation_id and native_thread_id; target/visibility stay exact authorization metadata",
+  "identity_repair": "SA17-I01; historical saved intents participate by native thread without rewriting keys or approvals"
+}
