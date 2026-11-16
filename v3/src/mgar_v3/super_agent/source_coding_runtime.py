@@ -295,10 +295,17 @@ class ControlledCodingModel(ABC):
     def complete(self, request: ModelRequest, cancellation: CancellationToken) -> ModelResponse: ...
 
 
+class ExperimentalCodingModel(ABC):
+    """Network model port, usable only with the independently bound owner trial."""
+
+    @abstractmethod
+    def complete(self, request: ModelRequest, cancellation: CancellationToken) -> ModelResponse: ...
+
+
 @dataclass(frozen=True, repr=False)
 class SourceCodingFixtureProfile:
     driver: H03SchedulerResourceDriver
-    model: ControlledCodingModel
+    model: ControlledCodingModel | ExperimentalCodingModel
     objective: str
     requirements: tuple[VerificationRequirement, ...]
     baseline_command: tuple[str, ...]
@@ -308,10 +315,13 @@ class SourceCodingFixtureProfile:
     reservation_micros: int = 2000
     max_output_tokens: int = 2048
     reserved_tokens: int = 8192
+    experimental: bool = False
 
     def __post_init__(self) -> None:
         if (
-            not isinstance(self.model, ControlledCodingModel)
+            not isinstance(
+                self.model, ExperimentalCodingModel if self.experimental else ControlledCodingModel
+            )
             or not self.objective
             or len(self.objective) > 4000
             or not self.requirements
@@ -332,12 +342,20 @@ class SourceCodingFixtureProfile:
     def acceptance_sha256(self) -> str:
         return digest(
             {
-                "version": "source-coding-fixture-acceptance-v1",
+                "version": (
+                    "source-coding-owner-trial-acceptance-v1"
+                    if self.experimental
+                    else "source-coding-fixture-acceptance-v1"
+                ),
                 "objective": self.objective,
                 "requirements": [item.model_dump(mode="json") for item in self.requirements],
                 "baseline_command": list(self.baseline_command),
                 "working_directory": self.working_directory,
-                "source_gate": "pure-python-fixture-v1",
+                "source_gate": (
+                    "isolated-existing-files-trial-v1"
+                    if self.experimental
+                    else "pure-python-fixture-v1"
+                ),
             }
         )
 
@@ -406,9 +424,35 @@ class _Continuation:
         )
         if not isinstance(value, dict):
             raise _deny("SOURCE_CODING_CHECKPOINT_INVALID")
+        if self.session.profile.experimental:
+            if value.get("format") != "source-trial-continuation-v1":
+                raise _deny("SOURCE_CODING_CHECKPOINT_INVALID")
+            hashes, payload = value.get("baseline_sha256"), value.get("payload")
+            if not isinstance(hashes, dict) or not isinstance(payload, dict):
+                raise _deny("SOURCE_CODING_CHECKPOINT_INVALID")
+            baseline = {}
+            with self.session.core.guard(
+                self.session.bearer, self.session.request, tree_sha256=self.session.tree()
+            ):
+                for path, expected in hashes.items():
+                    content = self.session.raw._baseline_text(path)
+                    if content is None or sha256(content.encode()).hexdigest() != expected:
+                        raise _deny("SOURCE_CODING_CHECKPOINT_INVALID")
+                    baseline[path] = content
+            payload["baseline_files"] = baseline
+            return payload
         return value
 
     def save(self, payload: dict[str, Any]) -> None:
+        if self.session.profile.experimental:
+            baseline = payload.get("baseline_files")
+            if not isinstance(baseline, dict):
+                raise _deny("SOURCE_CODING_CHECKPOINT_INVALID")
+            payload = {
+                "format": "source-trial-continuation-v1",
+                "baseline_sha256": {p: sha256(v.encode()).hexdigest() for p, v in baseline.items()},
+                "payload": {k: v for k, v in payload.items() if k != "baseline_files"},
+            }
         clear = encode(payload)
         key = "continuation:" + sha256(clear).hexdigest()
         operation = self.session.journal.operation(
@@ -477,6 +521,16 @@ class _ControlledModel:
             # request construction, directly at the injected provider boundary.
             if session.bridge is not None:
                 response = session.bridge.complete(request, cancellation)
+            elif session.profile.experimental:
+                from mgar_v3.super_agent.source_coding_live_model import guard_trial_model_send
+
+                with guard_trial_model_send(
+                    lambda: session.core.guard(
+                        session.bearer, session.request, tree_sha256=session.tree()
+                    )
+                ):
+                    cancellation.ensure_active()
+                    response = session.profile.model.complete(request, cancellation)
             else:
                 with session.core.guard(
                     session.bearer, session.request, tree_sha256=session.tree()
@@ -581,18 +635,37 @@ class _EngineFileJournal(DurableExistingFileJournal):
         if (
             not isinstance(before, dict)
             or not isinstance(after, dict)
-            or set(before) != set(workspace._files)
+            or (not self.session.profile.experimental and set(before) != set(workspace._files))
             or set(after) != set(before)
             or any(type(value) is not str for value in (*before.values(), *after.values()))
         ):
             raise _deny("SOURCE_CODING_JOURNAL_IMAGES_INVALID")
         current = workspace._snapshot()
+        before_snapshot = dict(before)
+        if self.session.profile.experimental:
+            unchanged = images.get("unchanged_sha256")
+            if (
+                images.get("format") != "source-trial-sparse-images-v1"
+                or not isinstance(unchanged, dict)
+                or set(before) & set(unchanged)
+                or set(before) | set(unchanged) != set(workspace._files)
+                or any(
+                    sha256(current.files[p].encode()).hexdigest() != h for p, h in unchanged.items()
+                )
+            ):
+                raise _deny("SOURCE_CODING_JOURNAL_CONFLICT")
+            before_snapshot = {**current.files, **before}
+            if (
+                digest({p: sha256(v.encode()).hexdigest() for p, v in before_snapshot.items()})
+                != images["before_tree"]
+            ):
+                raise _deny("SOURCE_CODING_JOURNAL_IMAGES_INVALID")
         changed = [path for path in before if before[path] != after[path]]
         # A crash may leave an exact prefix of committed postimages. Foreign
         # content, symlinks or file-set changes are never blindly overwritten.
         if any(current.files[path] not in {before[path], after[path]} for path in before):
             raise _deny("SOURCE_CODING_JOURNAL_CONFLICT")
-        workspace._snapshots[images["before_tree"]] = dict(before)
+        workspace._snapshots[images["before_tree"]] = before_snapshot
         for path in changed:
             if workspace._read(path) == after[path]:
                 continue
@@ -671,7 +744,20 @@ class _EngineFileJournal(DurableExistingFileJournal):
                 {path: sha256(value.encode()).hexdigest() for path, value in after.items()}
             ),
         }
-        validate_fixture_python(after, session.mandate.grant.write_paths)
+        if session.profile.experimental:
+            touched = {edit.path for edit in edits}
+            images.update(
+                format="source-trial-sparse-images-v1",
+                before={p: current.files[p] for p in touched},
+                after={p: after[p] for p in touched},
+                unchanged_sha256={
+                    p: sha256(v.encode()).hexdigest()
+                    for p, v in current.files.items()
+                    if p not in touched
+                },
+            )
+        if not session.profile.experimental:
+            validate_fixture_python(after, session.mandate.grant.write_paths)
         operation = session.journal.operation(
             step_key=session.active_tool,
             kind="tool",
@@ -1021,6 +1107,11 @@ class _TrustedVerifier:
             if any(check.status == "failed" for check in checks)
             else "incomplete"
         )
+        if session.profile.experimental and status == "verified":
+            # The fixed H11 cut has summary-based test counts. Its real command
+            # observations are useful diagnostics, not R05 independent regression
+            # evidence. An experimental patch stays unverified for owner review.
+            status = "incomplete"
         verification = VerificationReceipt(
             verification_id=digest(
                 {
@@ -1157,10 +1248,13 @@ class _Attempt:
         with core.engine.transaction() as conn:
             self.mandate, facts = core.current(conn, bearer, request)
         if (
-            facts.mode != "fixture"
-            or self.mandate.repository.source_kind != "fixture_git"
+            facts.mode != ("live" if profile.experimental else "fixture")
+            or self.mandate.repository.source_kind
+            != ("local_git_snapshot" if profile.experimental else "fixture_git")
             or self.mandate.repository.private
-            or self.mandate.repository.model_disclosure != "controlled_fixture"
+            or self.mandate.repository.model_disclosure
+            != ("approved_live" if profile.experimental else "controlled_fixture")
+            or (profile.experimental and not facts.owner_trial_current)
             or profile.driver.profile_sha256 != self.mandate.worker_profile_sha256
             or profile.driver.profile.actor != self.mandate.origin.engine_actor
             or profile.driver.registration.registration_hash
@@ -1195,7 +1289,7 @@ class _Attempt:
             workspace_id=str(facts.workspace_id),
             acceptance_revision=self.mandate.acceptance_sha256,
             objective=profile.objective,
-            task_kind="bugfix",
+            task_kind="feature" if profile.experimental else "bugfix",
             requirements=profile.requirements,
         )
         self.grant = CapabilityGrant(
@@ -1468,9 +1562,10 @@ class SourceCodingRuntime:
                 attempt = self.core.begin_attempt(conn, bearer, request)
             session = _Attempt(self.core, self.profile, bearer, request, attempt, bridge)
         session.file_journal.recover(session.workspace)
-        validate_fixture_python(
-            session.workspace.snapshot().files, session.mandate.grant.write_paths
-        )
+        if not self.profile.experimental:
+            validate_fixture_python(
+                session.workspace.snapshot().files, session.mandate.grant.write_paths
+            )
         broker = _BoundExecution(session)
         loop = CodingLoop(
             model=_ControlledModel(session),
@@ -1512,6 +1607,6 @@ class SourceCodingRuntime:
             "cost_micros": result.cost_micros,
             "verification": result.verification.status if result.verification else None,
             "business_task_completed": False,
-            "live_agent": "NOT_RUN",
-            "paid": "NOT_RUN",
+            "live_agent": "FAIL_RETAINED_EXPERIMENT" if self.profile.experimental else "NOT_RUN",
+            "paid": "original_usage_ledger" if self.profile.experimental else "NOT_RUN",
         }

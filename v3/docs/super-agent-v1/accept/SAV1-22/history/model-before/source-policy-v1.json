@@ -1,0 +1,48 @@
+{
+  "contract_version": "source-policy-v1",
+  "status": "FROZEN",
+  "layers": [
+    "receive",
+    "admission",
+    "execution",
+    "notification"
+  ],
+  "modes": [
+    "disabled",
+    "shadow",
+    "auto_investigate",
+    "auto_repair"
+  ],
+  "implementation": [
+    "src/mgar_v3/super_agent/policy_domain.py",
+    "src/mgar_v3/super_agent/policy.py",
+    "src/mgar_v3/super_agent/policy_api.py"
+  ],
+  "migration": "0032_source_policies.sql",
+  "management_api": "/api/v3/source-policies/",
+  "signature": "current authenticated console owner + immutable definition SHA256/UTC/review_ref; not public-key signing",
+  "preview_grants_authority": false,
+  "model_call": "DENY until SA07 shared accounting; policy definition is not payment authority",
+  "runtime_bridge": "restrict existing queued fixture investigation only; no source task creation/live worker activation",
+  "revocation": "current version and identity fencing; pending cancelled; in-flight/unknown/usage retained",
+  "business_authority": "same existing Engine/PG connection; no parallel business lifecycle",
+  "default_live_activation": false,
+  "artifacts": [
+    {
+      "path": "schemas/super-agent-v1/source-policy-definition-v1.schema.json",
+      "sha256": "ded9b74379997e6e64c7f0ded5e9f149b0ea257b051486cb49a6fb79b549a965"
+    },
+    {
+      "path": "schemas/super-agent-v1/source-policy-preview-v1.schema.json",
+      "sha256": "78562dcfa0ce84ca994b84637108a6e1c3a03b66c35fc0f9ace591eb59ff599c"
+    },
+    {
+      "path": "schemas/super-agent-v1/source-policy-revoke-v1.schema.json",
+      "sha256": "ec1c7832c93660f4d00dae144800d69a2421af7bd9af774d2bc3a16a6cad9dc6"
+    },
+    {
+      "path": "schemas/super-agent-v1/source-policy-save-v1.schema.json",
+      "sha256": "b1406a3c8789e94ae13ea78d1e0c0b1c1d6a8e1aed4ebb430c7b5581c91cb3ec"
+    }
+  ]
+}

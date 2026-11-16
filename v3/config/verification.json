@@ -2212,15 +2212,30 @@
   },
   "SAV1-22": {
     "tests": [
-      "tests/test_source_reply_backend.py"
+      "tests/test_source_model_conversations.py",
+      "tests/test_source_coding_experiment.py"
     ],
-    "timeout_seconds": 180,
+    "timeout_seconds": 600,
     "components": {
       "postgres": "real_exclusive_test_instance",
-      "platform": "controlled_http_transport",
-      "model": "not_used",
-      "effects": "original_Action_Approval_Outbox_Dispatcher",
-      "scope": "receipt_reply_slice_only; not complete SA22"
+      "model": "controlled_http_supplier; no real paid calls",
+      "platform": "controlled_physical_HTTP_override; no real platform sends",
+      "coding": "real_Git_H03_original_Engine_SA07_SA12_isolated_Docker",
+      "scope": "SA22_new_model_and_owner_trial_slice_only; historical_reply11_not_rerun"
+    }
+  },
+  "SAV1-22-MODEL": {
+    "tests": [
+      "tests/test_source_model_conversations.py",
+      "tests/test_source_coding_experiment.py"
+    ],
+    "timeout_seconds": 600,
+    "components": {
+      "postgres": "real_exclusive_test_instance",
+      "model": "controlled_http_supplier; no real paid calls",
+      "platform": "controlled_physical_HTTP_override; no real platform sends",
+      "coding": "real_Git_H03_original_Engine_SA07_SA12_isolated_Docker",
+      "scope": "SA22_new_model_and_owner_trial_slice_only; historical_reply11_not_rerun"
     }
   }
 }

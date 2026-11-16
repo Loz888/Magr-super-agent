@@ -1,0 +1,148 @@
+{
+  "contract_version": "source-correlation-v1",
+  "snapshot_version": "source-correlation-snapshot-v1",
+  "status": "FORMAL_IMPLEMENTATION",
+  "ownership_status": "ACTUALLY_CONFIRMED_FIXED_COMMIT",
+  "ownership_commit": "0a335a14d8ce37703b5cfe0eaa7960d4ac571fc7",
+  "artifact_snapshot_utc": "2026-11-14T11:38:35.576606+00:00",
+  "artifact_snapshot_scope": "SA15 current composition/catalogue hashes only; prior bytes in accept/SAV1-15/history/pre-sa15. Historical passing/failing evidence unchanged; no rerun implied.",
+  "artifact_status": "CURRENT_FORMAL_HASHES",
+  "proposed_migration": "0041_source_correlations.sql",
+  "migration_status": "FORMAL0041_INSTALLED",
+  "shared_wiring_status": "EXACT_APPROVED_PATCH_APPLIED",
+  "shared_proposal": {
+    "sql_path": "docs/super-agent-v1/sa10-proposal/0041_source_correlations.sql",
+    "sql_sha256": "d6aead811237e532664adf62b15521a16369fd29b8dfe9d26156f0d74fec1ee3",
+    "patch_path": "docs/super-agent-v1/sa10-proposal/shared-wiring.patch",
+    "patch_sha256": "352277eb82d61b75534a072c6ece1c6769c4653102bac1399e36d021e419c278",
+    "harness_baseline_commit": "f554937eb0c692c54ff6fa2d2cede67f91e85a10",
+    "harness_reserved_migration": "0040_harness_product.sql",
+    "sa09_section32_extends_to_sa10": false
+  },
+  "default_provider": null,
+  "default_factory": null,
+  "default_enabled": false,
+  "factory_mode": "Explicit trusted fixture-only callback on the original Engine connection; no HTTP factory or automatic live Task creation",
+  "http_business_creation": false,
+  "eligible_for_execution": false,
+  "model_calls": 0,
+  "external_business_writes": 0,
+  "context_persistence": "METADATA_ONLY",
+  "source_text": "Current Receive/identity/TTL checked before bounded in-memory deterministic extraction; no model or durable relation body",
+  "authority": "Original current Engine/Source policy plus explicit owner review; links, hashes and SourceDecision suggestions grant no execution, control, reading or publication capability",
+  "transaction": "Original Engine mutex/advisory lock and same held PostgreSQL connection; trusted factory and claim/target/history atomic",
+  "resource_identity": "Project/full installation scope/immutable repository ID/type/resource ID; topic/title/display name never owns a Task",
+  "code_identity": "Separate head repository/head/base/tree/CI attempt; missing or changed exact code facts cannot reuse prior verification",
+  "correction": "CAS revision plus current snapshot and exact original target; all prior Ticket attempts checked, executed targets cannot be silently reassigned",
+  "source_eval_v1_and_i01_fence_unchanged": true,
+  "financial_truth": "Original Engine/Router/SA07 ledgers unchanged; no new costs, reservations or parallel monetary ledger",
+  "verification_registration": "SAV1-10:201 formal cases, exact2 previouslyfailed guard retests +199 previouslyNOT_RUN first checks; results are recorded separately in docs/super-agent-v1/accept/SAV1-10/accept.json",
+  "refresh_after_ack": "Confirmed exact SQL and shared patch applied; hashes refreshed for formal files; prior proposal histories preserved",
+  "semantic_evaluation": "NOT_RUN",
+  "independent_review": "NOT_RUN",
+  "real_platform_paid_external_publication_continuous_operation": "NOT_RUN",
+  "pending_artifacts": [],
+  "artifacts": [
+    {
+      "path": "src/mgar_v3/super_agent/source_correlation.py",
+      "sha256": "6b85d3533ef4d2fb657b4b633c66af6079d09b00d7c9180e0e1408299170ceea"
+    },
+    {
+      "path": "src/mgar_v3/super_agent/source_correlation_api.py",
+      "sha256": "09ea439ce9472c5d3f858dedba695c81013776caa555c51e29cf834594103b30"
+    },
+    {
+      "path": "src/mgar_v3/super_agent/source_correlation_domain.py",
+      "sha256": "3fe8b4b57a954b32c009062891cc6fac1bdf74d5e0356bf5135eff726fffb7c2"
+    },
+    {
+      "path": "src/mgar_v3/super_agent/source_correlation_rules.py",
+      "sha256": "ecf4886525b80aef361c461a2b8c47e26429d0241526befbab126945a7273690"
+    },
+    {
+      "path": "tests/sa10_support.py",
+      "sha256": "dc8a2d1cac4897fbc5885cdd376cae3112c4e0b148426dbe8c86bbc5fe47fe77"
+    },
+    {
+      "path": "tests/test_super_agent_sa10_contracts.py",
+      "sha256": "7d5f0f33d87617d185f975e05bef09d2b3cb8f537d68f8cd55668184b581a6d1"
+    },
+    {
+      "path": "tests/test_super_agent_sa10.py",
+      "sha256": "72796adbdf234c217a482950a7ff2d59bf026da57efe996e6cfcf193d525cd5d"
+    },
+    {
+      "path": "tests/test_super_agent_sa10_ci.py",
+      "sha256": "a88daa27645d1f36793c59d90ce8f917646b39342e2587eb5797c3f8f96c7352"
+    },
+    {
+      "path": "tests/test_super_agent_sa10_api.py",
+      "sha256": "6d1ddbb01cfbe66c49f63cd154fe1bd96d4700171b88ad8bab31ef81fba1caca"
+    },
+    {
+      "path": "tests/test_super_agent_sa10_migration.py",
+      "sha256": "39d0fe035421fea5f4b0c0d2b2d644db6df6cd94b28258adc1bab86c6e85b19a"
+    },
+    {
+      "path": "schemas/super-agent-v1/source-correlation-resource-v1.schema.json",
+      "sha256": "fe6b69b8a99b3f6c4c7a214061e23a09e0fd9c56c0bf26d500fdd503de59ef1f"
+    },
+    {
+      "path": "schemas/super-agent-v1/source-correlation-code-v1.schema.json",
+      "sha256": "ee5146bb3ecd2f8dd1d43c4ba3f99c258c3894d89fc7f46a5bb295c13fe17c69"
+    },
+    {
+      "path": "schemas/super-agent-v1/source-correlation-target-v1.schema.json",
+      "sha256": "a0f19fe16b445d4cec88103477091345a440c94c2ec04941c60efc610e4b35aa"
+    },
+    {
+      "path": "schemas/super-agent-v1/source-correlation-snapshot-v1.schema.json",
+      "sha256": "7b0239abc03aa5cc49b754b5e1d11b615222a62855c101d23e6d236a0d0ece70"
+    },
+    {
+      "path": "schemas/super-agent-v1/source-correlation-resolution-v1.schema.json",
+      "sha256": "7c780e3ad3884c43723fbdab884d7db3c4daf0cde4017b9d43678911568eb3a9"
+    },
+    {
+      "path": "schemas/super-agent-v1/source-correlation-resolve-v1.schema.json",
+      "sha256": "3d4b0cfd17b9c29f3a31757138030cfe989cd3f2008e57bf7b6f77f2b5b41ffc"
+    },
+    {
+      "path": "schemas/super-agent-v1/source-correlation-link-v1.schema.json",
+      "sha256": "1902d9bd5dcf0e27a185b8d559f47ef9da838d475dc0d3c38ec9d1f67ca724b9"
+    },
+    {
+      "path": "schemas/super-agent-v1/source-correlation-correct-v1.schema.json",
+      "sha256": "1b01f858ac3e4fada2bb038317d3b4c621d3eb661a68d9be05d2de840e4572e5"
+    },
+    {
+      "path": "schemas/super-agent-v1/source-correlation-remove-v1.schema.json",
+      "sha256": "18fb0db23daeca2fac4af7f0260bf7def988f7de76ca01f65fad4b4040348b6d"
+    },
+    {
+      "path": "docs/super-agent-v1/sa10-proposal/0041_source_correlations.sql",
+      "sha256": "d6aead811237e532664adf62b15521a16369fd29b8dfe9d26156f0d74fec1ee3"
+    },
+    {
+      "path": "docs/super-agent-v1/sa10-proposal/shared-wiring.patch",
+      "sha256": "352277eb82d61b75534a072c6ece1c6769c4653102bac1399e36d021e419c278"
+    },
+    {
+      "path": "config/verification.json",
+      "sha256": "e526d02b55a350179e5353af7a21ee06f48398b5b101c900d11ada04b10f5fd3"
+    },
+    {
+      "path": "migrations/0041_source_correlations.sql",
+      "sha256": "d6aead811237e532664adf62b15521a16369fd29b8dfe9d26156f0d74fec1ee3"
+    },
+    {
+      "path": "src/mgar_v3/coordination/engine.py",
+      "sha256": "8d4e0ca17ef3fff7509e82a201bdd9d5bbe2e71560766fac3e9a5ad219869129"
+    },
+    {
+      "path": "src/mgar_v3/api.py",
+      "sha256": "6b03778bfcca7bc378fbcf595f8c4c10d9a66bf1472394964c52b67920a0fc2a"
+    }
+  ],
+  "baseline_before_formal_integration": "e9ee378c1977cdb4feaea29bda2d00e3f6c891ca"
+}

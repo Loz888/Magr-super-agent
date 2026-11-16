@@ -7,7 +7,7 @@ import json
 from collections.abc import Callable
 from typing import TYPE_CHECKING, Any
 from urllib.parse import quote, urlsplit
-from uuid import NAMESPACE_URL, uuid5
+from uuid import NAMESPACE_URL, UUID, uuid5
 
 import httpx
 from psycopg.pq import TransactionStatus
@@ -41,6 +41,7 @@ class FeishuNotificationChannel:
         mode: str = "live",
         proxy: str | None = None,
         transport: httpx.MockTransport | None = None,
+        body_resolver: Callable[[UUID, str], str] | None = None,
     ):
         if scope.source_kind != "feishu" or mode not in {"fixture", "live"}:
             raise ValueError("Explicit Feishu installation and mode required")
@@ -61,6 +62,14 @@ class FeishuNotificationChannel:
                 raise ValueError("Only an explicit trusted local HTTP proxy is supported")
         self.engine, self.scope, self.credentials = engine, scope, credentials
         self.mode, self.proxy, self.transport = mode, proxy, transport
+        self.body_resolver = body_resolver
+
+    def _wire_body(self, message: ChannelMessage, body: str) -> str:
+        if not body.startswith("source-chat-output-v1:"):
+            return body
+        if self.body_resolver is None:
+            raise denied("MODEL_REPLY_RESOLVER_REQUIRED")
+        return self.body_resolver(message.action_id, body)
 
     def _current(self, instance: SourceInstance, message: ChannelMessage, body: str) -> str:
         core = self.engine.source_notifications
@@ -123,6 +132,7 @@ class FeishuNotificationChannel:
     def send(self, instance: SourceInstance, message: ChannelMessage, body: str) -> DeliveryReceipt:
         try:
             remote_input = self._current(instance, message, body)
+            self._wire_body(message, body)
             secret = self.credentials()
         except DomainError:
             raise DefinitiveFailure("Current notification authority denied before send") from None
@@ -155,25 +165,29 @@ class FeishuNotificationChannel:
             except (httpx.HTTPError, OSError, KeyError, ValueError):
                 # No message endpoint was invoked, even if token minting is unknown.
                 raise DefinitiveFailure("Feishu token unavailable; message was not sent") from None
-            try:
-                if self._current(instance, message, body) != remote_input:
-                    raise denied("LIVE_CHANNEL_FENCED")
-                self.credentials()  # Credential revocation during token IO fences the send too.
-            except DomainError:
-                raise DefinitiveFailure("Notification authority changed during token IO") from None
-            if self.engine.connection.info.transaction_status != TransactionStatus.IDLE:
-                raise DefinitiveFailure("Platform IO cannot run in a business transaction")
-            status, value = self._post(
-                client,
-                "/open-apis/im/v1/messages/" + quote(remote_input, safe="") + "/reply",
-                {
-                    "msg_type": "text",
-                    "content": json.dumps({"text": body}, ensure_ascii=False),
-                    "reply_in_thread": message.destination.native_thread_id is not None,
-                    "uuid": str(uuid5(NAMESPACE_URL, self.scope.key + message.idempotency_key)),
-                },
-                {"Authorization": "Bearer " + bearer},
-            )
+            with self.engine._mutex:
+                try:
+                    if self._current(instance, message, body) != remote_input:
+                        raise denied("LIVE_CHANNEL_FENCED")
+                    self.credentials()
+                    wire_body = self._wire_body(message, body)
+                except DomainError:
+                    raise DefinitiveFailure(
+                        "Notification authority changed during token IO"
+                    ) from None
+                if self.engine.connection.info.transaction_status != TransactionStatus.IDLE:
+                    raise DefinitiveFailure("Platform IO cannot run in a business transaction")
+                status, value = self._post(
+                    client,
+                    "/open-apis/im/v1/messages/" + quote(remote_input, safe="") + "/reply",
+                    {
+                        "msg_type": "text",
+                        "content": json.dumps({"text": wire_body}, ensure_ascii=False),
+                        "reply_in_thread": message.destination.native_thread_id is not None,
+                        "uuid": str(uuid5(NAMESPACE_URL, self.scope.key + message.idempotency_key)),
+                    },
+                    {"Authorization": "Bearer " + bearer},
+                )
             if status in {200, 400, 401, 403, 429} and value["code"] != 0:
                 return DeliveryReceipt(
                     scope=self.scope, idempotency_key=message.idempotency_key, outcome="rejected"

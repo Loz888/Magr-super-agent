@@ -54,11 +54,11 @@
     },
     {
       "path": "src/mgar_v3/super_agent/source_notifications.py",
-      "sha256": "719d5d22e6cdfd7436aa798fe8fe53b049922e0cc8c06a2753ceab6b4aed09ce"
+      "sha256": "bd3db2d9ccd26fdc121b40334eaf5b68b6136c6b46872f7350f77498b36724c6"
     },
     {
       "path": "src/mgar_v3/super_agent/source_notification_domain.py",
-      "sha256": "5dfaaa9e925ea1cd72fd75a17b457903cb94b4efc9b53f5d5edc7ea9b23a05bb"
+      "sha256": "5ac4f4d9ab2000b60a646ff2cf707cf9eeb1d7eb54b1b7c79107c5bcdeb7ecec"
     },
     {
       "path": "src/mgar_v3/super_agent/source_notification_ports.py",
@@ -66,11 +66,11 @@
     },
     {
       "path": "src/mgar_v3/super_agent/source_notification_rules.py",
-      "sha256": "5883eab633677972b040b017b269563362fc750186d15568c3d9c5fd7efc2f1d"
+      "sha256": "1326358e8e6eb7d1a870424dcba1fc73481f19430e33326be091b01bfbef49ea"
     },
     {
       "path": "src/mgar_v3/super_agent/source_notification_store.py",
-      "sha256": "89c5b9234352cbde2f79c222ab4baf93b3ad40ed10653a4b9db18cbffc575df9"
+      "sha256": "1f0a8f607b5a50f1e2eb9c3e5393d7c8c55745ff595643fd6c5b3eccf272d98e"
     },
     {
       "path": "src/mgar_v3/super_agent/source_notification_transport.py",

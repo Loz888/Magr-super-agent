@@ -75,6 +75,7 @@ class CodingProfile:
     acceptance_sha256: str
     limit_micros: int = 0
     max_model_calls: int = 32
+    trial_id: UUID | None = None
 
 
 class SourceCoding:
@@ -120,17 +121,24 @@ class SourceCoding:
         if not isinstance(profile, CodingProfile):
             raise _error("SOURCE_CODING_TRUSTED_PROFILE_REQUIRED")
         h11, h12 = profile.harness.h11, profile.harness.h12
+        trial = profile.trial_id is not None
+        if trial:
+            from mgar_v3.super_agent.source_coding_trial import current_trial
+
+            with self.engine.transaction() as conn:
+                current_trial(self.engine, conn, profile)
         if (
             h11.commit != H11_COMMIT
-            or h12.commit != H12_COMMIT
+            or (not trial and h12.commit != H12_COMMIT)
             or h11.engineering != "PASS"
             or h11.recovery != "PASS"
             or h12.engineering != "PASS"
             or h12.live_agent != "FAIL"
             or h12.mvp != "FAIL"
             or profile.repository.private
-            or profile.repository.source_kind != "fixture_git"
-            or profile.repository.model_disclosure != "controlled_fixture"
+            or profile.repository.source_kind != ("local_git_snapshot" if trial else "fixture_git")
+            or profile.repository.model_disclosure
+            != ("approved_live" if trial else "controlled_fixture")
             or profile.repository.repository != self.engine.settings.repository.lower()
             or type(profile.limit_micros) is not int
             or not 0 <= profile.limit_micros <= 10**12
@@ -204,13 +212,18 @@ class SourceCoding:
             self._console(conn, cookie)
             return {
                 "schema_version": CODING_VERSION,
-                "engineering": "fixture_only",
+                "engineering": (
+                    "owner_trial_registered"
+                    if any(p.trial_id for p in self._profiles.values())
+                    else "fixture_only"
+                ),
                 "profiles": sorted(self._profiles),
                 "runtime_configured": self.runtime is not None,
                 "live_agent": "FAIL",
                 "mvp": "FAIL",
                 "live_coding": "NOT_RUN",
-                "paid": False,
+                "paid": self.engine.settings.allow_paid
+                and any(p.trial_id for p in self._profiles.values()),
                 "publication": False,
             }
 
@@ -236,14 +249,30 @@ class SourceCoding:
             scope is None
             or run["graph_version"] != "source-coding-v1"
             or scope["policy_version"] != CODING_VERSION
-            or run["execution_mode"] != "fixture"
-            or scope["execution_mode"] != "fixture"
+            or run["execution_mode"] not in {"fixture", "live"}
+            or scope["execution_mode"] != run["execution_mode"]
         ):
             raise _error("SOURCE_CODING_NEW_MANDATE_REQUIRED")
         try:
             mandate = CodingMandate.model_validate_json(json.dumps(scope["scope"]))
         except (ValueError, TypeError):
             raise _error("SOURCE_CODING_NEW_MANDATE_REQUIRED") from None
+        profile = self._profile(mandate)
+        mode = "live" if profile.trial_id is not None else "fixture"
+        if run["execution_mode"] != mode:
+            raise _error("SOURCE_CODING_NEW_MANDATE_REQUIRED")
+        if profile.trial_id is not None:
+            from mgar_v3.super_agent.source_coding_trial import current_trial
+
+            trial = current_trial(self.engine, conn, profile)
+            if (
+                trial["signed_by"] != mandate.signed_by
+                or trial["source_instance_id"] != mandate.origin.input.source_instance_id
+                or trial["policy_id"] != mandate.origin.policy_id
+                or trial["policy_revision"] != mandate.origin.policy_revision
+                or mandate.valid_until > trial["valid_until"]
+            ):
+                raise _error("SOURCE_CODING_TRIAL_AUTHORIZATION")
         target = mandate.target
         if (
             target.project_id != self.project
@@ -420,6 +449,7 @@ class SourceCoding:
         """Trusted factory primitive. Caller must bind and queue before commit."""
         self._conn(conn)
         profile = self._profile(mandate)
+        mode = "live" if profile.trial_id is not None else "fixture"
         t = mandate.target
         source = self._source(conn, mandate)
         if source.native:
@@ -445,13 +475,14 @@ class SourceCoding:
         )
         conn.execute(
             "INSERT INTO app.mandates(mandate_id,project_id,actor,scope,policy_version,"
-            "execution_mode) VALUES(%s,%s,%s,%s,%s,'fixture')",
+            "execution_mode) VALUES(%s,%s,%s,%s,%s,%s)",
             (
                 t.mandate_id,
                 self.project,
                 mandate.origin.engine_actor,
                 Jsonb(mandate.model_dump(mode="json")),
                 CODING_VERSION,
+                mode,
             ),
         )
         conn.execute(
@@ -461,9 +492,9 @@ class SourceCoding:
         )
         conn.execute(
             "INSERT INTO app.runs(run_id,ticket_id,attempt_no,graph_version,execution_mode,"
-            "status,question,input_revision) VALUES(%s,%s,1,'source-coding-v1','fixture',"
+            "status,question,input_revision) VALUES(%s,%s,1,'source-coding-v1',%s,"
             "'queued','Reviewed Source Coding target',1)",
-            (t.run_id, t.ticket_id),
+            (t.run_id, t.ticket_id, mode),
         )
         conn.execute(
             "INSERT INTO app.budgets(mandate_id,limit_micros) VALUES(%s,%s)",
@@ -529,6 +560,7 @@ class SourceCoding:
                 raise _error("SOURCE_CODING_IDEMPOTENCY_CONFLICT", 409)
             return self._view(previous)
         run, mandate = self._mandate(conn, request.run_id)
+        profile = self._profile(mandate)
         self._source(conn, mandate)
         self.fresh_context(conn, mandate)
         if (
@@ -567,7 +599,7 @@ class SourceCoding:
             "mandate_revision": mandate.revision,
             "request_id": request.request_id,
             "request_sha256": request_hash,
-            "execution_mode": "fixture",
+            "execution_mode": "live" if profile.trial_id is not None else "fixture",
             "source_instance_id": origin.input.source_instance_id,
             "input_id": origin.input.input_id,
             "version_fingerprint": origin.input.version_fingerprint,
@@ -688,7 +720,7 @@ class SourceCoding:
             configuration_expires_at=config.configuration.valid_until,
             current_tree_sha256=tree_sha256 or mandate.repository.materialized_tree_sha256,
             environment_sha256=mandate.grant.environment_sha256,
-            mode="fixture",
+            mode=run["execution_mode"],
             original_scope_kind=CODING_VERSION,
             original_read_only=False,
             source_mode="auto_repair",
@@ -710,6 +742,11 @@ class SourceCoding:
             policy_read_paths=self._policy_paths(source, mandate),
             policy_write_paths=self._policy_paths(source, mandate),
             policy_commands=mandate.grant.allowed_commands,
+            live_source_authorized=run["execution_mode"] == "live",
+            live_model_authorized=run["execution_mode"] == "live"
+            and self.engine.settings.allow_paid,
+            live_execution_authorized=run["execution_mode"] == "live",
+            owner_trial_current=run["execution_mode"] == "live",
         )
         validate_coding_current(mandate, facts, request, at=self.now(conn))
         return mandate, facts

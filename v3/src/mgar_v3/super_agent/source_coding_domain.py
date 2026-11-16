@@ -20,9 +20,7 @@ from mgar_v3.super_agent.source_scheduler_domain import (
 CODING_VERSION: Literal["source-coding-mandate-v1"] = "source-coding-mandate-v1"
 Commit = Annotated[str, Field(strict=True, pattern=r"^[a-f0-9]{40}$")]
 EngineActor = Annotated[str, Field(strict=True, pattern=r"^[A-Za-z0-9_-]{1,100}$")]
-CommandName = Annotated[
-    str, Field(strict=True, pattern=r"^[A-Za-z0-9][A-Za-z0-9_+.-]{0,63}$")
-]
+CommandName = Annotated[str, Field(strict=True, pattern=r"^[A-Za-z0-9][A-Za-z0-9_+.-]{0,63}$")]
 PathRoot = Annotated[
     str,
     Field(strict=True, max_length=256),
@@ -38,9 +36,7 @@ class CodingModel(Model):
 
 
 def within(path: str, roots: tuple[str, ...]) -> bool:
-    return any(
-        root == "" or path == root or path.startswith(root + "/") for root in roots
-    )
+    return any(root == "" or path == root or path.startswith(root + "/") for root in roots)
 
 
 class CodingTarget(CodingModel):
@@ -64,11 +60,9 @@ class CodingOrigin(CodingModel):
 
 
 class CodingRepository(CodingModel):
-    repository: Annotated[
-        str, Field(pattern=r"^[a-z0-9_.-]+/[a-z0-9_.-]+$", max_length=200)
-    ]
+    repository: Annotated[str, Field(pattern=r"^[a-z0-9_.-]+/[a-z0-9_.-]+$", max_length=200)]
     repository_id: Revision
-    source_kind: Literal["fixture_git", "github_snapshot"]
+    source_kind: Literal["fixture_git", "github_snapshot", "local_git_snapshot"]
     base_commit: Commit
     upstream_tree: Commit
     materialized_commit: Commit
@@ -76,20 +70,14 @@ class CodingRepository(CodingModel):
     registration_sha256: SHA256
     snapshot_sha256: SHA256
     private: bool = False
-    model_disclosure: Literal["denied", "controlled_fixture", "approved_live"] = (
-        "denied"
-    )
+    model_disclosure: Literal["denied", "controlled_fixture", "approved_live"] = "denied"
 
 
 class CodingGrant(CodingModel):
     read_paths: Annotated[tuple[PathRoot, ...], Field(min_length=1, max_length=64)]
     write_paths: Annotated[tuple[PathRoot, ...], Field(min_length=1, max_length=32)]
-    allowed_commands: Annotated[
-        tuple[CommandName, ...], Field(min_length=1, max_length=32)
-    ]
-    protected_paths: Annotated[
-        tuple[PathRoot, ...], Field(min_length=3, max_length=64)
-    ] = (
+    allowed_commands: Annotated[tuple[CommandName, ...], Field(min_length=1, max_length=32)]
+    protected_paths: Annotated[tuple[PathRoot, ...], Field(min_length=3, max_length=64)] = (
         ".git",
         ".mgar",
         ".env",
@@ -108,9 +96,7 @@ class CodingGrant(CodingModel):
                 raise ValueError("Duplicate path root")
         if len(set(self.allowed_commands)) != len(self.allowed_commands):
             raise ValueError("Duplicate command")
-        if any(
-            not path or not within(path, self.read_paths) for path in self.write_paths
-        ):
+        if any(not path or not within(path, self.read_paths) for path in self.write_paths):
             raise ValueError("Writes need a bounded readable subpath")
         if any(
             within(path, (protected,)) or within(protected, (path,))
@@ -166,9 +152,7 @@ class CodingMandate(CodingModel):
     grant: CodingGrant
     budget: CodingBudgetRef
     harness: CodingHarnessGates
-    context_refs: Annotated[
-        tuple[CorrelationInputRef, ...], Field(min_length=1, max_length=32)
-    ]
+    context_refs: Annotated[tuple[CorrelationInputRef, ...], Field(min_length=1, max_length=32)]
     context_sha256: SHA256
     acceptance_sha256: SHA256
     worker_profile_sha256: SHA256
@@ -179,21 +163,12 @@ class CodingMandate(CodingModel):
 
     @model_validator(mode="after")
     def original_scope(self) -> Self:
-        if (
-            self.valid_until <= self.valid_from
-            or self.valid_until > self.origin.expires_at
-        ):
+        if self.valid_until <= self.valid_from or self.valid_until > self.origin.expires_at:
             raise ValueError("Coding validity must fit its Source origin")
         refs = self.context_refs
-        if any(
-            ref.project_id != self.target.project_id
-            for ref in (*refs, self.origin.input)
-        ):
+        if any(ref.project_id != self.target.project_id for ref in (*refs, self.origin.input)):
             raise ValueError("Canonical references must stay in the original project")
-        if (
-            len({ref.input_id for ref in refs}) != len(refs)
-            or self.origin.input not in refs
-        ):
+        if len({ref.input_id for ref in refs}) != len(refs) or self.origin.input not in refs:
             raise ValueError("Context references need one exact unique admitted origin")
         return self
 
@@ -265,15 +240,9 @@ class CodingCurrentFacts(CodingModel):
     mode: Literal["fixture", "live"] = "fixture"
     original_scope_kind: OpaqueId = "legacy"
     original_read_only: bool = True
-    source_mode: Literal["disabled", "shadow", "auto_investigate", "auto_repair"] = (
-        "disabled"
-    )
-    run_state: Literal[
-        "queued", "running", "paused", "succeeded", "failed", "cancelled"
-    ] = "queued"
-    assignment_state: Literal["preparing", "active", "draining", "released"] = (
-        "preparing"
-    )
+    source_mode: Literal["disabled", "shadow", "auto_investigate", "auto_repair"] = "disabled"
+    run_state: Literal["queued", "running", "paused", "succeeded", "failed", "cancelled"] = "queued"
+    assignment_state: Literal["preparing", "active", "draining", "released"] = "preparing"
     source_current: bool = False
     identity_current: bool = False
     policy_current: bool = False
@@ -290,6 +259,7 @@ class CodingCurrentFacts(CodingModel):
     live_source_authorized: bool = False
     live_model_authorized: bool = False
     live_execution_authorized: bool = False
+    owner_trial_current: bool = False
     policy_read_paths: tuple[PathRoot, ...] = ()
     policy_write_paths: tuple[PathRoot, ...] = ()
     policy_commands: tuple[CommandName, ...] = ()

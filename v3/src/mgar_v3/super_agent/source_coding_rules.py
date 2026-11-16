@@ -17,9 +17,7 @@ from mgar_v3.super_agent.source_coding_domain import (
 
 
 def _deny(code: str) -> DomainError:
-    return DomainError(
-        code, "Coding requires current scoped original Run authority", 403
-    )
+    return DomainError(code, "Coding requires current scoped original Run authority", 403)
 
 
 def validate_coding_current(
@@ -99,7 +97,7 @@ def validate_coding_current(
     if h11.engineering != "PASS" or h11.recovery != "PASS" or h12.engineering != "PASS":
         raise _deny("SOURCE_CODING_HARNESS_ENGINEERING_REQUIRED")
     if facts.mode == "live":
-        if h12.live_agent != "PASS" or h12.mvp != "PASS":
+        if (h12.live_agent != "PASS" or h12.mvp != "PASS") and not facts.owner_trial_current:
             raise _deny("SOURCE_CODING_HARNESS_LIVE_REQUIRED")
         if not all(
             (
@@ -128,10 +126,7 @@ def validate_coding_tool(
     expected_tree_sha256: str | None = None,
 ) -> None:
     validate_coding_current(mandate, facts, request, at=at)
-    if (
-        expected_tree_sha256 is not None
-        and expected_tree_sha256 != facts.current_tree_sha256
-    ):
+    if expected_tree_sha256 is not None and expected_tree_sha256 != facts.current_tree_sha256:
         raise _deny("SOURCE_CODING_TREE_STALE")
     grant = mandate.grant
     if capability == "execute":
@@ -152,14 +147,8 @@ def validate_coding_tool(
     except ValueError:
         raise _deny("SOURCE_CODING_PATH_DENIED") from None
     roots = grant.write_paths if capability == "write" else grant.read_paths
-    current = (
-        facts.policy_write_paths if capability == "write" else facts.policy_read_paths
-    )
-    if (
-        not within(path, roots)
-        or not within(path, current)
-        or within(path, grant.protected_paths)
-    ):
+    current = facts.policy_write_paths if capability == "write" else facts.policy_read_paths
+    if not within(path, roots) or not within(path, current) or within(path, grant.protected_paths):
         raise _deny("SOURCE_CODING_PATH_DENIED")
     if capability == "write" and expected_tree_sha256 is None:
         raise _deny("SOURCE_CODING_TREE_REQUIRED")

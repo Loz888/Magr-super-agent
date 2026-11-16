@@ -192,6 +192,10 @@ class NotificationStore:
 
             bound = matches_reply_origin(self.engine, conn, run, source)
         if not bound:
+            from mgar_v3.super_agent.source_conversations import matches_conversation_origin
+
+            bound = matches_conversation_origin(self.engine, conn, run, source)
+        if not bound:
             raise denied("ORIGINAL_TASK_LINK_REQUIRED")
         profile = self._profiles.get(settings.profile_sha256)
         if profile is None or run["execution_mode"] != profile.mode or run["status"] == "cancelled":
@@ -199,8 +203,14 @@ class NotificationStore:
         return source
 
     def _facts(self, conn: Connection, run: Row, kind: ContentClass) -> NotificationFacts:
+        from mgar_v3.super_agent.source_conversations import (
+            GRAPH as CONVERSATION_GRAPH,
+            conversation_facts,
+        )
         from mgar_v3.super_agent.source_replies import GRAPH, reply_facts
 
+        if run["graph_version"] == CONVERSATION_GRAPH:
+            return conversation_facts(self.engine, conn, run, kind)
         if run["graph_version"] == GRAPH:
             return reply_facts(self.engine, conn, run, kind)
         verdict = conn.execute(

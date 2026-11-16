@@ -69,9 +69,7 @@ OperationKind = Literal["prepare", "start", "job", "stop", "inspect"]
 
 
 def _error(code: str, status: int = 409) -> DomainError:
-    return DomainError(
-        code, "Scheduling requires current exact resource authority", status
-    )
+    return DomainError(code, "Scheduling requires current exact resource authority", status)
 
 
 def _json(value: Any) -> Any:
@@ -200,9 +198,7 @@ class _Permit:
     epoch: int
 
 
-_PERMIT: ContextVar[_Permit | None] = ContextVar(
-    "source_scheduler_permit", default=None
-)
+_PERMIT: ContextVar[_Permit | None] = ContextVar("source_scheduler_permit", default=None)
 
 
 class SourceScheduler:
@@ -289,10 +285,7 @@ class SourceScheduler:
             "SELECT to_jsonb(m) AS value FROM app.mandates m WHERE mandate_id=%s AND project_id=%s",
             (run["mandate_id"], self.project),
         ).fetchone()
-        if (
-            mandate is None
-            or run["repository"].lower() != self.engine.settings.repository.lower()
-        ):
+        if mandate is None or run["repository"].lower() != self.engine.settings.repository.lower():
             raise _error("SOURCE_SCHEDULER_TARGET_DENIED", 403)
         return _hash(
             [
@@ -319,9 +312,7 @@ class SourceScheduler:
                 "target_sha256": self._target_hash(conn, run),
             }
 
-    def _configuration(
-        self, conn: Connection, *, active: bool = False
-    ) -> SchedulerConfigFacts:
+    def _configuration(self, conn: Connection, *, active: bool = False) -> SchedulerConfigFacts:
         row = conn.execute(
             "SELECT v.* FROM app.sa_scheduler_configs h "
             "JOIN app.sa_scheduler_config_versions v USING(project_id,revision) "
@@ -349,8 +340,7 @@ class SourceScheduler:
         if digest(config.model_dump(mode="json")) != row["configuration_sha256"]:
             raise _error("SOURCE_SCHEDULER_CONFIG_INVALID", 403)
         if active and (
-            not config.enabled
-            or not config.valid_from <= self._now(conn) < config.valid_until
+            not config.enabled or not config.valid_from <= self._now(conn) < config.valid_until
         ):
             raise _error("SOURCE_SCHEDULER_CONFIG_INACTIVE", 403)
         return SchedulerConfigFacts(
@@ -478,10 +468,19 @@ class SourceScheduler:
             expires_at=min(loaded.expires, loaded.definition.valid_until),
         )
 
-    @staticmethod
-    def _fixture(run: Row) -> None:
-        if run["execution_mode"] != "fixture":
-            raise _error("SOURCE_SCHEDULER_LIVE_BRIDGE_REQUIRED", 403)
+    def _fixture(self, run: Row) -> None:
+        if run["execution_mode"] == "fixture":
+            return
+        if run["execution_mode"] == "live" and run["graph_version"] == "source-coding-v1":
+            # The sole new live path rechecks the exact registered owner trial.
+            # Ordinary legacy/live Runs do not acquire scheduler authority.
+            self.engine.source_coding._mandate(self.engine.connection, run["run_id"])
+            return
+        raise _error("SOURCE_SCHEDULER_LIVE_BRIDGE_REQUIRED", 403)
+
+    def _mode_allowed(self, run: Row) -> bool:
+        self._fixture(run)
+        return True
 
     def enqueue(self, cookie: str, request: SchedulerEnqueueRequest) -> Row:
         with self.engine.transaction() as conn:
@@ -533,9 +532,7 @@ class SourceScheduler:
         if source:
             loaded = self.engine.source_correlations._input(conn, source.input_id)
             classification = (
-                "human"
-                if loaded.item.event.sender.actor_kind == "human"
-                else "automation"
+                "human" if loaded.item.event.sender.actor_kind == "human" else "automation"
             )
             fairness = _hash([self.project, source.source_instance_id])
         else:
@@ -604,9 +601,7 @@ class SourceScheduler:
     @staticmethod
     def _view(row: Row) -> Row:
         return {
-            key: value
-            for key, value in row.items()
-            if key not in {"token_sha256", "review_sha256"}
+            key: value for key, value in row.items() if key not in {"token_sha256", "review_sha256"}
         }
 
     def queue(self, cookie: str, limit: int = 100) -> Row:
@@ -638,15 +633,11 @@ class SourceScheduler:
                 (request.queue_id, request.expected_revision),
             ).fetchone()
             assert closed is not None
-            self.engine.project_budgets.release_quota(
-                conn, "queue", row["queue_quota_key"]
-            )
+            self.engine.project_budgets.release_quota(conn, "queue", row["queue_quota_key"])
             self._event(conn, "QUEUE_CANCELLED", closed, state="closed")
             return self._view(closed)
 
-    def _session(
-        self, conn: Connection, session_id: UUID, bearer: str | None = None
-    ) -> Row:
+    def _session(self, conn: Connection, session_id: UUID, bearer: str | None = None) -> Row:
         row = conn.execute(
             "SELECT * FROM app.sa_scheduler_sessions WHERE session_id=%s AND project_id=%s "
             "FOR UPDATE",
@@ -687,9 +678,7 @@ class SourceScheduler:
             }
         )
 
-    def register_session(
-        self, cookie: str, request: SchedulerSessionRegisterRequest
-    ) -> Row:
+    def register_session(self, cookie: str, request: SchedulerSessionRegisterRequest) -> Row:
         with self.engine.transaction() as conn:
             user = self._console(conn, cookie)
             config = self._configuration(conn)
@@ -706,15 +695,10 @@ class SourceScheduler:
                     "bearer": None,
                     "bearer_returned_once": True,
                 }
-            if (
-                self.driver is None
-                or self.driver.profile_sha256 != request.profile_sha256
-            ):
+            if self.driver is None or self.driver.profile_sha256 != request.profile_sha256:
                 raise _error("SOURCE_SCHEDULER_DRIVER_REQUIRED", 403)
             at = self._now(conn)
-            ttl = min(
-                request.ttl_seconds, config.configuration.limits.session_ttl_seconds
-            )
+            ttl = min(request.ttl_seconds, config.configuration.limits.session_ttl_seconds)
             session_id, bearer = uuid4(), secrets.token_urlsafe(48)
             row = conn.execute(
                 "INSERT INTO app.sa_scheduler_sessions(session_id,project_id,request_id,"
@@ -735,21 +719,14 @@ class SourceScheduler:
                 ),
             ).fetchone()
             assert row is not None
-            self._event(
-                conn, "SESSION_REGISTERED", row, profile_sha256=request.profile_sha256
-            )
+            self._event(conn, "SESSION_REGISTERED", row, profile_sha256=request.profile_sha256)
             return {**self._view(row), "bearer": bearer, "bearer_returned_once": True}
 
-    def revoke_session(
-        self, cookie: str, request: SchedulerSessionRevokeRequest
-    ) -> Row:
+    def revoke_session(self, cookie: str, request: SchedulerSessionRevokeRequest) -> Row:
         with self.engine.transaction() as conn:
             self._console(conn, cookie)
             row = self._session(conn, request.session_id)
-            if (
-                row["revision"] != request.expected_revision
-                or row["state"] != "registered"
-            ):
+            if row["revision"] != request.expected_revision or row["state"] != "registered":
                 raise _error("SOURCE_SCHEDULER_REVISION_CONFLICT")
             changed = conn.execute(
                 "UPDATE app.sa_scheduler_sessions SET state='revoked',"
@@ -798,9 +775,7 @@ class SourceScheduler:
             lease_until=row["lease_until"],
             prepare_until=row["prepare_until"],
             fenced_at=row["fenced_at"],
-            resources=ResourceRequest(
-                cpu_millis=row["cpu_millis"], memory_mib=row["memory_mib"]
-            ),
+            resources=ResourceRequest(cpu_millis=row["cpu_millis"], memory_mib=row["memory_mib"]),
         )
 
     def _usage(self, conn: Connection) -> ResourceUsage:
@@ -993,9 +968,7 @@ class SourceScheduler:
         return run
 
     @contextmanager
-    def worker_context(
-        self, bearer: str, request: SchedulerAssignmentRequest
-    ) -> Iterator[None]:
+    def worker_context(self, bearer: str, request: SchedulerAssignmentRequest) -> Iterator[None]:
         with self.engine.transaction() as conn:
             self._session(conn, request.session_id, bearer)
             row = self._assignment(conn, request.assignment_id)
@@ -1047,10 +1020,7 @@ class SourceScheduler:
             config = self._configuration(conn, active=True)
             if config.revision != request.expected_config_revision:
                 raise _error("SOURCE_SCHEDULER_CONFIG_STALE")
-            if (
-                self.driver is None
-                or self.driver.profile_sha256 != session["profile_sha256"]
-            ):
+            if self.driver is None or self.driver.profile_sha256 != session["profile_sha256"]:
                 raise _error("SOURCE_SCHEDULER_DRIVER_REQUIRED", 403)
             fingerprint = digest(request.model_dump(mode="json"))
             previous = conn.execute(
@@ -1079,7 +1049,7 @@ class SourceScheduler:
                     eligible = (
                         run["status"] == "queued"
                         and run["ticket_status"] == "open"
-                        and run["execution_mode"] == "fixture"
+                        and self._mode_allowed(run)
                         and run["execution_epoch"] == row["expected_epoch"]
                         and self._target_hash(conn, run) == row["target_sha256"]
                     )
@@ -1191,9 +1161,7 @@ class SourceScheduler:
                 "revision=%s",
                 (assignment_id, queue["queue_id"], queue["revision"]),
             )
-            self.engine.project_budgets.release_quota(
-                conn, "queue", queue["queue_quota_key"]
-            )
+            self.engine.project_budgets.release_quota(conn, "queue", queue["queue_quota_key"])
             self._event(
                 conn,
                 "ASSIGNMENT_CLAIMED",
@@ -1491,9 +1459,7 @@ class SourceScheduler:
                 row = self._assignment(conn, context.assignment_id)
                 operation = self._operation(conn, context.operation_id)
                 self._binding(context, row, operation)
-                self._authority(
-                    conn, row, self._request(row), preparing=context.kind == "prepare"
-                )
+                self._authority(conn, row, self._request(row), preparing=context.kind == "prepare")
                 if operation["state"] != "requested":
                     raise _error("SOURCE_SCHEDULER_RESOURCE_ALREADY_DISPATCHED", 403)
                 changed = conn.execute(
@@ -1624,9 +1590,7 @@ class SourceScheduler:
             self._drain(conn, assignment, "AUTHORITY_CHANGED")
         return self._view(changed)
 
-    def record_resource_receipt(
-        self, context: ResourceContext, receipt: ResourceReceipt
-    ) -> Row:
+    def record_resource_receipt(self, context: ResourceContext, receipt: ResourceReceipt) -> Row:
         with self.engine.transaction() as conn:
             return self._record_receipt(conn, context, receipt)
 
@@ -1672,13 +1636,8 @@ class SourceScheduler:
                                 "revision=%s",
                                 (operation["operation_id"], operation["revision"]),
                             )
-                    if (
-                        self.engine.connection.info.transaction_status
-                        != TransactionStatus.IDLE
-                    ):
-                        raise _error(
-                            "SOURCE_SCHEDULER_RESOURCE_IO_INSIDE_TRANSACTION", 403
-                        )
+                    if self.engine.connection.info.transaction_status != TransactionStatus.IDLE:
+                        raise _error("SOURCE_SCHEDULER_RESOURCE_IO_INSIDE_TRANSACTION", 403)
                     receipt = (
                         self.driver.stop(context)
                         if first_dispatch and context.kind == "stop"
@@ -1699,10 +1658,7 @@ class SourceScheduler:
             facts = self._authority(conn, row, request, preparing=True)
             at = self._now(conn)
             until = min(
-                at
-                + timedelta(
-                    seconds=facts["configuration"].configuration.limits.lease_seconds
-                ),
+                at + timedelta(seconds=facts["configuration"].configuration.limits.lease_seconds),
                 facts["session"].expires_at,
                 facts["configuration"].configuration.valid_until,
             )
@@ -1738,10 +1694,7 @@ class SourceScheduler:
                 raise _error("SOURCE_SCHEDULER_RESOURCE_IO_INSIDE_TRANSACTION", 403)
             receipt = self.driver.inspect(context)
             self._receipt(context, receipt)
-            if (
-                receipt.tree_sha256 is None
-                or receipt.result_sha256 != operation["result_sha256"]
-            ):
+            if receipt.tree_sha256 is None or receipt.result_sha256 != operation["result_sha256"]:
                 raise _error("SOURCE_SCHEDULER_WORKSPACE_STALE", 403)
             with self.engine.transaction() as conn:
                 row = self._assignment(conn, request.assignment_id)
@@ -1833,9 +1786,7 @@ class SourceScheduler:
                 or operation["state"] != "known_terminal"
             ):
                 raise _error("SOURCE_SCHEDULER_RESOURCE_RECEIPT_REQUIRED", 403)
-            reason = (
-                "WAITING_INPUT" if request.status == "waiting_user" else "RUN_STOPPED"
-            )
+            reason = "WAITING_INPUT" if request.status == "waiting_user" else "RUN_STOPPED"
             return {
                 **self._view(self._drain(conn, row, reason)),
                 "business_outcome_changed": False,
@@ -1905,19 +1856,14 @@ class SourceScheduler:
                 "revision=revision+1 WHERE queue_id=%s AND revision=%s",
                 (queue["queue_id"], queue["revision"]),
             )
-        self._event(
-            conn, "ASSIGNMENT_RELEASED", changed, state="released", quiescent=True
-        )
+        self._event(conn, "ASSIGNMENT_RELEASED", changed, state="released", quiescent=True)
         return changed
 
     def reconcile(self, cookie: str, request: SchedulerReconcileRequest) -> Row:
         with self.engine.transaction() as conn:
             self._console(conn, cookie)
             row = self._assignment(conn, request.assignment_id)
-            if (
-                row["revision"] != request.expected_revision
-                or row["state"] != "draining"
-            ):
+            if row["revision"] != request.expected_revision or row["state"] != "draining":
                 raise _error("SOURCE_SCHEDULER_REVISION_CONFLICT")
             operation = self._operation(conn, request.operation_id)
             if (
@@ -1958,9 +1904,7 @@ class SourceScheduler:
                 raise _error("SOURCE_SCHEDULER_RECEIPT_CONFLICT")
             with self.engine.transaction() as conn:
                 return self._view(
-                    self._release(
-                        conn, self._assignment(conn, request.assignment_id), receipt
-                    )
+                    self._release(conn, self._assignment(conn, request.assignment_id), receipt)
                 )
 
     def release(self, bearer: str, request: SchedulerReleaseRequest) -> Row:
@@ -1999,9 +1943,7 @@ class SourceScheduler:
         for row in self._occupied(conn):
             self._drain(conn, row, "PROCESS_RESTARTED")
 
-    def cleanup_context(
-        self, assignment_id: UUID, operation_id: UUID
-    ) -> ResourceContext:
+    def cleanup_context(self, assignment_id: UUID, operation_id: UUID) -> ResourceContext:
         """Trusted recovery port: fresh cleanup-only proof, never new execution."""
         with self.engine.transaction() as conn:
             self._conn(conn)
@@ -2029,8 +1971,7 @@ class SourceScheduler:
             if len(rows) > 128 or any(count > 64 for count in usage.values()):
                 raise _error("SOURCE_SCHEDULER_OPERATION_CAPACITY", 429)
             return tuple(
-                (UUID(str(row["assignment_id"])), UUID(str(row["operation_id"])))
-                for row in rows
+                (UUID(str(row["assignment_id"])), UUID(str(row["operation_id"]))) for row in rows
             )
 
     def request_stop(
@@ -2099,9 +2040,7 @@ class SourceScheduler:
                     conn,
                     row,
                     "stop",
-                    _hash(
-                        [row["assignment_id"], row["fenced_at"], "trusted-maintenance"]
-                    ),
+                    _hash([row["assignment_id"], row["fenced_at"], "trusted-maintenance"]),
                     cleanup=True,
                 )
                 contexts.append(context)
@@ -2121,13 +2060,8 @@ class SourceScheduler:
                         current = self._context(conn, row, operation, cleanup=True)
                     self._issued(current)
                     assert self.driver is not None
-                    if (
-                        self.engine.connection.info.transaction_status
-                        != TransactionStatus.IDLE
-                    ):
-                        raise _error(
-                            "SOURCE_SCHEDULER_RESOURCE_IO_INSIDE_TRANSACTION", 403
-                        )
+                    if self.engine.connection.info.transaction_status != TransactionStatus.IDLE:
+                        raise _error("SOURCE_SCHEDULER_RESOURCE_IO_INSIDE_TRANSACTION", 403)
                     receipt = self.driver.inspect(current)
                     self._receipt(current, receipt)
                     if receipt.result_sha256 != operation["result_sha256"]:

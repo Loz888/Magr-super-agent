@@ -1,0 +1,184 @@
+{
+  "version": "source-review-v1",
+  "scope": "controlled fixture only; real publication NOT_RUN",
+  "ownership_commit": "09145fe0939b209c43addb0ae6bbbdcc6a6df9a2",
+  "migration": "0050_source_reviews.sql",
+  "async_intake_repair": {
+    "migration": "0051_source_review_async_intake.sql",
+    "ownership_commit": "162b6ef890f18c89df07adf62b0ca0375b5da69c",
+    "SQL_sha256": "2bfcba77da3ad089737e1ae9fcb9db1aef72ca844e27c313c57a9686b55debd5",
+    "scope": "metadata receipt while waiting_approval only; original execution guards unchanged"
+  },
+  "defaults": {
+    "profiles": 0,
+    "worker_started": false,
+    "dispatcher_started": false,
+    "model_calls": 0,
+    "live_publication": false,
+    "merge": false,
+    "deploy": false
+  },
+  "api_routes": 13,
+  "console_routes": 3,
+  "writer": "original Engine held connection/mutex; original Action/Approval/Outbox/repair_publication_steps",
+  "approval": "Owner cookie/Origin/CSRF and short-lived same-session full bundle presentation; exact bundle/action hashes",
+  "unknown": "read-only full tree/parent/blobs/complete Draft PR proof; no retries or step continuation",
+  "H08": {
+    "fixed_record_commit": "a09aef760e4c43ff46595a3c3cc56c503b018e97",
+    "implementation_commit": "fadea5d93d0b6a54bf855eb24eed4a382e6e3125",
+    "integration": "reuse direct preimage hash/full result contract only; no service.py/H12 import"
+  },
+  "H12_fixed_live_agent_mvp": "FAIL; another CLI owns H12 review",
+  "independent_review": "NOT_RUN",
+  "real_gates": "NOT_RUN",
+  "SA19": "NOT_STARTED",
+  "registration": "make verify TASK=SAV1-18",
+  "repair_policy": "only failed nodeids/check targets; prior passes remain version-bound evidence",
+  "artifacts": [
+    {
+      "path": "src/mgar_v3/super_agent/source_review_api.py",
+      "sha256": "da1fe912bbf423f816283e78f1d25c66525ed389dbcef230f9c511aa049285d0"
+    },
+    {
+      "path": "src/mgar_v3/super_agent/source_review_bundle.py",
+      "sha256": "4e573c8d4ab96ef006496100296743d06f7847ce53ee35e9f8a46aa435e29ad3"
+    },
+    {
+      "path": "src/mgar_v3/super_agent/source_review_capture.py",
+      "sha256": "af824850386b30ca057d2cb409d753610dcd945f6f4e63df0f114df8acb09f4c"
+    },
+    {
+      "path": "src/mgar_v3/super_agent/source_review_domain.py",
+      "sha256": "2e92638fe91f9cbf38061e85826ad13842738d0c57619085897f78ef02371834"
+    },
+    {
+      "path": "src/mgar_v3/super_agent/source_review_native.py",
+      "sha256": "ebfb180f64e625127faa19fe485b6fdc75e9b763b136ba2d741e8a50124bc83d"
+    },
+    {
+      "path": "src/mgar_v3/super_agent/source_review_ports.py",
+      "sha256": "8e4441397b2084c03fd1af8de9634b82b68ceaabc44de0cdd4acc6d95c8d80f3"
+    },
+    {
+      "path": "src/mgar_v3/super_agent/source_review_store.py",
+      "sha256": "a1c7596788c37e52eff42c4b598f099e226b9f4d40a46d44c4af4044af8db27d"
+    },
+    {
+      "path": "src/mgar_v3/super_agent/source_review_transport.py",
+      "sha256": "c03147c1049fb08dddc2c88ff44a77fc7edcbdc313db264a949d8336557f548c"
+    },
+    {
+      "path": "src/mgar_v3/super_agent/source_reviews.py",
+      "sha256": "626e0bf70766ad06dd284684bb2b0a1e0d68fa6f2ddcccbf43f7785597e31abc"
+    },
+    {
+      "path": "web/source-reviews.css",
+      "sha256": "12ce7588c23e5f04d77a7b56fffcbc8355384ef65202c4e730f861cbc6c7f697"
+    },
+    {
+      "path": "web/source-reviews.html",
+      "sha256": "c1d2ce3aa95e4169c82ae8050110128739543221177b3df86b9b2b12b55316ae"
+    },
+    {
+      "path": "web/source-reviews.js",
+      "sha256": "61e53a3e00bb09f1869f05c1ca3bb14849eafb32df4de3fbf53ba69d812629e1"
+    },
+    {
+      "path": "tests/test_source_review_api.py",
+      "sha256": "8188ee2311cfb73d73d10f78949561b7868c5ff62c0a4c4c39df48ccb489066d"
+    },
+    {
+      "path": "tests/test_source_review_async.py",
+      "sha256": "a0dcb14de4208fdb402aca0d38898c9a8aa1dda26208ea0dd170154204627356"
+    },
+    {
+      "path": "tests/test_source_review_async_draft.py",
+      "sha256": "2a775a5723e411d39bc46abe0442c7505e3bf2d4205e6f354f093b33ac7cf964"
+    },
+    {
+      "path": "tests/test_source_review_boundaries.py",
+      "sha256": "602b9b6bd5c240d22fdfad82cc3c10a230b9ddb8dc47a2a6d82156f8535ee43c"
+    },
+    {
+      "path": "tests/test_source_review_browser.py",
+      "sha256": "c974fc92ae3f57d03e5bbe1af847c93d5637011da6b52e5305a697da1f2968c4"
+    },
+    {
+      "path": "tests/test_source_review_integration.py",
+      "sha256": "87f824cd4936310240617838dc08e651feb6aa0eaebbcdf85ceadfca7c550a20"
+    },
+    {
+      "path": "tests/test_source_review_native_index.py",
+      "sha256": "67c11b8d40f153bdc5a12279d588eb54d854adfa51cd036c4d847e02753824cb"
+    },
+    {
+      "path": "tests/test_source_review_preparation.py",
+      "sha256": "2fd78d0eab44983f5ae81d81415367ae66a65d9f0a2545f2bd45e572b2f4ed87"
+    },
+    {
+      "path": "tests/test_source_review_recovery.py",
+      "sha256": "4402e492a2e8b61e76b5a9fae966d90d02d73d97fd1181ea7e5b9b5d9d8a4fcb"
+    },
+    {
+      "path": "tests/sa18_support.py",
+      "sha256": "cfa774caa553b6c1b25161d0f2a9611d19ab43e5713d6b88729f56ae822596c5"
+    },
+    {
+      "path": "tests/sa18_runtime_support.py",
+      "sha256": "7414c854183e5e427934fc6eb2cc3a89d3736d4964479ee660d018cb26eca608"
+    },
+    {
+      "path": "tests/sa18_crash_actor.py",
+      "sha256": "9e4424b2af8e4905127d9e4761c65cee6383fe980737ea60f666f9a7f8e9dbbf"
+    },
+    {
+      "path": "tests/sa18_draft_plugin.py",
+      "sha256": "0d2af974c11fcbc822d90a811bda081c4a138591bd5559a7d2ba8eeec01ffecf"
+    },
+    {
+      "path": "migrations/0050_source_reviews.sql",
+      "sha256": "851f7a0d8a6673aa2f6416536d4f0629cc9d33d59541443e2a04bc88a10b751a"
+    },
+    {
+      "path": "src/mgar_v3/coordination/engine.py",
+      "sha256": "8d4e0ca17ef3fff7509e82a201bdd9d5bbe2e71560766fac3e9a5ad219869129"
+    },
+    {
+      "path": "src/mgar_v3/api.py",
+      "sha256": "6b03778bfcca7bc378fbcf595f8c4c10d9a66bf1472394964c52b67920a0fc2a"
+    },
+    {
+      "path": "schemas/super-agent-v1/source-review-v1.json",
+      "sha256": "745f1cdf8f5535a4c1721fe53a98ea178dbbc402c9a71688c07e16c307f71522"
+    },
+    {
+      "path": "fixtures/super-agent-v1/sa18-review-disabled-v1.json",
+      "sha256": "f12b524d05815d09bceda9f877d5af5b20150b390b83986c74a19a69a4158174"
+    },
+    {
+      "path": "docs/super-agent-v1/SA18_REVIEWS.md",
+      "sha256": "a5e674b0c7989fef52063d6b546894651c0f09f49fd186d074b4ccf0bc5bd6aa"
+    },
+    {
+      "path": "docs/super-agent-v1/sa18-proposal/proposal-manifest.json",
+      "sha256": "43132f985f11aafb71092020ccea95dd68cf463213e90bc9d6680b47ccda4d8a"
+    },
+    {
+      "path": "docs/super-agent-v1/sa18-proposal/ownership-confirmed.json",
+      "sha256": "cd7e6fe6f47d4189c8cc8c7cfb4cbf7f05515a98b8c5a51d2cb4d2b01c893867"
+    },
+    {
+      "path": "tests/test_source_review_catalogue.py",
+      "sha256": "92c783a2d037f301261a7ba708d657904b13fce8bccd17a70a50e4de67746886"
+    },
+    {
+      "path": "migrations/0051_source_review_async_intake.sql",
+      "sha256": "2bfcba77da3ad089737e1ae9fcb9db1aef72ca844e27c313c57a9686b55debd5"
+    },
+    {
+      "path": "docs/super-agent-v1/sa18-proposal/async-intake-ownership-confirmed.json",
+      "sha256": "bcbd56aff0db6ac6b1e4526fc28098ba276c597c51051234e6b23bb5fee59d66"
+    }
+  ],
+  "status": "CONTROLLED_IMPLEMENTATION_INDEPENDENT_NOT_RUN_RESULTS_IN_ACCEPTANCE_RECORD"
+}

@@ -28,20 +28,43 @@ def render(facts: NotificationFacts) -> NotificationTemplate:
         or facts.state == "cancelled"
     ):
         raise DomainError("NOTIFICATION_CAUSE_UNAVAILABLE", "Current verified cause required", 409)
-    if facts.source_receipt:
+    data_class = "public_summary"
+    if facts.conversation_status is not None:
+        if facts.content_class != "necessary_question" or facts.state != "waiting_input":
+            raise DomainError(
+                "NOTIFICATION_CAUSE_UNAVAILABLE", "Current conversation status only", 409
+            )
+        body = {
+            "model_unknown": "模型请求结果尚未确认，已保留费用预占，不会自动重复调用。",
+            "budget": "当前共享预算不足，本次未继续调用模型或编码。",
+            "invalid": "模型返回内容未通过检查，本次没有执行编码。",
+            "error": "本次处理未完成，请查看任务记录；系统没有将它标为成功。",
+        }[facts.conversation_status]
+    elif facts.answer_ref is not None:
+        if (
+            facts.content_class != "necessary_question"
+            or facts.state != "waiting_input"
+            or not facts.answer_ref.startswith("source-chat-output-v1:")
+        ):
+            raise DomainError("NOTIFICATION_CAUSE_UNAVAILABLE", "Model answer reference only", 409)
+        body = facts.answer_ref
+        data_class = "private_summary"
+    elif facts.source_receipt:
         if facts.content_class != "verified_result" or facts.state != "waiting_input":
             raise DomainError("NOTIFICATION_CAUSE_UNAVAILABLE", "Receipt reply only", 409)
-        body = (
-            "已收到你的 @ 消息，消息接收与回复服务已连通。"
-            "当前为受限试用，尚未开启自动编码。"
-        )
+        body = "已收到你的 @ 消息，消息接收与回复服务已连通。当前为受限试用，尚未开启自动编码。"
     else:
         body = _TEMPLATES[facts.content_class] + "\n任务：" + str(facts.ticket_id)
     values = facts.model_dump(mode="json")
+    if facts.answer_ref is None:
+        values.pop("answer_ref")
+    if facts.conversation_status is None:
+        values.pop("conversation_status")
     if not facts.source_receipt:
         values.pop("source_receipt")  # Preserve pre-SA22 task-template fact hashes.
     return NotificationTemplate(
         content_class=facts.content_class,
+        data_class=data_class,
         body=body,
         body_sha256=hashlib.sha256(body.encode()).hexdigest(),
         facts_sha256=digest(values),

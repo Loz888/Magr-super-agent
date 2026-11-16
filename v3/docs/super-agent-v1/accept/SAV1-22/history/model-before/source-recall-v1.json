@@ -1,0 +1,341 @@
+{
+  "version": "source-recall-v1",
+  "status": "FORMAL_IMPLEMENTATION",
+  "read_only": true,
+  "migration": null,
+  "max_hops": 4,
+  "max_nodes": 32,
+  "max_edges": 128,
+  "max_bytes": 16384,
+  "page_min_bytes": 128,
+  "page_max_bytes": 4096,
+  "scan_max": 64,
+  "statement_timeout_ms": 1000,
+  "operation_timeout_seconds": 5,
+  "cursor_max_seconds": 60,
+  "search": "bounded_deterministic_lexical",
+  "model_calls": 0,
+  "activation": "explicit_server_adapter_only",
+  "independent": "NOT_RUN",
+  "real_gates": "NOT_RUN",
+  "SA16": "NOT_STARTED",
+  "ownership_commit": "e0432f0e289de868a5956339aeec76db71bd0efe",
+  "registration": "make verify TASK=SAV1-15",
+  "private_preparation_candidate": "5a172ff81dcf9656278fbafa91388e46185688b1",
+  "private_preparation_passed": 89,
+  "private_preparation_repeated": false,
+  "artifacts": [
+    {
+      "path": "docs/super-agent-v1/sa15-proposal/SA15_SCOPE.md",
+      "sha256": "d34fd12af9d38d655462d099480c545924f5456a057c89e437be60730649102c"
+    },
+    {
+      "path": "docs/super-agent-v1/sa15-proposal/harness-reuse.json",
+      "sha256": "7cfb870f5148c92f940a2d9caba155e064ada504444ed1cf0c151d4d4e7f0d7d"
+    },
+    {
+      "path": "docs/super-agent-v1/sa15-proposal/interfaces.json",
+      "sha256": "d2cca75d47d154683c92ea2202d6651fd7240449801ec5adaba7011ed564dbb9"
+    },
+    {
+      "path": "docs/super-agent-v1/sa15-proposal/ownership-confirmed.json",
+      "sha256": "a2be961783b7f48b6b77ba1155a8a2165ba117d69412f8dba174201164200233"
+    },
+    {
+      "path": "docs/super-agent-v1/sa15-proposal/ownership-request.txt",
+      "sha256": "6b2ccb334ac612a80648134a6c1ec8936069ae714f68251d88fe296fa4265657"
+    },
+    {
+      "path": "docs/super-agent-v1/sa15-proposal/proposal-manifest.json",
+      "sha256": "6bbf4c05b2df5d9f46e1814a3c238c3af6494b038979771425af092d281fbf91"
+    },
+    {
+      "path": "docs/super-agent-v1/sa15-proposal/shared-risk-review.json",
+      "sha256": "79229c56725bc763b8e13e1fc0904d6d8c150acb37bc7eaa855bffeafbcc85af"
+    },
+    {
+      "path": "docs/super-agent-v1/sa15-proposal/shared-wiring-metadata.json",
+      "sha256": "998d3d74c1b15de2f15083a07240b8c59b0976e0e5ddf361b0692d9a1bc649d6"
+    },
+    {
+      "path": "docs/super-agent-v1/sa15-proposal/shared-wiring.patch",
+      "sha256": "152b61e72bca0e9e0546c8e8295002f131cfe3a8c94c5ba8e452111f5d33cad9"
+    },
+    {
+      "path": "fixtures/super-agent-v1/sa15/retrieval-quality.json",
+      "sha256": "40f43fb8edc14f02678e0bfea1f9551b1dfcd47856d2b12017bf5fbb8678f033"
+    },
+    {
+      "path": "migrations/0001_coordination.sql",
+      "sha256": "826ea7f33b25231fd0c0eb17929484f43dbef74de358acf1579de71832b95345"
+    },
+    {
+      "path": "migrations/0002_input_snapshots.sql",
+      "sha256": "028b429de04f5e1c20c75e0f485b6676dd304bf8a4ea57cadd9768fab61feb2a"
+    },
+    {
+      "path": "migrations/0003_usage_budgets.sql",
+      "sha256": "bcd1f44e06492423ba30594f51025ffc65ed0939f2dd99874469e84963857f03"
+    },
+    {
+      "path": "migrations/0004_model_results.sql",
+      "sha256": "54f9c02779f4dbdb6f94dd880c21c920fccf7f26af05f951012b7f23319c9f3a"
+    },
+    {
+      "path": "migrations/0005_profile_call_limits.sql",
+      "sha256": "68be24c34c4586b805aab18a7bf2281fb6ea3b2f9435a50de597d2d833b8338b"
+    },
+    {
+      "path": "migrations/0006_r2_mailbox.sql",
+      "sha256": "8ba7f84a7c224d6a50fe1acce4e29c71ef432d15b1286afd4a39b3edc4abf90b"
+    },
+    {
+      "path": "migrations/0007_r3_router.sql",
+      "sha256": "0f86bf1f027d8b09c5aba04f692d41bba6263e425d169203aeda3bf0fe803524"
+    },
+    {
+      "path": "migrations/0008_r4_knowledge.sql",
+      "sha256": "6bb0f4c86824cc3acd7701685cee9f2954d958cdfe8065beedb68863228d3d58"
+    },
+    {
+      "path": "migrations/0009_r4_trials.sql",
+      "sha256": "6e84d39db5a45d69f57d54710945d53042982368db7e3dfc0b5fcbfcc0a18775"
+    },
+    {
+      "path": "migrations/0010_r5_repairs.sql",
+      "sha256": "b5ac211eb285b06334da94d61498ef8e932ca02c383e4c43034295c83ae03384"
+    },
+    {
+      "path": "migrations/0011_r5_live.sql",
+      "sha256": "8a944cae32692dcff929521dac6b1b8db1056304a510620bf5504f2b5bc684d4"
+    },
+    {
+      "path": "migrations/0012_review_renewals.sql",
+      "sha256": "b16153edd8427829d59e5c41ba5393fdc10dc5b6d721b592d983ea315787d790"
+    },
+    {
+      "path": "migrations/0013_recovery_requests.sql",
+      "sha256": "05c5ee2238ee825a5f9e678f02111579d041afa57ebccd59c127db064494ab86"
+    },
+    {
+      "path": "migrations/0014_runtime_monitoring.sql",
+      "sha256": "a35cc0928beb8e3ea3e5fc3a176ad81513ebe259ac7bf2715ea8b86523dfa85d"
+    },
+    {
+      "path": "migrations/0015_proactive_readonly.sql",
+      "sha256": "3c49d625661c5592d9f90d34a381cdc62c979ce4658fbc840bbde981ccba6957"
+    },
+    {
+      "path": "migrations/0016_final_benchmark.sql",
+      "sha256": "49760e15dca50343482c33615af9788ceddb567ab67401e666cf321dfe290d76"
+    },
+    {
+      "path": "migrations/0017_isolated_benchmark_budgets.sql",
+      "sha256": "fac0349ac788f52e22031dabc9e4a5d0301fe45a63d4e6e1a37d74b424c2482c"
+    },
+    {
+      "path": "migrations/0018_commerce_results.sql",
+      "sha256": "a61fa2de136ee93c6c124590126dd1c7ac0d2fc216594e834fb33a9ae3f1f52f"
+    },
+    {
+      "path": "migrations/0019_commerce_review_checks.sql",
+      "sha256": "2145b9fd7579b1d612d3e03e833d7321cd5c7f76d378d2b9b0048f2633433d94"
+    },
+    {
+      "path": "migrations/0020_repository_analysis.sql",
+      "sha256": "5560bf846c3c53254b68d4ade49bd71fe00cd5bed333595c8fbdf856e880cd54"
+    },
+    {
+      "path": "migrations/0021_memory_schema.sql",
+      "sha256": "99ebb5a1f491c42fc04a268d223e6d4788ad41bf66d1d4242e7341d8e6f70fa2"
+    },
+    {
+      "path": "migrations/0022_workbench.sql",
+      "sha256": "023700b2eadc2a23e65158baa5effafc93a892c66ab8cd721cb6c73533989836"
+    },
+    {
+      "path": "migrations/0023_workbench_ledger.sql",
+      "sha256": "2644f8de7a77c5dfc1176abd6d49dd1cc1066c2c7a86c689bdf624ff91fdfbcf"
+    },
+    {
+      "path": "migrations/0024_workbench_handoffs.sql",
+      "sha256": "deb9576bd62aec9ef9a73bbb2c5c611763047834fc7775e5edb1f5eaed0f21fe"
+    },
+    {
+      "path": "migrations/0025_workbench_publications.sql",
+      "sha256": "f0d1c35807033509d82666d49377db8c5a2d2ddd248ebf0f4250cc37d75b13bb"
+    },
+    {
+      "path": "migrations/0026_memory_write_attempts.sql",
+      "sha256": "243d6b5023bbb7dd04c49aa5551eeece9a7feb0059b47a3f9fdcaf68e39f51c9"
+    },
+    {
+      "path": "migrations/0027_web_accounts.sql",
+      "sha256": "4b2c94608d57de51b5b14da3223a9e5921f76a48785c4ad64e7b888475e83cca"
+    },
+    {
+      "path": "migrations/0028_analysis_streaming.sql",
+      "sha256": "faae84fc631029fa5d6b8867c4790c66dffad6876ac369e90faee9751712089e"
+    },
+    {
+      "path": "migrations/0029_analysis_token_reservations.sql",
+      "sha256": "396ecb9cfd555a00396ab2a9ef4c20ee182edb88812d9bc0d45cf69a848c966e"
+    },
+    {
+      "path": "migrations/0030_source_contracts.sql",
+      "sha256": "7109952590c256bf2b69008db7b9806f9378c71148374b7fca964c194ef79dc7"
+    },
+    {
+      "path": "migrations/0031_source_identities.sql",
+      "sha256": "7e9ba092ed46d3cf52a645e19ae0757b98996090e759192871ef2f06e1224f56"
+    },
+    {
+      "path": "migrations/0032_source_policies.sql",
+      "sha256": "a88e31cd786b74fabcec197108be113b186dda51b56529e10e035043b6eb2f30"
+    },
+    {
+      "path": "migrations/0033_source_ingress.sql",
+      "sha256": "3857e7dee48ccec855c2e4d7e207d7e50f084b6d12344c9df9c02181dc29c484"
+    },
+    {
+      "path": "migrations/0034_github_app.sql",
+      "sha256": "327ab8d0892410527892bd588e504f548e8898630b8207a388b36bc357b21c96"
+    },
+    {
+      "path": "migrations/0035_feishu_source.sql",
+      "sha256": "4153ec29eae99136cd3103f4b17903411fb19f7b44f90d951c3f18199aed94b1"
+    },
+    {
+      "path": "migrations/0036_super_agent_budgets.sql",
+      "sha256": "eb1ccb9bbfd3131bfa98740d6eb31832f56085bc61e300bb97553ef8062cf168"
+    },
+    {
+      "path": "migrations/0038_super_agent_fast_path.sql",
+      "sha256": "7f03acdf8e428a0cb621ab555d3b04d44f7dc76127f4e5eedf0c23a698466eb6"
+    },
+    {
+      "path": "migrations/0039_super_agent_source_eval.sql",
+      "sha256": "8b18840590c7841022d7985d66904cd580aee916777cadc9f8baca3cb1837669"
+    },
+    {
+      "path": "migrations/0041_source_correlations.sql",
+      "sha256": "d6aead811237e532664adf62b15521a16369fd29b8dfe9d26156f0d74fec1ee3"
+    },
+    {
+      "path": "migrations/0042_source_subscriptions.sql",
+      "sha256": "3e29900f22472c4d8b0c5b2bc60a64a798134532b2e47ab09427cc5006d4c8d0"
+    },
+    {
+      "path": "migrations/0043_source_subscription_canonical_guard.sql",
+      "sha256": "55f7e50886149eca9ae78db2bc5e72d186b41679fc403c8c318aa6fb8e10a008"
+    },
+    {
+      "path": "migrations/0044_source_scheduler.sql",
+      "sha256": "7199a8020bd17ec069e0b18efc8c48fa3a63827cb83dafbde47fbad7bba07eb6"
+    },
+    {
+      "path": "migrations/0046_source_coding.sql",
+      "sha256": "379e9de4a018c7f38cc3615eae31b9c9d9e44ebdf16cbcf3c101c81d9874f212"
+    },
+    {
+      "path": "migrations/0047_source_async.sql",
+      "sha256": "9ce372e6a82cbf747c51624486ef7548faf056cc60912e0287279be8b569f041"
+    },
+    {
+      "path": "schemas/super-agent-v1/source-recall-v1.json",
+      "sha256": "e5516cefcc9457777782bd607fa08f86cc8ddea134161240121561d8409afca3"
+    },
+    {
+      "path": "src/mgar_v3/api.py",
+      "sha256": "6b03778bfcca7bc378fbcf595f8c4c10d9a66bf1472394964c52b67920a0fc2a"
+    },
+    {
+      "path": "src/mgar_v3/context/store.py",
+      "sha256": "46d9d1f4516dc40c42c2fe0ad88305fc497b2bed36a96a8a2672db970e28552b"
+    },
+    {
+      "path": "src/mgar_v3/coordination/engine.py",
+      "sha256": "8d4e0ca17ef3fff7509e82a201bdd9d5bbe2e71560766fac3e9a5ad219869129"
+    },
+    {
+      "path": "src/mgar_v3/evidence/artifacts.py",
+      "sha256": "62ea463b3a0f9924388732d02a9d62751f7e1dad695a2813a9355dffa3cbe679"
+    },
+    {
+      "path": "src/mgar_v3/harness/long_context.py",
+      "sha256": "449149cbbcf702c10caf3b7e3770cf78e96a7a07d435150c56a0efa493c5d720"
+    },
+    {
+      "path": "src/mgar_v3/memory/store.py",
+      "sha256": "183f6c7d888a6037c6feab5ed9311a8f4dae1eaa871fad7d1b16457726ff1c8e"
+    },
+    {
+      "path": "src/mgar_v3/super_agent/source_recall.py",
+      "sha256": "7804e124355a96912aaf7732028f407103474c3e4c123caee64b720a8f5c4487"
+    },
+    {
+      "path": "src/mgar_v3/super_agent/source_recall_access.py",
+      "sha256": "627c2b5f42f64fff41216a52311e64f1a5b1edcd256193f88d0e4e22236d4902"
+    },
+    {
+      "path": "src/mgar_v3/super_agent/source_recall_api.py",
+      "sha256": "9fa10b0452982649745de44457a5512c11f12c6acb3b5ad2c9ed8763ea5dcf5b"
+    },
+    {
+      "path": "src/mgar_v3/super_agent/source_recall_cursor.py",
+      "sha256": "d4face05f2710306f29c38cf7c4877f152b057016ae74e0bc76e8495ac572c60"
+    },
+    {
+      "path": "src/mgar_v3/super_agent/source_recall_domain.py",
+      "sha256": "5f2151c615fa5eeb199e7ddbbaba6fb86d70b592190a8bb89164cb22139b3d9e"
+    },
+    {
+      "path": "src/mgar_v3/super_agent/source_recall_rules.py",
+      "sha256": "976720d66e81f6c33261582b414300797b6be25e1e080f07477dc0bad753dbd1"
+    },
+    {
+      "path": "src/mgar_v3/super_agent/source_recall_store.py",
+      "sha256": "538ec69764511a0922ebae4a53f309d0384b28af54b898c1d05de57e554af54c"
+    },
+    {
+      "path": "src/mgar_v3/super_agent/source_recall_tools.py",
+      "sha256": "332c2b81e70992b932f89b870dad4fcad5a02401d19ce969e5a9bd991e8ae59f"
+    },
+    {
+      "path": "tests/sa15_support.py",
+      "sha256": "bda8831b01283693be4a4dd6dd2a457007f2cf73c2246fec5ba0fa187817d508"
+    },
+    {
+      "path": "tests/test_super_agent_sa15_api.py",
+      "sha256": "8464e2bb0fa92c6ade5bc849ed063f5dda85430db29d4564731ea0e7c43e4dc7"
+    },
+    {
+      "path": "tests/test_super_agent_sa15_contracts.py",
+      "sha256": "b3deb07c76d76b346b9e3857dc66fed0da15b7dff46c2dc98f0c5500189bf33e"
+    },
+    {
+      "path": "tests/test_super_agent_sa15_pg.py",
+      "sha256": "212de100cc871bb01031fcf1692357cb3faf582f03bd77db6ee4302890cb1ab7"
+    },
+    {
+      "path": "tests/test_super_agent_sa15_quality.py",
+      "sha256": "7baf8be9fd53ce5e66d1049c38ce17717579d54b2a7d2db5132209bee2ca1d9b"
+    },
+    {
+      "path": "tests/test_super_agent_sa15_tools.py",
+      "sha256": "9a9eecf09002a571ac7b6964038a520622ced342cfa30611c4aa088be6a4280d"
+    },
+    {
+      "path": "tests/test_super_agent_sa15_relations.py",
+      "sha256": "abbbaa4df71b84e90e122cfc9e844febb82c5843efc0574a9b4137e92951229a"
+    },
+    {
+      "path": "tests/test_super_agent_sa15_predecrypt.py",
+      "sha256": "6639e37cde1a32e5f17cb3e527c3f3890b8fe1fabdb47d9bdb5b62b3a32e2e74"
+    },
+    {
+      "path": "tests/test_super_agent_sa15_status_retention.py",
+      "sha256": "aa320bd6bcdc2b43e9797e56d6d1a8f93c852008aedf350822b2f9475e1216e5"
+    }
+  ]
+}

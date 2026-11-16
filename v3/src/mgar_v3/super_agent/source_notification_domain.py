@@ -84,12 +84,14 @@ class NotificationFacts(NotificationModel):
     needs_input: bool = False
     critical: bool = False
     source_receipt: bool = False
+    answer_ref: Annotated[str | None, Field(max_length=200)] = None
+    conversation_status: Literal["model_unknown", "budget", "invalid", "error"] | None = None
 
 
 class NotificationTemplate(NotificationModel):
     template_version: Literal["source-notification-template-v1"] = "source-notification-template-v1"
     content_class: ContentClass
-    data_class: Literal["public_summary"] = "public_summary"
+    data_class: Literal["public_summary", "private_summary"] = "public_summary"
     body: Annotated[str, Field(min_length=1, max_length=512)]
     body_sha256: Sha256
     facts_sha256: Sha256

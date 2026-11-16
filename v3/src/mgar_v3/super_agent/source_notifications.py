@@ -149,7 +149,10 @@ class SourceNotifications(NotificationStore):
                 raise denied("CONTENT_CLASS_DENIED")
             facts = self._facts(conn, run, request.content_class)
             template = render(facts)
-            if len(template.body.encode()) > definition.notification.max_bytes:
+            if (
+                len(template.body.encode()) > definition.notification.max_bytes
+                or template.data_class not in definition.notification.data_classes
+            ):
                 raise denied("CONTENT_LIMIT")
             destination = settings.destination.model_dump(mode="json")
             native_destination = delivery_scope(destination)
@@ -347,6 +350,7 @@ class SourceNotifications(NotificationStore):
             or template.body != payload.get("body")
             or template.body_sha256 != intent["body_sha256"]
             or len(template.body.encode()) > definition.notification.max_bytes
+            or template.data_class not in definition.notification.data_classes
             or payload
             != {
                 "notification_version": NOTIFICATION_VERSION,
