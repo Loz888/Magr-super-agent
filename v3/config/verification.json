@@ -2290,5 +2290,19 @@
       "coding": "real_Git_H03_original_Engine_SA07_SA12_isolated_Docker",
       "scope": "SA22_new_model_and_owner_trial_slice_only; historical_reply11_not_rerun"
     }
+  },
+  "SAV1-22-MODEL-R3": {
+    "tests": [
+      "tests/test_source_coding_experiment.py::test_original_trial_factory_model_broker_and_unverified_patch",
+      "tests/test_source_coding_experiment.py::test_sparse_trial_journal_supports_large_unchanged_repository"
+    ],
+    "timeout_seconds": 600,
+    "components": {
+      "postgres": "real_exclusive_test_instance",
+      "model": "controlled_http_supplier; no real paid calls",
+      "platform": "controlled_physical_HTTP_override; no real platform sends",
+      "coding": "real_Git_H03_original_Engine_SA07_SA12_isolated_Docker",
+      "scope": "SA22_new_model_and_owner_trial_slice_only; historical_reply11_not_rerun"
+    }
   }
 }

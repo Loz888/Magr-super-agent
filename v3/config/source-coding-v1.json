@@ -53,11 +53,11 @@
   "artifacts": [
     {
       "path": "config/source-scheduler-v1.json",
-      "sha256": "a7087347d956bdb8dac7717105076c35fc0ac4296e05494e9d17b0a51a9e6dfa"
+      "sha256": "1cf65e109a39542cd3f5deaa696ce1d4928aecf54948fa3c3fa700fe388f0c87"
     },
     {
       "path": "config/verification.json",
-      "sha256": "ebd873b2fd253a2007cde4a18b3051c9ea19708a37f1c884390d7100fb7ef06c"
+      "sha256": "e2077d4780c45b55616fac011f3e5b596ea336ab564a28f9713d5498084267c9"
     },
     {
       "path": "docs/super-agent-v1/accept/SAV1-13/history/api-import-order-followup.json",
@@ -205,7 +205,7 @@
     },
     {
       "path": "src/mgar_v3/super_agent/source_coding_runtime.py",
-      "sha256": "9cb913bd8bb71371769b399418e851f88a0b1b898f6ca6195a2541d5cc3307b7"
+      "sha256": "0cab710725bbf0eb6373e520c41a3cad302178377b108ff6c4962588a81c5f4e"
     },
     {
       "path": "src/mgar_v3/super_agent/source_coding_workspace.py",

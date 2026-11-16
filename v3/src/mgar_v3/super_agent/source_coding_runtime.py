@@ -439,19 +439,26 @@ class _Continuation:
                     if content is None or sha256(content.encode()).hexdigest() != expected:
                         raise _deny("SOURCE_CODING_CHECKPOINT_INVALID")
                     baseline[path] = content
-            payload["baseline_files"] = baseline
+            state = payload.get("state")
+            if not isinstance(state, dict):
+                raise _deny("SOURCE_CODING_CHECKPOINT_INVALID")
+            state["baseline_files"] = baseline
             return payload
         return value
 
     def save(self, payload: dict[str, Any]) -> None:
         if self.session.profile.experimental:
-            baseline = payload.get("baseline_files")
+            state = payload.get("state")
+            baseline = state.get("baseline_files") if isinstance(state, dict) else None
             if not isinstance(baseline, dict):
                 raise _deny("SOURCE_CODING_CHECKPOINT_INVALID")
             payload = {
                 "format": "source-trial-continuation-v1",
                 "baseline_sha256": {p: sha256(v.encode()).hexdigest() for p, v in baseline.items()},
-                "payload": {k: v for k, v in payload.items() if k != "baseline_files"},
+                "payload": {
+                    **payload,
+                    "state": {k: v for k, v in state.items() if k != "baseline_files"},
+                },
             }
         clear = encode(payload)
         key = "continuation:" + sha256(clear).hexdigest()
