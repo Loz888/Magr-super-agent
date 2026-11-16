@@ -16,7 +16,7 @@
   "artifacts": [
     {
       "path": "config/verification.json",
-      "sha256": "e2077d4780c45b55616fac011f3e5b596ea336ab564a28f9713d5498084267c9"
+      "sha256": "8e836782d8d9adb139dad3ece46ccc11571890d087d1e86367c1d0a8e82f7477"
     },
     {
       "path": "docs/super-agent-v1/SA22_MODEL_TRIAL_PROTOCOL.md",
@@ -68,7 +68,7 @@
     },
     {
       "path": "src/mgar_v3/super_agent/source_conversations.py",
-      "sha256": "fb292c4179197ec2ec8c5d296cb69986fc3e778804b1a6b79b76589cafb2c68b"
+      "sha256": "f48f0fcab456731f4195efe01862e3139e0d83d6b2552cca0aaa12bf56d53025"
     },
     {
       "path": "src/mgar_v3/super_agent/source_feishu_channel.py",
@@ -104,7 +104,7 @@
     },
     {
       "path": "tests/sa22_model_support.py",
-      "sha256": "1632b415af27fc4d8f0eadd58828730e03b54896e0c28a4f43b565f1c33ab960"
+      "sha256": "0a3251d8ba0dcddb50d8bba066847620bc3dc1cb05cfede6b15674a040d95339"
     },
     {
       "path": "tests/test_source_coding_experiment.py",

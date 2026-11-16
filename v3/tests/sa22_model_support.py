@@ -25,7 +25,15 @@ from mgar_v3.super_agent.source_notification_domain import NotificationConfigure
 from mgar_v3.super_agent.source_notification_ports import NotificationProfile
 
 
-def model_environment(engine, *, handler=None, token_hook=None):
+def model_environment(
+    engine,
+    *,
+    handler=None,
+    token_hook=None,
+    repository=None,
+    question="请解释这段授权仓库代码 @_user_1",
+    history_turns=0,
+):
     engine.settings = engine.settings.model_copy(
         update={"allow_paid": True, "allow_external_write": True}
     )
@@ -42,7 +50,7 @@ def model_environment(engine, *, handler=None, token_hook=None):
         engine.settings.project_id,
         definition(caps=caps, organization_id="sa22-organization"),
     )
-    base = "a" * 40
+    base = repository.commit if repository is not None else "a" * 40
     current = engine.source_policies.read(source.cookie, source.policy_id)
     raw = current["definition"]
     raw["receive"]["model_input"] = True
@@ -148,7 +156,7 @@ def model_environment(engine, *, handler=None, token_hook=None):
     inbound = runtime.receive(
         signed(
             source,
-            payload(message_id="Om_QA-" + uuid4().hex, body="请解释这段授权仓库代码 @_user_1"),
+            payload(message_id="Om_QA-" + uuid4().hex, body=question),
         )
     )
     assert inbound.disposition == "accepted"
@@ -188,11 +196,15 @@ def model_environment(engine, *, handler=None, token_hook=None):
             expires_at=datetime.now(UTC) + timedelta(minutes=10),
             manifest_sha256=digest("explicit-controlled-model-slice"),
             repository_base_sha=base,
+            repository_tools=repository is not None,
+            history_turns=history_turns,
+            context_tokens=32768 if repository is not None else 16384,
         ),
         keys,
         client=client,
         api_key="controlled-not-a-credential",
         controlled_transport=True,
+        repository=repository,
     )
     holder["service"] = service
     return SimpleNamespace(

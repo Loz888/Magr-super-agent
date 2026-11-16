@@ -1,0 +1,118 @@
+{
+  "version": "source-model-conversation-owner-trial-v1",
+  "status": "FROZEN_BEFORE_INITIAL_CHECKS",
+  "registration": "SAV1-22-MODEL",
+  "owner_exception": "explicitly_authorized_experiment_despite_H12_quality_FAIL",
+  "full_SA22_gates": "NOT_RUN",
+  "H12": "FAIL_RETAINED",
+  "new_migration": "0054_source_coding_trial.sql",
+  "confirmation_commit": "efb09f4fedb35c4bc7f579dda0b7e64d2e3111be",
+  "SQL_sha256": "094909bf76fe89917c4733882719f389003208ffdec4baa196461ea609ef6f48",
+  "shared_Engine_API_Settings_budget_algorithm_changes": false,
+  "new_HTTP_routes": 0,
+  "model_default": "not_activated_without_explicit_server_composition_and_current_owner_grants",
+  "project_lifetime_model_limit_micros": 2000000,
+  "publication": false,
+  "artifacts": [
+    {
+      "path": "config/verification.json",
+      "sha256": "e2077d4780c45b55616fac011f3e5b596ea336ab564a28f9713d5498084267c9"
+    },
+    {
+      "path": "docs/super-agent-v1/SA22_MODEL_TRIAL_PROTOCOL.md",
+      "sha256": "7740aedc0a9711eb5cab70c6a7326075a943dcd3cac8f9cbd9cf686b9896ed81"
+    },
+    {
+      "path": "docs/super-agent-v1/adr/SAV1-22-owner-authorized-live-experiment.md",
+      "sha256": "0264c3071fc1e16f94a7379ef1a601176d4bc88308922801e36dbda9fa0d47a6"
+    },
+    {
+      "path": "migrations/0054_source_coding_trial.sql",
+      "sha256": "094909bf76fe89917c4733882719f389003208ffdec4baa196461ea609ef6f48"
+    },
+    {
+      "path": "src/mgar_v3/super_agent/source_coding.py",
+      "sha256": "40682a3bc1cd01781674aeea01a16360103146cf3fba77b8d8c532a2c9c69ad1"
+    },
+    {
+      "path": "src/mgar_v3/super_agent/source_coding_domain.py",
+      "sha256": "68ed246157b4c5d16d234b6ed1df1b573dedc00074b7d41489ee7731318595bf"
+    },
+    {
+      "path": "src/mgar_v3/super_agent/source_coding_experiment.py",
+      "sha256": "266b1de741dcb9622ec31ac552616d13ebe22ffc19422d1b61fd85b08727752f"
+    },
+    {
+      "path": "src/mgar_v3/super_agent/source_coding_live_model.py",
+      "sha256": "72881a557fd6e6147b946975d220755ed8d9b41f65ebad48beddd34cef38e75d"
+    },
+    {
+      "path": "src/mgar_v3/super_agent/source_coding_rules.py",
+      "sha256": "8a47c1951559084ee89cec4579a45a1354e6adaedc5cf27260210a525f26b8bb"
+    },
+    {
+      "path": "src/mgar_v3/super_agent/source_coding_runtime.py",
+      "sha256": "0cab710725bbf0eb6373e520c41a3cad302178377b108ff6c4962588a81c5f4e"
+    },
+    {
+      "path": "src/mgar_v3/super_agent/source_coding_trial.py",
+      "sha256": "f4bad75f4445eca688ed2902144edb7099ff1428efcbf6c6f72011e501a05d0e"
+    },
+    {
+      "path": "src/mgar_v3/super_agent/source_conversation_context.py",
+      "sha256": "7f97c3a470d5ec277168b07ba4e9acbacd4d2c05e629d61ed59673b4b2327468"
+    },
+    {
+      "path": "src/mgar_v3/super_agent/source_conversation_crypto.py",
+      "sha256": "953a2946a9fc569a7a7306dfa2324506e78e8292d63d8cb51a09ee8f403c2b42"
+    },
+    {
+      "path": "src/mgar_v3/super_agent/source_conversations.py",
+      "sha256": "fb292c4179197ec2ec8c5d296cb69986fc3e778804b1a6b79b76589cafb2c68b"
+    },
+    {
+      "path": "src/mgar_v3/super_agent/source_feishu_channel.py",
+      "sha256": "c65192bef21a1175c07f85fd107ddbeb1bcf407d6d6075619b889da0e2b66ca3"
+    },
+    {
+      "path": "src/mgar_v3/super_agent/source_model_json.py",
+      "sha256": "1c5d595ee49bf3df79438578b823e0e3963c07a83042e4ae7efc6cdf0b7b4593"
+    },
+    {
+      "path": "src/mgar_v3/super_agent/source_notification_domain.py",
+      "sha256": "5ac4f4d9ab2000b60a646ff2cf707cf9eeb1d7eb54b1b7c79107c5bcdeb7ecec"
+    },
+    {
+      "path": "src/mgar_v3/super_agent/source_notification_rules.py",
+      "sha256": "a27c9c96dd16fed15a45d684bb2cd501f746548923f3c54e0b48eeed2953f67b"
+    },
+    {
+      "path": "src/mgar_v3/super_agent/source_notification_store.py",
+      "sha256": "862aa63f8f3443cfe910aec649d09726c55ce9e84b9bea751d69ea3ccecd0c2d"
+    },
+    {
+      "path": "src/mgar_v3/super_agent/source_notifications.py",
+      "sha256": "bd3db2d9ccd26fdc121b40334eaf5b68b6136c6b46872f7350f77498b36724c6"
+    },
+    {
+      "path": "src/mgar_v3/super_agent/source_scheduler.py",
+      "sha256": "fa03d150f3319efd3f50a467aaaa2dec5c5d867e79bf250cc38b372870dacc1a"
+    },
+    {
+      "path": "tests/sa22_coding_support.py",
+      "sha256": "fc9c35af14f3683bd5a6fb1506ee86a0f2764846395c12b21b94b95bac37a04b"
+    },
+    {
+      "path": "tests/sa22_model_support.py",
+      "sha256": "1632b415af27fc4d8f0eadd58828730e03b54896e0c28a4f43b565f1c33ab960"
+    },
+    {
+      "path": "tests/test_source_coding_experiment.py",
+      "sha256": "2e21e04a65d9b0ea1c89f4d03701d25195a5d27299dfbfc993112de696a27058"
+    },
+    {
+      "path": "tests/test_source_model_conversations.py",
+      "sha256": "21dd121cc3644cfa718ef040e12a5281bb46ff83e1bbccbe0acaab5d2eb9a06f"
+    }
+  ]
+}

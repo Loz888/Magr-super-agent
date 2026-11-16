@@ -1,0 +1,56 @@
+{
+  "version": "source-repository-assistant-v1",
+  "status": "FIRST_CHECK_NOT_RUN",
+  "scope": "owner Bot group and fixed committed target only",
+  "migration": null,
+  "shared_Engine_API_or_budget_algorithm_changed": false,
+  "explicit_activation_required": true,
+  "limits": {
+    "model_calls_per_question": 5,
+    "tool_requests": 4,
+    "history_turns": 3,
+    "history_dependencies": 16,
+    "source_excerpt_bytes": 20000,
+    "repository_files": 4096,
+    "repository_bytes": 67108864,
+    "lifetime_model_micros": 2000000
+  },
+  "tools": [
+    "list_files",
+    "search_code",
+    "read_file"
+  ],
+  "references": [
+    {
+      "path": "docs/super-agent-v1/SA22_REPOSITORY_ASSISTANT_PROTOCOL.md",
+      "sha256": "272d1d4ea2cd7f1b19dcb4c7d8ff66c1112f3a9c4d3382f78f34aa29d451575f"
+    },
+    {
+      "path": "src/mgar_v3/super_agent/source_repository_tools.py",
+      "sha256": "d7fd60cb211f0762bfa6004137d97b99d43ce1dcd0b6c09906c87b7d78508c9f"
+    },
+    {
+      "path": "src/mgar_v3/super_agent/source_conversation_history.py",
+      "sha256": "06ed2c01c66218cec862352c09bf097f479e7eb1dfc0245fcb47e5bd659ab71b"
+    },
+    {
+      "path": "src/mgar_v3/super_agent/source_conversations.py",
+      "sha256": "f48f0fcab456731f4195efe01862e3139e0d83d6b2552cca0aaa12bf56d53025"
+    },
+    {
+      "path": "tests/test_source_repository_tools.py",
+      "sha256": "6d308fc838d204f6780b6de0c8948f099ff1dfc772175ed58464bfa81639e21d"
+    },
+    {
+      "path": "tests/test_source_repository_conversations.py",
+      "sha256": "029e50a24e8e96b70b6084664caada4c868b2f45bbd99ae1b822fae62a8b1b06"
+    },
+    {
+      "path": "config/verification.json",
+      "sha256": "8e836782d8d9adb139dad3ece46ccc11571890d087d1e86367c1d0a8e82f7477"
+    }
+  ],
+  "new_tests": "SAV1-22-REPOSITORY",
+  "H12_quality": "FAIL_RETAINED",
+  "publication": false
+}

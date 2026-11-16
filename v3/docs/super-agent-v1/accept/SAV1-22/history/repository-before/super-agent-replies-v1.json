@@ -1,0 +1,56 @@
+{
+  "version": "source-receipt-reply-v1",
+  "status": "IN_PROGRESS_PENDING_FIRST_CHECKS",
+  "registration": "make verify TASK=SAV1-22-REPLIES",
+  "new_migrations": 0,
+  "shared_Engine_API_budget_changes": false,
+  "model_calls": 0,
+  "default": "disabled_without_explicit_profile_and_current_signed_notification_grant",
+  "live_gate": "NOT_RUN",
+  "artifacts": [
+    {
+      "path": "config/verification.json",
+      "sha256": "e2077d4780c45b55616fac011f3e5b596ea336ab564a28f9713d5498084267c9"
+    },
+    {
+      "path": "docs/super-agent-v1/SA22_REPLIES.md",
+      "sha256": "9172cceecfc7bebefaae9c0a102777300e0af8375877937e744ba545f6662471"
+    },
+    {
+      "path": "src/mgar_v3/super_agent/source_replies.py",
+      "sha256": "5e991125ffff0a0211465a328a25ffa372599cf767cc595f8eada91587bff965"
+    },
+    {
+      "path": "src/mgar_v3/super_agent/source_feishu_channel.py",
+      "sha256": "c65192bef21a1175c07f85fd107ddbeb1bcf407d6d6075619b889da0e2b66ca3"
+    },
+    {
+      "path": "src/mgar_v3/super_agent/source_notification_domain.py",
+      "sha256": "5ac4f4d9ab2000b60a646ff2cf707cf9eeb1d7eb54b1b7c79107c5bcdeb7ecec"
+    },
+    {
+      "path": "src/mgar_v3/super_agent/source_notification_ports.py",
+      "sha256": "a6efdb511f984e03bef1f7e85e747594f69ecbe2aab4ad2e9b2d2453134d0b0e"
+    },
+    {
+      "path": "src/mgar_v3/super_agent/source_notification_rules.py",
+      "sha256": "a27c9c96dd16fed15a45d684bb2cd501f746548923f3c54e0b48eeed2953f67b"
+    },
+    {
+      "path": "src/mgar_v3/super_agent/source_notification_store.py",
+      "sha256": "862aa63f8f3443cfe910aec649d09726c55ce9e84b9bea751d69ea3ccecd0c2d"
+    },
+    {
+      "path": "src/mgar_v3/super_agent/source_notifications.py",
+      "sha256": "bd3db2d9ccd26fdc121b40334eaf5b68b6136c6b46872f7350f77498b36724c6"
+    },
+    {
+      "path": "tests/sa22_reply_support.py",
+      "sha256": "12faab4dbfb9fb5f16dabcf55729d35110a329d5f8fb1bedcf859abc4122af50"
+    },
+    {
+      "path": "tests/test_source_reply_backend.py",
+      "sha256": "e8b0c1de65486051280fb726614794dbd282e088b3b55db3d6bbd615cd76f372"
+    }
+  ]
+}

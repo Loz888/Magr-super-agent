@@ -129,7 +129,7 @@
     },
     {
       "path": "config/verification.json",
-      "sha256": "e2077d4780c45b55616fac011f3e5b596ea336ab564a28f9713d5498084267c9"
+      "sha256": "8e836782d8d9adb139dad3ece46ccc11571890d087d1e86367c1d0a8e82f7477"
     },
     {
       "path": "migrations/0041_source_correlations.sql",
