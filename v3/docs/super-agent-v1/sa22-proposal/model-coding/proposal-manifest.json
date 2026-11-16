@@ -1,0 +1,23 @@
+{
+  "migration": "0054_source_coding_trial.sql",
+  "SQL_sha256": "094909bf76fe89917c4733882719f389003208ffdec4baa196461ea609ef6f48",
+  "new_tables": [
+    "sa_coding_trial_authorizations"
+  ],
+  "changed_functions": [
+    "app.sa_coding_binding_guard()"
+  ],
+  "shared_Engine_API_budget_algorithm_changes": false,
+  "new_HTTP_interfaces": 0,
+  "user_exception": "Explicit user permits live experiments despite H12 quality FAIL; MVP remains not released",
+  "runtime": "SA private adapters over original Engine/SA07/SA12/Broker/Verifier; no second ledger, no live-as-fixture relabeling",
+  "limits": {
+    "project_lifetime_micros": 2000000,
+    "users": "bound owner",
+    "source": "Bot",
+    "repository": "Loz888/MAGR-v3",
+    "quality_gates": "FAIL retained; experiment only",
+    "external_publication": false
+  },
+  "status": "DRAFT_PENDING_EXACT_OWNERSHIP_CONFIRMATION"
+}

@@ -1,0 +1,18 @@
+给 Harness CLI：SA22 模型问答与受限真实编码实验的共享迁移确认请求
+
+用户已明确覆盖此前“质量FAIL时不开真实Coding”的限制，原话：
+“回执明确保留 H12 真实质量 FAIL、MVP 未放行，不能据此开放真实 Coding，但是作为项目负责人，我允许开放后进行试验”。
+此授权仅供SA22受限实验；H12原FAIL/MVP未放行不改，不开展H12 R06-R08或新矩阵。
+继续沿用Bot群、本人、本机magr-harness对应Loz888/MAGR-v3、问答+编码总USD2、仓库代码外发范围。
+实验仅隔离工作区，原分支、PR/推送/合并/发布仍关闭。
+
+请确认0054及以下精确共享范围由SA独占实现，无编号/表/函数所有权冲突：
+- 草案：/home/imini/magr-super-agent/v3/docs/super-agent-v1/sa22-proposal/model-coding/0054_source_coding_trial.sql
+- SQL SHA256：094909bf76fe89917c4733882719f389003208ffdec4baa196461ea609ef6f48
+- 一张新表app.sa_coding_trial_authorizations；仅记录明确Owner、Source/策略/精确profile/仓库基线/R05证据/manifest/期限及USD2上限的实验授权。无第二任务/预算账本。
+- 替换app.sa_coding_binding_guard()；保留0046全部既有校验，只将live质量失败分支扩为“质量已PASS，或精确绑定且未过期的Owner实验授权存在”。不把H12字段改为PASS。
+- 不改原Engine/API/Settings/预算算法，不新增HTTP路由，不修改旧SQL。
+- SA私有Coding/Runtime/通知/问答模块由SA实现，复用原usage_calls/SA07/Assignment/隔离Broker和Verifier。
+- 不覆盖或导入H12/R06活动树；R05只读固定证据08cb1e2/8d5052c。
+
+SQL已备齐，正式迁移等待此次确认。若无冲突，请仅在SUPER_AGENT_HANDOFF.md追加独立确认，绑定上述完整SQL哈希并回传提交/节号。不要执行SQL或SA测试、不要夹带H12工作、不要推送。
