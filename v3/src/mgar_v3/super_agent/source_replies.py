@@ -9,7 +9,10 @@ from psycopg.types.json import Jsonb
 
 from mgar_v3.domain import digest
 from mgar_v3.super_agent.policy_domain import ContentClass
-from mgar_v3.super_agent.source_notification_domain import NotificationFacts, NotificationPlanRequest
+from mgar_v3.super_agent.source_notification_domain import (
+    NotificationFacts,
+    NotificationPlanRequest,
+)
 from mgar_v3.super_agent.source_notification_store import denied
 
 if TYPE_CHECKING:
@@ -60,7 +63,9 @@ def matches_reply_origin(engine: Engine, conn: Connection, run: Row, source: _In
     )
 
 
-def reply_facts(engine: Engine, conn: Connection, run: Row, kind: ContentClass) -> NotificationFacts:
+def reply_facts(
+    engine: Engine, conn: Connection, run: Row, kind: ContentClass
+) -> NotificationFacts:
     if kind != "verified_result":
         raise denied("RECEIPT_REPLY_ONLY")
     row = conn.execute(
@@ -68,17 +73,20 @@ def reply_facts(engine: Engine, conn: Connection, run: Row, kind: ContentClass) 
     ).fetchone()
     if row is None or not isinstance(row["scope"].get("source_input"), dict):
         raise denied("REPLY_ORIGIN_REQUIRED")
-    source = engine.source_correlations._input(
-        conn, UUID(row["scope"]["source_input"]["input_id"])
-    )
+    source = engine.source_correlations._input(conn, UUID(row["scope"]["source_input"]["input_id"]))
     if not matches_reply_origin(engine, conn, run, source):
         raise denied("REPLY_ORIGIN_CHANGED")
     return NotificationFacts(
-        run_id=run["run_id"], ticket_id=run["ticket_id"],
-        execution_epoch=run["execution_epoch"], input_revision=run["input_revision"],
-        thread_revision=run["thread_revision"], state=run["status"], content_class=kind,
+        run_id=run["run_id"],
+        ticket_id=run["ticket_id"],
+        execution_epoch=run["execution_epoch"],
+        input_revision=run["input_revision"],
+        thread_revision=run["thread_revision"],
+        state=run["status"],
+        content_class=kind,
         cause_sha256=digest([GRAPH, source.ref.model_dump(mode="json"), run["execution_epoch"]]),
-        verified=True, source_receipt=True,
+        verified=True,
+        source_receipt=True,
     )
 
 
@@ -107,9 +115,13 @@ def queue_reply(engine: Engine, cookie: str, input_id: UUID) -> Row:
         if previous is None:
             thread, mandate, ticket, run_id = (uuid4() for _ in range(4))
             scope = {
-                "schema_version": GRAPH, "receipt_only": True, "read_only": True,
-                "actions": ["source_notification"], "source_input": source.ref.model_dump(mode="json"),
-                "profile_hash": profile.profile_sha256, "signed_by": str(owner),
+                "schema_version": GRAPH,
+                "receipt_only": True,
+                "read_only": True,
+                "actions": ["source_notification"],
+                "source_input": source.ref.model_dump(mode="json"),
+                "profile_hash": profile.profile_sha256,
+                "signed_by": str(owner),
                 "valid_until": min(source.expires, settings.valid_until).isoformat(),
             }
             conn.execute(
@@ -120,12 +132,21 @@ def queue_reply(engine: Engine, cookie: str, input_id: UUID) -> Row:
             conn.execute(
                 "INSERT INTO app.mandates(mandate_id,project_id,actor,scope,policy_version,"
                 "execution_mode) VALUES(%s,%s,%s,%s,%s,%s)",
-                (mandate, engine.settings.project_id, engine.settings.local_actor, Jsonb(scope),
-                 GRAPH, profile.mode),
+                (
+                    mandate,
+                    engine.settings.project_id,
+                    engine.settings.local_actor,
+                    Jsonb(scope),
+                    GRAPH,
+                    profile.mode,
+                ),
             )
-            conn.execute("INSERT INTO app.budgets(mandate_id,limit_micros) VALUES(%s,0)", (mandate,))
             conn.execute(
-                "INSERT INTO app.tickets(ticket_id,mandate_id,thread_id,status) VALUES(%s,%s,%s,'open')",
+                "INSERT INTO app.budgets(mandate_id,limit_micros) VALUES(%s,0)", (mandate,)
+            )
+            conn.execute(
+                "INSERT INTO app.tickets(ticket_id,mandate_id,thread_id,status) "
+                "VALUES(%s,%s,%s,'open')",
                 (ticket, mandate, thread),
             )
             conn.execute(
@@ -139,13 +160,22 @@ def queue_reply(engine: Engine, cookie: str, input_id: UUID) -> Row:
             run_id = previous["run_id"]
         # Nested original transactions commit together. A failed plan leaves no
         # partially created Thread/Ticket/Run, approval or Outbox.
-        result = core.plan(cookie, NotificationPlanRequest(
-            run_id=run_id, source_input=source.ref, content_class="verified_result"
-        ))
+        result = core.plan(
+            cookie,
+            NotificationPlanRequest(
+                run_id=run_id, source_input=source.ref, content_class="verified_result"
+            ),
+        )
         conn.execute(
-            "UPDATE app.source_ingress_inputs SET consumed_at=coalesce(consumed_at,clock_timestamp()) "
+            "UPDATE app.source_ingress_inputs "
+            "SET consumed_at=coalesce(consumed_at,clock_timestamp()) "
             "WHERE input_id=%s AND project_id=%s",
             (input_id, engine.settings.project_id),
         )
-        return {**result, "run_id": run_id, "workflow_kind": GRAPH, "coding_task": False,
-                "notification_revision": config["revision"]}
+        return {
+            **result,
+            "run_id": run_id,
+            "workflow_kind": GRAPH,
+            "coding_task": False,
+            "notification_revision": config["revision"],
+        }

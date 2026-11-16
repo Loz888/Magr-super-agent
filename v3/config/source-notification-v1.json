@@ -54,7 +54,7 @@
     },
     {
       "path": "src/mgar_v3/super_agent/source_notifications.py",
-      "sha256": "ce1bc4cb3aeff4664bd318c317e591e2e2eb6ca35e56db7541b59531fa4f3ab5"
+      "sha256": "719d5d22e6cdfd7436aa798fe8fe53b049922e0cc8c06a2753ceab6b4aed09ce"
     },
     {
       "path": "src/mgar_v3/super_agent/source_notification_domain.py",

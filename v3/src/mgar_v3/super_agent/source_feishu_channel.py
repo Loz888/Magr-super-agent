@@ -33,8 +33,13 @@ class FeishuNotificationTransport(NotificationTransport):
 
 class FeishuNotificationChannel:
     def __init__(
-        self, engine: Engine, scope: SourceScope, credentials: Callable[[], FeishuSecrets], *,
-        mode: str = "live", proxy: str | None = None,
+        self,
+        engine: Engine,
+        scope: SourceScope,
+        credentials: Callable[[], FeishuSecrets],
+        *,
+        mode: str = "live",
+        proxy: str | None = None,
         transport: httpx.MockTransport | None = None,
     ):
         if scope.source_kind != "feishu" or mode not in {"fixture", "live"}:
@@ -43,9 +48,16 @@ class FeishuNotificationChannel:
             raise ValueError("Controlled HTTP must be explicit; live HTTP cannot use a mock")
         if proxy is not None:
             url = urlsplit(proxy)
-            if (url.scheme != "http" or url.hostname not in {"localhost", "127.0.0.1", "::1"}
-                    or url.username or url.password or url.path or url.query or url.fragment
-                    or url.port is None):
+            if (
+                url.scheme != "http"
+                or url.hostname not in {"localhost", "127.0.0.1", "::1"}
+                or url.username
+                or url.password
+                or url.path
+                or url.query
+                or url.fragment
+                or url.port is None
+            ):
                 raise ValueError("Only an explicit trusted local HTTP proxy is supported")
         self.engine, self.scope, self.credentials = engine, scope, credentials
         self.mode, self.proxy, self.transport = mode, proxy, transport
@@ -60,14 +72,20 @@ class FeishuNotificationChannel:
             current = core.engine.source_correlations.identities.registry._instance(
                 conn, self.scope.source_instance_id
             )
-            if (action["status"] != "dispatching" or instance != current
-                    or instance.scope != self.scope or message.destination.scope != self.scope
-                    or action["payload_hash"] != message.payload_hash
-                    or action["payload"]["body"] != body
-                    or hashlib.sha256(body.encode()).hexdigest() != message.body_ref
-                    or action["payload"]["idempotency_key"] != message.idempotency_key
-                    or profile is None or profile.channel is not self or profile.mode != self.mode
-                    or intent["destination"]["thread"] != message.destination.model_dump(mode="json")):
+            if (
+                action["status"] != "dispatching"
+                or instance != current
+                or instance.scope != self.scope
+                or message.destination.scope != self.scope
+                or action["payload_hash"] != message.payload_hash
+                or action["payload"]["body"] != body
+                or hashlib.sha256(body.encode()).hexdigest() != message.body_ref
+                or action["payload"]["idempotency_key"] != message.idempotency_key
+                or profile is None
+                or profile.channel is not self
+                or profile.mode != self.mode
+                or intent["destination"]["thread"] != message.destination.model_dump(mode="json")
+            ):
                 raise denied("LIVE_CHANNEL_FENCED")
             from mgar_v3.super_agent.source_correlation_domain import CorrelationInputRef
 
@@ -80,7 +98,9 @@ class FeishuNotificationChannel:
 
     @staticmethod
     def _post(
-        client: httpx.Client, path: str, body: dict[str, Any],
+        client: httpx.Client,
+        path: str,
+        body: dict[str, Any],
         headers: dict[str, str] | None = None,
     ) -> tuple[int, dict[str, Any]]:
         raw = bytearray()
@@ -110,12 +130,23 @@ class FeishuNotificationChannel:
             raise DefinitiveFailure("Platform IO cannot run in a business transaction")
         if self.mode == "live" and not self.engine.settings.allow_external_write:
             raise DefinitiveFailure("External notification deployment is disabled")
-        with httpx.Client(base_url=API, transport=self.transport, proxy=self.proxy,
-                          timeout=10, trust_env=False, follow_redirects=False) as client:
+        with httpx.Client(
+            base_url=API,
+            transport=self.transport,
+            proxy=self.proxy,
+            timeout=10,
+            trust_env=False,
+            follow_redirects=False,
+        ) as client:
             try:
-                status, token = self._post(client, TOKEN, {
-                    "app_id": self.scope.installation_id, "app_secret": secret.app_secret,
-                })
+                status, token = self._post(
+                    client,
+                    TOKEN,
+                    {
+                        "app_id": self.scope.installation_id,
+                        "app_secret": secret.app_secret,
+                    },
+                )
                 if status != 200 or token["code"] != 0:
                     raise ValueError
                 bearer = token["tenant_access_token"]
@@ -133,27 +164,42 @@ class FeishuNotificationChannel:
             if self.engine.connection.info.transaction_status != TransactionStatus.IDLE:
                 raise DefinitiveFailure("Platform IO cannot run in a business transaction")
             status, value = self._post(
-                client, "/open-apis/im/v1/messages/" + quote(remote_input, safe="") + "/reply",
-                {"msg_type": "text", "content": json.dumps({"text": body}, ensure_ascii=False),
-                      "reply_in_thread": message.destination.native_thread_id is not None,
-                      "uuid": str(uuid5(NAMESPACE_URL, self.scope.key + message.idempotency_key))},
+                client,
+                "/open-apis/im/v1/messages/" + quote(remote_input, safe="") + "/reply",
+                {
+                    "msg_type": "text",
+                    "content": json.dumps({"text": body}, ensure_ascii=False),
+                    "reply_in_thread": message.destination.native_thread_id is not None,
+                    "uuid": str(uuid5(NAMESPACE_URL, self.scope.key + message.idempotency_key)),
+                },
                 {"Authorization": "Bearer " + bearer},
             )
             if status in {200, 400, 401, 403, 429} and value["code"] != 0:
-                return DeliveryReceipt(scope=self.scope, idempotency_key=message.idempotency_key,
-                                       outcome="rejected")
+                return DeliveryReceipt(
+                    scope=self.scope, idempotency_key=message.idempotency_key, outcome="rejected"
+                )
             data = value.get("data")
-            if (status != 200 or value["code"] != 0 or not isinstance(data, dict)
-                    or not isinstance(data.get("message_id"), str) or not data["message_id"]
-                    or len(data["message_id"]) > 256
-                    or data.get("chat_id", message.destination.conversation_id)
-                    != message.destination.conversation_id):
+            if (
+                status != 200
+                or value["code"] != 0
+                or not isinstance(data, dict)
+                or not isinstance(data.get("message_id"), str)
+                or not data["message_id"]
+                or len(data["message_id"]) > 256
+                or data.get("chat_id", message.destination.conversation_id)
+                != message.destination.conversation_id
+            ):
                 raise OSError("Feishu did not prove exact delivery; no retry")
-            return DeliveryReceipt(scope=self.scope, idempotency_key=message.idempotency_key,
-                                   outcome="accepted", remote_message_id=data["message_id"])
+            return DeliveryReceipt(
+                scope=self.scope,
+                idempotency_key=message.idempotency_key,
+                outcome="accepted",
+                remote_message_id=data["message_id"],
+            )
 
     def query(self, instance: SourceInstance, lookup: DeliveryLookup) -> DeliveryReceipt:
         # No granted API can reliably recover an unknown message by client UUID.
         # Never expand to group-history access or turn absence into permission to resend.
-        return DeliveryReceipt(scope=self.scope, idempotency_key=lookup.idempotency_key,
-                               outcome="unknown")
+        return DeliveryReceipt(
+            scope=self.scope, idempotency_key=lookup.idempotency_key, outcome="unknown"
+        )
