@@ -205,6 +205,8 @@ class NotificationStore:
     def _facts(self, conn: Connection, run: Row, kind: ContentClass) -> NotificationFacts:
         from mgar_v3.super_agent.source_conversations import (
             GRAPH as CONVERSATION_GRAPH,
+        )
+        from mgar_v3.super_agent.source_conversations import (
             conversation_facts,
         )
         from mgar_v3.super_agent.source_replies import GRAPH, reply_facts

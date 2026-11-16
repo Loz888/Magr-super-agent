@@ -23,11 +23,11 @@ from mgar_v3.live import LivePermit, LiveProfile
 from mgar_v3.super_agent.budget_domain import PriceQuote
 from mgar_v3.super_agent.policy_domain import PolicyFacts
 from mgar_v3.super_agent.source_conversation_crypto import ReplyKeys
+from mgar_v3.super_agent.source_model_json import decode_model_json
 from mgar_v3.super_agent.source_notification_domain import (
     NotificationFacts,
     NotificationPlanRequest,
 )
-from mgar_v3.super_agent.source_model_json import decode_model_json
 
 if TYPE_CHECKING:
     from mgar_v3.coordination.engine import Connection, Engine
@@ -163,7 +163,7 @@ def matches_conversation_origin(engine: Engine, conn: Connection, run: Row, sour
 def conversation_facts(engine: Engine, conn: Connection, run: Row, kind: str) -> NotificationFacts:
     if kind != "necessary_question" or run["status"] != "waiting_input":
         raise denied("ANSWER_NOT_AVAILABLE")
-    statuses = {
+    statuses: dict[str, Literal["model_unknown", "budget", "invalid", "error"]] = {
         "SOURCE_CHAT_STATUS_MODEL_UNKNOWN": "model_unknown",
         "SOURCE_CHAT_STATUS_BUDGET": "budget",
         "SOURCE_CHAT_STATUS_INVALID": "invalid",
@@ -541,7 +541,8 @@ class SourceConversations:
                 (Jsonb(result.model_dump(mode="json")), call_id),
             )
             conn.execute(
-                "UPDATE app.runs SET status='waiting_input',reason_code='SOURCE_MODEL_ANSWER' WHERE run_id=%s",
+                "UPDATE app.runs SET status='waiting_input',reason_code='SOURCE_MODEL_ANSWER' "
+                "WHERE run_id=%s",
                 (run["run_id"],),
             )
             return self._plan(run["run_id"], source)

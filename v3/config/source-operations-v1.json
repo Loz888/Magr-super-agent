@@ -25,7 +25,7 @@
   "artifacts": [
     {
       "path": "config/verification.json",
-      "sha256": "e75629b6b3f1dc461fc824be8da187131177b64b5b606c5ded96bbacf45f2efc"
+      "sha256": "9707232f672e419c380d2ad234eb3eb0b839a4f28831d499a06f8796ab285154"
     },
     {
       "path": "deploy/super-agent-v1/README.md",

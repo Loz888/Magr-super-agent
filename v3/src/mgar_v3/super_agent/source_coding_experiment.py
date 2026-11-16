@@ -49,8 +49,8 @@ from mgar_v3.super_agent.source_coding_trial import (
 from mgar_v3.super_agent.source_scheduler_domain import (
     ResourceRequest,
     SchedulerClaimRequest,
-    SchedulerConfigureRequest,
     SchedulerConfiguration,
+    SchedulerConfigureRequest,
     SchedulerHeartbeatRequest,
     SchedulerLimits,
     SchedulerOwnerDrainRequest,
@@ -104,13 +104,15 @@ class SourceCodingExperiment:
                     403,
                 )
             old = conn.execute(
-                "SELECT coding_id,run_id FROM app.sa_coding_bindings WHERE input_id=%s AND project_id=%s",
+                "SELECT coding_id,run_id FROM app.sa_coding_bindings "
+                "WHERE input_id=%s AND project_id=%s",
                 (input_id, self.engine.settings.project_id),
             ).fetchone()
             if old:
                 return old
             identity = conn.execute(
-                "SELECT i.*,p.engine_actor FROM app.source_identities i JOIN app.source_principals p "
+                "SELECT i.*,p.engine_actor FROM app.source_identities i "
+                "JOIN app.source_principals p "
                 "USING(principal_id,project_id) WHERE identity_id=%s",
                 (source.row["identity_id"],),
             ).fetchone()
@@ -390,7 +392,9 @@ def install_coding_trial(
         repository=engine.settings.repository,
         execution_epoch=1,
     )
-    environment = IsolatedExecutionBroker.environment_hash(None, lease)
+    environment = IsolatedExecutionBroker(source_root, lease, image_id=image_id).environment_hash(
+        lease
+    )
     materialized = registry.create_task_workspace(
         registration, "sa22-initial-snapshot", source_root=source_root
     )

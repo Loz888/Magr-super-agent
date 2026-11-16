@@ -16,7 +16,7 @@
   "artifacts": [
     {
       "path": "config/verification.json",
-      "sha256": "e75629b6b3f1dc461fc824be8da187131177b64b5b606c5ded96bbacf45f2efc"
+      "sha256": "9707232f672e419c380d2ad234eb3eb0b839a4f28831d499a06f8796ab285154"
     },
     {
       "path": "docs/super-agent-v1/SA22_MODEL_TRIAL_PROTOCOL.md",
@@ -40,11 +40,11 @@
     },
     {
       "path": "src/mgar_v3/super_agent/source_coding_experiment.py",
-      "sha256": "02c34341f2bdcc8a916dad41a83718bb2c1b7772ff83e3ba038111958f65d4bd"
+      "sha256": "b6029bfb38392278e9973f1294e5311a7283d754edc5c4c80b9fbd36b890dc36"
     },
     {
       "path": "src/mgar_v3/super_agent/source_coding_live_model.py",
-      "sha256": "eb40b1f7d9daa83eb7d5335d6d966df99ff0d4e204289cd1c1803240c1a2211f"
+      "sha256": "72881a557fd6e6147b946975d220755ed8d9b41f65ebad48beddd34cef38e75d"
     },
     {
       "path": "src/mgar_v3/super_agent/source_coding_rules.py",
@@ -64,11 +64,11 @@
     },
     {
       "path": "src/mgar_v3/super_agent/source_conversation_crypto.py",
-      "sha256": "471b5f3fe8abda6b280cfecc33298003a11d1f889c8dff6ed5e6df310a6ca62e"
+      "sha256": "953a2946a9fc569a7a7306dfa2324506e78e8292d63d8cb51a09ee8f403c2b42"
     },
     {
       "path": "src/mgar_v3/super_agent/source_conversations.py",
-      "sha256": "b59d78391ddde5076e7e3ecabb661a02b54af4e3cc6aaf4e1d9f871bf9a47954"
+      "sha256": "edce4220e5a51a04095ca94016b99eed66fc046f4850801ef16f25a53081c1d8"
     },
     {
       "path": "src/mgar_v3/super_agent/source_feishu_channel.py",
@@ -84,11 +84,11 @@
     },
     {
       "path": "src/mgar_v3/super_agent/source_notification_rules.py",
-      "sha256": "1326358e8e6eb7d1a870424dcba1fc73481f19430e33326be091b01bfbef49ea"
+      "sha256": "a27c9c96dd16fed15a45d684bb2cd501f746548923f3c54e0b48eeed2953f67b"
     },
     {
       "path": "src/mgar_v3/super_agent/source_notification_store.py",
-      "sha256": "1f0a8f607b5a50f1e2eb9c3e5393d7c8c55745ff595643fd6c5b3eccf272d98e"
+      "sha256": "862aa63f8f3443cfe910aec649d09726c55ce9e84b9bea751d69ea3ccecd0c2d"
     },
     {
       "path": "src/mgar_v3/super_agent/source_notifications.py",
@@ -108,7 +108,7 @@
     },
     {
       "path": "tests/test_source_coding_experiment.py",
-      "sha256": "089c8861040be64ec8611a6474fcda893abe4b88783c8226f3dbbfe56b7febeb"
+      "sha256": "f503d60a92c99a43c474f472b83b42ce7a89efd4610ce24c6469d57c62e8de93"
     },
     {
       "path": "tests/test_source_model_conversations.py",

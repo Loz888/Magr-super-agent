@@ -1,12 +1,13 @@
 from dataclasses import replace
 
+import psycopg
 import pytest
-from sa13_runtime_support import BAD, GOOD
+from sa13_runtime_support import BAD
 from sa22_coding_support import coding_environment
 
 from mgar_v3.domain import DomainError
-from mgar_v3.super_agent.source_coding_experiment import explicit_coding_request
 from mgar_v3.super_agent.policy_domain import PolicyDefinition, PolicySave
+from mgar_v3.super_agent.source_coding_experiment import explicit_coding_request
 
 
 def test_original_trial_factory_model_broker_and_unverified_patch(engine, tmp_path):
@@ -92,7 +93,7 @@ def test_live_trial_profile_cannot_use_fixture_registration_or_forged_quality(en
 def test_trial_permission_is_immutable_and_policy_cutover_fences_new_tasks(engine, tmp_path):
     env = coding_environment(engine, tmp_path)
     try:
-        with pytest.raises(Exception):
+        with pytest.raises(psycopg.Error):
             with engine.transaction() as c:
                 c.execute(
                     "UPDATE app.sa_coding_trial_authorizations SET maximum_project_micros=4000000"
@@ -128,6 +129,7 @@ def test_trial_permission_is_immutable_and_policy_cutover_fences_new_tasks(engin
 
 def test_formal_0054_matches_exact_coordinated_sql_and_installs_guards(engine):
     import hashlib
+
     from mgar_v3.settings import ROOT
 
     assert (

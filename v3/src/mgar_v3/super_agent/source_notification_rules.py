@@ -2,6 +2,7 @@
 
 import hashlib
 from datetime import datetime, timedelta
+from typing import Literal
 
 from mgar_v3.domain import DomainError, digest
 from mgar_v3.super_agent.policy_domain import NotificationDestination, NotificationGrant
@@ -28,7 +29,7 @@ def render(facts: NotificationFacts) -> NotificationTemplate:
         or facts.state == "cancelled"
     ):
         raise DomainError("NOTIFICATION_CAUSE_UNAVAILABLE", "Current verified cause required", 409)
-    data_class = "public_summary"
+    data_class: Literal["public_summary", "private_summary"] = "public_summary"
     if facts.conversation_status is not None:
         if facts.content_class != "necessary_question" or facts.state != "waiting_input":
             raise DomainError(

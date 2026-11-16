@@ -74,7 +74,9 @@ class ReplyKeys:
                     value = self._read(directory, name)
                     expired = datetime.fromisoformat(value["expires_at"]) <= datetime.now(UTC)
                 except (ValueError, KeyError, TypeError):
-                    raise DomainError("SOURCE_CHAT_KEY_DIRECTORY", "Invalid private key entry", 403)
+                    raise DomainError(
+                        "SOURCE_CHAT_KEY_DIRECTORY", "Invalid private key entry", 403
+                    ) from None
                 if expired:
                     os.unlink(name, dir_fd=directory)
                     count += 1

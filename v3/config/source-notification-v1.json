@@ -66,11 +66,11 @@
     },
     {
       "path": "src/mgar_v3/super_agent/source_notification_rules.py",
-      "sha256": "1326358e8e6eb7d1a870424dcba1fc73481f19430e33326be091b01bfbef49ea"
+      "sha256": "a27c9c96dd16fed15a45d684bb2cd501f746548923f3c54e0b48eeed2953f67b"
     },
     {
       "path": "src/mgar_v3/super_agent/source_notification_store.py",
-      "sha256": "1f0a8f607b5a50f1e2eb9c3e5393d7c8c55745ff595643fd6c5b3eccf272d98e"
+      "sha256": "862aa63f8f3443cfe910aec649d09726c55ce9e84b9bea751d69ea3ccecd0c2d"
     },
     {
       "path": "src/mgar_v3/super_agent/source_notification_transport.py",

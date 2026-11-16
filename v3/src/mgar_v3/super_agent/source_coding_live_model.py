@@ -149,7 +149,7 @@ class ExperimentalDeepSeekModel(ExperimentalCodingModel):
             text = message.get("content") or ""
             if type(text) is not str or len(text.encode()) > 65536:
                 raise ValueError
-            calls = []
+            calls: list[HarnessToolCall] = []
             for call in message.get("tool_calls") or []:
                 if len(calls) >= 16 or call["type"] != "function":
                     raise ValueError
