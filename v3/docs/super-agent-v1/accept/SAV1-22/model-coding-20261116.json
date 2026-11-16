@@ -1,0 +1,175 @@
+{
+  "schema": "sa22-model-coding-activation-v1",
+  "UTC": "2026-11-16T07:19:04.677836+00:00",
+  "status": "IN_PROGRESS",
+  "source_commit": "5dc46ae70a9dcc85c9c899d2d32cb73eba92daff",
+  "source_sha256": "04e2d2b86fad3c2291df110f1779c321e88f5950f313f3c6e4c1fc0adacc2165",
+  "scope": {
+    "repository": "loz888/magr-v3",
+    "repository_id": 1438269299,
+    "users": "bound owner only",
+    "group": "Bot",
+    "models": "owner questions and committed repository code",
+    "publication": false,
+    "original_branch_writes": false
+  },
+  "quality_exception": "User as project owner expressly allows this limited trial despite H12 quality FAIL; H12 FAIL and MVP not released retained",
+  "harness_confirmation": {
+    "commit": "efb09f4fedb35c4bc7f579dda0b7e64d2e3111be",
+    "section": 48,
+    "migration": "0054_source_coding_trial.sql",
+    "sql_sha256": "094909bf76fe89917c4733882719f389003208ffdec4baa196461ea609ef6f48"
+  },
+  "h12": {
+    "source_commit": "08cb1e28fac1c5e2e27117f7de62fbd3c20d0ac2",
+    "delivery_commit": "8d5052cfb0f043d1c0c4be965d6666367c2a8fbd",
+    "engineering": "PASS_DEPENDENCY_ONLY",
+    "real_quality": "FAIL",
+    "MVP": "NOT_RELEASED",
+    "R06_imported": false
+  },
+  "deployment": {
+    "models_enabled": true,
+    "isolated_coding_enabled": true,
+    "websocket_connected": true,
+    "api_started": true,
+    "api_scope": "127.0.0.1 only",
+    "source_revision": 4,
+    "feishu_config_revision": 2,
+    "policy_revision": 4,
+    "ingress_generation": 4,
+    "notification_revision": 3,
+    "main_migrations": 44,
+    "onboarding_migrations": 51,
+    "onboarding_checksums_match": true,
+    "manifest_sha256": "e205b9085cd189a61ae6281bd951c966e9742e912779908e62f013dc5b7228e1",
+    "source_upstream_commit": "efb09f4fedb35c4bc7f579dda0b7e64d2e3111be",
+    "materialized_commit": "0a650a5288c19bee63db9db1313dd9a45f027a1c",
+    "snapshot_files": 247,
+    "snapshot_bytes": 3670446,
+    "image_id": "sha256:587cc5cbaf0a25f09e459a72d3f9b88aed939867cbf72d40b36a88d7999a1208",
+    "helper_archive_sha256": "671c75eef39aa7cd52151b5222312c33e4d2a40a21fec58e5e1cd9b2831bc392",
+    "expires_at": "2026-11-17T04:04:22.248182+00:00",
+    "automatic_reconnect": false,
+    "host_and_WSL_required": true
+  },
+  "engineering_checks": {
+    "unique_targets_with_PASS": 20,
+    "latest_single_version_full_PASS_claimed": false,
+    "passed_targets_repeated": false,
+    "attempts": [
+      {
+        "commit": "0528bc6ea8c337c931179fd901494b4c2b27b2a8",
+        "source_sha256": "117e5eb5a2240d294a1b82e0989ffcdfce7700f116eefbeb445eef7d5c217a43",
+        "counts": {
+          "PASS": 4,
+          "FAIL": 0,
+          "ERROR": 16,
+          "SKIP": 0
+        }
+      },
+      {
+        "commit": "2745484acae41202a8e801b15f17c37276b8aa15",
+        "source_sha256": "94cee671ace60ded6e94776dba5de94bab9c0dd6715773446f31abbfe6cb9bfb",
+        "counts": {
+          "PASS": 3,
+          "FAIL": 13,
+          "ERROR": 0,
+          "SKIP": 0
+        }
+      },
+      {
+        "commit": "acd4d35aae1220e5a2d093274d4f277b60a084c1",
+        "source_sha256": "f1762feed668347068f6526564609be968bed4d8f092b798930a0770d7bd0ef9",
+        "counts": {
+          "PASS": 11,
+          "FAIL": 2,
+          "ERROR": 0,
+          "SKIP": 0
+        }
+      },
+      {
+        "commit": "5dc46ae70a9dcc85c9c899d2d32cb73eba92daff",
+        "source_sha256": "04e2d2b86fad3c2291df110f1779c321e88f5950f313f3c6e4c1fc0adacc2165",
+        "counts": {
+          "PASS": 2,
+          "FAIL": 0,
+          "ERROR": 0,
+          "SKIP": 0
+        }
+      }
+    ],
+    "lint": {
+      "commit": "2745484acae41202a8e801b15f17c37276b8aa15",
+      "status": "PASS",
+      "repeated_after_later_repairs": false
+    },
+    "typecheck": {
+      "commit": "2745484acae41202a8e801b15f17c37276b8aa15",
+      "status": "PASS",
+      "files": 337,
+      "repeated_after_later_repairs": false
+    },
+    "actual_isolated_runtime_smoke": {
+      "status": "PASS",
+      "command": [
+        "python3",
+        "-m",
+        "pytest",
+        "tests/test_harness_v4_h01.py::test_reference_loop_reads_edits_and_runs_real_tests",
+        "-q"
+      ],
+      "exit_code": 0,
+      "pytest_passed": 1,
+      "underlying_receipt_tests_run": 0,
+      "quality_assertion": false
+    }
+  },
+  "live_checks": {
+    "supplier_metadata_GET": {
+      "status_code": 200,
+      "frozen_model_available": true,
+      "model_inference": false
+    },
+    "real_model_question": "NOT_RUN_AWAITING_NEW_GROUP_MESSAGE",
+    "real_coding_patch": "NOT_RUN_AWAITING_NEW_GROUP_MESSAGE",
+    "dynamic_answer_delivery": "NOT_RUN",
+    "previous_fixed_reply_delivery": "PREVIOUS_PHASE_PASS"
+  },
+  "budget": {
+    "lifetime_limit_micros": 2000000,
+    "model_calls": 0,
+    "settled_micros": 0,
+    "held_micros": 0,
+    "unknown_calls": 0,
+    "organization_revision": 1,
+    "project_revision": 1,
+    "reset_during_deployment_repairs": false,
+    "H12_shared_budget_changed": false
+  },
+  "gates": {
+    "engineering_gate": "NOT_RUN",
+    "policy_security_gate": "NOT_RUN",
+    "live_source_channel_gate": "NOT_RUN",
+    "live_coding_gate": "NOT_RUN",
+    "live_publication_gate": "NOT_RUN",
+    "continuous_operation_gate": "NOT_RUN"
+  },
+  "gate_scope": "formal full-SA22 gates; supporting slice checks and activation separately recorded",
+  "independent_review": "NOT_RUN",
+  "SA23": "NOT_STARTED",
+  "evidence": "evidence/super-agent-v1/SAV1-22/model-coding-20261116T053304Z-082b98a4",
+  "report": "docs/super-agent-v1/SA22_MODEL_CODING_20261116.md",
+  "preserved": {
+    "historical_failures": true,
+    "old_manifests_and_trials": true,
+    "protected_user_file": true,
+    "env_unchanged": true,
+    "other_CLI_active_trees": true
+  },
+  "cleanup": {
+    "test_PG_removed": true,
+    "onboarding_PG_and_service_retained_intentionally": true,
+    "runtime_readiness_containers_removed": true
+  }
+}
