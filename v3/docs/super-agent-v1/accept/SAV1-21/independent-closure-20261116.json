@@ -1,0 +1,138 @@
+{
+  "card": "SAV1-21",
+  "status": "DONE_USER_ACCEPTED_SCOPED_INDEPENDENT_LOCAL_CONTROLLED",
+  "accepted_UTC": "2026-11-16T04:02:46.136635+00:00",
+  "source_commit": "5be5dc736b7a1014d4ac75e823547b442522cb81",
+  "source_sha256": "fdc012ae82b1ebaa1bcdccbfb56c4be95f7ac347c7aa7562dbe33d3dc5d1c8a1",
+  "delivery_commit": "1ec8941e9e3ae7b34310b7a10b5bd4918492662e",
+  "independent_directory": "evidence/super-agent-v1/SAV1-21/SA21-independent-20261116T030234Z-1b77f93b",
+  "independent_result": {
+    "UTC": "2026-11-16T03:15:05.506397+00:00",
+    "card": "SAV1-21",
+    "status": "PASS_SCOPED_INDEPENDENT_REVIEW",
+    "SA21": "LOCAL_CONTROLLED_ENGINEERING_ACCEPTED_WITH_VERSIONED_EVIDENCE",
+    "source_commit": "5be5dc736b7a1014d4ac75e823547b442522cb81",
+    "delivery_commit": "1ec8941e9e3ae7b34310b7a10b5bd4918492662e",
+    "source_before": "fdc012ae82b1ebaa1bcdccbfb56c4be95f7ac347c7aa7562dbe33d3dc5d1c8a1",
+    "source_after": "fdc012ae82b1ebaa1bcdccbfb56c4be95f7ac347c7aa7562dbe33d3dc5d1c8a1",
+    "source_stable": true,
+    "independent_counts": {
+      "tests": 12,
+      "passed": 12,
+      "failures": 0,
+      "errors": 0,
+      "skipped": 0
+    },
+    "original_failed9": {
+      "counts": {
+        "tests": 9,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "pytest_and_runner_exit_code": 0,
+      "command": "original9-command.json",
+      "junit": "original9-junit.xml",
+      "log": "original9.log"
+    },
+    "new_boundaries": {
+      "counts": {
+        "tests": 3,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "pytest_and_runner_exit_code": 0,
+      "command": "boundary-command.json",
+      "junit": "boundary-junit.xml",
+      "log": "boundary.log",
+      "observations": [
+        {
+          "kind": "bounded_inspection",
+          "partial": true,
+          "returned": 32,
+          "total": 33
+        },
+        {
+          "expired_ciphertext_existed_before_sweep": true,
+          "facts_retained": true,
+          "kind": "expired_before_purge",
+          "source_memory_derived_and_cursors_denied": true
+        },
+        {
+          "hold_never_removed": true,
+          "kind": "old_backup_identity_replay",
+          "minimum_fact_retained": true,
+          "source_memory_derived_denied": true
+        }
+      ]
+    },
+    "findings": [],
+    "probe_sha256": "e3e3a0c5a43b2bb8152c7f930ff68934dec6700629b9978581cd83d45870b80c",
+    "versioned_formal_evidence": {
+      "unique": 25,
+      "initial_PASS": 16,
+      "initial_FAIL": 9,
+      "repaired_original9_PASS": 9,
+      "full25_latest_rerun": false,
+      "previous16_and_historical_passes_rerun": false,
+      "fresh_lint_typecheck": false
+    },
+    "material_audit": "artifact-history-audit.json",
+    "raw_execution_audit": "raw-execution-audit.json",
+    "cleanup": "cleanup-final.json",
+    "protected_files_unchanged": true,
+    "old_failures_preserved": true,
+    "engineering_gate": "PASS_SCOPED_INDEPENDENT_LOCAL_CONTROLLED",
+    "policy_security_gate": "PASS_CHECKED_CONTROLLED_COMPOSITIONS_ONLY",
+    "whole_system_policy_security_gate": "NOT_RUN_BEYOND_CHECKED_CONTROLLED_MATRIX",
+    "live_source_channel_gate": "NOT_RUN",
+    "live_coding_gate": "NOT_RUN",
+    "live_publication_gate": "NOT_RUN",
+    "continuous_operation_gate": "NOT_RUN",
+    "paid": "NOT_RUN",
+    "external_send": "NOT_RUN",
+    "H12_fixed_live_agent_mvp": "FAIL_RETAINED_OTHER_CLI",
+    "SA22": "NOT_STARTED",
+    "product_files_modified": false,
+    "Harness_active_tree_accessed": false,
+    "limitations": [
+      "Versioned formal evidence plus independent9+3; no latest same-revision full25/static rerun.",
+      "Sources, data and model/platform responses are controlled synthetic fixtures.",
+      "Actual PG crash/WAL recovery and prior kernel EFBIG evidence do not establish physical disk-full/power-loss/cloud/multinode or long-term safety.",
+      "Identity-withdrawal replay is privileged offline maintenance under the original hold; no activation or backup-media erasure tested."
+    ]
+  },
+  "independent_files": {
+    "REPORT.md": "25a9514b6e3a2a6a7ddb379f873e6a9b1529a26bc58d0130f7417319d2abd599",
+    "artifact-history-audit.json": "1dcc1c186345c093c9cafd0b2d39548e2bc03cc9bca3eced8692cfe0060d9b7c",
+    "audit.py": "7cbea3e5317e05135b9865b9ca913be64bef7c09a67f161d14704f14a39f2b19",
+    "baseline.json": "9bf5b9388551651d302066885413b4c7698402ad97f0a1a6eb230242ba56649a",
+    "boundary-command.json": "8877212730567fd735997351345fd28fb76ec7dcb69e3f20e67617485261e413",
+    "boundary-junit.xml": "e2bfdc60c9fe10df1826be88c601ceb576331cc2337dea3823a0df58e3b26fb1",
+    "boundary-pytest-exit-code.txt": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+    "boundary.log": "96f112512cbb344759703662e206a78b136d9f0bc7575fa910018a11c517c301",
+    "cleanup-final.json": "dbdc3b3895385a0d06059e95fa64e5031c06d41c1d1ae07fe6232325e1883da8",
+    "evidence-manifest.json": "e859c58fe67c128bff9cd814fd91231ccc0afbb73c39dac966bab06357427b9a",
+    "evidence-path": "c1f378fe04fea5a6ccc23bf81ed9baa26109eb049150e4bf30462f012e81979c",
+    "exclusive-pg-1.log": "913c4103d2584379034aa4c58eae8d76e9b66fc7285ef8ca82b88720b4c08b0e",
+    "exclusive-pg-2.log": "9271eae4c8d559bf20c790de084f9b24b879fe5d7993b43292378b7c1bbd1dd1",
+    "independent-observations.jsonl": "fcca02fd1bd8cf7b5031ac672bb36231834a936704ec2dd58fd3cbf41580bb50",
+    "original9-command.json": "069fc2361250869b5a81283de6a292424416eaf13baec274ed377a369c2a31c8",
+    "original9-junit.xml": "2b59ad1b22ddedcf91e69e3dac62a78a4101d6e2ec5f41841370373d08564e3a",
+    "original9-pytest-exit-code.txt": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa",
+    "original9.log": "4c5a5ff8d9a050087efd5f328e13593e4fe317a1f627fbe3f1ccfce8e8275f14",
+    "pg-fault-diagnostics.json": "328bf8f81958a24b0397e0563dbf9046fdf6e3f9e075959c180d3efa0a2d4b07",
+    "probe-sha256.txt": "97678b9b8ff512b832ee75789a03c970e6580f626db6139f4d4ddc0436395c23",
+    "raw-execution-audit.json": "b7bab2ec1197fa88f5d186fc8f04a54db9b3d1798a665489239f34579d4f2f67",
+    "registered-observations.json": "a1a2b3e07d3faf48423625a17db5c31643e6d2744f1e9c7ca89b140c72e82591",
+    "requirements-additional-read.json": "c0283e74be8d5d1df064e79b09138882700052eedf69dd577989c44127ebe4ca",
+    "review-result.json": "6044b7a4fdb5fba41525a2bf7e8b6b9aed5d5cecda6cfe18d0f3e2a3da6bbacc",
+    "run.py": "f2be6afcb1bef578ae53c8735a87b05958ba537437e51eec24a67fef49b0bebd",
+    "test_independent_sa21.py": "e3e3a0c5a43b2bb8152c7f930ff68934dec6700629b9978581cd83d45870b80c"
+  },
+  "historical_passes_rerun": false,
+  "next_card": "SAV1-22_AUTHORIZED",
+  "real_gates": "NOT_RUN",
+  "H12": "FAIL_RETAINED_OTHER_CLI"
+}

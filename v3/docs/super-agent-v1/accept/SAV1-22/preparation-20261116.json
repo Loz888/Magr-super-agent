@@ -1,0 +1,110 @@
+{
+  "schema": "sav1-22-preparation-v1",
+  "card": "SAV1-22",
+  "status": "IN_PROGRESS_ONBOARDING_ONLY",
+  "UTC": "2026-11-16T04:22:39.624082+00:00",
+  "source_commit": "5be5dc736b7a1014d4ac75e823547b442522cb81",
+  "baseline_delivery_commit": "1ec8941e9e3ae7b34310b7a10b5bd4918492662e",
+  "source_sha256": "fdc012ae82b1ebaa1bcdccbfb56c4be95f7ac347c7aa7562dbe33d3dc5d1c8a1",
+  "dependencies": {
+    "14": {
+      "path": "docs/super-agent-v1/accept/SAV1-14/independent-closure-20261114.json",
+      "sha256": "56f95febed15009a20c511198e2da7c796e1fecd26b439da1fd9e42ffb8b6ac6",
+      "status": "CLOSED_USER_ACCEPTED_INDEPENDENT_LOCAL_CONTROLLED_SCOPE"
+    },
+    "16": {
+      "path": "docs/super-agent-v1/accept/SAV1-16/independent-closure-20261115.json",
+      "sha256": "47fc08e947ebb8bb75bcc594f1721f042e524c4b36b728804105b0f2ae98135e",
+      "status": "DONE_USER_ACCEPTED_INDEPENDENT_LOCAL_CONTROLLED_SCOPE"
+    },
+    "18": {
+      "path": "docs/super-agent-v1/accept/SAV1-18/independent-closure-20261115.json",
+      "sha256": "8d85215159b1ea24c092e2c2e13864c5083ac5506cd44a5bf15625d94e61124a",
+      "status": "DONE_LOCAL_CONTROLLED_ENGINEERING_USER_ACCEPTED"
+    },
+    "19": {
+      "path": "docs/super-agent-v1/accept/SAV1-19/independent-closure-20261115.json",
+      "sha256": "67a4c45e8e2f27422ed713fb3a11fd8d6f7932d4105b554362f882022db80800",
+      "status": "DONE_USER_ACCEPTED_SCOPED_INDEPENDENT_LOCAL_CONTROLLED"
+    },
+    "21": {
+      "path": "docs/super-agent-v1/accept/SAV1-21/independent-closure-20261116.json",
+      "sha256": "2ab755b0b2c8687f2cd0dbbc71ecd71aef103771c63e5feb14280305867ed6f0",
+      "status": "DONE_USER_ACCEPTED_SCOPED_INDEPENDENT_LOCAL_CONTROLLED"
+    }
+  },
+  "user_scope": {
+    "repository_worktree": "/home/imini/magr-harness",
+    "repository": "Loz888/MAGR-v3",
+    "participants": "single owner only",
+    "model_budget_total_micros": 2000000,
+    "model_egress": "repository code only",
+    "feishu_app_id": "[redacted-feishu-app-id]",
+    "feishu_app_name": "MAGR助手",
+    "feishu_group_name": "Bot"
+  },
+  "repository_binding": {
+    "worktree": "/home/imini/magr-harness",
+    "repository": "Loz888/MAGR-v3",
+    "repository_id": 1438269299,
+    "visibility": "public",
+    "default_branch": "main",
+    "provider": "connected GitHub repository metadata",
+    "github_app_installation_id": null
+  },
+  "feishu": {
+    "application": "MAGR助手",
+    "app_id": "[redacted-feishu-app-id]",
+    "group": "Bot",
+    "version": "0.1.1",
+    "joined": true,
+    "platform_websocket_verified": true,
+    "identity_binding": "real installation proof and exact group owner ID; context_provider/requester",
+    "initial_rejected_receipts": 2,
+    "accepted_after_binding": 1,
+    "source_inputs": 1,
+    "retained_bodies": 0,
+    "mode": "shadow",
+    "automatic_replies": "NOT_IMPLEMENTED",
+    "outbound_messages": 0,
+    "intentionally_running": {
+      "PG_container": "mgar-sa22-bot-edca22cd043e",
+      "receiver_pid": 992242,
+      "expires_at": "2026-11-17T04:04:22.248182+00:00"
+    },
+    "observation": "evidence/super-agent-v1/SAV1-22/start-20261116T040246Z-f670fff6/feishu-onboarding-observation.json"
+  },
+  "formal_registered_checks": "NOT_RUN_PREPARATION_ONLY",
+  "pytest_lint_typecheck_rerun": false,
+  "paid_calls": 0,
+  "paid_cost_micros": 0,
+  "activated_runtime_budget_micros": 0,
+  "authorized_shared_model_limit_micros": 2000000,
+  "all_six_complete_gates": {
+    "engineering_gate": "NOT_RUN",
+    "policy_security_gate": "NOT_RUN",
+    "live_source_channel_gate": "NOT_RUN",
+    "live_coding_gate": "NOT_RUN",
+    "live_publication_gate": "NOT_RUN",
+    "continuous_operation_gate": "NOT_RUN"
+  },
+  "H12": {
+    "committed_head": "1c4f494442d2d5fc8d4c1d35856cc91c922cc70e",
+    "live_agent_gate": "FAIL",
+    "mvp_release_gate": "FAIL",
+    "owner": "other CLI"
+  },
+  "controlled_72h": "NOT_STARTED",
+  "live_72h": "NOT_STARTED",
+  "five_working_day_pilot": "NOT_STARTED",
+  "full_system_policy_security": "NOT_RUN",
+  "SA23": "NOT_STARTED",
+  "limitations": [
+    "Onboarding is not one of the ten frozen positive tasks or a 72h period.",
+    "First events establish installation proof before role binding; no message bodies are retained.",
+    "Deployment helpers were not part of the SA21 source candidate; hashes are recorded separately.",
+    "No native source outage/replay/revocation/send/reconcile/paid-model/Worker acceptance performed."
+  ],
+  "report": "docs/super-agent-v1/SA22_STATUS_20261116.md",
+  "evidence": "evidence/super-agent-v1/SAV1-22/start-20261116T040246Z-f670fff6"
+}

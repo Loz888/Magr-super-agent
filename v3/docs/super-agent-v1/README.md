@@ -1,5 +1,11 @@
 # MAGR Super-Agent 落地任务书
 
+状态：**SAV1-00–SAV1-21 DONE（用户接受的受控本地独立闭环）；SA22 IN_PROGRESS（真实试用准备/飞书接入引导）；SA23–SA24 PLANNED**。更新：2026-11-16。
+
+SA21 候选5be5dc7/交付1ec8941的原9项及新增3项独立12PASS已核对并获用户接受，见[独立关闭](accept/SAV1-21/independent-closure-20261116.json)。SA22按用户指令启动：试用目标为本机magr-harness对应Loz888/MAGR-v3、使用者仅本人、模型共享总上限USD2且外发范围为仓库代码。飞书“MAGR助手”已创建/发布/加入Bot群，长连接及真实平台身份已核对，身份绑定后的定向接收产生1份accepted原收件箱输入；此前2份拒收保留。当前Shadow、不保留正文、0模型/0外发，自动回复与任务链未接线；SA22完整六门NOT_RUN，H12原FAIL保留。见[接入状态与剩余工作](SA22_STATUS_20261116.md)及[准备记录](accept/SAV1-22/preparation-20261116.json)。主库仍44，本次专属接入PG安装既有50份SQL；没有重跑历史通过项。
+
+以下保留SA21待独立验收时的工程交付与更早阶段历史状态：
+
 状态：**SAV1-00–SAV1-20 DONE（用户接受的受控本地独立闭环）；SA21 IN_PROGRESS（本地受控工程已交付，待独立验收）；SA22–SA24 PLANNED**。更新：2026-11-15。
 
 SA20独立原失败1PASS已核对并获用户接受，见[关闭记录](accept/SAV1-20/independent-closure-20261115.json)。按用户指令推进SA21，候选5be5dc7的25个新组合检查具分版本PASS：初轮16PASS/9FAIL，夹具修正后仅原9项9PASS，不重复通过项，不称最终单轮全量通过。见[工程交付](SA21_ACCEPTANCE_20261115.md)、[数据保留/恢复策略](SA21_SECURITY.md)及[机器摘要](accept/SAV1-21/accept.json)。SA21等待独立，SA22未启动；主库仍44，真实门NOT_RUN，固定H12 FAIL保留。
