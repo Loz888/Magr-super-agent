@@ -65,7 +65,7 @@ class ConversationProfile(Model):
     context_tokens: Annotated[int, Field(ge=4096, le=65536)] = 16384
     max_output_tokens: Annotated[int, Field(ge=256, le=4096)] = 1024
     maximum_project_micros: Literal[2000000] = 2000000
-    max_model_calls: Annotated[int, Field(ge=1, le=1000)] = 200
+    max_model_calls: Annotated[int, Field(ge=1, le=100)] = 100
 
     @property
     def profile_hash(self) -> str:

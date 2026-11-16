@@ -77,6 +77,7 @@ class SchedulerRuntimeProfile:
     image_id: str
     review_ref: str
     provider_generation: str = RUNTIME_VERSION
+    execution_mode: Literal["fixture", "live"] = "fixture"
 
     def __post_init__(self) -> None:
         if (
@@ -90,17 +91,28 @@ class SchedulerRuntimeProfile:
             or not re.fullmatch(r"sha256:[a-f0-9]{64}", self.image_id)
             or not 1 <= len(self.review_ref) <= 256
             or not re.fullmatch(r"[A-Za-z0-9_.:-]{1,100}", self.provider_generation)
+            or (
+                self.execution_mode == "live"
+                and self.provider_generation != "source-owner-trial-v1"
+            )
         ):
             raise _error("SOURCE_SCHEDULER_RUNTIME_PROFILE_INVALID")
 
     @property
     def sha256(self) -> str:
-        return digest({
-            "version": RUNTIME_VERSION, "actor": self.actor, "repository": self.repository,
+        values: dict[str, Any] = {
+            "version": RUNTIME_VERSION,
+            "actor": self.actor,
+            "repository": self.repository,
             "grant": self.grant.model_dump(mode="json"),
-            "request": self.request.model_dump(mode="json"), "image_id": self.image_id,
-            "review_ref": self.review_ref, "provider_generation": self.provider_generation,
-        })
+            "request": self.request.model_dump(mode="json"),
+            "image_id": self.image_id,
+            "review_ref": self.review_ref,
+            "provider_generation": self.provider_generation,
+        }
+        if self.execution_mode == "live":
+            values["execution_mode"] = self.execution_mode
+        return digest(values)
 
 
 @dataclass(frozen=True, repr=False)
@@ -128,7 +140,8 @@ class H03SchedulerResourceDriver:
             registration.registration_hash != registration.computed_hash()
             or not re.fullmatch(r"[a-f0-9]{20}", registration.workspace_id)
             or registration.repository.lower() != profile.repository
-            or registration.kind != "local" or source_root is None
+            or registration.kind != "local"
+            or source_root is None
         ):
             raise _error("SOURCE_SCHEDULER_RUNTIME_REGISTRATION_INVALID")
         self.scheduler = scheduler
@@ -152,25 +165,35 @@ class H03SchedulerResourceDriver:
         self._active_lock = threading.RLock()
 
     def _directory(self, assignment_id: UUID) -> Path:
-        key = digest({
-            "workspace_id": self.registration.workspace_id, "task_id": str(assignment_id),
-        })[:20]
+        key = digest(
+            {
+                "workspace_id": self.registration.workspace_id,
+                "task_id": str(assignment_id),
+            }
+        )[:20]
         return self.registry_root / self.registration.workspace_id / "tasks" / key
 
     def _identity(self, project_id: str, assignment_id: UUID, workspace_id: UUID) -> dict[str, str]:
         return {
-            "version": RUNTIME_VERSION, "project_id": project_id,
-            "assignment_id": str(assignment_id), "workspace_id": str(workspace_id),
+            "version": RUNTIME_VERSION,
+            "project_id": project_id,
+            "assignment_id": str(assignment_id),
+            "workspace_id": str(workspace_id),
             "registration_id": self.registration.workspace_id,
             "registration_sha256": self.registration.registration_hash,
-            "registry_root": str(self.registry_root), "source_root": str(self.source_root),
-            "task_id": str(assignment_id), "task_directory": str(self._directory(assignment_id)),
+            "registry_root": str(self.registry_root),
+            "source_root": str(self.source_root),
+            "task_id": str(assignment_id),
+            "task_directory": str(self._directory(assignment_id)),
             "profile_sha256": self.profile_sha256,
             "provider_generation": self.profile.provider_generation,
         }
 
     def workspace_identity(
-        self, project_id: str, assignment_id: UUID, workspace_id: UUID,
+        self,
+        project_id: str,
+        assignment_id: UUID,
+        workspace_id: UUID,
     ) -> str:
         """Pure: the assignment UUID is distinct from H03's registration ID."""
         return digest(self._identity(project_id, assignment_id, workspace_id))
@@ -179,15 +202,19 @@ class H03SchedulerResourceDriver:
         if (
             context.profile_sha256 != self.profile_sha256
             or context.provider_operation_id != self._name(context)
-            or context.workspace_sha256 != self.workspace_identity(
-                context.project_id, context.assignment_id, context.workspace_id,
+            or context.workspace_sha256
+            != self.workspace_identity(
+                context.project_id,
+                context.assignment_id,
+                context.workspace_id,
             )
         ):
             raise _error("SOURCE_SCHEDULER_RUNTIME_BINDING_INVALID")
         facts = self.scheduler.capability_context(context)
         if executing and (
-            context.cleanup_only or facts.get("execution_authorized") is not True
-            or facts.get("execution_mode") != "fixture"
+            context.cleanup_only
+            or facts.get("execution_authorized") is not True
+            or facts.get("execution_mode") != self.profile.execution_mode
             or facts.get("actor") != self.profile.actor
             or str(facts.get("repository", "")).lower() != self.profile.repository
             or facts.get("target_sha256") != context.target_sha256
@@ -237,8 +264,9 @@ class H03SchedulerResourceDriver:
             raise _error("SOURCE_SCHEDULER_RUNTIME_METADATA_INVALID")
         temporary = path.parent / (".receipt-" + uuid4().hex)
         try:
-            descriptor = os.open(temporary, os.O_WRONLY | os.O_CREAT | os.O_EXCL | os.O_NOFOLLOW,
-                                 0o600)
+            descriptor = os.open(
+                temporary, os.O_WRONLY | os.O_CREAT | os.O_EXCL | os.O_NOFOLLOW, 0o600
+            )
             with os.fdopen(descriptor, "wb") as handle:
                 handle.write(raw)
                 handle.flush()
@@ -261,11 +289,15 @@ class H03SchedulerResourceDriver:
 
     def _bind_prepare(self, context: ResourceContext) -> None:
         directory = self._metadata_directory(context)
-        self._write(directory / "workspace.json", {
-            **self._identity(context.project_id, context.assignment_id, context.workspace_id),
-            "prepare_operation_id": str(context.operation_id),
-            "prepare_request_sha256": context.request_sha256,
-        }, immutable=True)
+        self._write(
+            directory / "workspace.json",
+            {
+                **self._identity(context.project_id, context.assignment_id, context.workspace_id),
+                "prepare_operation_id": str(context.operation_id),
+                "prepare_request_sha256": context.request_sha256,
+            },
+            immutable=True,
+        )
 
     def _begin_dispatch(self, context: ResourceContext) -> bool:
         """A persistent marker precedes create IO; its presence forbids replay."""
@@ -274,15 +306,20 @@ class H03SchedulerResourceDriver:
             self._private_directory(directory)
             path = directory / "dispatch-intent.json"
             intent = {
-                "operation_id": str(context.operation_id), "request_sha256": context.request_sha256,
+                "operation_id": str(context.operation_id),
+                "request_sha256": context.request_sha256,
                 "profile_sha256": context.profile_sha256,
                 "workspace_sha256": context.workspace_sha256,
-                "container_name": self._name(context), "ownership_labels": self._labels(context),
+                "container_name": self._name(context),
+                "ownership_labels": self._labels(context),
             }
             previous = self._read(path)
             if previous is not None:
-                if {key: value for key, value in previous.items()
-                    if key not in {"registered_at", "deadline_at"}} != intent:
+                if {
+                    key: value
+                    for key, value in previous.items()
+                    if key not in {"registered_at", "deadline_at"}
+                } != intent:
                     raise _error("SOURCE_SCHEDULER_RUNTIME_METADATA_CONFLICT")
                 return False
             at = datetime.now(UTC)
@@ -371,26 +408,35 @@ class H03SchedulerResourceDriver:
 
     @staticmethod
     def _match(context: ResourceContext, receipt: ResourceReceipt) -> None:
-        if any((
-            receipt.project_id != context.project_id,
-            receipt.assignment_id != context.assignment_id, receipt.run_id != context.run_id,
-            receipt.session_id != context.session_id, receipt.workspace_id != context.workspace_id,
-            receipt.epoch != context.epoch, receipt.operation_id != context.operation_id,
-            receipt.request_sha256 != context.request_sha256,
-            receipt.provider_operation_id != context.provider_operation_id,
-        )):
+        if any(
+            (
+                receipt.project_id != context.project_id,
+                receipt.assignment_id != context.assignment_id,
+                receipt.run_id != context.run_id,
+                receipt.session_id != context.session_id,
+                receipt.workspace_id != context.workspace_id,
+                receipt.epoch != context.epoch,
+                receipt.operation_id != context.operation_id,
+                receipt.request_sha256 != context.request_sha256,
+                receipt.provider_operation_id != context.provider_operation_id,
+            )
+        ):
             raise _error("SOURCE_SCHEDULER_RUNTIME_METADATA_INVALID")
 
     def _save(
-        self, context: ResourceContext, receipt: ResourceReceipt,
-        *, container_id: str | None = None,
+        self,
+        context: ResourceContext,
+        receipt: ResourceReceipt,
+        *,
+        container_id: str | None = None,
     ) -> ResourceReceipt:
         self._match(context, receipt)
         with self._metadata_lock:
             previous = self._load(context)
             if previous is not None:
                 if previous.container_id is not None and container_id not in {
-                    None, previous.container_id,
+                    None,
+                    previous.container_id,
                 }:
                     raise _error("SOURCE_SCHEDULER_RUNTIME_CONTAINER_CHANGED")
                 container_id = container_id or previous.container_id
@@ -401,10 +447,12 @@ class H03SchedulerResourceDriver:
                 if previous.receipt.state == receipt.state == "running":
                     return previous.receipt
             value = {
-                "version": RUNTIME_VERSION, "profile_sha256": context.profile_sha256,
+                "version": RUNTIME_VERSION,
+                "profile_sha256": context.profile_sha256,
                 "workspace_sha256": context.workspace_sha256,
                 "receipt": json.loads(_json(asdict(receipt))),
-                "receipt_sha256": receipt.result_sha256, "container_id": container_id,
+                "receipt_sha256": receipt.result_sha256,
+                "container_id": container_id,
             }
             key = digest(value)
             directory = self._metadata_directory(context) / str(context.operation_id)
@@ -426,14 +474,23 @@ class H03SchedulerResourceDriver:
         related: tuple[ResourceReceipt, ...] = (),
     ) -> ResourceReceipt:
         return ResourceReceipt(
-            project_id=context.project_id, assignment_id=context.assignment_id,
-            run_id=context.run_id, session_id=context.session_id, workspace_id=context.workspace_id,
-            epoch=context.epoch, operation_id=context.operation_id,
+            project_id=context.project_id,
+            assignment_id=context.assignment_id,
+            run_id=context.run_id,
+            session_id=context.session_id,
+            workspace_id=context.workspace_id,
+            epoch=context.epoch,
+            operation_id=context.operation_id,
             request_sha256=context.request_sha256,
             provider_operation_id=context.provider_operation_id,
-            state=state, observed_at=observed_at or datetime.now(UTC), result_code=code,
-            tree_sha256=tree, exit_code=exit_code, processes_stopped=stopped,
-            workspace_fenced=fenced, related=related,
+            state=state,
+            observed_at=observed_at or datetime.now(UTC),
+            result_code=code,
+            tree_sha256=tree,
+            exit_code=exit_code,
+            processes_stopped=stopped,
+            workspace_fenced=fenced,
+            related=related,
         )
 
     def _registry(self) -> WorkspaceRegistry:
@@ -446,7 +503,8 @@ class H03SchedulerResourceDriver:
 
     def _open(self, context: ResourceContext) -> TaskWorkspace:
         workspace = self._registry().open_task_workspace(
-            self.registration, str(context.assignment_id),
+            self.registration,
+            str(context.assignment_id),
         )
         if (
             workspace.root != self._directory(context.assignment_id)
@@ -462,8 +520,13 @@ class H03SchedulerResourceDriver:
         actual = workspace.tree_hash()
         if actual != workspace.manifest.tree_hash:
             raise _error("SOURCE_SCHEDULER_RUNTIME_TREE_CHANGED")
-        return self._receipt(context, "known_terminal", code="succeeded", tree=actual,
-                             observed_at=_utc(workspace.manifest.created_at))
+        return self._receipt(
+            context,
+            "known_terminal",
+            code="succeeded",
+            tree=actual,
+            observed_at=_utc(workspace.manifest.created_at),
+        )
 
     def prepare(self, context: ResourceContext) -> ResourceReceipt:
         """Core's prepare dispatch guard has already committed its IO intent."""
@@ -482,7 +545,9 @@ class H03SchedulerResourceDriver:
             if self._directory(context.assignment_id).exists():
                 return self._save(context, self._prepared_receipt(context))
             self._registry().create_task_workspace(
-                self.registration, str(context.assignment_id), source_root=self.source_root,
+                self.registration,
+                str(context.assignment_id),
+                source_root=self.source_root,
             )
             return self._save(context, self._prepared_receipt(context))
 
@@ -490,35 +555,48 @@ class H03SchedulerResourceDriver:
         from mgar_v3.harness.broker import issue_lease
 
         deadline = min(
-            facts["session"].expires_at, facts["configuration"].configuration.valid_until,
+            facts["session"].expires_at,
+            facts["configuration"].configuration.valid_until,
         )
         seconds = int((deadline - datetime.now(UTC)).total_seconds())
         if seconds <= 0:
             raise _error("SOURCE_SCHEDULER_RUNTIME_LEASE_EXPIRED")
         writable = bool(self.profile.grant.write_paths)
         return issue_lease(
-            mode="modify_test" if writable else "investigate", actor=self.profile.actor,
-            workspace_id=str(context.workspace_id), repository=self.profile.repository,
-            execution_epoch=context.epoch, read_paths=self.profile.grant.read_paths,
+            mode="modify_test" if writable else "investigate",
+            actor=self.profile.actor,
+            workspace_id=str(context.workspace_id),
+            repository=self.profile.repository,
+            execution_epoch=context.epoch,
+            read_paths=self.profile.grant.read_paths,
             write_paths=self.profile.grant.write_paths,
             allowed_commands=self.profile.grant.allowed_commands,
             timeout_seconds=min(600, self.profile.grant.max_seconds),
-            memory_mb=context.resources.memory_mib, cpus=context.resources.cpu_millis / 1000,
+            memory_mb=context.resources.memory_mib,
+            cpus=context.resources.cpu_millis / 1000,
             approved_by=self.profile.actor if writable else "",
-            approval_ref=self.profile.review_ref if writable else "", ttl_seconds=seconds,
+            approval_ref=self.profile.review_ref if writable else "",
+            ttl_seconds=seconds,
         )
 
     def _broker(
-        self, context: ResourceContext, facts: dict[str, Any], *, cleanup: bool = False,
+        self,
+        context: ResourceContext,
+        facts: dict[str, Any],
+        *,
+        cleanup: bool = False,
     ) -> IsolatedExecutionBroker:
         from mgar_v3.harness.broker import CapabilityAuthority, IsolatedExecutionBroker, issue_lease
 
         if cleanup:
             self._private_directory(self.receipt_root)
             lease = issue_lease(
-                mode="investigate", actor=self.profile.actor,
-                workspace_id=str(context.workspace_id), repository=self.profile.repository,
-                execution_epoch=context.epoch, ttl_seconds=1,
+                mode="investigate",
+                actor=self.profile.actor,
+                workspace_id=str(context.workspace_id),
+                repository=self.profile.repository,
+                execution_epoch=context.epoch,
+                ttl_seconds=1,
             )
             authority = CapabilityAuthority(lease, budget_check=lambda: False)
             root = self.receipt_root
@@ -534,7 +612,10 @@ class H03SchedulerResourceDriver:
             authority = CapabilityAuthority(lease_source=current, budget_check=lambda: True)
             root = self._open(context).root
         return IsolatedExecutionBroker(
-            root, authority, image_id=self.profile.image_id, lock_path=self.image_lock,
+            root,
+            authority,
+            image_id=self.profile.image_id,
+            lock_path=self.image_lock,
             docker=self.docker,
         )
 
@@ -553,20 +634,31 @@ class H03SchedulerResourceDriver:
 
     @staticmethod
     def _related_context(context: ResourceContext, operation: ResourceOperation) -> ResourceContext:
-        return replace(context, operation_id=operation.operation_id, kind=operation.kind,
-                       request_sha256=operation.request_sha256,
-                       provider_operation_id=operation.provider_operation_id, operations=(),
-                       cleanup_only=True)
+        return replace(
+            context,
+            operation_id=operation.operation_id,
+            kind=operation.kind,
+            request_sha256=operation.request_sha256,
+            provider_operation_id=operation.provider_operation_id,
+            operations=(),
+            cleanup_only=True,
+        )
 
     def _observe_process(
-        self, context: ResourceContext, broker: IsolatedExecutionBroker, *, stop: bool,
+        self,
+        context: ResourceContext,
+        broker: IsolatedExecutionBroker,
+        *,
+        stop: bool,
     ) -> ResourceReceipt:
         if context.provider_operation_id != self._name(context):
             raise _error("SOURCE_SCHEDULER_RUNTIME_BINDING_INVALID")
         stored = self._load(context)
         status = broker.inspect_bound_command(self._name(context), self._labels(context))
-        if stored is not None and stored.container_id is not None and (
-            status.container_id is not None and status.container_id != stored.container_id
+        if (
+            stored is not None
+            and stored.container_id is not None
+            and (status.container_id is not None and status.container_id != stored.container_id)
         ):
             raise _error("SOURCE_SCHEDULER_RUNTIME_CONTAINER_CHANGED")
         if stop and status.state != "missing":
@@ -578,14 +670,19 @@ class H03SchedulerResourceDriver:
         elif status.state in {"exited", "dead"}:
             if stored is not None and stored.receipt.state == "known_terminal":
                 return stored.receipt
-            receipt = self._receipt(context, "known_terminal",
+            receipt = self._receipt(
+                context,
+                "known_terminal",
                 code="succeeded" if status.exit_code == 0 else "failed",
-                exit_code=status.exit_code, stopped=True)
+                exit_code=status.exit_code,
+                stopped=True,
+            )
         else:
             if stored is not None and stored.receipt.state == "known_terminal":
                 raise _error("SOURCE_SCHEDULER_RUNTIME_TERMINAL_PROCESS_REAPPEARED")
-            return self._save(context, self._receipt(context, "running"),
-                              container_id=status.container_id)
+            return self._save(
+                context, self._receipt(context, "running"), container_id=status.container_id
+            )
         return self._save(context, receipt, container_id=status.container_id)
 
     def _fence_workspace(self, context: ResourceContext) -> None:
@@ -604,8 +701,7 @@ class H03SchedulerResourceDriver:
                 if not target.is_file():
                     raise _error("SOURCE_SCHEDULER_RUNTIME_WORKSPACE_CHANGED")
                 target.chmod(0o400)
-            directories[:] = [name for name in directories
-                              if not (directory / name).is_symlink()]
+            directories[:] = [name for name in directories if not (directory / name).is_symlink()]
             directory.chmod(0o500)
 
     def _inspect_or_stop(self, context: ResourceContext, *, stop: bool) -> ResourceReceipt:
@@ -628,9 +724,15 @@ class H03SchedulerResourceDriver:
                 elif self._directory(context.assignment_id).exists():
                     observed = self._save(old, self._prepared_receipt(old))
                 else:
-                    observed = self._save(old, self._receipt(
-                        old, "known_terminal", code="absent", stopped=True,
-                    ))
+                    observed = self._save(
+                        old,
+                        self._receipt(
+                            old,
+                            "known_terminal",
+                            code="absent",
+                            stopped=True,
+                        ),
+                    )
             elif operation.kind in {"start", "job"}:
                 observed = self._observe_process(old, broker, stop=stop)
                 # Exited/dead is useful terminal operation evidence, but only
@@ -651,10 +753,17 @@ class H03SchedulerResourceDriver:
         self._fence_workspace(context)
         if stored is not None and stored.receipt.state == "known_terminal":
             return stored.receipt
-        return self._save(context, self._receipt(
-            context, "known_terminal", code="succeeded", stopped=True, fenced=True,
-            related=tuple(related),
-        ))
+        return self._save(
+            context,
+            self._receipt(
+                context,
+                "known_terminal",
+                code="succeeded",
+                stopped=True,
+                fenced=True,
+                related=tuple(related),
+            ),
+        )
 
     def inspect(self, context: ResourceContext) -> ResourceReceipt:
         """Actual state is checked before replaying an unchanged terminal receipt."""
@@ -684,11 +793,16 @@ class H03SchedulerResourceDriver:
         kind: Literal["start", "job"] = "start",
     ) -> ResourceReceipt:
         """Trusted in-process fixture helper; no HTTP command/grant surface."""
-        operation_hash = digest({
-            "version": RUNTIME_VERSION, "profile_sha256": self.profile_sha256,
-            "assignment_id": str(request.assignment_id), "session_id": str(request.session_id),
-            "epoch": request.epoch, "kind": kind,
-        })
+        operation_hash = digest(
+            {
+                "version": RUNTIME_VERSION,
+                "profile_sha256": self.profile_sha256,
+                "assignment_id": str(request.assignment_id),
+                "session_id": str(request.session_id),
+                "epoch": request.epoch,
+                "kind": kind,
+            }
+        )
         context = self.scheduler.begin_operation(bearer, request, kind, operation_hash)
         with self._active_lock:
             self._active[context.operation_id] = context
@@ -701,8 +815,10 @@ class H03SchedulerResourceDriver:
             else:
                 facts = self._check(context, executing=True)
                 if facts.get("operation_state") != "requested" or any(
-                    item.kind in {"start", "job"} and item.operation_id != context.operation_id
-                    and item.state != "known_terminal" for item in context.operations
+                    item.kind in {"start", "job"}
+                    and item.operation_id != context.operation_id
+                    and item.state != "known_terminal"
+                    for item in context.operations
                 ):
                     raise _error("SOURCE_SCHEDULER_RUNTIME_PROCESS_ALREADY_PENDING")
                 self._check_image()
@@ -710,14 +826,22 @@ class H03SchedulerResourceDriver:
                     receipt = self.inspect(context)
                 else:
                     broker = self._broker(context, facts)
-                    execution = self.profile.request.model_copy(update={
-                        "operation_id": str(context.operation_id), "execution_epoch": context.epoch,
-                    })
-                    grant = self.profile.grant.model_copy(update={
-                        "workspace_id": str(context.workspace_id),
-                    })
+                    execution = self.profile.request.model_copy(
+                        update={
+                            "operation_id": str(context.operation_id),
+                            "execution_epoch": context.epoch,
+                        }
+                    )
+                    grant = self.profile.grant.model_copy(
+                        update={
+                            "workspace_id": str(context.workspace_id),
+                        }
+                    )
                     broker.launch(
-                        execution, grant, CancellationToken(), container_name=self._name(context),
+                        execution,
+                        grant,
+                        CancellationToken(),
+                        container_name=self._name(context),
                         ownership_labels=self._labels(context),
                         dispatch_guard=lambda: self.scheduler.dispatch_guard(context),
                     )
@@ -760,7 +884,8 @@ class H03SchedulerResourceDriver:
         for assignment_id, operation_id in self.scheduler.pending_resource_operations():
             if operation_id not in contexts:
                 contexts[operation_id] = self.scheduler.cleanup_context(
-                    assignment_id, operation_id,
+                    assignment_id,
+                    operation_id,
                 )
         for context in contexts.values():
             stored = self._load(context)
@@ -773,7 +898,10 @@ class H03SchedulerResourceDriver:
                 self._request_timeout(context)
 
     def wait_preconfigured(
-        self, context: ResourceContext, *, interval: float = 0.1,
+        self,
+        context: ResourceContext,
+        *,
+        interval: float = 0.1,
     ) -> ResourceReceipt:
         """Poll one exact intent; timeout/fencing requests real Core cleanup."""
         _interval(interval)
@@ -853,7 +981,9 @@ class RuntimeLeaseSupervisor:
             return self
         self._stopped.clear()
         self._thread = threading.Thread(
-            target=self._run, name="mgar-sa12-lease-supervisor", daemon=True,
+            target=self._run,
+            name="mgar-sa12-lease-supervisor",
+            daemon=True,
         )
         self._thread.start()
         return self

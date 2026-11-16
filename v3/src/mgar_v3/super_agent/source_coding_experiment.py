@@ -374,6 +374,7 @@ def install_coding_trial(
         image_id=image_id,
         review_ref="SA22-user-explicit-quality-exception",
         provider_generation="source-owner-trial-v1",
+        execution_mode="live",
     )
     driver = H03SchedulerResourceDriver(
         scheduler=scheduler,

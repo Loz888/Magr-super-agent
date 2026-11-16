@@ -100,7 +100,7 @@ def test_trial_permission_is_immutable_and_policy_cutover_fences_new_tasks(engin
                 )
         current = engine.source_policies.read(env.source.cookie, env.source.policy_id)
         raw = current["definition"]
-        raw["execution"]["enabled"] = False
+        raw["execution"] = {"enabled": False}
         engine.source_policies.save(
             env.source.cookie,
             env.source.policy_id,

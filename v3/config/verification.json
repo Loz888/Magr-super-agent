@@ -2265,5 +2265,30 @@
       "coding": "real_Git_H03_original_Engine_SA07_SA12_isolated_Docker",
       "scope": "SA22_new_model_and_owner_trial_slice_only; historical_reply11_not_rerun"
     }
+  },
+  "SAV1-22-MODEL-R2": {
+    "tests": [
+      "tests/test_source_model_conversations.py::test_model_answer_uses_original_money_and_encrypted_outbox",
+      "tests/test_source_model_conversations.py::test_unknown_model_is_never_retried[lost]",
+      "tests/test_source_model_conversations.py::test_unknown_model_is_never_retried[missing_usage]",
+      "tests/test_source_model_conversations.py::test_revocation_after_reservation_prevents_physical_model_post",
+      "tests/test_source_model_conversations.py::test_concurrent_same_input_cannot_duplicate_paid_request",
+      "tests/test_source_model_conversations.py::test_expired_reply_key_cannot_disclose_and_is_removed",
+      "tests/test_source_model_conversations.py::test_known_invalid_answer_settles_bill_without_resend",
+      "tests/test_source_model_conversations.py::test_authority_change_during_platform_token_prevents_answer_send",
+      "tests/test_source_model_conversations.py::test_new_question_does_not_reset_shared_project_budget",
+      "tests/test_source_model_conversations.py::test_unknown_bill_can_send_fixed_failure_status_without_faking_answer",
+      "tests/test_source_coding_experiment.py::test_original_trial_factory_model_broker_and_unverified_patch",
+      "tests/test_source_coding_experiment.py::test_sparse_trial_journal_supports_large_unchanged_repository",
+      "tests/test_source_coding_experiment.py::test_trial_permission_is_immutable_and_policy_cutover_fences_new_tasks"
+    ],
+    "timeout_seconds": 600,
+    "components": {
+      "postgres": "real_exclusive_test_instance",
+      "model": "controlled_http_supplier; no real paid calls",
+      "platform": "controlled_physical_HTTP_override; no real platform sends",
+      "coding": "real_Git_H03_original_Engine_SA07_SA12_isolated_Docker",
+      "scope": "SA22_new_model_and_owner_trial_slice_only; historical_reply11_not_rerun"
+    }
   }
 }
