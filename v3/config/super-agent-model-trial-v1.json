@@ -16,7 +16,7 @@
   "artifacts": [
     {
       "path": "config/verification.json",
-      "sha256": "7cd1d8848defbcc3343af85a4bc1c778983052748efc5058d82cd00f13d874a4"
+      "sha256": "4d494d814339ae33ecbbe7ac42c9c13d83734805b3964c2dc2437150b87f447a"
     },
     {
       "path": "docs/super-agent-v1/SA22_MODEL_TRIAL_PROTOCOL.md",

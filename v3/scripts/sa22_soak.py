@@ -26,6 +26,8 @@ from uuid import UUID, uuid4
 import httpx
 from psycopg.conninfo import conninfo_to_dict
 from pydantic import SecretStr
+from sa22_acceptance import inspect_journal, seal_record
+from verify import source_fingerprint
 
 from mgar_v3.coordination.engine import Engine
 from mgar_v3.effects.dispatcher import Dispatcher
@@ -47,9 +49,6 @@ from mgar_v3.super_agent.source_notification_domain import NotificationConfigure
 from mgar_v3.super_agent.source_notification_ports import NotificationProfile
 from mgar_v3.super_agent.source_notification_transport import NotificationTransport
 from mgar_v3.super_agent.source_replies import queue_reply
-
-from sa22_acceptance import inspect_journal, seal_record
-from verify import source_fingerprint
 
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "tests"))
@@ -234,6 +233,7 @@ class Workload:
                 frozenset({"webhook", "socket", "health"}),
                 "SA22-controlled-72h",
             ),
+            transport=httpx.MockTransport(lambda request: httpx.Response(404)),
         )
         instance = SourceRegistry(self.engine).get_instance(self.source_id)
 
@@ -495,7 +495,7 @@ def run(path: Path, *, once=False, crash=False):
                 stopped_at=datetime.now(UTC).isoformat(),
             )
             save(root / "status.json", summary)
-            return summary
+        return summary
 
 
 if __name__ == "__main__":

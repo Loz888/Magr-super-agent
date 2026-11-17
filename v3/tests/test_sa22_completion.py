@@ -9,6 +9,7 @@ import psycopg
 import pytest
 from psycopg import sql
 from psycopg.conninfo import make_conninfo
+from pydantic import SecretStr
 
 from mgar_v3.settings import ROOT, Settings
 from mgar_v3.store.migrate import migrate
@@ -120,13 +121,15 @@ def soak_database():
     dsn = make_conninfo(base, dbname=name)
     migrate(dsn)
     try:
-        yield dsn
+        yield SecretStr(dsn)
     finally:
         with psycopg.connect(base, autocommit=True) as conn:
             conn.execute(sql.SQL("DROP DATABASE {} WITH (FORCE)").format(sql.Identifier(name)))
 
 
 def fixture_config(dsn):
+    if isinstance(dsn, SecretStr):
+        dsn = dsn.get_secret_value()
     return {
         "purpose": "SA22_CONTROLLED_SOAK",
         "database_url": dsn,
@@ -220,7 +223,7 @@ def test_real_controller_sigkill_reuses_committed_input_on_restart(soak_database
     assert result.returncode == 0, (tmp_path / "restart.log").read_text()
     observed = json.loads((tmp_path / "cycles.jsonl").read_text())
     assert observed["input_id"] == pending["input_id"] and observed["attempts"] == 1
-    with psycopg.connect(soak_database) as conn:
+    with psycopg.connect(soak_database.get_secret_value()) as conn:
         assert conn.execute("SELECT count(*) FROM app.source_ingress_inputs").fetchone()[0] == 2
         assert conn.execute("SELECT count(*) FROM app.actions").fetchone()[0] == 1
 
