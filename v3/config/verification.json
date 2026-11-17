@@ -2379,5 +2379,16 @@
       "resources": "exact owned disposable PostgreSQL Redis internal network and limited tmpfs; real Bot and72h untouched",
       "models": "disabled; no paid or platform calls"
     }
+  },
+  "SAV1-22-BUDGET10-PREP": {
+    "tests": [
+      "tests/test_sa22_budget_ceiling.py"
+    ],
+    "timeout_seconds": 180,
+    "components": {
+      "scope": "first owner USD10 strict-type and original-ledger transition checks; draft0055 installed only in owned disposable PG",
+      "shared_implementation": "no Engine/API/finance algorithm changes; formal0055 awaits Harness ownership",
+      "live_budget": "unchanged until confirmed controlled activation; no paid calls"
+    }
   }
 }

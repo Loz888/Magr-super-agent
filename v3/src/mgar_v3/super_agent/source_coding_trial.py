@@ -9,6 +9,10 @@ from uuid import UUID
 from pydantic import AwareDatetime
 
 from mgar_v3.domain import DomainError, Model
+from mgar_v3.super_agent.source_trial_limits import (
+    OWNER_TRIAL_PROJECT_LIMITS,
+    OwnerTrialProjectLimit,
+)
 
 if TYPE_CHECKING:
     from mgar_v3.coordination.engine import Connection, Engine
@@ -35,7 +39,7 @@ class CodingTrial(Model):
     manifest_sha256: str
     signed_by: UUID
     review_sha256: str
-    maximum_project_micros: int = 2000000
+    maximum_project_micros: OwnerTrialProjectLimit = 2000000
     valid_from: AwareDatetime
     valid_until: AwareDatetime
 
@@ -67,7 +71,7 @@ def current_trial(
     now: datetime = engine.source_ingress.now(conn)
     if (
         not row["valid_from"] <= now < row["valid_until"]
-        or row["maximum_project_micros"] != 2000000
+        or row["maximum_project_micros"] not in OWNER_TRIAL_PROJECT_LIMITS
         or row["source_revision"] != source.revision
         or row["policy_revision"] != p["current_revision"]
         or p["revoked"]

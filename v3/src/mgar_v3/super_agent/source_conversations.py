@@ -33,6 +33,7 @@ from mgar_v3.super_agent.source_repository_tools import (
     RepositorySession,
     within,
 )
+from mgar_v3.super_agent.source_trial_limits import OwnerTrialProjectLimit
 
 if TYPE_CHECKING:
     from mgar_v3.coordination.engine import Connection, Engine
@@ -85,7 +86,7 @@ class ConversationProfile(Model):
     context_path: str = "v3/src"
     context_tokens: Annotated[int, Field(ge=4096, le=65536)] = 16384
     max_output_tokens: Annotated[int, Field(ge=256, le=4096)] = 1024
-    maximum_project_micros: Literal[2000000] = 2000000
+    maximum_project_micros: OwnerTrialProjectLimit = 2000000
     max_model_calls: Annotated[int, Field(ge=1, le=100)] = 100
     repository_tools: bool = False
     history_turns: Annotated[int, Field(ge=0, le=3)] = 0

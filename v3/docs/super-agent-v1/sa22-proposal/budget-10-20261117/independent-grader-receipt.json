@@ -1,0 +1,36 @@
+{
+  "UTC": "2026-11-17T09:35:42.893084+00:00",
+  "peer_commit": "ca6aff5b86b24feac61279733edbe48ec1cf0861",
+  "checked_files": 462,
+  "hashes_and_git_bytes_match": true,
+  "peer_worktree_clean": true,
+  "graders": {
+    "L01": {
+      "path": "private/grade_L01.py",
+      "sha256": "340b232499f44ec935f580a01cc40337608fba4cfda05e42a3e33b34b2a5ed57"
+    },
+    "L02": {
+      "path": "private/grade_L02.py",
+      "sha256": "e951ae5eaa523f23c2287ff61dbce9df91283c391715628d63db79f3f66c7349"
+    },
+    "L03": {
+      "path": "private/grade_L03.py",
+      "sha256": "d2d9ef5eeabaa130f3e357877fce46a9e3b92cce67bf008d416483c774da214c"
+    },
+    "L08": {
+      "path": "private/grade_L08.py",
+      "sha256": "6e85d0367aaccd1e083116603be0b81c3cb006f6fd41b2a4ec49d0e50c98cb79"
+    },
+    "L09": {
+      "path": "private/grade_L09.py",
+      "sha256": "357b950c1d43923b8cddd5cbc538aa7e79a46cc82a24ecb163e999dc2a8d8bdd"
+    }
+  },
+  "private_grader_source_opened": false,
+  "worker_projection_contains_private_grader": false,
+  "private_holdout_labels_opened": false,
+  "L02_PG_run": "NOT_RUN",
+  "formal_scores": "NOT_RUN",
+  "trial_Verifier": "incomplete",
+  "L02_interpretation": "k=0 legal; omitted k equals explicit60, does not mean k0 and k60 return identical ranks; consistent with original public owner_message"
+}

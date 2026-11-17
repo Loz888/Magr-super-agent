@@ -61,6 +61,7 @@ from mgar_v3.super_agent.source_scheduler_runtime import (
     H03SchedulerResourceDriver,
     SchedulerRuntimeProfile,
 )
+from mgar_v3.super_agent.source_trial_limits import validate_owner_trial_limit
 
 if TYPE_CHECKING:
     from mgar_v3.coordination.engine import Engine
@@ -331,7 +332,9 @@ def install_coding_trial(
     working_directory: str = "v3",
     read_paths: tuple[str, ...] = ("v3", "README.md"),
     write_paths: tuple[str, ...] = ("v3/src",),
+    maximum_project_micros: int = 2000000,
 ) -> SourceCodingExperiment:
+    maximum_project_micros = validate_owner_trial_limit(maximum_project_micros)
     core, scheduler = engine.source_coding, engine.source_scheduler
     with engine.transaction() as conn:
         owner = core._console(conn, cookie)
@@ -478,7 +481,7 @@ def install_coding_trial(
                 ),
             ),
             acceptance_sha256=runtime_profile.acceptance_sha256,
-            limit_micros=2000000,
+            limit_micros=maximum_project_micros,
             max_model_calls=100,
             trial_id=trial_id,
         )
@@ -503,6 +506,7 @@ def install_coding_trial(
                 manifest_sha256=manifest_sha256,
                 signed_by=owner,
                 review_sha256=digest("user-SA22-quality-exception"),
+                maximum_project_micros=maximum_project_micros,
                 valid_from=now,
                 valid_until=expires,
             ),
