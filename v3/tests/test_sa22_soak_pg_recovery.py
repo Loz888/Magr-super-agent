@@ -54,17 +54,15 @@ def test_owned_postgresql_outage_before_ack_recovers_same_pending_event(tmp_path
 
         def ready():
             for _ in range(80):
-                probe = subprocess.run(
-                    ["docker", "exec", cid, "pg_isready", "-U", "postgres"],
-                    capture_output=True,
-                    timeout=5,
-                )
-                if probe.returncode == 0:
-                    return
+                try:
+                    with psycopg.connect(dsn, connect_timeout=1) as connection:
+                        if connection.execute("SELECT 1").fetchone() == (1,):
+                            return
+                except psycopg.OperationalError:
+                    pass
                 time.sleep(0.25)
             raise AssertionError("Owned qualification PG did not become ready")
 
-        ready()
         dsn = make_conninfo(
             host="127.0.0.1",
             port=port,
@@ -72,6 +70,7 @@ def test_owned_postgresql_outage_before_ack_recovers_same_pending_event(tmp_path
             password=password,
             dbname="sa22_soak_qualification",
         )
+        ready()
         migrate(dsn)
         config = {
             "purpose": "SA22_CONTROLLED_SOAK",
