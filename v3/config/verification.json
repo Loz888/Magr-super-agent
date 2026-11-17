@@ -2358,5 +2358,15 @@
       "scope": "only original one remaining failure; original14 PASS, lint/typecheck excluded",
       "expected_domain": "original Action outcome_unknown retained, no second HTTP request"
     }
+  },
+  "SAV1-22-SOAK-PG": {
+    "tests": [
+      "tests/test_sa22_soak_pg_recovery.py::test_owned_postgresql_outage_before_ack_recovers_same_pending_event"
+    ],
+    "timeout_seconds": 180,
+    "components": {
+      "scope": "first new SA22 owned PG transport outage qualification; not a rerun of SA21 or prior15 targets",
+      "platform": "local controlled HTTP, no paid model, no live Bot, exclusive disposable PG"
+    }
   }
 }
