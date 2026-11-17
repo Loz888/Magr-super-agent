@@ -2575,6 +2575,17 @@
       "authority": "approved project read scopes only; host parents/metadata private; exact command, epoch and originalMandate checked before renewal"
     }
   },
+  "SAV1-22-AWAIT-INDEPENDENT": {
+    "tests": [
+      "tests/test_sa22_await_independent.py"
+    ],
+    "timeout_seconds": 210,
+    "components": {
+      "scope": "only newly observed paid continuation after trusted public green; old public/live/grader PASS excluded",
+      "services": "owned realPG and Docker, zero-paid controlled HTTP, original journals and exact command receipts",
+      "boundary": "red command still feeds same Run; only current trusted green stops as incomplete awaiting independent, never Task Done or verified"
+    }
+  },
   "SAV1-22-SANDBOX-IO-RECOVERY-R1": {
     "tests": [
       "tests/test_sa22_sandbox_io_recovery.py::test_private_process_permissions_red_output_and_derived_lease_follow_original_authority[True]"
