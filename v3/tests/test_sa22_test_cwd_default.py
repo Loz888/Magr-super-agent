@@ -56,7 +56,8 @@ def test_test_command_default_cwd_uses_the_signed_profile_before_scope_check(eng
                 "SELECT result_code FROM app.sa_coding_operations "
                 "WHERE capability='execute' AND step_key NOT LIKE '%:baseline'"
             ).fetchall()
-        assert commands and any(item["result_code"] == "passed" for item in commands)
+        # The operation journal uses "ok" for an observed passed Broker receipt.
+        assert commands and any(item["result_code"] == "ok" for item in commands)
         assert len(seen) >= 4
     finally:
         env.close()
