@@ -1,0 +1,699 @@
+{
+  "schema": "sa22-live-cases-v2",
+  "status": "PUBLIC_SPEC_DRAFT_REQUIRES_INDEPENDENT_GRADERS_AND_FREEZE",
+  "formal_case_count": 10,
+  "unique_coding_work_items": 5,
+  "minimum_successes": 8,
+  "all_required_coverage_mandatory": true,
+  "all_ten_stay_in_denominator": true,
+  "prior_QA_samples_counted": false,
+  "coding_public_probe_baseline_root": "efb09f4fedb35c4bc7f579dda0b7e64d2e3111be",
+  "cases": [
+    {
+      "case_id": "L01",
+      "title": "飞书真实修复",
+      "goal": "修复 _cosine 非有限向量输入未拒绝；保留有限、零、空向量和维度守卫。",
+      "status": "NOT_RUN",
+      "scope": {
+        "upstream_commit": "efb09f4fedb35c4bc7f579dda0b7e64d2e3111be",
+        "read_paths": [
+          "v3",
+          "README.md"
+        ],
+        "write_paths": [
+          "v3/src/mgar_v3/memory/retrieval.py"
+        ],
+        "no_original_branch_writes": true,
+        "private_judge": "independent operator-held implementation required; not these public probes",
+        "case_result_fields": [
+          "case_id",
+          "attempt_id",
+          "source_commit",
+          "input_id",
+          "thread_id",
+          "ticket_id",
+          "run_id",
+          "assignment_id",
+          "session_id",
+          "epoch",
+          "job_id",
+          "action_id",
+          "delivery_id",
+          "policy_revision",
+          "profile_sha256",
+          "baseline_tree",
+          "final_tree",
+          "diff_sha256",
+          "public_result_hash",
+          "independent_judge_hash",
+          "task_success",
+          "coverage_observed",
+          "fees_and_unknown",
+          "failure_reason"
+        ],
+        "write_constraint": "existing files within original v3/src maximum; per-case exact scope and profile must be bound"
+      },
+      "steps": [
+        "本人在Bot群真实@并发送下方请求；记录真实接收/策略/原Task和Assignment",
+        "Worker自行检索源码、复现、仅改授权文件、运行固定公开测试",
+        "独立判定同一最终树，原话题一次反馈且仍标实验未完成正式能力门"
+      ],
+      "pass_conditions": [
+        "有实际源码diff与独立行为结果，非固定smoke或报告",
+        "非法向量抛 MEMORY_EMBEDDING_INVALID；合法行为不回归",
+        "输入/Run/最终树/测试/Delivery完整一致"
+      ],
+      "preconditions_missing": [
+        "逐题公开命令profile未激活",
+        "独立判定器待提供"
+      ],
+      "coding_work_item": "T-A",
+      "budget_max_micros": 300000,
+      "allowed_change_files": [
+        "v3/src/mgar_v3/memory/retrieval.py"
+      ],
+      "public_probe": "public-probes/probe_L01.py",
+      "owner_message": "请修复 v3/src/mgar_v3/memory/retrieval.py 中 _cosine 未拒绝 NaN/Infinity 向量的问题；非法输入抛 MEMORY_EMBEDDING_INVALID，保留正常、零、空向量及维度校验，不修改测试。",
+      "independent_grader_sha256": null,
+      "operator_task_review": "PENDING",
+      "formal_freeze": "NOT_DONE"
+    },
+    {
+      "case_id": "L02",
+      "title": "多文件新功能",
+      "goal": "新增 MemoryRetriever(..., rrf_k=60)，0..10000的严格整数可调，默认兼容，并用于实际RRF检索。",
+      "status": "NOT_RUN",
+      "scope": {
+        "upstream_commit": "efb09f4fedb35c4bc7f579dda0b7e64d2e3111be",
+        "read_paths": [
+          "v3",
+          "README.md"
+        ],
+        "write_paths": [
+          "v3/src/mgar_v3/memory/retrieval.py",
+          "v3/src/mgar_v3/rag/rank.py"
+        ],
+        "no_original_branch_writes": true,
+        "private_judge": "independent operator-held implementation required; not these public probes",
+        "case_result_fields": [
+          "case_id",
+          "attempt_id",
+          "source_commit",
+          "input_id",
+          "thread_id",
+          "ticket_id",
+          "run_id",
+          "assignment_id",
+          "session_id",
+          "epoch",
+          "job_id",
+          "action_id",
+          "delivery_id",
+          "policy_revision",
+          "profile_sha256",
+          "baseline_tree",
+          "final_tree",
+          "diff_sha256",
+          "public_result_hash",
+          "independent_judge_hash",
+          "task_success",
+          "coverage_observed",
+          "fees_and_unknown",
+          "failure_reason"
+        ],
+        "write_constraint": "existing files within original v3/src maximum; per-case exact scope and profile must be bound"
+      },
+      "steps": [
+        "与L01在10秒内独立提交请求，为L10留下原始并发提交证据",
+        "修改 memory/retrieval.py 与 rag/rank.py，使用原函数保留默认API",
+        "验证低k/高k下指定真实检索结果相对排序变化，独立全回归检查"
+      ],
+      "pass_conditions": [
+        "两个模块实际改变且新参数真正影响搜索结果",
+        "k=0与默认60兼容；bool/非整数/负数/大于10000抛 RRF_K_INVALID",
+        "不修改测试、权限、预算或SQL"
+      ],
+      "preconditions_missing": [
+        "新测试profile未绑定",
+        "独立端到端语料/判定器待审",
+        "多逐题profile按输入精确绑定与运行时分派尚未接线"
+      ],
+      "coding_work_item": "T-B",
+      "budget_max_micros": 300000,
+      "allowed_change_files": [
+        "v3/src/mgar_v3/memory/retrieval.py",
+        "v3/src/mgar_v3/rag/rank.py"
+      ],
+      "public_probe": "public-probes/probe_L02.py",
+      "owner_message": "请实现 MemoryRetriever 的 rrf_k 可调参数：默认60，严格整数范围0到10000，实际传入RRF融合；与 rag.rank.rrf 共用相同参数约束，非法值抛 RRF_K_INVALID，保留默认行为，不修改测试。",
+      "independent_grader_sha256": null,
+      "operator_task_review": "PENDING",
+      "formal_freeze": "NOT_DONE"
+    },
+    {
+      "case_id": "L03",
+      "title": "失败补丁后继续修复",
+      "goal": "RRF在每份排名内按首次出现去重并重新编号；不同排名仍分别贡献。",
+      "status": "NOT_RUN",
+      "scope": {
+        "upstream_commit": "efb09f4fedb35c4bc7f579dda0b7e64d2e3111be",
+        "read_paths": [
+          "v3",
+          "README.md"
+        ],
+        "write_paths": [
+          "v3/src/mgar_v3/rag/rank.py"
+        ],
+        "no_original_branch_writes": true,
+        "private_judge": "independent operator-held implementation required; not these public probes",
+        "case_result_fields": [
+          "case_id",
+          "attempt_id",
+          "source_commit",
+          "input_id",
+          "thread_id",
+          "ticket_id",
+          "run_id",
+          "assignment_id",
+          "session_id",
+          "epoch",
+          "job_id",
+          "action_id",
+          "delivery_id",
+          "policy_revision",
+          "profile_sha256",
+          "baseline_tree",
+          "final_tree",
+          "diff_sha256",
+          "public_result_hash",
+          "independent_judge_hash",
+          "task_success",
+          "coverage_observed",
+          "fees_and_unknown",
+          "failure_reason"
+        ],
+        "write_constraint": "existing files within original v3/src maximum; per-case exact scope and profile must be bound"
+      },
+      "steps": [
+        "要求模型先读完整公开规格，再提出补丁并运行真实公开测试",
+        "若实际编辑后的首补丁测试红，保留该树/命令/失败反馈，按原Run/余额继续",
+        "最终独立检查去重、跨列表贡献、空输入和确定排序"
+      ],
+      "pass_conditions": [
+        "修复符合公开算法与独立数据",
+        "失败恢复覆盖只在真实模型错误补丁→真实红反馈→后续更正时记录",
+        "若首补丁直接绿，task_success可PASS，但coverage=NOT_OBSERVED；不伪造失败、不换题凑覆盖"
+      ],
+      "preconditions_missing": [
+        "公开失败反馈回到同一Worker的接线需核验",
+        "独立判定器待提供"
+      ],
+      "coding_work_item": "T-C",
+      "budget_max_micros": 300000,
+      "allowed_change_files": [
+        "v3/src/mgar_v3/rag/rank.py"
+      ],
+      "public_probe": "public-probes/probe_L03.py",
+      "owner_message": "请修复 rag.rank.rrf 中同一排名重复文档被多次投票的问题：每份排名按首次顺序去重后重新编号；不同排名仍分别投票。先复现，再修改并运行公开检查，保留所有失败回执，不修改测试。",
+      "unobserved_required_boundary": "keeps required recovery coverage unmet; no claim of complete SA22",
+      "independent_grader_sha256": null,
+      "operator_task_review": "PENDING",
+      "formal_freeze": "NOT_DONE"
+    },
+    {
+      "case_id": "L04",
+      "title": "GitHub PR/CI同SHA跟进",
+      "goal": "对本仓库现有PR5的真实新CI结果沿同一原Task调查并回复。",
+      "status": "NOT_RUN",
+      "scope": {
+        "upstream_commit": "007edb9cd2c2f7b07cdaaa4ec91c4a97cd7fd3af",
+        "read_paths": [
+          "v3",
+          "README.md"
+        ],
+        "write_paths": [],
+        "no_original_branch_writes": true,
+        "private_judge": "independent operator-held implementation required; not these public probes",
+        "case_result_fields": [
+          "case_id",
+          "attempt_id",
+          "source_commit",
+          "input_id",
+          "thread_id",
+          "ticket_id",
+          "run_id",
+          "assignment_id",
+          "session_id",
+          "epoch",
+          "job_id",
+          "action_id",
+          "delivery_id",
+          "policy_revision",
+          "profile_sha256",
+          "baseline_tree",
+          "final_tree",
+          "diff_sha256",
+          "public_result_hash",
+          "independent_judge_hash",
+          "task_success",
+          "coverage_observed",
+          "fees_and_unknown",
+          "failure_reason"
+        ],
+        "mode": "read_only_observation_or_followup",
+        "version_rule": "known observed PR5 head, recheck/freeze exact version before input; explicit new revision if head advances; no inherited old green"
+      },
+      "steps": [
+        "本人通过GitHub网页在现有PR5提交真实明确只读调查请求，由真实Source接收并创建获准原Task；本CLI不代发评论",
+        "任务建立后，注册安装/签名接入观察真实新CI事件；不是把旧API查询转写为伪造Webhook",
+        "事件head与当时注册head一致才关联验证；绑定原Task和版本并反馈Bot"
+      ],
+      "pass_conditions": [
+        "真实平台接收凭证、PR/CI/attempt/head/base/Task关系可查",
+        "新head不能继承旧测试/审批；没有事件保持NOT_RUN",
+        "只读查询PR成功不等于GitHub接入成功",
+        "新的GitHub显式请求真实发起原Task，随后CI跟进仍属该Task"
+      ],
+      "preconditions_missing": [
+        "接入库当前只有Feishu Source，GitHub Source未绑定",
+        "安装/CI接口本次查询报传输错误，能力未知",
+        "真实新CI事件与跟进runtime待准备"
+      ],
+      "budget_max_micros": 20000,
+      "real_resource_candidate": {
+        "repository_id": 1438269299,
+        "pr_number": 5,
+        "observed_head_sha": "007edb9cd2c2f7b07cdaaa4ec91c4a97cd7fd3af",
+        "observed_base_sha": "6669b7d189aa439bd23334d9b59739f8b48f4406",
+        "rule": "reconfirm/freeze before event; moved head is explicit new revision, never reuse old evidence"
+      },
+      "no_workflow_dispatch_or_comment_authorized_by_design": true,
+      "owner_github_message": "/mgar investigate 请只读调查本PR当前head的CI状态和失败依据；不修改代码、不创建PR、不推送。",
+      "independent_grader_sha256": null,
+      "operator_task_review": "PENDING",
+      "formal_freeze": "NOT_DONE"
+    },
+    {
+      "case_id": "L05",
+      "title": "飞书/GitHub跨渠道归属",
+      "goal": "对L04同一PR5任务补充飞书上下文，保持一个Task。",
+      "status": "NOT_RUN",
+      "scope": {
+        "upstream_commit": "007edb9cd2c2f7b07cdaaa4ec91c4a97cd7fd3af",
+        "read_paths": [
+          "v3",
+          "README.md"
+        ],
+        "write_paths": [],
+        "no_original_branch_writes": true,
+        "private_judge": "independent operator-held implementation required; not these public probes",
+        "case_result_fields": [
+          "case_id",
+          "attempt_id",
+          "source_commit",
+          "input_id",
+          "thread_id",
+          "ticket_id",
+          "run_id",
+          "assignment_id",
+          "session_id",
+          "epoch",
+          "job_id",
+          "action_id",
+          "delivery_id",
+          "policy_revision",
+          "profile_sha256",
+          "baseline_tree",
+          "final_tree",
+          "diff_sha256",
+          "public_result_hash",
+          "independent_judge_hash",
+          "task_success",
+          "coverage_observed",
+          "fees_and_unknown",
+          "failure_reason"
+        ],
+        "mode": "read_only_observation_or_followup",
+        "version_rule": "known observed PR5 head, recheck/freeze exact version before input; explicit new revision if head advances; no inherited old green"
+      },
+      "steps": [
+        "本人回复L04在Bot的原消息，带准确PR5引用和补充日志",
+        "通过原Source身份/Task membership/Subscription投递到既有任务",
+        "另在负例中引用同名但无关系的L01，验证不误合并"
+      ],
+      "pass_conditions": [
+        "同一原Task，新增输入只消费一次，无重复付费评估/新任务",
+        "跨安装同名ID、无关PR/任务保持分开",
+        "只作上下文的内容不产生控制权"
+      ],
+      "preconditions_missing": [
+        "真实GitHub Source与同人跨平台证据未就绪",
+        "Bot群Task Mailbox跟进接线需核对"
+      ],
+      "budget_max_micros": 10000,
+      "related_cases": [
+        "L04"
+      ],
+      "owner_message": "请跟进上面绑定的 Loz888/MAGR-v3 PR #5，同一任务补充：以该PR最新已验证head的CI回执为准；这条是补充，不新建任务。",
+      "independent_grader_sha256": null,
+      "operator_task_review": "PENDING",
+      "formal_freeze": "NOT_DONE"
+    },
+    {
+      "case_id": "L06",
+      "title": "隔天状态查询",
+      "goal": "本人第二天以Task ID查询L01实际状态和当前证据。",
+      "status": "NOT_RUN",
+      "scope": {
+        "upstream_commit": "efb09f4fedb35c4bc7f579dda0b7e64d2e3111be",
+        "read_paths": [
+          "v3",
+          "README.md"
+        ],
+        "write_paths": [],
+        "no_original_branch_writes": true,
+        "private_judge": "independent operator-held implementation required; not these public probes",
+        "case_result_fields": [
+          "case_id",
+          "attempt_id",
+          "source_commit",
+          "input_id",
+          "thread_id",
+          "ticket_id",
+          "run_id",
+          "assignment_id",
+          "session_id",
+          "epoch",
+          "job_id",
+          "action_id",
+          "delivery_id",
+          "policy_revision",
+          "profile_sha256",
+          "baseline_tree",
+          "final_tree",
+          "diff_sha256",
+          "public_result_hash",
+          "independent_judge_hash",
+          "task_success",
+          "coverage_observed",
+          "fees_and_unknown",
+          "failure_reason"
+        ],
+        "mode": "read_only_observation_or_followup"
+      },
+      "steps": [
+        "至少跨一个上海自然日后发真实新请求，不改时钟",
+        "通过原Recall关系链只读当前原Task/Run/Job/费用/产物可见性",
+        "旧正文TTL30分钟已过时不得重新读取；不靠最近3轮聊天记忆"
+      ],
+      "pass_conditions": [
+        "回复与当前PG原事实一致，区分未验证/待审/投递状态",
+        "过期/删除/撤权正文不复活，未知状态明确保留",
+        "不新开Coding Run或重复付费修复"
+      ],
+      "preconditions_missing": [
+        "Task状态Recall尚未接入当前仓库三工具问答",
+        "跨日实际时间与身份/策略有效期需覆盖"
+      ],
+      "budget_max_micros": 10000,
+      "related_cases": [
+        "L01"
+      ],
+      "owner_message": "请按原任务ID查询昨天的修复现在到哪一步，说明实际测试、待审和通知状态；不要重新执行修复。",
+      "independent_grader_sha256": null,
+      "operator_task_review": "PENDING",
+      "formal_freeze": "NOT_DONE"
+    },
+    {
+      "case_id": "L07",
+      "title": "精确审查交付",
+      "goal": "向本人交付L02最终实际Diff/tree/测试和独立判定引用，保留实验状态。",
+      "status": "NOT_RUN",
+      "scope": {
+        "upstream_commit": "efb09f4fedb35c4bc7f579dda0b7e64d2e3111be",
+        "read_paths": [
+          "v3",
+          "README.md"
+        ],
+        "write_paths": [],
+        "no_original_branch_writes": true,
+        "private_judge": "independent operator-held implementation required; not these public probes",
+        "case_result_fields": [
+          "case_id",
+          "attempt_id",
+          "source_commit",
+          "input_id",
+          "thread_id",
+          "ticket_id",
+          "run_id",
+          "assignment_id",
+          "session_id",
+          "epoch",
+          "job_id",
+          "action_id",
+          "delivery_id",
+          "policy_revision",
+          "profile_sha256",
+          "baseline_tree",
+          "final_tree",
+          "diff_sha256",
+          "public_result_hash",
+          "independent_judge_hash",
+          "task_success",
+          "coverage_observed",
+          "fees_and_unknown",
+          "failure_reason"
+        ],
+        "mode": "read_only_observation_or_followup"
+      },
+      "steps": [
+        "从精确最终树构造只读审查材料和hash清单",
+        "本人通过鉴权入口打开完整Diff与回执，原话题只发一次必要通知",
+        "不得批准或发布；实验incomplete不能自动标patch_verified"
+      ],
+      "pass_conditions": [
+        "下载/读取字节hash与最终工作区、测试/判定树一致",
+        "当前Owner/来源权限重验，链接不携带秘密或绕过ACL",
+        "试验审查材料与正式Review/Approval分开显示"
+      ],
+      "preconditions_missing": [
+        "试验产物目前仅私有目录，Recall/鉴权查看接线待补",
+        "正式Review Bundle仍受H12/Verifier门限制"
+      ],
+      "budget_max_micros": 10000,
+      "related_cases": [
+        "L02"
+      ],
+      "publication": false,
+      "independent_grader_sha256": null,
+      "operator_task_review": "PENDING",
+      "formal_freeze": "NOT_DONE"
+    },
+    {
+      "case_id": "L08",
+      "title": "关闭客户端后本机继续",
+      "goal": "修复 ContextPolicy.pressure 参数边界，并验证断开客户端不取消原后台工作。",
+      "status": "NOT_RUN",
+      "scope": {
+        "upstream_commit": "efb09f4fedb35c4bc7f579dda0b7e64d2e3111be",
+        "read_paths": [
+          "v3",
+          "README.md"
+        ],
+        "write_paths": [
+          "v3/src/mgar_v3/context/policy.py"
+        ],
+        "no_original_branch_writes": true,
+        "private_judge": "independent operator-held implementation required; not these public probes",
+        "case_result_fields": [
+          "case_id",
+          "attempt_id",
+          "source_commit",
+          "input_id",
+          "thread_id",
+          "ticket_id",
+          "run_id",
+          "assignment_id",
+          "session_id",
+          "epoch",
+          "job_id",
+          "action_id",
+          "delivery_id",
+          "policy_revision",
+          "profile_sha256",
+          "baseline_tree",
+          "final_tree",
+          "diff_sha256",
+          "public_result_hash",
+          "independent_judge_hash",
+          "task_success",
+          "coverage_observed",
+          "fees_and_unknown",
+          "failure_reason"
+        ],
+        "write_constraint": "existing files within original v3/src maximum; per-case exact scope and profile must be bound"
+      },
+      "steps": [
+        "发真实编码请求，观察同一Run已接受且进入工作",
+        "关闭本次请求客户端连接/界面，本机WSL保持在线；从独立只读观察器核对继续",
+        "独立检查结果与原话题实际回执"
+      ],
+      "pass_conditions": [
+        "observed为非负严格整数、limit为正严格整数，否则CONTEXT_BOUND",
+        "原正常/prepare/forced阈值行为保留",
+        "客户端关闭前后同Run/工作区/费用，原Task不假完成"
+      ],
+      "preconditions_missing": [
+        "需核验当前同步编码回调对断开连接的实际行为",
+        "新公开命令与独立判定器未绑定"
+      ],
+      "coding_work_item": "T-D",
+      "budget_max_micros": 300000,
+      "allowed_change_files": [
+        "v3/src/mgar_v3/context/policy.py"
+      ],
+      "public_probe": "public-probes/probe_L08.py",
+      "owner_message": "请修复 ContextPolicy.pressure 的参数校验：observed须为非负严格整数，limit须为正严格整数，bool不接受，非法值抛CONTEXT_BOUND；保留现有压缩阈值行为，不修改测试。",
+      "cloud_host_power_off": "NOT_RUN_USER_DEFERRED",
+      "independent_grader_sha256": null,
+      "operator_task_review": "PENDING",
+      "formal_freeze": "NOT_DONE"
+    },
+    {
+      "case_id": "L09",
+      "title": "真实Worker故障与恢复",
+      "goal": "修复 PairwiseRanker.score 非有限输入/输出，同时检验实际Worker崩溃恢复与撤权。",
+      "status": "NOT_RUN",
+      "scope": {
+        "upstream_commit": "efb09f4fedb35c4bc7f579dda0b7e64d2e3111be",
+        "read_paths": [
+          "v3",
+          "README.md"
+        ],
+        "write_paths": [
+          "v3/src/mgar_v3/rag/rank.py"
+        ],
+        "no_original_branch_writes": true,
+        "private_judge": "independent operator-held implementation required; not these public probes",
+        "case_result_fields": [
+          "case_id",
+          "attempt_id",
+          "source_commit",
+          "input_id",
+          "thread_id",
+          "ticket_id",
+          "run_id",
+          "assignment_id",
+          "session_id",
+          "epoch",
+          "job_id",
+          "action_id",
+          "delivery_id",
+          "policy_revision",
+          "profile_sha256",
+          "baseline_tree",
+          "final_tree",
+          "diff_sha256",
+          "public_result_hash",
+          "independent_judge_hash",
+          "task_success",
+          "coverage_observed",
+          "fees_and_unknown",
+          "failure_reason"
+        ],
+        "write_constraint": "existing files within original v3/src maximum; per-case exact scope and profile must be bound"
+      },
+      "steps": [
+        "只在能证明独立归属PID/容器时，于原用量已结算、补丁已持久化但回执未交回处SIGKILL",
+        "按原Run/lease/epoch/日志恢复，已知结果复用；另在独立负例中提交撤权",
+        "独立验证最终数值行为，汇总原全部费用"
+      ],
+      "pass_conditions": [
+        "有限得分和维度守卫保留；非有限输入RERANKER_INPUT_INVALID，溢出结果RERANKER_RESULT_INVALID",
+        "同一已知物理操作不重派发；unknown保留",
+        "旧epoch/撤权Worker不能读写、执行或发结果"
+      ],
+      "preconditions_missing": [
+        "当前编码循环位于Bot进程，独立Worker杀点需先补齐/核验",
+        "不能把杀Bot或杀受控72h进程当此项通过",
+        "恢复和独立判定器待绑定"
+      ],
+      "coding_work_item": "T-E",
+      "budget_max_micros": 300000,
+      "allowed_change_files": [
+        "v3/src/mgar_v3/rag/rank.py"
+      ],
+      "public_probe": "public-probes/probe_L09.py",
+      "owner_message": "请修复 PairwiseRanker.score：输入含NaN或Infinity抛RERANKER_INPUT_INVALID；得分运算溢出为非有限值抛RERANKER_RESULT_INVALID。保留正常得分与RERANKER_DIMENSION，不修改测试。",
+      "independent_grader_sha256": null,
+      "operator_task_review": "PENDING",
+      "formal_freeze": "NOT_DONE"
+    },
+    {
+      "case_id": "L10",
+      "title": "并发提交与任务隔离",
+      "goal": "复用L01/L02各一次真实提交，检查任务/目录/队列隔离。",
+      "status": "NOT_RUN",
+      "scope": {
+        "upstream_commit": "efb09f4fedb35c4bc7f579dda0b7e64d2e3111be",
+        "read_paths": [
+          "v3",
+          "README.md"
+        ],
+        "write_paths": [],
+        "no_original_branch_writes": true,
+        "private_judge": "independent operator-held implementation required; not these public probes",
+        "case_result_fields": [
+          "case_id",
+          "attempt_id",
+          "source_commit",
+          "input_id",
+          "thread_id",
+          "ticket_id",
+          "run_id",
+          "assignment_id",
+          "session_id",
+          "epoch",
+          "job_id",
+          "action_id",
+          "delivery_id",
+          "policy_revision",
+          "profile_sha256",
+          "baseline_tree",
+          "final_tree",
+          "diff_sha256",
+          "public_result_hash",
+          "independent_judge_hash",
+          "task_success",
+          "coverage_observed",
+          "fees_and_unknown",
+          "failure_reason"
+        ],
+        "mode": "read_only_observation_or_followup"
+      },
+      "steps": [
+        "L01与L02在10秒内分别提交，不重跑已通过任务来制造并发",
+        "保持当前最多1个Worker，核对一个执行、另一个持久排队，完成后公平领取",
+        "检查两个Task/Run/Assignment/工作区/目标/费用及最终反馈分别归属"
+      ],
+      "pass_conditions": [
+        "两个原任务和独立可写目录，无覆盖/错误回复/重复领取",
+        "每项调用/费用仍在原共享总额下，排队不新建钱包",
+        "报告真实峰值Worker=1；不称两Worker同时执行已验收"
+      ],
+      "preconditions_missing": [
+        "真实双请求及源码/测试profile未冻结",
+        "严格双活Worker能力仍为NOT_RUN，当前不扩容"
+      ],
+      "budget_max_micros": 0,
+      "related_cases": [
+        "L01",
+        "L02"
+      ],
+      "extra_coding_runs": 0,
+      "independent_grader_sha256": null,
+      "operator_task_review": "PENDING",
+      "formal_freeze": "NOT_DONE"
+    }
+  ]
+}

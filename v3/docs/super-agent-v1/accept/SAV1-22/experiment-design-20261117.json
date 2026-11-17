@@ -1,0 +1,22 @@
+{
+  "card": "SAV1-22",
+  "phase": "EXPERIMENT_DESIGN_V2",
+  "status": "DESIGN_COMPLETE_EXECUTION_NOT_RUN",
+  "UTC": "2026-11-17T09:03:53.127594+00:00",
+  "source_commit_at_start": "f2e0742f6f7655f85917c5087d315c1ac6501a73",
+  "design_directory": "docs/super-agent-v1/sa22-experiments/20261117",
+  "design_manifest_sha256": "1d882287cca17c1ac9efbb0fda311d0a8afc646214321bfa8537e4e3f8cacb33",
+  "formal_routing": "NOT_RUN",
+  "formal_live_positive_tasks": "NOT_RUN",
+  "independent_materials_commit": "0a50f6baeb4e38ebe53cd4e6e248f633df3f863c",
+  "material_technical_review": "20 files hash/Git match; public100; direct split overlap0; answer-key leak0",
+  "human_operator_review": "PENDING",
+  "private_labels_frozen": false,
+  "private_label_semantics_viewed": false,
+  "public_baseline": "5 first read-only Broker commands, expected target/API-missing red, no candidate edit",
+  "new_model_calls": 0,
+  "new_external_writes": 0,
+  "runtime_acceptance_tests_repeated": false,
+  "SA23": "NOT_STARTED",
+  "current_soak_uninterrupted": true
+}

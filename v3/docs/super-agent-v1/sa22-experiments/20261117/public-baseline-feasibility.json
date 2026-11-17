@@ -1,0 +1,122 @@
+{
+  "schema": "sa22-public-baseline-feasibility-v1",
+  "UTC": "2026-11-17T08:47:45.627451+00:00",
+  "upstream_commit": "efb09f4fedb35c4bc7f579dda0b7e64d2e3111be",
+  "image": "sha256:587cc5cbaf0a25f09e459a72d3f9b88aed939867cbf72d40b36a88d7999a1208",
+  "cases": [
+    {
+      "case_id": "L01",
+      "command": [
+        "python3",
+        "tests/sa22_public/probe_L01.py"
+      ],
+      "cwd": "v3",
+      "image_id": "sha256:587cc5cbaf0a25f09e459a72d3f9b88aed939867cbf72d40b36a88d7999a1208",
+      "exit_code": 1,
+      "status": "failed",
+      "classification": "EXPECTED_TARGET_RED_PENDING_REVIEW",
+      "public_probe_sha256": "91be70468950f9201c0e87eb82b3a26fdb57e40d0b83f55c63db247c83ddad21",
+      "receipt_sha256": "b757c24042a3f7f135f804395cf9f4f25786f4b4232e34f4ab0f60d82461ea3b",
+      "duration_seconds": 2.083856083045248,
+      "no_model_calls": true,
+      "formal_case_executed": false,
+      "current_public_probe_sha256": "91be70468950f9201c0e87eb82b3a26fdb57e40d0b83f55c63db247c83ddad21"
+    },
+    {
+      "case_id": "L02",
+      "command": [
+        "python3",
+        "tests/sa22_public/probe_L02.py"
+      ],
+      "cwd": "v3",
+      "image_id": "sha256:587cc5cbaf0a25f09e459a72d3f9b88aed939867cbf72d40b36a88d7999a1208",
+      "exit_code": 1,
+      "status": "failed",
+      "classification": "EXPECTED_API_ABSENCE_PENDING_REVIEW",
+      "public_probe_sha256": "619e7ca9439c3b1959536684868dc865854d9ac12b59f648e67752e66ddc50ce",
+      "receipt_sha256": "2e92666ed073b37e5702a6c23851d76595ee553fec50504668cc78cc33ca2bdf",
+      "duration_seconds": 1.5788548919954337,
+      "no_model_calls": true,
+      "formal_case_executed": false,
+      "current_public_probe_sha256": "ad1fe1e398d62063d250abf4687639fe0acda0463a342c5762cb1c696c4c5254"
+    },
+    {
+      "case_id": "L03",
+      "command": [
+        "python3",
+        "tests/sa22_public/probe_L03.py"
+      ],
+      "cwd": "v3",
+      "image_id": "sha256:587cc5cbaf0a25f09e459a72d3f9b88aed939867cbf72d40b36a88d7999a1208",
+      "exit_code": 1,
+      "status": "failed",
+      "classification": "EXPECTED_TARGET_RED_PENDING_REVIEW",
+      "public_probe_sha256": "c14b520c3991cbc7c968a7f1ed23e32255c84acc68274d2c6e8d3e05113c9aec",
+      "receipt_sha256": "230b50e75a2de01a592de7fbee73ab1d5bb38c83daa459eb717d91d8149b0807",
+      "duration_seconds": 1.374845203012228,
+      "no_model_calls": true,
+      "formal_case_executed": false,
+      "current_public_probe_sha256": "c14b520c3991cbc7c968a7f1ed23e32255c84acc68274d2c6e8d3e05113c9aec"
+    },
+    {
+      "case_id": "L08",
+      "command": [
+        "python3",
+        "tests/sa22_public/probe_L08.py"
+      ],
+      "cwd": "v3",
+      "image_id": "sha256:587cc5cbaf0a25f09e459a72d3f9b88aed939867cbf72d40b36a88d7999a1208",
+      "exit_code": 1,
+      "status": "failed",
+      "classification": "EXPECTED_TARGET_RED_PENDING_REVIEW",
+      "public_probe_sha256": "73ca45212fd1e92302ae959134da65b9f45e9fe7a46859b691ca556f2a28ceb8",
+      "receipt_sha256": "9eee2e370d05dfaf3ed6dece9e599974e0b0cf45d0d58b4d11228f5f715cf61d",
+      "duration_seconds": 0.8520111810066737,
+      "no_model_calls": true,
+      "formal_case_executed": false,
+      "current_public_probe_sha256": "36d0a2b91edc076cecfb706665a78d12a2d8afdf7ab39556491e89c10bfc3df0"
+    },
+    {
+      "case_id": "L09",
+      "command": [
+        "python3",
+        "tests/sa22_public/probe_L09.py"
+      ],
+      "cwd": "v3",
+      "image_id": "sha256:587cc5cbaf0a25f09e459a72d3f9b88aed939867cbf72d40b36a88d7999a1208",
+      "exit_code": 1,
+      "status": "failed",
+      "classification": "EXPECTED_TARGET_RED_PENDING_REVIEW",
+      "public_probe_sha256": "a81141c0b5c169d61218cae6e893d46706f45c421642869e4f09f2953b2d29d3",
+      "receipt_sha256": "62f88b6561bd91a86927286f607c08fa0806af1825a6c3abb90e71a9c3c74c87",
+      "duration_seconds": 1.3179392500314862,
+      "no_model_calls": true,
+      "formal_case_executed": false,
+      "current_public_probe_sha256": "a81141c0b5c169d61218cae6e893d46706f45c421642869e4f09f2953b2d29d3"
+    }
+  ],
+  "formal_real_tasks_executed": 0,
+  "candidate_changes": 0,
+  "model_calls": 0,
+  "private_judges": "NOT_RUN",
+  "raw_evidence": "evidence/super-agent-v1/SAV1-22/experiment-design-20261117T083500Z-3e1d0a4e",
+  "post_baseline_static_only_changes": [
+    {
+      "case_id": "L02",
+      "assertion_AST_unchanged": true,
+      "change": "explicit synchronous loop-lambda capture and import formatting only",
+      "old_sha256": "619e7ca9439c3b1959536684868dc865854d9ac12b59f648e67752e66ddc50ce",
+      "new_sha256": "ad1fe1e398d62063d250abf4687639fe0acda0463a342c5762cb1c696c4c5254",
+      "baseline_commands_repeated": false
+    },
+    {
+      "case_id": "L08",
+      "assertion_AST_unchanged": true,
+      "change": "explicit synchronous loop-lambda capture and import formatting only",
+      "old_sha256": "73ca45212fd1e92302ae959134da65b9f45e9fe7a46859b691ca556f2a28ceb8",
+      "new_sha256": "36d0a2b91edc076cecfb706665a78d12a2d8afdf7ab39556491e89c10bfc3df0",
+      "baseline_commands_repeated": false
+    }
+  ],
+  "expected_red_semantics_review": "L01/L03/L08/L09 each exact requested assertions fail; L02 all5 errors are unexpected rrf_k keyword, the requested new API absence; no import/syntax/DB setup error"
+}

@@ -1,0 +1,86 @@
+{
+  "schema": "sa22-experiment-design-manifest-v2",
+  "status": "DESIGN_READY_FOR_REVIEW_EXECUTION_NOT_RUN",
+  "created_UTC": "2026-11-17T09:02:23.343035+00:00",
+  "authoring_source_commit": "f2e0742f6f7655f85917c5087d315c1ac6501a73",
+  "independent_material_commit": "0a50f6baeb4e38ebe53cd4e6e248f633df3f863c",
+  "operator_review": "PENDING",
+  "labels_frozen": false,
+  "private_judges": "NOT_PROVIDED",
+  "formal_routing_score": "NOT_RUN",
+  "formal_live_tasks": "NOT_RUN",
+  "new_model_calls": 0,
+  "new_external_writes": 0,
+  "files": [
+    {
+      "path": "README.md",
+      "sha256": "06097199499ca682cb4d49918c1de6eb945c58d75b05237a864f9f949d9ac9c2",
+      "bytes": 9966
+    },
+    {
+      "path": "design.json",
+      "sha256": "6942b7464c256bf5ff1ce537b54266e1b3551d783a73e2a129e3edd3ad9877a1",
+      "bytes": 6428
+    },
+    {
+      "path": "fault-matrix.json",
+      "sha256": "1f69a4ced755fb67d65edb3abebb8747481c358e5f5c4cdf4793c431dde42b3e",
+      "bytes": 5387
+    },
+    {
+      "path": "independent-materials-receipt.json",
+      "sha256": "0b3698b25e642fa0ae14940db82f8fab2d84996c62cb453d3ebb534c8e13c421",
+      "bytes": 940
+    },
+    {
+      "path": "independent-review-request.txt",
+      "sha256": "63817a13ef0a73eeb702664ca567b5f2e2cd08d34741d1e3d02191b3f2afb507",
+      "bytes": 3234
+    },
+    {
+      "path": "live-cases.json",
+      "sha256": "a40e0aaf006365129dbefc50195eb35ebfc6aee513a4f0978b2f46682ffaaa62",
+      "bytes": 26494
+    },
+    {
+      "path": "metrics-and-evidence.md",
+      "sha256": "8d31993978b4e6aa5f42ba86dd49c7b98540aa4c093e1cd8f55a73e89a55f84f",
+      "bytes": 3975
+    },
+    {
+      "path": "public-baseline-feasibility.json",
+      "sha256": "929b328828ef787e9dab19d7015161e334d165cceabafdb4983f2342dfd60a5c",
+      "bytes": 5248
+    },
+    {
+      "path": "public-probes/probe_L01.py",
+      "sha256": "91be70468950f9201c0e87eb82b3a26fdb57e40d0b83f55c63db247c83ddad21",
+      "bytes": 1811
+    },
+    {
+      "path": "public-probes/probe_L02.py",
+      "sha256": "ad1fe1e398d62063d250abf4687639fe0acda0463a342c5762cb1c696c4c5254",
+      "bytes": 4313
+    },
+    {
+      "path": "public-probes/probe_L03.py",
+      "sha256": "c14b520c3991cbc7c968a7f1ed23e32255c84acc68274d2c6e8d3e05113c9aec",
+      "bytes": 1231
+    },
+    {
+      "path": "public-probes/probe_L08.py",
+      "sha256": "36d0a2b91edc076cecfb706665a78d12a2d8afdf7ab39556491e89c10bfc3df0",
+      "bytes": 1617
+    },
+    {
+      "path": "public-probes/probe_L09.py",
+      "sha256": "a81141c0b5c169d61218cae6e893d46706f45c421642869e4f09f2953b2d29d3",
+      "bytes": 1561
+    },
+    {
+      "path": "routing-runbook.md",
+      "sha256": "fb05e783f923b4ddd4148e417ee51de9704b9e6018b93b023c49f7ecfc769dc5",
+      "bytes": 5744
+    }
+  ]
+}

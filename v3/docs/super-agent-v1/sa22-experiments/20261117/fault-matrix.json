@@ -1,0 +1,126 @@
+{
+  "schema": "sa22-fault-design-v2",
+  "status": "DESIGN_ONLY_MISSING_CHECKS_NOT_RUN",
+  "rules": [
+    "do not restart main/onboarding/soak PG",
+    "do not kill real Bot process or the ongoing72h actor",
+    "verify exact owned PID/container/project/assignment labels before injection",
+    "only new uncovered checks; historical PASS evidence read-only reuse",
+    "real transport/process/OS failures only, never UPDATE status to expected",
+    "real-vendor known/unknown never replay or refund automatically"
+  ],
+  "faults": [
+    {
+      "id": "F01",
+      "fault": "来源TCP断开和恢复",
+      "injection_boundary": "独立受控Receiver/代理连接；后续真实来源须单列",
+      "assertions": "支持补拉则当前权限下有界恢复；不支持则gap准确，确认入站不丢",
+      "evidence_status": "SA06/SA04受控证据可引用；真实平台NOT_RUN"
+    },
+    {
+      "id": "F02",
+      "fault": "Redis断开",
+      "injection_boundary": "专属Redis网络，不改共享Redis或Bot配置",
+      "assertions": "从PG重建，无Task/游标丢失",
+      "evidence_status": "待新增组合覆盖"
+    },
+    {
+      "id": "F03",
+      "fault": "PG不可用/重启",
+      "injection_boundary": "专属测试PG，验证postmaster变化",
+      "assertions": "提交前无ACK，重连后同输入/Action不重复",
+      "evidence_status": "SAV1-22-SOAK-PG已PASS，引用不重跑"
+    },
+    {
+      "id": "F04",
+      "fault": "Controller SIGKILL",
+      "injection_boundary": "仅短期资格实例，提交输入后/回复前",
+      "assertions": "复用原input，Action一次",
+      "evidence_status": "SAV1-22-COMPLETION-R1分版本已PASS，引用不重跑"
+    },
+    {
+      "id": "F05",
+      "fault": "独立Worker SIGKILL",
+      "injection_boundary": "原usage已known与文件journal持久化后",
+      "assertions": "重建原epoch已知回执；旧Worker拒绝回写",
+      "evidence_status": "独立Worker杀点未就绪"
+    },
+    {
+      "id": "F06",
+      "fault": "Job执行中撤权",
+      "injection_boundary": "原Job已start后、后续写/下一命令前",
+      "assertions": "实际进程安全收尾，后续不兼容操作拒绝；槽位不早释放",
+      "evidence_status": "SA14旧已PASS可引用；新接线覆盖待定"
+    },
+    {
+      "id": "F07",
+      "fault": "补丁应用后回执前崩溃",
+      "injection_boundary": "原H03/文件journal边界，当前Task私有空间",
+      "assertions": "精确pre/postimage恢复，外来变化拒绝，工具不重复",
+      "evidence_status": "SA13旧已PASS；试验桥新边界待审"
+    },
+    {
+      "id": "F08",
+      "fault": "模型结算前丢回执",
+      "injection_boundary": "专属本地HTTP实际关闭连接；受控零付费",
+      "assertions": "reserved转unknown保留，任何新配置/Run不盲重发",
+      "evidence_status": "旧SA09/新20项证据引用；物理组合缺口单列"
+    },
+    {
+      "id": "F09",
+      "fault": "模型结算后崩溃",
+      "injection_boundary": "原已known/结果可恢复而新操作尚未发出",
+      "assertions": "已知回执复用；第二POST为0",
+      "evidence_status": "旧证据核对与新Worker桥覆盖待补"
+    },
+    {
+      "id": "F10",
+      "fault": "通知接收后响应丢失",
+      "injection_boundary": "本地平台接收后关闭socket",
+      "assertions": "Action outcome_unknown/attempts1，不再发",
+      "evidence_status": "本轮真实本地HTTP已PASS，引用不重跑；真实飞书未知边界NOT_RUN"
+    },
+    {
+      "id": "F11",
+      "fault": "来源权限撤回",
+      "injection_boundary": "原Owner角色/策略API实际提交，下一物理请求前",
+      "assertions": "读取/模型/工具/待发阻断，已发生费用仍结算",
+      "evidence_status": "SA21/问答新24项引用；真实平台撤权待验"
+    },
+    {
+      "id": "F12",
+      "fault": "文件系统空间耗尽",
+      "injection_boundary": "专属限额tmpfs写真实ENOSPC，固定image；仅临时目录",
+      "assertions": "不伪成功，不清unknown；恢复hold与日志保留",
+      "evidence_status": "旧SA21只有EFBIG，不能替代ENOSPC；新项NOT_RUN"
+    },
+    {
+      "id": "F13",
+      "fault": "产物不可读/损坏",
+      "injection_boundary": "专属CAS目录实际文件权限或字节变化",
+      "assertions": "hash/读取失败阻断审查和交付",
+      "evidence_status": "旧已PASS可引用；未覆盖桥另列"
+    },
+    {
+      "id": "F14",
+      "fault": "旧备份恢复",
+      "injection_boundary": "新空PG/CAS/key包，恢复入口保持hold",
+      "assertions": "先重放删除/撤权，再服务；旧unknown不重发",
+      "evidence_status": "SA21旧已PASS可引用，当前profile兼容性需审"
+    },
+    {
+      "id": "F15",
+      "fault": "双调度竞争",
+      "injection_boundary": "仅专属PG原API并发领取",
+      "assertions": "有效lease单一，无双写workspace",
+      "evidence_status": "SA12/SA21旧PASS引用"
+    },
+    {
+      "id": "F16",
+      "fault": "CI洪水和quiet",
+      "injection_boundary": "100个受控CI重复/乱序+1个获准请求；无真实群垃圾消息",
+      "assertions": "合并有界、公平、不重复任务/模型；安静模式不群发",
+      "evidence_status": "旧SA16/17引用，真实GitHub闭环未具备"
+    }
+  ]
+}

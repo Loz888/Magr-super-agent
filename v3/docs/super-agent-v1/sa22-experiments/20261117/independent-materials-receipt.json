@@ -1,0 +1,25 @@
+{
+  "schema": "sa22-independent-materials-receipt-v1",
+  "observed_at": "2026-11-17T08:35:00.433413+00:00",
+  "independent_commit": "0a50f6baeb4e38ebe53cd4e6e248f633df3f863c",
+  "clean_worktree": true,
+  "files_verified": 20,
+  "all_checksum_and_git_bytes_match": true,
+  "public_rows": 100,
+  "unique_public_ids": 100,
+  "ground_truth_key_leaks": 0,
+  "direct_development_overlap": {
+    "case_id_overlap": 0,
+    "source_case_overlap": 0,
+    "topic_group_overlap": 0,
+    "text_overlap": 0
+  },
+  "private_semantic_labels_viewed_by_developer": false,
+  "human_operator_review": "PENDING",
+  "semantic_split_independence": "PENDING_OPERATOR_REVIEW",
+  "label_freeze": false,
+  "scoring": "NOT_RUN",
+  "new_model_calls": 0,
+  "review_scope": "technical integrity/projection/direct split checks only",
+  "evidence": "evidence/super-agent-v1/SAV1-22/experiment-design-20261117T083500Z-3e1d0a4e/independent-materials-technical-review.json"
+}

@@ -1,0 +1,145 @@
+{
+  "schema": "sa22-experiment-design-v2",
+  "status": "DESIGN_COMPLETE_EXECUTION_NOT_RUN",
+  "designed_at_UTC": "2026-11-17T08:46:10.160547+00:00",
+  "source_commit": "f2e0742f6f7655f85917c5087d315c1ac6501a73",
+  "product_source_candidate": "39e151e24a71378342a7cdd7bbec38d7048c4127",
+  "running_controlled_soak_candidate": "5a99967c1fb213fd3e8c8f4967ede0ac95e87446",
+  "target": {
+    "repository": "Loz888/MAGR-v3",
+    "immutable_id": 1438269299,
+    "local_git": "/home/imini/magr-harness",
+    "upstream_commit": "efb09f4fedb35c4bc7f579dda0b7e64d2e3111be",
+    "read": "committed code plus individually hash-pinned public probes",
+    "write": "isolated workspace existing UTF8 v3/src only",
+    "feishu": "Bot, exact bound owner, real structured mention",
+    "host": "local WSL; cloud deferred by owner",
+    "publication": false
+  },
+  "groups": [
+    {
+      "id": "R",
+      "purpose": "200-case pipeline routing quality",
+      "thresholds": {
+        "development": 100,
+        "holdout": 100,
+        "actionable_each": 40,
+        "not_new_each": 60,
+        "create_precision": 0.95,
+        "actionable_recall": 0.8,
+        "decidable_followup_accuracy": 0.95
+      },
+      "current_state": "INDEPENDENT_CANDIDATE_RECEIVED_HUMAN_REVIEW_AND_RUNNER_FREEZE_PENDING"
+    },
+    {
+      "id": "L",
+      "purpose": "10 real source workflows",
+      "total": 10,
+      "minimum_successes": 8,
+      "unique_coding_work_items": 5,
+      "required_coverage_all_must_hold": [
+        "real Feishu-to-edit-test-original-reply",
+        "real GitHub explicit request creates authorized readonly Task before CI followup",
+        "real GitHub-PR-CI-existing-task-correct-SHA",
+        "actual failed edited first patch followed by corrected patch",
+        "multi-file feature",
+        "client disconnect plus actual worker recovery/revocation",
+        "status and review delivery"
+      ],
+      "formal_state": "NOT_RUN"
+    },
+    {
+      "id": "F",
+      "purpose": "missing transport/process and authority boundary checks",
+      "fault_matrix": "fault-matrix.json",
+      "existing_PASS_tests": "reuse by versioned evidence; never rerun automatically"
+    },
+    {
+      "id": "O",
+      "purpose": "controlled72h then live72h plus5 working days owner feedback",
+      "controlled": "RUNNING separately; do not modify its frozen tree or resources",
+      "live": "NOT_STARTED",
+      "pilot": "NOT_STARTED"
+    }
+  ],
+  "budget": {
+    "authority": "original same Engine/SA07 project+organization ledgers; this file grants no new money",
+    "currency": "USD_micros",
+    "lifetime_cap": 2000000,
+    "observed_settled": 19774,
+    "observed_held": 0,
+    "observed_available": 1980226,
+    "planned_upper_bounds": {
+      "router": 350000,
+      "five_coding_runs_total": 1500000,
+      "recall_status_review_followups": 50000,
+      "known_failure_recheck_or_unknown_reserve": 50000
+    },
+    "planned_total": 1950000,
+    "not_new_wallets": true,
+    "coding_existing_run_hard_limits": {
+      "max_model_calls": 8,
+      "max_tool_calls": 24,
+      "max_cost_micros": 300000,
+      "max_seconds": 180,
+      "max_active_workers": 1
+    },
+    "before_any_call": "re-read actual total including router_calls and usage_calls, existing held/unknown and ordinary Bot Q&A; original reserve before POST; no reset, no blind retry",
+    "feasibility": "precompute frozen actual request bytes and cost upper bound; if plan/reservation exceeds current remaining, leave affected cases NOT_RUN_BUDGET, no truncation or new allowance",
+    "model": {
+      "model": "deepseek-flash",
+      "documented_model_version": "DeepSeek-V4.1-Flash-1017",
+      "price_version": "deepseek-v4.1-flash-1017-peak-20261116",
+      "input_micros_per_million": 300000,
+      "output_micros_per_million": 1200000
+    }
+  },
+  "scope_checks": {
+    "coding_current_expires_at": "2026-11-18T07:07:10.941033+00:00",
+    "qa_current_expires_at": "2026-11-24T07:03:10.941033+00:00",
+    "required_before_case": "exact unexpired scope/session/policy/profile/test command and manifest, current repository and code tree; plan does not renew them",
+    "before_long_pilot": "renew same scope through original Owner flow with actual signed record; duration must cover trial, no auto-created permission"
+  },
+  "freeze_conditions": [
+    "operator review of development and independent labels",
+    "exact source/prompt/model/price/profile/renderer/normalizer/grader hashes",
+    "all ten public specs and independent judges before L01",
+    "real platform resources and required runtime wiring verified",
+    "code-task baseline fails only declared target or new API",
+    "all old public regression and boundary tests immutable",
+    "cost worst-case fits original available shared balance"
+  ],
+  "run_order": [
+    "read-only material and feasibility checks now",
+    "build/review public checks + independent graders and missing private runtime wiring in isolated state",
+    "freeze candidate and operator-reviewed routing sets; run dev, retain all outcomes; freeze untouched holdout run",
+    "pre-register all10 cases and execute ready real cases without waiting for controlled72h; unresolved mandatory coverage stays NOT_RUN",
+    "continue existing controlled72h; only after qualified duration start formal live72h and5-working-day pilot",
+    "independent six-gate evidence review; no automatic SA23"
+  ],
+  "retakes": {
+    "only_failed": true,
+    "preserve_original_denominators": true,
+    "already_PASS_targets_excluded": true,
+    "source_versions_separate": true,
+    "holdout_tuning": "prohibited; any tuned candidate needs a new independent holdout; keep first score"
+  },
+  "execution": {
+    "model_calls": 0,
+    "external_messages": 0,
+    "external_writes": 0,
+    "formal_routing_score": "NOT_RUN",
+    "formal_live_score": "NOT_RUN",
+    "all_six_full_gates": "NOT_RUN"
+  },
+  "current_runtime_binding": {
+    "scope_binding_sha256": "224384b23948527854f92bd3fd90982c55bd13530e9790e77b18d926360abc30",
+    "policy_revision": 5,
+    "source_revision": 5,
+    "config_revision": 3,
+    "generation": 5,
+    "model_trial_manifest_sha256": "c39a5a0564ac4c48c70e4f85c4dc91937ad1b61af3d636f9538269f4420d99e4",
+    "repository_assistant_manifest_sha256": "19bfc19224f049acc868148b68fb713bfbec36c3a15a48a87f4e3d2441731517"
+  },
+  "public_probe_warning": "model-visible implementer probes only; not private independent judging"
+}
