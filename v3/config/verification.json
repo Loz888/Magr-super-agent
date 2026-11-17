@@ -2423,6 +2423,17 @@
       "paid": "zero models, original PG authority and H03 copies"
     }
   },
+  "SAV1-22-WORKER-SCOPE-REPAIR-R1": {
+    "tests": [
+      "tests/test_sa22_worker_scope_repair.py::test_live_worker_sees_actual_scope_and_edit_hashes_without_expanding_authority[edit_from_read_receipt]"
+    ],
+    "timeout_seconds": 180,
+    "components": {
+      "scope": "only original positive protocol fixture failure; two negative PASS parameters excluded",
+      "fixture_correction": "controlled model runs the exact public command after editing; incomplete Verifier may request bounded additional turns",
+      "source": "runtime unchanged from 9c47c39; no paid or platform IO"
+    }
+  },
   "SAV1-22-WORKER-SCOPE-REPAIR": {
     "tests": [
       "tests/test_sa22_worker_scope_repair.py"

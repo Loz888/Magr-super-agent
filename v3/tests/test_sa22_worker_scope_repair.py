@@ -48,6 +48,8 @@ def test_live_worker_sees_actual_scope_and_edit_hashes_without_expanding_authori
                     ],
                 },
             )
+        elif len(seen) == 3:
+            name, args = "run_tests", {"argv": scope["test_argv"], "cwd": scope["test_cwd"]}
         message = {
             "role": "assistant",
             "content": None,
@@ -59,7 +61,7 @@ def test_live_worker_sees_actual_scope_and_edit_hashes_without_expanding_authori
                 }
             ],
         }
-        if len(seen) > 2:
+        if len(seen) > 3:
             message = {"role": "assistant", "content": "Proposed isolated change; not verified."}
         return httpx.Response(
             200,
@@ -67,7 +69,7 @@ def test_live_worker_sees_actual_scope_and_edit_hashes_without_expanding_authori
                 "usage": {"prompt_tokens": 100, "completion_tokens": 20},
                 "choices": [
                     {
-                        "finish_reason": "stop" if len(seen) > 2 else "tool_calls",
+                        "finish_reason": "stop" if len(seen) > 3 else "tool_calls",
                         "message": message,
                     }
                 ],
@@ -81,7 +83,9 @@ def test_live_worker_sees_actual_scope_and_edit_hashes_without_expanding_authori
         result = json.loads(result_file.read_text())
         assert result["business_task_completed"] is False
         if operation == "edit_from_read_receipt":
-            assert len(seen) == 3
+            # The intentionally incomplete trial Verifier may ask for another
+            # response; it must not turn green merely because the public test did.
+            assert 4 <= len(seen) <= env.experiment.runtime_profile.limits.max_model_calls
             assert result["verification"] == "incomplete"
             assert result["tree_before"] != result["tree_after"]
             assert "生成代码差异" in text
