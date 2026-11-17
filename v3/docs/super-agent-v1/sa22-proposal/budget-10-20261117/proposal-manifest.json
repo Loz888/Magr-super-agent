@@ -1,0 +1,26 @@
+{
+  "UTC": "2026-11-17T09:42:15.679123+00:00",
+  "status": "PREPARED_NOT_ACTIVATED_PENDING_SHARED_SQL_CONFIRMATION",
+  "SQL_file": "0055_source_trial_budget_ceiling.sql",
+  "SQL_sha256": "67e861128f6a8f3a01b591cfe33e1ed4e0649ae461738a7cdfb2fdf86e90a350",
+  "patch_file": "budget-runtime.patch",
+  "patch_sha256": "ddb76d82fcef28367ddcc33a3b6a36289dec9ad9fe1d41202eecce16b256949b",
+  "candidate": "21aa61a9f3de940f607f9302d30b62a455f8d930",
+  "source_sha256": "8a5e48e8f42d1c380e8ce75c97cd8fb28381f1e3b12c7707ceb48a96f5aa1cd9",
+  "checks": {
+    "tests": 13,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "mypy": "4 changed source files PASS",
+  "lint": "4 source files first PASS;new test3 line-width errors corrected,only that testfile rechecked PASS",
+  "new_paid_calls": 0,
+  "total_ceiling_micros_requested": 10000000,
+  "live_ceiling_micros": 2000000,
+  "old_usage_preserved": true,
+  "formal_migration_applied": false,
+  "Engine_API_budget_algorithm_changes": false,
+  "new_HTTP_routes": 0,
+  "H12_real_quality": "FAIL_RETAINED"
+}

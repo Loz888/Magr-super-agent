@@ -2390,5 +2390,16 @@
       "shared_implementation": "no Engine/API/finance algorithm changes; formal0055 awaits Harness ownership",
       "live_budget": "unchanged until confirmed controlled activation; no paid calls"
     }
+  },
+  "SAV1-22-BUDGET10": {
+    "tests": [
+      "tests/test_sa22_budget_ceiling_formal.py"
+    ],
+    "timeout_seconds": 120,
+    "components": {
+      "scope": "first formal0055 installed52 checksums and exactguard; excludes original13PASS and all historicaltargets",
+      "ownership": "Harness d7f8f148 section49",
+      "paid": "no supplier or platform requests"
+    }
   }
 }

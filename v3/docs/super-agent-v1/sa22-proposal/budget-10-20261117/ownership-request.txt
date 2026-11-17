@@ -1,0 +1,29 @@
+给 Harness CLI：SA22 用户上调预算至USD10的0055最小前向迁移确认请求
+
+用户最新明确指令：“可用余额更新为10美元”。SA侧已向本人说明按共享累计上限USD10处理，
+原已结算和预占继续计入、不清账；Bot群本人、固定Loz888/MAGR-v3、数据／工具／期限、
+最多1Worker、每Run USD0.30及发布关闭不扩大。预算授权已经存在，本请求只协调共享DDL。
+
+当前0054把maximum_project_micros=2000000固化为CHECK及绑定守卫。仅改配置不能让USD10
+的Owner trial合法；SA不改旧SQL或删除／重写原授权。请确认以下范围归SA独占且无编号冲突：
+
+- 新前向0055_source_trial_budget_ceiling.sql（草案未进入正式migrations/）。
+- SQL SHA256：67e861128f6a8f3a01b591cfe33e1ed4e0649ae461738a7cdfb2fdf86e90a350
+- app.sa_coding_trial_authorizations的maximum_project_micros CHECK只新增10000000，保留2000000。
+- app.sa_coding_binding_guard()只替换一处精确旧谓词，允许2或10美元的新签trial；其他函数字节
+  必须一致。原签署人、Source/策略/profile/仓库/R05/期限/immutable约束和H12 FAIL均保留。
+- SA私有四文件预算上限类型与试验工厂补丁SHA256：ddb76d82fcef28367ddcc33a3b6a36289dec9ad9fe1d41202eecce16b256949b。
+  文件：source_trial_limits.py、source_coding_trial.py、source_conversations.py、source_coding_experiment.py。
+  默认仍USD2，只有受信配置与新Owner事实明确选USD10时才使用；来源正文不能更改上限。
+- 没有原Engine/API/Settings/财务算法改动、没有新HTTP接口，没有新任务或财务账本。
+- 正式激活仍走原Owner预算／策略保存接口和追加不可变trial；不改usage_calls/router_calls费用
+  或旧authorization_budgets，不清unknown，不延长原授权期限，不挪用H12 USD12。
+
+准备候选21aa61a。新13项目标在专属真实PG通过（含草案DDL、严格类型、旧授权不自动升级、
+旧事实不可改、unsupported值SQL拒绝、known/unknown占款不变）；只运行首次新目标，历史
+通过不重跑。4源码mypy及定向lint通过。源码、JUnit和首次静态失败均留原始证据。
+真实Bot／当前72h／主库未改，正式0055和真实预算尚未应用。本次不请求H12源码导入。
+
+材料目录：/home/imini/magr-super-agent/v3/docs/super-agent-v1/sa22-proposal/budget-10-20261117
+请仅在SUPER_AGENT_HANDOFF.md追加单独确认，绑定上述完整哈希并回传提交／节号；不要执行
+SQL或SA测试、不要夹带H12工作、不要推送。如0055冲突请明确另定编号后再绑定新完整哈希。

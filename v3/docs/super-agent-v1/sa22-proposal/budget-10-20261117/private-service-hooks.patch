@@ -1,0 +1,68 @@
+--- a/.local/feishu-bootstrap/run_model_service.py
++++ b/.local/feishu-bootstrap/run_model_service.py
+@@ -77,7 +77,8 @@
+     assert private["settings"]["project_id"] == "sa22-bot-onboarding"
+     assert private["settings"]["allow_paid"] is True
+     assert private["settings"]["router_mode"] == "disabled"
+-    assert manifest["total_lifetime_micros"] == 2000000
++    ceiling = manifest["total_lifetime_micros"]
++    assert type(ceiling) is int and ceiling in (2000000, 10000000)
+     assert not manifest["publication"] and not manifest["original_branch_writes"]
+     # The existing .env remains untouched; no secret enters the activation manifest.
+     conversation_manifest_hash = manifest_hash
+@@ -90,7 +91,7 @@
+         assert assistant["upstream_commit"] == manifest["upstream_commit"]
+         assert assistant["model_trial_manifest_sha256"] == manifest_hash
+         assert assistant["expires_at"] == private["expires_at"]
+-        assert assistant["lifetime_micros"] == 2000000
++        assert assistant["lifetime_micros"] == ceiling
+         assert assistant["scope_binding_sha256"] == private["scope_binding_sha256"]
+         conversation_manifest_hash = hashlib.sha256((manifest_hash + ":" + assistant_hash).encode()).hexdigest()
+         repository_tools = FrozenRepositoryTools(Path(manifest["repository_git"]), manifest["upstream_commit"], paths=tuple(assistant["read_paths"]))
+@@ -183,6 +184,7 @@
+         ConversationProfile(
+             project_id=settings.project_id, repository=settings.repository, source_id=source_id,
+             price=price, expires_at=expiry, manifest_sha256=conversation_manifest_hash,
++            maximum_project_micros=ceiling,
+             repository_base_sha=manifest["upstream_commit"],
+             repository_tools=repository_tools is not None,
+             history_turns=3 if repository_tools is not None else 0,
+@@ -203,7 +205,7 @@
+     thread = threading.Thread(target=server.run, daemon=True, name="sa22-model-api")
+     thread.start()
+     (ROOT / "service.pid").write_text(str(os.getpid()) + "\n")
+-    emit({"service": "starting", "mode": "model_questions_and_isolated_coding_trial", "manifest_sha256": manifest_hash, "H12": "FAIL_RETAINED", "total_limit_micros": 2000000})
++    emit({"service": "starting", "mode": "model_questions_and_isolated_coding_trial", "manifest_sha256": manifest_hash, "H12": "FAIL_RETAINED", "total_limit_micros": ceiling})
+     logging.getLogger("websockets").setLevel(logging.CRITICAL)
+     from lark_oapi.ws.client import loop
+ 
+@@ -259,7 +261,7 @@
+             "history_turns": chat.profile.history_turns,
+             "repository_upstream_commit": manifest["upstream_commit"],
+             "settled_micros": usage["settled_micros"], "held_micros": usage["held_micros"], "unknown_calls": usage["unknown_calls"],
+-            "total_limit_micros": 2000000, "outbound_messages": accepted, "scope": "Bot and bound owner only",
++            "total_limit_micros": ceiling, "outbound_messages": accepted, "scope": "Bot and bound owner only",
+             "expires_at": private["expires_at"], "body_ttl_seconds": 1800, "formal_SA22_72h_trial": False,
+             "H12": "FAIL_RETAINED", "publication": False, "last_transport_error": client.last_error,
+         }
+--- a/.local/feishu-bootstrap/restore_model_trial.py
++++ b/.local/feishu-bootstrap/restore_model_trial.py
+@@ -15,6 +15,9 @@
+ 
+ 
+ def restore(engine, cookie, manifest, manifest_hash, root, price, model, trial):
++    ceiling = manifest["total_lifetime_micros"]
++    if type(ceiling) is not int or ceiling not in (2000000, 10000000) or trial["maximum_project_micros"] != ceiling:
++        raise DomainError("SA22_TRIAL_RESTORE_BUDGET", "Signed trial and manifest ceiling must match", 403)
+     core, scheduler = engine.source_coding, engine.source_scheduler
+     with engine.transaction() as conn:
+         core._console(conn, cookie)
+@@ -81,7 +84,7 @@
+                     evidence_sha256='786481b3ceac91b3f3503154ee002d57fabc6df917985d88aaafd8eea0d511ac',engineering='PASS',recovery='PASS'),
+                 h12=CodingHarnessGate(card='HV4-H12',commit=R05_SOURCE,source_sha256=R05_FINGERPRINT,
+                     evidence_sha256=manifest['h12_evidence_sha256'],engineering='PASS',live_agent='FAIL',mvp='FAIL')),
+-            acceptance_sha256=runtime_profile.acceptance_sha256,limit_micros=2000000,max_model_calls=100,
++            acceptance_sha256=runtime_profile.acceptance_sha256,limit_micros=ceiling,max_model_calls=100,
+             trial_id=trial['trial_id'])
+         core.register_profile(profile)
+     core.runtime = SourceCodingRuntime(core,runtime_profile)
