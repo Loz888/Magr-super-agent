@@ -2423,6 +2423,16 @@
       "paid": "zero models, original PG authority and H03 copies"
     }
   },
+  "SAV1-22-CASE-PUNCTUATION": {
+    "tests": [
+      "tests/test_sa22_case_terminal_punctuation.py"
+    ],
+    "timeout_seconds": 60,
+    "components": {
+      "scope": "one newly failed live L02 missing terminal Chinese full stop; all historical PASS excluded",
+      "boundary": "parameter, negation, path and test constraints remain distinct; no model calls"
+    }
+  },
   "SAV1-22-REVIEWED-CASE-RETRY": {
     "tests": [
       "tests/test_sa22_reviewed_case_retry.py"
