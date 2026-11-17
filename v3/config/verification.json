@@ -2541,5 +2541,16 @@
       "boundary": "only actual granted existing paths advertised; authority unchanged; shape-only diagnostics exclude text and reasoning",
       "effects": "controlledHTTP only; original trial verifier incomplete, no platform/paid/publish calls"
     }
+  },
+  "SAV1-22-TEST-CWD-DEFAULT": {
+    "tests": [
+      "tests/test_sa22_test_cwd_default.py"
+    ],
+    "timeout_seconds": 210,
+    "components": {
+      "scope": "only newly failed live run_tests omitted/default cwd boundary, two equivalent request forms; previousPASS excluded",
+      "services": "real originalPG/Broker and controlled model; fixed signed testcwd selected before registry path check",
+      "authority": "exact argv and profile retained, no root grant or arbitrary cwd; trial verifier incomplete"
+    }
   }
 }
