@@ -2422,5 +2422,15 @@
       "scope": "two first restoration boundary parameters only; original3PASS excluded",
       "paid": "zero models, original PG authority and H03 copies"
     }
+  },
+  "SAV1-22-CASES-ONCE": {
+    "tests": [
+      "tests/test_sa22_case_profiles.py::test_second_physical_message_cannot_repeat_the_same_frozen_case"
+    ],
+    "timeout_seconds": 120,
+    "components": {
+      "scope": "one first same-case distinct-message duplicate guard; all prior5PASS excluded",
+      "execution": "no model or live platform; original owned PG source and Coding authority"
+    }
   }
 }

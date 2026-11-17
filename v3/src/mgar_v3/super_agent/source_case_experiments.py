@@ -321,12 +321,31 @@ class SourceCaseExperiments:
 
     def admit(self, input_id: UUID) -> dict[str, Any] | None:
         selected = self.case_for(input_id)
-        return selected[1].submit(input_id) if selected else None
+        if selected is None:
+            return None
+        with self.engine.transaction() as conn:
+            duplicate = conn.execute(
+                "SELECT 1 FROM app.sa_coding_bindings WHERE project_id=%s "
+                "AND profile_sha256=%s AND input_id<>%s LIMIT 1",
+                (self.engine.settings.project_id, selected[1].profile.profile_sha256, input_id),
+            ).fetchone()
+            if duplicate:
+                raise DomainError(
+                    "SOURCE_CASE_ALREADY_REGISTERED", "Frozen case already has an input", 409
+                )
+            return selected[1].submit(input_id)
 
     def __call__(self, input_id: UUID) -> str:
         with self._lock:
             selected = self.case_for(input_id)
             experiment = selected[1] if selected else self.default
+            if selected:
+                try:
+                    self.admit(input_id)
+                except DomainError as error:
+                    if error.code != "SOURCE_CASE_ALREADY_REGISTERED":
+                        raise
+                    return "本项实验已有登记输入，本次未重复运行编码。请查看原任务。"
             # Admissions never replace these pointers. The execution lock and
             # existing one-worker capacity keep each live attempt on its own profile.
             self.engine.source_scheduler.driver = experiment.runtime_profile.driver

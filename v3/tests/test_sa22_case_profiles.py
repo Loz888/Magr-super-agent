@@ -232,3 +232,46 @@ def test_case_restart_reuses_exact_trial_without_minting_authority(
         assert env.requests == []
     finally:
         env.close()
+
+
+def test_second_physical_message_cannot_repeat_the_same_frozen_case(engine, tmp_path):
+    env, _, second_input, manager = cases(engine, tmp_path)
+    try:
+        target = manager.admit(second_input)
+        assert target
+        with engine.transaction() as conn:
+            text = engine.source_correlations._input(conn, second_input).text
+        runtime = FeishuRuntime(
+            FeishuSources(engine),
+            env.source.source_id,
+            2,
+            4,
+            env.source.secrets,
+            FeishuActivation(
+                env.source.source_id,
+                2,
+                4,
+                datetime.now(UTC) + timedelta(minutes=5),
+                frozenset({"webhook", "socket", "health"}),
+                "second-physical-case-message",
+            ),
+            transport=httpx.MockTransport(env.source.handler),
+        )
+        repeated = runtime.receive(
+            signed(
+                env.source,
+                payload(message_id="om_distinct_repeated_case_" + uuid4().hex, body=text),
+            )
+        )
+        assert repeated.disposition == "accepted" and repeated.input_ids[0] != second_input
+        with pytest.raises(DomainError, match="Frozen case already has an input"):
+            manager.admit(repeated.input_ids[0])
+        assert manager.admit(second_input)["run_id"] == target["run_id"]
+        with engine.transaction() as conn:
+            assert (
+                conn.execute("SELECT count(*) AS n FROM app.sa_coding_bindings").fetchone()["n"]
+                == 1
+            )
+        assert env.requests == []
+    finally:
+        env.close()
