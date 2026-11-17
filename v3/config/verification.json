@@ -2519,5 +2519,16 @@
       "scope": "one first same-case distinct-message duplicate guard; all prior5PASS excluded",
       "execution": "no model or live platform; original owned PG source and Coding authority"
     }
+  },
+  "SAV1-22-LIVE-CONTEXT-REPAIR": {
+    "tests": [
+      "tests/test_sa22_live_context_repair.py"
+    ],
+    "timeout_seconds": 180,
+    "components": {
+      "scope": "only two newly observed live boundaries: bare native mention and multi-read thinking request above64KiB; historicalPASS excluded",
+      "services": "original isolatedPG source admission/H03 signed profiles plus controlledHTTP; no paid or live platform calls",
+      "budget": "larger input gets full conservative original reservation; same lifetime/Run caps, no truncation or unknown resend"
+    }
   }
 }
