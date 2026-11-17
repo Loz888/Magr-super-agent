@@ -304,14 +304,21 @@ class SourceCaseExperiments:
         cases: dict[str, tuple[str, SourceCodingExperiment]],
         default: SourceCodingExperiment,
         *,
-        reviewed_failed_bindings: dict[str, UUID] | None = None,
+        reviewed_failed_bindings: dict[str, UUID | tuple[UUID, ...]] | None = None,
     ):
         if not cases or len(cases) > 5:
             raise ValueError("One to five frozen cases required")
         self.engine, self.cases, self.default = engine, cases, default
-        self.reviewed_failed_bindings = dict(reviewed_failed_bindings or {})
+        self.reviewed_failed_bindings = {
+            key: (value,) if isinstance(value, UUID) else value
+            for key, value in (reviewed_failed_bindings or {}).items()
+        }
         if not set(self.reviewed_failed_bindings) <= set(cases) or any(
-            not isinstance(value, UUID) for value in self.reviewed_failed_bindings.values()
+            not isinstance(value, tuple)
+            or not 1 <= len(value) <= 16
+            or len(set(value)) != len(value)
+            or any(not isinstance(item, UUID) for item in value)
+            for value in self.reviewed_failed_bindings.values()
         ):
             raise ValueError("Only exact owner-reviewed prior case bindings may be retried")
         self._lock = threading.Lock()
@@ -345,10 +352,10 @@ class SourceCaseExperiments:
                 "AND profile_sha256=%s AND input_id<>%s",
                 (self.engine.settings.project_id, selected[1].profile.profile_sha256, input_id),
             ).fetchall()
-            reviewed = self.reviewed_failed_bindings.get(selected[0])
+            reviewed = self.reviewed_failed_bindings.get(selected[0], ())
             for prior in duplicates:
                 safe_retry = (
-                    reviewed == prior["coding_id"]
+                    prior["coding_id"] in reviewed
                     and prior["state"] == "revoked"
                     and prior["reason_code"] == "OWNER_CANCELLED"
                     and prior["signed_by"]
@@ -371,13 +378,29 @@ class SourceCaseExperiments:
                         "AND state<>'released' LIMIT 1",
                         (prior["run_id"],),
                     ).fetchone()
-                    and conn.execute(
-                        "SELECT 1 FROM app.run_events WHERE run_id=%s "
-                        "AND kind='source_trial_artifact_available' "
-                        "AND safe_payload->'changed'='false'::jsonb LIMIT 1",
-                        (prior["run_id"],),
-                    ).fetchone()
-                    is not None
+                    and (
+                        conn.execute(
+                            "SELECT 1 FROM app.run_events WHERE run_id=%s "
+                            "AND kind='source_trial_artifact_available' "
+                            "AND safe_payload->'changed'='false'::jsonb LIMIT 1",
+                            (prior["run_id"],),
+                        ).fetchone()
+                        is not None
+                        or (
+                            not conn.execute(
+                                "SELECT 1 FROM app.sa_coding_attempts WHERE coding_id=%s LIMIT 1",
+                                (prior["coding_id"],),
+                            ).fetchone()
+                            and not conn.execute(
+                                "SELECT 1 FROM app.usage_calls WHERE run_id=%s LIMIT 1",
+                                (prior["run_id"],),
+                            ).fetchone()
+                            and not conn.execute(
+                                "SELECT 1 FROM app.sa_coding_operations WHERE coding_id=%s LIMIT 1",
+                                (prior["coding_id"],),
+                            ).fetchone()
+                        )
+                    )
                 )
                 if safe_retry:
                     continue

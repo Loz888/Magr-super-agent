@@ -2423,6 +2423,17 @@
       "paid": "zero models, original PG authority and H03 copies"
     }
   },
+  "SAV1-22-UNSTARTED-CASE-RETRY": {
+    "tests": [
+      "tests/test_sa22_unstarted_case_retry.py"
+    ],
+    "timeout_seconds": 150,
+    "components": {
+      "scope": "two new exact Owner review boundaries for never-started queue failures and multiple prior attempts; historical PASS excluded",
+      "services": "original real PG SourceCoding cancel/admit, original signed trials, no model or actual platform calls",
+      "authority": "only individually reviewed, revoked, no-attempt/no-call/no-operation bindings may be excluded; live or unknown attempts still block"
+    }
+  },
   "SAV1-22-THINKING-MAX": {
     "tests": [
       "tests/test_sa22_thinking_max.py"
