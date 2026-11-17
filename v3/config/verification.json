@@ -2401,5 +2401,16 @@
       "ownership": "Harness d7f8f148 section49",
       "paid": "no supplier or platform requests"
     }
+  },
+  "SAV1-22-CASES": {
+    "tests": [
+      "tests/test_sa22_case_profiles.py"
+    ],
+    "timeout_seconds": 240,
+    "components": {
+      "scope": "first three distinct per-case profile/admission/new Scheduler eligibility checks; historical PASS excluded",
+      "original_services": "real owned PG H03 original SourceCoding/Trial/Scheduler, controlled zero-paid model",
+      "shared_changes": "no Engine/API/schema or budget algorithm changes; exact profile-bound Coding queue eligibility only"
+    }
   }
 }

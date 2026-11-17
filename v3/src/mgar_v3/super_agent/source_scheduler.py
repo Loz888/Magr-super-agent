@@ -1053,6 +1053,15 @@ class SourceScheduler:
                         and run["execution_epoch"] == row["expected_epoch"]
                         and self._target_hash(conn, run) == row["target_sha256"]
                     )
+                    if eligible and run["graph_version"] == "source-coding-v1":
+                        binding = conn.execute(
+                            "SELECT profile_sha256 FROM app.sa_coding_bindings WHERE run_id=%s",
+                            (run["run_id"],),
+                        ).fetchone()
+                        eligible = (
+                            binding is not None
+                            and binding["profile_sha256"] == session["profile_sha256"]
+                        )
                     if eligible:
                         self._source(conn, row, run)
                 except DomainError:

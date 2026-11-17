@@ -198,7 +198,7 @@ def main():
             ),
         )
         current = engine.source_notifications.read(private["cookie"], UUID(private["source_id"]))
-        notification = NotificationSettings.model_validate(current["settings"]).model_copy(
+        notification = NotificationSettings.model_validate_json(json.dumps(current["settings"])).model_copy(
             update={
                 "policy_revision": signed["current_revision"],
                 "policy_sha256": signed["definition_sha256"],
