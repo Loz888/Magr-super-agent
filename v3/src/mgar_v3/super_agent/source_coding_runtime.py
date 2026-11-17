@@ -40,6 +40,7 @@ from mgar_v3.harness.contracts import (
     ModelMessage,
     ModelRequest,
     ModelResponse,
+    ModelUsage,
     TaskBinding,
     ToolContext,
     ToolSpec,
@@ -502,6 +503,42 @@ class _ControlledModel:
     def __init__(self, session: _Attempt) -> None:
         self.session = session
 
+    def _thinking_replies(self) -> tuple[tuple[str, str], ...]:
+        from mgar_v3.super_agent.source_coding_live_model import (
+            TrialModelResponse,
+            reasoning_key,
+            restore_trial_response,
+        )
+
+        session = self.session
+        with session.core.engine.transaction() as conn:
+            operations = conn.execute(
+                "SELECT * FROM app.sa_coding_operations WHERE attempt_id=%s "
+                "AND kind='model' AND state='known' ORDER BY created_at,operation_id",
+                (session.journal.attempt_id,),
+            ).fetchall()
+        replies = []
+        for operation in operations:
+            response = restore_trial_response(
+                session.journal.get_payload(
+                    operation, "model_response", current_tree=session.tree()
+                )
+            )
+            if isinstance(response, TrialModelResponse):
+                replies.append(
+                    (
+                        reasoning_key(
+                            ModelMessage(
+                                role="assistant",
+                                content=response.text,
+                                tool_calls=response.tool_calls,
+                            )
+                        ),
+                        response.reasoning_content,
+                    )
+                )
+        return tuple(replies)
+
     def complete(self, request: ModelRequest, cancellation: CancellationToken) -> ModelResponse:
         session = self.session
         if (
@@ -519,7 +556,9 @@ class _ControlledModel:
             if previous["request_sha256"] != digest(request.model_dump(mode="json")):
                 raise _deny("SOURCE_CODING_MODEL_CONFLICT")
             if previous["state"] == "known":
-                return ModelResponse.model_validate_json(
+                from mgar_v3.super_agent.source_coding_live_model import restore_trial_response
+
+                return restore_trial_response(
                     session.journal.get_payload(
                         previous, "model_response", current_tree=session.tree()
                     )
@@ -548,27 +587,53 @@ class _ControlledModel:
             raise _deny("HARNESS_MODEL_UNKNOWN")
         response: ModelResponse | None = None
         failure: BaseException | None = None
+        not_sent = False
+        from mgar_v3.super_agent.source_coding_live_model import (
+            TrialModelPreflightError,
+            guard_trial_model_send,
+            trial_reasoning_history,
+        )
+
         try:
             # This is deliberately AFTER the original reservation and all
             # request construction, directly at the injected provider boundary.
-            if session.bridge is not None:
-                response = session.bridge.complete(request, cancellation)
-            elif session.profile.experimental:
-                from mgar_v3.super_agent.source_coding_live_model import guard_trial_model_send
-
-                with guard_trial_model_send(
-                    lambda: session.core.guard(
+            thinking = getattr(session.profile.model, "thinking_mode", "disabled") == "enabled"
+            with trial_reasoning_history(self._thinking_replies() if thinking else ()):
+                if session.bridge is not None:
+                    response = session.bridge.complete(request, cancellation)
+                elif session.profile.experimental:
+                    with guard_trial_model_send(
+                        lambda: session.core.guard(
+                            session.bearer, session.request, tree_sha256=session.tree()
+                        )
+                    ):
+                        cancellation.ensure_active()
+                        response = session.profile.model.complete(request, cancellation)
+                else:
+                    with session.core.guard(
                         session.bearer, session.request, tree_sha256=session.tree()
-                    )
-                ):
-                    cancellation.ensure_active()
-                    response = session.profile.model.complete(request, cancellation)
-            else:
-                with session.core.guard(
-                    session.bearer, session.request, tree_sha256=session.tree()
-                ):
-                    cancellation.ensure_active()
-                    response = session.profile.model.complete(request, cancellation)
+                    ):
+                        cancellation.ensure_active()
+                        response = session.profile.model.complete(request, cancellation)
+        except TrialModelPreflightError as exc:
+            not_sent = True
+            response = ModelResponse(
+                finish_reason="error",
+                error_code=exc.code,
+                usage=ModelUsage(known=True, cost_micros=0),
+                provider="deepseek",
+                model_id=request.model_id,
+                price_version=request.price_version,
+            )
+            with session.core.engine.transaction() as conn:
+                session.core.engine._event(
+                    conn,
+                    request.task.run_id,
+                    "source_trial_model_not_sent",
+                    call_id=str(call_id),
+                    reason=exc.code,
+                    physical_http=False,
+                )
         except BaseException as exc:
             failure = exc
         if response is None or not response.usage.known:
@@ -583,7 +648,9 @@ class _ControlledModel:
         with session.core.engine.transaction() as conn:
             settled = session.budgets.settle_model(conn, call_id, response.usage)
             if settled:
-                session.journal._known(conn, operation, "ok", response_hash)
+                session.journal._known(
+                    conn, operation, "failed" if not_sent else "ok", response_hash
+                )
         if not settled:
             session.journal.unknown(operation)
             raise _deny("HARNESS_MODEL_UNKNOWN")

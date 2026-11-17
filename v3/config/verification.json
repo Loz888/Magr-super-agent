@@ -2423,6 +2423,17 @@
       "paid": "zero models, original PG authority and H03 copies"
     }
   },
+  "SAV1-22-THINKING-MAX": {
+    "tests": [
+      "tests/test_sa22_thinking_max.py"
+    ],
+    "timeout_seconds": 240,
+    "components": {
+      "scope": "four new thinking/max, encrypted per-attempt reasoning replay, no-send preflight accounting boundaries; historical PASS excluded",
+      "services": "owned real PG/H03/Broker with controlled HTTP; no supplier or live platform requests",
+      "authorization": "owner requests thinking enabled and reasoning_effort max; original lifetime10, Run caps and historical unknown retained"
+    }
+  },
   "SAV1-22-CASE-PUNCTUATION": {
     "tests": [
       "tests/test_sa22_case_terminal_punctuation.py"

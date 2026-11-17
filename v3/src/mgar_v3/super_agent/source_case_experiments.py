@@ -173,6 +173,9 @@ def build_case_experiment(
         if existing_trial is None
         else registry.open_task_workspace(registration, "sa22-case-initial-snapshot")
     ).snapshot()
+    input_bound = getattr(model, "context_tokens", 32768)
+    if type(input_bound) is not int or not 4096 <= input_bound <= 65536:
+        raise DomainError("SOURCE_CASE_MODEL_INPUT_BOUND", "Bounded model context required", 403)
     runtime = SourceCodingFixtureProfile(
         driver=driver,
         model=model,
@@ -192,11 +195,13 @@ def build_case_experiment(
         ),
         working_directory=working_directory,
         reservation_micros=(
-            32768 * price.input_micros_per_million + 8192 * price.output_micros_per_million + 999999
+            input_bound * price.input_micros_per_million
+            + 8192 * price.output_micros_per_million
+            + 999999
         )
         // 1000000,
         max_output_tokens=8192,
-        reserved_tokens=40960,
+        reserved_tokens=input_bound + 8192,
     )
     trial_id = existing_trial["trial_id"] if existing_trial is not None else uuid4()
     repository = CodingRepository(

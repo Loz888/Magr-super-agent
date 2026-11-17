@@ -5,14 +5,16 @@ from collections.abc import Callable, Iterator
 from contextlib import AbstractContextManager, contextmanager
 from contextvars import ContextVar
 from time import monotonic
-from typing import Any
+from typing import Any, Literal
 
 import httpx
+from pydantic import Field
 
-from mgar_v3.domain import DomainError
+from mgar_v3.domain import DomainError, digest
 from mgar_v3.harness.contracts import (
     CancellationToken,
     HarnessToolCall,
+    ModelMessage,
     ModelRequest,
     ModelResponse,
     ModelUsage,
@@ -26,6 +28,42 @@ ENDPOINT = "https://api.deepseek.com/v1/chat/completions"
 _SEND_GUARD: ContextVar[Callable[[], AbstractContextManager[Any]] | None] = ContextVar(
     "sa22_trial_model_send_guard", default=None
 )
+_REASONING: ContextVar[tuple[tuple[str, str], ...]] = ContextVar(
+    "sa22_trial_reasoning_history", default=()
+)
+
+
+class TrialModelPreflightError(DomainError):
+    """Proves this adapter rejected locally before invoking physical HTTP."""
+
+
+class TrialModelResponse(ModelResponse):
+    # Kept only in the existing encrypted, scoped, expiring model-response journal.
+    reasoning_content: str = Field(default="", max_length=262144, repr=False)
+
+
+def restore_trial_response(raw: bytes) -> ModelResponse:
+    value = decode_model_json(raw)
+    model = TrialModelResponse if "reasoning_content" in value else ModelResponse
+    return model.model_validate(value)
+
+
+def reasoning_key(message: ModelMessage) -> str:
+    return digest(
+        {
+            "content": message.content,
+            "tool_calls": [call.model_dump(mode="json") for call in message.tool_calls],
+        }
+    )
+
+
+@contextmanager
+def trial_reasoning_history(replies: tuple[tuple[str, str], ...]) -> Iterator[None]:
+    token = _REASONING.set(replies)
+    try:
+        yield
+    finally:
+        _REASONING.reset(token)
 
 
 @contextmanager
@@ -46,16 +84,21 @@ class ExperimentalDeepSeekModel(ExperimentalCodingModel):
         *,
         context_tokens: int = 32768,
         controlled_transport: bool = False,
+        thinking_mode: Literal["enabled", "disabled"] = "disabled",
+        reasoning_effort: Literal["low", "high", "max"] = "max",
     ):
         if (
             not api_key
             or client.event_hooks.get("request")
             or isinstance(client._transport, httpx.MockTransport) is not controlled_transport
             or not 4096 <= context_tokens <= 65536
+            or thinking_mode not in {"enabled", "disabled"}
+            or reasoning_effort not in {"low", "high", "max"}
         ):
             raise ValueError("Explicit bounded experimental model transport required")
         self.client, self.api_key, self.price = client, api_key, price
         self.context_tokens = context_tokens
+        self.thinking_mode, self.reasoning_effort = thinking_mode, reasoning_effort
 
     def complete(self, request: ModelRequest, cancellation: CancellationToken) -> ModelResponse:
         cancellation.ensure_active()
@@ -69,10 +112,29 @@ class ExperimentalDeepSeekModel(ExperimentalCodingModel):
             "model": self.price.model_id,
             "max_tokens": request.max_output_tokens,
             "stream": False,
-            "thinking": {"type": "disabled"},
-            "temperature": 0,
+            "thinking": {"type": self.thinking_mode},
             "messages": [_message_payload(message) for message in request.messages],
         }
+        if self.thinking_mode == "enabled":
+            body["reasoning_effort"] = self.reasoning_effort
+            if request.tools:
+                replies = iter(_REASONING.get())
+                for original, wire in zip(request.messages, body["messages"], strict=True):
+                    if original.role != "assistant":
+                        continue
+                    key = reasoning_key(original)
+                    for prior_key, reasoning in replies:
+                        if prior_key == key:
+                            wire["reasoning_content"] = reasoning
+                            break
+                    else:
+                        raise TrialModelPreflightError(
+                            "SOURCE_CODING_REASONING_HISTORY_REQUIRED",
+                            "Exact scoped thinking history required before HTTP",
+                            403,
+                        )
+        else:
+            body["temperature"] = 0
         if request.tools:
             body["tools"] = [
                 {
@@ -86,7 +148,9 @@ class ExperimentalDeepSeekModel(ExperimentalCodingModel):
                 for tool in request.tools
             ]
         if len(json.dumps(body, ensure_ascii=False).encode()) + 1024 > self.context_tokens:
-            raise DomainError("SOURCE_CODING_MODEL_INPUT_BOUND", "Model input bound exceeded", 413)
+            raise TrialModelPreflightError(
+                "SOURCE_CODING_MODEL_INPUT_BOUND", "Model input bound exceeded", 413
+            )
         # The original Coding journal and usage reservation already committed.
         # The caller holds the original final authority guard at this entry.
         raw = bytearray()
@@ -161,7 +225,12 @@ class ExperimentalDeepSeekModel(ExperimentalCodingModel):
                         call_id=call["id"], name=call["function"]["name"], arguments=arguments
                     )
                 )
-            return ModelResponse(
+            reasoning = message.get("reasoning_content", "")
+            if not isinstance(reasoning, str):
+                raise ValueError
+            response_type = TrialModelResponse if self.thinking_mode == "enabled" else ModelResponse
+            extra = {"reasoning_content": reasoning} if self.thinking_mode == "enabled" else {}
+            return response_type(
                 text=text,
                 tool_calls=tuple(calls),
                 finish_reason=choice["finish_reason"],
@@ -169,6 +238,7 @@ class ExperimentalDeepSeekModel(ExperimentalCodingModel):
                 provider="deepseek",
                 model_id=self.price.model_id,
                 price_version=self.price.price_version,
+                **extra,
             )
         except (ValueError, KeyError, TypeError, IndexError):
             return ModelResponse(

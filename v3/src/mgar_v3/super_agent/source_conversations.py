@@ -90,10 +90,15 @@ class ConversationProfile(Model):
     max_model_calls: Annotated[int, Field(ge=1, le=100)] = 100
     repository_tools: bool = False
     history_turns: Annotated[int, Field(ge=0, le=3)] = 0
+    thinking_mode: Literal["enabled", "disabled"] = "disabled"
+    reasoning_effort: Literal["low", "high", "max"] = "max"
 
     @property
     def profile_hash(self) -> str:
         value = self.model_dump(mode="json")
+        if self.thinking_mode == "disabled":
+            value.pop("thinking_mode")
+            value.pop("reasoning_effort")
         if not self.repository_tools and not self.history_turns:
             value.pop("repository_tools")
             value.pop("history_turns")
@@ -423,8 +428,7 @@ class SourceConversations:
             "model": self.profile.model_id,
             "max_tokens": self.profile.max_output_tokens,
             "stream": False,
-            "thinking": {"type": "disabled"},
-            "temperature": 0,
+            "thinking": {"type": self.profile.thinking_mode},
             "response_format": {"type": "json_object"},
             "messages": [
                 {
@@ -439,6 +443,10 @@ class SourceConversations:
                 },
             ],
         }
+        if self.profile.thinking_mode == "enabled":
+            value["reasoning_effort"] = self.profile.reasoning_effort
+        else:
+            value["temperature"] = 0
         encoded = json.dumps(value, ensure_ascii=False).encode()
         if len(encoded) + self.profile.max_output_tokens > self.profile.context_tokens:
             raise denied("INPUT_BOUND")
