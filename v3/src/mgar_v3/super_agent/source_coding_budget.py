@@ -45,6 +45,16 @@ class CodingBudgetLedger:
         self.reserved_tokens = reserved_tokens
         self._tools: dict[str, BudgetReservation] = {}
         self._issued: set[UUID] = set()
+        self._prepared_tokens: dict[str, int] = {}
+
+    def prepare_model(self, operation_id: str, tokens: int) -> None:
+        """Trusted wire builder supplies a bounded reservation, never the model."""
+        if type(tokens) is not int or not 0 < tokens <= self.reserved_tokens:
+            raise _deny("SOURCE_CODING_TOKEN_RESERVATION_INVALID")
+        previous = self._prepared_tokens.get(operation_id)
+        if previous is not None and previous != tokens:
+            raise _deny("SOURCE_CODING_TOKEN_RESERVATION_CONFLICT")
+        self._prepared_tokens[operation_id] = tokens
 
     def freshly_reserved(self, call_id: UUID) -> bool:
         return call_id in self._issued
@@ -167,7 +177,7 @@ class CodingBudgetLedger:
                 "usage",
                 call_id,
                 price=self.price,
-                tokens=self.reserved_tokens,
+                tokens=self._prepared_tokens.get(operation_id, self.reserved_tokens),
                 component="worker",
             )
             self._issued.add(call_id)
@@ -193,10 +203,17 @@ class CodingBudgetLedger:
         # Engine.transaction nests on its original held connection. Reuse the
         # original settlement algorithm and every original budget side ledger.
         # The raw model result stays exclusively in the encrypted payload table.
+        token_receipt = usage.model_dump(mode="json")
+        if usage.known and {"input_tokens", "output_tokens"} <= usage.model_fields_set:
+            # SA07 consumes the original Engine usage vocabulary. Keep the
+            # Harness fields as aliases; never infer tokens from monetary cost.
+            token_receipt.update(
+                prompt_tokens=usage.input_tokens, completion_tokens=usage.output_tokens
+            )
         self.journal.core.engine.settle_call(
             call_id,
             usage.cost_micros if usage.known else None,
-            usage=usage.model_dump(mode="json"),
+            usage=token_receipt,
             result=None,
         )
         current = conn.execute(

@@ -100,14 +100,7 @@ class ExperimentalDeepSeekModel(ExperimentalCodingModel):
         self.context_tokens = context_tokens
         self.thinking_mode, self.reasoning_effort = thinking_mode, reasoning_effort
 
-    def complete(self, request: ModelRequest, cancellation: CancellationToken) -> ModelResponse:
-        cancellation.ensure_active()
-        if (
-            request.model_id != self.price.model_id
-            or request.price_version != self.price.price_version
-            or self.client.event_hooks.get("request")
-        ):
-            raise DomainError("SOURCE_CODING_MODEL_PROFILE", "Frozen model profile required", 403)
+    def _body(self, request: ModelRequest) -> dict[str, Any]:
         body: dict[str, Any] = {
             "model": self.price.model_id,
             "max_tokens": request.max_output_tokens,
@@ -147,6 +140,27 @@ class ExperimentalDeepSeekModel(ExperimentalCodingModel):
                 }
                 for tool in request.tools
             ]
+        return body
+
+    def reservation_tokens(self, request: ModelRequest) -> int:
+        """Conservative physical-request bytes plus output, never model estimates."""
+        try:
+            size = len(json.dumps(self._body(request), ensure_ascii=False).encode()) + 1024
+        except TrialModelPreflightError:
+            size = self.context_tokens
+        # Oversize input is still rejected by complete before HTTP. Preserve its
+        # existing original reservation/known-zero accounting path.
+        return min(size, self.context_tokens) + request.max_output_tokens
+
+    def complete(self, request: ModelRequest, cancellation: CancellationToken) -> ModelResponse:
+        cancellation.ensure_active()
+        if (
+            request.model_id != self.price.model_id
+            or request.price_version != self.price.price_version
+            or self.client.event_hooks.get("request")
+        ):
+            raise DomainError("SOURCE_CODING_MODEL_PROFILE", "Frozen model profile required", 403)
+        body = self._body(request)
         if len(json.dumps(body, ensure_ascii=False).encode()) + 1024 > self.context_tokens:
             raise TrialModelPreflightError(
                 "SOURCE_CODING_MODEL_INPUT_BOUND", "Model input bound exceeded", 413

@@ -426,6 +426,27 @@ class _Continuation:
     def __init__(self, session: _Attempt) -> None:
         self.session = session
 
+    def _prepare_budget(self, payload: dict[str, Any]) -> None:
+        session = self.session
+        if not session.profile.experimental or session.bridge is not None:
+            return
+        from mgar_v3.super_agent.source_coding_live_model import (
+            ExperimentalDeepSeekModel,
+            trial_reasoning_history,
+        )
+
+        raw = payload.get("request")
+        model = session.profile.model
+        if not isinstance(raw, dict) or not isinstance(model, ExperimentalDeepSeekModel):
+            return
+        request = ModelRequest.model_validate(raw)
+        replies = (
+            _ControlledModel(session)._thinking_replies()
+            if model.thinking_mode == "enabled" else ()
+        )
+        with trial_reasoning_history(replies):
+            session.budgets.prepare_model(request.operation_id, model.reservation_tokens(request))
+
     def load(self) -> dict[str, Any] | None:
         with self.session.core.engine._mutex:
             tree = self.session.tree()
@@ -469,10 +490,12 @@ class _Continuation:
             if not isinstance(state, dict):
                 raise _deny("SOURCE_CODING_CHECKPOINT_INVALID")
             state["baseline_files"] = baseline
+            self._prepare_budget(payload)
             return payload
         return value
 
     def save(self, payload: dict[str, Any]) -> None:
+        self._prepare_budget(payload)
         if self.session.profile.experimental:
             state = payload.get("state")
             baseline = state.get("baseline_files") if isinstance(state, dict) else None
@@ -620,7 +643,7 @@ class _ControlledModel:
             response = ModelResponse(
                 finish_reason="error",
                 error_code=exc.code,
-                usage=ModelUsage(known=True, cost_micros=0),
+                usage=ModelUsage(known=True, input_tokens=0, output_tokens=0, cost_micros=0),
                 provider="deepseek",
                 model_id=request.model_id,
                 price_version=request.price_version,

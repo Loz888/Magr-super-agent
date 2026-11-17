@@ -2552,5 +2552,16 @@
       "services": "real originalPG/Broker and controlled model; fixed signed testcwd selected before registry path check",
       "authority": "exact argv and profile retained, no root grant or arbitrary cwd; trial verifier incomplete"
     }
+  },
+  "SAV1-22-TOKEN-RECEIPTS": {
+    "tests": [
+      "tests/test_sa22_token_receipts.py"
+    ],
+    "timeout_seconds": 210,
+    "components": {
+      "scope": "first exact SAprivate token receipt/wire reservation boundary; priorPASS excluded",
+      "services": "real originalPG100k signed token quota, controlled thinking supplier and originalBroker; zero paid/live platform calls",
+      "authority": "canonical validated counts; conservative request wire bytes including scoped reasoning; trueunknown held; no Engine/schema/budget algorithm or livecap changes"
+    }
   }
 }
