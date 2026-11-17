@@ -67,8 +67,15 @@ if TYPE_CHECKING:
     from mgar_v3.coordination.engine import Engine
 
 
-def explicit_coding_request(text: str) -> bool:
+def normalize_coding_mention(text: str) -> str:
     text = re.sub(r"@[_A-Za-z0-9-]+", "", text).strip()
+    # Native rich text can leave one separate leading @ beside the verified
+    # mention. Only normalize that token; objective and constraints stay exact.
+    return re.sub(r"\A@\s+", "", text)
+
+
+def explicit_coding_request(text: str) -> bool:
+    text = normalize_coding_mention(text)
     return (
         re.match(
             r"(?i)^(?:/code\b|/编码|(?:请(?:你)?(?:帮我)?|帮我)(?:修复|修改|实现|新增|编写|重构|添加)|fix\b|implement\b)",

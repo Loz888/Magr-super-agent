@@ -27,7 +27,10 @@ from mgar_v3.super_agent.source_coding_domain import (
     CodingHarnessGates,
     CodingRepository,
 )
-from mgar_v3.super_agent.source_coding_experiment import SourceCodingExperiment
+from mgar_v3.super_agent.source_coding_experiment import (
+    SourceCodingExperiment,
+    normalize_coding_mention,
+)
 from mgar_v3.super_agent.source_coding_runtime import (
     ExperimentalCodingModel,
     SourceCodingFixtureProfile,
@@ -174,7 +177,7 @@ def build_case_experiment(
         else registry.open_task_workspace(registration, "sa22-case-initial-snapshot")
     ).snapshot()
     input_bound = getattr(model, "context_tokens", 32768)
-    if type(input_bound) is not int or not 4096 <= input_bound <= 65536:
+    if type(input_bound) is not int or not 4096 <= input_bound <= 262144:
         raise DomainError("SOURCE_CASE_MODEL_INPUT_BOUND", "Bounded model context required", 403)
     runtime = SourceCodingFixtureProfile(
         driver=driver,
@@ -288,7 +291,7 @@ def build_case_experiment(
 
 
 def canonical_request(text: str) -> str:
-    text = " ".join(re.sub(r"@[_A-Za-z0-9-]+", "", text).split())
+    text = " ".join(normalize_coding_mention(text).split())
     # Native rich text can insert a space when a Chinese word crosses spans.
     # Preserve ASCII/token boundaries, punctuation, paths and all other text.
     text = re.sub(r"(?<=[\u3400-\u9fff])\s+(?=[\u3400-\u9fff])", "", text)

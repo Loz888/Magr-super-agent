@@ -91,7 +91,7 @@ class ExperimentalDeepSeekModel(ExperimentalCodingModel):
             not api_key
             or client.event_hooks.get("request")
             or isinstance(client._transport, httpx.MockTransport) is not controlled_transport
-            or not 4096 <= context_tokens <= 65536
+            or not 4096 <= context_tokens <= 262144
             or thinking_mode not in {"enabled", "disabled"}
             or reasoning_effort not in {"low", "high", "max"}
         ):

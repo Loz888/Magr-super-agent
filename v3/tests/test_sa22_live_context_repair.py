@@ -21,7 +21,9 @@ from mgar_v3.super_agent.source_coding_live_model import (
 )
 
 
-def test_native_leading_bare_mention_reaches_exact_case_without_changing_objective(engine, tmp_path):
+def test_native_leading_bare_mention_reaches_exact_case_without_changing_objective(
+    engine, tmp_path,
+):
     env, _, _, manager = cases(engine, tmp_path)
     try:
         with engine.transaction() as conn:
