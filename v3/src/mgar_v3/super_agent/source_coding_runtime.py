@@ -1143,6 +1143,15 @@ class _TrustedVerifier:
             # The fixed H11 cut has summary-based test counts. Its real command
             # observations are useful diagnostics, not R05 independent regression
             # evidence. An experimental patch stays unverified for owner review.
+            # CodingLoop aggregates individual checks, rather than trusting the
+            # outer status alone. Preserve the missing independent gate in both.
+            checks.append(
+                VerificationCheck(
+                    requirement_id="sa22-independent-regression",
+                    status="missing",
+                    detail="Independent frozen-tree regression has not been accepted.",
+                )
+            )
             status = "incomplete"
         verification = VerificationReceipt(
             verification_id=digest(
