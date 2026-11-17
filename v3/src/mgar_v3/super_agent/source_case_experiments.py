@@ -283,7 +283,10 @@ def build_case_experiment(
 
 
 def canonical_request(text: str) -> str:
-    return " ".join(re.sub(r"@[_A-Za-z0-9-]+", "", text).split())
+    text = " ".join(re.sub(r"@[_A-Za-z0-9-]+", "", text).split())
+    # Native rich text can insert a space when a Chinese word crosses spans.
+    # Preserve ASCII/token boundaries, punctuation, paths and all other text.
+    return re.sub(r"(?<=[\u3400-\u9fff])\s+(?=[\u3400-\u9fff])", "", text)
 
 
 class SourceCaseExperiments:

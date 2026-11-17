@@ -1192,13 +1192,26 @@ class SourceIngress:
                     <= event.occurred_at
                     <= now + timedelta(seconds=30)
                 )
+                explicit_live_socket = (
+                    meta.verification_method == "installation_proof"
+                    and event.scope.source_kind == "feishu"
+                    and event.verification_ref == "feishu-installation-proof"
+                    and event.provenance == "verified_source"
+                    and event.sender.actor_kind == "human"
+                    and event.addressed == "mention"
+                    and item.operation == "create"
+                    and not grant["context_only"]
+                )
                 context = (
                     historical
                     or grant["context_only"]
                     or permit is not None
                     or event.historical_backfill
                     or old
-                    or gap
+                    # A missing interval remains an unresolved gap. A new explicit
+                    # requester message on the current authenticated socket is its
+                    # own authority; it does not claim the interval was replayed.
+                    or (gap and not explicit_live_socket)
                     or grant["mode"] in {"disabled", "shadow"}
                 )
                 identifier = self._insert_item(

@@ -249,6 +249,7 @@ class SourceConversations:
         api_key: str,
         context: Callable[[str], str] = lambda _: "未附加仓库资料",
         coding: Callable[[UUID], str] | None = None,
+        deterministic_coding: Callable[[UUID], bool] | None = None,
         controlled_transport: bool = False,
         repository: FrozenRepositoryTools | None = None,
     ):
@@ -259,6 +260,7 @@ class SourceConversations:
             raise denied("LIVE_TRANSPORT")
         self.engine, self.cookie, self.profile, self.keys = engine, cookie, profile, keys
         self.client, self.api_key, self.context, self.coding = client, api_key, context, coding
+        self.deterministic_coding = deterministic_coding
         self.permit = ConversationPermit(engine, profile)
         if profile.repository_tools != (repository is not None):
             raise denied("REPOSITORY_PROFILE")
@@ -645,6 +647,25 @@ class SourceConversations:
                 for ref in scope.get("conversation_dependencies", [])
             ]
             expires = min(fresh.expires, self.profile.expires_at, *expiries)
+        from mgar_v3.super_agent.source_coding_experiment import explicit_coding_request
+
+        if (
+            self.coding is not None
+            and self.deterministic_coding is not None
+            and self.deterministic_coding(input_id)
+            and explicit_coding_request(question)
+        ):
+            # A validated explicit user instruction determines delegation. The
+            # model's prose/classification cannot silently downgrade it to advice.
+            with self.engine.transaction() as conn:
+                self.engine._event(
+                    conn,
+                    run["run_id"],
+                    "source_explicit_code_dispatch",
+                    model_intent=answer["intent"],
+                    resolved_intent="code",
+                )
+            answer = {**answer, "intent": "code"}
         text = "模型回答：\n" + answer["answer"].strip() + citations
         if answer["intent"] == "code":
             from mgar_v3.super_agent.source_coding_experiment import explicit_coding_request
