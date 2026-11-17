@@ -125,10 +125,12 @@ def main():
                 "SELECT 1 FROM app.sa_scheduler_assignments WHERE state<>'released' LIMIT 1"
             ).fetchone(), "Drain live Worker resources first"
             assert not conn.execute(
-                "SELECT 1 FROM app.source_ingress_inputs WHERE project_id=%s "
-                "AND source_instance_id=%s AND consumed_at IS NULL AND unavailable_at IS NULL "
-                "AND metadata_expires_at>clock_timestamp() LIMIT 1",
-                (settings.project_id, UUID(private["source_id"])),
+                "SELECT 1 FROM app.source_ingress_inputs i "
+                "JOIN app.source_ingress_bodies b USING(input_id) WHERE i.project_id=%s "
+                "AND i.source_instance_id=%s AND i.policy_revision=%s "
+                "AND i.consumed_at IS NULL AND i.unavailable_at IS NULL "
+                "AND b.expires_at>clock_timestamp() LIMIT 1",
+                (settings.project_id, UUID(private["source_id"]), private["policy_revision"]),
             ).fetchone(), "Finish current admitted source work first"
             trials = conn.execute(
                 "SELECT * FROM app.sa_coding_trial_authorizations WHERE project_id=%s "
