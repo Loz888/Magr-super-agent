@@ -2530,5 +2530,16 @@
       "services": "original isolatedPG source admission/H03 signed profiles plus controlledHTTP; no paid or live platform calls",
       "budget": "larger input gets full conservative original reservation; same lifetime/Run caps, no truncation or unknown resend"
     }
+  },
+  "SAV1-22-TOOL-INVENTORY": {
+    "tests": [
+      "tests/test_sa22_tool_inventory.py"
+    ],
+    "timeout_seconds": 180,
+    "components": {
+      "scope": "first realPG/Broker model-tool inventory combination; priorPASS excluded",
+      "boundary": "only actual granted existing paths advertised; authority unchanged; shape-only diagnostics exclude text and reasoning",
+      "effects": "controlledHTTP only; original trial verifier incomplete, no platform/paid/publish calls"
+    }
   }
 }

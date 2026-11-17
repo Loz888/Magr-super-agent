@@ -665,6 +665,46 @@ class _ControlledModel:
             operation, "model_response", response.model_dump_json().encode()
         )
         with session.core.guard(session.bearer, session.request, tree_sha256=session.tree()):
+            if session.profile.experimental:
+                # Retain shape-only diagnostics after response ciphertext expires.
+                # Neither proposed contents nor reasoning enters ordinary events.
+                with session.core.engine.transaction() as conn:
+                    for call in response.tool_calls:
+                        paths = [call.arguments.get("path")]
+                        if call.name == "apply_edits":
+                            edits = call.arguments.get("edits")
+                            paths = [
+                                edit.get("path") for edit in edits if isinstance(edit, dict)
+                            ] if isinstance(edits, list) else []
+                        shapes = []
+                        for path in paths:
+                            if not isinstance(path, str):
+                                continue
+                            shapes.append({
+                                "path_sha256": sha256(
+                                    path.encode(errors="backslashreplace")
+                                ).hexdigest(),
+                                "existing_file": path in session.workspace._files,
+                                "directory": any(
+                                    item.startswith(path.rstrip("/") + "/")
+                                    for item in session.workspace._files
+                                ),
+                                "read_granted": session.grant.can_read(path),
+                                "write_granted": session.grant.can_write(path),
+                                "trailing_separator": path.endswith("/"),
+                                "root_alias": path in {"", ".", "./"},
+                            })
+                        session.core.engine._event(
+                            conn, request.task.run_id, "source_trial_tool_shape",
+                            operation_id=str(operation["operation_id"]),
+                            tool_name=call.name if call.name in {
+                                "read_file", "list_dir", "apply_edits", "run_tests", "ask_user"
+                            } else "undeclared",
+                            argument_names=sorted(set(call.arguments) & {
+                                "path", "edits", "expected_tree", "argv", "cwd",
+                                "timeout_seconds", "question",
+                            }), paths=shapes,
+                        )
             return response
 
 
@@ -1267,7 +1307,24 @@ class _Tools(HarnessToolRegistry):
 
     def specs(self) -> Sequence[ToolSpec]:
         specs = []
+        readable = sorted(
+            path for path in self.session.workspace._files if self.session.grant.can_read(path)
+        )
+        writable = [path for path in readable if self.session.grant.can_write(path)]
+        directories = sorted({
+            path.rsplit("/", depth)[0]
+            for path in readable for depth in range(1, path.count("/") + 1)
+            if self.session.grant.can_read(path.rsplit("/", depth)[0])
+        })
         for spec in super().specs():
+            if self.session.profile.experimental and spec.name in {"read_file", "list_dir"}:
+                schema = dict(spec.input_schema)
+                properties = dict(schema.get("properties", {}))
+                properties["path"] = {
+                    "type": "string", "enum": readable if spec.name == "read_file" else directories,
+                }
+                schema.update(properties=properties, required=["path"])
+                spec = spec.model_copy(update={"input_schema": schema})
             if spec.name == "apply_edits":
                 spec = spec.model_copy(
                     update={
@@ -1290,7 +1347,11 @@ class _Tools(HarnessToolRegistry):
                                         "additionalProperties": False,
                                         "required": ["path", "expected_sha256", "content"],
                                         "properties": {
-                                            "path": {"type": "string"},
+                                            "path": {
+                                                "type": "string",
+                                                **({"enum": writable}
+                                                   if self.session.profile.experimental else {}),
+                                            },
                                             "expected_sha256": {
                                                 "type": "string",
                                                 "pattern": "^[a-f0-9]{64}$",
