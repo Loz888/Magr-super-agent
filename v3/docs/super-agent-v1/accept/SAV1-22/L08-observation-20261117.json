@@ -1,0 +1,223 @@
+{
+  "UTC": "2026-11-17T14:25:22.106200+00:00",
+  "SA22_status": "IN_PROGRESS",
+  "case": "L08",
+  "source_candidate": {
+    "UTC": "2026-11-17T13:57:42.627555+00:00",
+    "commit": "5dde31d1b6a0030c1280c48c90eb366586993c01",
+    "source_sha256": "14875152dcad9673ee533dfce673355b20d1e07c46b407de592c89e454ce3f0e",
+    "task": "SAV1-22-SANDBOX-IO-RECOVERY-R1",
+    "historical_PASS_rerun": false,
+    "archive_sha256": "dad5b91078df30d6d556f881be60810efbb3d5dab17117f1abb8e309f3736f12"
+  },
+  "actual_run_id": "aeedd6a2-558a-409d-8032-ba3be6248a94",
+  "coding_id": "71af4366-44c8-4e7a-a838-d2b51f4f0802",
+  "assignment_id": "f50d1d9e-475e-43e8-9949-d4977293fb38",
+  "candidate": "46c72c91f9febb008a8602f256fd6c07bb7f5f09",
+  "worker_tree_sha256": "503aeb7446856a36461285d41d913729c881eb0fe2f69bb668b7e0045af7daa6",
+  "changed_paths": [
+    "v3/src/mgar_v3/context/policy.py"
+  ],
+  "worker_public_command": {
+    "tests_run": 5,
+    "tests_failed": 0,
+    "exit_code": 0,
+    "rerun": false
+  },
+  "independent_selected_original_failed": {
+    "UTC": "2026-11-17T14:05:48.241080+00:00",
+    "case_id": "L08",
+    "actual_run_id": "aeedd6a2-558a-409d-8032-ba3be6248a94",
+    "candidate": "46c72c91f9febb008a8602f256fd6c07bb7f5f09",
+    "independent_selected_failed_tests": 2,
+    "exit_code": 0,
+    "public_tests_rerun": false,
+    "historical_pass_tests_rerun": false,
+    "original_trial_verifier": "incomplete",
+    "L02_real_PG": "NOT_APPLICABLE",
+    "private_feedback_to_worker": false,
+    "evidence": "/home/imini/magr-super-agent/v3/evidence/super-agent-v1/SAV1-22/continued-20261117T120255Z/L08-judge-aeedd6a2"
+  },
+  "behavioral_result": "PASS_FOR_ORIGINAL_TWO_INVALID_ARGUMENT_GROUPS",
+  "client_close": {
+    "UTC": "2026-11-17T14:12:59.949130+00:00",
+    "run_id": "aeedd6a2-558a-409d-8032-ba3be6248a94",
+    "client_close_acknowledgement_UTC": "2026-11-17T14:02:33.256070+00:00",
+    "exact_close_instant": "NOT_PROVIDED",
+    "attempt": {
+      "attempt_id": "5f3e131a-6c13-470b-b965-7d7a62b65874",
+      "assignment_id": "f50d1d9e-475e-43e8-9949-d4977293fb38",
+      "session_id": "d53ddcef-2cce-4007-9cc2-4b98ad4405b5",
+      "workspace_id": "bd4bcf00-b6ed-4c66-b67a-112871bc9803",
+      "state": "result_recorded",
+      "reason_code": null
+    },
+    "operations_after_acknowledgement": [
+      {
+        "operation_id": "28186712-59ab-5938-9244-1f04b750c7f3",
+        "step_key": "continuation:1aa0d4404ead0a2c3711a9b3412740ea238bed92f1976fd1cf84b01100d22a07",
+        "kind": "tool",
+        "capability": "read",
+        "state": "known",
+        "result_code": "ok",
+        "created_at": "2026-11-17 14:02:34.671621+00:00",
+        "observed_at": "2026-11-17 14:02:35.077484+00:00"
+      },
+      {
+        "operation_id": "bf8a667d-af7c-55a3-914a-b2cbd27bb290",
+        "step_key": "71af4366-44c8-4e7a-a838-d2b51f4f0802:model:7",
+        "kind": "model",
+        "capability": "model",
+        "state": "known",
+        "result_code": "ok",
+        "created_at": "2026-11-17 14:02:36.071098+00:00",
+        "observed_at": "2026-11-17 14:02:41.094999+00:00"
+      },
+      {
+        "operation_id": "27364fe3-7972-585a-b7a1-909959dd9fcd",
+        "step_key": "71af4366-44c8-4e7a-a838-d2b51f4f0802:tool:7:1",
+        "kind": "tool",
+        "capability": "read",
+        "state": "known",
+        "result_code": "ok",
+        "created_at": "2026-11-17 14:02:44.083597+00:00",
+        "observed_at": "2026-11-17 14:02:45.343638+00:00"
+      },
+      {
+        "operation_id": "1c6d5b06-2d6d-5a19-991e-34a2193eb3b9",
+        "step_key": "71af4366-44c8-4e7a-a838-d2b51f4f0802:tool:7:2",
+        "kind": "tool",
+        "capability": "read",
+        "state": "known",
+        "result_code": "ok",
+        "created_at": "2026-11-17 14:02:47.905358+00:00",
+        "observed_at": "2026-11-17 14:02:49.178742+00:00"
+      },
+      {
+        "operation_id": "e2d3dd90-0d3b-578a-affb-fbe1448b2caf",
+        "step_key": "71af4366-44c8-4e7a-a838-d2b51f4f0802:tool:7:3",
+        "kind": "tool",
+        "capability": "read",
+        "state": "known",
+        "result_code": "ok",
+        "created_at": "2026-11-17 14:02:51.616888+00:00",
+        "observed_at": "2026-11-17 14:02:52.939430+00:00"
+      },
+      {
+        "operation_id": "f31ea9c4-36cb-5540-a25f-1cdb02d08d8d",
+        "step_key": "71af4366-44c8-4e7a-a838-d2b51f4f0802:tool:7:4",
+        "kind": "tool",
+        "capability": "read",
+        "state": "known",
+        "result_code": "ok",
+        "created_at": "2026-11-17 14:02:55.362502+00:00",
+        "observed_at": "2026-11-17 14:02:56.685100+00:00"
+      },
+      {
+        "operation_id": "4755026a-123b-5ed4-9c34-4c48641f4dfb",
+        "step_key": "continuation:a34ee89ef6a729bf8fefd97d85bd229731a6a9d27dd09d407a38dd0182a6801a",
+        "kind": "tool",
+        "capability": "read",
+        "state": "known",
+        "result_code": "ok",
+        "created_at": "2026-11-17 14:03:02.645010+00:00",
+        "observed_at": "2026-11-17 14:03:03.044391+00:00"
+      },
+      {
+        "operation_id": "45b2179b-016b-5e2d-9169-be40f5aa1d29",
+        "step_key": "71af4366-44c8-4e7a-a838-d2b51f4f0802:model:8",
+        "kind": "model",
+        "capability": "model",
+        "state": "known",
+        "result_code": "ok",
+        "created_at": "2026-11-17 14:03:04.025090+00:00",
+        "observed_at": "2026-11-17 14:03:17.571836+00:00"
+      },
+      {
+        "operation_id": "9cbaa11c-c15c-51d9-8152-8abd09ee4aa2",
+        "step_key": "71af4366-44c8-4e7a-a838-d2b51f4f0802:tool:8:1",
+        "kind": "tool",
+        "capability": "read",
+        "state": "known",
+        "result_code": "ok",
+        "created_at": "2026-11-17 14:03:20.829522+00:00",
+        "observed_at": "2026-11-17 14:03:22.076395+00:00"
+      },
+      {
+        "operation_id": "8edb38b7-8ce7-57d8-8805-5c1ec4a1f601",
+        "step_key": "71af4366-44c8-4e7a-a838-d2b51f4f0802:tool:8:2",
+        "kind": "tool",
+        "capability": "read",
+        "state": "known",
+        "result_code": "ok",
+        "created_at": "2026-11-17 14:03:24.691868+00:00",
+        "observed_at": "2026-11-17 14:03:25.967476+00:00"
+      },
+      {
+        "operation_id": "cb4a9cd5-21f5-5075-adb4-0bccae2ee98b",
+        "step_key": "71af4366-44c8-4e7a-a838-d2b51f4f0802:tool:8:3",
+        "kind": "tool",
+        "capability": "read",
+        "state": "known",
+        "result_code": "ok",
+        "created_at": "2026-11-17 14:03:28.644552+00:00",
+        "observed_at": "2026-11-17 14:03:29.903009+00:00"
+      },
+      {
+        "operation_id": "eb57aadb-a7b2-53f5-abd8-1d226348488d",
+        "step_key": "continuation:995e23c76221769cb4d3054ea6a0e93b29fdbe5b27dcc42820682579f1dfb2fa",
+        "kind": "tool",
+        "capability": "read",
+        "state": "known",
+        "result_code": "ok",
+        "created_at": "2026-11-17 14:03:36.573080+00:00",
+        "observed_at": "2026-11-17 14:03:36.978532+00:00"
+      }
+    ],
+    "before_ack_write_observed_UTC": [
+      "2026-11-17 14:01:42.893857+00:00"
+    ],
+    "before_ack_test_observed_UTC": [
+      "2026-11-17 14:00:55.770892+00:00",
+      "2026-11-17 14:02:00.199549+00:00"
+    ],
+    "inference": "Backend operations and original delivery continued after acknowledgement. Actual edit and passing public command preceded acknowledgement; post-close edit/test coverage is not established.",
+    "diagnostic_correction": "Earlier metadata query incorrectly used assignment_id as attempt_id and returned no operations; that record is retained, this query binds actual attempt_id."
+  },
+  "actual_original_delivery": [
+    {
+      "action_id": "fb68cb37-1501-4eb5-9311-ed6b695a5a19",
+      "run_id": "16d0d020-d763-4430-8287-565e79f11ce6",
+      "status": "succeeded",
+      "expires_at": "2026-11-17 14:30:25.364000+00:00",
+      "external_id": "om_x100b60f1a522a8a0c134ececfcac432",
+      "created_at": "2026-11-17 14:03:42.932325+00:00"
+    }
+  ],
+  "outbox": [
+    {
+      "action_id": "fb68cb37-1501-4eb5-9311-ed6b695a5a19",
+      "status": "succeeded",
+      "attempts": 1,
+      "next_retry_at": "2026-11-17 14:03:42.984558+00:00",
+      "created_at": "2026-11-17 14:03:42.932325+00:00"
+    }
+  ],
+  "original_result": {
+    "coding_status": "budget_exhausted",
+    "reason_code": "budget_model_calls",
+    "verification": "incomplete",
+    "business_task_completed": false,
+    "model_calls": 8,
+    "cost_micros": 36055
+  },
+  "whole_case": "INCOMPLETE_POST_CLOSE_EDIT_TEST_COVERAGE_NOT_ESTABLISHED",
+  "limitations": [
+    "The exact client-close instant was not supplied. Record uses the acknowledgement upper bound.",
+    "Actual edit and green public command preceded that acknowledgement; post-acknowledgement reads, model operations and one original delivery are observed.",
+    "Loop reached its original 8-call limit while awaiting external independent review. Its historical result is retained; new wait-boundary repair does not rewrite it.",
+    "No original or model candidate code/tests were changed by the evaluator; no passed public or private target was rerun."
+  ],
+  "H12": "FAIL_RETAINED",
+  "SA23_started": false
+}

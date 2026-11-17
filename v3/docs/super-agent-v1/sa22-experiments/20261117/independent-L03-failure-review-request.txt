@@ -1,0 +1,25 @@
+SA22 L03 独立失败裁定／公开修复说明请求（请只做只读核对）
+
+真实 Source Run：535cb3bd-deee-41fa-8049-060379f6c3b8。
+SA 源码：d0b0bf1a7ef541e0ec642836b28ee4aa3344c7a0。
+原仓库基线：efb09f4fedb35c4bc7f579dda0b7e64d2e3111be。
+实际模型产物：a6750829a64306fb8b46d1ce89b7465cc326860a。
+仅修改 v3/src/mgar_v3/rag/rank.py，675 字节 diff；完整 Git 树守卫 PASS。
+原 H03 树：e9c2f8b39c31058c51c55c1cd6a88063faaeb65933a0e528d44241bf2590bbd7。
+独立材料提交：ca6aff5b86b24feac61279733edbe48ec1cf0861。
+L03 grader SHA256：d2d9ef5eeabaa130f3e357877fce46a9e3b92cce67bf008d416483c774da214c。
+
+本次仅复验原失败 A01/A02/A04：前两项 PASS，A04_seeded_reference FAIL。
+原 A03 历史通过未重跑。私有源码/语料/种子没有进入 Worker；本次私有失败也未反馈给 Worker。
+
+请对照原冻结的公开 L03 去重/排序契约，核对 A04 的期望是否完整属于该契约。
+若判定器符合契约，请保留当前 FAIL，并另给一份可公开给 Worker 的最小修复说明或新公开复现；不要提供原私有样本或种子。
+若发现评测期望超出原冻结契约，请另列评测问题和依据；不要直接改判定器、阈值或历史成绩来变绿。
+未来修复后仅复验 A04 这一失败项；A01/A02/A03 不重复执行。
+请回传独立报告路径及具名提交。不要修改 SA 源码、原仓库工作树或运行付费模型。
+
+工程附注：此 Run 的公开命令之后报告 failed，并最终 HARNESS_LEASE_EXPIRED；公开原始输出当时未交给模型，待修复工程接线。
+“首次错误树”旧目录名称不能证明错误类型或失败恢复覆盖。上述独立 FAIL、公开命令基础设施故障及租约问题分别保留；整题不记 PASS。
+
+证据：/home/imini/magr-super-agent/v3/evidence/super-agent-v1/SAV1-22/continued-20261117T120255Z/L03-judge-535cb3bd/
+实际候选目录：/home/imini/magr-super-agent/v3/.local/sa22-independent-candidates/L03-1a45126854
