@@ -81,6 +81,10 @@ def test_owned_postgresql_outage_before_ack_recovers_same_pending_event(tmp_path
         }
         workload = Workload(config, tmp_path)
         first = workload.cycle()
+        with workload.engine.transaction() as connection:
+            before_start = connection.execute("SELECT pg_postmaster_start_time() AS t").fetchone()[
+                "t"
+            ]
         docker("stop", "--time", "1", cid)
         with pytest.raises(httpx.HTTPError):
             workload.cycle()
@@ -89,11 +93,18 @@ def test_owned_postgresql_outage_before_ack_recovers_same_pending_event(tmp_path
         workload.close()
         workload = None
         docker("start", cid)
+        # Docker's ephemeral published port may change after a real restart.
+        restarted = json.loads(docker("inspect", cid).stdout)[0]
+        assert restarted["Id"] == cid
+        port = restarted["NetworkSettings"]["Ports"]["5432/tcp"][0]["HostPort"]
+        dsn = make_conninfo(dsn, port=port)
+        config["database_url"] = dsn
         ready()
         workload = Workload(config, tmp_path)
         resumed = workload.cycle()
         assert resumed["input_id"] != first["input_id"] and resumed["attempts"] == 1
         with psycopg.connect(dsn) as conn:
+            assert conn.execute("SELECT pg_postmaster_start_time()").fetchone()[0] > before_start
             assert conn.execute("SELECT count(*) FROM app.source_ingress_inputs").fetchone()[0] == 3
             assert conn.execute("SELECT count(*) FROM app.actions").fetchone()[0] == 2
             assert conn.execute("SELECT max(attempts) FROM app.outbox").fetchone()[0] == 1
