@@ -1,0 +1,53 @@
+{
+  "schema": "sa22-evaluation-implementation-v1",
+  "scope": "controlled first qualification, zero-paid soak collection and draft operator evaluation materials",
+  "full_SA22": "IN_PROGRESS",
+  "quality_gate": "NOT_RUN",
+  "original_Engine_API_schema_budget": "UNCHANGED",
+  "artifacts": [
+    {
+      "path": "scripts/sa22_acceptance.py",
+      "sha256": "d8f7e1de037f1ba1e70cb1475758c03f9e85a1566df8fb24d85a7303ecaaa448"
+    },
+    {
+      "path": "scripts/sa22_soak.py",
+      "sha256": "f47f947aa29c30d615345dc8e4ee1a6e368d609fe713a768a349bc0993f0b135"
+    },
+    {
+      "path": "tests/test_sa22_completion.py",
+      "sha256": "e5b40bf6279e53ee3905841fdb0b8763a66aa1cf31e7e7dadad5504bb368e971"
+    },
+    {
+      "path": "tests/test_sa22_soak_pg_recovery.py",
+      "sha256": "a658b3ff0473240fe0de0bdc03a3189773bf28daa185cd6d9b89427eff6fe2ff"
+    },
+    {
+      "path": "fixtures/super-agent-v1/sa22-completion/development-draft.jsonl",
+      "sha256": "09bd2e1b19e39c1fff1c104c8a157e1b6ed10278363dfa140df3406098deaf4b"
+    },
+    {
+      "path": "fixtures/super-agent-v1/sa22-completion/manifest.json",
+      "sha256": "d3b2a019599a6fac1aac565dd2862aa267140504245e1f5268a72d42e1304a8b"
+    },
+    {
+      "path": "docs/super-agent-v1/SA22_COMPLETION_PROTOCOL.md",
+      "sha256": "dd35f40af6e2107f2faf8330d97dcd498c75a691778e38ce140aa7b16ee75305"
+    },
+    {
+      "path": "docs/super-agent-v1/SA22_OPERATOR_FEEDBACK.md",
+      "sha256": "e0f0a44fa45ca6a2026169bd7214917b525730c680fec964b1250267eb2d6ad4"
+    },
+    {
+      "path": "docs/super-agent-v1/adr/SAV1-22-local-host-scope.md",
+      "sha256": "e21822ecba91b76e706d33d8d0cb8cd2212c69c987d32a447be9b96babd4303d"
+    },
+    {
+      "path": "docs/super-agent-v1/sa22-proposal/independent-evaluation-request.txt",
+      "sha256": "57ef6b845e7384e65e6d1f19788306de1e3e379a2e4e933251ed5511807d09cb"
+    },
+    {
+      "path": "docs/super-agent-v1/sa22-proposal/live-task-plan.json",
+      "sha256": "7c243190ca96c66795e5c4672794ce2fab7a3bba728cc8af43191fd1a3172fc4"
+    }
+  ]
+}

@@ -1,0 +1,28 @@
+请继续协助 SA22 的独立评测前置准备，不修改 SA/Harness 活动源码，不执行模型／发布。
+
+SA 已只读核对 H12 R07：交付 40f8db8，源码 7f19289，工程 PASS，真实质量 FAIL 保留。
+负责人先前的 SA22 限制试验例外继续有效，但不是 H12 全部能力门通过。
+请回传 R08 真实质量验收的最新具名交付；尚未验收请明确 NOT_RUN/FAIL，不需重跑历史 PASS。
+
+另请作为独立标注方准备 SA22 Router holdout 100 条，按
+/home/imini/magr-super-agent/v3/docs/super-agent-v1/sa00/evaluation-protocol.json
+与 SA22_COMPLETION_PROTOCOL.md 冻结要求。至少 40 可行动、60 不新建，覆盖显式请求、
+已有任务跟进、CI/PR、闲聊、自身/别的机器人、重放、编辑/撤权、模糊及跨话题。
+使用明确合成且无真实密钥/私人聊天的事件。与开发集按 topic/time/source_case 隔离，
+不可用旧 SA09 开发草案或只替换变量名。开发集草稿在
+fixtures/super-agent-v1/sa22-completion/development-draft.jsonl（仅供避免话题复用，未评分）。
+
+每行 JSON schema=sa22-routing-case-v1。字段：case_id、split、synthetic、source_case、
+topic_group、occurred_at、text、source_kind、receive_allowed、model_input_allowed、
+expected_action(ignore/observe/attach/create/ask)、actionable、repository、conversation、
+task_ref、actor_role、control_allowed、notification_allowed、decidable_followup、mode。
+指定场景的可见角色／当前权限／既有任务／重复版本等事实须另在 event_facts 中明列；
+不能从正文“我是管理员”推断身份，不把 Router 提案当控制权。
+标注理由、分歧、操作者复核记录、100 条完整 SHA256 与标签 SHA256 单列。
+
+请先保存在你侧独立目录，回传文件路径和 hash；让本人复核再冻结，先不要把答案交给
+模型或用于调参。可公开输入与私有标签分开；SA 评分器只在候选冻结后读取标签。
+开发者写出的草稿与受控 HTTP 模型不算独立质量成绩；零 create 分母不能报精确率 PASS。
+
+不新增迁移、不改 Engine/API/预算或 H12 表、不使用 H12 USD12 进行 SA 试验、不推送。
+这是一份待转交请求；本文件的存在不表示另一 CLI 已收到或完成。

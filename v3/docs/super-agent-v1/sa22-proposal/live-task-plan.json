@@ -1,0 +1,196 @@
+{
+  "schema": "sa22-positive-task-plan-v1",
+  "status": "DRAFT_NOT_REGISTERED_NOT_EXECUTABLE",
+  "required_total": 10,
+  "required_successes": 8,
+  "all_attempts_remain_in_denominator": true,
+  "source_scope": "fixed committed local magr-harness, Bot and bound owner",
+  "USD_total_lifetime": 2,
+  "publication": false,
+  "h12_quality": "FAIL_RETAINED; owner exception permits limited experiments only",
+  "prior_question_samples_in_formal_denominator": false,
+  "formal_results": "NOT_RUN",
+  "local_scope_E19": "NOT_RUN_USER_DEFERRED",
+  "tasks": [
+    {
+      "case_id": "L01",
+      "flow": "Feishu explicit repair",
+      "goal_draft": "memory/retrieval.py 非有限向量拒绝",
+      "repository": "Loz888/MAGR-v3",
+      "upstream_commit": "efb09f4fedb35c4bc7f579dda0b7e64d2e3111be",
+      "required_evidence": "actual-original-Feishu-input/identity/Run/Assignment/patch/test/original-topic-receipt",
+      "oracle_requirements": "independent finite/zero/nonfinite vector behaviour; original tests protected",
+      "public_spec_sha256": null,
+      "independent_grader_sha256": null,
+      "status": "NOT_REGISTERED",
+      "missing_before_execution": [
+        "exact task-specific spec and baseline",
+        "fixed public tests and independent grader",
+        "operator review",
+        "actual trigger resources"
+      ]
+    },
+    {
+      "case_id": "L02",
+      "flow": "Feishu multi-file feature",
+      "goal_draft": "在现有授权模块中实现经审查的多文件功能",
+      "repository": "Loz888/MAGR-v3",
+      "upstream_commit": "efb09f4fedb35c4bc7f579dda0b7e64d2e3111be",
+      "required_evidence": "two or more actual authorized source edits, fixed baseline and independent requirements",
+      "oracle_requirements": "new feature baseline and full prior behaviour separately; no report-only success",
+      "public_spec_sha256": null,
+      "independent_grader_sha256": null,
+      "status": "NOT_REGISTERED",
+      "missing_before_execution": [
+        "exact task-specific spec and baseline",
+        "fixed public tests and independent grader",
+        "operator review",
+        "actual trigger resources"
+      ]
+    },
+    {
+      "case_id": "L03",
+      "flow": "failed first fix then continuation",
+      "goal_draft": "真实首方案实际测试失败后在同一预算内修复",
+      "repository": "Loz888/MAGR-v3",
+      "upstream_commit": "efb09f4fedb35c4bc7f579dda0b7e64d2e3111be",
+      "required_evidence": "first red command and later green command bound to same original Run and final tree",
+      "oracle_requirements": "independent outcome; failed first attempt retained, no fresh-wallet reset",
+      "public_spec_sha256": null,
+      "independent_grader_sha256": null,
+      "status": "NOT_REGISTERED",
+      "missing_before_execution": [
+        "exact task-specific spec and baseline",
+        "fixed public tests and independent grader",
+        "operator review",
+        "actual trigger resources"
+      ]
+    },
+    {
+      "case_id": "L04",
+      "flow": "GitHub PR/CI followup",
+      "goal_draft": "真实 PR/CI 新版本进入同一既有任务",
+      "repository": "Loz888/MAGR-v3",
+      "upstream_commit": "efb09f4fedb35c4bc7f579dda0b7e64d2e3111be",
+      "required_evidence": "verified GitHub installation/PR/head/base/check/Task links",
+      "oracle_requirements": "old SHA test/approval invalid; correct new SHA investigation",
+      "public_spec_sha256": null,
+      "independent_grader_sha256": null,
+      "status": "NOT_REGISTERED",
+      "missing_before_execution": [
+        "exact task-specific spec and baseline",
+        "fixed public tests and independent grader",
+        "operator review",
+        "actual trigger resources"
+      ]
+    },
+    {
+      "case_id": "L05",
+      "flow": "cross-channel followup",
+      "goal_draft": "同一获准问题的飞书与 GitHub 跟进",
+      "repository": "Loz888/MAGR-v3",
+      "upstream_commit": "efb09f4fedb35c4bc7f579dda0b7e64d2e3111be",
+      "required_evidence": "two actual Source receipts and same original Task with current ACL",
+      "oracle_requirements": "separate same-title unrelated issue must stay separate",
+      "public_spec_sha256": null,
+      "independent_grader_sha256": null,
+      "status": "NOT_REGISTERED",
+      "missing_before_execution": [
+        "exact task-specific spec and baseline",
+        "fixed public tests and independent grader",
+        "operator review",
+        "actual trigger resources"
+      ]
+    },
+    {
+      "case_id": "L06",
+      "flow": "status next day",
+      "goal_draft": "第二天由原群查询已有实际任务进展",
+      "repository": "Loz888/MAGR-v3",
+      "upstream_commit": "efb09f4fedb35c4bc7f579dda0b7e64d2e3111be",
+      "required_evidence": "existing task/Run/Job and current evidence references, real reply",
+      "oracle_requirements": "answer matches current original PG; no stale completion or privacy leak",
+      "public_spec_sha256": null,
+      "independent_grader_sha256": null,
+      "status": "NOT_REGISTERED",
+      "missing_before_execution": [
+        "exact task-specific spec and baseline",
+        "fixed public tests and independent grader",
+        "operator review",
+        "actual trigger resources"
+      ]
+    },
+    {
+      "case_id": "L07",
+      "flow": "review handoff",
+      "goal_draft": "交付实际补丁的精确审查材料",
+      "repository": "Loz888/MAGR-v3",
+      "upstream_commit": "efb09f4fedb35c4bc7f579dda0b7e64d2e3111be",
+      "required_evidence": "diff/tree/test hashes and authenticated Review Bundle",
+      "oracle_requirements": "review delivery distinct from publication; no PR/push authorized",
+      "public_spec_sha256": null,
+      "independent_grader_sha256": null,
+      "status": "NOT_REGISTERED",
+      "missing_before_execution": [
+        "exact task-specific spec and baseline",
+        "fixed public tests and independent grader",
+        "operator review",
+        "actual trigger resources"
+      ]
+    },
+    {
+      "case_id": "L08",
+      "flow": "client-close continuation",
+      "goal_draft": "关闭客户端后本机后台继续执行",
+      "repository": "Loz888/MAGR-v3",
+      "upstream_commit": "efb09f4fedb35c4bc7f579dda0b7e64d2e3111be",
+      "required_evidence": "real client disconnect and background Worker completion",
+      "oracle_requirements": "same Task/tree/budget, no claimed continuation after host power-off",
+      "public_spec_sha256": null,
+      "independent_grader_sha256": null,
+      "status": "NOT_REGISTERED",
+      "missing_before_execution": [
+        "exact task-specific spec and baseline",
+        "fixed public tests and independent grader",
+        "operator review",
+        "actual trigger resources"
+      ]
+    },
+    {
+      "case_id": "L09",
+      "flow": "process recovery and revocation",
+      "goal_draft": "实际 Worker 中断后恢复且撤权生效",
+      "repository": "Loz888/MAGR-v3",
+      "upstream_commit": "efb09f4fedb35c4bc7f579dda0b7e64d2e3111be",
+      "required_evidence": "owned real process crash, current lease/epoch and revocation receipts",
+      "oracle_requirements": "known result reused; stale/unknown actions not blindly retried",
+      "public_spec_sha256": null,
+      "independent_grader_sha256": null,
+      "status": "NOT_REGISTERED",
+      "missing_before_execution": [
+        "exact task-specific spec and baseline",
+        "fixed public tests and independent grader",
+        "operator review",
+        "actual trigger resources"
+      ]
+    },
+    {
+      "case_id": "L10",
+      "flow": "parallel independent tasks",
+      "goal_draft": "两个获准问题的独立工作区与回复",
+      "repository": "Loz888/MAGR-v3",
+      "upstream_commit": "efb09f4fedb35c4bc7f579dda0b7e64d2e3111be",
+      "required_evidence": "distinct Task/Run/session/workspace/accounting and original destinations",
+      "oracle_requirements": "no workspace overwrite, duplicate creation or cross-task result",
+      "public_spec_sha256": null,
+      "independent_grader_sha256": null,
+      "status": "NOT_REGISTERED",
+      "missing_before_execution": [
+        "exact task-specific spec and baseline",
+        "fixed public tests and independent grader",
+        "operator review",
+        "actual trigger resources"
+      ]
+    }
+  ]
+}

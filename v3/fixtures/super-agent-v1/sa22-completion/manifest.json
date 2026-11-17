@@ -1,0 +1,14 @@
+{
+  "schema": "sa22-routing-draft-manifest-v1",
+  "status": "DRAFT_AWAITING_OPERATOR_REVIEW",
+  "development_events": 100,
+  "actionable": 40,
+  "not_new_task": 60,
+  "decidable_followups": 20,
+  "operator_review": "PENDING",
+  "independent_holdout": "NOT_PROVIDED",
+  "model_calls": 0,
+  "data_sha256": "09bd2e1b19e39c1fff1c104c8a157e1b6ed10278363dfa140df3406098deaf4b",
+  "no_quality_score": true,
+  "holdout_rule": "prepared independently by topic/time/source_case; no renamed development or SA09 drafts"
+}
