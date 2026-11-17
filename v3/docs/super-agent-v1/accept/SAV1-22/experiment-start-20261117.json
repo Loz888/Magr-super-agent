@@ -1,0 +1,66 @@
+{
+  "schema": "sa22-experiment-first-batch-v1",
+  "UTC": "2026-11-17T09:29:30.477915+00:00",
+  "status": "FIRST_FAULT_BATCH_PASS_FULL_SA22_IN_PROGRESS",
+  "candidate_commit": "8dd01786d725e0c1523414540c02f6a255cfe5a7",
+  "source_sha256": "935633c3311cb29d0fd3d5a409713e622900c09c429ba28b19b08b52d5e3afdf",
+  "finished_source_sha256": "935633c3311cb29d0fd3d5a409713e622900c09c429ba28b19b08b52d5e3afdf",
+  "registered_task": "SAV1-22-FAULTS",
+  "counts": {
+    "tests": 2,
+    "failures": 0,
+    "errors": 0,
+    "skipped": 0
+  },
+  "exit_code": 0,
+  "first_new_cases": [
+    "F02",
+    "F12"
+  ],
+  "historical_pass_retests": 0,
+  "formal_case_retests": 0,
+  "setup_failures_before_tests": 2,
+  "independent_labels_semantically_viewed": false,
+  "independent_labels_frozen": false,
+  "formal_routing_score": "NOT_RUN",
+  "formal_live_scenario_score": "NOT_RUN",
+  "prepared_coding_workspaces": 5,
+  "original_files_each_unchanged": 245,
+  "experiment_model_calls": 0,
+  "experiment_model_cost_micros": 0,
+  "actual_original_ledger_snapshot": {
+    "UTC": "2026-11-17T09:25:46.160714+00:00",
+    "scope": "read-only original shared ledger",
+    "usage": {
+      "calls": 19,
+      "settled_micros": "20426",
+      "held_micros": "0",
+      "unknown": 0
+    },
+    "router": {
+      "calls": 0,
+      "settled_micros": "0",
+      "held_micros": "0",
+      "unknown": 0
+    },
+    "coding_bindings": 0,
+    "lifetime_limit_micros": 2000000,
+    "planned_new_upper_bound_micros": 1950000,
+    "actual_new_experiment_calls": 0,
+    "settled_micros": "20426",
+    "held_micros": "0",
+    "available_micros": "1979574",
+    "plan_currently_fits": true
+  },
+  "lifetime_limit_micros": 2000000,
+  "planned_upper_bound_micros": 1950000,
+  "full_six_gates": "NOT_RUN",
+  "H12_original_quality": "FAIL_RETAINED",
+  "SA23_started": false,
+  "main_migrations": 44,
+  "onboarding_migrations": 51,
+  "primary_evidence": "evidence/super-agent-v1/SAV1-22/experiment-start-20261117T091743Z-bbf0d00a",
+  "raw_registered_evidence": "evidence/SAV1-22-FAULTS/20261117T092542Z-c6dc2067",
+  "logs_recording_limit": "passing stdout observation prints not persisted by initial pytest capture; assertions/JUnit/source retained; no PASS retest to improve logging",
+  "cleanup": "owned fault containers/networks removed; Bot/72h retained; prepared workspaces retained offline"
+}
