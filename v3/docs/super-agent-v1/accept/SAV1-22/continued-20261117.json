@@ -1,0 +1,1201 @@
+{
+  "UTC": "2026-11-17T14:32:51.382108+00:00",
+  "observed_facts_UTC": "2026-11-17T14:28:43.016224+00:00",
+  "status": "IN_PROGRESS",
+  "source_candidate": {
+    "UTC": "2026-11-17T14:23:04.557665+00:00",
+    "commit": "be7998e1dde850d1285bef73105cd53019d2e847",
+    "source_sha256": "52abc5f584fcd1ea2cd0a7267b8acdaae67d100168b9a0ded144d353927088c2",
+    "task": "SAV1-22-AWAIT-INDEPENDENT",
+    "historical_PASS_rerun": false,
+    "archive_sha256": "fa6beeef23581c934c246ac0b2c772b53a203cad37357b6bdd9c9f3683603b98"
+  },
+  "current_source_sha256_matches_activated_candidate": true,
+  "historical_index": "accept/SAV1-22/experiment-progress-20261117.json",
+  "ownership": {
+    "commit": "d7f8f1484a05f1a0300ff80b33429838633b10de",
+    "HANDOFF_section": 49,
+    "SQL_0055_sha256": "67e861128f6a8f3a01b591cfe33e1ed4e0649ae461738a7cdfb2fdf86e90a350",
+    "budget_patch_sha256": "ddb76d82fcef28367ddcc33a3b6a36289dec9ad9fe1d41202eecce16b256949b"
+  },
+  "budget": {
+    "total_limit_micros": 10000000,
+    "ledger_rows": 75,
+    "settled_micros": "155387",
+    "held_micros": "0",
+    "unknown_calls": 0,
+    "ledger_rows_are_not_all_physical_HTTP_calls": true,
+    "Run_limit_micros": 300000,
+    "Run_model_calls": 8,
+    "Run_tool_calls": 24,
+    "Run_seconds": 180,
+    "coding_trial_expires_at": "2026-11-18T07:07:10.941033+00:00",
+    "QA_expires_at": "2026-11-24T07:03:10.941033+00:00",
+    "token_config_revision": 4,
+    "token_caps_total_hour_day": 10000000,
+    "Run_token_cap": 500000,
+    "token_capacity_change_has_full_row_before_snapshot": false,
+    "token_capacity_change_evidence": "evidence/super-agent-v1/SAV1-22/continued-20261117T120255Z/token-quota-operator-review.json"
+  },
+  "registered_attempts": [
+    {
+      "task": "SAV1-22-FAULTS",
+      "git_commit": "8dd01786d725e0c1523414540c02f6a255cfe5a7",
+      "source_sha256": "935633c3311cb29d0fd3d5a409713e622900c09c429ba28b19b08b52d5e3afdf",
+      "finished_source_sha256": "935633c3311cb29d0fd3d5a409713e622900c09c429ba28b19b08b52d5e3afdf",
+      "started_at": "2026-11-17T09:25:42.358490+00:00",
+      "counts": {
+        "tests": 2,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "status": "PASS",
+      "exit_code": 0,
+      "attempt_path": "evidence/SAV1-22-FAULTS/20261117T092542Z-c6dc2067",
+      "log_path": "evidence/SAV1-22-FAULTS/20261117T092542Z-c6dc2067/command.log",
+      "junit_path": "evidence/SAV1-22-FAULTS/20261117T092542Z-c6dc2067/junit.xml",
+      "junit_sha256": "921232fab2c41fc0ef43969a62f1d1c8ce0a0014c05241c95ffcd09bae62e1a2",
+      "source_unchanged_during_run": true,
+      "log_sha256": "8c5df789a6d006e94c0d042f0a15b9de5859020b4bca246b804d22c699ca0f5e",
+      "result_sha256": "634cd558032a54fef253eacd29fe10e7f0aa541fbb61d09f3c57e7730aef28e1"
+    },
+    {
+      "task": "SAV1-22-BUDGET10-PREP",
+      "git_commit": "21aa61a9f3de940f607f9302d30b62a455f8d930",
+      "source_sha256": "8a5e48e8f42d1c380e8ce75c97cd8fb28381f1e3b12c7707ceb48a96f5aa1cd9",
+      "finished_source_sha256": "8a5e48e8f42d1c380e8ce75c97cd8fb28381f1e3b12c7707ceb48a96f5aa1cd9",
+      "started_at": "2026-11-17T09:40:10.484983+00:00",
+      "counts": {
+        "tests": 13,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "status": "PASS",
+      "exit_code": 0,
+      "attempt_path": "evidence/SAV1-22-BUDGET10-PREP/20261117T094010Z-7848eff4",
+      "log_path": "evidence/SAV1-22-BUDGET10-PREP/20261117T094010Z-7848eff4/command.log",
+      "junit_path": "evidence/SAV1-22-BUDGET10-PREP/20261117T094010Z-7848eff4/junit.xml",
+      "junit_sha256": "0a30362bff0980c3431360258e0af26a3bb45cc380c404b6ee9585b3d0fb18bd",
+      "source_unchanged_during_run": true,
+      "log_sha256": "98cafde676423bb2ff49026c0a032cfa46265a7ab16fb1083b41e1f8ac6f74e0",
+      "result_sha256": "19292f201ca33452c0837b7021fdeb9fc947c28b1d082c71a8d6c8f95f1931ec"
+    },
+    {
+      "task": "SAV1-22-BUDGET10",
+      "git_commit": "666e75d7b442b7266fdafe913a7d939eec69795c",
+      "source_sha256": "b807ecdefcf647beaa161d37754f6532d591f431ff476785cd045cf25cdbb548",
+      "finished_source_sha256": "b807ecdefcf647beaa161d37754f6532d591f431ff476785cd045cf25cdbb548",
+      "started_at": "2026-11-17T09:48:49.211335+00:00",
+      "counts": {
+        "tests": 1,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "status": "PASS",
+      "exit_code": 0,
+      "attempt_path": "evidence/SAV1-22-BUDGET10/20261117T094849Z-38700ff2",
+      "log_path": "evidence/SAV1-22-BUDGET10/20261117T094849Z-38700ff2/command.log",
+      "junit_path": "evidence/SAV1-22-BUDGET10/20261117T094849Z-38700ff2/junit.xml",
+      "junit_sha256": "66c9730922af317434bf644dacabcbcd92daaa4f12c971cae5cbf2aae1139a8c",
+      "source_unchanged_during_run": true,
+      "log_sha256": "b49b7488d53d2b11cea84994144b78118773002383c791e339d06d9b857e377c",
+      "result_sha256": "8156b91f29cc6475182b0d6964ac2c43b5271e8e9613616e76391cbbc6457b16"
+    },
+    {
+      "task": "SAV1-22-CASES",
+      "git_commit": "54140565d6997be87da7ae34b842c8b0c4454508",
+      "source_sha256": "b50ae272ed623a2e35b41f0f89308f1aa119fe61129b540ee767f7356f6ddc13",
+      "finished_source_sha256": "b50ae272ed623a2e35b41f0f89308f1aa119fe61129b540ee767f7356f6ddc13",
+      "started_at": "2026-11-17T10:12:31.959372+00:00",
+      "counts": {
+        "tests": 3,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "status": "PASS",
+      "exit_code": 0,
+      "attempt_path": "evidence/SAV1-22-CASES/20261117T101231Z-00d11da7",
+      "log_path": "evidence/SAV1-22-CASES/20261117T101231Z-00d11da7/command.log",
+      "junit_path": "evidence/SAV1-22-CASES/20261117T101231Z-00d11da7/junit.xml",
+      "junit_sha256": "29c5a28fec3c1a5185670c11ba491eddf1370e1290ea7190bed99aa2b8ec321d",
+      "source_unchanged_during_run": true,
+      "log_sha256": "f8438c8d772af10aeb9ce8966ecf79b51100099136c5b97e14a59619fd5568c9",
+      "result_sha256": "72cd8a6b572909b2975050058149cffefb6551d076358982bb39c7ddb9d51b30"
+    },
+    {
+      "task": "SAV1-22-CASES-RESTORE",
+      "git_commit": "d49df985eff6ffc36444b93cf46590fc29404c0f",
+      "source_sha256": "371a3d1e24593c26aa964973fbe054acfdc6a78b02e064c95cd67e5c4f4659b8",
+      "finished_source_sha256": "371a3d1e24593c26aa964973fbe054acfdc6a78b02e064c95cd67e5c4f4659b8",
+      "started_at": "2026-11-17T10:23:12.939617+00:00",
+      "counts": {
+        "tests": 2,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "status": "PASS",
+      "exit_code": 0,
+      "attempt_path": "evidence/SAV1-22-CASES-RESTORE/20261117T102312Z-38ef4dfd",
+      "log_path": "evidence/SAV1-22-CASES-RESTORE/20261117T102312Z-38ef4dfd/command.log",
+      "junit_path": "evidence/SAV1-22-CASES-RESTORE/20261117T102312Z-38ef4dfd/junit.xml",
+      "junit_sha256": "3f3792b158f405d590a50ca7c6f4feedb43bbfda649ec2410966435d213f243d",
+      "source_unchanged_during_run": true,
+      "log_sha256": "44e2c7afe87da9acb3c99134e51585a48bda99505b731ab14f9bae960abd7f86",
+      "result_sha256": "440b8c118eadb7a7a4780e107cda8fb9149ad874635934b3c692623a34231bfd"
+    },
+    {
+      "task": "SAV1-22-CASES-ONCE",
+      "git_commit": "b226de3d2e524273a117ed161496f869d9617dd5",
+      "source_sha256": "f2e0ac15bcbf2dbbae4d0bc415f0608a910306df245a14c351824addb9b15260",
+      "finished_source_sha256": "f2e0ac15bcbf2dbbae4d0bc415f0608a910306df245a14c351824addb9b15260",
+      "started_at": "2026-11-17T10:30:41.641467+00:00",
+      "counts": {
+        "tests": 1,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "status": "PASS",
+      "exit_code": 0,
+      "attempt_path": "evidence/SAV1-22-CASES-ONCE/20261117T103041Z-fcf5147b",
+      "log_path": "evidence/SAV1-22-CASES-ONCE/20261117T103041Z-fcf5147b/command.log",
+      "junit_path": "evidence/SAV1-22-CASES-ONCE/20261117T103041Z-fcf5147b/junit.xml",
+      "junit_sha256": "8442b75d58e8c24a3a6f4d48a8c8481710d192aadf3db3c3f73fc7a97f8dc10b",
+      "source_unchanged_during_run": true,
+      "log_sha256": "584587352e1be6ad006c67060fb7d12d835f20af24d6de062fdf711401dd64a2",
+      "result_sha256": "7cc8f15c8603668292994b4483cf275dd9e9a677817b87e9d3920786f402921b"
+    },
+    {
+      "task": "SAV1-22-LIVE-INTAKE-REPAIR",
+      "git_commit": "b226de3d2e524273a117ed161496f869d9617dd5",
+      "source_sha256": "1f1f62e4ce4eef6d49ccf2c7b6996a01ccb33d782aaa115a2704af5296a1ad4a",
+      "finished_source_sha256": "1f1f62e4ce4eef6d49ccf2c7b6996a01ccb33d782aaa115a2704af5296a1ad4a",
+      "started_at": "2026-11-17T10:56:42.306528+00:00",
+      "counts": {
+        "tests": 8,
+        "failures": 1,
+        "errors": 0,
+        "skipped": 0
+      },
+      "status": "FAIL",
+      "exit_code": 1,
+      "attempt_path": "evidence/SAV1-22-LIVE-INTAKE-REPAIR/20261117T105642Z-433a30b2",
+      "log_path": "evidence/SAV1-22-LIVE-INTAKE-REPAIR/20261117T105642Z-433a30b2/command.log",
+      "junit_path": "evidence/SAV1-22-LIVE-INTAKE-REPAIR/20261117T105642Z-433a30b2/junit.xml",
+      "junit_sha256": "d3a411d190f4112900a9f7cca3fba05a5ee5c7c808e508f187dabf7334086a63",
+      "source_unchanged_during_run": true,
+      "log_sha256": "642f248012b98a1ad7a2567f5f6c29e78036169a42c2630c07641e76f5615d34",
+      "result_sha256": "27e965cb65ccc2d2db8f755e9b7089990ac3b5e6799c60d302d01b35ae4fcde3"
+    },
+    {
+      "task": "SAV1-22-LIVE-INTAKE-REPAIR-R1",
+      "git_commit": "120ef877336484521259699b88fea59e8b937976",
+      "source_sha256": "20d18ad10ecbdb356a420f2f5a652f0f0dd3bab34c29d5d774e618caa2a03dbe",
+      "finished_source_sha256": "20d18ad10ecbdb356a420f2f5a652f0f0dd3bab34c29d5d774e618caa2a03dbe",
+      "started_at": "2026-11-17T10:58:10.311541+00:00",
+      "counts": {
+        "tests": 1,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "status": "PASS",
+      "exit_code": 0,
+      "attempt_path": "evidence/SAV1-22-LIVE-INTAKE-REPAIR-R1/20261117T105810Z-c7c43158",
+      "log_path": "evidence/SAV1-22-LIVE-INTAKE-REPAIR-R1/20261117T105810Z-c7c43158/command.log",
+      "junit_path": "evidence/SAV1-22-LIVE-INTAKE-REPAIR-R1/20261117T105810Z-c7c43158/junit.xml",
+      "junit_sha256": "8b3d56503f389412a55de5399246430028e2d11453684fe9c285dc27bef6fc9c",
+      "source_unchanged_during_run": true,
+      "log_sha256": "eeff93920835c89106e7d332acaa6766c6084886159d3c720b055965f1bf9369",
+      "result_sha256": "787e08268a7ca35b40c9f8dbcf374cbedd25f00865ad9f212802e38ae9446013"
+    },
+    {
+      "task": "SAV1-22-WORKER-SCOPE-REPAIR",
+      "git_commit": "9c47c39e19a13a68f06fa2ef0329227fa90cce36",
+      "source_sha256": "73beaa805c3f3309db34b66be75691a56c4101d1afd1c6392fd17c904fe2e311",
+      "finished_source_sha256": "73beaa805c3f3309db34b66be75691a56c4101d1afd1c6392fd17c904fe2e311",
+      "started_at": "2026-11-17T11:09:42.553999+00:00",
+      "counts": {
+        "tests": 3,
+        "failures": 1,
+        "errors": 0,
+        "skipped": 0
+      },
+      "status": "FAIL",
+      "exit_code": 1,
+      "attempt_path": "evidence/SAV1-22-WORKER-SCOPE-REPAIR/20261117T110942Z-67b420a4",
+      "log_path": "evidence/SAV1-22-WORKER-SCOPE-REPAIR/20261117T110942Z-67b420a4/command.log",
+      "junit_path": "evidence/SAV1-22-WORKER-SCOPE-REPAIR/20261117T110942Z-67b420a4/junit.xml",
+      "junit_sha256": "edd75af4cb1c38806c9d5804abb71d5844541371b54281ba4f6c8c2c19399e9f",
+      "source_unchanged_during_run": true,
+      "log_sha256": "58ec16a9cae52c448f3417f00d2a99e9f9aa98f6ceca6e0f24754a57daec7aaf",
+      "result_sha256": "4e272a2bbedc42001af1d6d6c89bc4b6e642e069774722d07b1205b09aabf832"
+    },
+    {
+      "task": "SAV1-22-WORKER-SCOPE-REPAIR-R1",
+      "git_commit": "a099eb53c43ae9135e81809bb946bf00f1794669",
+      "source_sha256": "8c50bc9a9d0513816677d71c7c3969ecba95d8218cde3f569540a94a3041455d",
+      "finished_source_sha256": "8c50bc9a9d0513816677d71c7c3969ecba95d8218cde3f569540a94a3041455d",
+      "started_at": "2026-11-17T11:12:47.416647+00:00",
+      "counts": {
+        "tests": 1,
+        "failures": 1,
+        "errors": 0,
+        "skipped": 0
+      },
+      "status": "FAIL",
+      "exit_code": 1,
+      "attempt_path": "evidence/SAV1-22-WORKER-SCOPE-REPAIR-R1/20261117T111247Z-e1b3f503",
+      "log_path": "evidence/SAV1-22-WORKER-SCOPE-REPAIR-R1/20261117T111247Z-e1b3f503/command.log",
+      "junit_path": "evidence/SAV1-22-WORKER-SCOPE-REPAIR-R1/20261117T111247Z-e1b3f503/junit.xml",
+      "junit_sha256": "a59c4350a4a11771e65ea1c1eebd472eddf09a16ba9bac439d1c369f4547db74",
+      "source_unchanged_during_run": true,
+      "log_sha256": "f7f8122ad9445e3e37f6a3ce6f795b4d518aa925754ff2acaceb7b84ab127508",
+      "result_sha256": "d926467e356f7e8e2295b24a0887c1d6f83d0110c3a4a13fe20eb8bfddeb8b69"
+    },
+    {
+      "task": "SAV1-22-WORKER-SCOPE-REPAIR-R1",
+      "git_commit": "5b20eae23813444b3e000e86ebc1cb2eb0a79862",
+      "source_sha256": "eae76a5257a8cd4e1f4210ea8a9e11bede9e3b5df638ac229c4e736722dce9c0",
+      "finished_source_sha256": "eae76a5257a8cd4e1f4210ea8a9e11bede9e3b5df638ac229c4e736722dce9c0",
+      "started_at": "2026-11-17T11:15:13.212849+00:00",
+      "counts": {
+        "tests": 1,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "status": "PASS",
+      "exit_code": 0,
+      "attempt_path": "evidence/SAV1-22-WORKER-SCOPE-REPAIR-R1/20261117T111513Z-4290a802",
+      "log_path": "evidence/SAV1-22-WORKER-SCOPE-REPAIR-R1/20261117T111513Z-4290a802/command.log",
+      "junit_path": "evidence/SAV1-22-WORKER-SCOPE-REPAIR-R1/20261117T111513Z-4290a802/junit.xml",
+      "junit_sha256": "be44797fd269d5677bc216d6c852f160f47d03285d53ab26be2db3cea8c2d2a2",
+      "source_unchanged_during_run": true,
+      "log_sha256": "52c1ca25697620fed1e914d0f87ab67b0c8e72dcc89e801934f686dcf5b44114",
+      "result_sha256": "79f39a6430e57457953bf9c5e0397858681033d80c0bace0e5363e55598cfaf5"
+    },
+    {
+      "task": "SAV1-22-REVIEWED-CASE-RETRY",
+      "git_commit": "63c8915c301191fac96290ddbca53d0d32617720",
+      "source_sha256": "247e3c7bea49eab5c5a0579da9b240feb927f92dba400cc469a551c26390e43a",
+      "finished_source_sha256": "247e3c7bea49eab5c5a0579da9b240feb927f92dba400cc469a551c26390e43a",
+      "started_at": "2026-11-17T11:19:19.234283+00:00",
+      "counts": {
+        "tests": 2,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "status": "PASS",
+      "exit_code": 0,
+      "attempt_path": "evidence/SAV1-22-REVIEWED-CASE-RETRY/20261117T111919Z-2b54156a",
+      "log_path": "evidence/SAV1-22-REVIEWED-CASE-RETRY/20261117T111919Z-2b54156a/command.log",
+      "junit_path": "evidence/SAV1-22-REVIEWED-CASE-RETRY/20261117T111919Z-2b54156a/junit.xml",
+      "junit_sha256": "a0a5b82f16eeed8ed16a584aed3917048083436be69b0c0b93b96b3ce926b95f",
+      "source_unchanged_during_run": true,
+      "log_sha256": "46363e840783b1f01fe98f5178563ba26244c4c750f50c507994c3865b3e8c7a",
+      "result_sha256": "46d6646fc3f074422f75890ac3b4aaee40c50d89eedac29610d21662e470ed78"
+    },
+    {
+      "task": "SAV1-22-CASE-PUNCTUATION",
+      "git_commit": "97410f3b192f18a0ae95de57bfafd3f9d5554091",
+      "source_sha256": "4ed2a1ca562ed07456e2df30175b79a57ba63275346363f8aceb65fdfb05ebda",
+      "finished_source_sha256": "4ed2a1ca562ed07456e2df30175b79a57ba63275346363f8aceb65fdfb05ebda",
+      "started_at": "2026-11-17T11:33:08.496755+00:00",
+      "counts": {
+        "tests": 1,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "status": "PASS",
+      "exit_code": 0,
+      "attempt_path": "evidence/SAV1-22-CASE-PUNCTUATION/20261117T113308Z-b15fa1a0",
+      "log_path": "evidence/SAV1-22-CASE-PUNCTUATION/20261117T113308Z-b15fa1a0/command.log",
+      "junit_path": "evidence/SAV1-22-CASE-PUNCTUATION/20261117T113308Z-b15fa1a0/junit.xml",
+      "junit_sha256": "2fefb372f69faa50e123ca6b760dfde9d1a0a2352bd044ce0487f992e02a5010",
+      "source_unchanged_during_run": true,
+      "log_sha256": "6540cc8cc5067bbe237646457cca9d1e04571bf1bee4340e6af53889a808fc20",
+      "result_sha256": "d937cda2defabf23c52df6e66bc7f35633c5a1fc0b5d3cdbcaff22a3e797b39f"
+    },
+    {
+      "task": "SAV1-22-THINKING-MAX",
+      "git_commit": "3c18581d1dcfa6847d91b6cb77e9ec489de105fa",
+      "source_sha256": "f44031a4d67bfc8f4728e9c247ce106957291b3129abb3ed800bb2387ff72a5c",
+      "finished_source_sha256": "f44031a4d67bfc8f4728e9c247ce106957291b3129abb3ed800bb2387ff72a5c",
+      "started_at": "2026-11-17T11:40:38.804648+00:00",
+      "counts": {
+        "tests": 4,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "status": "PASS",
+      "exit_code": 0,
+      "attempt_path": "evidence/SAV1-22-THINKING-MAX/20261117T114038Z-5770d529",
+      "log_path": "evidence/SAV1-22-THINKING-MAX/20261117T114038Z-5770d529/command.log",
+      "junit_path": "evidence/SAV1-22-THINKING-MAX/20261117T114038Z-5770d529/junit.xml",
+      "junit_sha256": "c5341797ad6cb289f668eb30e7ca4cae51ad81551078b1202740e97916f08003",
+      "source_unchanged_during_run": true,
+      "log_sha256": "49c08b99085eb36ddea0dff2ff89023fea8e220130a2ee977b10b38b858df910",
+      "result_sha256": "e90b333f20fa8486d5326ccb76e17f739d8b850fec7bc309216f973d7b70d74a"
+    },
+    {
+      "task": "SAV1-22-UNSTARTED-CASE-RETRY",
+      "git_commit": "4b8e056c11b841820fed2d43f7fc8e8a93e2bbaf",
+      "source_sha256": "bcd969a2b712dfecf3fadfe8e8982b2f0a8a0520e1b68dd278a0e0d1e593045f",
+      "finished_source_sha256": "bcd969a2b712dfecf3fadfe8e8982b2f0a8a0520e1b68dd278a0e0d1e593045f",
+      "started_at": "2026-11-17T12:07:53.937718+00:00",
+      "counts": {
+        "tests": 2,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "status": "PASS",
+      "exit_code": 0,
+      "attempt_path": "evidence/SAV1-22-UNSTARTED-CASE-RETRY/20261117T120753Z-6cde297e",
+      "log_path": "evidence/SAV1-22-UNSTARTED-CASE-RETRY/20261117T120753Z-6cde297e/command.log",
+      "junit_path": "evidence/SAV1-22-UNSTARTED-CASE-RETRY/20261117T120753Z-6cde297e/junit.xml",
+      "junit_sha256": "cbc83034a20f527e97b00c3585656960e99269b2ef71eb50caee5be64242eea2",
+      "source_unchanged_during_run": true,
+      "log_sha256": "80de5c82fe7a380a022ff155d69fa4d07802cf2125461fda67e15462e99e5269",
+      "result_sha256": "a7ebb77befdd13598cd090a209a59eae8c61518dfca12c511bf70add3738c945"
+    },
+    {
+      "task": "SAV1-22-LIVE-CONTEXT-REPAIR",
+      "git_commit": "f07a49d1e06940f94a88c73611f5a8eb0389c796",
+      "source_sha256": "fc0300fc00e30d7666802c92ef65e88ef1c740188ac0f080f15c602432dd12c2",
+      "finished_source_sha256": "fc0300fc00e30d7666802c92ef65e88ef1c740188ac0f080f15c602432dd12c2",
+      "started_at": "2026-11-17T12:25:39.920778+00:00",
+      "counts": {
+        "tests": 2,
+        "failures": 2,
+        "errors": 0,
+        "skipped": 0
+      },
+      "status": "FAIL",
+      "exit_code": 1,
+      "attempt_path": "evidence/SAV1-22-LIVE-CONTEXT-REPAIR/20261117T122539Z-19c165fc",
+      "log_path": "evidence/SAV1-22-LIVE-CONTEXT-REPAIR/20261117T122539Z-19c165fc/command.log",
+      "junit_path": "evidence/SAV1-22-LIVE-CONTEXT-REPAIR/20261117T122539Z-19c165fc/junit.xml",
+      "junit_sha256": "cf3c20a2ae87fd11c0fe3fbbc710e797fa8eae15ec95648e8bbd897ea6eb3c6d",
+      "source_unchanged_during_run": true,
+      "log_sha256": "b6cd6bd29afc51671aee91c7eb7c0c1ae7c610f72738a87c87e7031df2dcf431",
+      "result_sha256": "31251c450f2437ba9e7175ae730afc08fd5f69e92ca2fbfdad8ac18c9d715b20"
+    },
+    {
+      "task": "SAV1-22-LIVE-CONTEXT-REPAIR",
+      "git_commit": "80437b1ca8a0c4d25257caee8234d9ef0965dd21",
+      "source_sha256": "ecd0d0b9417df1929cc5980e891c086ca7c3b038b9793c520f04a8c06854e85f",
+      "finished_source_sha256": "ecd0d0b9417df1929cc5980e891c086ca7c3b038b9793c520f04a8c06854e85f",
+      "started_at": "2026-11-17T12:27:08.698254+00:00",
+      "counts": {
+        "tests": 2,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "status": "PASS",
+      "exit_code": 0,
+      "attempt_path": "evidence/SAV1-22-LIVE-CONTEXT-REPAIR/20261117T122708Z-52b4a423",
+      "log_path": "evidence/SAV1-22-LIVE-CONTEXT-REPAIR/20261117T122708Z-52b4a423/command.log",
+      "junit_path": "evidence/SAV1-22-LIVE-CONTEXT-REPAIR/20261117T122708Z-52b4a423/junit.xml",
+      "junit_sha256": "f795ca51c3b712bd597a06dc23105a450f6fcd24911c5e080926fb2f76921034",
+      "source_unchanged_during_run": true,
+      "log_sha256": "a018a5a963c5e76309e432a45cb695b5d55d6721955c0a0a953501577f158ff5",
+      "result_sha256": "3e1b7e2ff6dce2072adeed11bd81161c0473b53626e3b153d58388c8e6427acd"
+    },
+    {
+      "task": "SAV1-22-TOOL-INVENTORY",
+      "git_commit": "a71d2f79ff62f76732aef14418d19df79922350f",
+      "source_sha256": "7f3c6584e92615c12e4f442c28b6ed99668bc76393fda0ccaf4aa58451aba4c7",
+      "finished_source_sha256": "7f3c6584e92615c12e4f442c28b6ed99668bc76393fda0ccaf4aa58451aba4c7",
+      "started_at": "2026-11-17T12:41:43.122833+00:00",
+      "counts": {
+        "tests": 1,
+        "failures": 1,
+        "errors": 0,
+        "skipped": 0
+      },
+      "status": "FAIL",
+      "exit_code": 1,
+      "attempt_path": "evidence/SAV1-22-TOOL-INVENTORY/20261117T124143Z-b92559ef",
+      "log_path": "evidence/SAV1-22-TOOL-INVENTORY/20261117T124143Z-b92559ef/command.log",
+      "junit_path": "evidence/SAV1-22-TOOL-INVENTORY/20261117T124143Z-b92559ef/junit.xml",
+      "junit_sha256": "e7fed75b54ac314a6993cd38e65f7309f3d5f2ac86b2e0fd433248f782757122",
+      "source_unchanged_during_run": true,
+      "log_sha256": "26d4977503f780411de6f96a359a07f403ff2f8869d48fc7fd560bd9f4f3e957",
+      "result_sha256": "5de6fefa6ebd6e09970169698e75569ebaaa7998d5cccfa6dae5dfb04925a7a4"
+    },
+    {
+      "task": "SAV1-22-TOOL-INVENTORY",
+      "git_commit": "2ba2d5fff83365f6e30d4fab937f47aeea37b16f",
+      "source_sha256": "8f781a6518db69ea2ac4d7db431c5a5a8961c1998caf80b62979b748b4a6cd7f",
+      "finished_source_sha256": "8f781a6518db69ea2ac4d7db431c5a5a8961c1998caf80b62979b748b4a6cd7f",
+      "started_at": "2026-11-17T12:43:41.434798+00:00",
+      "counts": {
+        "tests": 1,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "status": "PASS",
+      "exit_code": 0,
+      "attempt_path": "evidence/SAV1-22-TOOL-INVENTORY/20261117T124341Z-ded5327d",
+      "log_path": "evidence/SAV1-22-TOOL-INVENTORY/20261117T124341Z-ded5327d/command.log",
+      "junit_path": "evidence/SAV1-22-TOOL-INVENTORY/20261117T124341Z-ded5327d/junit.xml",
+      "junit_sha256": "e30edf3193d7f39e0e416906f2b863fe7bc15c50e469911076747c60eb94e2bc",
+      "source_unchanged_during_run": true,
+      "log_sha256": "c1c5bc3a7544dcbf3e1b44c88e61d2cd8cdb1f22699aa17cf73e9fc4c8a00afe",
+      "result_sha256": "cd3f32db6c9f9aba4e7c6916e6afab0caee3726fae46848080377073170f2407"
+    },
+    {
+      "task": "SAV1-22-TEST-CWD-DEFAULT",
+      "git_commit": "c7fb79021ae4ecd7880d0b70560c0d9f284a851b",
+      "source_sha256": "a959332d39255b4ab5537272694e87feb5e801ca4455e2f431b711b1a264fc99",
+      "finished_source_sha256": "a959332d39255b4ab5537272694e87feb5e801ca4455e2f431b711b1a264fc99",
+      "started_at": "2026-11-17T12:52:12.098463+00:00",
+      "counts": {
+        "tests": 2,
+        "failures": 2,
+        "errors": 0,
+        "skipped": 0
+      },
+      "status": "FAIL",
+      "exit_code": 1,
+      "attempt_path": "evidence/SAV1-22-TEST-CWD-DEFAULT/20261117T125212Z-c8fd316a",
+      "log_path": "evidence/SAV1-22-TEST-CWD-DEFAULT/20261117T125212Z-c8fd316a/command.log",
+      "junit_path": "evidence/SAV1-22-TEST-CWD-DEFAULT/20261117T125212Z-c8fd316a/junit.xml",
+      "junit_sha256": "2567216e8d22dce52d5ac78192b194e96648357216dda8b96b322471ae262ad1",
+      "source_unchanged_during_run": true,
+      "log_sha256": "05b2d9cbcf6f71fe8309c64b13633786ccfe79e56c48549f7d6c7c4841cc4bf5",
+      "result_sha256": "eedf7076514b628e44015d1e628c344f4f92a136d84bd38d3e7eaab89a139354"
+    },
+    {
+      "task": "SAV1-22-TEST-CWD-DEFAULT",
+      "git_commit": "7b3ec5c6ea606c84699e01c31059961e720708e9",
+      "source_sha256": "945111eda2b1dedcdfcf3117fdf8fdc427fb59ea5e69dfd1e72f230366d7ff17",
+      "finished_source_sha256": "945111eda2b1dedcdfcf3117fdf8fdc427fb59ea5e69dfd1e72f230366d7ff17",
+      "started_at": "2026-11-17T12:54:30.606281+00:00",
+      "counts": {
+        "tests": 2,
+        "failures": 2,
+        "errors": 0,
+        "skipped": 0
+      },
+      "status": "FAIL",
+      "exit_code": 1,
+      "attempt_path": "evidence/SAV1-22-TEST-CWD-DEFAULT/20261117T125430Z-80f09e01",
+      "log_path": "evidence/SAV1-22-TEST-CWD-DEFAULT/20261117T125430Z-80f09e01/command.log",
+      "junit_path": "evidence/SAV1-22-TEST-CWD-DEFAULT/20261117T125430Z-80f09e01/junit.xml",
+      "junit_sha256": "0ad410a7b75f7d59f16434e0005a4171cddd1fd23b21c6791238b16731013a32",
+      "source_unchanged_during_run": true,
+      "log_sha256": "0909e26469f9f39d2f6a8a7d1bff99316240dbc1c7146d14fad3fe8d1185974e",
+      "result_sha256": "03f1c5caebfac8f0182be17131dd7968ce4b5ef5917f45cdf7c8902d22fb6fc2"
+    },
+    {
+      "task": "SAV1-22-TEST-CWD-DEFAULT",
+      "git_commit": "4385c5682bbe30102d6745f62d7cbd075023bfb2",
+      "source_sha256": "65ece2e14526a68885e32e0b9bf727871c2bbdd40c0616456a97ed292b1fc162",
+      "finished_source_sha256": "65ece2e14526a68885e32e0b9bf727871c2bbdd40c0616456a97ed292b1fc162",
+      "started_at": "2026-11-17T12:57:33.995767+00:00",
+      "counts": {
+        "tests": 2,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "status": "PASS",
+      "exit_code": 0,
+      "attempt_path": "evidence/SAV1-22-TEST-CWD-DEFAULT/20261117T125733Z-d7be584a",
+      "log_path": "evidence/SAV1-22-TEST-CWD-DEFAULT/20261117T125733Z-d7be584a/command.log",
+      "junit_path": "evidence/SAV1-22-TEST-CWD-DEFAULT/20261117T125733Z-d7be584a/junit.xml",
+      "junit_sha256": "2891ca727ed7d2dd158a9355735a69f40618707cda3ddc4e02f900fbfd4cc541",
+      "source_unchanged_during_run": true,
+      "log_sha256": "8e499f219699d61cc69ed7ea284923c4f38835b9788ba4ffea19fe439ca41d2b",
+      "result_sha256": "356b2fad6f51482072a4a15acf182750de0b8c0c29d7234ed663391b718663f8"
+    },
+    {
+      "task": "SAV1-22-TOKEN-RECEIPTS",
+      "git_commit": "d0b0bf1a7ef541e0ec642836b28ee4aa3344c7a0",
+      "source_sha256": "7c7da2c5ec79bad79ba67c50432547d02761166f3288846629137db6d9ded403",
+      "finished_source_sha256": "7c7da2c5ec79bad79ba67c50432547d02761166f3288846629137db6d9ded403",
+      "started_at": "2026-11-17T13:15:35.457060+00:00",
+      "counts": {
+        "tests": 2,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "status": "PASS",
+      "exit_code": 0,
+      "attempt_path": "evidence/SAV1-22-TOKEN-RECEIPTS/20261117T131535Z-16fbceea",
+      "log_path": "evidence/SAV1-22-TOKEN-RECEIPTS/20261117T131535Z-16fbceea/command.log",
+      "junit_path": "evidence/SAV1-22-TOKEN-RECEIPTS/20261117T131535Z-16fbceea/junit.xml",
+      "junit_sha256": "61c17367303581734130a3021f88cc76f0f116680895c7de6016cef96cad2c9b",
+      "source_unchanged_during_run": true,
+      "log_sha256": "0137cc0cd7bdd5d8cb02c1b1af1e72fd76d24624666a94789511a84a94b0e786",
+      "result_sha256": "93ec88f1b7061093b42e393e332a04911e25cb39d3f8fb02bb0d44ab90806b54"
+    },
+    {
+      "task": "SAV1-22-SANDBOX-IO-RECOVERY",
+      "git_commit": "f14801b4152211dd6fe195820e44ac85a6283013",
+      "source_sha256": "1c34961c6a5ec092cf42df319cd1cca2b266494893c5ec5d947b2d1d62e9e33e",
+      "finished_source_sha256": "1c34961c6a5ec092cf42df319cd1cca2b266494893c5ec5d947b2d1d62e9e33e",
+      "started_at": "2026-11-17T13:43:06.278366+00:00",
+      "counts": {
+        "tests": 2,
+        "failures": 1,
+        "errors": 0,
+        "skipped": 0
+      },
+      "status": "FAIL",
+      "exit_code": 1,
+      "attempt_path": "evidence/SAV1-22-SANDBOX-IO-RECOVERY/20261117T134306Z-f38a4e1c",
+      "log_path": "evidence/SAV1-22-SANDBOX-IO-RECOVERY/20261117T134306Z-f38a4e1c/command.log",
+      "junit_path": "evidence/SAV1-22-SANDBOX-IO-RECOVERY/20261117T134306Z-f38a4e1c/junit.xml",
+      "junit_sha256": "1fa9a68730e1efec61a99130bdea50ff258ce05650b513684072838a735df5be",
+      "source_unchanged_during_run": true,
+      "log_sha256": "53d861b38c3ce53cf66f2a19e6b34a9bd69335110c09bb5dc68c3ac0ff465d21",
+      "result_sha256": "48b6479d20b24b259cfa97c10d5660bee28e9f984b649b2e6c080aae8af34f65"
+    },
+    {
+      "task": "SAV1-22-SANDBOX-IO-RECOVERY-R1",
+      "git_commit": "5dde31d1b6a0030c1280c48c90eb366586993c01",
+      "source_sha256": "14875152dcad9673ee533dfce673355b20d1e07c46b407de592c89e454ce3f0e",
+      "finished_source_sha256": "14875152dcad9673ee533dfce673355b20d1e07c46b407de592c89e454ce3f0e",
+      "started_at": "2026-11-17T13:51:49.101949+00:00",
+      "counts": {
+        "tests": 1,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "status": "PASS",
+      "exit_code": 0,
+      "attempt_path": "evidence/SAV1-22-SANDBOX-IO-RECOVERY-R1/20261117T135149Z-aee5e67a",
+      "log_path": "evidence/SAV1-22-SANDBOX-IO-RECOVERY-R1/20261117T135149Z-aee5e67a/command.log",
+      "junit_path": "evidence/SAV1-22-SANDBOX-IO-RECOVERY-R1/20261117T135149Z-aee5e67a/junit.xml",
+      "junit_sha256": "93ec828715875c5a05b6ed964bbc66ba240e0b19ea0a9e649769449733f988aa",
+      "source_unchanged_during_run": true,
+      "log_sha256": "765251fed14c3ba749d14d3f18df99e7594665de6d046621ee6f02991f51c1cc",
+      "result_sha256": "6cb9bfc3410577ef54e742f5f5a7df6c2e4341118da3c2adb8d852faac091c27"
+    },
+    {
+      "task": "SAV1-22-AWAIT-INDEPENDENT",
+      "git_commit": "be7998e1dde850d1285bef73105cd53019d2e847",
+      "source_sha256": "52abc5f584fcd1ea2cd0a7267b8acdaae67d100168b9a0ded144d353927088c2",
+      "finished_source_sha256": "52abc5f584fcd1ea2cd0a7267b8acdaae67d100168b9a0ded144d353927088c2",
+      "started_at": "2026-11-17T14:19:50.977235+00:00",
+      "counts": {
+        "tests": 2,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "status": "PASS",
+      "exit_code": 0,
+      "attempt_path": "evidence/SAV1-22-AWAIT-INDEPENDENT/20261117T141950Z-995aabcb",
+      "log_path": "evidence/SAV1-22-AWAIT-INDEPENDENT/20261117T141950Z-995aabcb/command.log",
+      "junit_path": "evidence/SAV1-22-AWAIT-INDEPENDENT/20261117T141950Z-995aabcb/junit.xml",
+      "junit_sha256": "b00e816deffe5ba40e9e62a1a90db04dcce2d8d2df86fd3a3242f1df5d6ed165",
+      "source_unchanged_during_run": true,
+      "log_sha256": "43f29145c913b61d302568c58f7bb13e1828f35bc93b377631414d44ac0bb3c5",
+      "result_sha256": "0d2477b587dce5a0e8e2637cd3b36832cb3ceaf9c5a83ad4e0e4393c73df4a50"
+    },
+    {
+      "task": "SAV1-22-AWAIT-INDEPENDENT",
+      "git_commit": "5d7785d01588a070b8ab04d56a4e041bb3bd7644",
+      "source_sha256": "d9070cdf6e53278ec7b81f0ac6079689096840f64d6f9eb02f0808ebc213d08f",
+      "finished_source_sha256": "d9070cdf6e53278ec7b81f0ac6079689096840f64d6f9eb02f0808ebc213d08f",
+      "started_at": "2026-11-17T14:15:16.296316+00:00",
+      "counts": {
+        "tests": 2,
+        "failures": 2,
+        "errors": 0,
+        "skipped": 0
+      },
+      "status": "FAIL",
+      "exit_code": 1,
+      "attempt_path": "evidence/SAV1-22-AWAIT-INDEPENDENT/20261117T141516Z-41272427",
+      "log_path": "evidence/SAV1-22-AWAIT-INDEPENDENT/20261117T141516Z-41272427/command.log",
+      "junit_path": "evidence/SAV1-22-AWAIT-INDEPENDENT/20261117T141516Z-41272427/junit.xml",
+      "junit_sha256": "8c84fce85fdba65c335ec4d0f48634a43580f3d397af57361622ac87b4386cb0",
+      "source_unchanged_during_run": true,
+      "log_sha256": "3ee456fe1d0f8c7a9944f44a0649f5a2faa20e4c4f3360fa2d07217073fcc933",
+      "result_sha256": "751f1912811648bc48f60479686682e740da93b6a8d9ac1b21350d18379405be"
+    },
+    {
+      "task": "SAV1-22-AWAIT-INDEPENDENT",
+      "git_commit": "e696f095b166fab4c86ae36d69190954d00e2051",
+      "source_sha256": "52cf03bec41a1b4261d21ccca7fa117b5ffe8581a93fda8c1ec045f96014743c",
+      "finished_source_sha256": "52cf03bec41a1b4261d21ccca7fa117b5ffe8581a93fda8c1ec045f96014743c",
+      "started_at": "2026-11-17T14:18:15.247307+00:00",
+      "counts": {
+        "tests": 2,
+        "failures": 2,
+        "errors": 0,
+        "skipped": 0
+      },
+      "status": "FAIL",
+      "exit_code": 1,
+      "attempt_path": "evidence/SAV1-22-AWAIT-INDEPENDENT/20261117T141815Z-09d33963",
+      "log_path": "evidence/SAV1-22-AWAIT-INDEPENDENT/20261117T141815Z-09d33963/command.log",
+      "junit_path": "evidence/SAV1-22-AWAIT-INDEPENDENT/20261117T141815Z-09d33963/junit.xml",
+      "junit_sha256": "d86b481ae2585b7b23dd922210234f35caaa00aa3efbc7f895e10cf9065a3f3d",
+      "source_unchanged_during_run": true,
+      "log_sha256": "6bf0f56ef4dfc37dfbb65807ffdfbad15f795856a3f8ded500d3f9f7d3456fed",
+      "result_sha256": "3681725bb0d1ca0e6cb562bc53d74ef693ddaada40fd3e4c48cb7d8a28d93b81"
+    }
+  ],
+  "unique_versioned_pass_count": 53,
+  "passed_targets": {
+    "tests.test_sa22_fault_experiments::test_f12_actual_enospc_keeps_cas_atomic_and_restored_unknown_on_hold": {
+      "git_commit": "8dd01786d725e0c1523414540c02f6a255cfe5a7",
+      "source_sha256": "935633c3311cb29d0fd3d5a409713e622900c09c429ba28b19b08b52d5e3afdf",
+      "evidence": "evidence/SAV1-22-FAULTS/20261117T092542Z-c6dc2067"
+    },
+    "tests.test_sa22_fault_experiments::test_f02_cache_loss_and_restart_preserve_committed_source_task_and_cursors": {
+      "git_commit": "8dd01786d725e0c1523414540c02f6a255cfe5a7",
+      "source_sha256": "935633c3311cb29d0fd3d5a409713e622900c09c429ba28b19b08b52d5e3afdf",
+      "evidence": "evidence/SAV1-22-FAULTS/20261117T092542Z-c6dc2067"
+    },
+    "tests.test_sa22_budget_ceiling::test_explicit_supported_integer_ceiling[2000000]": {
+      "git_commit": "21aa61a9f3de940f607f9302d30b62a455f8d930",
+      "source_sha256": "8a5e48e8f42d1c380e8ce75c97cd8fb28381f1e3b12c7707ceb48a96f5aa1cd9",
+      "evidence": "evidence/SAV1-22-BUDGET10-PREP/20261117T094010Z-7848eff4"
+    },
+    "tests.test_sa22_budget_ceiling::test_explicit_supported_integer_ceiling[10000000]": {
+      "git_commit": "21aa61a9f3de940f607f9302d30b62a455f8d930",
+      "source_sha256": "8a5e48e8f42d1c380e8ce75c97cd8fb28381f1e3b12c7707ceb48a96f5aa1cd9",
+      "evidence": "evidence/SAV1-22-BUDGET10-PREP/20261117T094010Z-7848eff4"
+    },
+    "tests.test_sa22_budget_ceiling::test_noninteger_or_unsupported_ceiling_cannot_create_authority[True]": {
+      "git_commit": "21aa61a9f3de940f607f9302d30b62a455f8d930",
+      "source_sha256": "8a5e48e8f42d1c380e8ce75c97cd8fb28381f1e3b12c7707ceb48a96f5aa1cd9",
+      "evidence": "evidence/SAV1-22-BUDGET10-PREP/20261117T094010Z-7848eff4"
+    },
+    "tests.test_sa22_budget_ceiling::test_noninteger_or_unsupported_ceiling_cannot_create_authority[False]": {
+      "git_commit": "21aa61a9f3de940f607f9302d30b62a455f8d930",
+      "source_sha256": "8a5e48e8f42d1c380e8ce75c97cd8fb28381f1e3b12c7707ceb48a96f5aa1cd9",
+      "evidence": "evidence/SAV1-22-BUDGET10-PREP/20261117T094010Z-7848eff4"
+    },
+    "tests.test_sa22_budget_ceiling::test_noninteger_or_unsupported_ceiling_cannot_create_authority[10000000]": {
+      "git_commit": "21aa61a9f3de940f607f9302d30b62a455f8d930",
+      "source_sha256": "8a5e48e8f42d1c380e8ce75c97cd8fb28381f1e3b12c7707ceb48a96f5aa1cd9",
+      "evidence": "evidence/SAV1-22-BUDGET10-PREP/20261117T094010Z-7848eff4"
+    },
+    "tests.test_sa22_budget_ceiling::test_noninteger_or_unsupported_ceiling_cannot_create_authority[10000000.0]": {
+      "git_commit": "21aa61a9f3de940f607f9302d30b62a455f8d930",
+      "source_sha256": "8a5e48e8f42d1c380e8ce75c97cd8fb28381f1e3b12c7707ceb48a96f5aa1cd9",
+      "evidence": "evidence/SAV1-22-BUDGET10-PREP/20261117T094010Z-7848eff4"
+    },
+    "tests.test_sa22_budget_ceiling::test_noninteger_or_unsupported_ceiling_cannot_create_authority[-1]": {
+      "git_commit": "21aa61a9f3de940f607f9302d30b62a455f8d930",
+      "source_sha256": "8a5e48e8f42d1c380e8ce75c97cd8fb28381f1e3b12c7707ceb48a96f5aa1cd9",
+      "evidence": "evidence/SAV1-22-BUDGET10-PREP/20261117T094010Z-7848eff4"
+    },
+    "tests.test_sa22_budget_ceiling::test_noninteger_or_unsupported_ceiling_cannot_create_authority[0]": {
+      "git_commit": "21aa61a9f3de940f607f9302d30b62a455f8d930",
+      "source_sha256": "8a5e48e8f42d1c380e8ce75c97cd8fb28381f1e3b12c7707ceb48a96f5aa1cd9",
+      "evidence": "evidence/SAV1-22-BUDGET10-PREP/20261117T094010Z-7848eff4"
+    },
+    "tests.test_sa22_budget_ceiling::test_noninteger_or_unsupported_ceiling_cannot_create_authority[7500000]": {
+      "git_commit": "21aa61a9f3de940f607f9302d30b62a455f8d930",
+      "source_sha256": "8a5e48e8f42d1c380e8ce75c97cd8fb28381f1e3b12c7707ceb48a96f5aa1cd9",
+      "evidence": "evidence/SAV1-22-BUDGET10-PREP/20261117T094010Z-7848eff4"
+    },
+    "tests.test_sa22_budget_ceiling::test_noninteger_or_unsupported_ceiling_cannot_create_authority[10000001]": {
+      "git_commit": "21aa61a9f3de940f607f9302d30b62a455f8d930",
+      "source_sha256": "8a5e48e8f42d1c380e8ce75c97cd8fb28381f1e3b12c7707ceb48a96f5aa1cd9",
+      "evidence": "evidence/SAV1-22-BUDGET10-PREP/20261117T094010Z-7848eff4"
+    },
+    "tests.test_sa22_budget_ceiling::test_new_cap_and_profile_leave_original_known_or_unknown_usage_unchanged[known]": {
+      "git_commit": "21aa61a9f3de940f607f9302d30b62a455f8d930",
+      "source_sha256": "8a5e48e8f42d1c380e8ce75c97cd8fb28381f1e3b12c7707ceb48a96f5aa1cd9",
+      "evidence": "evidence/SAV1-22-BUDGET10-PREP/20261117T094010Z-7848eff4"
+    },
+    "tests.test_sa22_budget_ceiling::test_new_cap_and_profile_leave_original_known_or_unknown_usage_unchanged[unknown]": {
+      "git_commit": "21aa61a9f3de940f607f9302d30b62a455f8d930",
+      "source_sha256": "8a5e48e8f42d1c380e8ce75c97cd8fb28381f1e3b12c7707ceb48a96f5aa1cd9",
+      "evidence": "evidence/SAV1-22-BUDGET10-PREP/20261117T094010Z-7848eff4"
+    },
+    "tests.test_sa22_budget_ceiling::test_owned_pg_draft_requires_new_signed_trial_and_keeps_old_facts_immutable": {
+      "git_commit": "21aa61a9f3de940f607f9302d30b62a455f8d930",
+      "source_sha256": "8a5e48e8f42d1c380e8ce75c97cd8fb28381f1e3b12c7707ceb48a96f5aa1cd9",
+      "evidence": "evidence/SAV1-22-BUDGET10-PREP/20261117T094010Z-7848eff4"
+    },
+    "tests.test_sa22_budget_ceiling_formal::test_formal_forward_migration_matches_every_installed_checksum_and_preserves_0054": {
+      "git_commit": "666e75d7b442b7266fdafe913a7d939eec69795c",
+      "source_sha256": "b807ecdefcf647beaa161d37754f6532d591f431ff476785cd045cf25cdbb548",
+      "evidence": "evidence/SAV1-22-BUDGET10/20261117T094849Z-38700ff2"
+    },
+    "tests.test_sa22_case_profiles::test_second_profile_session_never_claims_older_first_profile_task": {
+      "git_commit": "54140565d6997be87da7ae34b842c8b0c4454508",
+      "source_sha256": "b50ae272ed623a2e35b41f0f89308f1aa119fe61129b540ee767f7356f6ddc13",
+      "evidence": "evidence/SAV1-22-CASES/20261117T101231Z-00d11da7"
+    },
+    "tests.test_sa22_case_profiles::test_two_inputs_persist_distinct_profiles_without_switching_active_driver_or_recreating": {
+      "git_commit": "54140565d6997be87da7ae34b842c8b0c4454508",
+      "source_sha256": "b50ae272ed623a2e35b41f0f89308f1aa119fe61129b540ee767f7356f6ddc13",
+      "evidence": "evidence/SAV1-22-CASES/20261117T101231Z-00d11da7"
+    },
+    "tests.test_sa22_case_profiles::test_current_source_revocation_blocks_case_admission_before_any_task_or_model": {
+      "git_commit": "54140565d6997be87da7ae34b842c8b0c4454508",
+      "source_sha256": "b50ae272ed623a2e35b41f0f89308f1aa119fe61129b540ee767f7356f6ddc13",
+      "evidence": "evidence/SAV1-22-CASES/20261117T101231Z-00d11da7"
+    },
+    "tests.test_sa22_case_profiles::test_case_restart_reuses_exact_trial_without_minting_authority[False]": {
+      "git_commit": "d49df985eff6ffc36444b93cf46590fc29404c0f",
+      "source_sha256": "371a3d1e24593c26aa964973fbe054acfdc6a78b02e064c95cd67e5c4f4659b8",
+      "evidence": "evidence/SAV1-22-CASES-RESTORE/20261117T102312Z-38ef4dfd"
+    },
+    "tests.test_sa22_case_profiles::test_case_restart_reuses_exact_trial_without_minting_authority[True]": {
+      "git_commit": "d49df985eff6ffc36444b93cf46590fc29404c0f",
+      "source_sha256": "371a3d1e24593c26aa964973fbe054acfdc6a78b02e064c95cd67e5c4f4659b8",
+      "evidence": "evidence/SAV1-22-CASES-RESTORE/20261117T102312Z-38ef4dfd"
+    },
+    "tests.test_sa22_case_profiles::test_second_physical_message_cannot_repeat_the_same_frozen_case": {
+      "git_commit": "b226de3d2e524273a117ed161496f869d9617dd5",
+      "source_sha256": "f2e0ac15bcbf2dbbae4d0bc415f0608a910306df245a14c351824addb9b15260",
+      "evidence": "evidence/SAV1-22-CASES-ONCE/20261117T103041Z-fcf5147b"
+    },
+    "tests.test_sa22_live_intake_repair::test_unreplayable_gap_only_allows_fresh_explicit_request_on_current_authenticated_socket[fresh_socket]": {
+      "git_commit": "b226de3d2e524273a117ed161496f869d9617dd5",
+      "source_sha256": "1f1f62e4ce4eef6d49ccf2c7b6996a01ccb33d782aaa115a2704af5296a1ad4a",
+      "evidence": "evidence/SAV1-22-LIVE-INTAKE-REPAIR/20261117T105642Z-433a30b2"
+    },
+    "tests.test_sa22_live_intake_repair::test_unreplayable_gap_only_allows_fresh_explicit_request_on_current_authenticated_socket[webhook]": {
+      "git_commit": "b226de3d2e524273a117ed161496f869d9617dd5",
+      "source_sha256": "1f1f62e4ce4eef6d49ccf2c7b6996a01ccb33d782aaa115a2704af5296a1ad4a",
+      "evidence": "evidence/SAV1-22-LIVE-INTAKE-REPAIR/20261117T105642Z-433a30b2"
+    },
+    "tests.test_sa22_live_intake_repair::test_unreplayable_gap_only_allows_fresh_explicit_request_on_current_authenticated_socket[shadow_socket]": {
+      "git_commit": "b226de3d2e524273a117ed161496f869d9617dd5",
+      "source_sha256": "1f1f62e4ce4eef6d49ccf2c7b6996a01ccb33d782aaa115a2704af5296a1ad4a",
+      "evidence": "evidence/SAV1-22-LIVE-INTAKE-REPAIR/20261117T105642Z-433a30b2"
+    },
+    "tests.test_sa22_live_intake_repair::test_native_rich_text_chinese_span_spaces_keep_exact_case_identity[\\u4fdd\\u7559\\u6b63 \\u5e38\\u3001\\u96f6\\u3001\\u7a7a\\u5411\\u91cf]": {
+      "git_commit": "b226de3d2e524273a117ed161496f869d9617dd5",
+      "source_sha256": "1f1f62e4ce4eef6d49ccf2c7b6996a01ccb33d782aaa115a2704af5296a1ad4a",
+      "evidence": "evidence/SAV1-22-LIVE-INTAKE-REPAIR/20261117T105642Z-433a30b2"
+    },
+    "tests.test_sa22_live_intake_repair::test_native_rich_text_chinese_span_spaces_keep_exact_case_identity[\\u975e\\u6cd5\\u503c \\u629b RRF_K_INVALID]": {
+      "git_commit": "b226de3d2e524273a117ed161496f869d9617dd5",
+      "source_sha256": "1f1f62e4ce4eef6d49ccf2c7b6996a01ccb33d782aaa115a2704af5296a1ad4a",
+      "evidence": "evidence/SAV1-22-LIVE-INTAKE-REPAIR/20261117T105642Z-433a30b2"
+    },
+    "tests.test_sa22_live_intake_repair::test_only_registered_explicit_case_can_resolve_model_answer_intent_to_coding[True]": {
+      "git_commit": "b226de3d2e524273a117ed161496f869d9617dd5",
+      "source_sha256": "1f1f62e4ce4eef6d49ccf2c7b6996a01ccb33d782aaa115a2704af5296a1ad4a",
+      "evidence": "evidence/SAV1-22-LIVE-INTAKE-REPAIR/20261117T105642Z-433a30b2"
+    },
+    "tests.test_sa22_live_intake_repair::test_only_registered_explicit_case_can_resolve_model_answer_intent_to_coding[False]": {
+      "git_commit": "b226de3d2e524273a117ed161496f869d9617dd5",
+      "source_sha256": "1f1f62e4ce4eef6d49ccf2c7b6996a01ccb33d782aaa115a2704af5296a1ad4a",
+      "evidence": "evidence/SAV1-22-LIVE-INTAKE-REPAIR/20261117T105642Z-433a30b2"
+    },
+    "tests.test_sa22_live_intake_repair::test_unreplayable_gap_only_allows_fresh_explicit_request_on_current_authenticated_socket[old_socket]": {
+      "git_commit": "120ef877336484521259699b88fea59e8b937976",
+      "source_sha256": "20d18ad10ecbdb356a420f2f5a652f0f0dd3bab34c29d5d774e618caa2a03dbe",
+      "evidence": "evidence/SAV1-22-LIVE-INTAKE-REPAIR-R1/20261117T105810Z-c7c43158"
+    },
+    "tests.test_sa22_worker_scope_repair::test_live_worker_sees_actual_scope_and_edit_hashes_without_expanding_authority[read_denied]": {
+      "git_commit": "9c47c39e19a13a68f06fa2ef0329227fa90cce36",
+      "source_sha256": "73beaa805c3f3309db34b66be75691a56c4101d1afd1c6392fd17c904fe2e311",
+      "evidence": "evidence/SAV1-22-WORKER-SCOPE-REPAIR/20261117T110942Z-67b420a4"
+    },
+    "tests.test_sa22_worker_scope_repair::test_live_worker_sees_actual_scope_and_edit_hashes_without_expanding_authority[command_denied]": {
+      "git_commit": "9c47c39e19a13a68f06fa2ef0329227fa90cce36",
+      "source_sha256": "73beaa805c3f3309db34b66be75691a56c4101d1afd1c6392fd17c904fe2e311",
+      "evidence": "evidence/SAV1-22-WORKER-SCOPE-REPAIR/20261117T110942Z-67b420a4"
+    },
+    "tests.test_sa22_worker_scope_repair::test_live_worker_sees_actual_scope_and_edit_hashes_without_expanding_authority[edit_from_read_receipt]": {
+      "git_commit": "5b20eae23813444b3e000e86ebc1cb2eb0a79862",
+      "source_sha256": "eae76a5257a8cd4e1f4210ea8a9e11bede9e3b5df638ac229c4e736722dce9c0",
+      "evidence": "evidence/SAV1-22-WORKER-SCOPE-REPAIR-R1/20261117T111513Z-4290a802"
+    },
+    "tests.test_sa22_reviewed_case_retry::test_fresh_case_retry_needs_exact_owner_reviewed_revoked_known_no_write_attempt[False]": {
+      "git_commit": "63c8915c301191fac96290ddbca53d0d32617720",
+      "source_sha256": "247e3c7bea49eab5c5a0579da9b240feb927f92dba400cc469a551c26390e43a",
+      "evidence": "evidence/SAV1-22-REVIEWED-CASE-RETRY/20261117T111919Z-2b54156a"
+    },
+    "tests.test_sa22_reviewed_case_retry::test_fresh_case_retry_needs_exact_owner_reviewed_revoked_known_no_write_attempt[True]": {
+      "git_commit": "63c8915c301191fac96290ddbca53d0d32617720",
+      "source_sha256": "247e3c7bea49eab5c5a0579da9b240feb927f92dba400cc469a551c26390e43a",
+      "evidence": "evidence/SAV1-22-REVIEWED-CASE-RETRY/20261117T111919Z-2b54156a"
+    },
+    "tests.test_sa22_case_terminal_punctuation::test_missing_final_chinese_full_stop_preserves_fixed_request_without_relaxing_constraints": {
+      "git_commit": "97410f3b192f18a0ae95de57bfafd3f9d5554091",
+      "source_sha256": "4ed2a1ca562ed07456e2df30175b79a57ba63275346363f8aceb65fdfb05ebda",
+      "evidence": "evidence/SAV1-22-CASE-PUNCTUATION/20261117T113308Z-b15fa1a0"
+    },
+    "tests.test_sa22_thinking_max::test_owner_question_uses_max_and_bills_all_completion_tokens_without_exposing_reasoning": {
+      "git_commit": "3c18581d1dcfa6847d91b6cb77e9ec489de105fa",
+      "source_sha256": "f44031a4d67bfc8f4728e9c247ce106957291b3129abb3ed800bb2387ff72a5c",
+      "evidence": "evidence/SAV1-22-THINKING-MAX/20261117T114038Z-5770d529"
+    },
+    "tests.test_sa22_thinking_max::test_code_thinking_replays_exact_scoped_encrypted_history_across_actual_tool_rounds": {
+      "git_commit": "3c18581d1dcfa6847d91b6cb77e9ec489de105fa",
+      "source_sha256": "f44031a4d67bfc8f4728e9c247ce106957291b3129abb3ed800bb2387ff72a5c",
+      "evidence": "evidence/SAV1-22-THINKING-MAX/20261117T114038Z-5770d529"
+    },
+    "tests.test_sa22_thinking_max::test_missing_thinking_history_fails_before_any_physical_http": {
+      "git_commit": "3c18581d1dcfa6847d91b6cb77e9ec489de105fa",
+      "source_sha256": "f44031a4d67bfc8f4728e9c247ce106957291b3129abb3ed800bb2387ff72a5c",
+      "evidence": "evidence/SAV1-22-THINKING-MAX/20261117T114038Z-5770d529"
+    },
+    "tests.test_sa22_thinking_max::test_local_model_input_rejection_is_known_zero_without_refunding_any_remote_unknown": {
+      "git_commit": "3c18581d1dcfa6847d91b6cb77e9ec489de105fa",
+      "source_sha256": "f44031a4d67bfc8f4728e9c247ce106957291b3129abb3ed800bb2387ff72a5c",
+      "evidence": "evidence/SAV1-22-THINKING-MAX/20261117T114038Z-5770d529"
+    },
+    "tests.test_sa22_unstarted_case_retry::test_only_exact_reviewed_never_started_attempts_allow_one_fresh_case_input[False]": {
+      "git_commit": "4b8e056c11b841820fed2d43f7fc8e8a93e2bbaf",
+      "source_sha256": "bcd969a2b712dfecf3fadfe8e8982b2f0a8a0520e1b68dd278a0e0d1e593045f",
+      "evidence": "evidence/SAV1-22-UNSTARTED-CASE-RETRY/20261117T120753Z-6cde297e"
+    },
+    "tests.test_sa22_unstarted_case_retry::test_only_exact_reviewed_never_started_attempts_allow_one_fresh_case_input[True]": {
+      "git_commit": "4b8e056c11b841820fed2d43f7fc8e8a93e2bbaf",
+      "source_sha256": "bcd969a2b712dfecf3fadfe8e8982b2f0a8a0520e1b68dd278a0e0d1e593045f",
+      "evidence": "evidence/SAV1-22-UNSTARTED-CASE-RETRY/20261117T120753Z-6cde297e"
+    },
+    "tests.test_sa22_live_context_repair::test_native_leading_bare_mention_reaches_exact_case_without_changing_objective": {
+      "git_commit": "80437b1ca8a0c4d25257caee8234d9ef0965dd21",
+      "source_sha256": "ecd0d0b9417df1929cc5980e891c086ca7c3b038b9793c520f04a8c06854e85f",
+      "evidence": "evidence/SAV1-22-LIVE-CONTEXT-REPAIR/20261117T122708Z-52b4a423"
+    },
+    "tests.test_sa22_live_context_repair::test_larger_thinking_tool_context_keeps_full_bytes_and_conservative_original_reservation": {
+      "git_commit": "80437b1ca8a0c4d25257caee8234d9ef0965dd21",
+      "source_sha256": "ecd0d0b9417df1929cc5980e891c086ca7c3b038b9793c520f04a8c06854e85f",
+      "evidence": "evidence/SAV1-22-LIVE-CONTEXT-REPAIR/20261117T122708Z-52b4a423"
+    },
+    "tests.test_sa22_tool_inventory::test_live_tool_schema_uses_existing_scoped_paths_and_keeps_shape_only_diagnostics": {
+      "git_commit": "2ba2d5fff83365f6e30d4fab937f47aeea37b16f",
+      "source_sha256": "8f781a6518db69ea2ac4d7db431c5a5a8961c1998caf80b62979b748b4a6cd7f",
+      "evidence": "evidence/SAV1-22-TOOL-INVENTORY/20261117T124341Z-ded5327d"
+    },
+    "tests.test_sa22_test_cwd_default::test_test_command_default_cwd_uses_the_signed_profile_before_scope_check[None]": {
+      "git_commit": "4385c5682bbe30102d6745f62d7cbd075023bfb2",
+      "source_sha256": "65ece2e14526a68885e32e0b9bf727871c2bbdd40c0616456a97ed292b1fc162",
+      "evidence": "evidence/SAV1-22-TEST-CWD-DEFAULT/20261117T125733Z-d7be584a"
+    },
+    "tests.test_sa22_test_cwd_default::test_test_command_default_cwd_uses_the_signed_profile_before_scope_check[.]": {
+      "git_commit": "4385c5682bbe30102d6745f62d7cbd075023bfb2",
+      "source_sha256": "65ece2e14526a68885e32e0b9bf727871c2bbdd40c0616456a97ed292b1fc162",
+      "evidence": "evidence/SAV1-22-TEST-CWD-DEFAULT/20261117T125733Z-d7be584a"
+    },
+    "tests.test_sa22_token_receipts::test_scoped_thinking_reserves_actual_wire_bound_and_settles_canonical_tokens[True]": {
+      "git_commit": "d0b0bf1a7ef541e0ec642836b28ee4aa3344c7a0",
+      "source_sha256": "7c7da2c5ec79bad79ba67c50432547d02761166f3288846629137db6d9ded403",
+      "evidence": "evidence/SAV1-22-TOKEN-RECEIPTS/20261117T131535Z-16fbceea"
+    },
+    "tests.test_sa22_token_receipts::test_scoped_thinking_reserves_actual_wire_bound_and_settles_canonical_tokens[False]": {
+      "git_commit": "d0b0bf1a7ef541e0ec642836b28ee4aa3344c7a0",
+      "source_sha256": "7c7da2c5ec79bad79ba67c50432547d02761166f3288846629137db6d9ded403",
+      "evidence": "evidence/SAV1-22-TOKEN-RECEIPTS/20261117T131535Z-16fbceea"
+    },
+    "tests.test_sa22_sandbox_io_recovery::test_private_process_permissions_red_output_and_derived_lease_follow_original_authority[False]": {
+      "git_commit": "f14801b4152211dd6fe195820e44ac85a6283013",
+      "source_sha256": "1c34961c6a5ec092cf42df319cd1cca2b266494893c5ec5d947b2d1d62e9e33e",
+      "evidence": "evidence/SAV1-22-SANDBOX-IO-RECOVERY/20261117T134306Z-f38a4e1c"
+    },
+    "tests.test_sa22_sandbox_io_recovery::test_private_process_permissions_red_output_and_derived_lease_follow_original_authority[True]": {
+      "git_commit": "5dde31d1b6a0030c1280c48c90eb366586993c01",
+      "source_sha256": "14875152dcad9673ee533dfce673355b20d1e07c46b407de592c89e454ce3f0e",
+      "evidence": "evidence/SAV1-22-SANDBOX-IO-RECOVERY-R1/20261117T135149Z-aee5e67a"
+    },
+    "tests.test_sa22_await_independent::test_public_result_stops_only_after_current_green_and_keeps_independent_gate[False]": {
+      "git_commit": "be7998e1dde850d1285bef73105cd53019d2e847",
+      "source_sha256": "52abc5f584fcd1ea2cd0a7267b8acdaae67d100168b9a0ded144d353927088c2",
+      "evidence": "evidence/SAV1-22-AWAIT-INDEPENDENT/20261117T141950Z-995aabcb"
+    },
+    "tests.test_sa22_await_independent::test_public_result_stops_only_after_current_green_and_keeps_independent_gate[True]": {
+      "git_commit": "be7998e1dde850d1285bef73105cd53019d2e847",
+      "source_sha256": "52abc5f584fcd1ea2cd0a7267b8acdaae67d100168b9a0ded144d353927088c2",
+      "evidence": "evidence/SAV1-22-AWAIT-INDEPENDENT/20261117T141950Z-995aabcb"
+    }
+  },
+  "single_revision_full_suite_pass": false,
+  "operator_repair_retest_scope": "original failed parameters only; Worker fixed public commands separately recorded; independent grading excludes priorPASS",
+  "current_thinking": {
+    "type": "enabled",
+    "reasoning_effort": "max",
+    "real_supplier_requests_observed": true
+  },
+  "migration_counts": {
+    "main_untouched": 44,
+    "dedicated_Bot": 52
+  },
+  "cases": {
+    "L01": {
+      "status": "PARTIAL_BEHAVIOR_PASS_NOT_WHOLE_CASE",
+      "run_id": "2931c05f-9535-418b-bab2-091a12ad9d05",
+      "candidate": "6091f2e9c15a2b3addd82d45b6855e539db1a39b",
+      "operator_selected_public_failed": 3,
+      "operator_selected_independent_failed": 2,
+      "exit_codes": [
+        0,
+        0
+      ],
+      "old_PASS_not_rerun": true,
+      "Worker_post_edit_test_feedback_closed": false,
+      "evidence": "evidence/super-agent-v1/SAV1-22/continued-20261117T120255Z/L01-partial-judge"
+    },
+    "L02": {
+      "status": "WAITING_FRESH_NATIVE_INPUT",
+      "latest_failed_coding_id": "5fdef8b0-54b1-4173-a079-713b12f890ed",
+      "original_revoked_no_write_binding_retained": true,
+      "real_PG_first_check": "NOT_RUN",
+      "private_original_failed_to_recheck": [
+        "A01",
+        "A02",
+        "A04",
+        "A05"
+      ],
+      "prior_A03_PASS_not_to_repeat": true
+    },
+    "L03": {
+      "UTC": "2026-11-17T13:34:31.177407+00:00",
+      "case_id": "L03",
+      "actual_run_id": "535cb3bd-deee-41fa-8049-060379f6c3b8",
+      "candidate": "a6750829a64306fb8b46d1ce89b7465cc326860a",
+      "independent_selected_failed_tests": 3,
+      "exit_code": 1,
+      "public_tests_rerun": false,
+      "historical_pass_tests_rerun": false,
+      "original_trial_verifier": "incomplete",
+      "L02_real_PG": "NOT_APPLICABLE",
+      "private_feedback_to_worker": false,
+      "evidence": "/home/imini/magr-super-agent/v3/evidence/super-agent-v1/SAV1-22/continued-20261117T120255Z/L03-judge-535cb3bd",
+      "status": "A04_FAIL_RETAINED_REFERENCE_ERROR_AWAITING_CORRECTED_VERSION",
+      "A01_A02": "PASS",
+      "A03": "HISTORICAL_PASS_NOT_RERUN",
+      "A04": "ORIGINAL_FAIL_RETAINED",
+      "independent_adjudication_commit": "41aa686f424ad0e0157cd65c62c05c522e79a011",
+      "operator_accepts_reference_error": true,
+      "candidate_changed_to_fit_oracle": false,
+      "new_A04_recheck": "NOT_RUN",
+      "request": "sa22-experiments/20261117/independent-L03-A04-correction-request.txt",
+      "real_wrong_patch_red_feedback_repair": "NOT_OBSERVED"
+    },
+    "L04": {
+      "status": "NOT_RUN",
+      "missing": "actual GitHub App request/new CI at same PR/head and original Task"
+    },
+    "L05": {
+      "status": "NOT_RUN",
+      "missing": "actual cross-source same-Task followup"
+    },
+    "L06": {
+      "status": "NOT_RUN",
+      "missing": "next calendar day original Task-ID Recall, independent of short chat history"
+    },
+    "L07": {
+      "status": "NOT_RUN",
+      "missing": "authenticated complete trial diff/tree/public/independent evidence delivery"
+    },
+    "L08": {
+      "status": "PARTIAL_BEHAVIOR_PASS_POST_CLOSE_EDIT_TEST_NOT_ESTABLISHED",
+      "run_id": "aeedd6a2-558a-409d-8032-ba3be6248a94",
+      "candidate": "46c72c91f9febb008a8602f256fd6c07bb7f5f09",
+      "Worker_public_command": {
+        "tests_run": 5,
+        "tests_failed": 0,
+        "operator_rerun": false
+      },
+      "independent_original_failed": 2,
+      "independent_exit_code": 0,
+      "private_threshold_prior_PASS_rerun": false,
+      "source_trial_verifier": "incomplete",
+      "business_task_completed": false,
+      "client_close_acknowledgement_UTC": "2026-11-17T14:02:33.256070+00:00",
+      "post_ack_backend_and_delivery": "OBSERVED",
+      "post_ack_actual_edit_and_test": "NOT_ESTABLISHED",
+      "original_loop_8_model_limit_result_retained": true,
+      "detail": "accept/SAV1-22/L08-observation-20261117.json"
+    },
+    "L09": {
+      "status": "NOT_RUN",
+      "missing": "new real patch and independently identifiable Worker process kill/recovery"
+    },
+    "L10": {
+      "status": "PARTIAL_ORIGINAL_PAIR_QUEUE_ISOLATION_OBSERVED",
+      "uses_original_L01_L02_submissions": true,
+      "new_concurrency_rerun": false,
+      "both_work_items_completed": false
+    }
+  },
+  "source_runs_after_first_three": {
+    "round4": "queue blocked by previous billingunknown, zero new usage",
+    "round5": "L02 input bound/no diff; L03 unmatched bare@",
+    "round6": "L02/L03 denied path, no diff; exact raw path unavailable",
+    "round7": "L03 omitted testcwd rejected as root",
+    "round8": "L03 token quota reserve rollback before third request, no diff",
+    "round9": "L03 actual changed tree then infrastructure/lease stop",
+    "round10": "L08 real edit, public green, original one delivery, independent failed-scope2PASS"
+  },
+  "local_nosend_reconciliation": {
+    "call_id": "c6f2a804-d47f-5283-b82f-cf2e36e36b8c",
+    "known_settled_micros": 0,
+    "basis": "immutable pre-HTTP code and exact sealed error receipt reviewed by original Owner flow",
+    "provider_unknown_refunded": false,
+    "original_unknown_operation_or_Run_replayed": false,
+    "evidence": "evidence/super-agent-v1/SAV1-22/continued-20261117T120255Z/local-nosend-proof.json",
+    "proof_sha256": "d66f8dbc0ef6f0c94a475870bd83e6c54437f7d8ff876124b9e8ac9b8d9bda16"
+  },
+  "routing_holdout": {
+    "commit": "0a50f6baeb4e38ebe53cd4e6e248f633df3f863c",
+    "operator_semantic_review": "PENDING",
+    "labels_frozen": false,
+    "formal_scoring": "NOT_RUN"
+  },
+  "activation": {
+    "UTC": "2026-11-17T14:23:11.363382+00:00",
+    "old_pid": 249236,
+    "new_pid": 328262,
+    "status": "online",
+    "source_candidate": {
+      "UTC": "2026-11-17T14:23:04.557665+00:00",
+      "commit": "be7998e1dde850d1285bef73105cd53019d2e847",
+      "source_sha256": "52abc5f584fcd1ea2cd0a7267b8acdaae67d100168b9a0ded144d353927088c2",
+      "task": "SAV1-22-AWAIT-INDEPENDENT",
+      "historical_PASS_rerun": false,
+      "archive_sha256": "fa6beeef23581c934c246ac0b2c772b53a203cad37357b6bdd9c9f3683603b98"
+    },
+    "thinking": "enabled",
+    "reasoning_effort": "max",
+    "new_model_calls": 0,
+    "facts": {
+      "usage_rows": 75,
+      "settled_micros": 155387,
+      "unsettled": 0,
+      "usage_rows_sha256": "16e69651e924b6c1de68701a17fceae9564360bf75dd229a1b61381bf84571f4",
+      "trials": 9,
+      "trial_rows_sha256": "7c955f614bf7c197bd17142b5978ea77e52dc337eff00a08ae262e542f09aa06"
+    },
+    "full_usage_and_trial_rows_unchanged": true,
+    "budget_policies_changed": false,
+    "expiry_changed": false,
+    "soak_touched": false,
+    "publication": false,
+    "existing_written_L03_L08_not_retried": true
+  },
+  "soak": {
+    "observed_at": "2026-11-17T14:28:43.012388+00:00",
+    "observed_status": "RUNNING",
+    "owned_process_alive": true,
+    "heartbeat_age_seconds": 45.29,
+    "source_commit": "5a99967c1fb213fd3e8c8f4967ede0ac95e87446",
+    "source_sha256": "639f242da6fd3484b029486b59b9358966a1dfcb0ba87ddbd5aacb3dfcbc95d0",
+    "evidence_directory": "/home/imini/magr-super-agent/v3/.local/sa22-controlled-soak-20261117T075959Z-2d31fd",
+    "UTC": "2026-11-17T14:27:57.720963+00:00",
+    "samples": 387,
+    "elapsed_seconds": 23259.972735354037,
+    "wall_seconds": 23259.972737,
+    "duration_met": false,
+    "continuous_segment": "IN_PROGRESS",
+    "continuous_operation_gate": "NOT_RUN_REQUIRES_FAULT_MATRIX_LIVE_72H_AND_PILOT",
+    "cycles": 78,
+    "sandbox_probes": 13,
+    "problems": []
+  },
+  "gates": {
+    "engineering_gate": "IN_PROGRESS",
+    "policy_security_gate": "IN_PROGRESS",
+    "live_source_channel_gate": "PARTIAL_FEISHU_ONLY",
+    "live_coding_gate": "FAIL_RETAINED_H12_WITH_PARTIAL_REAL_ARTIFACT_BEHAVIOR",
+    "live_publication_gate": "NOT_RUN",
+    "continuous_operation_gate": "NOT_RUN_CONTROLLED_SEGMENT_IN_PROGRESS"
+  },
+  "H12": "FAIL_RETAINED_MVP_NOT_RELEASED",
+  "SA23_started": false,
+  "user_file": {
+    "path": "docs/super-agent-v1/accept/SAV1-06/cli-takeover-20261111.json",
+    "sha256": "f4adf9605c87d6256bd2ec17b8436da8a7bced763a8e03b185a8cfe19d34a29f",
+    "changed_by_this_work": false
+  },
+  "known_evidence_limits": [
+    "Initial intake repair archive mistakenly pointed at previous HEAD after local Git identity failure; preserved and corrected during verification. Identical pre/post worktree fingerprints bind that run.",
+    "Initial fault successful stdout observations were not captured; assertions/JUnit/code/archive retained, no PASS rerun to reconstruct logs.",
+    "Initial budget activation lacks full pre-change row fingerprint; aggregate observation preserved, full-row match covers resumed tail only.",
+    "Worker-scope R1 registry component source note describes the first fixture-only run; later 5b20eae correction and original failed node are bound by actual git/fingerprints and separate erratum.",
+    "Two positive controlled fixture mistakes and the actual aggregated-verification flaw are separately retained, not rewritten as expected red baselines.",
+    "Retake configuration first tried duplicate trial signing; database rejected, no new trial/fee; first failed binding revocation remained and resumption reused all original trials.",
+    "Round6 exact denied paths expired before inspection; shape-only diagnostics added later, no invented root path.",
+    "L03 first-wrong-tree directory name was premature and has LABEL_ERRATUM; a failed physical command is not a demonstrated semantic wrong patch.",
+    "L03 original A04 oracle uses sum() beyond original sequential float contract; old FAIL retained pending separately frozen correction, candidate untouched.",
+    "L08 post-ack query first used assignment_id as attempt_id and returned no operations; original query preserved, corrected record binds actual attempt_id.",
+    "L08 actual edit/public green preceded client-close acknowledgement; only backend reads/model operations/delivery are proven after that bound.",
+    "Token configuration change preserved count/cost aggregates, but no complete before-row snapshot was captured; later wait-boundary activation has full usage/trial row hashes.",
+    "Await-independent initial repair omitted required AttemptRecord.operation_id; both tests and mypy failed, corrected revision bound to exact two failing tests."
+  ],
+  "qualified_source_archives": [
+    {
+      "commit": "5d7785d01588a070b8ab04d56a4e041bb3bd7644",
+      "source_sha256": "d9070cdf6e53278ec7b81f0ac6079689096840f64d6f9eb02f0808ebc213d08f",
+      "archive_sha256": "90764b8bb82d157c40193d251c8e7e6128feff103ea22a006a1976314d7c28d8",
+      "archive": "evidence/super-agent-v1/SAV1-22/continued-20261117T120255Z/await-independent-5d7785d-source.tar.gz",
+      "registered_source_unchanged": true,
+      "grade": "FAIL",
+      "tests": {
+        "tests": 2,
+        "failures": 2,
+        "errors": 0,
+        "skipped": 0
+      },
+      "source_archive_verification": "metadata only; tests not rerun"
+    },
+    {
+      "commit": "e696f095b166fab4c86ae36d69190954d00e2051",
+      "source_sha256": "52cf03bec41a1b4261d21ccca7fa117b5ffe8581a93fda8c1ec045f96014743c",
+      "archive_sha256": "ae2507ee8f64b80e77b1c5dcf8ffcfbe93e5a57f18121b808293ec2b6259ce61",
+      "archive": "evidence/super-agent-v1/SAV1-22/continued-20261117T120255Z/await-independent-e696f09-source.tar.gz",
+      "registered_source_unchanged": true,
+      "grade": "FAIL",
+      "tests": {
+        "tests": 2,
+        "failures": 2,
+        "errors": 0,
+        "skipped": 0
+      },
+      "source_archive_verification": "metadata only; tests not rerun"
+    },
+    {
+      "commit": "be7998e1dde850d1285bef73105cd53019d2e847",
+      "source_sha256": "52abc5f584fcd1ea2cd0a7267b8acdaae67d100168b9a0ded144d353927088c2",
+      "archive_sha256": "fa6beeef23581c934c246ac0b2c772b53a203cad37357b6bdd9c9f3683603b98",
+      "archive": "evidence/super-agent-v1/SAV1-22/continued-20261117T120255Z/await-independent-candidate.tar.gz",
+      "registered_source_unchanged": true,
+      "grade": "PASS",
+      "tests": {
+        "tests": 2,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "source_archive_verification": "metadata only; tests not rerun"
+    }
+  ],
+  "L02_PG_preparation": {
+    "runner": ".local/judge-sa22-L02-pg.py",
+    "runner_sha256": "1e1883f846ef35f67fee6c9bd0dba91339813518245d045487a8d1914764276f",
+    "grader_sha256": "b660471c940e0c02e0e922c07b7b3030af8fbfd87d1df7efe4b80d65e205eddb",
+    "CLI_help_and_runner_syntax_checked": true,
+    "PG_migration_or_grading_executed": false,
+    "requires": "Actual frozen L02 two-file tree with original four offline failed checks passed; new internal Docker network/own empty sa22_judge_ database; no existing service credentials"
+  },
+  "raw_manifest": {
+    "path": "evidence/super-agent-v1/SAV1-22/continued-20261117T120255Z/SHA256SUMS",
+    "sha256": "6f50c8a44899099fa2559aa6a7fdd6d979df5841da90daf901cdcf4e978f369c",
+    "entries": 853,
+    "written_UTC": "2026-11-17T14:40:33.399411+00:00"
+  }
+}

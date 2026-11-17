@@ -1,5 +1,18 @@
 # MGAR V3.5 · 持续研发 Agent
 
+当前更新（2026-11-17，真实实验续行）：**SA22 IN_PROGRESS，SA23未启动**。
+在线源码be7998e，问答／Coding均thinking enabled＋max且已有真实调用。53个新目标有分版本
+PASS，修复只复验原失败项，不称最新全量PASS。L01局部行为通过；L03原A04 FAIL经独立
+裁定为参考函数超范围，待独立新版本定向复验；L08公开5 PASS／独立原失败2 PASS、原
+话题回复一次成功。关闭确认后的后台／回复可证，编辑与绿色命令早于确认，覆盖限制保留。
+累计已结算USD0.155387/10、费用预占／unknown为0；旧本地零发送已按原Owner证据对账，
+原停止／unknown操作和全部历史失败不删、不重放。主库44／Bot52，受控72h继续；L02新
+请求、路由标签复核、其他真实场景／长期门仍待完成，H12真实质量FAIL／trial incomplete。
+[续行报告](v3/docs/super-agent-v1/SA22_LIVE_CONTINUATION_20261117.md)／[机器索引](v3/docs/super-agent-v1/accept/SAV1-22/continued-20261117.json)。
+
+以下保留此前阶段记录；旧费用／unknown／“未实测max”等描述对应当时状态。
+
+
 **Super-Agent升级进度（2026-11-15）：SA00–SA20已由用户接受受控本地独立闭环；SA21本地受控工程已交付、等待独立验收。候选5be5dc7，25个新检查具分版本PASS，修复仅原9项复验9PASS，已通过项不重跑，历史失败保留。SA22未启动，真实门NOT_RUN、固定H12 FAIL保留。见[SA21交付](v3/docs/super-agent-v1/SA21_ACCEPTANCE_20261115.md)／[SA20关闭](v3/docs/super-agent-v1/accept/SAV1-20/independent-closure-20261115.json)。**
 
 **网页使用入口已统一：启动后打开首页，填写 GitHub 仓库 URL 和问题，即可在同一页提交真实分析、查看执行过程和继续追问。首次打开创建管理员账户，模型凭据与使用许可直接在网页弹窗填写。[单页 Agent 使用说明](v3/docs/agent-ui.md)。**
