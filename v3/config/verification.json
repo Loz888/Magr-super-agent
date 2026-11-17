@@ -1592,7 +1592,7 @@
       "source_mailbox": "Reference-only companion facts under original Run, separate typed lane cursors; original Thread.latest_seq ordering without Thread.revision, no legacy Trigger or persistent Source body in old snapshots",
       "consumer": "Exact current Run/epoch/page/head/input hash; blocked metadata may drain without reading expired bodies; no automatic Worker/Run or control execution",
       "handback": "Explicit reviewed needs_routing/loop_blocked facts and bounded cycles; old FastPath decisions/unknown model calls unchanged",
-      "formal_integration": "Fixed Harnessd0af0747\u00a735 SQL+4file exactpatch;40 installedmigrations and11 true unpatched routes required",
+      "formal_integration": "Fixed Harnessd0af0747§35 SQL+4file exactpatch;40 installedmigrations and11 true unpatched routes required",
       "crash_recovery": "Real child SIGKILL after durable prepare, inside uncommitted acknowledgement, after committed cursor; old receipt/count preserved",
       "independent_review": "NOT_RUN; implementer initial registered checks, repairs only failed cases/targets",
       "semantic_evaluation": "NOT_RUN",
@@ -1696,7 +1696,7 @@
     "timeout_seconds": 2400,
     "components": {
       "scope": "First formal SA14 Engine/Source/API/realPG/H03/H06/async model/SIGKILL integration; preparation65+29 and all prior passed registries excluded",
-      "ownership": "c711d54504c4945625505f47e9df56e22bc1bdac \u00a739; exact0047 and 3 shared file hooks",
+      "ownership": "c711d54504c4945625505f47e9df56e22bc1bdac §39; exact0047 and 3 shared file hooks",
       "single_writer": "original held advisory-lock PG connection and Engine mutex; no IO in SQL transaction",
       "inbox": "reference-only Source; exact reply/native topic or existing verified delivery; received/applied/blocked and transactional CAS/once-only cursor",
       "authority": "current original Coding/SA12 scope, role/Ticket membership, canonical Source revision and TTL, monotone restrictions, explicit managed path prevents legacy dispatcher bypass",
@@ -1727,7 +1727,7 @@
     "timeout_seconds": 1200,
     "components": {
       "scope": "First formal SA15 current original Engine/API realPG/CAS integration; previous89 private contract checks excluded",
-      "ownership": "e0432f0e289de868a5956339aeec76db71bd0efe \u00a740, exact two-file patch152b61e7; no migration/0048 reserved",
+      "ownership": "e0432f0e289de868a5956339aeec76db71bd0efe §40, exact two-file patch152b61e7; no migration/0048 reserved",
       "index": "ExistingSource/Task/FK/ContextEdge/Memory/CAS bounded virtual graph, no business writes",
       "authority": "CurrentOwnercookie+OriginCSRF or exactWorkerbearer/Run/Assignment/Session/epoch/Mandate; sameinstallation+conversationWorker",
       "content": "Explicit provenance page, CASIO outsidePG then final current ACL/contentversion recheck; opaque cursor current caller everypage",
@@ -1803,7 +1803,7 @@
     "timeout_seconds": 1200,
     "components": {
       "scope": "Initial formal original Engine/PG/API SA16 lifecycle; private77 and draft10 previous PASS excluded",
-      "ownership": "91c0b75693037bb0d90cb2eccd35356cd2e96135 \u00a741; exact0048 and five files",
+      "ownership": "91c0b75693037bb0d90cb2eccd35356cd2e96135 §41; exact0048 and five files",
       "original_writer": "one held Engine connection, mutex and short transaction; no parallel task/balance",
       "models": "controlled SourceEval saved suggestions, no paid calls or listeners",
       "SA17": "NOT_STARTED",
@@ -2367,6 +2367,17 @@
     "components": {
       "scope": "first new SA22 owned PG transport outage qualification; not a rerun of SA21 or prior15 targets",
       "platform": "local controlled HTTP, no paid model, no live Bot, exclusive disposable PG"
+    }
+  },
+  "SAV1-22-FAULTS": {
+    "tests": [
+      "tests/test_sa22_fault_experiments.py"
+    ],
+    "timeout_seconds": 300,
+    "components": {
+      "scope": "first missing F02 cache loss+source Task recovery and F12 true ENOSPC CAS+restore hold; no historical PASS rerun",
+      "resources": "exact owned disposable PostgreSQL Redis internal network and limited tmpfs; real Bot and72h untouched",
+      "models": "disabled; no paid or platform calls"
     }
   }
 }
