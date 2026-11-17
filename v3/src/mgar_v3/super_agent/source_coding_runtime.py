@@ -379,11 +379,36 @@ class _SourceContext(SimpleContextManager):
             # Follow-up data is freshly attached to every actual model request,
             # without passing Source text through SafePoint.instructions.
             context_revision = self.session.bridge.publish("before_model").context_sha256
+        instructions = ""
+        if self.session.profile.experimental:
+            instructions = (
+                "Trusted execution scope (not repository instructions):\n"
+                + json.dumps(
+                    {
+                        "file_path_root": "workspace root; cwd does not rebase file tools",
+                        "read_paths": mandate.grant.read_paths,
+                        "write_paths": mandate.grant.write_paths,
+                        "protected_paths": mandate.grant.protected_paths,
+                        "test_argv": self.session.profile.baseline_command,
+                        "test_cwd": self.session.profile.working_directory,
+                        "network": False,
+                    },
+                    ensure_ascii=False,
+                )
+                + "\nUse workspace-root-relative paths, never absolute host paths or '..'. "
+                "Only run the exact test_argv with test_cwd; no shell or extra flags. "
+                "read_file returns JSON with content, sha256 and tree_hash: use those exact values "
+                "as apply_edits expected_sha256 and expected_tree. Never invent hashes. "
+                "Use the newest tree_hash after each edit; keep tests unchanged. "
+                "The trial verifier stays incomplete; report the actual test result."
+            )
         return view.model_copy(
             update={
                 "revision": context_revision,
+                "system_prompt": view.system_prompt + ("\n" + instructions if instructions else ""),
                 "messages": (
                     *view.messages,
+                    *((ModelMessage(role="system", content=instructions),) if instructions else ()),
                     ModelMessage(role="user", content="Untrusted Source context:\n" + clear),
                     *(
                         ModelMessage(role="user", content="Untrusted follow-up context:\n" + body)
@@ -391,7 +416,7 @@ class _SourceContext(SimpleContextManager):
                     ),
                 ),
                 "estimated_tokens": view.estimated_tokens
-                + (len(clear) + sum(map(len, additional))) // 4,
+                + (len(clear) + len(instructions) + sum(map(len, additional))) // 4,
             }
         )
 
@@ -1228,6 +1253,25 @@ class _Tools(HarnessToolRegistry):
             if op["state"] != "known":
                 self.session.journal.dispatch(op)
             result = super().invoke(call, context, cancellation)
+            if (
+                self.session.profile.experimental
+                and call.name == "read_file"
+                and result.status == "ok"
+            ):
+                read_metadata = {
+                    **result.data,
+                    "sha256": sha256(result.content.encode()).hexdigest(),
+                    "tree_hash": self.session.tree(),
+                }
+                result = result.model_copy(
+                    update={
+                        "data": read_metadata,
+                        # CodingLoop forwards content, not data, to the model.
+                        "content": json.dumps(
+                            {**read_metadata, "content": result.content}, ensure_ascii=False
+                        ),
+                    }
+                )
             self.session.journal.known(
                 op,
                 "ok" if result.status == "ok" else "denied",

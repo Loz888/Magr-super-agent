@@ -2423,6 +2423,17 @@
       "paid": "zero models, original PG authority and H03 copies"
     }
   },
+  "SAV1-22-WORKER-SCOPE-REPAIR": {
+    "tests": [
+      "tests/test_sa22_worker_scope_repair.py"
+    ],
+    "timeout_seconds": 180,
+    "components": {
+      "scope": "three new worker scope/read-hash/edit protocol boundaries after actual L01/L02 denials; all prior PASS excluded",
+      "original_services": "owned real PG/H03/Broker, controlled model observes only actual tool message hashes",
+      "authority": "outside reads and commands still denied, trial Verifier remains incomplete; no real paid calls"
+    }
+  },
   "SAV1-22-LIVE-INTAKE-REPAIR-R1": {
     "tests": [
       "tests/test_sa22_live_intake_repair.py::test_unreplayable_gap_only_allows_fresh_explicit_request_on_current_authenticated_socket[old_socket]"
