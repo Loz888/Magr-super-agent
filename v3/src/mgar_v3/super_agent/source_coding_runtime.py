@@ -1054,6 +1054,8 @@ class _BoundExecution:
         started = time.monotonic()
         broker = None
         try:
+            if session.profile.experimental:
+                session.project_read_access()
             resource_facts = driver._check(context, executing=True)
             if resource_facts.get("operation_state") != "requested":
                 raise _deny("SOURCE_CODING_EXECUTION_UNKNOWN")
@@ -1426,7 +1428,20 @@ class _Tools(HarnessToolRegistry):
                     pass
             # Mutable tools have their durable intent at the actual adapter.
             if call.name in {"apply_edits", "run_tests"}:
-                return super().invoke(call, context, cancellation)
+                result = super().invoke(call, context, cancellation)
+                if (
+                    self.session.profile.experimental
+                    and call.name == "run_tests"
+                    and result.status == "error"
+                    and not result.content
+                ):
+                    # Bound Docker logs combine both streams in the trusted
+                    # receipt's stdout. Do not drop the actual red feedback
+                    # merely because the generic adapter selected stderr.
+                    receipt = result.data.get("receipt")
+                    if isinstance(receipt, dict) and isinstance(receipt.get("stdout"), str):
+                        result = result.model_copy(update={"content": receipt["stdout"]})
+                return result
             op = self.session.journal.operation(
                 step_key=context.operation_id,
                 kind="tool",
@@ -1623,6 +1638,32 @@ class _Attempt:
         with self.core.engine.transaction() as conn:
             return self.core.now(conn)
 
+    def project_read_access(self) -> None:
+        """Expose only approved project bytes to H06's fixed unprivileged UID.
+
+        The service uses umask077. Mounted read scopes still need POSIX read /
+        directory search permissions for UID65532. Metadata and host parents
+        remain private; no group/other write or executable-file bit is added.
+        """
+        workspace = self.workspace
+        directories = set()
+        with workspace._access(WorkspaceAccess("snapshot", workspace._files)):
+            for path in workspace._files:
+                with workspace._descriptor(path) as descriptor:
+                    mode = stat.S_IMODE(os.fstat(descriptor).st_mode)
+                    if mode & 0o044 != 0o044:
+                        os.fchmod(descriptor, mode | 0o044)
+                parent = path.rpartition("/")[0]
+                while parent:
+                    if self.grant.can_read(parent):
+                        directories.add(parent)
+                    parent = parent.rpartition("/")[0]
+            for path in sorted(directories):
+                with workspace._descriptor(path, directory=True) as descriptor:
+                    mode = stat.S_IMODE(os.fstat(descriptor).st_mode)
+                    if mode & 0o055 != 0o055:
+                        os.fchmod(descriptor, mode | 0o055)
+
     @contextmanager
     def workspace_guard(self, access: WorkspaceAccess) -> Iterator[None]:
         tree = self.tree()
@@ -1657,7 +1698,7 @@ class _Attempt:
             mandate,
             facts,
         ):
-            if self._lease is None:
+            if self._lease is None or self._lease.expired():
                 seconds = int(
                     (
                         min(facts.lease_until, facts.session_expires_at, mandate.valid_until)

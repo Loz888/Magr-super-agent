@@ -2563,5 +2563,16 @@
       "services": "real originalPG100k signed token quota, controlled thinking supplier and originalBroker; zero paid/live platform calls",
       "authority": "canonical validated counts; conservative request wire bytes including scoped reasoning; trueunknown held; no Engine/schema/budget algorithm or livecap changes"
     }
+  },
+  "SAV1-22-SANDBOX-IO-RECOVERY": {
+    "tests": [
+      "tests/test_sa22_sandbox_io_recovery.py"
+    ],
+    "timeout_seconds": 210,
+    "components": {
+      "scope": "first privateumask077/nonroot test execution, actualred feedback, and expired derived lease with current or revoked original authority; olderPASS excluded",
+      "services": "originalPG, realDocker UID65532, controlled zero-paid model and real durable writes",
+      "authority": "approved project read scopes only; host parents/metadata private; exact command, epoch and originalMandate checked before renewal"
+    }
   }
 }
