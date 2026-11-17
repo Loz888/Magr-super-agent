@@ -2412,5 +2412,15 @@
       "original_services": "real owned PG H03 original SourceCoding/Trial/Scheduler, controlled zero-paid model",
       "shared_changes": "no Engine/API/schema or budget algorithm changes; exact profile-bound Coding queue eligibility only"
     }
+  },
+  "SAV1-22-CASES-RESTORE": {
+    "tests": [
+      "tests/test_sa22_case_profiles.py::test_case_restart_reuses_exact_trial_without_minting_authority"
+    ],
+    "timeout_seconds": 180,
+    "components": {
+      "scope": "two first restoration boundary parameters only; original3PASS excluded",
+      "paid": "zero models, original PG authority and H03 copies"
+    }
   }
 }

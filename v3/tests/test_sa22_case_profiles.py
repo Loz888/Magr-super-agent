@@ -175,3 +175,60 @@ def test_current_source_revocation_blocks_case_admission_before_any_task_or_mode
         assert env.requests == []
     finally:
         env.close()
+
+
+@pytest.mark.parametrize("changed_manifest", [False, True])
+def test_case_restart_reuses_exact_trial_without_minting_authority(
+    engine, tmp_path, changed_manifest
+):
+    env, second, _, _ = cases(engine, tmp_path)
+    try:
+        with engine.transaction() as conn:
+            trial = conn.execute(
+                "SELECT * FROM app.sa_coding_trial_authorizations WHERE trial_id=%s",
+                (second.profile.trial_id,),
+            ).fetchone()
+            before = conn.execute(
+                "SELECT * FROM app.sa_coding_trial_authorizations ORDER BY trial_id"
+            ).fetchall()
+        arguments = dict(
+            source_id=env.source.source_id,
+            actor_id=SENDER_ID,
+            source_root=env.original,
+            root=tmp_path / "second-case",
+            upstream_commit=second.profile.repository.base_commit,
+            upstream_tree=second.profile.repository.upstream_tree,
+            image_id=second.runtime_profile.driver.profile.image_id,
+            price=second.runtime_profile.price,
+            model=second.runtime_profile.model,
+            expires=trial["valid_until"],
+            manifest_sha256=digest("tampered") if changed_manifest else trial["manifest_sha256"],
+            h12_evidence_sha256=second.profile.harness.h12.evidence_sha256,
+            objective=second.runtime_profile.objective,
+            baseline_command=second.runtime_profile.baseline_command,
+            working_directory="src",
+            read_paths=second.profile.grant.read_paths,
+            write_paths=second.profile.grant.write_paths,
+            repository_id=1,
+            existing_trial=trial,
+        )
+        if changed_manifest:
+            with pytest.raises(DomainError, match="Exact signed case"):
+                build_case_experiment(engine, env.source.cookie, **arguments)
+        else:
+            restored = build_case_experiment(engine, env.source.cookie, **arguments)
+            assert restored.profile == second.profile
+            assert (
+                restored.runtime_profile.acceptance_sha256
+                == second.runtime_profile.acceptance_sha256
+            )
+        with engine.transaction() as conn:
+            assert (
+                conn.execute(
+                    "SELECT * FROM app.sa_coding_trial_authorizations ORDER BY trial_id"
+                ).fetchall()
+                == before
+            )
+        assert env.requests == []
+    finally:
+        env.close()

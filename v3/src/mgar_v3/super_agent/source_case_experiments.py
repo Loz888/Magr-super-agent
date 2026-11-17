@@ -73,6 +73,7 @@ def build_case_experiment(
     working_directory: str = "v3",
     repository_id: int = 1438269299,
     maximum_project_micros: int = 2000000,
+    existing_trial: dict[str, Any] | None = None,
 ) -> SourceCodingExperiment:
     """Install one explicit Owner trial without replacing scheduler configuration.
 
@@ -99,7 +100,25 @@ def build_case_experiment(
             raise DomainError("SOURCE_CASE_IDENTITY_REQUIRED", "Current owner required", 403)
         actor = identity["engine_actor"]
     registry = WorkspaceRegistry(root / "registry")
-    registration = registry.register_local(source_root, actor=engine.settings.local_actor)
+    if existing_trial is None:
+        registration = registry.register_local(source_root, actor=engine.settings.local_actor)
+    else:
+        if (
+            existing_trial["manifest_sha256"] != manifest_sha256
+            or existing_trial["source_instance_id"] != source_id
+            or existing_trial["maximum_project_micros"] != limit
+            or existing_trial["valid_until"] != expires
+        ):
+            raise DomainError("SOURCE_CASE_RESTORE_FENCED", "Exact signed case required", 403)
+        matches = [
+            registry.load(path.parent.name)
+            for path in registry.root.glob("*/registration.json")
+            if registry.load(path.parent.name).registration_hash
+            == existing_trial["registration_sha256"]
+        ]
+        if len(matches) != 1:
+            raise DomainError("SOURCE_CASE_RESTORE_FENCED", "Exact registration required", 403)
+        registration = matches[0]
     grant = CapabilityGrant(
         actor=actor,
         workspace_id=registration.workspace_id,
@@ -112,8 +131,11 @@ def build_case_experiment(
         max_seconds=180,
     )
     lock = root / "image-lock.json"
-    lock.write_text(json.dumps({"image_id": image_id}) + "\n")
-    lock.chmod(0o600)
+    if existing_trial is None:
+        lock.write_text(json.dumps({"image_id": image_id}) + "\n")
+        lock.chmod(0o600)
+    elif json.loads(lock.read_text()) != {"image_id": image_id}:
+        raise DomainError("SOURCE_CASE_RESTORE_FENCED", "Original image lock required", 403)
     driver = H03SchedulerResourceDriver(
         scheduler=scheduler,
         registry_root=registry.root,
@@ -144,10 +166,12 @@ def build_case_experiment(
     environment = IsolatedExecutionBroker(source_root, lease, image_id=image_id).environment_hash(
         lease
     )
-    snapshot = registry.create_task_workspace(
-        registration,
-        "sa22-case-initial-snapshot",
-        source_root=source_root,
+    snapshot = (
+        registry.create_task_workspace(
+            registration, "sa22-case-initial-snapshot", source_root=source_root
+        )
+        if existing_trial is None
+        else registry.open_task_workspace(registration, "sa22-case-initial-snapshot")
     ).snapshot()
     runtime = SourceCodingFixtureProfile(
         driver=driver,
@@ -174,7 +198,7 @@ def build_case_experiment(
         max_output_tokens=8192,
         reserved_tokens=40960,
     )
-    trial_id = uuid4()
+    trial_id = existing_trial["trial_id"] if existing_trial is not None else uuid4()
     repository = CodingRepository(
         repository=engine.settings.repository,
         repository_id=repository_id,
@@ -228,31 +252,32 @@ def build_case_experiment(
             max_model_calls=100,
             trial_id=trial_id,
         )
-        authorize_trial(
-            engine,
-            cookie,
-            CodingTrial(
-                trial_id=trial_id,
-                project_id=engine.settings.project_id,
-                source_instance_id=source_id,
-                source_revision=source.revision,
-                policy_id=policy["policy_id"],
-                policy_revision=policy["current_revision"],
-                profile_sha256=profile.profile_sha256,
-                repository=repository.repository,
-                base_commit=upstream_commit,
-                registration_sha256=registration.registration_hash,
-                h12_commit=R05_SOURCE,
-                h12_source_sha256=R05_FINGERPRINT,
-                h12_evidence_sha256=h12_evidence_sha256,
-                manifest_sha256=manifest_sha256,
-                signed_by=owner,
-                review_sha256=digest(["SA22-case", manifest_sha256]),
-                maximum_project_micros=limit,
-                valid_from=now,
-                valid_until=expires,
-            ),
-        )
+        if existing_trial is None:
+            authorize_trial(
+                engine,
+                cookie,
+                CodingTrial(
+                    trial_id=trial_id,
+                    project_id=engine.settings.project_id,
+                    source_instance_id=source_id,
+                    source_revision=source.revision,
+                    policy_id=policy["policy_id"],
+                    policy_revision=policy["current_revision"],
+                    profile_sha256=profile.profile_sha256,
+                    repository=repository.repository,
+                    base_commit=upstream_commit,
+                    registration_sha256=registration.registration_hash,
+                    h12_commit=R05_SOURCE,
+                    h12_source_sha256=R05_FINGERPRINT,
+                    h12_evidence_sha256=h12_evidence_sha256,
+                    manifest_sha256=manifest_sha256,
+                    signed_by=owner,
+                    review_sha256=digest(["SA22-case", manifest_sha256]),
+                    maximum_project_micros=limit,
+                    valid_from=now,
+                    valid_until=expires,
+                ),
+            )
         core.register_profile(profile)
     return SourceCodingExperiment(engine, cookie, profile, runtime, registry, root / "artifacts")
 
