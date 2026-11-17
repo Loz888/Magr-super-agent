@@ -25,7 +25,7 @@ from uuid import UUID, uuid4
 
 from mgar_v3.domain import DomainError, digest
 from mgar_v3.harness.broker import CapabilityAuthority, CapabilityLease, issue_lease
-from mgar_v3.harness.coding_loop import CodingLoop
+from mgar_v3.harness.coding_loop import AttemptRecord, CodingLoop, CodingResult, _RunState
 from mgar_v3.harness.contracts import (
     BudgetLimits,
     CancellationToken,
@@ -1327,6 +1327,76 @@ class _TrustedVerifier:
         return verification
 
 
+class _TrialCodingLoop(CodingLoop):
+    """An external independent verdict is a wait state, not a model repair."""
+
+    def _dispatch_tools(
+        self,
+        state: _RunState,
+        response: ModelResponse,
+        attempt: int,
+        history: list[ModelMessage],
+        declared: dict[str, ToolSpec],
+    ) -> CodingResult | None:
+        previous_receipts = len(state.receipts)
+        tree_before = self.workspace.snapshot().tree_hash
+        outcome = super()._dispatch_tools(state, response, attempt, history, declared)
+        if outcome is not None:
+            return outcome
+        if not isinstance(self.tools, _Tools) or not self.tools.session.profile.experimental:
+            return None
+        session = self.tools.session
+        tree = self.workspace.snapshot().tree_hash
+        if tree == state.plan.checkpoint_tree or not any(
+            receipt.tree_hash == tree
+            and receipt.status == "passed"
+            and receipt.tests_run > 0
+            and receipt.tests_failed == 0
+            for receipt in state.receipts[previous_receipts:]
+        ):
+            return None
+        with session.core.guard(session.bearer, session.request, tree_sha256=tree):
+            asynchronous = session.bridge.guard("read") if session.bridge else nullcontext()
+            with asynchronous:
+                evaluation = self._evaluate(state, response.text)
+                if (
+                    evaluation.failed
+                    or evaluation.tests_weakened
+                    or evaluation.verification.status != "incomplete"
+                    or not any(
+                        check.requirement_id == "sa22-independent-regression"
+                        and check.status == "missing"
+                        for check in evaluation.checks
+                    )
+                    or any(
+                        check.status != "passed"
+                        for check in evaluation.checks
+                        if check.requirement_id != "sa22-independent-regression"
+                    )
+                ):
+                    return None
+                state.evaluation = evaluation
+                state.revision += 1
+                state.attempts.append(AttemptRecord(
+                    attempt=attempt,
+                    tree_before=tree_before,
+                    tree_after=evaluation.tree,
+                    passed_items=tuple(evaluation.passed),
+                    progress=True,
+                    reason="awaiting_independent_review",
+                ))
+                self._emit(state.task, "verification_result", state.revision, {
+                    "status": "incomplete",
+                    "checks": [check.model_dump(mode="json") for check in evaluation.checks],
+                    "tree": evaluation.tree,
+                })
+                return self._finish(
+                    state, "incomplete", "awaiting_independent_review",
+                    "Public checks passed on this tree; independent review is still required.",
+                    evaluation,
+                )
+
+
 class _Tools(HarnessToolRegistry):
     def __init__(self, session: _Attempt, broker: _BoundExecution) -> None:
         self.session = session
@@ -1843,7 +1913,8 @@ class SourceCodingRuntime:
                 session.workspace.snapshot().files, session.mandate.grant.write_paths
             )
         broker = _BoundExecution(session)
-        loop = CodingLoop(
+        loop_type = _TrialCodingLoop if self.profile.experimental else CodingLoop
+        loop = loop_type(
             model=_ControlledModel(session),
             tools=_Tools(session, broker),
             workspace=session.workspace,
