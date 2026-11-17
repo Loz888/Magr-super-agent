@@ -297,10 +297,17 @@ class SourceCaseExperiments:
         engine: Engine,
         cases: dict[str, tuple[str, SourceCodingExperiment]],
         default: SourceCodingExperiment,
+        *,
+        reviewed_failed_bindings: dict[str, UUID] | None = None,
     ):
         if not cases or len(cases) > 5:
             raise ValueError("One to five frozen cases required")
         self.engine, self.cases, self.default = engine, cases, default
+        self.reviewed_failed_bindings = dict(reviewed_failed_bindings or {})
+        if not set(self.reviewed_failed_bindings) <= set(cases) or any(
+            not isinstance(value, UUID) for value in self.reviewed_failed_bindings.values()
+        ):
+            raise ValueError("Only exact owner-reviewed prior case bindings may be retried")
         self._lock = threading.Lock()
         messages = [canonical_request(message) for message, _ in cases.values()]
         hashes = [experiment.profile.profile_sha256 for _, experiment in cases.values()]
@@ -327,12 +334,47 @@ class SourceCaseExperiments:
         if selected is None:
             return None
         with self.engine.transaction() as conn:
-            duplicate = conn.execute(
-                "SELECT 1 FROM app.sa_coding_bindings WHERE project_id=%s "
-                "AND profile_sha256=%s AND input_id<>%s LIMIT 1",
+            duplicates = conn.execute(
+                "SELECT * FROM app.sa_coding_bindings WHERE project_id=%s "
+                "AND profile_sha256=%s AND input_id<>%s",
                 (self.engine.settings.project_id, selected[1].profile.profile_sha256, input_id),
-            ).fetchone()
-            if duplicate:
+            ).fetchall()
+            reviewed = self.reviewed_failed_bindings.get(selected[0])
+            for prior in duplicates:
+                safe_retry = (
+                    reviewed == prior["coding_id"]
+                    and prior["state"] == "revoked"
+                    and prior["reason_code"] == "OWNER_CANCELLED"
+                    and prior["signed_by"]
+                    == self.engine.source_coding._console(conn, selected[1].cookie)
+                    and not conn.execute(
+                        "SELECT 1 FROM app.usage_calls WHERE run_id=%s AND status<>'known' LIMIT 1",
+                        (prior["run_id"],),
+                    ).fetchone()
+                    and not conn.execute(
+                        "SELECT 1 FROM app.actions WHERE run_id=%s LIMIT 1",
+                        (prior["run_id"],),
+                    ).fetchone()
+                    and not conn.execute(
+                        "SELECT 1 FROM app.sa_coding_operations WHERE coding_id=%s "
+                        "AND (state<>'known' OR capability='write') LIMIT 1",
+                        (prior["coding_id"],),
+                    ).fetchone()
+                    and not conn.execute(
+                        "SELECT 1 FROM app.sa_scheduler_assignments WHERE run_id=%s "
+                        "AND state<>'released' LIMIT 1",
+                        (prior["run_id"],),
+                    ).fetchone()
+                    and conn.execute(
+                        "SELECT 1 FROM app.run_events WHERE run_id=%s "
+                        "AND kind='source_trial_artifact_available' "
+                        "AND safe_payload->'changed'='false'::jsonb LIMIT 1",
+                        (prior["run_id"],),
+                    ).fetchone()
+                    is not None
+                )
+                if safe_retry:
+                    continue
                 raise DomainError(
                     "SOURCE_CASE_ALREADY_REGISTERED", "Frozen case already has an input", 409
                 )
