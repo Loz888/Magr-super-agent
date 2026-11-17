@@ -2336,18 +2336,27 @@
       "tests/test_sa22_completion.py"
     ],
     "timeout_seconds": 360
-  }
-,
+  },
   "SAV1-22-COMPLETION-R1": {
-  "tests": [
-    "tests/test_sa22_completion.py::test_new_controlled_http_pg_cas_and_original_broker_cycle",
-    "tests/test_sa22_completion.py::test_real_http_accept_then_disconnect_stays_unknown_without_resend",
-    "tests/test_sa22_completion.py::test_real_controller_sigkill_reuses_committed_input_on_restart"
-  ],
-  "timeout_seconds": 300,
-  "components": {
-    "scope": "only original3 failed cases; original12 PASS and typecheck not repeated",
-    "transport": "controlled-only Feishu runtime and actual local relay HTTP; no real platform or paid model"
+    "tests": [
+      "tests/test_sa22_completion.py::test_new_controlled_http_pg_cas_and_original_broker_cycle",
+      "tests/test_sa22_completion.py::test_real_http_accept_then_disconnect_stays_unknown_without_resend",
+      "tests/test_sa22_completion.py::test_real_controller_sigkill_reuses_committed_input_on_restart"
+    ],
+    "timeout_seconds": 300,
+    "components": {
+      "scope": "only original3 failed cases; original12 PASS and typecheck not repeated",
+      "transport": "controlled-only Feishu runtime and actual local relay HTTP; no real platform or paid model"
+    }
+  },
+  "SAV1-22-COMPLETION-R3": {
+    "tests": [
+      "tests/test_sa22_completion.py::test_real_http_accept_then_disconnect_stays_unknown_without_resend"
+    ],
+    "timeout_seconds": 120,
+    "components": {
+      "scope": "only original one remaining failure; original14 PASS, lint/typecheck excluded",
+      "expected_domain": "original Action outcome_unknown retained, no second HTTP request"
+    }
   }
-}
 }

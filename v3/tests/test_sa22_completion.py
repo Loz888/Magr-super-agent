@@ -175,7 +175,10 @@ def test_real_http_accept_then_disconnect_stays_unknown_without_resend(soak_data
             workload.cycle()
         assert len(workload.platform_requests) == 1
         with workload.engine.transaction() as conn:
-            assert conn.execute("SELECT status FROM app.actions").fetchone()["status"] == "unknown"
+            assert (
+                conn.execute("SELECT status FROM app.actions").fetchone()["status"]
+                == "outcome_unknown"
+            )
     finally:
         workload.close()
 

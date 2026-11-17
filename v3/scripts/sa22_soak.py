@@ -313,7 +313,7 @@ class Workload:
                 (plan["action_id"],),
             ).fetchone()
         if action["status"] != "succeeded":
-            pending.update(phase="unknown" if action["status"] == "unknown" else "failed")
+            pending.update(phase="unknown" if action["status"] == "outcome_unknown" else "failed")
             save(pending_path, pending)
             raise RuntimeError("CONTROLLED_DELIVERY_" + action["status"].upper())
         if action["attempts"] != 1:
