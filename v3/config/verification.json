@@ -2574,5 +2574,16 @@
       "services": "originalPG, realDocker UID65532, controlled zero-paid model and real durable writes",
       "authority": "approved project read scopes only; host parents/metadata private; exact command, epoch and originalMandate checked before renewal"
     }
+  },
+  "SAV1-22-SANDBOX-IO-RECOVERY-R1": {
+    "tests": [
+      "tests/test_sa22_sandbox_io_recovery.py::test_private_process_permissions_red_output_and_derived_lease_follow_original_authority[True]"
+    ],
+    "timeout_seconds": 150,
+    "components": {
+      "scope": "only original revoked negative parameter; positive privateprocess/redfeedback/lease PASS excluded",
+      "correction": "reentrant revocation occurs before bill parsing; retainunknown rather than requireknown; authority and no furtherwrite assertions unchanged",
+      "services": "owned realPG/Docker, controlled zero-paid supplier"
+    }
   }
 }

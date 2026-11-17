@@ -95,12 +95,18 @@ def test_private_process_permissions_red_output_and_derived_lease_follow_origina
             writes = conn.execute(
                 "SELECT step_key FROM app.sa_coding_operations WHERE capability='write'"
             ).fetchall()
-            assert conn.execute("SELECT count(*)n FROM app.usage_calls WHERE status<>'known'") \
-                .fetchone()["n"] == 0
+            unsettled = conn.execute(
+                "SELECT count(*)n FROM app.usage_calls WHERE status<>'known'"
+            ).fetchone()["n"]
         if revoke:
             assert len(writes) == 1
             assert len(seen) == 5
+            # Revocation committed inside the final send guard, before the
+            # response body was parsed. No validated bill survived; keep its
+            # original unknown reservation rather than pretending it is known.
+            assert unsettled == 1
         else:
+            assert unsettled == 0
             assert len(writes) == 2
             result = json.loads(next(env.experiment.artifacts.glob("*/result.json")).read_text())
             assert result["verification"] == "incomplete"
