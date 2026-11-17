@@ -22,17 +22,19 @@ def test_live_tool_schema_uses_existing_scoped_paths_and_keeps_shape_only_diagno
         directories = specs["list_dir"]["properties"]["path"]["enum"]
         writable = specs["apply_edits"]["properties"]["edits"]["items"][
             "properties"]["path"]["enum"]
-        assert set(readable) == {"src/calc.py", "tests/test_calc.py"}
+        assert set(readable) == {
+            "src/__init__.py", "src/calc.py", "src/other.py", "tests/test_calc.py",
+        }
         assert set(directories) == {"src", "tests"}
-        assert writable == ["src/calc.py"]
+        assert set(writable) == {"src/__init__.py", "src/calc.py", "src/other.py"}
         assert all(path not in readable + directories for path in (".", "src/", "../secret"))
-        name, args = "read_file", {"path": writable[0], private_key: "not exported"}
+        name, args = "read_file", {"path": "src/calc.py", private_key: "not exported"}
         if len(observed) == 2:
             value = json.loads(next(m["content"] for m in reversed(body["messages"])
                                     if m["role"] == "tool"))
             name, args = "apply_edits", {
                 "expected_tree": value["tree_hash"],
-                "edits": [{"path": writable[0], "expected_sha256": value["sha256"],
+                "edits": [{"path": "src/calc.py", "expected_sha256": value["sha256"],
                            "content": GOOD}],
             }
         elif len(observed) == 3:

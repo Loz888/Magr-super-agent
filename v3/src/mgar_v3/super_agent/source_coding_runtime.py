@@ -669,10 +669,10 @@ class _ControlledModel:
                 # Retain shape-only diagnostics after response ciphertext expires.
                 # Neither proposed contents nor reasoning enters ordinary events.
                 with session.core.engine.transaction() as conn:
-                    for call in response.tool_calls:
-                        paths = [call.arguments.get("path")]
-                        if call.name == "apply_edits":
-                            edits = call.arguments.get("edits")
+                    for proposed in response.tool_calls:
+                        paths = [proposed.arguments.get("path")]
+                        if proposed.name == "apply_edits":
+                            edits = proposed.arguments.get("edits")
                             paths = [
                                 edit.get("path") for edit in edits if isinstance(edit, dict)
                             ] if isinstance(edits, list) else []
@@ -697,10 +697,10 @@ class _ControlledModel:
                         session.core.engine._event(
                             conn, request.task.run_id, "source_trial_tool_shape",
                             operation_id=str(operation["operation_id"]),
-                            tool_name=call.name if call.name in {
+                            tool_name=proposed.name if proposed.name in {
                                 "read_file", "list_dir", "apply_edits", "run_tests", "ask_user"
                             } else "undeclared",
-                            argument_names=sorted(set(call.arguments) & {
+                            argument_names=sorted(set(proposed.arguments) & {
                                 "path", "edits", "expected_tree", "argv", "cwd",
                                 "timeout_seconds", "question",
                             }), paths=shapes,
