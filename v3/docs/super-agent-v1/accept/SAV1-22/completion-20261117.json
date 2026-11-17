@@ -1,0 +1,256 @@
+{
+  "schema": "sa22-completion-progress-v1",
+  "UTC": "2026-11-17T08:07:28.461081+00:00",
+  "card": "SAV1-22",
+  "status": "IN_PROGRESS",
+  "source_commit": "5a99967c1fb213fd3e8c8f4967ede0ac95e87446",
+  "source_sha256": "639f242da6fd3484b029486b59b9358966a1dfcb0ba87ddbd5aacb3dfcbc95d0",
+  "product_runtime_source_commit": "39e151e24a71378342a7cdd7bbec38d7048c4127",
+  "product_source_unchanged": true,
+  "scope": "local WSL, one repository/Bot/owner; no cloud, no publication",
+  "all_six_full_gates": {
+    "engineering_gate": "NOT_RUN",
+    "policy_security_gate": "NOT_RUN",
+    "live_source_channel_gate": "NOT_RUN",
+    "live_coding_gate": "NOT_RUN",
+    "live_publication_gate": "NOT_RUN",
+    "continuous_operation_gate": "NOT_RUN"
+  },
+  "partial_engineering_qualification": {
+    "status": "PASS_PARTITIONED_BY_REVISION",
+    "unique_targets_with_pass": 16,
+    "attempts": [
+      {
+        "label": "initial",
+        "source_commit": "0efc6eb501b0f8012bb1d77c9fb9fbffc5dac489",
+        "source_sha256": "c29e68761e36e7f815e754b032ef520a82e51b0050409c4a64ef973a373b908d",
+        "task": "SAV1-22-COMPLETION",
+        "exit_code": 1,
+        "counts": {
+          "tests": 15,
+          "failures": 3,
+          "errors": 0,
+          "skipped": 0
+        },
+        "evidence": "evidence/super-agent-v1/SAV1-22/completion-20261117T073529Z-60293225/initial/registered-result/result.json",
+        "source_unchanged_during_check": true
+      },
+      {
+        "label": "repair1",
+        "source_commit": "4e87e3bedf89ca0e599affaae5c5868c9a3c34ca",
+        "source_sha256": "45d707d5e330468ccfc571151280f6b35262d59cb555c95fd1420dd1043f5bcc",
+        "task": "SAV1-22-COMPLETION-R1",
+        "exit_code": 1,
+        "counts": {
+          "tests": 3,
+          "failures": 3,
+          "errors": 0,
+          "skipped": 0
+        },
+        "evidence": "evidence/super-agent-v1/SAV1-22/completion-20261117T073529Z-60293225/repair1/registered-result/result.json",
+        "source_unchanged_during_check": true
+      },
+      {
+        "label": "repair2",
+        "source_commit": "bdbe90efd3c34e2783b66f319c5c09674d9fb339",
+        "source_sha256": "6d86a06b33648e59d666fa492f92c5468b41f125b9daba7c3a74c12d75b480e2",
+        "task": "SAV1-22-COMPLETION-R1",
+        "exit_code": 1,
+        "counts": {
+          "tests": 3,
+          "failures": 1,
+          "errors": 0,
+          "skipped": 0
+        },
+        "evidence": "evidence/super-agent-v1/SAV1-22/completion-20261117T073529Z-60293225/repair2/registered-result/result.json",
+        "source_unchanged_during_check": true
+      },
+      {
+        "label": "repair3",
+        "source_commit": "93ef16dcbf08632c6fc862ee0de4fe1a7884ed43",
+        "source_sha256": "f680c2f9d5c9f344e0d44cf84465fc9211f722e767112ac815206879e4f43c32",
+        "task": "SAV1-22-COMPLETION-R3",
+        "exit_code": 0,
+        "counts": {
+          "tests": 1,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        "evidence": "evidence/super-agent-v1/SAV1-22/completion-20261117T073529Z-60293225/repair3/registered-result/result.json",
+        "source_unchanged_during_check": true
+      },
+      {
+        "label": "pg-qualification",
+        "source_commit": "4356d6d19b9c2c43cd7b0fb0bc1be79b85728b98",
+        "source_sha256": "260b8a4bf0ac434713d8892b10b901bb43ae674fd96a643546783ddb54d66ff0",
+        "task": "SAV1-22-SOAK-PG",
+        "exit_code": 1,
+        "counts": {
+          "tests": 1,
+          "failures": 1,
+          "errors": 0,
+          "skipped": 0
+        },
+        "evidence": "evidence/super-agent-v1/SAV1-22/completion-20261117T073529Z-60293225/pg-qualification/registered-result/result.json",
+        "source_unchanged_during_check": true
+      },
+      {
+        "label": "pg-repair1",
+        "source_commit": "1e7f06553b25dfa002279ec60c5ad2b1772e18dc",
+        "source_sha256": "331e58ac8aebd4ca1bad1af25cbac9033380a51e472cc8e3007a5d2b87723c81",
+        "task": "SAV1-22-SOAK-PG",
+        "exit_code": 1,
+        "counts": {
+          "tests": 1,
+          "failures": 1,
+          "errors": 0,
+          "skipped": 0
+        },
+        "evidence": "evidence/super-agent-v1/SAV1-22/completion-20261117T073529Z-60293225/pg-repair1/registered-result/result.json",
+        "source_unchanged_during_check": true
+      },
+      {
+        "label": "pg-repair2",
+        "source_commit": "e171395060e53228e50e909957f4c3954ce1ff9f",
+        "source_sha256": "9248320142945bed28d025f68c09a3f29beec08233db8cc15b13f99de2201ba9",
+        "task": "SAV1-22-SOAK-PG",
+        "exit_code": 0,
+        "counts": {
+          "tests": 1,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        "evidence": "evidence/super-agent-v1/SAV1-22/completion-20261117T073529Z-60293225/pg-repair2/registered-result/result.json",
+        "source_unchanged_during_check": true
+      }
+    ],
+    "passing_target_revisions": {
+      "tests.test_sa22_completion::test_elapsed_clock_and_online_heartbeat_cannot_claim_72h": "0efc6eb501b0f8012bb1d77c9fb9fbffc5dac489",
+      "tests.test_sa22_completion::test_restarts_and_clock_changes_break_segment[change0]": "0efc6eb501b0f8012bb1d77c9fb9fbffc5dac489",
+      "tests.test_sa22_completion::test_restarts_and_clock_changes_break_segment[change1]": "0efc6eb501b0f8012bb1d77c9fb9fbffc5dac489",
+      "tests.test_sa22_completion::test_restarts_and_clock_changes_break_segment[change2]": "0efc6eb501b0f8012bb1d77c9fb9fbffc5dac489",
+      "tests.test_sa22_completion::test_restarts_and_clock_changes_break_segment[change3]": "0efc6eb501b0f8012bb1d77c9fb9fbffc5dac489",
+      "tests.test_sa22_completion::test_restarts_and_clock_changes_break_segment[change4]": "0efc6eb501b0f8012bb1d77c9fb9fbffc5dac489",
+      "tests.test_sa22_completion::test_wall_duration_cannot_be_compressed_or_samples_removed": "0efc6eb501b0f8012bb1d77c9fb9fbffc5dac489",
+      "tests.test_sa22_completion::test_zero_create_precision_is_undefined_and_missing_keeps_recall_denominator": "0efc6eb501b0f8012bb1d77c9fb9fbffc5dac489",
+      "tests.test_sa22_completion::test_wrong_target_and_unauthorized_data_are_not_quality_success": "0efc6eb501b0f8012bb1d77c9fb9fbffc5dac489",
+      "tests.test_sa22_completion::test_duplicate_or_unregistered_predictions_rejected": "0efc6eb501b0f8012bb1d77c9fb9fbffc5dac489",
+      "tests.test_sa22_completion::test_config_refuses_main_or_live_database_and_public_file": "0efc6eb501b0f8012bb1d77c9fb9fbffc5dac489",
+      "tests.test_sa22_completion::test_contiguous_running_samples_report_progress_only": "0efc6eb501b0f8012bb1d77c9fb9fbffc5dac489",
+      "tests.test_sa22_completion::test_new_controlled_http_pg_cas_and_original_broker_cycle": "bdbe90efd3c34e2783b66f319c5c09674d9fb339",
+      "tests.test_sa22_completion::test_real_controller_sigkill_reuses_committed_input_on_restart": "bdbe90efd3c34e2783b66f319c5c09674d9fb339",
+      "tests.test_sa22_completion::test_real_http_accept_then_disconnect_stays_unknown_without_resend": "93ef16dcbf08632c6fc862ee0de4fe1a7884ed43",
+      "tests.test_sa22_soak_pg_recovery::test_owned_postgresql_outage_before_ack_recovers_same_pending_event": "e171395060e53228e50e909957f4c3954ce1ff9f"
+    },
+    "latest_revision_full_suite_run": false,
+    "historical_PASS_rerun": false
+  },
+  "static_checks": {
+    "typecheck": {
+      "source_commit": "0efc6eb501b0f8012bb1d77c9fb9fbffc5dac489",
+      "result": "PASS",
+      "rerun": false
+    },
+    "lint": {
+      "source_commit": "4e87e3bedf89ca0e599affaae5c5868c9a3c34ca",
+      "result": "PASS_AFTER_FAILED_TARGET_REPAIR",
+      "later_rerun": false
+    },
+    "new_pg_test_lint": {
+      "source_commit": "e171395060e53228e50e909957f4c3954ce1ff9f",
+      "result": "PASS_FIRST_CHECK"
+    }
+  },
+  "controlled_72h": {
+    "status": "RUNNING",
+    "started_at": "2026-11-17T08:00:17.748226+00:00",
+    "minimum_until_UTC": "2026-11-20T08:00:17.748226+00:00",
+    "source_commit": "5a99967c1fb213fd3e8c8f4967ede0ac95e87446",
+    "source_sha256": "639f242da6fd3484b029486b59b9358966a1dfcb0ba87ddbd5aacb3dfcbc95d0",
+    "pid": 2208010,
+    "last_observation_UTC": "2026-11-17T08:07:18.967219+00:00",
+    "samples": 8,
+    "cycles": 2,
+    "sandbox_probes": 1,
+    "paid_calls": 0,
+    "paid_micros": 0,
+    "live_Bot_probe_messages": 0,
+    "status_reader": ".local/sa22-soak-status.py",
+    "private_run_root": "/home/imini/magr-super-agent/v3/.local/sa22-controlled-soak-20261117T075959Z-2d31fd",
+    "subsequent_live_72h_started": false
+  },
+  "quality_data": {
+    "development_draft": 100,
+    "actionable": 40,
+    "not_new_task": 60,
+    "operator_review": "PENDING",
+    "independent_holdout": "NOT_PROVIDED",
+    "formal_routing_score": "NOT_RUN",
+    "formal_live_positive_tasks_registered": 0,
+    "live_task_plan_rows": 10,
+    "live_task_grader_freeze": "NOT_READY",
+    "prior_two_QA_samples_counted_as_formal_10": false,
+    "raw_data_path": "fixtures/super-agent-v1/sa22-completion/development-draft.jsonl"
+  },
+  "dependencies": {
+    "H12_R07": {
+      "delivery": "40f8db8",
+      "source": "7f19289",
+      "engineering": "PASS",
+      "real_quality": "FAIL_RETAINED",
+      "MVP": "NOT_RELEASED"
+    },
+    "owner_experimental_exception": "RETAINED_WITHIN_USD2",
+    "cloud_E19": "NOT_RUN_USER_DEFERRED",
+    "operator_pilot": "NOT_STARTED",
+    "formal_real_coding": "NOT_RUN",
+    "actual_live_coding_bindings": 0
+  },
+  "money": {
+    "calls": 17,
+    "settled_micros": 19774,
+    "held_micros": 0,
+    "unknown_calls": 0,
+    "lifetime_cap_micros": 2000000
+  },
+  "resources": {
+    "UTC": "2026-11-17T08:04:18.794346+00:00",
+    "SQL_changes_applied": false,
+    "business_writes": 0,
+    "main": {
+      "migrations": 44,
+      "all_installed_checksums_match": true
+    },
+    "onboarding": {
+      "migrations": 51,
+      "all_installed_checksums_match": true
+    },
+    "live_money": {
+      "calls": 17,
+      "settled_micros": 19774,
+      "held_micros": 0,
+      "unknown_calls": 0,
+      "lifetime_cap_micros": 2000000
+    },
+    "live_coding_bindings": 0,
+    "controlled_soak": {
+      "migrations": 51,
+      "usage_calls": 0,
+      "actions": 1,
+      "max_outbox_attempts": 1
+    },
+    "sa22-completion-checks_containers_remaining": 0,
+    "sa22-soak-qualification_containers_remaining": 0,
+    "new_artifact_refs": {
+      "count": 11,
+      "all_match": true
+    }
+  },
+  "failure_logs_retained": true,
+  "protected_user_files_unchanged": true,
+  "new_shared_Engine_API_SQL_budget_change": false,
+  "SA23": "NOT_STARTED",
+  "evidence_root": "evidence/super-agent-v1/SAV1-22/completion-20261117T073529Z-60293225"
+}
