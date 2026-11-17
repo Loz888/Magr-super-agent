@@ -1,0 +1,429 @@
+{
+  "UTC": "2026-11-17T11:47:18.409176+00:00",
+  "status": "IN_PROGRESS",
+  "candidate": "3c18581d1dcfa6847d91b6cb77e9ec489de105fa",
+  "source_sha256": "f44031a4d67bfc8f4728e9c247ce106957291b3129abb3ed800bb2387ff72a5c",
+  "scope": "SA22 approved experiments; failed actual L01/L02 intake and worker integration repairs",
+  "ownership": {
+    "commit": "d7f8f1484a05f1a0300ff80b33429838633b10de",
+    "HANDOFF_section": 49,
+    "SQL_0055_sha256": "67e861128f6a8f3a01b591cfe33e1ed4e0649ae461738a7cdfb2fdf86e90a350",
+    "budget_patch_sha256": "ddb76d82fcef28367ddcc33a3b6a36289dec9ad9fe1d41202eecce16b256949b"
+  },
+  "budget": {
+    "total_limit_micros": 10000000,
+    "paid_calls": 40,
+    "settled_micros": 48930,
+    "held_micros": 19661,
+    "unknown_calls": 1,
+    "coding_trial_expires_at": "2026-11-18T07:07:10.941033+00:00",
+    "expires_at": "2026-11-24T07:03:10.941033+00:00"
+  },
+  "migration_counts": {
+    "main_untouched": 44,
+    "dedicated_Bot": 52
+  },
+  "registered_attempts": [
+    {
+      "task": "SAV1-22-FAULTS",
+      "status": "PASS",
+      "git_commit": "8dd01786d725e0c1523414540c02f6a255cfe5a7",
+      "source_sha256": "935633c3311cb29d0fd3d5a409713e622900c09c429ba28b19b08b52d5e3afdf",
+      "finished_source_sha256": "935633c3311cb29d0fd3d5a409713e622900c09c429ba28b19b08b52d5e3afdf",
+      "started_at": "2026-11-17T09:25:42.358490+00:00",
+      "finished_at": "2026-11-17T09:26:13.248434+00:00",
+      "counts": {
+        "tests": 2,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "exit_code": 0,
+      "log_path": "evidence/SAV1-22-FAULTS/20261117T092542Z-c6dc2067/command.log",
+      "attempt_path": "evidence/SAV1-22-FAULTS/20261117T092542Z-c6dc2067"
+    },
+    {
+      "task": "SAV1-22-BUDGET10-PREP",
+      "status": "PASS",
+      "git_commit": "21aa61a9f3de940f607f9302d30b62a455f8d930",
+      "source_sha256": "8a5e48e8f42d1c380e8ce75c97cd8fb28381f1e3b12c7707ceb48a96f5aa1cd9",
+      "finished_source_sha256": "8a5e48e8f42d1c380e8ce75c97cd8fb28381f1e3b12c7707ceb48a96f5aa1cd9",
+      "started_at": "2026-11-17T09:40:10.484983+00:00",
+      "finished_at": "2026-11-17T09:40:32.319786+00:00",
+      "counts": {
+        "tests": 13,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "exit_code": 0,
+      "log_path": "evidence/SAV1-22-BUDGET10-PREP/20261117T094010Z-7848eff4/command.log",
+      "attempt_path": "evidence/SAV1-22-BUDGET10-PREP/20261117T094010Z-7848eff4"
+    },
+    {
+      "task": "SAV1-22-BUDGET10",
+      "status": "PASS",
+      "git_commit": "666e75d7b442b7266fdafe913a7d939eec69795c",
+      "source_sha256": "b807ecdefcf647beaa161d37754f6532d591f431ff476785cd045cf25cdbb548",
+      "finished_source_sha256": "b807ecdefcf647beaa161d37754f6532d591f431ff476785cd045cf25cdbb548",
+      "started_at": "2026-11-17T09:48:49.211335+00:00",
+      "finished_at": "2026-11-17T09:48:56.080835+00:00",
+      "counts": {
+        "tests": 1,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "exit_code": 0,
+      "log_path": "evidence/SAV1-22-BUDGET10/20261117T094849Z-38700ff2/command.log",
+      "attempt_path": "evidence/SAV1-22-BUDGET10/20261117T094849Z-38700ff2"
+    },
+    {
+      "task": "SAV1-22-CASES",
+      "status": "PASS",
+      "git_commit": "54140565d6997be87da7ae34b842c8b0c4454508",
+      "source_sha256": "b50ae272ed623a2e35b41f0f89308f1aa119fe61129b540ee767f7356f6ddc13",
+      "finished_source_sha256": "b50ae272ed623a2e35b41f0f89308f1aa119fe61129b540ee767f7356f6ddc13",
+      "started_at": "2026-11-17T10:12:31.959372+00:00",
+      "finished_at": "2026-11-17T10:12:54.090308+00:00",
+      "counts": {
+        "tests": 3,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "exit_code": 0,
+      "log_path": "evidence/SAV1-22-CASES/20261117T101231Z-00d11da7/command.log",
+      "attempt_path": "evidence/SAV1-22-CASES/20261117T101231Z-00d11da7"
+    },
+    {
+      "task": "SAV1-22-CASES-RESTORE",
+      "status": "PASS",
+      "git_commit": "d49df985eff6ffc36444b93cf46590fc29404c0f",
+      "source_sha256": "371a3d1e24593c26aa964973fbe054acfdc6a78b02e064c95cd67e5c4f4659b8",
+      "finished_source_sha256": "371a3d1e24593c26aa964973fbe054acfdc6a78b02e064c95cd67e5c4f4659b8",
+      "started_at": "2026-11-17T10:23:12.939617+00:00",
+      "finished_at": "2026-11-17T10:23:27.089720+00:00",
+      "counts": {
+        "tests": 2,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "exit_code": 0,
+      "log_path": "evidence/SAV1-22-CASES-RESTORE/20261117T102312Z-38ef4dfd/command.log",
+      "attempt_path": "evidence/SAV1-22-CASES-RESTORE/20261117T102312Z-38ef4dfd"
+    },
+    {
+      "task": "SAV1-22-CASES-ONCE",
+      "status": "PASS",
+      "git_commit": "b226de3d2e524273a117ed161496f869d9617dd5",
+      "source_sha256": "f2e0ac15bcbf2dbbae4d0bc415f0608a910306df245a14c351824addb9b15260",
+      "finished_source_sha256": "f2e0ac15bcbf2dbbae4d0bc415f0608a910306df245a14c351824addb9b15260",
+      "started_at": "2026-11-17T10:30:41.641467+00:00",
+      "finished_at": "2026-11-17T10:30:55.710894+00:00",
+      "counts": {
+        "tests": 1,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "exit_code": 0,
+      "log_path": "evidence/SAV1-22-CASES-ONCE/20261117T103041Z-fcf5147b/command.log",
+      "attempt_path": "evidence/SAV1-22-CASES-ONCE/20261117T103041Z-fcf5147b"
+    },
+    {
+      "task": "SAV1-22-LIVE-INTAKE-REPAIR",
+      "status": "FAIL",
+      "git_commit": "b226de3d2e524273a117ed161496f869d9617dd5",
+      "source_sha256": "1f1f62e4ce4eef6d49ccf2c7b6996a01ccb33d782aaa115a2704af5296a1ad4a",
+      "finished_source_sha256": "1f1f62e4ce4eef6d49ccf2c7b6996a01ccb33d782aaa115a2704af5296a1ad4a",
+      "started_at": "2026-11-17T10:56:42.306528+00:00",
+      "finished_at": "2026-11-17T10:57:07.035457+00:00",
+      "counts": {
+        "tests": 8,
+        "failures": 1,
+        "errors": 0,
+        "skipped": 0
+      },
+      "exit_code": 1,
+      "log_path": "evidence/SAV1-22-LIVE-INTAKE-REPAIR/20261117T105642Z-433a30b2/command.log",
+      "attempt_path": "evidence/SAV1-22-LIVE-INTAKE-REPAIR/20261117T105642Z-433a30b2"
+    },
+    {
+      "task": "SAV1-22-LIVE-INTAKE-REPAIR-R1",
+      "status": "PASS",
+      "git_commit": "120ef877336484521259699b88fea59e8b937976",
+      "source_sha256": "20d18ad10ecbdb356a420f2f5a652f0f0dd3bab34c29d5d774e618caa2a03dbe",
+      "finished_source_sha256": "20d18ad10ecbdb356a420f2f5a652f0f0dd3bab34c29d5d774e618caa2a03dbe",
+      "started_at": "2026-11-17T10:58:10.311541+00:00",
+      "finished_at": "2026-11-17T10:58:20.702382+00:00",
+      "counts": {
+        "tests": 1,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "exit_code": 0,
+      "log_path": "evidence/SAV1-22-LIVE-INTAKE-REPAIR-R1/20261117T105810Z-c7c43158/command.log",
+      "attempt_path": "evidence/SAV1-22-LIVE-INTAKE-REPAIR-R1/20261117T105810Z-c7c43158"
+    },
+    {
+      "task": "SAV1-22-WORKER-SCOPE-REPAIR",
+      "status": "FAIL",
+      "git_commit": "9c47c39e19a13a68f06fa2ef0329227fa90cce36",
+      "source_sha256": "73beaa805c3f3309db34b66be75691a56c4101d1afd1c6392fd17c904fe2e311",
+      "finished_source_sha256": "73beaa805c3f3309db34b66be75691a56c4101d1afd1c6392fd17c904fe2e311",
+      "started_at": "2026-11-17T11:09:42.553999+00:00",
+      "finished_at": "2026-11-17T11:11:20.192698+00:00",
+      "counts": {
+        "tests": 3,
+        "failures": 1,
+        "errors": 0,
+        "skipped": 0
+      },
+      "exit_code": 1,
+      "log_path": "evidence/SAV1-22-WORKER-SCOPE-REPAIR/20261117T110942Z-67b420a4/command.log",
+      "attempt_path": "evidence/SAV1-22-WORKER-SCOPE-REPAIR/20261117T110942Z-67b420a4"
+    },
+    {
+      "task": "SAV1-22-WORKER-SCOPE-REPAIR-R1",
+      "status": "FAIL",
+      "git_commit": "a099eb53c43ae9135e81809bb946bf00f1794669",
+      "source_sha256": "8c50bc9a9d0513816677d71c7c3969ecba95d8218cde3f569540a94a3041455d",
+      "finished_source_sha256": "8c50bc9a9d0513816677d71c7c3969ecba95d8218cde3f569540a94a3041455d",
+      "started_at": "2026-11-17T11:12:47.416647+00:00",
+      "finished_at": "2026-11-17T11:13:48.099902+00:00",
+      "counts": {
+        "tests": 1,
+        "failures": 1,
+        "errors": 0,
+        "skipped": 0
+      },
+      "exit_code": 1,
+      "log_path": "evidence/SAV1-22-WORKER-SCOPE-REPAIR-R1/20261117T111247Z-e1b3f503/command.log",
+      "attempt_path": "evidence/SAV1-22-WORKER-SCOPE-REPAIR-R1/20261117T111247Z-e1b3f503"
+    },
+    {
+      "task": "SAV1-22-WORKER-SCOPE-REPAIR-R1",
+      "status": "PASS",
+      "git_commit": "5b20eae23813444b3e000e86ebc1cb2eb0a79862",
+      "source_sha256": "eae76a5257a8cd4e1f4210ea8a9e11bede9e3b5df638ac229c4e736722dce9c0",
+      "finished_source_sha256": "eae76a5257a8cd4e1f4210ea8a9e11bede9e3b5df638ac229c4e736722dce9c0",
+      "started_at": "2026-11-17T11:15:13.212849+00:00",
+      "finished_at": "2026-11-17T11:16:20.902448+00:00",
+      "counts": {
+        "tests": 1,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "exit_code": 0,
+      "log_path": "evidence/SAV1-22-WORKER-SCOPE-REPAIR-R1/20261117T111513Z-4290a802/command.log",
+      "attempt_path": "evidence/SAV1-22-WORKER-SCOPE-REPAIR-R1/20261117T111513Z-4290a802"
+    },
+    {
+      "task": "SAV1-22-REVIEWED-CASE-RETRY",
+      "status": "PASS",
+      "git_commit": "63c8915c301191fac96290ddbca53d0d32617720",
+      "source_sha256": "247e3c7bea49eab5c5a0579da9b240feb927f92dba400cc469a551c26390e43a",
+      "finished_source_sha256": "247e3c7bea49eab5c5a0579da9b240feb927f92dba400cc469a551c26390e43a",
+      "started_at": "2026-11-17T11:19:19.234283+00:00",
+      "finished_at": "2026-11-17T11:20:07.711908+00:00",
+      "counts": {
+        "tests": 2,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "exit_code": 0,
+      "log_path": "evidence/SAV1-22-REVIEWED-CASE-RETRY/20261117T111919Z-2b54156a/command.log",
+      "attempt_path": "evidence/SAV1-22-REVIEWED-CASE-RETRY/20261117T111919Z-2b54156a"
+    },
+    {
+      "task": "SAV1-22-CASE-PUNCTUATION",
+      "status": "PASS",
+      "git_commit": "97410f3b192f18a0ae95de57bfafd3f9d5554091",
+      "source_sha256": "4ed2a1ca562ed07456e2df30175b79a57ba63275346363f8aceb65fdfb05ebda",
+      "finished_source_sha256": "4ed2a1ca562ed07456e2df30175b79a57ba63275346363f8aceb65fdfb05ebda",
+      "started_at": "2026-11-17T11:33:08.496755+00:00",
+      "finished_at": "2026-11-17T11:33:13.361342+00:00",
+      "counts": {
+        "tests": 1,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "exit_code": 0,
+      "log_path": "evidence/SAV1-22-CASE-PUNCTUATION/20261117T113308Z-b15fa1a0/command.log",
+      "attempt_path": "evidence/SAV1-22-CASE-PUNCTUATION/20261117T113308Z-b15fa1a0"
+    },
+    {
+      "task": "SAV1-22-THINKING-MAX",
+      "status": "PASS",
+      "git_commit": "3c18581d1dcfa6847d91b6cb77e9ec489de105fa",
+      "source_sha256": "f44031a4d67bfc8f4728e9c247ce106957291b3129abb3ed800bb2387ff72a5c",
+      "finished_source_sha256": "f44031a4d67bfc8f4728e9c247ce106957291b3129abb3ed800bb2387ff72a5c",
+      "started_at": "2026-11-17T11:40:38.804648+00:00",
+      "finished_at": "2026-11-17T11:42:06.390235+00:00",
+      "counts": {
+        "tests": 4,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "exit_code": 0,
+      "log_path": "evidence/SAV1-22-THINKING-MAX/20261117T114038Z-5770d529/command.log",
+      "attempt_path": "evidence/SAV1-22-THINKING-MAX/20261117T114038Z-5770d529"
+    }
+  ],
+  "test_reporting": "40 distinct new targets have versioned passing evidence; never a final-source single-run 40 PASS; repairs only original failed parameters; historical failures kept",
+  "real_attempts": [
+    {
+      "round": 1,
+      "case_ids": [
+        "L01",
+        "L02"
+      ],
+      "status": "FAIL_INTAKE",
+      "actual_inputs": 2,
+      "actual_coding_bindings": 0,
+      "known_model_calls": 5,
+      "settled_micros": 5712,
+      "evidence": "evidence/super-agent-v1/SAV1-22/experiment-start-20261117T091743Z-bbf0d00a/live-intake-repair/first-real-input-failures.json"
+    },
+    {
+      "round": 2,
+      "case_ids": [
+        "L01",
+        "L02"
+      ],
+      "status": "FAIL_CODING_DENIED",
+      "actual_inputs": 2,
+      "actual_coding_bindings": 2,
+      "known_model_calls": 5,
+      "settled_micros": 4775,
+      "coding_calls": 3,
+      "coding_settled_micros": 2651,
+      "patch_bytes": 0,
+      "actual_replies": 2,
+      "dispatch_attempts_each": 1,
+      "evidence": "evidence/super-agent-v1/SAV1-22/experiment-start-20261117T091743Z-bbf0d00a/live-L01-L02"
+    },
+    {
+      "round": 3,
+      "case_ids": [
+        "L01",
+        "L02"
+      ],
+      "status": "L01_PARTIAL_UNKNOWN_L02_GENERIC_MISROUTE_FAIL",
+      "actual_inputs": 2,
+      "actual_coding_bindings": 2,
+      "ledger_records_added": 11,
+      "settled_micros_added": 18017,
+      "held_micros_added": 19661,
+      "L01_patch_bytes": 817,
+      "L01_final_test": "NOT_RUN",
+      "L01_independent_grade": "NOT_RUN",
+      "L02_patch_bytes": 0,
+      "actual_replies": 2,
+      "dispatch_attempts_each": 1,
+      "automatic_L01_retry": false
+    }
+  ],
+  "live_retake_readiness": {
+    "UTC": "2026-11-17T11:20:53.430396+00:00",
+    "status": "online",
+    "old_pid": 3600794,
+    "new_pid": 3705709,
+    "candidate": "63c8915c301191fac96290ddbca53d0d32617720",
+    "source_sha256": "247e3c7bea49eab5c5a0579da9b240feb927f92dba400cc469a551c26390e43a",
+    "total_limit_micros": 10000000,
+    "paid_calls": 29,
+    "settled_micros": "30913",
+    "held_micros": "0",
+    "profiles": [
+      "L01",
+      "L02",
+      "L03",
+      "L08",
+      "L09"
+    ],
+    "bundle_sha256": "b5e94df8752f3aa3e216ca46852415d1962187ced536ab1808035b7ff04dd2d1",
+    "first_failed_trials_retained": true,
+    "new_model_calls": 0,
+    "coding_expires_at": "2026-11-18T07:07:10.941033+00:00",
+    "planned_offline_start": "2026-11-17T11:15:45.417738+00:00",
+    "soak_touched": false
+  },
+  "independent_graders": {
+    "commit": "ca6aff5b86b24feac61279733edbe48ec1cf0861",
+    "files_hash_and_Git_bytes_verified": 462,
+    "private_code_opened": false,
+    "private_code_entered_Worker": false,
+    "formal_scoring": "NOT_RUN",
+    "L02_real_PG": "NOT_RUN"
+  },
+  "routing_holdout": {
+    "commit": "0a50f6baeb4e38ebe53cd4e6e248f633df3f863c",
+    "operator_semantic_review": "PENDING",
+    "labels_frozen": false,
+    "formal_scoring": "NOT_RUN"
+  },
+  "gates": {
+    "engineering_gate": "IN_PROGRESS",
+    "policy_security_gate": "IN_PROGRESS",
+    "live_source_channel_gate": "PARTIAL_FEISHU_ONLY",
+    "live_coding_gate": "FAIL_RETAKE_PENDING_H12_FAIL_RETAINED",
+    "live_publication_gate": "NOT_RUN",
+    "continuous_operation_gate": "IN_PROGRESS_CONTROLLED_SEGMENT_ONLY"
+  },
+  "H12": "FAIL_RETAINED_MVP_NOT_RELEASED",
+  "SA23_started": false,
+  "known_evidence_limits": [
+    "Initial intake repair archive mistakenly pointed at previous HEAD after local Git identity failure; preserved and corrected during verification. Identical pre/post worktree fingerprints bind that run.",
+    "Initial fault successful stdout observations were not captured; assertions/JUnit/code/archive retained, no PASS rerun to reconstruct logs.",
+    "Initial budget activation lacks full pre-change row fingerprint; aggregate observation preserved, full-row match covers resumed tail only.",
+    "Worker-scope R1 registry component source note describes the first fixture-only run; later 5b20eae correction and original failed node are bound by actual git/fingerprints and separate erratum.",
+    "Two positive controlled fixture mistakes and the actual aggregated-verification flaw are separately retained, not rewritten as expected red baselines.",
+    "Retake configuration first tried duplicate trial signing; database rejected, no new trial/fee; first failed binding revocation remained and resumption reused all original trials."
+  ],
+  "current_thinking": {
+    "type": "enabled",
+    "reasoning_effort": "max",
+    "real_max_inference": "NOT_RUN_AWAITS_NEW_SOURCE_MESSAGE"
+  },
+  "thinking_activation": {
+    "UTC": "2026-11-17T11:43:41.583061+00:00",
+    "status": "online",
+    "old_pid": 3705709,
+    "new_pid": 3829924,
+    "thinking_mode": "enabled",
+    "reasoning_effort": "max",
+    "question_and_coding": true,
+    "runtime_manifest_sha256": "b09a222b433c7d87299cb49b510b5fe8b2e2864c4b8f5aab9b3addb56bd7ae6c",
+    "case_bundle_sha256": "1129881b3e312e32e071e95a39e0c5462b52142f862b2af240cfb2b603fab4b5",
+    "candidate": "3c18581d1dcfa6847d91b6cb77e9ec489de105fa",
+    "source_sha256": "f44031a4d67bfc8f4728e9c247ce106957291b3129abb3ed800bb2387ff72a5c",
+    "facts_after": {
+      "usage": {
+        "calls": 40,
+        "settled_micros": "48930",
+        "unknown": 1,
+        "reserved": 0,
+        "unknown_held_micros": "19661"
+      },
+      "usage_rows_sha256": "3079c6005428c98efda09d8bfd9bda53a465830ffc4bd8d280fe928bb257c512",
+      "trial_rows_sha256": "a03fb1c7f2e925048c9ca9309e06fc056846337973f4cfda15cb7666d08546b7",
+      "trials": 9,
+      "active": 0,
+      "pending": 0
+    },
+    "full_original_usage_and_trial_rows_unchanged": true,
+    "new_paid_calls": 0,
+    "real_max_inference": "NOT_RUN_AWAITS_NEW_SOURCE_MESSAGE",
+    "soak_touched": false,
+    "SQL_or_policy_changes": false,
+    "planned_offline_started": "2026-11-17T11:43:33.633721+00:00"
+  }
+}

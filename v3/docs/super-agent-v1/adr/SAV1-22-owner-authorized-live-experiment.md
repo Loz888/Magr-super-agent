@@ -26,3 +26,11 @@ SA侧当前固定H11切片与R05完整Harness存在差异，实验支持范围�
 不导入未提交R06工作，不代替H12 R08新持出验收，不将本次费用转入其旧USD12授权。
 
 SA22完整六门、独立验收和长期试用继续分别报告；实验启用不表示整卡完成或产品发布。
+
+
+2026-11-17 本人更新：累计上限改为USD10（含历史消费），0055已按Harness第49节确认
+并仅安装专属Bot PG。本人进一步明确要求启用思考并设置max；新增独立模式manifest，
+不覆写原trial。按原数据／预算／期限接入问答及Coding的thinking enabled与max参数，
+思考工具历史由原加密响应记录同attempt恢复；不改变H12 FAIL、独立Verifier或发布门。
+旧unknown及全部失败保留。新局部preflight可证未发送时由原Engine结算已知零费用，
+不回溯修改既有unknown。见 SA22_THINKING_MAX_20261117.md 和分版本原始证据。

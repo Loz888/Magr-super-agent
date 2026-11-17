@@ -1,5 +1,17 @@
 # Super-Agent / Harness 协作约定
 
+当前更新（2026-11-17，真实实验与思考模式）：**SA22 IN_PROGRESS**。
+共享累计上限已按本人授权及Harness第49节改为USD10；主库44／Bot专属52。
+40个新目标有分版本PASS，修复只复验失败项；不称最新全量PASS。三轮L01/L02均保留：
+首轮入队失败，第二轮工具拒绝无diff，第三轮L01实际diff后本地输入上界挂起、L02误分流。
+旧unknown USD0.019661不重发／退款；已结算USD0.048930。新的问答／编码已启用
+thinking enabled / effort max（3c18581，新增4PASS），实际max推理待新消息。
+[实验记录](SA22_EXPERIMENT_RUN_20261117.md)／[思考配置](SA22_THINKING_MAX_20261117.md)／
+[逐次机器索引](accept/SAV1-22/experiment-progress-20261117.json)。受控72h继续，R标签复核、
+正式独立评分及其他真实场景／长期门仍未完成；H12原FAIL保留，SA23未启动。
+
+以下保留此前阶段记录；旧USD2、未收到grader等描述属于当时状态。
+
 当前更新（2026-11-17，已批准实验并执行首批）：**SA22 IN_PROGRESS**。
 原累计USD2／计划USD1.95不变。新故障组合F02 Redis缓存丢失恢复、F12真实ENOSPC
 在候选8dd0178首次2PASS／退出码0；历史通过未重跑，准备失败与日志限制保留。

@@ -1,0 +1,33 @@
+{
+  "UTC": "2026-11-17T11:43:41.583061+00:00",
+  "status": "online",
+  "old_pid": 3705709,
+  "new_pid": 3829924,
+  "thinking_mode": "enabled",
+  "reasoning_effort": "max",
+  "question_and_coding": true,
+  "runtime_manifest_sha256": "b09a222b433c7d87299cb49b510b5fe8b2e2864c4b8f5aab9b3addb56bd7ae6c",
+  "case_bundle_sha256": "1129881b3e312e32e071e95a39e0c5462b52142f862b2af240cfb2b603fab4b5",
+  "candidate": "3c18581d1dcfa6847d91b6cb77e9ec489de105fa",
+  "source_sha256": "f44031a4d67bfc8f4728e9c247ce106957291b3129abb3ed800bb2387ff72a5c",
+  "facts_after": {
+    "usage": {
+      "calls": 40,
+      "settled_micros": "48930",
+      "unknown": 1,
+      "reserved": 0,
+      "unknown_held_micros": "19661"
+    },
+    "usage_rows_sha256": "3079c6005428c98efda09d8bfd9bda53a465830ffc4bd8d280fe928bb257c512",
+    "trial_rows_sha256": "a03fb1c7f2e925048c9ca9309e06fc056846337973f4cfda15cb7666d08546b7",
+    "trials": 9,
+    "active": 0,
+    "pending": 0
+  },
+  "full_original_usage_and_trial_rows_unchanged": true,
+  "new_paid_calls": 0,
+  "real_max_inference": "NOT_RUN_AWAITS_NEW_SOURCE_MESSAGE",
+  "soak_touched": false,
+  "SQL_or_policy_changes": false,
+  "planned_offline_started": "2026-11-17T11:43:33.633721+00:00"
+}
