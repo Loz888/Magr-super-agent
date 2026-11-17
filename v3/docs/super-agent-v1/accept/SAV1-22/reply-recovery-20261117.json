@@ -1,0 +1,139 @@
+{
+  "schema": "sa22-reply-recovery-v1",
+  "UTC": "2026-11-17T07:23:56.116089+00:00",
+  "status": "RESTORED_SAMPLE_LIVE_PASS",
+  "cause": "self-generated 24h onboarding expiry stopped receiver; status remained stale-online",
+  "restoration_authorization": "existing scope plus current user request to continue using the bot; no new spending or destination",
+  "product_source_commit": "39e151e24a71378342a7cdd7bbec38d7048c4127",
+  "product_source_sha256": "f2fcdad0daadf6bcb82f5a408b911d0df631568bd592bcd12cdea1b1915dc57c",
+  "product_source_changed": false,
+  "shared_Engine_API_schema_or_budget_algorithm_changed": false,
+  "deployment": {
+    "service_until": "2026-11-24T07:03:10.941033+00:00",
+    "coding_trial_until": "2026-11-18T07:07:10.941033+00:00",
+    "coding_expiry_stops_QA": false,
+    "offline_status_on_stop": "PASS",
+    "status_writes_atomic_and_stopped_state_latched": true,
+    "source_revision": 5,
+    "feishu_config_revision": 3,
+    "policy_revision": 5,
+    "ingress_generation": 5,
+    "notification_revision": 4,
+    "organization_budget_revision": 2,
+    "project_budget_revision": 2,
+    "main_migrations": 44,
+    "onboarding_migrations": 51,
+    "new_sql": false,
+    "model_manifest_sha256": "c39a5a0564ac4c48c70e4f85c4dc91937ad1b61af3d636f9538269f4420d99e4",
+    "assistant_manifest_sha256": "19bfc19224f049acc868148b68fb713bfbec36c3a15a48a87f4e3d2441731517",
+    "helper_archive_sha256": "0b9c6f4c603b3cda677b5ddd618ee7cab8ba488d721a12246effa3661b4c89ca",
+    "automatic_reconnect": false,
+    "host_and_WSL_required": true
+  },
+  "checks": {
+    "same_scope_authority_renewal": "PASS",
+    "existing_usage_preserved_before_live_checks": true,
+    "managed_stop_offline_and_restart": "PASS",
+    "old_passed_engineering_or_static_targets_repeated": false,
+    "real_repository_question": "PASS_SAMPLE",
+    "real_contextual_followup": "PASS_SAMPLE",
+    "independent_semantic_quality": "NOT_RUN",
+    "7_day_natural_expiry_observed": "NOT_RUN"
+  },
+  "real_samples": [
+    {
+      "run_id": "e60340c5-c1c3-4c6f-9ffa-ac787dce8f72",
+      "action_id": "44451abf-99a3-4662-8ea2-1d5ed77e1aa7",
+      "model_requests": 2,
+      "new_cost_micros": 2567,
+      "delivery": "accepted",
+      "outbox_attempts": 1,
+      "actual_citations": [
+        {
+          "path": "v3/src/mgar_v3/memory/model.py",
+          "start_line": 81,
+          "end_line": 115
+        },
+        {
+          "path": "v3/src/mgar_v3/memory/store.py",
+          "start_line": 1,
+          "end_line": 68
+        },
+        {
+          "path": "v3/src/mgar_v3/memory/store.py",
+          "start_line": 70,
+          "end_line": 100
+        },
+        {
+          "path": "v3/src/mgar_v3/memory/retrieval.py",
+          "start_line": 81,
+          "end_line": 119
+        },
+        {
+          "path": "v3/src/mgar_v3/memory/loop.py",
+          "start_line": 51,
+          "end_line": 84
+        }
+      ]
+    },
+    {
+      "run_id": "b2ac3c6b-8d2f-41d4-a03a-0dc00edb5fea",
+      "action_id": "49992c6b-ff57-4af4-95c5-69754dfa9725",
+      "model_requests": 4,
+      "new_cost_micros": 5408,
+      "delivery": "accepted",
+      "outbox_attempts": 1,
+      "history_pairs": 1,
+      "history_dependencies": 1,
+      "actual_citations": [
+        {
+          "path": "v3/src/mgar_v3/memory/store.py",
+          "start_line": 54,
+          "end_line": 68
+        },
+        {
+          "path": "v3/src/mgar_v3/memory/store.py",
+          "start_line": 70,
+          "end_line": 100
+        },
+        {
+          "path": "v3/src/mgar_v3/memory/model.py",
+          "start_line": 81,
+          "end_line": 99
+        },
+        {
+          "path": "v3/src/mgar_v3/memory/loop.py",
+          "start_line": 51,
+          "end_line": 63
+        },
+        {
+          "path": "v3/src/mgar_v3/memory/retrieval.py",
+          "start_line": 89,
+          "end_line": 109
+        }
+      ]
+    }
+  ],
+  "money": {
+    "lifetime_limit_micros": 2000000,
+    "before_calls": 10,
+    "before_settled_micros": 10509,
+    "new_calls": 6,
+    "new_settled_micros": 7975,
+    "total_calls": 16,
+    "total_settled_micros": 18484,
+    "held_micros": 0,
+    "unknown_calls": 0,
+    "reset": false,
+    "H12_budget_changed": false
+  },
+  "old_failed_downtime_message_replayed": false,
+  "plaintext_chat_or_secrets_exported": false,
+  "coding_or_publication_started": false,
+  "H12_quality": "FAIL_RETAINED",
+  "MVP": "NOT_RELEASED",
+  "full_SA22": "IN_PROGRESS_NOT_RELEASED",
+  "SA23": "NOT_STARTED",
+  "evidence": "evidence/super-agent-v1/SAV1-22/reply-recovery-20261117T070552Z-b957b8d9",
+  "report": "docs/super-agent-v1/SA22_REPLY_RECOVERY_20261117.md"
+}
