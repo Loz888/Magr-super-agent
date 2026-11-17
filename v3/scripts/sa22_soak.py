@@ -158,8 +158,10 @@ class Workload:
     def _restore_or_seed(self):
         seed_path = self.root / "seed-private.json"
         expires = datetime.fromisoformat(self.config["expires_at"])
+        seeded_profile = None
         if not seed_path.exists():
             env = compose(self.engine)
+            seeded_profile = env.profile
             current = self.engine.source_policies.read(env.source.cookie, env.source.policy_id)
             raw = current["definition"]
             raw["valid_until"] = expires.isoformat()
@@ -246,20 +248,28 @@ class Workload:
                 )
             return httpx.Response(response.status_code, content=response.content)
 
-        channel = FeishuNotificationChannel(
-            self.engine,
-            instance.scope,
-            lambda: self.secrets,
-            mode="fixture",
-            transport=httpx.MockTransport(relay),
-        )
-        profile = NotificationProfile(
-            instance.scope,
-            instance.revision,
-            ActorRef(scope=instance.scope, id_type="open_id", actor_id=BOT_ID, actor_kind="bot"),
-            instance.channel_capabilities,
-            channel,
-        )
+        if seeded_profile is not None:
+            # Keep the exact trusted channel already registered by the seeder.
+            # Only its controlled physical transport is composed with local HTTP.
+            profile = seeded_profile
+            profile.channel.transport = httpx.MockTransport(relay)
+        else:
+            channel = FeishuNotificationChannel(
+                self.engine,
+                instance.scope,
+                lambda: self.secrets,
+                mode="fixture",
+                transport=httpx.MockTransport(relay),
+            )
+            profile = NotificationProfile(
+                instance.scope,
+                instance.revision,
+                ActorRef(
+                    scope=instance.scope, id_type="open_id", actor_id=BOT_ID, actor_kind="bot"
+                ),
+                instance.channel_capabilities,
+                channel,
+            )
         self.engine.source_notifications.register_profile(profile)
         self.dispatcher = Dispatcher(
             self.engine, NotificationTransport(self.engine.source_notifications)
