@@ -2329,5 +2329,12 @@
       "model": "controlled HTTP only; no paid model or platform calls",
       "scope": "only original two failures; initial22 PASS and historical passes not repeated"
     }
+  },
+  "SAV1-22-COMPLETION": {
+    "description": "New SA22 evidence scoring, real controlled transport, process recovery and soak qualification; excludes historical PASS targets",
+    "tests": [
+      "tests/test_sa22_completion.py"
+    ],
+    "timeout_seconds": 360
   }
 }
