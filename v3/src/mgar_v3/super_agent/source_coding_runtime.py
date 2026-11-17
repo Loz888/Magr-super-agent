@@ -1379,6 +1379,7 @@ class _TrialCodingLoop(CodingLoop):
                 state.revision += 1
                 state.attempts.append(AttemptRecord(
                     attempt=attempt,
+                    operation_id=f"{state.task.task_id[:60]}:model:{attempt}",
                     tree_before=tree_before,
                     tree_after=evaluation.tree,
                     passed_items=tuple(evaluation.passed),
