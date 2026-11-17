@@ -671,6 +671,8 @@ class _ControlledModel:
                 with session.core.engine.transaction() as conn:
                     for proposed in response.tool_calls:
                         paths = [proposed.arguments.get("path")]
+                        if proposed.name == "run_tests":
+                            paths = [proposed.arguments.get("cwd", ".")]
                         if proposed.name == "apply_edits":
                             edits = proposed.arguments.get("edits")
                             paths = [
@@ -1325,6 +1327,15 @@ class _Tools(HarnessToolRegistry):
                 }
                 schema.update(properties=properties, required=["path"])
                 spec = spec.model_copy(update={"input_schema": schema})
+            if self.session.profile.experimental and spec.name == "run_tests":
+                schema = dict(spec.input_schema)
+                properties = dict(schema.get("properties", {}))
+                properties["cwd"] = {
+                    "type": "string", "enum": [self.session.profile.working_directory],
+                    "default": self.session.profile.working_directory,
+                }
+                schema["properties"] = properties
+                spec = spec.model_copy(update={"input_schema": schema})
             if spec.name == "apply_edits":
                 spec = spec.model_copy(
                     update={
@@ -1374,6 +1385,19 @@ class _Tools(HarnessToolRegistry):
             raise _deny("SOURCE_CODING_TOOL_CONTEXT")
         self.session.active_tool = context.operation_id
         try:
+            if (
+                self.session.profile.experimental
+                and call.name == "run_tests"
+                and call.arguments.get("cwd", ".") == "."
+            ):
+                # The signed adapter already fixes every physical command to
+                # test_cwd. Apply that same default before the registry checks
+                # directory access, rather than accidentally requesting root.
+                call = call.model_copy(update={
+                    "arguments": {
+                        **call.arguments, "cwd": self.session.profile.working_directory,
+                    },
+                })
             if self.session.bridge is not None:
                 with self.session.bridge.guard("read"):
                     pass
