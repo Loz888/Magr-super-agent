@@ -33,6 +33,7 @@ def test_unreplayable_gap_only_allows_fresh_explicit_request_on_current_authenti
         old = str(int((datetime.now(UTC) - timedelta(seconds=301)).timestamp() * 1000))
         raw["header"]["create_time"] = old
         raw["event"]["message"]["create_time"] = old
+        raw["event"]["message"]["update_time"] = old
     if transport == "webhook":
         receipt = env.runtime.receive(signed(env, raw))
     else:

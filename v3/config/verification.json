@@ -2423,6 +2423,17 @@
       "paid": "zero models, original PG authority and H03 copies"
     }
   },
+  "SAV1-22-LIVE-INTAKE-REPAIR-R1": {
+    "tests": [
+      "tests/test_sa22_live_intake_repair.py::test_unreplayable_gap_only_allows_fresh_explicit_request_on_current_authenticated_socket[old_socket]"
+    ],
+    "timeout_seconds": 120,
+    "components": {
+      "scope": "only original stale-socket failed parameter; original7PASS excluded",
+      "fixture_correction": "set message update_time stale as well as create_time; assertions and behavior unchanged",
+      "effects": "owned PG only, no supplier/platform IO"
+    }
+  },
   "SAV1-22-LIVE-INTAKE-REPAIR": {
     "tests": [
       "tests/test_sa22_live_intake_repair.py"
