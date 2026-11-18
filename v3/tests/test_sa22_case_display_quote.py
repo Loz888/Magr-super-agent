@@ -7,6 +7,7 @@ from sa22_coding_support import coding_environment
 
 from mgar_v3.super_agent.source_case_experiments import SourceCaseExperiments, canonical_request
 from mgar_v3.super_agent.source_coding_experiment import explicit_coding_request
+from mgar_v3.super_agent.source_conversations import ConversationPermit
 
 
 def test_copied_display_quote_dispatches_exact_frozen_request(engine, tmp_path):
@@ -30,6 +31,13 @@ def test_copied_display_quote_dispatches_exact_frozen_request(engine, tmp_path):
         assert target is not None
 
         service = env.conversation.service
+        service.profile = service.profile.model_copy(
+            update={
+                "repository_base_sha": env.experiment.profile.repository.base_commit,
+                "context_path": "src/calc.py",
+            }
+        )
+        service.permit = ConversationPermit(engine, service.profile)
         service.coding = manager
         service.deterministic_coding = lambda identifier: manager.case_for(identifier) is not None
         outcome = service.process(input_id)
