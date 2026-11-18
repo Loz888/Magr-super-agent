@@ -157,9 +157,14 @@ class RecallAccess:
             and row["reason_code"] == "INGRESS_BODY_EXPIRED"
         )
         if body_purged:
-            if self.conn.execute(
-                "SELECT 1 FROM app.source_ingress_bodies WHERE input_id=%s", (input_id,)
-            ).fetchone() is not None:
+            receipt = self.conn.execute(
+                "SELECT 1 FROM app.source_ingress_deliveries d JOIN app.source_ingress_controls c "
+                "USING(source_instance_id,project_id) WHERE d.receipt_id=%s "
+                "AND d.generation=c.generation AND d.disposition='accepted' "
+                "AND NOT EXISTS(SELECT 1 FROM app.source_ingress_bodies b WHERE b.input_id=%s)",
+                (row["receipt_id"], input_id),
+            ).fetchone()
+            if receipt is None:
                 raise denied()
             # The purge fences body reads and live work. A status projection
             # can still check current Receive and the retained canonical head.
