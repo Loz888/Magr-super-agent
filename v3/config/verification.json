@@ -2575,6 +2575,17 @@
       "authority": "approved project read scopes only; host parents/metadata private; exact command, epoch and originalMandate checked before renewal"
     }
   },
+  "SAV1-22-RECALL-PURGED-STATUS": {
+    "tests": [
+      "tests/test_sa22_recall_purged_status.py"
+    ],
+    "timeout_seconds": 90,
+    "components": {
+      "scope": "original L06 task metadata after actual ingress body purge and subsequent head removal",
+      "services": "original Engine, owned real PostgreSQL and CAS; earlier SA15 targets excluded",
+      "boundary": "retained task metadata only; status resolution cannot restore removed plaintext or derived artifact access"
+    }
+  },
   "SAV1-22-AWAIT-INDEPENDENT": {
     "tests": [
       "tests/test_sa22_await_independent.py"
