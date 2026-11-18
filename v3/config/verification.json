@@ -2597,6 +2597,16 @@
       "boundary": "retained task metadata only; status resolution cannot restore removed plaintext or derived artifact access"
     }
   },
+  "SAV1-22-RECALL-PURGED-FENCE": {
+    "tests": [
+      "tests/test_sa22_recall_purged_fence.py"
+    ],
+    "timeout_seconds": 90,
+    "components": {
+      "scope": "only status authorization of a purged origin from an older ingress generation",
+      "services": "owned real PostgreSQL and original Owner configuration operation"
+    }
+  },
   "SAV1-22-AWAIT-INDEPENDENT": {
     "tests": [
       "tests/test_sa22_await_independent.py"
