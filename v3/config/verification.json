@@ -2641,6 +2641,39 @@
       "boundary": "keep the known bill and fence the killed epoch without a second call or a passed verification"
     }
   },
+  "SAV1-22-DEVELOPMENT-INPUTS": {
+    "tests": [
+      "tests/test_sa22_development_inputs.py"
+    ],
+    "timeout_seconds": 120,
+    "components": {
+      "scope": "first replay slice of authored public development facts",
+      "services": "real isolated PostgreSQL, signed synthetic adapter and original SourceEval",
+      "boundary": "preserve relative event ages and validate shadow effects without scoring or billing"
+    }
+  },
+  "SAV1-22-TRIAL-REVIEW-VIEW": {
+    "tests": [
+      "tests/test_sa22_trial_review.py"
+    ],
+    "timeout_seconds": 120,
+    "components": {
+      "scope": "opt-in trial artifact review before and after source expiration",
+      "services": "original Owner and Recall authority, isolated PostgreSQL and controlled Coding",
+      "boundary": "exact diff and verification tree, audit current Owner read, fail closed on expiry"
+    }
+  },
+  "SAV1-22-INTERRUPTED-CASE-RETRY": {
+    "tests": [
+      "tests/test_sa22_interrupted_case_retry.py"
+    ],
+    "timeout_seconds": 120,
+    "components": {
+      "scope": "one exact fresh case after the reviewed retained write and zero-send stop",
+      "services": "original scenario profiles, real isolated PostgreSQL and Broker",
+      "boundary": "deny before reconciliation, preserve old write and Run, no duplicate retest"
+    }
+  },
   "SAV1-22-TASK-STATUS-REPLY": {
     "tests": [
       "tests/test_sa22_task_status_reply.py"

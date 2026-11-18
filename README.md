@@ -1,5 +1,11 @@
 # MGAR V3.5 · 持续研发 Agent
 
+**Super-Agent 进度（2026-11-18）**。SA00–SA21 的受控本地验收已完成，SA22
+进行中。L02 已取得真实双文件补丁、公开测试、独立真实 PostgreSQL 检查和飞书
+原话题送达证据。L03 修正版 A04 独立复验通过，原 FAIL 保留。跨渠道联动、正式
+路由评分和长期运行验收待完成。H12 真实质量仍为 FAIL，SA23 尚未启动。
+[SA22 进展与证据](v3/docs/super-agent-v1/SA22_PARALLEL_20261118.md)。
+
 当前更新（2026-11-17，真实实验续行）：**SA22 IN_PROGRESS，SA23未启动**。
 在线源码be7998e，问答／Coding均thinking enabled＋max且已有真实调用。53个新目标有分版本
 PASS，修复只复验原失败项，不称最新全量PASS。L01局部行为通过；L03原A04 FAIL经独立

@@ -1,0 +1,122 @@
+{
+  "task": "SAV1-22",
+  "status": "IN_PROGRESS",
+  "date": "2026-11-18",
+  "next_task": {
+    "task": "SAV1-23",
+    "status": "PLANNED"
+  },
+  "engine_checks": [
+    {
+      "task": "SAV1-22-DEVELOPMENT-INPUTS",
+      "status": "PASS",
+      "counts": {
+        "tests": 4,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "git_base_commit": "af95b58c1df05190b076159179a4a810c5af30d3",
+      "working_tree_source_sha256": "2b04f80c565c5f4106ad44a7a3fedc9116d896566f0b42e9b41ecf850b13589d",
+      "local_result": "evidence/SAV1-22-DEVELOPMENT-INPUTS/20261118T034744Z-6d391162/result.json",
+      "local_result_sha256": "69612f007136276b645e9bcc5eea627a93467ba39253c912b14d282066585a8e",
+      "live_gate": "NOT_RUN"
+    },
+    {
+      "task": "SAV1-22-TRIAL-REVIEW-VIEW",
+      "status": "PASS",
+      "counts": {
+        "tests": 1,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "git_base_commit": "af95b58c1df05190b076159179a4a810c5af30d3",
+      "working_tree_source_sha256": "6cc231902c832222075762271b6eb29eb05544469488f8468bb76150cd7a464c",
+      "local_result": "evidence/SAV1-22-TRIAL-REVIEW-VIEW/20261118T035642Z-5bc37e21/result.json",
+      "local_result_sha256": "b57678c3892e8432af2f44accd6677ed95648b5797166e4d94facf1ec890de75",
+      "live_gate": "NOT_RUN"
+    },
+    {
+      "task": "SAV1-22-INTERRUPTED-CASE-RETRY",
+      "status": "PASS",
+      "counts": {
+        "tests": 1,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "git_base_commit": "af95b58c1df05190b076159179a4a810c5af30d3",
+      "working_tree_source_sha256": "50e2ab6870fba557abb86d6f2f272536511d9b7a40ea98094e2613c33bf850f5",
+      "local_result": "evidence/SAV1-22-INTERRUPTED-CASE-RETRY/20261118T040013Z-d032eda2/result.json",
+      "local_result_sha256": "dd3353f7d4dcc0a67b58f852f8cfbf0c19b625827529fa7480dea322ec14e2a1",
+      "live_gate": "NOT_RUN"
+    }
+  ],
+  "live_experiments": {
+    "L01": {
+      "status": "INCOMPLETE",
+      "original_known_writes": 1,
+      "interrupted_call_physical_http": false,
+      "interrupted_call_settled_micros": 0,
+      "original_body": "EXPIRED",
+      "duplicate_authorization_install": "REJECTED",
+      "previous_service_configuration": "RESTORED",
+      "fresh_named_retest": "AWAITING_OWNER"
+    },
+    "L03": {
+      "independent_commit": "783d0181fde61388ad9a9a168f0b10c9a2014e02",
+      "candidate_commit": "a6750829a64306fb8b46d1ce89b7465cc326860a",
+      "executed_checks": [
+        "A04"
+      ],
+      "historical_a04_retained": "FAIL",
+      "corrected_a04": "PASS",
+      "result_sha256": "b0c2f6c53eef595073292be568a08fb30c7bd39e8e86e42b7d4ca929a8268ac0",
+      "report_sha256": "cee6850f994d3d161cf5eee9ae498278de903f0cc7e5cd25b64e6d7c89aba55f",
+      "same_run_failed_patch_recovery": "NOT_RUN",
+      "full_case": "INCOMPLETE",
+      "trial_verifier": "incomplete"
+    },
+    "L04_L05": {
+      "repository": "Loz888/MAGR-v3",
+      "observed_workflow_count": 0,
+      "remaining": [
+        "narrow_app_installation",
+        "https_webhook",
+        "approved_ci_workflow"
+      ],
+      "live_status": "NOT_RUN"
+    },
+    "L07": {
+      "controlled_artifact_review": "PASS",
+      "original_body": "EXPIRED",
+      "live_status": "NOT_RUN"
+    },
+    "L09": {
+      "independent_worker_process_live_recovery": "NOT_RUN"
+    },
+    "L10": {
+      "original_pair_complete": false
+    }
+  },
+  "routing": {
+    "synthetic_development_inputs": 100,
+    "inputs_sha256": "3d6f477e3c2e503b2710acac1394755663f20d26aa3a4b2933b6dcd70871998a",
+    "operator_template_sha256": "dd8f9605449a9e5c5fa02b4f024a7b59baf4fc3a1ddefb613370af702d34dd5a",
+    "development_cases_through_shadow_runtime": [
+      "D001",
+      "D061",
+      "D081"
+    ],
+    "operator_label_freeze": "PENDING",
+    "formal_score": "NOT_RUN"
+  },
+  "gates": {
+    "register_target_tests": "PASS",
+    "complete_sa22": "INCOMPLETE",
+    "h12_live_quality": "FAIL",
+    "trial_verifier": "incomplete",
+    "long_running_acceptance": "INCOMPLETE"
+  }
+}

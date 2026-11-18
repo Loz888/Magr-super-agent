@@ -6,8 +6,10 @@ import json
 import threading
 from datetime import datetime
 from pathlib import Path
-from typing import TYPE_CHECKING, Any
+from typing import TYPE_CHECKING, Annotated, Any
 from uuid import UUID, uuid4
+
+from pydantic import Field
 
 from mgar_v3.domain import DomainError, digest
 from mgar_v3.harness.broker import IsolatedExecutionBroker, issue_lease
@@ -24,6 +26,7 @@ from mgar_v3.super_agent.source_coding_domain import (
     CodingGrant,
     CodingHarnessGate,
     CodingHarnessGates,
+    CodingModel,
     CodingRepository,
 )
 from mgar_v3.super_agent.source_coding_experiment import (
@@ -51,7 +54,15 @@ from mgar_v3.super_agent.source_scheduler_runtime import (
 from mgar_v3.super_agent.source_trial_limits import validate_owner_trial_limit
 
 if TYPE_CHECKING:
-    from mgar_v3.coordination.engine import Engine
+    from mgar_v3.coordination.engine import Connection, Engine
+
+
+class ReviewedInterruptedCase(CodingModel):
+    coding_id: UUID
+    run_id: UUID
+    execution_epoch: Annotated[int, Field(strict=True, ge=1)]
+    no_send_call_id: UUID
+    no_send_proof_sha256: Annotated[str, Field(pattern=r"^[a-f0-9]{64}$")]
 
 
 def build_case_experiment(
@@ -301,6 +312,7 @@ class SourceCaseExperiments:
         default: SourceCodingExperiment,
         *,
         reviewed_failed_bindings: dict[str, UUID | tuple[UUID, ...]] | None = None,
+        reviewed_interrupted_cases: dict[str, ReviewedInterruptedCase] | None = None,
     ):
         if not cases or len(cases) > 5:
             raise ValueError("One to five frozen cases required")
@@ -317,6 +329,9 @@ class SourceCaseExperiments:
             for value in self.reviewed_failed_bindings.values()
         ):
             raise ValueError("Only exact owner-reviewed prior case bindings may be retried")
+        self.reviewed_interrupted_cases = dict(reviewed_interrupted_cases or {})
+        if not self.reviewed_interrupted_cases.keys() <= cases.keys():
+            raise ValueError("An interruption review must name a registered case")
         self._lock = threading.Lock()
         messages = [canonical_request(message) for message, _ in cases.values()]
         hashes = [experiment.profile.profile_sha256 for _, experiment in cases.values()]
@@ -338,6 +353,53 @@ class SourceCaseExperiments:
             None,
         )
 
+    def _reviewed_interruption(
+        self, conn: Connection, prior: dict[str, Any], owner: UUID, review: ReviewedInterruptedCase,
+    ) -> bool:
+        if (
+            prior["coding_id"] != review.coding_id or prior["run_id"] != review.run_id
+            or prior["signed_by"] != owner or prior["state"] != "admitted"
+        ):
+            return False
+        run = self.engine._run(conn, review.run_id)
+        if run["status"] != "paused" or run["execution_epoch"] != review.execution_epoch:
+            return False
+        receipt = conn.execute(
+            "SELECT 1 FROM app.run_events e JOIN app.usage_calls u USING(run_id) "
+            "JOIN app.source_ingress_inputs i ON i.input_id=%s "
+            "WHERE e.run_id=%s AND e.kind='source_trial_local_nosend_reconciled' "
+            "AND e.safe_payload->>'call_id'=u.call_id::text "
+            "AND e.safe_payload->>'proof_sha256'=%s "
+            "AND e.safe_payload->'physical_http'='false'::jsonb "
+            "AND u.call_id=%s AND u.status='known' AND u.settled_micros=0 "
+            "AND i.reason_code='INGRESS_BODY_EXPIRED' AND i.unavailable_at IS NOT NULL "
+            "AND NOT EXISTS(SELECT 1 FROM app.source_ingress_bodies b WHERE b.input_id=i.input_id)",
+            (prior["input_id"], review.run_id, review.no_send_proof_sha256, review.no_send_call_id),
+        ).fetchone()
+        if receipt is None:
+            return False
+        operations = conn.execute(
+            "SELECT operation_id,kind,capability,state FROM app.sa_coding_operations "
+            "WHERE coding_id=%s AND (state<>'known' OR capability='write') LIMIT 33",
+            (review.coding_id,),
+        ).fetchall()
+        unknown = [operation for operation in operations if operation["state"] != "known"]
+        if (
+            len(operations) > 32
+            or not any(operation["capability"] == "write" for operation in operations)
+            or unknown != [{"operation_id": review.no_send_call_id, "kind": "model",
+                            "capability": "model", "state": "unknown"}]
+        ):
+            return False
+        return conn.execute(
+            "SELECT 1 FROM app.usage_calls WHERE run_id=%s AND status<>'known' "
+            "UNION ALL SELECT 1 FROM app.actions WHERE run_id=%s "
+            "UNION ALL SELECT 1 FROM app.sa_scheduler_assignments WHERE run_id=%s "
+            "AND state<>'released' UNION ALL SELECT 1 FROM app.sa_coding_verifications "
+            "WHERE coding_id=%s LIMIT 1",
+            (review.run_id, review.run_id, review.run_id, review.coding_id),
+        ).fetchone() is None
+
     def admit(self, input_id: UUID) -> dict[str, Any] | None:
         selected = self.case_for(input_id)
         if selected is None:
@@ -349,7 +411,13 @@ class SourceCaseExperiments:
                 (self.engine.settings.project_id, selected[1].profile.profile_sha256, input_id),
             ).fetchall()
             reviewed = self.reviewed_failed_bindings.get(selected[0], ())
+            interruption = self.reviewed_interrupted_cases.get(selected[0])
             for prior in duplicates:
+                if interruption is not None and self._reviewed_interruption(
+                    conn, prior, self.engine.source_coding._console(conn, selected[1].cookie),
+                    interruption,
+                ):
+                    continue
                 safe_retry = (
                     prior["coding_id"] in reviewed
                     and prior["state"] == "revoked"
