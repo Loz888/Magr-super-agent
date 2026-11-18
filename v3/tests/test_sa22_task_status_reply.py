@@ -8,7 +8,7 @@ from sa06_support import payload, signed
 from sa22_coding_support import coding_environment
 
 from mgar_v3.effects.dispatcher import Dispatcher
-from mgar_v3.super_agent.source_notification_transport import NotificationTransport
+from mgar_v3.super_agent.source_feishu_channel import FeishuNotificationTransport
 
 
 @pytest.mark.parametrize("revoke_during_token", [False, True])
@@ -51,7 +51,7 @@ def test_task_status_reply_after_purge_revalidates_at_actual_send(
         created = env.conversation.service.process(query_id)
         action_id = created["action_id"]
         assert env.conversation.service.process(query_id)["action_id"] == action_id
-        dispatcher = Dispatcher(engine, NotificationTransport(engine.source_notifications))
+        dispatcher = Dispatcher(engine, FeishuNotificationTransport(engine.source_notifications))
         assert dispatcher.tick() == action_id
         assert dispatcher.tick() is None
         sends = [
