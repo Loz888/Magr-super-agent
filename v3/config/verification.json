@@ -2630,6 +2630,17 @@
       "boundary": "deliver current status once to the exact original message with no model replay"
     }
   },
+  "SAV1-22-CODING-KNOWN-RECOVERY": {
+    "tests": [
+      "tests/test_sa22_coding_known_crash.py"
+    ],
+    "timeout_seconds": 120,
+    "components": {
+      "scope": "first F09 trial-provider encrypted max-thinking receipt after known settlement",
+      "services": "owned PostgreSQL and original Broker, controlled supplier and an actual SIGKILL of the owned controller",
+      "boundary": "keep the known bill and fence the killed epoch without a second call or a passed verification"
+    }
+  },
   "SAV1-22-TASK-STATUS-REPLY": {
     "tests": [
       "tests/test_sa22_task_status_reply.py"
