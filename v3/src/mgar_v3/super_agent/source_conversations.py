@@ -472,11 +472,12 @@ class SourceConversations:
             )
             run = self.engine._run(conn, run_id)
             self._source(conn, run)
-            conn.execute(
-                "UPDATE app.source_ingress_inputs SET consumed_at=clock_timestamp() "
-                "WHERE input_id=%s",
-                (input_id,),
-            )
+            if coding_result_id is None:
+                conn.execute(
+                    "UPDATE app.source_ingress_inputs SET consumed_at=clock_timestamp() "
+                    "WHERE input_id=%s",
+                    (input_id,),
+                )
             return run
 
     def recover_coding_feedback(self, input_id: UUID, coding_run_id: UUID) -> Row:
