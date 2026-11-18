@@ -2619,6 +2619,17 @@
       "boundary": "existing full-content edits and exact test command; no source reread or independent gate promotion"
     }
   },
+  "SAV1-22-CODING-FEEDBACK-RECOVERY": {
+    "tests": [
+      "tests/test_sa22_coding_feedback_recovery.py"
+    ],
+    "timeout_seconds": 120,
+    "components": {
+      "scope": "expired unrelated conversation history after a completed trial edit",
+      "services": "owned PostgreSQL, isolated Broker, original Outbox and controlled Feishu HTTP",
+      "boundary": "deliver current status once to the exact original message with no model replay"
+    }
+  },
   "SAV1-22-TASK-STATUS-REPLY": {
     "tests": [
       "tests/test_sa22_task_status_reply.py"

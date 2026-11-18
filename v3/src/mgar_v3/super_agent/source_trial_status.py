@@ -43,7 +43,29 @@ def reply(engine: Engine, conn: Connection, cookie: str, source: _Input, target:
         return "当前会话中没有可查看的对应任务。请核对原任务 ID。"
 
 
-def _describe(engine: Engine, conn: Connection, cookie: str, source: _Input, target: UUID) -> str:
+def completion(engine: Engine, conn: Connection, cookie: str, source: _Input, target: UUID) -> str:
+    """Report an exact finished trial on its own original input."""
+    bound = conn.execute(
+        "SELECT 1 FROM app.sa_coding_bindings b JOIN app.runs r USING(run_id) "
+        "WHERE b.project_id=%s AND b.run_id=%s AND b.input_id=%s "
+        "AND b.source_state_sha256=%s AND b.state='admitted' AND r.status='paused' "
+        "AND EXISTS(SELECT 1 FROM app.run_events e WHERE e.run_id=b.run_id "
+        "AND e.kind='source_trial_artifact_available' AND e.safe_payload->>'changed'='true') "
+        "AND NOT EXISTS(SELECT 1 FROM app.sa_scheduler_assignments a "
+        "WHERE a.run_id=b.run_id AND a.state<>'released') "
+        "AND NOT EXISTS(SELECT 1 FROM app.usage_calls u "
+        "WHERE u.run_id=b.run_id AND u.status<>'known')",
+        (source.ref.project_id, target, source.ref.input_id, source.ref.state_sha256),
+    ).fetchone()
+    if bound is None:
+        raise denied()
+    return _describe(engine, conn, cookie, source, target, include_delivery=False)
+
+
+def _describe(
+    engine: Engine, conn: Connection, cookie: str, source: _Input, target: UUID,
+    *, include_delivery: bool = True,
+) -> str:
     access = RecallAccess(engine, conn, RecallCaller("owner", cookie))
     store = RecallStore(access)
     binding = conn.execute(
@@ -91,12 +113,24 @@ def _describe(engine: Engine, conn: Connection, cookie: str, source: _Input, tar
         (run["run_id"],),
     ).fetchone()
     assert operations is not None and usage is not None
-    delivery = conn.execute(
-        "SELECT a.status FROM app.sa_notification_intents n JOIN app.actions a USING(action_id) "
-        "WHERE n.project_id=%s AND n.source_instance_id=%s AND n.input_id=%s "
-        "ORDER BY n.created_at DESC,n.action_id DESC LIMIT 1",
-        (source.ref.project_id, source.ref.source_instance_id, binding["input_id"]),
-    ).fetchone()
+    notice = ""
+    if include_delivery:
+        delivery = conn.execute(
+            "SELECT a.status FROM app.sa_notification_intents n "
+            "JOIN app.actions a USING(action_id) "
+            "WHERE n.project_id=%s AND n.source_instance_id=%s AND n.input_id=%s "
+            "ORDER BY n.created_at DESC,n.action_id DESC LIMIT 1",
+            (source.ref.project_id, source.ref.source_instance_id, binding["input_id"]),
+        ).fetchone()
+        if delivery is None:
+            notice = "尚无原请求回复记录。\n"
+        else:
+            notice = {
+                "succeeded": "原请求回复已送达。",
+                "outcome_unknown": "原请求回复结果待核对。",
+                "failed": "原请求回复发送失败。",
+                "cancelled": "原请求回复已取消。",
+            }.get(delivery["status"], "原请求回复待发送确认。") + "\n"
     state = {
         "queued": "排队中", "running": "运行中", "paused": "已暂停", "failed": "失败",
         "waiting_input": "等待输入", "cancelled": "已取消", "completed": "已完成",
@@ -107,13 +141,9 @@ def _describe(engine: Engine, conn: Connection, cookie: str, source: _Input, tar
         if verification else "原运行尚无最终树验证记录。"
     )
     review = "有工作区编辑记录，仍待核验。" if operations["edited"] else "尚无编辑回执。"
-    notice = {
-        "succeeded": "原请求回复已送达。", "outcome_unknown": "原请求回复结果待核对。",
-        "failed": "原请求回复发送失败。", "cancelled": "原请求回复已取消。",
-    }.get(delivery["status"], "原请求回复待发送确认。") if delivery else "尚无原请求回复记录。"
     access.check()
     return (
-        f"任务 {run['ticket_id']} · {state}\n{tests}{review}\n{notice}\n"
+        f"任务 {run['ticket_id']} · {state}\n{tests}{review}\n{notice}"
         f"编码已结算 USD{usage['settled'] / 1000000:.6f}，预占 USD{usage['held'] / 1000000:.6f}，"
         f"未确认操作 {operations['unknown']} 项。"
     )

@@ -348,6 +348,10 @@ class SourceConversations:
             if target is None or row["scope"]["task_status_id"] != target:
                 raise denied("STATUS_SCOPE")
             return source
+        if "coding_result_id" in row["scope"]:
+            if not self.task_status:
+                raise denied("STATUS_SCOPE")
+            return source
         roles, _ = self.engine.source_policies._roles(
             conn, source.item.event.sender, source.item.event.source_thread, None
         )
@@ -373,13 +377,28 @@ class SourceConversations:
         self.engine.source_eval._policy_budget(conn, source.definition)
         return source
 
-    def _prepare(self, input_id: UUID) -> Row:
+    def _registered_coding(self, input_id: UUID, text: str) -> bool:
+        from mgar_v3.super_agent.source_coding_experiment import (
+            canonical_request,
+            explicit_coding_request,
+        )
+
+        return (
+            self.coding is not None
+            and self.deterministic_coding is not None
+            and explicit_coding_request(canonical_request(text))
+            and self.deterministic_coding(input_id)
+        )
+
+    def _prepare(self, input_id: UUID, *, coding_result_id: UUID | None = None) -> Row:
         with self.engine.transaction() as conn:
             owner = self.engine.source_notifications._console(conn, self.cookie)
             source = self.engine.source_correlations._input(conn, input_id)
             if source.ref.source_instance_id != self.profile.source_id:
                 raise denied("SOURCE")
-            key = "source-conversation:" + digest([str(self.profile.source_id), str(input_id)])
+            identity = digest([str(self.profile.source_id), str(input_id)])
+            prefix = "source-coding-result:" if coding_result_id else "source-conversation:"
+            key = prefix + identity
             previous = conn.execute(
                 "SELECT r.run_id FROM app.threads t JOIN app.tickets k USING(thread_id) "
                 "JOIN app.runs r USING(ticket_id) WHERE t.project_id=%s AND t.external_key=%s",
@@ -400,12 +419,15 @@ class SourceConversations:
                 "valid_until": min(source.expires, self.profile.expires_at).isoformat(),
             }
             query = source_trial_status.parse_query(source.text) if self.task_status else None
-            if query is None:
+            status_only = query is not None or coding_result_id is not None
+            if coding_result_id is not None:
+                scope["coding_result_id"] = str(coding_result_id)
+            elif query is not None:
+                scope["task_status_id"] = query
+            elif not self._registered_coding(input_id, source.text):
                 scope.update(
                     history_store.capture(self.engine, conn, source, self.profile.history_turns)
                 )
-            else:
-                scope["task_status_id"] = query
             conn.execute(
                 "INSERT INTO app.threads(thread_id,project_id,repository,external_key,revision) "
                 "VALUES(%s,%s,%s,%s,1)",
@@ -425,9 +447,9 @@ class SourceConversations:
             )
             conn.execute(
                 "INSERT INTO app.budgets(mandate_id,limit_micros) VALUES(%s,%s)",
-                (mandate, min(100000, self.profile.maximum_project_micros) if query is None else 0),
+                (mandate, 0 if status_only else min(100000, self.profile.maximum_project_micros)),
             )
-            if query is None:
+            if not status_only:
                 conn.execute(
                     "INSERT INTO app.authorization_budgets(profile_hash,limit_micros,call_limit) "
                     "VALUES(%s,%s,%s) ON CONFLICT DO NOTHING",
@@ -456,6 +478,50 @@ class SourceConversations:
                 (input_id,),
             )
             return run
+
+    def recover_coding_feedback(self, input_id: UUID, coding_run_id: UUID) -> Row:
+        """Send the original trial's current status after a prior dependency expired."""
+        with self.engine.transaction() as conn:
+            source = self.engine.source_correlations._input(conn, input_id)
+            if not self.task_status or not self._registered_coding(input_id, source.text):
+                raise denied("STATUS_SCOPE")
+            expired = conn.execute(
+                "SELECT 1 FROM app.runs r JOIN app.tickets t USING(ticket_id) "
+                "JOIN app.mandates m USING(mandate_id) WHERE r.graph_version=%s "
+                "AND m.project_id=%s AND m.scope->'source_input'=%s "
+                "AND EXISTS(SELECT 1 FROM jsonb_array_elements("
+                "m.scope->'conversation_dependencies') ref JOIN app.source_ingress_inputs i "
+                "ON i.input_id::text=ref->>'input_id' WHERE i.project_id=m.project_id "
+                "AND i.reason_code='INGRESS_BODY_EXPIRED' AND i.unavailable_at IS NOT NULL "
+                "AND NOT EXISTS(SELECT 1 FROM app.source_ingress_bodies b "
+                "WHERE b.input_id=i.input_id)) LIMIT 1",
+                (GRAPH, source.ref.project_id, Jsonb(source.ref.model_dump(mode="json"))),
+            ).fetchone()
+            if expired is None:
+                raise denied("STATUS_SCOPE")
+            status = source_trial_status.completion(
+                self.engine, conn, self.cookie, source, coding_run_id
+            )
+            run = self._prepare(input_id, coding_result_id=coding_run_id)
+            if conn.execute(
+                "SELECT 1 FROM app.sa_notification_intents WHERE project_id=%s "
+                "AND input_id=%s AND run_id<>%s LIMIT 1",
+                (source.ref.project_id, input_id, run["run_id"]),
+            ).fetchone():
+                raise denied("ANSWER_ALREADY_PLANNED")
+            return self._plan_status(conn, run, source, status)
+
+    def _plan_status(self, conn: Connection, run: Row, source: _Input, status: str) -> Row:
+        if run["reason_code"] != source_trial_status.ANSWER_REASON:
+            self.engine._event(
+                conn, run["run_id"], source_trial_status.ANSWER_EVENT,
+                body_sha256=hashlib.sha256(status.encode()).hexdigest(),
+            )
+            conn.execute(
+                "UPDATE app.runs SET status='waiting_input',reason_code=%s WHERE run_id=%s",
+                (source_trial_status.ANSWER_REASON, run["run_id"]),
+            )
+        return self._plan(run["run_id"], source)
 
     def _body(self, question: str, context: Any) -> Row:
         value = {
@@ -651,19 +717,8 @@ class SourceConversations:
             source = self._source(conn, run)
             query = source_trial_status.parse_query(source.text) if self.task_status else None
             if query is not None:
-                if run["reason_code"] != source_trial_status.ANSWER_REASON:
-                    status = source_trial_status.reply(
-                        self.engine, conn, self.cookie, source, query
-                    )
-                    self.engine._event(
-                        conn, run["run_id"], source_trial_status.ANSWER_EVENT,
-                        body_sha256=hashlib.sha256(status.encode()).hexdigest(),
-                    )
-                    conn.execute(
-                        "UPDATE app.runs SET status='waiting_input',reason_code=%s WHERE run_id=%s",
-                        (source_trial_status.ANSWER_REASON, run["run_id"]),
-                    )
-                return self._plan(run["run_id"], source)
+                status = source_trial_status.reply(self.engine, conn, self.cookie, source, query)
+                return self._plan_status(conn, run, source, status)
             old = conn.execute(
                 "SELECT * FROM app.usage_calls WHERE run_id=%s AND step_key=%s",
                 (run["run_id"], STEP),
@@ -704,17 +759,9 @@ class SourceConversations:
                 for ref in scope.get("conversation_dependencies", [])
             ]
             expires = min(fresh.expires, self.profile.expires_at, *expiries)
-        from mgar_v3.super_agent.source_coding_experiment import (
-            canonical_request,
-            explicit_coding_request,
-        )
+        from mgar_v3.super_agent.source_coding_experiment import explicit_coding_request
 
-        registered_coding = (
-            self.coding is not None
-            and self.deterministic_coding is not None
-            and explicit_coding_request(canonical_request(question))
-            and self.deterministic_coding(input_id)
-        )
+        registered_coding = self._registered_coding(input_id, question)
         if registered_coding:
             # A validated explicit user instruction determines delegation. The
             # model's prose/classification cannot silently downgrade it to advice.
@@ -881,10 +928,21 @@ class SourceConversations:
             if ref != facts.answer_ref or action["payload"]["body"] != ref:
                 raise denied("ANSWER_CHANGED")
             if run["reason_code"] == source_trial_status.ANSWER_REASON:
-                query = source_trial_status.parse_query(source.text) if self.task_status else None
-                if query is None:
-                    raise denied("STATUS_SCOPE")
-                clear = source_trial_status.reply(self.engine, conn, self.cookie, source, query)
+                mandate = conn.execute(
+                    "SELECT scope FROM app.mandates WHERE mandate_id=%s", (run["mandate_id"],)
+                ).fetchone()
+                target = mandate["scope"].get("coding_result_id") if mandate else None
+                if target is not None:
+                    clear = source_trial_status.completion(
+                        self.engine, conn, self.cookie, source, UUID(target)
+                    )
+                else:
+                    query = (
+                        source_trial_status.parse_query(source.text) if self.task_status else None
+                    )
+                    if query is None:
+                        raise denied("STATUS_SCOPE")
+                    clear = source_trial_status.reply(self.engine, conn, self.cookie, source, query)
                 body = clear.encode()
                 observed_ref = REF + str(run["run_id"]) + ":" + hashlib.sha256(body).hexdigest()
                 if ref != observed_ref or len(body) > source.definition.notification.max_bytes:
