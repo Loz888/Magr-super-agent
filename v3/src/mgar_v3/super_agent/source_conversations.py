@@ -704,14 +704,18 @@ class SourceConversations:
                 for ref in scope.get("conversation_dependencies", [])
             ]
             expires = min(fresh.expires, self.profile.expires_at, *expiries)
-        from mgar_v3.super_agent.source_coding_experiment import explicit_coding_request
+        from mgar_v3.super_agent.source_coding_experiment import (
+            canonical_request,
+            explicit_coding_request,
+        )
 
-        if (
+        registered_coding = (
             self.coding is not None
             and self.deterministic_coding is not None
+            and explicit_coding_request(canonical_request(question))
             and self.deterministic_coding(input_id)
-            and explicit_coding_request(question)
-        ):
+        )
+        if registered_coding:
             # A validated explicit user instruction determines delegation. The
             # model's prose/classification cannot silently downgrade it to advice.
             with self.engine.transaction() as conn:
@@ -725,13 +729,12 @@ class SourceConversations:
             answer = {**answer, "intent": "code"}
         text = "模型回答：\n" + answer["answer"].strip() + citations
         if answer["intent"] == "code":
-            from mgar_v3.super_agent.source_coding_experiment import explicit_coding_request
-
+            explicit = registered_coding or explicit_coding_request(question)
             text = (
                 self.coding(input_id)
-                if self.coding is not None and explicit_coding_request(question)
+                if self.coding is not None and explicit
                 else "当前新消息没有明确编码指令，本次未启动编码。"
-                if not explicit_coding_request(question)
+                if not explicit
                 else ("已识别编码请求；隔离编码实验接线尚未激活，本次未修改代码。")
             )
         sealed = self.keys.seal(call_id, text, expires)

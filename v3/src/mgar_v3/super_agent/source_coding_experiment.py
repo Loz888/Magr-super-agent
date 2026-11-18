@@ -74,8 +74,23 @@ def normalize_coding_mention(text: str) -> str:
     return re.sub(r"\A@\s+", "", text)
 
 
-def explicit_coding_request(text: str) -> bool:
-    text = normalize_coding_mention(text)
+def canonical_request(text: str) -> str:
+    text = " ".join(normalize_coding_mention(text).split())
+    # The trial prompt displays the request in quotes. A partial copy can
+    # retain just the opening quote. Only use this form for exact case matching.
+    if text.startswith("「"):
+        text = text[1:].removesuffix("」").strip()
+    text = re.sub(r"(?<=[\u3400-\u9fff])\s+(?=[\u3400-\u9fff])", "", text)
+    return text.removesuffix("。")
+
+
+def explicit_coding_request(text: str, *, frozen_request: str | None = None) -> bool:
+    if frozen_request is None:
+        text = normalize_coding_mention(text)
+    else:
+        text = canonical_request(text)
+        if text != canonical_request(frozen_request):
+            return False
     return (
         re.match(
             r"(?i)^(?:/code\b|/编码|(?:请(?:你)?(?:帮我)?|帮我)(?:修复|修改|实现|新增|编写|重构|添加)|fix\b|implement\b)",
@@ -100,12 +115,12 @@ class SourceCodingExperiment:
         if not profile.trial_id or not runtime_profile.experimental:
             raise ValueError("An explicit experimental profile is required")
 
-    def submit(self, input_id: UUID) -> dict[str, Any]:
+    def submit(self, input_id: UUID, *, frozen_request: str | None = None) -> dict[str, Any]:
         core = self.engine.source_coding
         with self.engine.transaction() as conn:
             owner = core._console(conn, self.cookie)
             source = self.engine.source_correlations._input(conn, input_id)
-            if not explicit_coding_request(source.text):
+            if not explicit_coding_request(source.text, frozen_request=frozen_request):
                 raise DomainError(
                     "SOURCE_CODING_EXPLICIT_REQUEST_REQUIRED",
                     "Explicit coding request required",
@@ -176,11 +191,11 @@ class SourceCodingExperiment:
             )
             return core.create_target(self.cookie, mandate)
 
-    def __call__(self, input_id: UUID) -> str:
-        if not explicit_coding_request(self._text(input_id)):
+    def __call__(self, input_id: UUID, *, frozen_request: str | None = None) -> str:
+        if not explicit_coding_request(self._text(input_id), frozen_request=frozen_request):
             return "若要实际编码，请使用“请修改／请修复……”并写明目标；本次未运行编码任务。"
         try:
-            target = self.submit(input_id)
+            target = self.submit(input_id, frozen_request=frozen_request)
             result = self.run_one()
         except DomainError as error:
             return "隔离编码实验未完成（" + error.code + "）；没有宣称修复成功。"

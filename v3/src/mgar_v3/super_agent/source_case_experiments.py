@@ -3,7 +3,6 @@
 from __future__ import annotations
 
 import json
-import re
 import threading
 from datetime import datetime
 from pathlib import Path
@@ -29,7 +28,9 @@ from mgar_v3.super_agent.source_coding_domain import (
 )
 from mgar_v3.super_agent.source_coding_experiment import (
     SourceCodingExperiment,
-    normalize_coding_mention,
+)
+from mgar_v3.super_agent.source_coding_experiment import (
+    canonical_request as canonical_request,
 )
 from mgar_v3.super_agent.source_coding_runtime import (
     ExperimentalCodingModel,
@@ -290,14 +291,6 @@ def build_case_experiment(
     return SourceCodingExperiment(engine, cookie, profile, runtime, registry, root / "artifacts")
 
 
-def canonical_request(text: str) -> str:
-    text = " ".join(normalize_coding_mention(text).split())
-    # Native rich text can insert a space when a Chinese word crosses spans.
-    # Preserve ASCII/token boundaries, punctuation, paths and all other text.
-    text = re.sub(r"(?<=[\u3400-\u9fff])\s+(?=[\u3400-\u9fff])", "", text)
-    return text.removesuffix("。")
-
-
 class SourceCaseExperiments:
     """Exact frozen input selection; only one execution swaps the trusted driver."""
 
@@ -410,7 +403,7 @@ class SourceCaseExperiments:
                 raise DomainError(
                     "SOURCE_CASE_ALREADY_REGISTERED", "Frozen case already has an input", 409
                 )
-            return selected[1].submit(input_id)
+            return selected[1].submit(input_id, frozen_request=self.cases[selected[0]][0])
 
     def __call__(self, input_id: UUID) -> str:
         with self._lock:
@@ -429,4 +422,5 @@ class SourceCaseExperiments:
             self.engine.source_coding.runtime = SourceCodingRuntime(
                 self.engine.source_coding, experiment.runtime_profile
             )
-            return experiment(input_id)
+            frozen_request = self.cases[selected[0]][0] if selected else None
+            return experiment(input_id, frozen_request=frozen_request)
