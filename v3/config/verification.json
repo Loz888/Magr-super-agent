@@ -2575,6 +2575,17 @@
       "authority": "approved project read scopes only; host parents/metadata private; exact command, epoch and originalMandate checked before renewal"
     }
   },
+  "SAV1-22-INITIAL-EDITABLE-FILES": {
+    "tests": [
+      "tests/test_sa22_initial_editable_files.py"
+    ],
+    "timeout_seconds": 120,
+    "components": {
+      "scope": "first max-thinking model request for two exact editable files after actual baseline",
+      "services": "owned PostgreSQL, Git and isolated Docker, controlled zero-paid HTTP",
+      "boundary": "complete scoped file bytes and exact hashes, no unrelated file seed, green public receipt with independent result still incomplete"
+    }
+  },
   "SAV1-22-TASK-STATUS-REPLY": {
     "tests": [
       "tests/test_sa22_task_status_reply.py"

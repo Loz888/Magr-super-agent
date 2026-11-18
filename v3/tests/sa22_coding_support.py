@@ -22,7 +22,15 @@ from mgar_v3.super_agent.source_notification_domain import NotificationConfigure
 
 
 def coding_environment(
-    engine, tmp_path, *, extra_files=None, supplier_hook=None, task_status=False, token_hook=None
+    engine,
+    tmp_path,
+    *,
+    extra_files=None,
+    supplier_hook=None,
+    task_status=False,
+    token_hook=None,
+    write_paths=("src",),
+    thinking_mode="disabled",
 ):
     env = model_environment(engine, task_status=task_status, token_hook=token_hook)
     source = tmp_path / "original-source"
@@ -180,7 +188,8 @@ def coding_environment(
 
     client = httpx.Client(transport=httpx.MockTransport(supplier), trust_env=False)
     model = ExperimentalDeepSeekModel(
-        client, "controlled-not-a-credential", PRICE, controlled_transport=True
+        client, "controlled-not-a-credential", PRICE, controlled_transport=True,
+        thinking_mode=thinking_mode,
     )
     root = tmp_path / "experimental-control"
     root.mkdir()
@@ -203,7 +212,7 @@ def coding_environment(
         baseline_command=COMMAND,
         working_directory="src",
         read_paths=read_paths,
-        write_paths=("src",),
+        write_paths=write_paths,
     )
     holder["experiment"] = experiment
     return SimpleNamespace(
