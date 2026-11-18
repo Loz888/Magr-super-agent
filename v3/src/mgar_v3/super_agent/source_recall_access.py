@@ -129,7 +129,9 @@ class RecallAccess:
         self.source(mandate.origin.input.input_id)
         return scope
 
-    def metadata(self, input_id: UUID) -> tuple[dict[str, Any], ItemMetadata, dict[str, Any]]:
+    def metadata(
+        self, input_id: UUID, *, task_status: bool = False
+    ) -> tuple[dict[str, Any], ItemMetadata, dict[str, Any]]:
         """Current Receive provenance without requiring retained or decrypted body bytes.
 
         This allows a known Task's truthful status after body TTL. It cannot grant
@@ -147,7 +149,29 @@ class RecallAccess:
             and row["source_instance_id"] != self.scope.source_instance_id
         ):
             raise denied()
-        item, grant = self.engine.source_ingress._readable(self.conn, row)
+        ingress = self.engine.source_ingress
+        body_purged = (
+            task_status
+            and self.caller.kind == "owner"
+            and row["unavailable_at"] is not None
+            and row["reason_code"] == "INGRESS_BODY_EXPIRED"
+        )
+        if body_purged:
+            if self.conn.execute(
+                "SELECT 1 FROM app.source_ingress_bodies WHERE input_id=%s", (input_id,)
+            ).fetchone() is not None:
+                raise denied()
+            # The purge fences body reads and live work. A status projection
+            # can still check current Receive and the retained canonical head.
+            item, grant = ingress._readable(self.conn, {**row, "unavailable_at": None})
+            instance = ingress.identities.registry._instance(self.conn, row["source_instance_id"])
+            if (
+                item.event.source_revision != instance.revision
+                or grant["identity_id"] != row["identity_id"]
+            ):
+                raise denied()
+        else:
+            item, grant = ingress._readable(self.conn, row)
         event = item.event
         if self.caller.kind == "worker":
             if event.source_thread.conversation_key != self.scope.conversation_key:

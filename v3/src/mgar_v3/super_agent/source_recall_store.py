@@ -264,7 +264,7 @@ class RecallStore:
                     value = self.access.source(source_id)
                     versions.append(value.ref.state_sha256)
                 else:
-                    metadata, _, grant = self.access.metadata(source_id)
+                    metadata, _, grant = self.access.metadata(source_id, task_status=True)
                     versions.append(fingerprint([metadata, grant]))
             except DomainError:
                 if content:
@@ -276,7 +276,7 @@ class RecallStore:
 
     def _source_visible(self, source_id: UUID) -> bool:
         try:
-            self.access.metadata(source_id)
+            self.access.metadata(source_id, task_status=True)
             return True
         except DomainError:
             return False
