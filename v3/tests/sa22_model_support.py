@@ -33,6 +33,7 @@ def model_environment(
     repository=None,
     question="请解释这段授权仓库代码 @_user_1",
     history_turns=0,
+    task_status=False,
 ):
     engine.settings = engine.settings.model_copy(
         update={"allow_paid": True, "allow_external_write": True}
@@ -205,6 +206,7 @@ def model_environment(
         api_key="controlled-not-a-credential",
         controlled_transport=True,
         repository=repository,
+        task_status=task_status,
     )
     holder["service"] = service
     return SimpleNamespace(

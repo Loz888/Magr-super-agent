@@ -3,7 +3,7 @@
 import json
 
 import pytest
-from sa15_support import TEXT, path, ref, setup, snapshot
+from sa15_support import TEXT, path, setup, snapshot
 
 from mgar_v3.domain import DomainError
 from mgar_v3.super_agent.source_recall_domain import RecallPageRequest, RecallResolveRequest
@@ -46,4 +46,4 @@ def test_owner_retains_task_state_after_source_body_is_purged(engine, tmp_path):
             (env.input_id,),
         )
     with pytest.raises(DomainError):
-        env.recall.resolve(env.owner, RecallResolveRequest(path=path(ref("run", env.target.run_id))))
+        env.recall.resolve(env.owner, RecallResolveRequest(path=path(env.run_ref)))

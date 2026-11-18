@@ -18,10 +18,13 @@ from mgar_v3.sources.ingress_domain import IngressConfigure, IngressSettings
 from mgar_v3.super_agent.policy_domain import PolicyDefinition, PolicySave
 from mgar_v3.super_agent.source_coding_experiment import install_coding_trial
 from mgar_v3.super_agent.source_coding_live_model import ExperimentalDeepSeekModel
+from mgar_v3.super_agent.source_notification_domain import NotificationConfigure
 
 
-def coding_environment(engine, tmp_path, *, extra_files=None, supplier_hook=None):
-    env = model_environment(engine)
+def coding_environment(
+    engine, tmp_path, *, extra_files=None, supplier_hook=None, task_status=False, token_hook=None
+):
+    env = model_environment(engine, task_status=task_status, token_hook=token_hook)
     source = tmp_path / "original-source"
     source.mkdir()
     files = {**FILES, **(extra_files or {})}
@@ -49,7 +52,7 @@ def coding_environment(engine, tmp_path, *, extra_files=None, supplier_hook=None
             }
         ],
     }
-    engine.source_policies.save(
+    saved = engine.source_policies.save(
         env.source.cookie,
         env.source.policy_id,
         PolicySave(
@@ -69,6 +72,20 @@ def coding_environment(engine, tmp_path, *, extra_files=None, supplier_hook=None
             review_ref="SA22-trial-cutover",
         ),
     )
+    if task_status:
+        with engine.transaction() as conn:
+            control, notification = engine.source_notifications._config(conn, env.source.source_id)
+        engine.source_notifications.configure(
+            env.source.cookie,
+            env.source.source_id,
+            NotificationConfigure(
+                expected_revision=control["revision"],
+                settings=notification.model_copy(update={
+                    "policy_revision": 4, "policy_sha256": saved["definition_sha256"],
+                }),
+                review_ref="SA22-controlled-task-status",
+            ),
+        )
     runtime = FeishuRuntime(
         env.source.sources,
         env.source.source_id,
@@ -197,5 +214,7 @@ def coding_environment(engine, tmp_path, *, extra_files=None, supplier_hook=None
         original=source,
         root=root,
         client=client,
+        runtime=runtime,
+        conversation=env,
         close=lambda: (client.close(), env.close()),
     )

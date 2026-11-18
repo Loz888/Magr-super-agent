@@ -2575,6 +2575,17 @@
       "authority": "approved project read scopes only; host parents/metadata private; exact command, epoch and originalMandate checked before renewal"
     }
   },
+  "SAV1-22-TASK-STATUS-REPLY": {
+    "tests": [
+      "tests/test_sa22_task_status_reply.py"
+    ],
+    "timeout_seconds": 120,
+    "components": {
+      "scope": "fresh explicit Task ID reply after physical body purge, plus origin deletion during platform token IO",
+      "services": "owned PostgreSQL, original Coding admission and Dispatcher, controlled platform and zero model calls",
+      "boundary": "reuse the original task facts, one Outbox and no new Coding; revalidate retained origin at final send"
+    }
+  },
   "SAV1-22-RECALL-PURGED-STATUS": {
     "tests": [
       "tests/test_sa22_recall_purged_status.py"

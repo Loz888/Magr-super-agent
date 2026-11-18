@@ -20,6 +20,7 @@ from pydantic import AwareDatetime, Field
 from mgar_v3.domain import DomainError, Model, digest
 from mgar_v3.live import LivePermit, LiveProfile
 from mgar_v3.super_agent import source_conversation_history as history_store
+from mgar_v3.super_agent import source_trial_status
 from mgar_v3.super_agent.budget_domain import PriceQuote
 from mgar_v3.super_agent.policy_domain import PolicyFacts
 from mgar_v3.super_agent.source_conversation_crypto import ReplyKeys
@@ -217,6 +218,27 @@ def conversation_facts(engine: Engine, conn: Connection, run: Row, kind: str) ->
             conversation_status=statuses[run["reason_code"]],
             cause_sha256=digest([GRAPH, str(run["run_id"]), run["reason_code"]]),
         )
+    if run["reason_code"] == source_trial_status.ANSWER_REASON:
+        status = conn.execute(
+            "SELECT safe_payload->>'body_sha256' AS body_sha256 FROM app.run_events "
+            "WHERE run_id=%s AND kind=%s ORDER BY event_id DESC LIMIT 1",
+            (run["run_id"], source_trial_status.ANSWER_EVENT),
+        ).fetchone()
+        if status is None or not status["body_sha256"]:
+            raise denied("ANSWER_NOT_AVAILABLE")
+        ref = REF + str(run["run_id"]) + ":" + status["body_sha256"]
+        return NotificationFacts(
+            run_id=run["run_id"],
+            ticket_id=run["ticket_id"],
+            execution_epoch=run["execution_epoch"],
+            input_revision=run["input_revision"],
+            thread_revision=run["thread_revision"],
+            state=run["status"],
+            content_class="necessary_question",
+            needs_input=True,
+            answer_ref=ref,
+            cause_sha256=digest([GRAPH, source_trial_status.ANSWER_EVENT, ref]),
+        )
     row = conn.execute(
         "SELECT call_id,result FROM app.usage_calls WHERE run_id=%s AND step_key=%s "
         "AND status='known'",
@@ -257,6 +279,7 @@ class SourceConversations:
         deterministic_coding: Callable[[UUID], bool] | None = None,
         controlled_transport: bool = False,
         repository: FrozenRepositoryTools | None = None,
+        task_status: bool = False,
     ):
         if not api_key or client.event_hooks.get("request"):
             raise denied("CLIENT")
@@ -272,6 +295,7 @@ class SourceConversations:
         if repository is not None and repository.commit != profile.repository_base_sha:
             raise denied("REPOSITORY_BASE")
         self.repository = repository
+        self.task_status = task_status
 
     def process(self, input_id: UUID) -> Row:
         try:
@@ -319,6 +343,11 @@ class SourceConversations:
             or source.item.event.occurred_at < settings.valid_from
         ):
             raise denied("SOURCE")
+        if "task_status_id" in row["scope"]:
+            target = source_trial_status.parse_query(source.text) if self.task_status else None
+            if target is None or row["scope"]["task_status_id"] != target:
+                raise denied("STATUS_SCOPE")
+            return source
         roles, _ = self.engine.source_policies._roles(
             conn, source.item.event.sender, source.item.event.source_thread, None
         )
@@ -370,9 +399,13 @@ class SourceConversations:
                 "signed_by": str(owner),
                 "valid_until": min(source.expires, self.profile.expires_at).isoformat(),
             }
-            scope.update(
-                history_store.capture(self.engine, conn, source, self.profile.history_turns)
-            )
+            query = source_trial_status.parse_query(source.text) if self.task_status else None
+            if query is None:
+                scope.update(
+                    history_store.capture(self.engine, conn, source, self.profile.history_turns)
+                )
+            else:
+                scope["task_status_id"] = query
             conn.execute(
                 "INSERT INTO app.threads(thread_id,project_id,repository,external_key,revision) "
                 "VALUES(%s,%s,%s,%s,1)",
@@ -392,17 +425,18 @@ class SourceConversations:
             )
             conn.execute(
                 "INSERT INTO app.budgets(mandate_id,limit_micros) VALUES(%s,%s)",
-                (mandate, min(100000, self.profile.maximum_project_micros)),
+                (mandate, min(100000, self.profile.maximum_project_micros) if query is None else 0),
             )
-            conn.execute(
-                "INSERT INTO app.authorization_budgets(profile_hash,limit_micros,call_limit) "
-                "VALUES(%s,%s,%s) ON CONFLICT DO NOTHING",
-                (
-                    self.profile.profile_hash,
-                    self.profile.maximum_project_micros,
-                    self.profile.max_model_calls,
-                ),
-            )
+            if query is None:
+                conn.execute(
+                    "INSERT INTO app.authorization_budgets(profile_hash,limit_micros,call_limit) "
+                    "VALUES(%s,%s,%s) ON CONFLICT DO NOTHING",
+                    (
+                        self.profile.profile_hash,
+                        self.profile.maximum_project_micros,
+                        self.profile.max_model_calls,
+                    ),
+                )
             conn.execute(
                 "INSERT INTO app.tickets(ticket_id,mandate_id,thread_id,status) "
                 "VALUES(%s,%s,%s,'open')",
@@ -615,6 +649,21 @@ class SourceConversations:
         run = self._prepare(input_id)
         with self.engine.transaction() as conn:
             source = self._source(conn, run)
+            query = source_trial_status.parse_query(source.text) if self.task_status else None
+            if query is not None:
+                if run["reason_code"] != source_trial_status.ANSWER_REASON:
+                    status = source_trial_status.reply(
+                        self.engine, conn, self.cookie, source, query
+                    )
+                    self.engine._event(
+                        conn, run["run_id"], source_trial_status.ANSWER_EVENT,
+                        body_sha256=hashlib.sha256(status.encode()).hexdigest(),
+                    )
+                    conn.execute(
+                        "UPDATE app.runs SET status='waiting_input',reason_code=%s WHERE run_id=%s",
+                        (source_trial_status.ANSWER_REASON, run["run_id"]),
+                    )
+                return self._plan(run["run_id"], source)
             old = conn.execute(
                 "SELECT * FROM app.usage_calls WHERE run_id=%s AND step_key=%s",
                 (run["run_id"], STEP),
@@ -828,6 +877,16 @@ class SourceConversations:
             facts = conversation_facts(self.engine, conn, run, "necessary_question")
             if ref != facts.answer_ref or action["payload"]["body"] != ref:
                 raise denied("ANSWER_CHANGED")
+            if run["reason_code"] == source_trial_status.ANSWER_REASON:
+                query = source_trial_status.parse_query(source.text) if self.task_status else None
+                if query is None:
+                    raise denied("STATUS_SCOPE")
+                clear = source_trial_status.reply(self.engine, conn, self.cookie, source, query)
+                body = clear.encode()
+                observed_ref = REF + str(run["run_id"]) + ":" + hashlib.sha256(body).hexdigest()
+                if ref != observed_ref or len(body) > source.definition.notification.max_bytes:
+                    raise denied("ANSWER_CHANGED")
+                return clear
             call_id = UUID(ref[len(REF) :].split(":", 1)[0])
             call = conn.execute(
                 "SELECT result FROM app.usage_calls WHERE call_id=%s", (call_id,)
