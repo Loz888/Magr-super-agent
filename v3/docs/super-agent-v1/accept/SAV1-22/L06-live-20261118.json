@@ -1,0 +1,83 @@
+{
+  "UTC": "2026-11-18T02:05:01.471431+00:00",
+  "L06_status": "PASS_LIVE_SOURCE_REPLY",
+  "source_candidate": {
+    "UTC": "2026-11-18T01:46:32.525612+00:00",
+    "commit": "5b348fccce39dd1897cf8ca0562c5487f19d22ef",
+    "source_sha256": "5aaa17e49d2b9f1ae45aba48387154bcb294aedbfd9c6dbfb8b8a2d6335fc439",
+    "task": "SAV1-22-RECALL-PURGED-FENCE",
+    "archive_sha256": "52bc23e998423fd449857d808d3fb86294673bd7fdec93175a1841dae61dd1b3",
+    "historical_PASS_rerun": false
+  },
+  "query": {
+    "input_id": "84783ce5-4926-4931-aa11-f70cacd99e27",
+    "run_id": "b070bd72-5c87-4c0d-b717-8ed92c0a1d95",
+    "received_at": "2026-11-18 02:02:32.604032+00:00",
+    "outbox_state": "succeeded",
+    "attempts": 1,
+    "outcome": "accepted",
+    "remote_message_id": "om_x100b60e43d455c8cdd3f13238791ca2",
+    "observed_at": "2026-11-18 02:02:35.983359+00:00"
+  },
+  "action_id": "e732091a-bd1f-4524-a4ff-c37b43c77a5f",
+  "original_run": "2931c05f-9535-418b-bab2-091a12ad9d05",
+  "original_ticket": "f0dd57ab-1bea-420f-afbc-330e8120bae9",
+  "original_source": {
+    "received_at": "2026-11-17 11:22:06.509725+00:00",
+    "current_generation": 6,
+    "body_physically_absent": true,
+    "expiry_reason": "INGRESS_BODY_EXPIRED"
+  },
+  "later_Shanghai_calendar_day": true,
+  "matches_original_facts": true,
+  "expected_render_sha256": "cf4486a90315d1744f3b5f99382331540a18107fe973bdcf396b378a3051e0b9",
+  "actual_signed_content_sha256": "cf4486a90315d1744f3b5f99382331540a18107fe973bdcf396b378a3051e0b9",
+  "actual_original_facts": {
+    "run_state": "paused",
+    "final_verification_records": 0,
+    "known_edit": true,
+    "unknown_operation_count": 1,
+    "original_accepted_reply": {
+      "status": "succeeded",
+      "attempts": 1
+    },
+    "coding_money": {
+      "settled": "9707",
+      "held": "0"
+    }
+  },
+  "query_model_calls": 0,
+  "query_new_coding": 0,
+  "query_used_history": false,
+  "delivery_seconds": 3.379327,
+  "ledger": {
+    "ledger_rows": 75,
+    "settled_micros": "155387",
+    "unsettled": 0
+  },
+  "L02_ready_for_fresh_input": true,
+  "L02_prior_binding_count": 4,
+  "L02_binding_latest": {
+    "coding_id": "5fdef8b0-54b1-4173-a079-713b12f890ed",
+    "run_id": "287fe653-c497-470a-a91e-d128c3c0757e",
+    "state": "revoked",
+    "created_at": "2026-11-17 12:30:07.859241+00:00"
+  },
+  "retained_preflight_evidence": "evidence/super-agent-v1/SAV1-22/L06-20261118/SHA256SUMS",
+  "SA22_status": "IN_PROGRESS",
+  "source_state_only": "L06 occurrence scoped to exact retained L01 Ticket in the authorized Bot group",
+  "formal_ten_case_scoring": "INCOMPLETE",
+  "historical_passed_tests_rerun": false,
+  "source_code_modified_for_live_verification": false,
+  "raw_evidence": [
+    {
+      "path": "evidence/super-agent-v1/SAV1-22/L06-20261118/L06-live-acceptance.json",
+      "sha256": "009ee6ccfc56c7b2fbe5d9b18d39138c8d776d14f2b0a274c509d72ba80293d9"
+    },
+    {
+      "path": "evidence/super-agent-v1/SAV1-22/L06-20261118/L06-platform-20261118T020304735385Z.json",
+      "sha256": "36f31d842d175ce7361fcc766aa5a359372df1d9026c55821bd4cb87a95440fa"
+    }
+  ],
+  "preflight_record": "accept/SAV1-22/L06-preflight-20261118.json"
+}
