@@ -2586,6 +2586,17 @@
       "boundary": "complete scoped file bytes and exact hashes, no unrelated file seed, green public receipt with independent result still incomplete"
     }
   },
+  "SAV1-22-CASE-DISPLAY-QUOTE": {
+    "tests": [
+      "tests/test_sa22_case_display_quote.py"
+    ],
+    "timeout_seconds": 120,
+    "components": {
+      "scope": "one copied Feishu display quote in an exact frozen coding request",
+      "services": "owned PostgreSQL, original trial admission and Docker, controlled model HTTP",
+      "boundary": "frozen source request only, no general quote command, preserve paths and added instructions"
+    }
+  },
   "SAV1-22-TASK-STATUS-REPLY": {
     "tests": [
       "tests/test_sa22_task_status_reply.py"
