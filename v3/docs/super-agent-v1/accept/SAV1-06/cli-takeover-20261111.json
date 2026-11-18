@@ -1,0 +1,100 @@
+{
+  "task": "SAV1-06-CLI-TAKEOVER",
+  "kind": "IMPLEMENTER_CONTROLLED_TAKEOVER_REVIEW_NOT_INDEPENDENT_ACCEPTANCE",
+  "status": "IN_PROGRESS",
+  "independent_review": "NOT_PASSED",
+  "SA07": "PLANNED_NOT_STARTED",
+  "baseline": {
+    "actual_head": "123b7433a1aa4739f6611530a3536df49c98eb6d",
+    "handoff_parent": "3c7b7009cbbc985c07106bd304532f67e9dda079",
+    "difference": "仅新增 CLI_TAKEOVER_SA06.md；接手时工作树干净，未发现用户修改或源码漂移。",
+    "source_candidate": "d8004baadbf8e0afff1fc9e2dbbcd82ee2cf93ba",
+    "source_before": "4738e6421c3e4648e269e3720aec18c42cb5ad93528501eba5bf00f07a91a863",
+    "source_after": "4738e6421c3e4648e269e3720aec18c42cb5ad93528501eba5bf00f07a91a863",
+    "application_or_registered_test_changes": false,
+    "delivery_worktree": "新增本接手 JSON；证据和补充探针保存在忽略的 evidence 目录。未提交、未推送。"
+  },
+  "evidence_root": "evidence/super-agent-v1/SAV1-06/20261111T104737Z-cli-takeover-b74847b8",
+  "reading": {
+    "requirements_and_source": "reading.json",
+    "complete_byte_inventory": "inventory-initial.json",
+    "structured_old_evidence_review": "evidence-review.json",
+    "parallel_readonly_source_audit": "readonly-contract-audit.json",
+    "note": "UTC/SHA逐文件记录；完整字节盘点与语义阅读范围分列，JUnit完整解析795个testcase。"
+  },
+  "activity_checks": {
+    "pre_review_host_utc": "2026-11-11T10:47:04Z",
+    "post_review_host_utc": "2026-11-11T10:54:33Z",
+    "result": "宿主ps均仅匹配检查命令及rg自身；没有独立复验、pytest、verify.py或probe活动。沙箱PID隔离不足以检查宿主，故经权限机制执行只读宿主检查。",
+    "evidence": "preflight.json / final-integrity.json"
+  },
+  "dependencies": {
+    "SA02": "TASKS.md记DONE；身份验收源3bcfb023；原SA06起始依赖记录明确用户独立认可，后续SA05完整566项包含其回归。未冒称本轮进行了依赖独立验收。",
+    "SA04": "accept/SAV1-04/accept.json中USER_CONFIRMED_INDEPENDENT_PASS，2026-11-11T02:53:36Z。原NOT_GRANTED是历史字段，未重写。",
+    "SA05": "independent-history-20261111.json记录9fb6593/cf7c176工程独立放行、566/146/13及29产物/8证据哈希；本轮沿用此前确认，不开展H卡。"
+  },
+  "remaining_original_fail": {
+    "case": "topic-only-remote-scope",
+    "judgment": "原反馈明确允许不能可靠表示话题时网络前拒绝并持久gap。probe.py仅在selector和HistoryRequest写Thread-Allowed，没有提交可信thread_id事件；它直接期待history成功返回，未捕获允许的拒绝。当前调用在_authorized/require_native_topic抛FEISHU_HISTORY_THREAD_UNPROVEN，早于mint/GET。该差异不能成为扩大远端读取范围或自行放行的理由。",
+    "source_proof_review": "正式prove()通过signed→Runtime.receive→SourceGateway→持锁PG提交，再由record_verified_topic重验签名并查询已提交input的真实thread metadata/TTL；不是直接写成功。root_id仅回复关联。policy/control修订会永久失效旧业务正文，但未清除的TTL metadata仍可证明容器来源；证明本身不授予当前Receive/身份权限。",
+    "new_runtime_defect_found": false,
+    "document_discrepancy": "SA06_FEISHU.md:27旧表格仍写thread_id或root_id；其299–303行、原反馈及当前代码明确要求真实thread_id。该旧表述不作为授权依据，本轮保留并在此指出。",
+    "decision": "不改原探针、评分器、阈值或权限，不修改实现；维持原FAIL，等待用户转达新的独立验收结论。"
+  },
+  "new_checks": {
+    "supplemental_script": "test_topic_takeover.py",
+    "command_record": "20261111T105302Z-topics-e14c20ea/command.json",
+    "raw_log": "20261111T105302Z-topics-e14c20ea/command.log",
+    "junit": "20261111T105302Z-topics-e14c20ea/junit.xml",
+    "request_and_pg_traces": "20261111T105302Z-topics-e14c20ea/traces/",
+    "trace_summary": "topic-trace-summary.json",
+    "exit_code": 0,
+    "counts": {"tests": 14, "failures": 0, "errors": 0, "skipped": 0},
+    "duration_seconds_pytest": 32.63,
+    "cases": {
+      "no_proof_root_only_bad_signature": "3PASS；每例POST=0/GET=0，input/body=0，持久gap>=1。策略/请求字符串或root_id不能变成证明。",
+      "current_topic_signed_and_socket": "2PASS；先保存仅该话题的当前策略，再通过签名或官方SDK受控Socket提交。SQL读取sealed receipt/committed_at/input/metadata TTL；均2POST+2GET，只用thread/Thread-Allowed；回复关联、context_only历史、续页token和终止空页complete正确。",
+      "cross_thread_missing_thread_cross_chat": "3PASS；每例1POST+1GET，远端请求仍限thread。拒绝响应后无新增历史input/body并持久gap。最终保留的一个input/body是调用前已提交的proof，不能误算为泄漏。",
+      "cursor_mac_and_other_topic": "2PASS；取得第一页后篡改MAC或换到未授权话题均无新增POST/GET。MAC错误持久gap；其他话题由Gateway当前Receive在provider之前拒绝，未声称该分支新增gap。",
+      "tombstone_with_or_without_exact_thread": "2PASS；有真实thread的撤回使旧正文不可读/密文为0；缺thread拒绝并记gap，不猜测话题。",
+      "revoke_during_mint_or_nonempty_get": "2PASS；mint中撤权仅1POST/0GET；GET中撤权为1POST/1GET，即使响应含新回复正文也不释放/提交该回复。旧正文清理为0，持久gap>=1。"
+    },
+    "scope": "真实隔离PostgreSQL + 合成签名 + 官方SDK受控Socket + httpx.MockTransport；不是实际平台记录、外部独立验收或新全量验收。",
+    "warnings": "两条既有官方SDK DeprecationWarning原样保留。",
+    "initial_sandbox_attempt": "20261111T105234Z-topics-8b059acb/command.json：本机PG在沙箱不可达，NOT_RUN/launcher exit2；保留记录，经批准后以原PG执行，未改用SQLite。"
+  },
+  "historical_results_not_rerun_or_combined": {
+    "independent_full": "744项/10FAIL，exit1；TMPDIR诊断9+1通过不能拼全绿。",
+    "original_probe_before_repair": "4FAIL，exit1。六份原始反馈本轮逐字节保留并另存快照。",
+    "original_formats_before_repair": "5PASS/4FAIL，exit1。",
+    "fixed_registered": "795PASS/0failure/error/skip，exit0；d8004ba，2026-11-11T10:07:27Z–10:28:27Z；result.json/JUnit/command.log与源码哈希已核对。",
+    "fixed_static": "make lint exit0；make typecheck exit0/231 source files，历史证据已核对。",
+    "fixed_original_probe": "3PASS/1FAIL，exit1；余项topic-only-remote-scope，日志100528Z-repair-probe/probe.log。",
+    "fixed_original_formats": "9PASS/0FAIL，exit0；100633Z-repair-formats/format-results.json。",
+    "this_turn_full_registered_lint_typecheck_original_probes": "NOT_RUN；无源码变化且14项专项已覆盖接手问题，按卡不机械重跑长全量。没有把14项加到795项或改写原成绩。"
+  },
+  "integrity": {
+    "original_feedback": "6/6 SHA一致，原始快照original-feedback/；未运行固定输出路径的原格式探针。",
+    "delivery_artifacts": "33/33 SHA一致。",
+    "initial_inventory": "138/138未变；initial-inventory-integrity.json。",
+    "protected_scope": "88/88匹配此前固定审计；protected-scope-check.json。包括35份迁移、共享Engine/API/ToolAuthority及冻结Harness文件。",
+    "grader_sha256": "9199ac95c91519565943208d382b16a17c910ffc7ccc1d2295a3d72303e11de5",
+    "registered_targets_and_timeout": "30个原当前注册目标与2700秒阈值未修改。补充探针仅另存在证据目录。",
+    "pg_cleanup": "执行前后测试库/会话均空；new_remaining_databases=[]、new_remaining_sessions=[]。只有原fixture清理唯一临时库，没有人工清除别人的库。",
+    "harness": "本轮未访问/编辑/导入活动树，未运行H卡。无新共享改动或迁移，0036未预占。"
+  },
+  "gates": {
+    "engineering_gate": "FAIL (保留当前accept指针，等待新独立验收)",
+    "local_takeover_topic_review": "PASS_14_CONTROLLED_ONLY",
+    "policy_security_gate": "NOT_RUN",
+    "live_source_channel_gate": "NOT_RUN",
+    "live_coding_gate": "NOT_RUN",
+    "live_publication_gate": "NOT_RUN",
+    "continuous_operation_gate": "NOT_RUN"
+  },
+  "new_real_platform_calls": 0,
+  "new_paid_calls": 0,
+  "new_external_business_writes": 0,
+  "activation": "真实平台/凭据登记/监听、付费调用、外发、发布、部署均保持禁用；未向Trae发送消息。",
+  "stop": "第一阶段接手复核完成；停在SA06 IN_PROGRESS/NOT_PASSED等待新的独立验收，不进入SA07。"
+}
