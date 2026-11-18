@@ -2597,6 +2597,17 @@
       "boundary": "frozen source request only, no general quote command, preserve paths and added instructions"
     }
   },
+  "SAV1-22-CODING-TRANSPORT-LOSS": {
+    "tests": [
+      "tests/test_sa22_coding_transport_loss.py"
+    ],
+    "timeout_seconds": 120,
+    "components": {
+      "scope": "first F08 physical Coding model connection loss after full request receipt",
+      "services": "owned PostgreSQL, original Coding journal and Broker, one real TCP request to an owned loopback peer",
+      "boundary": "retain original unknown cost and operation; no second physical send, workspace write, or passed verifier"
+    }
+  },
   "SAV1-22-TASK-STATUS-REPLY": {
     "tests": [
       "tests/test_sa22_task_status_reply.py"
