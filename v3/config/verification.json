@@ -2608,6 +2608,17 @@
       "boundary": "retain original unknown cost and operation; no second physical send, workspace write, or passed verifier"
     }
   },
+  "SAV1-22-STAGED-EDITS": {
+    "tests": [
+      "tests/test_sa22_staged_edits.py"
+    ],
+    "timeout_seconds": 120,
+    "components": {
+      "scope": "staged full-file max-thinking edits using the actual intermediate tree receipt",
+      "services": "owned PostgreSQL, real Git and isolated Docker, controlled model HTTP",
+      "boundary": "existing full-content edits and exact test command; no source reread or independent gate promotion"
+    }
+  },
   "SAV1-22-TASK-STATUS-REPLY": {
     "tests": [
       "tests/test_sa22_task_status_reply.py"
