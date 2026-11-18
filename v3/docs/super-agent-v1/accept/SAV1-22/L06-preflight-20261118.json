@@ -1,0 +1,399 @@
+{
+  "UTC": "2026-11-18T01:51:50.911570+00:00",
+  "SA22": "IN_PROGRESS",
+  "SA23_started": false,
+  "L06": "CONTROLLED_CHECKS_AND_LOOPBACK_PREFLIGHT_PASSED_LIVE_FEISHU_WAITING_FOR_FRESH_INPUT",
+  "L02": "WAITING_FOR_FRESH_INPUT",
+  "L03": {
+    "commit": "41aa686f424ad0e0157cd65c62c05c522e79a011",
+    "reviewed_file_hashes": {
+      "REPORT.md": "d1d41eccdfc528270b8cab5c6cb051f3920ca9b9c3ca7bec50be60f7a7277290",
+      "public/NOTE.md": "5af85d3f6be4b52a8c6a399cf81b184368cb591c17ddb2152c35b7115154e3c0",
+      "public/repro_float_order.py": "ae1b3c81897881c0aeb4730b118e43156d3fba6b8d4c98b62fdb9bdb09110e02"
+    },
+    "original_A04_FAIL_retained": true,
+    "new_A04_grader_result_delivered": false,
+    "private_material_given_to_Worker": false
+  },
+  "H12": "FAIL_RETAINED",
+  "deployed": {
+    "UTC": "2026-11-18 01:46:40.138037+00:00",
+    "source_candidate": {
+      "UTC": "2026-11-18T01:46:32.525612+00:00",
+      "commit": "5b348fccce39dd1897cf8ca0562c5487f19d22ef",
+      "source_sha256": "5aaa17e49d2b9f1ae45aba48387154bcb294aedbfd9c6dbfb8b8a2d6335fc439",
+      "task": "SAV1-22-RECALL-PURGED-FENCE",
+      "archive_sha256": "52bc23e998423fd449857d808d3fb86294673bd7fdec93175a1841dae61dd1b3",
+      "historical_PASS_rerun": false
+    },
+    "old_pid": 2236769,
+    "status": {
+      "status": "online",
+      "pid": 2279456,
+      "task_status_enabled": true,
+      "websocket_connected": true,
+      "thinking_mode": "enabled",
+      "reasoning_effort": "max",
+      "coding_trial_expires_at": "2026-11-18T07:07:10.941033+00:00",
+      "expires_at": "2026-11-24T07:03:10.941033+00:00"
+    },
+    "facts_before": {
+      "usage_rows": 75,
+      "settled_micros": 155387,
+      "unsettled": 0,
+      "usage_rows_sha256": "a18bae1645f7d71d7f472e8c6d3df5db80e958b594eaa9277bbc293ecc58211a",
+      "trial_rows_sha256": "2623ac7768f589e402998bbc7db4f6aec949c2a8c57507bb7f1d185f357a3689",
+      "budget_rows_sha256": "2798a5c6d558072fc1c1071a97b3faacfa1c157b2f6991104bfd8f6fa090f6eb",
+      "trial_rows": 9,
+      "assigned": 0,
+      "pending_outbox": 0,
+      "pending_inputs": 0
+    },
+    "facts_after": {
+      "usage_rows": 75,
+      "settled_micros": 155387,
+      "unsettled": 0,
+      "usage_rows_sha256": "a18bae1645f7d71d7f472e8c6d3df5db80e958b594eaa9277bbc293ecc58211a",
+      "trial_rows_sha256": "2623ac7768f589e402998bbc7db4f6aec949c2a8c57507bb7f1d185f357a3689",
+      "budget_rows_sha256": "2798a5c6d558072fc1c1071a97b3faacfa1c157b2f6991104bfd8f6fa090f6eb",
+      "trial_rows": 9,
+      "assigned": 0,
+      "pending_outbox": 0,
+      "pending_inputs": 0
+    },
+    "full_usage_unchanged": true,
+    "full_trials_unchanged": true,
+    "full_budget_policy_unchanged": true,
+    "old_case_intake_cutoff_preserved": true,
+    "test_messages_sent": 0
+  },
+  "preflight": {
+    "UTC": "2026-11-18T01:42:03.814307+00:00",
+    "purpose": "L06 operator loopback API preflight on the original actual L01 Run with purged body",
+    "run_id": "2931c05f-9535-418b-bab2-091a12ad9d05",
+    "status_code": 200,
+    "cache_control": "no-store",
+    "read_only": true,
+    "node": {
+      "ref": {
+        "kind": "run",
+        "id": "2931c05f-9535-418b-bab2-091a12ad9d05"
+      },
+      "version_sha256": "15bd1c4d2005764211b50c0b3aa62d47e1aa2a03a2371363be0d2e5b1f1fe4d1",
+      "state": "paused",
+      "availability": "available",
+      "content_available": false,
+      "facts": [
+        {
+          "name": "ticket_id",
+          "value": "f0dd57ab-1bea-420f-afbc-330e8120bae9"
+        },
+        {
+          "name": "thread_id",
+          "value": "891437c0-1502-4266-ac78-aae048727d12"
+        },
+        {
+          "name": "execution_epoch",
+          "value": "2"
+        },
+        {
+          "name": "ticket_state",
+          "value": "open"
+        }
+      ],
+      "read_only": true,
+      "grants_authority": false
+    },
+    "service_response_error_code": null,
+    "real_Feishu_L06": "AWAITING_FRESH_INPUT",
+    "paid_model_calls": 0,
+    "original_source_body_read": false
+  },
+  "current_observation": {
+    "UTC": "2026-11-18T01:51:13.854640+00:00",
+    "L01_original_run_id": "2931c05f-9535-418b-bab2-091a12ad9d05",
+    "L01": {
+      "ticket_id": "f0dd57ab-1bea-420f-afbc-330e8120bae9",
+      "input_id": "e9fa0d59-a820-4461-882b-50e2f529d1e8",
+      "binding_state": "admitted",
+      "status": "paused",
+      "reason_code": "SOURCE_SCHEDULER_OWNER_DRAIN",
+      "received_at": "2026-11-17 11:22:06.509725+00:00",
+      "input_reason": "INGRESS_BODY_EXPIRED",
+      "original_generation": 6,
+      "current_generation": 6,
+      "body_absent": true
+    },
+    "original_verification_count": 0,
+    "original_async_jobs_count": 0,
+    "original_platform_reply": {
+      "status": "succeeded",
+      "attempts": 1
+    },
+    "usage": {
+      "ledger_rows": 75,
+      "settled_micros": "155387",
+      "unsettled": 0
+    },
+    "new_source_input_metadata_since_prior_activation": [],
+    "online_candidate": {
+      "UTC": "2026-11-18T01:46:32.525612+00:00",
+      "commit": "5b348fccce39dd1897cf8ca0562c5487f19d22ef",
+      "source_sha256": "5aaa17e49d2b9f1ae45aba48387154bcb294aedbfd9c6dbfb8b8a2d6335fc439",
+      "task": "SAV1-22-RECALL-PURGED-FENCE",
+      "archive_sha256": "52bc23e998423fd449857d808d3fb86294673bd7fdec93175a1841dae61dd1b3",
+      "historical_PASS_rerun": false
+    },
+    "migration_counts": {
+      "main": 44,
+      "Bot": 52
+    },
+    "original_user_file_sha256": "f4adf9605c87d6256bd2ec17b8436da8a7bced763a8e03b185a8cfe19d34a29f",
+    "L03_adjudication": {
+      "commit": "41aa686f424ad0e0157cd65c62c05c522e79a011",
+      "reviewed_file_hashes": {
+        "REPORT.md": "d1d41eccdfc528270b8cab5c6cb051f3920ca9b9c3ca7bec50be60f7a7277290",
+        "public/NOTE.md": "5af85d3f6be4b52a8c6a399cf81b184368cb591c17ddb2152c35b7115154e3c0",
+        "public/repro_float_order.py": "ae1b3c81897881c0aeb4730b118e43156d3fba6b8d4c98b62fdb9bdb09110e02"
+      },
+      "original_A04_FAIL_retained": true,
+      "new_A04_grader_result_delivered": false,
+      "private_material_given_to_Worker": false
+    },
+    "controlled_soak": {
+      "observed_at": "2026-11-18T01:51:13.851610+00:00",
+      "observed_status": "RUNNING",
+      "owned_process_alive": true,
+      "heartbeat_age_seconds": 38.55,
+      "source_commit": "5a99967c1fb213fd3e8c8f4967ede0ac95e87446",
+      "source_sha256": "639f242da6fd3484b029486b59b9358966a1dfcb0ba87ddbd5aacb3dfcbc95d0",
+      "evidence_directory": "/home/imini/magr-super-agent/v3/.local/sa22-controlled-soak-20261117T075959Z-2d31fd",
+      "UTC": "2026-11-18T01:50:35.304896+00:00",
+      "samples": 1066,
+      "elapsed_seconds": 64217.55666674103,
+      "wall_seconds": 64217.55667,
+      "duration_met": false,
+      "continuous_segment": "IN_PROGRESS",
+      "continuous_operation_gate": "NOT_RUN_REQUIRES_FAULT_MATRIX_LIVE_72H_AND_PILOT",
+      "cycles": 214,
+      "sandbox_probes": 36,
+      "problems": []
+    },
+    "diagnostic_erratum": "First read-only snapshot query used an ambiguous USING name. Explicit alias keys corrected the metadata query."
+  },
+  "registered_attempts": [
+    {
+      "task": "SAV1-22-RECALL-PURGED-STATUS",
+      "status": "FAIL",
+      "counts": {
+        "tests": 1,
+        "failures": 1,
+        "errors": 0,
+        "skipped": 0
+      },
+      "git_commit": "ea03c9ba01a56a4496e92fc89e3c2dbe3f7f7e10",
+      "source_sha256": "b6a852ef18b72763417ea5c1a9bbe4e6e844be7c08abd9af50daa290a019fb30",
+      "finished_source_sha256": "b6a852ef18b72763417ea5c1a9bbe4e6e844be7c08abd9af50daa290a019fb30",
+      "attempt_path": "evidence/SAV1-22-RECALL-PURGED-STATUS/20261118T013027Z-0c8487b6",
+      "log_path": "evidence/SAV1-22-RECALL-PURGED-STATUS/20261118T013027Z-0c8487b6/command.log",
+      "argv": [
+        "/home/imini/magr-super-agent/v3/.venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "tests/test_sa22_recall_purged_status.py",
+        "--junitxml=/home/imini/magr-super-agent/v3/evidence/SAV1-22-RECALL-PURGED-STATUS/20261118T013027Z-0c8487b6/junit.xml"
+      ],
+      "started_at": "2026-11-18T01:30:27.622549+00:00",
+      "finished_at": "2026-11-18T01:30:42.690228+00:00",
+      "exit_code": 1,
+      "result.json_sha256": "729d7baf95b9dd3284db35246501360f80cec26e8552822107f650d667480e01",
+      "command.log_sha256": "b7ac3435957a5709c3dac25cabf358f8812c92c7acd7e49b45b8814f803de213",
+      "junit.xml_sha256": "1fff337bb1100755dff2f8033e19431ea98382490d4999220177ddfc9c81f671",
+      "source_archive": {
+        "path": "evidence/super-agent-v1/SAV1-22/L06-20261118/source-ea03c9b.tar.gz",
+        "sha256": "08b90912a63a3a9e66eb549f9a475004e5f0e9b55aaa4043f192ec785a36c348",
+        "fingerprint_verified": true
+      }
+    },
+    {
+      "task": "SAV1-22-RECALL-PURGED-STATUS",
+      "status": "PASS",
+      "counts": {
+        "tests": 1,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "git_commit": "214b1593dcfff5a654803686e148e6e6ab1aead7",
+      "source_sha256": "ab5dc06e2b72c9a29848fc517a852791ccde29a1dd0ca5e6590b278896f99ff3",
+      "finished_source_sha256": "ab5dc06e2b72c9a29848fc517a852791ccde29a1dd0ca5e6590b278896f99ff3",
+      "attempt_path": "evidence/SAV1-22-RECALL-PURGED-STATUS/20261118T013236Z-3f157c51",
+      "log_path": "evidence/SAV1-22-RECALL-PURGED-STATUS/20261118T013236Z-3f157c51/command.log",
+      "argv": [
+        "/home/imini/magr-super-agent/v3/.venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "tests/test_sa22_recall_purged_status.py",
+        "--junitxml=/home/imini/magr-super-agent/v3/evidence/SAV1-22-RECALL-PURGED-STATUS/20261118T013236Z-3f157c51/junit.xml"
+      ],
+      "started_at": "2026-11-18T01:32:36.661697+00:00",
+      "finished_at": "2026-11-18T01:32:49.527771+00:00",
+      "exit_code": 0,
+      "result.json_sha256": "8ebbf33599faf1eabe0dc06279a97b870c378cc73908b8665dca63f5979d244c",
+      "command.log_sha256": "8fe95c8d06e46679e4df86eeae0702d0514f27372cda1caa9518cb3823596cf5",
+      "junit.xml_sha256": "0e941dde6c6268cf2aeb98993f4b5c9ce86f0334ca9ba77d6b7e45d3907e8684",
+      "source_archive": {
+        "path": "evidence/super-agent-v1/SAV1-22/L06-20261118/source-214b159.tar.gz",
+        "sha256": "d892d40e8f172c824a51da54ab37655df3f5fc81927685f523c6e91362f1283c",
+        "fingerprint_verified": true
+      }
+    },
+    {
+      "task": "SAV1-22-TASK-STATUS-REPLY",
+      "status": "FAIL",
+      "counts": {
+        "tests": 2,
+        "failures": 2,
+        "errors": 0,
+        "skipped": 0
+      },
+      "git_commit": "930cd66c292b6bce17e3be46ec1bc5299ed7f5b0",
+      "source_sha256": "a88e5460a67415fafc346aa28c5a4cee563b88f44c9039c25be4526155bdd063",
+      "finished_source_sha256": "a88e5460a67415fafc346aa28c5a4cee563b88f44c9039c25be4526155bdd063",
+      "attempt_path": "evidence/SAV1-22-TASK-STATUS-REPLY/20261118T013743Z-24cd3549",
+      "log_path": "evidence/SAV1-22-TASK-STATUS-REPLY/20261118T013743Z-24cd3549/command.log",
+      "argv": [
+        "/home/imini/magr-super-agent/v3/.venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "tests/test_sa22_task_status_reply.py",
+        "--junitxml=/home/imini/magr-super-agent/v3/evidence/SAV1-22-TASK-STATUS-REPLY/20261118T013743Z-24cd3549/junit.xml"
+      ],
+      "started_at": "2026-11-18T01:37:43.645785+00:00",
+      "finished_at": "2026-11-18T01:38:01.737688+00:00",
+      "exit_code": 1,
+      "result.json_sha256": "b81f0c1f52540f2003bcef2ce0b6a1e1f41c16c5d7924521bf79144d1758c0b3",
+      "command.log_sha256": "be5d727d95d4e302b4dc97c875b7c72be2393cbeaaab05b168e2bf38fdb5e834",
+      "junit.xml_sha256": "592a9affc95018f135c435770e1bd372e87b2abee4868316ab9e92e284465b27",
+      "source_archive": {
+        "path": "evidence/super-agent-v1/SAV1-22/L06-20261118/source-930cd66.tar.gz",
+        "sha256": "444a781258462b840e53015f51d4c5ebaa4d8ea865c2219746183c20268bd5ba",
+        "fingerprint_verified": true
+      }
+    },
+    {
+      "task": "SAV1-22-TASK-STATUS-REPLY",
+      "status": "PASS",
+      "counts": {
+        "tests": 2,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "git_commit": "9fa7b35847f5331dd9ee84c4b140a9b88e65f381",
+      "source_sha256": "8dfd22408fd107482a0de6e5529ad3f3c3109ee08854e5515a778ee8aa805edc",
+      "finished_source_sha256": "8dfd22408fd107482a0de6e5529ad3f3c3109ee08854e5515a778ee8aa805edc",
+      "attempt_path": "evidence/SAV1-22-TASK-STATUS-REPLY/20261118T013918Z-3b22a252",
+      "log_path": "evidence/SAV1-22-TASK-STATUS-REPLY/20261118T013918Z-3b22a252/command.log",
+      "argv": [
+        "/home/imini/magr-super-agent/v3/.venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "tests/test_sa22_task_status_reply.py",
+        "--junitxml=/home/imini/magr-super-agent/v3/evidence/SAV1-22-TASK-STATUS-REPLY/20261118T013918Z-3b22a252/junit.xml"
+      ],
+      "started_at": "2026-11-18T01:39:18.959930+00:00",
+      "finished_at": "2026-11-18T01:39:34.907496+00:00",
+      "exit_code": 0,
+      "result.json_sha256": "68a1898bc80badaad507598092ec0b0c780bc4972dedd0c4e261cd5505bfc2ba",
+      "command.log_sha256": "b34174fef6a80d34a4410d97264660913ffa3dc9bbaa5e15dca9e370fe8d01f6",
+      "junit.xml_sha256": "8d107c9f298824cc1a1a7744e619511757dc2ef704ee355958d0f1b82ce29a70",
+      "source_archive": {
+        "path": "evidence/super-agent-v1/SAV1-22/L06-20261118/activated-source.tar.gz",
+        "sha256": "18b87021e7b7ec0b82992becb17722470b84bb340030acc8f0653d78bcf266e2",
+        "fingerprint_verified": true
+      }
+    },
+    {
+      "task": "SAV1-22-RECALL-PURGED-FENCE",
+      "status": "FAIL",
+      "counts": {
+        "tests": 1,
+        "failures": 1,
+        "errors": 0,
+        "skipped": 0
+      },
+      "git_commit": "3fa389a49b9d5ebc3ee2d20c23ed4eb6654e9dcd",
+      "source_sha256": "57274e9bd2240824560c236188be78617b5de7fea700c5b291d94614d3ec1cfa",
+      "finished_source_sha256": "57274e9bd2240824560c236188be78617b5de7fea700c5b291d94614d3ec1cfa",
+      "attempt_path": "evidence/SAV1-22-RECALL-PURGED-FENCE/20261118T014407Z-8282a83a",
+      "log_path": "evidence/SAV1-22-RECALL-PURGED-FENCE/20261118T014407Z-8282a83a/command.log",
+      "argv": [
+        "/home/imini/magr-super-agent/v3/.venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "tests/test_sa22_recall_purged_fence.py",
+        "--junitxml=/home/imini/magr-super-agent/v3/evidence/SAV1-22-RECALL-PURGED-FENCE/20261118T014407Z-8282a83a/junit.xml"
+      ],
+      "started_at": "2026-11-18T01:44:07.709296+00:00",
+      "finished_at": "2026-11-18T01:44:19.996241+00:00",
+      "exit_code": 1,
+      "result.json_sha256": "674e996f9b0232d65b68b6d19fb71ba23ff861598dd4b7ac33b39e7fb9679a0b",
+      "command.log_sha256": "7ef52332b21389984b90e7dfb5422b9fc5a67db279801a511d2a2cc414ca9638",
+      "junit.xml_sha256": "c7f28de46929ba77d2cfe0d2149cf7c428adad49ada0a24fe1bb038f141275a7",
+      "source_archive": {
+        "path": "evidence/super-agent-v1/SAV1-22/L06-20261118/source-3fa389a.tar.gz",
+        "sha256": "984dc25f5065d0b9a746dfb28a7919f287655894732c7f5aa1f562da5388d6b0",
+        "fingerprint_verified": true
+      }
+    },
+    {
+      "task": "SAV1-22-RECALL-PURGED-FENCE",
+      "status": "PASS",
+      "counts": {
+        "tests": 1,
+        "failures": 0,
+        "errors": 0,
+        "skipped": 0
+      },
+      "git_commit": "5b348fccce39dd1897cf8ca0562c5487f19d22ef",
+      "source_sha256": "5aaa17e49d2b9f1ae45aba48387154bcb294aedbfd9c6dbfb8b8a2d6335fc439",
+      "finished_source_sha256": "5aaa17e49d2b9f1ae45aba48387154bcb294aedbfd9c6dbfb8b8a2d6335fc439",
+      "attempt_path": "evidence/SAV1-22-RECALL-PURGED-FENCE/20261118T014544Z-dd2adf69",
+      "log_path": "evidence/SAV1-22-RECALL-PURGED-FENCE/20261118T014544Z-dd2adf69/command.log",
+      "argv": [
+        "/home/imini/magr-super-agent/v3/.venv/bin/python",
+        "-m",
+        "pytest",
+        "-q",
+        "tests/test_sa22_recall_purged_fence.py",
+        "--junitxml=/home/imini/magr-super-agent/v3/evidence/SAV1-22-RECALL-PURGED-FENCE/20261118T014544Z-dd2adf69/junit.xml"
+      ],
+      "started_at": "2026-11-18T01:45:44.011663+00:00",
+      "finished_at": "2026-11-18T01:45:54.890659+00:00",
+      "exit_code": 0,
+      "result.json_sha256": "9e821c03ee356f69f8e49a383486a9b5d93f933c9a61646f1f3fa86b42ce760f",
+      "command.log_sha256": "cdee57d19ce4cf379a9c9e3b0f93e6348fc62f032cb8be3b0cc4dce6f98c9f9a",
+      "junit.xml_sha256": "a34cba47d7df9ba1b0703dfa0e96ecda0aaea8fb5f1a24952cd045905e2c486c",
+      "source_archive": {
+        "path": "evidence/super-agent-v1/SAV1-22/L06-20261118/activated-source-ingress-fence.tar.gz",
+        "sha256": "52bc23e998423fd449857d808d3fb86294673bd7fdec93175a1841dae61dd1b3",
+        "fingerprint_verified": true
+      }
+    }
+  ],
+  "new_versioned_passing_checks": 4,
+  "previously_passing_tests_rerun": false,
+  "fee_delta_micros": 0,
+  "test_messages_sent": 0,
+  "evidence_manifest": {
+    "path": "evidence/super-agent-v1/SAV1-22/L06-20261118/SHA256SUMS",
+    "sha256": "c86a8e6268db0aef453e02b09fb3bfad35aa65b63475ffd92e5f8050308764eb",
+    "entries": 16
+  }
+}
