@@ -15,7 +15,7 @@
 
 本页提供实际运行命令。V3.5 已把只读调查、Finding/Evidence、有授权修复、测试回执、Review Bundle 与受控 Draft PR 串成一条可复核链路；Web 与 CLI 调同一 API。工程门与安全门 `PASS`；E02 真实 live 四臂失败，`live_agent_gate=FAIL`；真实 GitHub 写入 `NOT_RUN`。电商Case工单、独立业务判定、API/CLI与工作台的历史交付见[P0运行手册](docs/p0-commerce-runbook.md)与[最终复验/交付](docs/repairs/P0-20261107/README.md)。历史阶段结果按记录时间理解。
 
-仓库地址为`https://github.com/Loz888/MAGR-v3.git`。所有make命令在你本机克隆后的`MAGR-v3/v3/`执行；`/workspace/MAGR-v3/v3`是开发云路径，在你的WSL上不会自动存在。
+仓库地址为`https://github.com/Loz888/Magr-super-agent.git`。所有 make 命令在本机克隆后的`Magr-super-agent/v3/`执行；云环境路径不会自动存在于你的 WSL 中。
 
 依次执行`make setup`、`make deps-up`、`make migrate`、`make doctor`和`make dev`。工作台为`http://127.0.0.1:18080`（任务页 `/workbench`，仓库分析 `/repo`，API 文档 `/docs`）。首次打开创建管理员账户，之后用账户密码登录。模型配置直接在设置弹窗中填写。setup仅生成缺失的0600配置，不覆盖既有值。
 
@@ -98,10 +98,10 @@ export PATH="$HOME/.local/bin:$PATH"
 (
 set -e
 mkdir -p "$HOME/projects"
-if [ ! -d "$HOME/projects/MAGR-v3/.git" ]; then
-    git clone https://github.com/Loz888/MAGR-v3.git "$HOME/projects/MAGR-v3"
+if [ ! -d "$HOME/projects/Magr-super-agent/.git" ]; then
+    git clone https://github.com/Loz888/Magr-super-agent.git "$HOME/projects/Magr-super-agent"
 fi
-cd "$HOME/projects/MAGR-v3"
+cd "$HOME/projects/Magr-super-agent"
 git pull --ff-only
 cd v3
 docker info >/dev/null

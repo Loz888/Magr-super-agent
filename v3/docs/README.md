@@ -1,17 +1,31 @@
-# 文档导航
+# MAGR Super-Agent 文档导航
 
-项目是事件驱动持续研发Agent研究原型。电商“研巡”的两项P0已完成固定场景内的实施、真实报告/修复提案与三份Draft PR交付；见[最终复验/交付](repairs/P0-20261107/README.md)及[原实施档案](repairs/P0-20261106/README.md)。原技术报告/PDF保留P0实施前快照，新增技术与验证单列附录。
+从[项目首页](../../README.md)开始，了解持续研发问题如何接续。各能力的实际版本、验证范围与未决事项见[当前状态](CURRENT_STATUS.md)；历史设计与实验保留当时的条件和结论。
 
-| 阅读目的 | 入口 |
-|---|---|
-| 快速了解项目 | [仓库首页](../../README.md) |
-| 理解技术、设计及失败修复 | [完整技术报告](TECHNICAL_REPORT.md) · [PDF](reports/20261106/MGAR-V3.1-Technical-Report.pdf) · [独立HTML](reports/20261106/MGAR-V3.1-Technical-Report.html) |
-| 本机启动和演示 | [应用README](../README.md) · [已验证版本](versions.md) |
-| 规划通用编码 Harness 升级 | [差距与任务书](harness-v4/README.md) · [任务卡](harness-v4/TASKS.md) · [路线与排期](harness-v4/ROADMAP.md) · [验收](harness-v4/ACCEPTANCE.md)（PLANNED，未实施） |
-| 核对报告数字和证据 | [报告事实索引](reports/20261106/report-data.json) · [文档检查](reports/20261106/review.json) |
-| 了解两项P0设计 | [设计入口](design/p0-commerce-v1/README.md) · [闭环](design/p0-commerce-v1/01-commerce-workflow.md) · [统一结果](design/p0-commerce-v1/02-business-result.md) |
-| 使用电商工单、核对最新实测 | [运行手册](p0-commerce-runbook.md) · [最终复验/交付](repairs/P0-20261107/README.md) · [原实施档案](repairs/P0-20261106/README.md) · [获批原提案](repairs/P0-20261106/draft-pr-review.md) |
-| 查看任务阶段及边界 | [任务队列](../../v31-upgrade/TASK_QUEUE.md) · [ADR目录](adr/) |
+## 了解与使用
+
+- [项目说明：一个研发问题如何被接续](PROJECT_OVERVIEW.md)
+- [应用启动与 WSL2](../README.md) · [单页 Agent 使用说明](agent-ui.md) · [Super-Agent 运维方案](../deploy/super-agent-v1/README.md)
+
+## 理解设计
+
+- [来源、路由、任务与执行职责](PROJECT_OVERVIEW.md#从消息到工作目标)
+- [历史架构与权限契约](super-agent-v1/ARCHITECTURE.md)（标记 PLANNED） · [历史验收协议](super-agent-v1/ACCEPTANCE.md)
+- [与 Harness 的关系](CURRENT_STATUS.md#与-harness-的关系) · [历史交接原件](harness-v4/SUPER_AGENT_HANDOFF.md)
+
+## 核查证据
+
+- [当前状态](CURRENT_STATUS.md) · [实验解读](EVALUATION_SUMMARY.md)
+- [SA22 真实试用进展](super-agent-v1/SA22_PROGRESS_20261118.md) · [后续并行记录](super-agent-v1/SA22_PARALLEL_20261118.md) · [E/F 原实验](experiments/coordination-v2/README.md)
+- [历史实施状态](super-agent-v1/IMPLEMENTATION_STATUS.md)（按记录日期阅读） · [SA00 固定接口机器记录](super-agent-v1/accept/SAV1-00/accept.json)
+
+## 开发与历史档案
+
+- [Super-Agent 历史任务书与专项总览](super-agent-v1/README.md) · [任务卡](super-agent-v1/TASKS.md) · [ADR](adr/)
+- [V3.1 历史技术报告](TECHNICAL_REPORT.md) · [当时的 PDF](reports/20261106/MGAR-V3.1-Technical-Report.pdf) · [事实索引](reports/20261106/report-data.json)
+- [V3.5 历史演示](v35/DEMO.md) · [P0 历史交付](repairs/P0-20261107/README.md) · [原实施档案](repairs/P0-20261106/README.md)
+
+以下按阶段保留设计、历史验收和问题档案；较旧状态不能替代当前状态页。
 
 ## 运行与架构
 
