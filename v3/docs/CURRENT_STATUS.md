@@ -23,4 +23,4 @@
 
 ## 历史文档如何阅读
 
-[原实施状态](super-agent-v1/IMPLEMENTATION_STATUS.md)保留多轮历史快报，其中旧“当前”属于当时阶段；[架构契约](super-agent-v1/ARCHITECTURE.md)与[验收协议](super-agent-v1/ACCEPTANCE.md)标记 PLANNED，是冻结设计和协议，不是完整现状。请从本页进入，再按来源日期、候选和验证类型核查。[项目说明](PROJECT_OVERVIEW.md) · [实验解读](EVALUATION_SUMMARY.md) · [文档导航](README.md)
+[原实施状态](super-agent-v1/IMPLEMENTATION_STATUS.md)保留多轮历史快报，其中旧“当前”属于当时阶段；[架构契约](super-agent-v1/ARCHITECTURE.md)与[验收协议](super-agent-v1/ACCEPTANCE.md)标记 PLANNED，是冻结设计和协议，不是完整现状。请从本页进入，再按来源日期、候选和验证类型核查。[项目说明](PROJECT_OVERVIEW.md) · [实验解读](EVALUATION_SUMMARY.md) · [文档导航](README.md) · [Harness 当前状态](https://github.com/Loz888/MAGR-Harness/blob/main/v3/docs/CURRENT_STATUS.md)
